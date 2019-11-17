@@ -1,18 +1,19 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {
+  BrowserRouter as Router, Route, Redirect,
+} from "react-router-dom";
 
+
+import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   createMuiTheme,
   StylesProvider,
   MuiThemeProvider,
 } from '@material-ui/core';
 
-import Button from '@material-ui/core/Button';
+import TestEditor from './pages/TestEditor/TestEditor';
 
 import './App.css';
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
 
 const App: React.FC = () => {
   const theme = createMuiTheme({
@@ -40,23 +41,11 @@ const App: React.FC = () => {
       <CssBaseline />
       <StylesProvider injectFirst>
         <Router>
-
-          {/* The rest of your application */}
-          <h1>Test</h1>
-          <Button variant="contained">
-            Default
-          </Button>
-          <Button variant="contained" color="primary">
-            Default
-          </Button>
-          <Button variant="contained" color="secondary">
-            Default
-          </Button>
-
+          <Route path="/test-editor" component={TestEditor} />
+          <Redirect to="/test-editor"></Redirect>
         </Router>
       </StylesProvider>
     </MuiThemeProvider>
-
   );
 }
 
