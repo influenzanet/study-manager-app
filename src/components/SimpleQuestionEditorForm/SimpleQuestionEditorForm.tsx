@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import TextField from '@material-ui/core/TextField';
@@ -16,6 +17,7 @@ import Select from '@material-ui/core/Select';
 import { Expression } from 'survey-engine/lib/data_types';
 import { parseExpression, expressionToString } from '../../utils/expression-parser';
 
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -27,7 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
         textField: {
             marginLeft: theme.spacing(1),
             marginRight: theme.spacing(1),
-            width: 200,
+            width: 200
+        },
+        expInput: {
+            width: '70%',
         },
         formControl: {
             margin: theme.spacing(1),
@@ -42,11 +47,26 @@ const useStyles = makeStyles((theme: Theme) =>
 const SimpleQuestionEditorForm: React.FC = () => {
     const classes = useStyles();
 
-    const v = parseExpression('  $or<boolean>(10, "no sense value here", $eq("valuehere", $getAttribute<string>($getResponse("s1.q1.g3.q1"), "testAttribute") ) )');
+    const [exp, setExp] = useState('  $or<boolean>(10, "no sense value here", $eq("valuehere", $getAttribute<string>($getResponse("s1.q1.g3.q1"), "testAttribute") ) )');
+
+    let v = parseExpression('  $or<boolean>(10, "no sense value here", $eq("valuehere", $getAttribute<string>($getResponse("s1.q1.g3.q1"), "testAttribute") ) )');
 
     console.log(JSON.stringify(v, null, 2));
     if (v) {
-        console.log(expressionToString(v));
+        console.log(expressionToString(v, 0));
+    }
+
+    const expressionEdited = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value);
+        setExp(event.target.value);
+    }
+
+    const parseExp = () => {
+        const v = parseExpression(exp);
+        if (v) {
+            setExp(expressionToString(v, 0));
+        }
+        console.log(JSON.stringify(v, null, 2));
     }
 
 
@@ -87,6 +107,22 @@ const SimpleQuestionEditorForm: React.FC = () => {
                             <MenuItem value={4}>Option 4</MenuItem>
                         </Select>
                     </FormControl>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <TextField
+                        id="condition"
+                        className={classes.expInput}
+                        value={exp}
+                        multiline
+                        rowsMax="20"
+                        label="Condition"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={expressionEdited}
+                    />
+                    <Button onClick={parseExp}>Submit Expression</Button>
+
                 </Grid>
             </Grid>
         </form>

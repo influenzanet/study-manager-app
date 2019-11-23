@@ -1,43 +1,50 @@
 import { Expression, isExpression } from "survey-engine/lib/data_types";
 
-export const expressionToString = (exp: Expression): string => {
+export const expressionToString = (exp: Expression, space: number): string => {
     let expStr = '$' + exp.name;
     if (exp.dtype) {
         expStr += '<' + exp.dtype + '>';
     }
-    expStr += '(';
+    expStr += '(\n' + ' '.repeat(space + 2);
 
     if (Array.isArray(exp.data)) {
-        exp.data.forEach(d => {
+        exp.data.forEach((d, index) => {
             if (isExpression(d)) {
-                expStr += expressionToString(d);
-            } else if (typeof(d) === 'string') {
+                expStr += expressionToString(d, space + 2);
+            } else if (typeof (d) === 'string') {
                 expStr += '"' + d + '"';
             } else {
                 expStr += d.toString();
             }
-            expStr += ', ';
+            if (index < exp.data.length - 1) {
+                expStr += ',';
+            }
+            expStr += '\n';
+            if (index < exp.data.length - 1) {
+                expStr += ' '.repeat(space + 2);
+            }
+
         });
-        expStr = expStr.slice(0, -2);
     } else if (isExpression(exp.data)) {
-        expStr += expressionToString(exp.data);
-    } else if (typeof(exp.data) === 'string') {
-        expStr += '"' + exp.data + '"';
+        expStr += expressionToString(exp.data, space);
+    } else if (typeof (exp.data) === 'string') {
+        expStr += ' '.repeat(space + 2) + '"' + exp.data + '"';
     } else {
-        expStr += exp.data.toString();
+        // expStr += ' '.repeat(space + 2) + exp.data.toString();
     }
 
-    expStr += ')';
+    expStr += ' '.repeat(space) + ')';
     return expStr;
 }
 
 export const parseExpression = (exp: string): Expression | null => {
     exp = exp.trim();
-
-    if (exp.length < 1) {
+    if (!exp || exp.length < 1) {
         console.error('expression empty');
         return null;
-    } else if (exp[0] !== '$') {
+    }
+
+    if (exp[0] !== '$') {
         console.error('wrong start character: ' + exp);
         return null;
     }
