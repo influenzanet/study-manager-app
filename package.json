@@ -15,6 +15,7 @@
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "survey-engine": "^0.1.0",
     "typeface-roboto": "^0.0.75",
     "typescript": "3.7.2"
   },

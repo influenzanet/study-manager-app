@@ -9878,6 +9878,11 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+survey-engine@^0.1.0:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.1.3.tgz#734af61e70e4f2068fbf23e74924ee15ea48a7b4"
+  integrity sha512-Km/OjDfhJM4l8PU1h4iQ2sgSbCsKNfEtAQZYf8zI6qFfGKdChLPjkP3oMcI4BDdVqvrbiQ9WEfvhZxfbzu/ASg==
+
 svg-parser@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/svg-parser/-/svg-parser-2.0.2.tgz#d134cc396fa2681dc64f518330784e98bd801ec8"
