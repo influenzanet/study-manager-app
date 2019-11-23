@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import Edit from '@material-ui/icons/Edit';
 import TextField from '@material-ui/core/TextField';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,6 +17,8 @@ import Select from '@material-ui/core/Select';
 
 import { Expression } from 'survey-engine/lib/data_types';
 import { parseExpression, expressionToString } from '../../utils/expression-parser';
+import ExpressionCodeEditor from '../ExpressionCodeEditor/ExpressionCodeEditor';
+import { Paper, Collapse } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,6 +28,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         margin: {
             margin: theme.spacing(1),
+        },
+        padding: {
+            padding: theme.spacing(2),
         },
         textField: {
             marginLeft: theme.spacing(1),
@@ -47,7 +53,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const SimpleQuestionEditorForm: React.FC = () => {
     const classes = useStyles();
 
-    const [exp, setExp] = useState('  $or<boolean>(10, "no sense value here", $eq("valuehere", $getAttribute<string>($getResponse("s1.q1.g3.q1"), "testAttribute") ) )');
+    const [exp, setExp] = useState<Expression>({ name: '' });
+    const [conditionEditorOpen, setConditionEditorOpen] = useState(true);
 
     let v = parseExpression('  $or<boolean>(10, "no sense value here", $eq("valuehere", $getAttribute<string>($getResponse("s1.q1.g3.q1"), "testAttribute") ) )');
 
@@ -56,17 +63,13 @@ const SimpleQuestionEditorForm: React.FC = () => {
         console.log(expressionToString(v, 0));
     }
 
-    const expressionEdited = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value);
-        setExp(event.target.value);
+    const expressionChanged = (newExpression: Expression) => {
+        setExp(newExpression);
+        setConditionEditorOpen(false);
     }
 
-    const parseExp = () => {
-        const v = parseExpression(exp);
-        if (v) {
-            setExp(expressionToString(v, 0));
-        }
-        console.log(JSON.stringify(v, null, 2));
+    const cancelExpressionEditor = () => {
+        setConditionEditorOpen(false);
     }
 
 
@@ -110,18 +113,27 @@ const SimpleQuestionEditorForm: React.FC = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <TextField
-                        id="condition"
-                        className={classes.expInput}
-                        value={exp}
-                        multiline
-                        rowsMax="20"
-                        label="Condition"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={expressionEdited}
-                    />
-                    <Button onClick={parseExp}>Submit Expression</Button>
+                    <h3>Condition</h3>
+                    <Collapse in={!conditionEditorOpen}>
+                        { exp.name.length < 1 ? 'No condition': expressionToString(exp, 0)}
+                        <IconButton
+                            aria-label="open condition editor"
+                            className={classes.margin}
+                            onClick={() => setConditionEditorOpen(true)}
+                        >
+                            <Edit fontSize="inherit" />
+                        </IconButton>
+                    </Collapse>
+                    <Collapse in={conditionEditorOpen}>
+                        <Paper className={classes.padding}>
+                            <ExpressionCodeEditor
+                                expression={exp}
+                                save={expressionChanged}
+                                cancel={cancelExpressionEditor}
+                            ></ExpressionCodeEditor>
+                        </Paper>
+                    </Collapse>
+
 
                 </Grid>
             </Grid>
