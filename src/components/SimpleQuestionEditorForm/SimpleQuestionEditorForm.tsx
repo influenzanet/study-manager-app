@@ -19,6 +19,7 @@ import { Expression } from 'survey-engine/lib/data_types';
 import { parseExpression, expressionToString } from '../../utils/expression-parser';
 import ExpressionCodeEditor from '../ExpressionCodeEditor/ExpressionCodeEditor';
 import { Paper, Collapse } from '@material-ui/core';
+import FollowsEditor from './FollowsEditor/FollowsEditor';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -54,7 +55,9 @@ const SimpleQuestionEditorForm: React.FC = () => {
     const classes = useStyles();
 
     const [exp, setExp] = useState<Expression>({ name: '' });
-    const [conditionEditorOpen, setConditionEditorOpen] = useState(true);
+    const [conditionEditorOpen, setConditionEditorOpen] = useState(false);
+
+    const [follows, setFollows] = useState<Array<string>>(['s1.g1.q1']);
 
     let v = parseExpression('  $or<boolean>(10, "no sense value here", $eq("valuehere", $getAttribute<string>($getResponse("s1.q1.g3.q1"), "testAttribute") ) )');
 
@@ -70,6 +73,19 @@ const SimpleQuestionEditorForm: React.FC = () => {
 
     const cancelExpressionEditor = () => {
         setConditionEditorOpen(false);
+    }
+
+    const addFollowsItemHandler = (item: string) => {
+        setFollows(prev => {
+            if (prev.includes(item)) {
+                return prev;
+            }
+            return [...prev, item];
+        });
+    }
+
+    const removeFollowsItemHandler = (item: string) => {
+        setFollows(prev => prev.filter(it => it !== item));
     }
 
 
@@ -115,7 +131,7 @@ const SimpleQuestionEditorForm: React.FC = () => {
                 <Grid item xs={12}>
                     <h3>Condition</h3>
                     <Collapse in={!conditionEditorOpen}>
-                        { exp.name.length < 1 ? 'No condition': expressionToString(exp, 0)}
+                        {exp.name.length < 1 ? 'No condition' : expressionToString(exp, 0)}
                         <IconButton
                             aria-label="open condition editor"
                             className={classes.margin}
@@ -134,7 +150,15 @@ const SimpleQuestionEditorForm: React.FC = () => {
                         </Paper>
                     </Collapse>
 
+                </Grid>
 
+                <Grid item xs={12}>
+                    <h3>Follows:</h3>
+                    <FollowsEditor
+                        followsItems={follows}
+                        onAddItem={addFollowsItemHandler}
+                        onRemoveItem={removeFollowsItemHandler}
+                     ></FollowsEditor>
                 </Grid>
             </Grid>
         </form>
