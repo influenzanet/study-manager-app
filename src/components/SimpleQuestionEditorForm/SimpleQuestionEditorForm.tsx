@@ -20,6 +20,7 @@ import { parseExpression, expressionToString } from '../../utils/expression-pars
 import ExpressionCodeEditor from '../ExpressionCodeEditor/ExpressionCodeEditor';
 import { Paper, Collapse } from '@material-ui/core';
 import FollowsEditor from './FollowsEditor/FollowsEditor';
+import BasicSingleChoice from './QuestionTypes/BasicSingleChoice/BasicSingleChoice';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -159,6 +160,10 @@ const SimpleQuestionEditorForm: React.FC = () => {
                         onAddItem={addFollowsItemHandler}
                         onRemoveItem={removeFollowsItemHandler}
                      ></FollowsEditor>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <BasicSingleChoice />
                 </Grid>
             </Grid>
         </form>

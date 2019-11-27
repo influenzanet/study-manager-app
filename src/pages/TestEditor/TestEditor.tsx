@@ -10,15 +10,6 @@ const TestEditor: React.FC = () => {
         <Container maxWidth={false}>
             <SimpleQuestionEditorForm></SimpleQuestionEditorForm>
             <h1>Test</h1>
-            <Button variant="contained">
-                Default
-          </Button>
-            <Button variant="contained" color="primary">
-                Default
-          </Button>
-            <Button variant="contained" color="secondary">
-                Default
-          </Button>
         </Container>
     );
 }
