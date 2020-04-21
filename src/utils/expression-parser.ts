@@ -1,12 +1,13 @@
+
 import { Expression, isExpression } from "survey-engine/lib/data_types";
 
 export const expressionToString = (exp: Expression, space: number): string => {
     let expStr = '$' + exp.name;
-    if (exp.dtype) {
-        expStr += '<' + exp.dtype + '>';
+    if (exp.returnType) {
+        expStr += '<' + exp.returnType + '>';
     }
     expStr += '(\n' + ' '.repeat(space + 2);
-
+    /*
     if (Array.isArray(exp.data)) {
         exp.data.forEach((d, index) => {
             if (isExpression(d)) {
@@ -32,7 +33,7 @@ export const expressionToString = (exp: Expression, space: number): string => {
     } else {
         // expStr += ' '.repeat(space + 2) + exp.data.toString();
     }
-
+    */
     expStr += ' '.repeat(space) + ')';
     return expStr;
 }
@@ -62,13 +63,14 @@ export const parseExpression = (exp: string): Expression | null => {
     const data = (argStart > -1 && argEnd > -1) ? parseData(exp.slice(argStart + 1, argEnd).trim()) : undefined;
 
     let value: Expression = {
-        name: name,
+        // name: name,
+        name: 'getContext' // TODO: just placeholder here
     }
     if (dtype) {
-        value['dtype'] = dtype;
+        // TODO: value['dtype'] = dtype;
     }
     if (data) {
-        value['data'] = data;
+        // TODO:  value['data'] = data;
     }
 
     return value;
