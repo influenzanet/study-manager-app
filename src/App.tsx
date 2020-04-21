@@ -35,7 +35,6 @@ const App: React.FC = () => {
     },
   });
 
-
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />

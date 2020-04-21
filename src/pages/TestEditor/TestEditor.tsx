@@ -1,7 +1,11 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
+import { generateCovid19Intake } from '../../editor-example-generators/covid-19-intake';
 
 const TestEditor: React.FC = () => {
+
+
+    generateCovid19Intake();
 
     return (
         <Container maxWidth={false}>
