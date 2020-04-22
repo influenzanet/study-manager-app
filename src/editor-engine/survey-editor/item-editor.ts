@@ -58,6 +58,10 @@ export class ItemEditor implements ItemEditorInt {
                 const currentItem: SurveyItem = {
                     key,
                     version: 1,
+                    components: {
+                        role: 'root',
+                        items: []
+                    }
                 }
                 if (newItem?.type) {
                     currentItem.type = newItem.type;
@@ -166,7 +170,19 @@ export class ItemEditor implements ItemEditorInt {
         (this.surveyItem as SurveySingleItem).type = type;
     };
 
-    addComponent(parentComp: string, comp: ItemComponent, atPosition?: number) {
+    addComponent(parentKey: string, comp: ItemComponent, atPosition?: number) {
+        const paths = parentKey.split('.');
+
+        // handle root item components:
+        if (paths.length === 1) {
+            if (atPosition !== undefined) {
+                (this.surveyItem as SurveySingleItem).components?.items.splice(atPosition, 0, comp);;
+            } else {
+                (this.surveyItem as SurveySingleItem).components?.items.push({ ...comp });
+            }
+            return;
+        }
+        console.log(paths)
         console.warn('unimplemented');
     };
     removeComponent(compKey: string) {

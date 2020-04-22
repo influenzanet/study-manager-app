@@ -38,6 +38,11 @@ export const generateCovid19Intake = () => {
     survey.updateSurveyItem(q0Edit.getItem());
 
 
+
+
+
+    const found = survey.findSurveyItem('weekly');
+    console.log(found);
     const test = generateLocStrings(
         new Map([
             ["en", "hello"],
@@ -49,4 +54,6 @@ export const generateCovid19Intake = () => {
     //console.log(survey.getSurveyJSON(true));
     //console.log(survey.getSurveyJSON());
     console.log(survey.getSurvey().current.surveyDefinition);
+
+    console.log(survey.getSurveyJSON());
 }

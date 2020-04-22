@@ -144,6 +144,13 @@ export class SurveyEditor implements SurveyEditorInt {
     };
 
     updateSurveyItem(item: SurveyItem) {
+        if (item.key === this.surveyKey) {
+            this.survey.current.surveyDefinition = {
+                ...this.survey.current.surveyDefinition,
+                ...item
+            }
+            return;
+        }
         const ids = item.key.split('.');
         const parentIds = ids.slice(0, ids.length - 1);
         const paths = this.getKeyListForPath(parentIds);
@@ -175,7 +182,10 @@ export class SurveyEditor implements SurveyEditorInt {
             console.warn('survey item cannot be found: ', item.key);
             return;
         }
-        (obj as SurveyGroupItem).items[index] = item;
+        (obj as SurveyGroupItem).items[index] = {
+            ...(obj as SurveyGroupItem).items[index],
+            ...item
+        };
         return;
     };
 
