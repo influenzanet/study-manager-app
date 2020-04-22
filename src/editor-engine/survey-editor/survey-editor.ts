@@ -146,103 +146,54 @@ export class SurveyEditor implements SurveyEditorInt {
     updateSurveyItem(item: SurveyItem) {
         const ids = item.key.split('.');
         const parentIds = ids.slice(0, ids.length - 1);
-
         const paths = this.getKeyListForPath(parentIds);
-        console.log(paths);
 
-        /*
-        let obj: SurveyItem | undefined;
-
-
-        for (let i = 0; i < path.length; i++) {
-            const id = ids[i];
-
+        let obj: SurveyItem | undefined = undefined;
+        for (const currentKey of paths) {
             if (!obj) {
-                if (this.survey.current.surveyDefinition.key !== id) {
-                    return;
-                }
                 obj = this.survey.current.surveyDefinition;
-                compID += id;
                 continue;
             }
-
-            compID += '.' + id;
-            if (!(obj as { items: any[] }).items) { return undefined };
-
-            const ind = (obj as { items: any[] }).items.findIndex(it => {
-                const currentPath = compID;
-                if (it.key === currentPath) {
-                    return true;
-                }
-                return false;
-            });
-            if (ind < 0) {
-                return null;
+            if (!isSurveyGroupItem(obj)) {
+                console.warn('survey item is not a group: ', obj.key);
+                return;
             }
-            obj = (obj as { items: any[] }).items[ind];
-
-        }
-
-        if (isSurveyGroupItem(obj)) {
-            obj.items.f
-        }
-        console.log(path);
-        */
-
-        /*
-        if (this.survey.current.surveyDefinition.key === ) {
-
-        }
-
-        let obj: SurveyItem | SurveyItemResponse | ResponseItem | undefined;
-        let compID = '';
-
-
-        for (let i = 0; i < ids.length; i++) {
-            const id = ids[i];
-
-            if (!obj) {
-                if (root.key !== id) {
-                    // console.warn('getObjByHierarchicalKey: cannot find root object for: ' + id);
-                    return;
-                }
-                obj = root;
-                compID += id;
-                continue;
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('survey item cannot be found: ', currentKey);
+                return;
             }
-
-            compID += '.' + id;
-            if (!(obj as { items: any[] }).items) { return undefined };
-
-            const ind = (obj as { items: any[] }).items.findIndex(item => item.key === compID);
-            if (ind < 0) {
-                // console.warn('getObjByHierarchicalKey: cannot find object for : ' + compID);
-                return null;
-            }
-            obj = (obj as { items: any[] }).items[ind];
+            obj = (obj.items[index] as SurveyGroupItem);
+        }
+        if (!obj) {
+            console.warn('survey item cannot be found: ', item.key);
+            return
         }
 
-        // <- error if item is not found
-        console.warn('unimplemented');
+        const index = (obj as SurveyGroupItem).items.findIndex(it => it.key === item.key);
+        if (index < 0) {
+            console.warn('survey item cannot be found: ', item.key);
+            return;
+        }
+        (obj as SurveyGroupItem).items[index] = item;
         return;
-        */
     };
 
     removeItem(key: string) {
         // <- error if item is not found
-        console.warn('unimplemented');
+        console.warn('removeItem unimplemented');
         return;
     };
 
     moveSurveyItem(item: SurveyItem, destination: string) {
-        console.warn('unimplemented');
+        console.warn('moveSurveyItem unimplemented');
         // error if destination not exists
         // change item key
         // change key for all children recursivly
     };
 
     findSurveyItem(itemKey: string): SurveyItem | undefined {
-        console.warn('unimplemented');
+        console.warn('findSurveyItem unimplemented');
         return undefined;
     };
 

@@ -4,6 +4,7 @@ import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 
 export const generateCovid19Intake = () => {
     const survey = new SurveyEditor();
+    survey.changeItemKey('survey', 'weekly');
 
     // define name and description of the survey
     survey.setSurveyName(generateLocStrings(
@@ -24,17 +25,18 @@ export const generateCovid19Intake = () => {
     // set context rules
 
     const group1 = survey.addNewSurveyItem({ itemKey: 'Q1', isGroup: true });
-    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, group1?.key);
+    if (!group1) { return }
 
+    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, group1.key);
 
-    console.log(q0);
-    console.log(survey.getSurvey().current.surveyDefinition.items);
-    /*
-    survey.addNewSurveyItem({ itemKey: 'Q0' }, 'survey.Q1', 0);
+    const g1Edit = new ItemEditor(group1);
+    g1Edit.addToFollows('weekly');
+    survey.updateSurveyItem(g1Edit.getItem());
+
     const q0Edit = new ItemEditor(q0);
-    q0Edit.addToFollows('survey');
-    // survey.updateSurveyItem(q0Edit.getItem());
-        */
+    q0Edit.addToFollows(group1.key);
+    survey.updateSurveyItem(q0Edit.getItem());
+
 
     const test = generateLocStrings(
         new Map([
@@ -43,11 +45,6 @@ export const generateCovid19Intake = () => {
         ])
     );
     // console.log(test);
-
-    survey.changeItemKey('survey', 'weekly');
-    survey.changeItemKey('weekly.Q1', 'weekly.QG1');
-    survey.changeItemKey('weekly.QG1.Q0', 'weekly.QG1.Q1');
-
 
     //console.log(survey.getSurveyJSON(true));
     //console.log(survey.getSurveyJSON());
