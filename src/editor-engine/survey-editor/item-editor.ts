@@ -1,4 +1,5 @@
 import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem } from "survey-engine/lib/data_types";
+import { NewItemProps } from "./data-types";
 
 interface ItemEditorInt {
     getItem: () => SurveyItem;
@@ -36,11 +37,7 @@ interface ItemEditorInt {
     removeValidation: (vKey: string) => void;
 }
 
-interface NewItemProps {
-    itemKey?: string;
-    isGroup?: boolean;
-    type?: SurveyItemTypes;
-}
+
 
 export class ItemEditor implements ItemEditorInt {
     private surveyItem: SurveyItem;
