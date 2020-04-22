@@ -193,8 +193,32 @@ export class SurveyEditor implements SurveyEditorInt {
     };
 
     findSurveyItem(itemKey: string): SurveyItem | undefined {
-        console.warn('findSurveyItem unimplemented');
-        return undefined;
+        const ids = itemKey.split('.');
+        const paths = this.getKeyListForPath(ids);
+
+        let obj: SurveyItem | undefined = undefined;
+        for (const currentKey of paths) {
+            if (!obj) {
+                obj = this.survey.current.surveyDefinition;
+                continue;
+            }
+            if (!isSurveyGroupItem(obj)) {
+                console.warn('survey item is not a group: ', obj.key);
+                return;
+            }
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('survey item cannot be found: ', currentKey);
+                return;
+            }
+            obj = (obj.items[index] as SurveyGroupItem);
+        }
+        if (!obj) {
+            console.warn('survey item cannot be found: ', itemKey);
+            return;
+        }
+
+        return { ...obj };
     };
 
     getSurvey(): Survey {
