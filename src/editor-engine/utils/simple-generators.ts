@@ -1,4 +1,4 @@
-import { LocalizedString, ItemComponent } from "survey-engine/lib/data_types";
+import { LocalizedString, ItemComponent, ExpressionName, Expression } from "survey-engine/lib/data_types";
 
 export const generateLocStrings = (translations: Map<string, string>): LocalizedString[] => {
     // console.log(translations);
@@ -18,4 +18,15 @@ export const generateTitleComponent = (translations: Map<string, string>): ItemC
         role: 'title',
         content: generateLocStrings(translations)
     };
+}
+
+export const expWithStrArgs = (name: ExpressionName, ...args: string[]): Expression => {
+    return {
+        name: name,
+        data: args.map(arg => {
+            return {
+                str: arg
+            }
+        })
+    }
 }

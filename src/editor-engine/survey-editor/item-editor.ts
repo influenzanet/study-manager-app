@@ -182,6 +182,8 @@ export class ItemEditor implements ItemEditorInt {
             }
             return;
         }
+
+
         console.log(paths)
         console.warn('unimplemented');
     };
