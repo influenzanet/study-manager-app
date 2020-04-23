@@ -39,8 +39,8 @@ interface ItemEditorInt {
     removeDisplayComponent: (at: number) => void;
     // response components:
     addNewResponseComponent: (props: NewComponentProps, parentKey?: string, atPosition?: number) => ItemComponent | undefined;
-    addExistingResponseComponent: (comp: ResponseComponent, parentKey?: string, atPosition?: number) => ItemComponent | undefined;
-    updateResponseComponent: (path: string, item: ResponseComponent) => void;
+    addExistingResponseComponent: (newComp: ItemComponent, parentKey?: string, atPosition?: number) => ItemComponent | undefined;
+    updateResponseComponent: (path: string, item: ItemComponent) => void;
     removeResponseComponent: (key: string) => void;
     findResponseComponent: (key: string) => ItemComponent | undefined;
 
@@ -307,14 +307,114 @@ export class ItemEditor implements ItemEditorInt {
         return newComponent;
     };
 
-    addExistingResponseComponent(comp: ResponseComponent, parentKey?: string, atPosition?: number): ItemComponent | undefined {
-        // TODO
-        console.warn('todo');
-        return
+    addExistingResponseComponent(newComp: ItemComponent, parentKey?: string, atPosition?: number): ItemComponent | undefined {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) {
+            currentItem.components = { ...initialRootComp }
+        }
+
+        if (!parentKey) {
+
+            const ind = currentItem.components.items.findIndex(comp => comp.role === 'responseGroup');
+            if (ind < 0) {
+                currentItem.components.items.push(newComp);
+                return { ...newComp };
+            }
+            currentItem.components.items[ind] = newComp;
+            return { ...newComp };
+        }
+
+        const ids = parentKey.split('.');
+
+        let obj: ItemComponent | undefined = undefined;
+        for (const currentKey of ids) {
+            if (!obj) {
+                const ind = currentItem.components.items.findIndex(c => c.key === currentKey);
+                if (ind < 0) {
+                    console.warn('response component not found: ', currentKey);
+                    return;
+                }
+                obj = currentItem.components.items[ind] as ResponseComponent;
+                continue;
+            }
+            if (!isItemGroupComponent(obj)) {
+                (obj as ItemGroupComponent).items = [];
+                // leaf found
+                break;
+            }
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('item component cannot be found: ', currentKey);
+                return;
+            }
+            obj = (obj.items[index] as ItemGroupComponent);
+        }
+        if (!obj) {
+            console.warn('item component cannot be found: ', parentKey);
+            return
+        }
+
+        if ((obj as ItemGroupComponent).items.find(it => newComp.key === it.key)) {
+            console.warn('item already exists with key: ', newComp.key);
+            return undefined;
+        }
+
+        if (atPosition !== undefined) {
+            (obj as ItemGroupComponent).items.splice(atPosition, 0, newComp);
+        } else {
+            (obj as ItemGroupComponent).items.push(newComp);
+        }
+        return newComp;
     };
 
-    updateResponseComponent(path: string, item: ResponseComponent) {
-        console.warn('todo');
+    updateResponseComponent(path: string, item: ItemComponent) {
+
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) { return; }
+
+        const responseGroup = currentItem.components.items.find(comp => comp.role === 'responseGroup');
+        if (!responseGroup) {
+            console.warn('no responseGroup found');
+            return;
+        }
+
+        if (responseGroup.key === path) {
+            const ind = currentItem.components.items.findIndex(it => it.key === path)
+            if (ind < 0) {
+                console.warn('item component cannot be found: ', path);
+                return;
+            }
+            currentItem.components.items[ind] = { ...item };
+            return;
+        }
+
+        const ids = path.split('.');
+        const parentIds = ids.slice(1, ids.length - 1);
+
+        let obj: ItemComponent | undefined = responseGroup;
+        for (const currentKey of parentIds) {
+            if (!isItemGroupComponent(obj)) {
+                // leaf found
+                break;
+            }
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('item component cannot be found: ', currentKey);
+                return;
+            }
+            obj = (obj.items[index] as ItemGroupComponent);
+        }
+        if (!obj) {
+            console.warn('survey item cannot be found: ', path);
+            return
+        }
+
+        const ind = (obj as ItemGroupComponent).items.findIndex(it => it.key === ids[ids.length - 1])
+        if (ind < 0) {
+            console.warn('item component cannot be found: ', path);
+            return;
+        }
+        (obj as ItemGroupComponent).items[ind] = { ...item };
     };
 
     removeResponseComponent(keyPath: string) {
