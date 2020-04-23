@@ -20,12 +20,23 @@ export const generateTitleComponent = (translations: Map<string, string>): ItemC
     };
 }
 
-export const expWithStrArgs = (name: ExpressionName, ...args: string[]): Expression => {
+export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression => {
     return {
         name: name,
         data: args.map(arg => {
+            if (typeof (arg) === 'string') {
+                return {
+                    str: arg
+                }
+            } else if (typeof (arg) === 'number') {
+                return {
+                    dtype: 'num',
+                    num: arg
+                }
+            }
             return {
-                str: arg
+                dtype: 'exp',
+                exp: arg as Expression
             }
         })
     }
