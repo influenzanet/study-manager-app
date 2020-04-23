@@ -317,8 +317,43 @@ export class ItemEditor implements ItemEditorInt {
         console.warn('todo');
     };
 
-    removeResponseComponent(key: string) {
-        console.warn('todo');
+    removeResponseComponent(keyPath: string) {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) { return; }
+
+        const responseGroup = currentItem.components.items.find(comp => comp.role === 'responseGroup');
+        if (!responseGroup) {
+            console.warn('no responseGroup found');
+            return;
+        }
+
+        if (responseGroup.key === keyPath) {
+            currentItem.components.items = currentItem.components.items.filter(it => it.role !== 'responseGroup');
+            return;
+        }
+
+        const ids = keyPath.split('.');
+        const parentIds = ids.slice(1, ids.length - 1);
+
+        let obj: ItemComponent | undefined = responseGroup;
+        for (const currentKey of parentIds) {
+            if (!isItemGroupComponent(obj)) {
+                // leaf found
+                break;
+            }
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('item component cannot be found: ', currentKey);
+                return;
+            }
+            obj = (obj.items[index] as ItemGroupComponent);
+        }
+        if (!obj) {
+            console.warn('survey item cannot be found: ', keyPath);
+            return
+        }
+
+        (obj as ItemGroupComponent).items = (obj as ItemGroupComponent).items.filter(comp => comp.key !== ids[ids.length - 1]);
     };
 
     findResponseComponent(key: string): ItemComponent | undefined {

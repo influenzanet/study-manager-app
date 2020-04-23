@@ -37,8 +37,8 @@ export const generateCovid19Weekly = () => {
     const rg = q32Editor.addNewResponseComponent({ role: 'responseGroup' });
     const singleChoice = q32Editor.addNewResponseComponent({ key: 'sg', role: 'singleChoiceGroup', isGroup: true }, rg?.key);
 
-    console.log(q32Editor.getItem())
     console.log(q32Editor.findResponseComponent('root.sg'));
+    q32Editor.removeResponseComponent('root.sg');
 
     // TODO: setup question
     survey.updateSurveyItem(q32Editor.getItem());
