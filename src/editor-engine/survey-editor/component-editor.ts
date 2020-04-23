@@ -34,6 +34,7 @@ export class ComponentEditor implements ComponentEditorInt {
             this.component = { ...existingComponent };
         } else if (newComponent) {
             this.component = {
+                key: newComponent.key ? newComponent.key : undefined,
                 role: newComponent.role ? newComponent?.role : 'none',
             }
             if (newComponent.isGroup) {

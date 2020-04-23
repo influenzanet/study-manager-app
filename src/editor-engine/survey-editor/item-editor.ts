@@ -1,5 +1,6 @@
-import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem, ItemGroupComponent, ExpressionName, ResponseComponent } from "survey-engine/lib/data_types";
+import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem, ItemGroupComponent, ExpressionName, ResponseComponent, isItemGroupComponent } from "survey-engine/lib/data_types";
 import { NewItemProps, NewComponentProps } from "./data-types";
+import { ComponentEditor } from "./component-editor";
 
 
 interface ItemEditorInt {
@@ -37,11 +38,11 @@ interface ItemEditorInt {
     updateDisplayComponent: (at: number, comp: ItemComponent) => void;
     removeDisplayComponent: (at: number) => void;
     // response components:
-    addNewResponseComponent: (props: NewComponentProps, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
-    addExistingResponseComponent: (comp: ResponseComponent, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
+    addNewResponseComponent: (props: NewComponentProps, parentKey?: string, atPosition?: number) => ItemComponent | undefined;
+    addExistingResponseComponent: (comp: ResponseComponent, parentKey?: string, atPosition?: number) => ItemComponent | undefined;
     updateResponseComponent: (path: string, item: ResponseComponent) => void;
     removeResponseComponent: (key: string) => void;
-    findResponseComponent: (key: string) => ResponseComponent | undefined;
+    findResponseComponent: (key: string) => ItemComponent | undefined;
 
     addValidation: (v: Validation) => void;
     removeValidation: (vKey: string) => void;
@@ -240,11 +241,121 @@ export class ItemEditor implements ItemEditorInt {
         currentItem.components.items.splice(at, 1);
     };
 
-    addNewResponseComponent: (props: NewComponentProps, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
-    addExistingResponseComponent: (comp: ResponseComponent, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
-    updateResponseComponent: (path: string, item: ResponseComponent) => void;
-    removeResponseComponent: (key: string) => void;
-    findResponseComponent: (key: string) => ResponseComponent | undefined;
+    addNewResponseComponent(props: NewComponentProps, parentKey?: string, atPosition?: number): ItemComponent | undefined {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) {
+            currentItem.components = { ...initialRootComp }
+        }
+
+        if (!parentKey) {
+            props.role = 'responseGroup';
+            if (!props.key) {
+                props.key = 'root';
+            }
+            props.isGroup = true;
+            const newComponent = (new ComponentEditor(undefined, props)).getComponent() as ItemGroupComponent;
+            const ind = currentItem.components.items.findIndex(comp => comp.role === 'responseGroup');
+            if (ind < 0) {
+                currentItem.components.items.push(newComponent);
+                return { ...newComponent };
+            }
+            currentItem.components.items[ind] = newComponent;
+            return { ...newComponent };
+        }
+
+        const ids = parentKey.split('.');
+
+        let obj: ItemComponent | undefined = undefined;
+        for (const currentKey of ids) {
+            if (!obj) {
+                const ind = currentItem.components.items.findIndex(c => c.key === currentKey);
+                if (ind < 0) {
+                    console.warn('response component not found: ', currentKey);
+                    return;
+                }
+                obj = currentItem.components.items[ind] as ResponseComponent;
+                continue;
+            }
+            if (!isItemGroupComponent(obj)) {
+                (obj as ItemGroupComponent).items = [];
+                // leaf found
+                break;
+            }
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('item component cannot be found: ', currentKey);
+                return;
+            }
+            obj = (obj.items[index] as ItemGroupComponent);
+        }
+        if (!obj) {
+            console.warn('survey item cannot be found: ', parentKey);
+            return
+        }
+
+        if ((obj as ItemGroupComponent).items.find(it => props.key === it.key)) {
+            console.warn('item already exists with key: ', props.key);
+            return undefined;
+        }
+
+        const newComponent = (new ComponentEditor(undefined, props)).getComponent() as ResponseComponent;
+        if (atPosition !== undefined) {
+            (obj as ItemGroupComponent).items.splice(atPosition, 0, newComponent);
+        } else {
+            (obj as ItemGroupComponent).items.push(newComponent);
+        }
+        return newComponent;
+    };
+
+    addExistingResponseComponent(comp: ResponseComponent, parentKey?: string, atPosition?: number): ItemComponent | undefined {
+        // TODO
+        console.warn('todo');
+        return
+    };
+
+    updateResponseComponent(path: string, item: ResponseComponent) {
+        console.warn('todo');
+    };
+
+    removeResponseComponent(key: string) {
+        console.warn('todo');
+    };
+
+    findResponseComponent(key: string): ItemComponent | undefined {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) { return; }
+
+        const ids = key.split('.');
+
+        let obj: ItemComponent | undefined = undefined;
+        for (const currentKey of ids) {
+            if (!obj) {
+                const ind = currentItem.components.items.findIndex(c => c.key === currentKey);
+                if (ind < 0) {
+                    console.warn('item component not found: ', currentKey);
+                    return;
+                }
+                obj = currentItem.components.items[ind] as ResponseComponent;
+                continue;
+            }
+            if (!isItemGroupComponent(obj)) {
+                (obj as ItemGroupComponent).items = [];
+                // leaf found
+                break;
+            }
+            const index = obj.items.findIndex(it => it.key === currentKey);
+            if (index < 0) {
+                console.warn('item component cannot be found: ', currentKey);
+                return;
+            }
+            obj = (obj.items[index] as ItemGroupComponent);
+        }
+        if (!obj) {
+            console.warn('item component cannot be found: ', key);
+            return
+        }
+        return obj;
+    };
 
     addValidation(v: Validation) {
         const currentItem = (this.surveyItem as SurveySingleItem);
