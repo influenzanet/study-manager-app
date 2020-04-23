@@ -1,4 +1,4 @@
-import { ItemComponent, ItemGroupComponent, Expression, LocalizedObject, ComponentProperties } from "survey-engine/lib/data_types";
+import { ItemComponent, ItemGroupComponent, Expression, LocalizedObject, ComponentProperties, ResponseComponent } from "survey-engine/lib/data_types";
 import { NewComponentProps } from "./data-types";
 
 
@@ -11,13 +11,13 @@ interface ComponentEditorInt {
     setDisplayCondition: (expression: Expression | undefined) => void;
     setDisabled: (expression: Expression | undefined) => void;
 
-    setContent: (translations: LocalizedObject[]) => void;
-    setDescription: (translations: LocalizedObject[]) => void;
-    setStyles: (styles: Array<{ key: string, value: string }>) => void;
+    setContent: (translations: LocalizedObject[] | undefined) => void;
+    setDescription: (translations: LocalizedObject[] | undefined) => void;
+    setStyles: (styles: Array<{ key: string, value: string }> | undefined) => void;
 
     // response components:
     setDType: (dtype: 'string' | 'number' | 'date') => void;
-    setProperties: (props: ComponentProperties) => void;
+    setProperties: (props: ComponentProperties | undefined) => void;
 
     // item group component:
     setOrder: (orderExp: Expression | undefined) => void;
@@ -69,18 +69,64 @@ export class ComponentEditor implements ComponentEditorInt {
         this.component.disabled = expression;
     };
 
-    setContent: (translations: LocalizedObject[]) => void;
-    setDescription: (translations: LocalizedObject[]) => void;
-    setStyles: (styles: Array<{ key: string, value: string }>) => void;
+    setContent(translations: LocalizedObject[] | undefined) {
+        this.component.content = translations ? [...translations] : undefined;
+    };
+
+    setDescription(translations: LocalizedObject[] | undefined) {
+        this.component.description = translations ? [...translations] : undefined;
+    };
+
+    setStyles(styles: Array<{ key: string, value: string }> | undefined) {
+        this.component.style = styles ? [...styles] : undefined;
+    };
 
     // response components:
-    setDType: (dtype: 'string' | 'number' | 'date') => void;
-    setProperties: (props: ComponentProperties) => void;
+    setDType(dtype: 'string' | 'number' | 'date') {
+        (this.component as ResponseComponent).dtype = dtype;
+    };
+
+    setProperties(props: ComponentProperties | undefined) {
+        (this.component as ResponseComponent).properties = { ...props };
+    };
 
     // item group component:
-    setOrder: (orderExp: Expression | undefined) => void;
-    addItemComponent: (item: ItemComponent, atPosition?: number) => void;
-    updateItemComponent: (selector: string | number, updatedItem: ItemComponent) => void;
-    removeItem: (index: number) => void;
+    setOrder(orderExp: Expression | undefined) {
+        (this.component as ItemGroupComponent).order = orderExp;
+    };
+
+    addItemComponent(item: ItemComponent, atPosition?: number) {
+        if (!(this.component as ItemGroupComponent).items) {
+            (this.component as ItemGroupComponent).items = [];
+        }
+        if (atPosition !== undefined) {
+            (this.component as ItemGroupComponent).items.splice(atPosition, 0, { ...item });
+        } else {
+            (this.component as ItemGroupComponent).items.push({ ...item });
+        }
+    };
+
+    updateItemComponent(selector: string | number, updatedItem: ItemComponent) {
+        if (!(this.component as ItemGroupComponent).items) {
+            console.warn('items array missing on the component');
+            return;
+        }
+        if (typeof (selector) === 'string') {
+            // find by key:
+            const ind = (this.component as ItemGroupComponent).items.findIndex(c => c.key === selector);
+            if (ind < 0) {
+                console.warn('could not find component with given key: ', selector);
+                return;
+            }
+            (this.component as ItemGroupComponent).items[ind] = { ...updatedItem };
+        } else if (typeof (selector) === 'number') {
+            // find by index:
+            (this.component as ItemGroupComponent).items[selector] = { ...updatedItem };
+        }
+    };
+
+    removeItem(index: number) {
+        (this.component as ItemGroupComponent).items.splice(index, 1);
+    };
 
 }
