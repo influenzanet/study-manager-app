@@ -7,6 +7,12 @@ export interface NewItemProps {
     type?: SurveyItemTypes;
 }
 
+export interface NewComponentProps {
+    key?: string;
+    isGroup?: boolean;
+    role?: string;
+}
+
 export interface SurveyProperties {
 
 }

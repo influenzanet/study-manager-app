@@ -1,5 +1,6 @@
-import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem } from "survey-engine/lib/data_types";
-import { NewItemProps } from "./data-types";
+import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem, ItemGroupComponent, ExpressionName, ResponseComponent } from "survey-engine/lib/data_types";
+import { NewItemProps, NewComponentProps } from "./data-types";
+
 
 interface ItemEditorInt {
     getItem: () => SurveyItem;
@@ -25,19 +26,32 @@ interface ItemEditorInt {
 
     setSelectionMethod: (exp: Expression | undefined) => void;
 
-
     // methods for survey single items:
     setItemType: (type: SurveyItemTypes) => void;
 
-    addComponent: (parentComp: string, comp: ItemComponent, atPosition?: number) => void;
-    removeComponent: (compKey: string) => void;
-    changeComponentPosition: (compKey: string, newPosition: number) => void;
+    // fixed components:
+    setTitleComponent: (title: ItemComponent) => void;
+    setHelpGroupComponent: (helpGroup: ItemGroupComponent) => void;
+    // for warning, error, texts:
+    addDisplayComponent: (comp: ItemComponent, atPosition?: number) => void;
+    updateDisplayComponent: (at: number, comp: ItemComponent) => void;
+    removeDisplayComponent: (at: number) => void;
+    // response components:
+    addNewResponseComponent: (props: NewComponentProps, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
+    addExistingResponseComponent: (comp: ResponseComponent, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
+    updateResponseComponent: (path: string, item: ResponseComponent) => void;
+    removeResponseComponent: (key: string) => void;
+    findResponseComponent: (key: string) => ResponseComponent | undefined;
 
     addValidation: (v: Validation) => void;
     removeValidation: (vKey: string) => void;
 }
 
-
+const initialRootComp = {
+    role: 'root',
+    order: { name: 'sequential' as ExpressionName },
+    items: []
+};
 
 export class ItemEditor implements ItemEditorInt {
     private surveyItem: SurveyItem;
@@ -58,10 +72,7 @@ export class ItemEditor implements ItemEditorInt {
                 const currentItem: SurveyItem = {
                     key,
                     version: 1,
-                    components: {
-                        role: 'root',
-                        items: []
-                    }
+                    components: { ...initialRootComp },
                 }
                 if (newItem?.type) {
                     currentItem.type = newItem.type;
@@ -170,30 +181,70 @@ export class ItemEditor implements ItemEditorInt {
         (this.surveyItem as SurveySingleItem).type = type;
     };
 
-    addComponent(parentKey: string, comp: ItemComponent, atPosition?: number) {
-        const paths = parentKey.split('.');
-
-        // handle root item components:
-        if (paths.length === 1) {
-            if (atPosition !== undefined) {
-                (this.surveyItem as SurveySingleItem).components?.items.splice(atPosition, 0, comp);;
-            } else {
-                (this.surveyItem as SurveySingleItem).components?.items.push({ ...comp });
-            }
+    setTitleComponent(title: ItemComponent) {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) {
+            currentItem.components = { ...initialRootComp }
+        }
+        title.role = 'title';
+        const ind = currentItem.components.items.findIndex(comp => comp.role === 'title');
+        if (ind < 0) {
+            currentItem.components.items.push({ ...title });
             return;
         }
+        currentItem.components.items[ind] = { ...title };
+    }
 
+    setHelpGroupComponent(helpGroup: ItemGroupComponent) {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) {
+            currentItem.components = { ...initialRootComp }
+        }
+        helpGroup.role = 'helpGroup';
+        const ind = currentItem.components.items.findIndex(comp => comp.role === 'helpGroup');
+        if (ind < 0) {
+            currentItem.components.items.push({ ...helpGroup });
+            return;
+        }
+        currentItem.components.items[ind] = { ...helpGroup };
+    };
 
-        console.log(paths)
-        console.warn('unimplemented');
-    };
-    removeComponent(compKey: string) {
-        console.warn('unimplemented');
+    // for warning, error, texts:
+    addDisplayComponent(comp: ItemComponent, atPosition?: number) {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components) {
+            currentItem.components = { ...initialRootComp }
+        }
+        if (atPosition !== undefined) {
+            currentItem.components.items.splice(atPosition, 0, { ...comp });
+        } else {
+            currentItem.components.items.push({ ...comp });
+        }
     };
 
-    changeComponentPosition(compKey: string, newPosition: number) {
-        console.warn('unimplemented');
+    updateDisplayComponent(at: number, comp: ItemComponent) {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components || !currentItem.components.items || currentItem.components.items.length <= at + 1 || at < 0) {
+            console.warn('component not found at ', at);
+            return;
+        }
+        currentItem.components.items[at] = { ...comp };
     };
+
+    removeDisplayComponent(at: number) {
+        const currentItem = (this.surveyItem as SurveySingleItem);
+        if (!currentItem.components || !currentItem.components.items || currentItem.components.items.length <= at + 1 || at < 0) {
+            console.warn('component not found at ', at);
+            return;
+        }
+        currentItem.components.items.splice(at, 1);
+    };
+
+    addNewResponseComponent: (props: NewComponentProps, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
+    addExistingResponseComponent: (comp: ResponseComponent, parentKey?: string, atPosition?: number) => ResponseComponent | undefined;
+    updateResponseComponent: (path: string, item: ResponseComponent) => void;
+    removeResponseComponent: (key: string) => void;
+    findResponseComponent: (key: string) => ResponseComponent | undefined;
 
     addValidation(v: Validation) {
         const currentItem = (this.surveyItem as SurveySingleItem);
