@@ -1,7 +1,14 @@
 import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
-import { SurveyGroupItem } from "survey-engine/lib/data_types";
+import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
+import { initSingleChoiceGroup, initMultipleChoiceGroup } from "../editor-engine/utils/question-type-generator";
+
+
+
+const responseGroupKey = 'rg';
+const singleChoiceKey = 'scg';
+const multipleChoiceKey = 'mcg';
 
 export const generateCovid19Weekly = () => {
     const survey = new SurveyEditor();
@@ -28,23 +35,29 @@ export const generateCovid19Weekly = () => {
     const rootKey = rootItemEditor.getItem().key;
 
     // 32 --------------------------------------
-    let q32Editor = new ItemEditor(survey.addNewSurveyItem({ itemKey: '32' }, rootKey));
-    q32Editor.setTitleComponent(generateTitleComponent(new Map([
-        ["en", "Have you had any of the following symptoms since your last visit (or in the past weeks, if this is your first visit)?"],
-        ["de", "Hatten Sie irgendwelche der folgenden Symptome seit Ihrem letzten Besuch (oder in der letzten Woche, falls dies Ihr erster Besuch ist)?"],
-    ])));
+    const q32 = survey.addNewSurveyItem({ itemKey: '32' }, rootKey);
+    if (!q32) { return; }
+    survey.updateSurveyItem(q32_def(q32));
+    // -----------------------------------------
 
-    const rg = q32Editor.addNewResponseComponent({ role: 'responseGroup' });
-    const singleChoice = q32Editor.addNewResponseComponent({ key: 'sg', role: 'singleChoiceGroup', isGroup: true }, rg?.key);
+    survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
-    console.log(q32Editor.findResponseComponent('root.sg'));
-    // q32Editor.removeResponseComponent('root.sg');
+    // 33 --------------------------------------
+    const q33 = survey.addNewSurveyItem({ itemKey: '33' }, rootKey);
+    if (!q33) { return; }
+    survey.updateSurveyItem(q33_def(q33));
+    // -----------------------------------------
 
-    // TODO: setup question
-    survey.updateSurveyItem(q32Editor.getItem());
+
+
+    // console.log(q32Editor.findResponseComponent('rg'));
+    // q32Editor.removeResponseComponent('rg.scg');
+
+
 
 
     console.log(survey.getSurvey());
+    console.log(survey.getSurveyJSON());
 
     // tests
     const exp1 = expWithArgs('responseHasKeysAny', 'weekly.32', '1.1.144', '1.1.145');
@@ -53,4 +66,66 @@ export const generateCovid19Weekly = () => {
     //console.log(expOr);
     // console.log(JSON.stringify(expOr, undefined, '  '));
 
+}
+
+const q32_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Have you had any of the following symptoms since your last visit (or in the past weeks, if this is your first visit)?"],
+            ["de", "Hatten Sie irgendwelche der folgenden Symptome seit Ihrem letzten Besuch (oder in der letzten Woche, falls dies Ihr erster Besuch ist)?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["en", "No symptoms"],
+                ["de", "Keine Symptome"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1'),
+            content: new Map([
+                ["en", "Fever"],
+                ["de", "Fieber"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q33_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "33 Have you had any of the following symptoms since your last visit (or in the past weeks, if this is your first visit)?"],
+            ["de", "33 Hatten Sie irgendwelche der folgenden Symptome seit Ihrem letzten Besuch (oder in der letzten Woche, falls dies Ihr erster Besuch ist)?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["en", "No symptoms"],
+                ["de", "Keine Symptome"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + singleChoiceKey, '1'),
+            content: new Map([
+                ["en", "Fever"],
+                ["de", "Fieber"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
 }

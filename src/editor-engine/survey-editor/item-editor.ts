@@ -48,18 +48,22 @@ interface ItemEditorInt {
     removeValidation: (vKey: string) => void;
 }
 
-const initialRootComp = {
-    role: 'root',
-    order: { name: 'sequential' as ExpressionName },
-    items: []
+const initialRootComp = () => {
+    return {
+        role: 'root',
+        order: { name: 'sequential' as ExpressionName },
+        items: []
+    }
 };
 
 export class ItemEditor implements ItemEditorInt {
     private surveyItem: SurveyItem;
 
     constructor(existingItem?: SurveyItem, newItem?: NewItemProps) {
+        this.surveyItem = { key: '', version: 0 };
         if (existingItem) {
             this.surveyItem = { ...existingItem };
+            console.log(this.surveyItem);
         } else {
             const key = newItem?.itemKey ? newItem.itemKey : 'no key';
             if (newItem?.isGroup) {
@@ -73,7 +77,7 @@ export class ItemEditor implements ItemEditorInt {
                 const currentItem: SurveyItem = {
                     key,
                     version: 1,
-                    components: { ...initialRootComp },
+                    components: { ...initialRootComp() },
                 }
                 if (newItem?.type) {
                     currentItem.type = newItem.type;
@@ -185,7 +189,7 @@ export class ItemEditor implements ItemEditorInt {
     setTitleComponent(title: ItemComponent) {
         const currentItem = (this.surveyItem as SurveySingleItem);
         if (!currentItem.components) {
-            currentItem.components = { ...initialRootComp }
+            currentItem.components = { ...initialRootComp() }
         }
         title.role = 'title';
         const ind = currentItem.components.items.findIndex(comp => comp.role === 'title');
@@ -199,7 +203,7 @@ export class ItemEditor implements ItemEditorInt {
     setHelpGroupComponent(helpGroup: ItemGroupComponent) {
         const currentItem = (this.surveyItem as SurveySingleItem);
         if (!currentItem.components) {
-            currentItem.components = { ...initialRootComp }
+            currentItem.components = { ...initialRootComp() }
         }
         helpGroup.role = 'helpGroup';
         const ind = currentItem.components.items.findIndex(comp => comp.role === 'helpGroup');
@@ -214,7 +218,7 @@ export class ItemEditor implements ItemEditorInt {
     addDisplayComponent(comp: ItemComponent, atPosition?: number) {
         const currentItem = (this.surveyItem as SurveySingleItem);
         if (!currentItem.components) {
-            currentItem.components = { ...initialRootComp }
+            currentItem.components = { ...initialRootComp() }
         }
         if (atPosition !== undefined) {
             currentItem.components.items.splice(atPosition, 0, { ...comp });
@@ -244,13 +248,13 @@ export class ItemEditor implements ItemEditorInt {
     addNewResponseComponent(props: NewComponentProps, parentKey?: string, atPosition?: number): ItemComponent | undefined {
         const currentItem = (this.surveyItem as SurveySingleItem);
         if (!currentItem.components) {
-            currentItem.components = { ...initialRootComp }
+            currentItem.components = { ...initialRootComp() }
         }
 
         if (!parentKey) {
             props.role = 'responseGroup';
             if (!props.key) {
-                props.key = 'root';
+                props.key = 'rg';
             }
             props.isGroup = true;
             const newComponent = (new ComponentEditor(undefined, props)).getComponent() as ItemGroupComponent;
@@ -310,7 +314,7 @@ export class ItemEditor implements ItemEditorInt {
     addExistingResponseComponent(newComp: ItemComponent, parentKey?: string, atPosition?: number): ItemComponent | undefined {
         const currentItem = (this.surveyItem as SurveySingleItem);
         if (!currentItem.components) {
-            currentItem.components = { ...initialRootComp }
+            currentItem.components = { ...initialRootComp() }
         }
 
         if (!parentKey) {
