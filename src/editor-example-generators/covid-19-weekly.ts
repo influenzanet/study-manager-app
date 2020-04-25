@@ -107,6 +107,12 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q3_def(q3, anySymptomSelected));
     // -----------------------------------------
 
+    // Q7 --------------------------------------
+    const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
+    if (!q7) { return; }
+    survey.updateSurveyItem(q7_def(q7, anySymptomSelected));
+    // -----------------------------------------
+
     // Qcov3 --------------------------------------
     const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
     if (!qcov3) { return; }
@@ -119,7 +125,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(qcov10_def(qcov10));
     // -----------------------------------------
 
-    // Qcov10 --------------------------------------
+    // Qcov10b --------------------------------------
     const qcov10b = survey.addNewSurveyItem({ itemKey: 'Qcov10b' }, rootKey);
     if (!qcov10b) { return; }
     survey.updateSurveyItem(qcov10b_def(qcov10b, qcov10.key));
@@ -531,6 +537,68 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             content: new Map([
                 ["en", "I don't know/can't remember"],
                 ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
+            ["de", "Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
+        ]))
+    );
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "GP or GP's practice nurse"],
+                ["de", "Allgemeinarzt oder Allgemeinarztassisten/in"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Hospital accident & emergency department / out of hours service"],
+                ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Hospital admission"],
+                ["de", "Einlieferung ins Krankenhaus"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Other medical services"],
+                ["de", "Andere medizinische Einrichtungen"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "No, but I have an appointment scheduled"],
+                ["de", "Nein, aber ich habe schon einen Termin"],
             ])
         },
     ]);
