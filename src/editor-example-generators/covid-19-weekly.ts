@@ -29,67 +29,94 @@ export const generateCovid19Weekly = (): Survey | undefined => {
         ])
     ));
 
-    let rootItemEditor = new ItemEditor(survey.findSurveyItem('weekly') as SurveyGroupItem);
+    const rootItemEditor = new ItemEditor(survey.findSurveyItem('weekly') as SurveyGroupItem);
     rootItemEditor.setSelectionMethod({ name: 'sequential' });
     survey.updateSurveyItem(rootItemEditor.getItem());
 
     const rootKey = rootItemEditor.getItem().key;
 
+
+    const qg32 = survey.addNewSurveyItem({ itemKey: '32', isGroup: true }, rootKey);
+
+    const qg32ItemEditor = new ItemEditor(qg32 as SurveyGroupItem);
+    qg32ItemEditor.setSelectionMethod({ name: 'sequential' });
+    survey.updateSurveyItem(qg32ItemEditor.getItem());
+
+    const q32Key = qg32ItemEditor.getItem().key;
+
     // 32 title
-    const q32_title = survey.addNewSurveyItem({ itemKey: '32title' }, rootKey);
+    const q32_title = survey.addNewSurveyItem({ itemKey: 'title' }, q32Key);
     if (!q32_title) { return; }
     survey.updateSurveyItem(q32title_def(q32_title));
 
 
     // 32a --------------------------------------
-    const q32a = survey.addNewSurveyItem({ itemKey: '32a' }, rootKey);
+    const q32a = survey.addNewSurveyItem({ itemKey: '1' }, q32Key);
     if (!q32a) { return; }
     survey.updateSurveyItem(q32a_def(q32a));
     // -----------------------------------------
 
     // 32b --------------------------------------
-    const q32b = survey.addNewSurveyItem({ itemKey: '32b' }, rootKey);
+    const q32b = survey.addNewSurveyItem({ itemKey: '2' }, q32Key);
     if (!q32b) { return; }
     survey.updateSurveyItem(q32b_def(q32b));
     // -----------------------------------------
 
     // 32c --------------------------------------
-    const q32c = survey.addNewSurveyItem({ itemKey: '32c' }, rootKey);
+    const q32c = survey.addNewSurveyItem({ itemKey: '3' }, q32Key);
     if (!q32c) { return; }
     survey.updateSurveyItem(q32c_def(q32c));
     // -----------------------------------------
 
     // 32d --------------------------------------
-    const q32d = survey.addNewSurveyItem({ itemKey: '32d' }, rootKey);
+    const q32d = survey.addNewSurveyItem({ itemKey: '4' }, q32Key);
     if (!q32d) { return; }
     survey.updateSurveyItem(q32d_def(q32d));
     // -----------------------------------------
 
     // 32e --------------------------------------
-    const q32e = survey.addNewSurveyItem({ itemKey: '32e' }, rootKey);
+    const q32e = survey.addNewSurveyItem({ itemKey: '5' }, q32Key);
     if (!q32e) { return; }
     survey.updateSurveyItem(q32e_def(q32e));
     // -----------------------------------------
 
+
+
+
+    const q32_1_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q32_2_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '2'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q32_3_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '3'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q32_4_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '4'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q32_5_symptom = expWithArgs('checkResponseValueWithRegex', [q32Key, '5'].join('.'), [responseGroupKey, '160'].join('.'), '.*\\S.*');
+
+    const anySymptomSelected = expWithArgs('or',
+        q32_1_symptom,
+        q32_2_symptom,
+        q32_3_symptom,
+        q32_4_symptom,
+        q32_5_symptom
+    );
+
+
+    const testItem = survey.addNewSurveyItem({ itemKey: 'test' }, rootKey);
+    const tie = new ItemEditor(testItem);
+    tie.setTitleComponent(generateTitleComponent(new Map([
+        ['en', 'test']
+    ])))
+    tie.setCondition(anySymptomSelected);
+    survey.updateSurveyItem(tie.getItem());
+
+
     survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
-
-
-
+    console.log(anySymptomSelected);
     // console.log(q32Editor.findResponseComponent('rg'));
     // q32Editor.removeResponseComponent('rg.scg');
-
-
-
 
     console.log(survey.getSurvey());
     console.log(survey.getSurveyJSON());
 
-    // tests
-    const exp1 = expWithArgs('responseHasKeysAny', 'weekly.32', '1.1.144', '1.1.145');
-    const exp2 = expWithArgs('responseHasKeysAny', 'weekly.32', '1.1.146', '1.1.147');
-    const expOr = expWithArgs('or', exp1, exp2);
-    //console.log(expOr);
+
     // console.log(JSON.stringify(expOr, undefined, '  '));
     return survey.getSurvey();
 }
