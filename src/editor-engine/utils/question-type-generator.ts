@@ -1,4 +1,4 @@
-import { ItemGroupComponent, Expression, ComponentProperties } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 import { generateLocStrings } from "./simple-generators";
 
@@ -19,7 +19,7 @@ export const initSingleChoiceGroup = (
     order?: Expression
 ): ItemGroupComponent => {
     // init group
-    return initSingleOrMultiplChoiceGroup('singleChoiceGroup', key, optionItems, order);
+    return initResponseGroup('singleChoiceGroup', key, optionItems, order);
 }
 
 export const initMultipleChoiceGroup = (
@@ -28,14 +28,39 @@ export const initMultipleChoiceGroup = (
     order?: Expression
 ): ItemGroupComponent => {
     // init group
-    return initSingleOrMultiplChoiceGroup('multipleChoiceGroup', key, optionItems, order);
+    return initResponseGroup('multipleChoiceGroup', key, optionItems, order);
 }
 
-const initSingleOrMultiplChoiceGroup = (
-    type: 'singleChoiceGroup' | 'multipleChoiceGroup',
+export const initDropdownGroup = (
     key: string,
     optionItems: OptionDef[],
-    order?: Expression
+    order?: Expression,
+    groupDisabled?: Expression,
+    groupContent?: LocalizedObject[],
+    groupDescription?: LocalizedObject[],
+): ItemGroupComponent => {
+    // init group
+    return initResponseGroup('dropDownGroup', key, optionItems, order, groupDisabled, groupContent, groupDescription);
+}
+
+export const initSliderCategoricalGroup = (
+    key: string,
+    optionItems: OptionDef[],
+    order?: Expression,
+    groupDisabled?: Expression,
+): ItemGroupComponent => {
+    // init group
+    return initResponseGroup('sliderCategorical', key, optionItems, order, groupDisabled);
+}
+
+const initResponseGroup = (
+    type: 'singleChoiceGroup' | 'multipleChoiceGroup' | 'dropDownGroup' | 'sliderCategorical',
+    key: string,
+    optionItems: OptionDef[],
+    order?: Expression,
+    groupDisabled?: Expression,
+    groupContent?: LocalizedObject[],
+    groupDescription?: LocalizedObject[],
 ): ItemGroupComponent => {
     // init group
     const groupEdit = new ComponentEditor(undefined, {
@@ -49,6 +74,15 @@ const initSingleOrMultiplChoiceGroup = (
             name: 'sequential'
         }
     );
+    if (groupDisabled) {
+        groupEdit.setDisabled(groupDisabled);
+    }
+    if (groupContent) {
+        groupEdit.setContent(groupContent);
+    }
+    if (groupDescription) {
+        groupEdit.setDescription(groupDescription);
+    }
 
     // add option items
     optionItems.forEach(optionDef => {
