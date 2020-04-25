@@ -2,7 +2,7 @@ import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { SurveyGroupItem, SurveyItem, Survey } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
-import { initSingleChoiceGroup, initMultipleChoiceGroup } from "../editor-engine/utils/question-type-generator";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
@@ -10,6 +10,7 @@ import { ComponentEditor } from "../editor-engine/survey-editor/component-editor
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
 const multipleChoiceKey = 'mcg';
+const sliderCategoricalKey = "scc"
 
 export const generateCovid19Weekly = (): Survey | undefined => {
     const survey = new SurveyEditor();
@@ -80,6 +81,11 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q32e_def(q32e));
     // -----------------------------------------
 
+    // Qcov3 --------------------------------------
+    const qcov3 = survey.addNewSurveyItem({ itemKey: '6' }, rootKey);
+    if (!qcov3) { return; }
+    survey.updateSurveyItem(qcov3_def(qcov3));
+    // -----------------------------------------
 
 
 
@@ -429,3 +435,43 @@ const q32e_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
+const qcov3_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "In the 14 days before your symptoms started, have you been in contact with someone for whom tests have confirmed that they have Covid-19?"],
+            ["de", "Hatten Sie in den 14 Tagen vor dem Beginn Ihrer Symptome Kontakt zu jemandem, für den Tests bestätigt haben, dass er Covid-19 hat?"],
+        ]))
+    );
+    // editor.setCondition(
+    //     expWithArgs()
+    // )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Don’t Know"],
+                ["de", "Ich weiss es nicht."],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
