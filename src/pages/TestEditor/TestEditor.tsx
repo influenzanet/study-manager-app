@@ -4,7 +4,7 @@ import { generateCovid19Intake } from '../../editor-example-generators/covid-19-
 import { generateCovid19Weekly } from '../../editor-example-generators/covid-19-weekly';
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
-import { Box } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { Survey } from 'survey-engine/lib/data_types';
 
 const availableLanguages = [
@@ -48,6 +48,22 @@ const TestEditor: React.FC = () => {
                 nextBtnText={'next'}
                 backBtnText={'previous'}
             /> : null}
+
+            <Box textAlign="center" p={2}>
+                <Button
+                    color="primary"
+                    variant="outlined"
+                    onClick={() => {
+                        var a = document.createElement("a");
+                        var file = new Blob([JSON.stringify(survey)], { type: 'json' });
+                        a.href = URL.createObjectURL(file);
+                        a.download = 'survey.json';
+                        a.click();
+                    }}>
+                    Save Survey JSON
+            </Button>
+            </Box>
+
             {/* <p>{t('title')}</p> */}
         </Container>
     );
