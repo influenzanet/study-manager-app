@@ -1,6 +1,6 @@
 import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
-import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyGroupItem, SurveyItem, Survey } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
@@ -11,7 +11,7 @@ const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
 const multipleChoiceKey = 'mcg';
 
-export const generateCovid19Weekly = () => {
+export const generateCovid19Weekly = (): Survey | undefined => {
     const survey = new SurveyEditor();
     survey.changeItemKey('survey', 'weekly');
 
@@ -91,7 +91,7 @@ export const generateCovid19Weekly = () => {
     const expOr = expWithArgs('or', exp1, exp2);
     //console.log(expOr);
     // console.log(JSON.stringify(expOr, undefined, '  '));
-
+    return survey.getSurvey();
 }
 
 const q32title_def = (itemSkeleton: SurveyItem): SurveyItem => {
