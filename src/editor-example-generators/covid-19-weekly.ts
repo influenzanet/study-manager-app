@@ -101,6 +101,12 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q2_def(q2));
     // -----------------------------------------
 
+    // Q3 --------------------------------------
+    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
+    if (!q3) { return; }
+    survey.updateSurveyItem(q3_def(q3, anySymptomSelected));
+    // -----------------------------------------
+
     // Qcov3 --------------------------------------
     const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
     if (!qcov3) { return; }
@@ -470,6 +476,40 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "When did the first symptoms appear?"],
+            ["de", "Wann sind die ersten Symptome aufgetreten?"]
+        ]))
+    );
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'dateInput',
+            content: new Map([
+                ["en", "Choose date"],
+                ["de", "Wählen Sie ein Datum"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
                 ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
