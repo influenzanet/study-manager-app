@@ -113,6 +113,12 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(qcov3_def(qcov3, q2.key, anySymptomSelected));
     // -----------------------------------------
 
+    // Qcov15 --------------------------------------
+    const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
+    if (!qcov15) { return; }
+    survey.updateSurveyItem(qcov15_def(qcov15));
+    // -----------------------------------------
+
 
     const testItem = survey.addNewSurveyItem({ itemKey: 'test' }, rootKey);
     const tie = new ItemEditor(testItem);
@@ -557,6 +563,63 @@ const qcov3_def = (itemSkeleton: SurveyItem, q2: String, anySymptomSelected: Exp
             ])
         },
     ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "In your opinion, what is the gravity of this coronavirus?"],
+            ["de", "Wie schwerwiegend ist Ihrer Meinung nach dieses Coronavirus?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSliderCategoricalGroup(sliderCategoricalKey, [
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "Yes, absolutely"],
+                ["de", "Ja, absolut"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "Yes, moderately"],
+                ["de", "Ja, mässig"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "No, not really"],
+                ["de", "Nein, nicht wirklich"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "No, not at all"],
+                ["de", "Nein, überhaupt nicht"],
+            ])
+        },
+        {
+            key: '99',
+            role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiss nicht"],
+            ])
+        }
+    ])
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
