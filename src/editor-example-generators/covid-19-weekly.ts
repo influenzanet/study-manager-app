@@ -113,6 +113,18 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(qcov3_def(qcov3, q2.key, anySymptomSelected));
     // -----------------------------------------
 
+    // Qcov10 --------------------------------------
+    const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
+    if (!qcov10) { return; }
+    survey.updateSurveyItem(qcov10_def(qcov10));
+    // -----------------------------------------
+
+    // Qcov10 --------------------------------------
+    const qcov10b = survey.addNewSurveyItem({ itemKey: 'Qcov10b' }, rootKey);
+    if (!qcov10b) { return; }
+    survey.updateSurveyItem(qcov10b_def(qcov10b, qcov10.key));
+    // -----------------------------------------
+
     // Qcov15 --------------------------------------
     const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
     if (!qcov15) { return; }
@@ -526,7 +538,7 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     return editor.getItem();
 }
 
-const qcov3_def = (itemSkeleton: SurveyItem, q2: String, anySymptomSelected: Expression): SurveyItem => {
+const qcov3_def = (itemSkeleton: SurveyItem, q2: string, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -564,6 +576,91 @@ const qcov3_def = (itemSkeleton: SurveyItem, q2: String, anySymptomSelected: Exp
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity? (Select all the relevant answers)"],
+            ["de", "Führen Sie seit Beginn der COVID-19-Sperrmassnahmen eine berufliche Tätigkeit aus? (Wählen Sie alle relevanten Antworten aus) "],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "Yes, I work from home"],
+                ["de", "Ja, ich arbeite von zu Hause aus "],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "Yes, I work outside from home"],
+                ["de", "Ja, ich arbeite ausser Haus "],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "No, I have a leave of absence to take care of my kid(s)"],
+                ["de", "Nein, ich habe eine Beurlaubung, um mich um mein(e) Kind(er) zu kümmern "],
+            ])
+        },
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "No, I have a sick leave (because of Covid-19)"],
+                ["de", "Nein, ich bin krankgeschrieben (wegen Covid-19) "],
+            ])
+        },
+        {
+            key: '5',
+            role: 'option',
+            content: new Map([
+                ["en", "No, I have another situation (retired, job-seeker, student, house-wife/husband, other sick-leave, partial unemployment, forced leave…)"],
+                ["de", "Nein, ich habe eine andere Situation (Rentner, Arbeitssuchender, Student, Hausfrau/Ehemann, anderen Krankheitsurlaub...) "],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How many days a week do you work outside from home?"],
+            ["de", "Wie viele Tage in der Woche arbeiten Sie ausserhalb von zu Hause?"],
+        ]))
+    );
+    editor.addToFollows(qcov10);
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [qcov10].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2'),
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const sliderNumericEditor = new ComponentEditor(undefined, {
+        key: 'sliderNumeric',
+        role: 'sliderNumeric'
+    });
+    sliderNumericEditor.setProperties({
+        min: { dtype: 'num', num: 1 },
+        max: { dtype: 'num', num: 7 },
+        stepSize: { dtype: 'num', num: 1 },
+    })
+    editor.addExistingResponseComponent(sliderNumericEditor.getComponent(), rg?.key);
     return editor.getItem();
 }
 
