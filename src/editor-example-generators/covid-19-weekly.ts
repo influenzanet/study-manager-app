@@ -731,38 +731,6 @@ const q4_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             },
         ])
     );
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["de", "Warum fragen wir das?"],
-                ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Using the beginning and end dates of symptoms we can work out how long respiratory infections last."],
-                    ["de", "Durch Verwendung der Anfangs- und Enddaten der Symptome können wir feststellen, wie lange Atemwegserkrankungen dauern."],
-                ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["de", "Wie soll ich das beantworten?"],
-                ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Please give as accurate an estimate as possible."],
-                    ["de", "Bitte geben Ihre Schätzung so genau wie möglich an."],
-                ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-        ])
-    );
     editor.setCondition(
         anySymptomSelected
     );
