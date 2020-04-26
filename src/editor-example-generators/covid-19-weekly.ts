@@ -10,6 +10,7 @@ import { ComponentEditor } from "../editor-engine/survey-editor/component-editor
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
 const multipleChoiceKey = 'mcg';
+const dropDownKey = 'ddg'
 const sliderCategoricalKey = "scc"
 
 export const generateCovid19Weekly = (): Survey | undefined => {
@@ -111,6 +112,12 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
     if (!q7) { return; }
     survey.updateSurveyItem(q7_def(q7, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q7b --------------------------------------
+    const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, rootKey);
+    if (!q7b) { return; }
+    survey.updateSurveyItem(q7b_def(q7b, anySymptomSelected));
     // -----------------------------------------
 
     // Qcov3 --------------------------------------
@@ -603,6 +610,88 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q7b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
+            ["de", "Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
+        ]))
+    );
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "GP or GP's practice nurse"],
+                ["de", "Allgemeinarzt oder Allgemeinarztassisten/in"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Hospital accident & emergency department / out of hours service"],
+                ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Hospital admission"],
+                ["de", "Einlieferung ins Krankenhaus"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Other medical services"],
+                ["de", "Andere medizinische Einrichtungen"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "No, but I have an appointment scheduled"],
+                ["de", "Nein, aber ich habe schon einen Termin"],
+            ])
+        },
+    ]);
+
+    const scg_inner = initDropdownGroup(dropDownKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "GP or GP's practice nurse"],
+                ["de", "Allgemeinarzt oder Allgemeinarztassisten/in"],
+            ])
+        },
+    ])
+
+    editor.addExistingResponseComponent(scg_inner, rg_inner?.key);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
     return editor.getItem();
 }
 
