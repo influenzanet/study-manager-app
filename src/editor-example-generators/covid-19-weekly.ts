@@ -103,13 +103,31 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // Q2 --------------------------------------
     const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
     if (!q2) { return; }
-    survey.updateSurveyItem(q2_def(q2));
+    survey.updateSurveyItem(q2_def(q2, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov3 --------------------------------------
+    const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
+    if (!qcov3) { return; }
+    survey.updateSurveyItem(qcov3_def(qcov3, q2.key, anySymptomSelected));
     // -----------------------------------------
 
     // Q3 --------------------------------------
     const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
     if (!q3) { return; }
     survey.updateSurveyItem(q3_def(q3, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q4 --------------------------------------
+    const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
+    if (!q4) { return; }
+    survey.updateSurveyItem(q4_def(q4, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q5 --------------------------------------
+    const q5 = survey.addNewSurveyItem({ itemKey: 'Q5' }, rootKey);
+    if (!q5) { return; }
+    survey.updateSurveyItem(q5_def(q5, anySymptomSelected));
     // -----------------------------------------
 
     // Q7 --------------------------------------
@@ -124,10 +142,16 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q7b_def(q7b, q7.key, anySymptomSelected));
     // -----------------------------------------
 
-    // Qcov3 --------------------------------------
-    const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
-    if (!qcov3) { return; }
-    survey.updateSurveyItem(qcov3_def(qcov3, q2.key, anySymptomSelected));
+    // Q8 --------------------------------------
+    const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
+    if (!q8) { return; }
+    survey.updateSurveyItem(q8_def(q8, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q8b --------------------------------------
+    const q8b = survey.addNewSurveyItem({ itemKey: 'Q8b' }, rootKey);
+    if (!q8b) { return; }
+    survey.updateSurveyItem(q8b_def(q8b, q8.key, anySymptomSelected));
     // -----------------------------------------
 
     // Qcov10 --------------------------------------
@@ -528,7 +552,7 @@ const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -536,9 +560,9 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Bei Ihrem letzten Besuch haben Sie angegeben, noch krank zu sein. Sind die Symptome, die Sie heute berichten, Teil des gleichen Krankheitsschubs?"],
         ]))
     );
-    // editor.setCondition(
-    //     expWithArgs()
-    // )
+    editor.setCondition(
+        anySymptomSelected
+    );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
@@ -596,6 +620,93 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             content: new Map([
                 ["en", "I don't know/can't remember"],
                 ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q4_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "When did your symptoms end?"],
+            ["de", "Wann sind Ihre Symptome abgeklungen?"],
+        ]))
+    );
+    // editor.setHelpGroupComponent(
+    //     [
+
+    //     ]
+    // )
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'dateInput',
+            content: new Map([
+                ["en", "Choose date"],
+                ["de", "Wählen Sie ein Datum"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I am still ill"],
+                ["de", "Ich bin immer noch krank"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q5_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Did your symptoms develop suddenly over a few hours?"],
+            ["de", "Sind Ihre Symptome plötzlich über wenige Stunden erschienen?"],
+        ]))
+    );
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern."],
             ])
         },
     ]);
@@ -940,6 +1051,351 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string, anySymptomSelected: Expre
                     ]
                 }
             ], displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '4')
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    return editor.getItem();
+}
+
+const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Because of your symptoms, did you contact via TELEPHONE or INTERNET any of medical services?"],
+            ["de", "Haben Sie aufgrund Ihrer Syptome irgendwelche medizinischen Einrichtungen per TELEFON oder INTERNET kontaktiert?"],
+        ]))
+    );
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "GP - spoke to receptionist only"],
+                ["de", "Allgemeinarzt (habe nur mit der Empfangsperson gesprochen)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "GP - spoke to doctor or nurse"],
+                ["de", "Allgemeinarzt (habe mit Arzt oder Assistent/in gesprochen)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "NHS Direct / NHS 24 / NHS Choices"],
+                ["de", "Bezug von Informationen über Telefon oder Internet, direkt beim Gesundheitsministerium"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "NPFS"],
+                ["de", "Öffentlicher Grippe-Informationsdienst"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q8b_def = (itemSkeleton: SurveyItem, q8: string, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How soon after your symptoms appeared did you first contact a medical service via TELEPHONE or INTERNET?"],
+            ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie eine medizinische Einrichtung das erste Mal per TELEFON oder INTERNET kontaktiert?"],
+        ]))
+    );
+    editor.setCondition(
+        expWithArgs('and', anySymptomSelected, expWithArgs('responseHasOnlyKeysOtherThan', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0')));
+
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initMatrixQuestion(matrixKey, [
+        {
+            key: 'header', role: 'headerRow', cells: [
+                {
+                    key: 'col0', role: 'text', content: new Map([
+                        ["en", "Medical Service"],
+                        ["de", "Medizinische Dienstleistung"],
+                    ]),
+                },
+                {
+                    key: 'col1', role: 'text'
+                },
+            ]
+        },
+        {
+            key: 'r1', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "GP - spoke to receptionist only"],
+                        ["de", "Allgemeinarzt (habe nur mit Empfangsperson gesprochen)"],
+                    ]),
+                },
+                {
+                    key: 'col1', role: 'dropDownGroup', items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "Same day"],
+                                ["de", "Am gleichen Tag"],
+                            ]),
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1 day"],
+                                ["de", "1 Tag"],
+                            ]),
+                        },
+                        {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2 days"],
+                                ["de", "2 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3 days"],
+                                ["de", "3 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4 days"],
+                                ["de", "4 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5-7 days"],
+                                ["de", "5-7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '6', role: 'option', content: new Map([
+                                ["en", "More than 7 days"],
+                                ["de", "Mehr als 7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '7', role: 'option', content: new Map([
+                                ["en", "I don't know/can't remember"],
+                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                            ]),
+                        },
+                    ]
+                }
+            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
+        },
+        {
+            key: 'r2', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "GP – spoke to doctor or nurse"],
+                        ["de", "Allgemeinarzt (habe mit Arzt oder Assistent/in gesprochen)"],
+                    ]),
+                },
+                {
+                    key: 'col1', role: 'dropDownGroup', items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "Same day"],
+                                ["de", "Am gleichen Tag"],
+                            ]),
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1 day"],
+                                ["de", "1 Tag"],
+                            ]),
+                        },
+                        {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2 days"],
+                                ["de", "2 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3 days"],
+                                ["de", "3 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4 days"],
+                                ["de", "4 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5-7 days"],
+                                ["de", "5-7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '6', role: 'option', content: new Map([
+                                ["en", "More than 7 days"],
+                                ["de", "Mehr als 7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '7', role: 'option', content: new Map([
+                                ["en", "I don't know/can't remember"],
+                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                            ]),
+                        },
+                    ]
+                }
+            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
+        },
+        {
+            key: 'r3', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "NHS Direct / NHS 24 / NHS Choices"],
+                        ["de", "Bezug von Informationen über Telefon oder Internet, direkt beim Gesundheitsministerium"],
+                    ]),
+                },
+                {
+                    key: 'col1', role: 'dropDownGroup', items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "Same day"],
+                                ["de", "Am gleichen Tag"],
+                            ]),
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1 day"],
+                                ["de", "1 Tag"],
+                            ]),
+                        },
+                        {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2 days"],
+                                ["de", "2 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3 days"],
+                                ["de", "3 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4 days"],
+                                ["de", "4 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5-7 days"],
+                                ["de", "5-7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '6', role: 'option', content: new Map([
+                                ["en", "More than 7 days"],
+                                ["de", "Mehr als 7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '7', role: 'option', content: new Map([
+                                ["en", "I don't know/can't remember"],
+                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                            ]),
+                        },
+                    ]
+                }
+            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+        },
+        {
+            key: 'r4', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "Other"],
+                        ["de", "Andere"],
+                    ]),
+                },
+                {
+                    key: 'col1', role: 'dropDownGroup', items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "Same day"],
+                                ["de", "Am gleichen Tag"],
+                            ]),
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1 day"],
+                                ["de", "1 Tag"],
+                            ]),
+                        },
+                        {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2 days"],
+                                ["de", "2 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3 days"],
+                                ["de", "3 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4 days"],
+                                ["de", "4 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5-7 days"],
+                                ["de", "5-7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '6', role: 'option', content: new Map([
+                                ["en", "More than 7 days"],
+                                ["de", "Mehr als 7 Tage"],
+                            ]),
+                        },
+                        {
+                            key: '7', role: 'option', content: new Map([
+                                ["en", "I don't know/can't remember"],
+                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                            ]),
+                        },
+                    ]
+                }
+            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '5')
         },
     ]);
 
