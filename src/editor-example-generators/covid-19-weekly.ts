@@ -2,7 +2,7 @@ import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
-import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup } from "../editor-engine/utils/question-type-generator";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
@@ -12,6 +12,7 @@ const singleChoiceKey = 'scg';
 const multipleChoiceKey = 'mcg';
 const dropDownKey = 'ddg'
 const sliderCategoricalKey = "scc"
+const matrixKey = "mat"
 
 export const generateCovid19Weekly = (): Survey | undefined => {
     const survey = new SurveyEditor();
@@ -617,8 +618,8 @@ const q7b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
-            ["de", "Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
+            ["en", "TABLE:_ Because of your symptoms, did you VISIT (see face to face) any medical services?"],
+            ["de", "TABLE:_  Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
         ]))
     );
     editor.setCondition(
@@ -627,52 +628,164 @@ const q7b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+    const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '0', role: 'option',
+            key: 'header', role: 'headerRow', cells: [
+                { key: 'col1', role: 'text' },
+                {
+                    key: 'col2', role: 'text', content: new Map([
+                        ["en", "Col1 EN"],
+                        ["de", "Col1 DE"],
+                    ]),
+                    description: new Map([
+                        ["en", "Col1 EN"],
+                        ["de", "Col1 DE"],
+                    ])
+                },
+            ]
+        },
+        {
+            key: 'r1', role: 'radioRow', cells: [
+                {
+                    key: 'col1', role: 'label', content: new Map([
+                        ["en", "Row1 EN"],
+                        ["de", "Row1 DE"],
+                    ]),
+                    description: new Map([
+                        ["en", "Row1 EN"],
+                        ["de", "Row1 DE"],
+                    ])
+                },
+                { key: 'col2', role: 'option' }
+            ]
+        },
+        {
+            key: 'r2', role: 'responseRow', cells: [
+                {
+                    key: 'col1', role: 'label', content: new Map([
+                        ["en", "Row2 EN"],
+                        ["de", "Row2 DE"],
+                    ]),
+                },
+                {
+                    key: 'col2', role: 'check'
+                }
+            ]
+        },
+        {
+            key: 'r3', role: 'responseRow', cells: [
+                {
+                    key: 'col1', role: 'label', content: new Map([
+                        ["en", "Row3 EN"],
+                        ["de", "Row3 DE"],
+                    ]),
+                },
+                {
+                    key: 'col2', role: 'dropDownGroup', items: [
+                        {
+                            key: 'o1', role: 'option', content: new Map([
+                                ["en", "opt1 EN"],
+                                ["de", "opt1 DE"],
+                            ]),
+                        },
+                        {
+                            key: 'o2', role: 'option', content: new Map([
+                                ["en", "opt2 EN"],
+                                ["de", "opt2 DE"],
+                            ]),
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            key: 'r4', role: 'responseRow', cells: [
+                {
+                    key: 'col1', role: 'label', content: new Map([
+                        ["en", "Row4 EN"],
+                        ["de", "Row4 DE"],
+                    ]),
+                },
+                {
+                    key: 'col2', role: 'numberInput',
+                    properties: {
+                        min: { dtype: 'num', num: -5 },
+                    },
+                    content: new Map([
+                        ["en", "content EN"],
+                        ["de", "content DE"],
+                    ]),
+                    description: new Map([
+                        ["en", "description EN"],
+                        ["de", "description DE"],
+                    ]),
+                }
+            ]
+        },
+        {
+            key: 'r5', role: 'responseRow', cells: [
+                {
+                    key: 'col1', role: 'label', content: new Map([
+                        ["en", "Row5 EN"],
+                        ["de", "Row5 DE"],
+                    ]),
+                },
+                {
+                    key: 'col2', role: 'input', content: new Map([
+                        ["en", "content EN"],
+                        ["de", "content DE"],
+                    ]),
+                }
+            ]
+        }
+
+    ]);
+
+    /*  REMOVE these if not needed...
+    {
+        key: '0', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
             ])
-        },
-        {
-            key: '1', role: 'option',
+    },
+    {
+        key: '1', role: 'option',
             content: new Map([
                 ["en", "GP or GP's practice nurse"],
                 ["de", "Allgemeinarzt oder Allgemeinarztassisten/in"],
             ])
-        },
-        {
-            key: '3', role: 'option',
+    },
+    {
+        key: '3', role: 'option',
             content: new Map([
                 ["en", "Hospital accident & emergency department / out of hours service"],
                 ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
             ])
-        },
-        {
-            key: '2', role: 'option',
+    },
+    {
+        key: '2', role: 'option',
             content: new Map([
                 ["en", "Hospital admission"],
                 ["de", "Einlieferung ins Krankenhaus"],
             ])
-        },
-        {
-            key: '4', role: 'option',
+    },
+    {
+        key: '4', role: 'option',
             content: new Map([
                 ["en", "Other medical services"],
                 ["de", "Andere medizinische Einrichtungen"],
             ])
-        },
-        {
-            key: '5', role: 'option',
+    },
+    {
+        key: '5', role: 'option',
             content: new Map([
                 ["en", "No, but I have an appointment scheduled"],
                 ["de", "Nein, aber ich habe schon einen Termin"],
             ])
-        },
-    ]);
+    },
 
-    const scg_inner = initDropdownGroup(dropDownKey, [
+     const scg_inner = initDropdownGroup(dropDownKey, [
         {
             key: '0', role: 'option',
             content: new Map([
@@ -689,7 +802,9 @@ const q7b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
         },
     ])
 
-    editor.addExistingResponseComponent(scg_inner, rg_inner?.key);
+
+    */
+
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     return editor.getItem();
