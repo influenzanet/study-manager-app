@@ -472,7 +472,7 @@ const q32e_def = (itemSkeleton: SurveyItem): SurveyItem => {
     });
     descEdit.setContent(generateLocStrings(new Map([
         ["en", "If applies enter your response into the box:"],
-        ["de", "Falls zutrifft, geben Sie bitte Ihre Antwort hier ein:"],
+        ["de", "Falls zutreffend, geben Sie bitte Ihre Antwort hier ein:"],
     ])));
     descEdit.setStyles([{ key: 'variant', value: 'annotation' }])
     editor.addExistingResponseComponent(descEdit.getComponent(), rg?.key);
