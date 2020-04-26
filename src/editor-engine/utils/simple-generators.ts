@@ -1,4 +1,5 @@
-import { LocalizedString, ItemComponent, ExpressionName, Expression } from "survey-engine/lib/data_types";
+import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent } from "survey-engine/lib/data_types";
+import { ComponentEditor } from "../survey-editor/component-editor";
 
 export const generateLocStrings = (translations: Map<string, string>): LocalizedString[] => {
     // console.log(translations);
@@ -18,6 +19,36 @@ export const generateTitleComponent = (translations: Map<string, string>): ItemC
         role: 'title',
         content: generateLocStrings(translations)
     };
+}
+
+export const generateHelpGroupComponent = (
+    items: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>): ItemGroupComponent => {
+
+    // init group
+    const groupEdit = new ComponentEditor(undefined, {
+        isGroup: true,
+        role: 'helpGroup',
+    });
+
+    groupEdit.setOrder({
+        name: 'sequential'
+    });
+
+    items.forEach(item => {
+        const itemEditor = new ComponentEditor(undefined, {
+            role: 'text',
+        });
+        itemEditor.setContent(generateLocStrings(item.content));
+        if (item.style) {
+            itemEditor.setStyles(item.style);
+        }
+
+        groupEdit.addItemComponent(itemEditor.getComponent());
+    });
+    return groupEdit.getComponent() as ItemGroupComponent;
 }
 
 export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression => {
