@@ -170,7 +170,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // q32Editor.removeResponseComponent('rg.scg');
 
     console.log(survey.getSurvey());
-    console.log(survey.getSurveyJSON());
+    // console.log(survey.getSurveyJSON());
 
 
     // console.log(JSON.stringify(expOr, undefined, '  '));
@@ -493,17 +493,27 @@ const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Wie lautet ihre Postleitzahl?"],
         ]))
     );
+
     editor.addValidation(
         {
             key: 'V1',
             type: 'soft',
-            rule: expWithArgs('responseHasOnlyKeysOtherThan', [editor.getItem().key], [responseGroupKey, inputKey].join('.'), '[0-9]{5}'),
+            rule:
+                expWithArgs('and',
+                    expWithArgs('checkResponseValueWithRegex', editor.getItem().key, [responseGroupKey, inputKey].join('.'), '.*\\S.*'),
+                    expWithArgs('not', expWithArgs('checkResponseValueWithRegex', editor.getItem().key, [responseGroupKey, inputKey].join('.'), '^(?=(\\D*\\d){5}\\D*$)')),
+                )
+
         }
     );
     editor.addDisplayComponent(
         {
             role: 'warning',
-            displayCondition: expWithArgs('getSurveyItemValidation', [editor.getItem().key], 'V1')
+            content: generateLocStrings(new Map([
+                ["en", "Please enter a correct value"],
+                ["de", "Bitte geben Sie eine korrekte PLZ ein"],
+            ])),
+            displayCondition: expWithArgs('getSurveyItemValidation', 'this', 'V1')
         }
     )
 
