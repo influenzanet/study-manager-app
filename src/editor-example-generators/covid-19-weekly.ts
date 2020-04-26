@@ -97,6 +97,13 @@ export const generateCovid19Weekly = (): Survey | undefined => {
         q32_5_symptom
     );
 
+
+    // Q0 --------------------------------------
+    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
+    if (!q0) { return; }
+    survey.updateSurveyItem(q0_def(q0));
+    // -----------------------------------------
+
     // Q2 --------------------------------------
     const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
     if (!q2) { return; }
@@ -472,6 +479,34 @@ const q32e_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const input = new ComponentEditor(undefined, {
         key: '160',
         role: 'multilineTextInput'
+    }).getComponent();
+    editor.addExistingResponseComponent(input, rg?.key);
+    return editor.getItem();
+}
+
+const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What is your postal code?"],
+            ["de", "Wie lautet ihre Postleitzahl?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const descEdit = new ComponentEditor(undefined, {
+        role: 'text'
+    });
+    descEdit.setContent(generateLocStrings(new Map([
+        ["en", "The completeness of your postal code is automatically checked:"],
+        ["de", "Die Vollständigkeit ihrer Postleitzahl wird automatisch geprüft:"],
+    ])));
+    descEdit.setStyles([{ key: 'variant', value: 'annotation' }])
+    editor.addExistingResponseComponent(descEdit.getComponent(), rg?.key);
+
+    const input = new ComponentEditor(undefined, {
+        key: '1',
+        role: 'input'
     }).getComponent();
     editor.addExistingResponseComponent(input, rg?.key);
     return editor.getItem();
