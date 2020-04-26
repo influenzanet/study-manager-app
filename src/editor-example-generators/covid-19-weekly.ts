@@ -98,12 +98,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
         q32_5_symptom
     );
 
-
-    // Q0 --------------------------------------
-    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
-    if (!q0) { return; }
-    survey.updateSurveyItem(q0_def(q0));
-    // -----------------------------------------
+    survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
     // Q2 --------------------------------------
     const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
@@ -153,17 +148,14 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(qcov15_def(qcov15));
     // -----------------------------------------
 
+    survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
 
-    const testItem = survey.addNewSurveyItem({ itemKey: 'test' }, rootKey);
-    const tie = new ItemEditor(testItem);
-    tie.setTitleComponent(generateTitleComponent(new Map([
-        ['en', 'test']
-    ])))
-    tie.setCondition(anySymptomSelected);
-    survey.updateSurveyItem(tie.getItem());
+    // Q0 --------------------------------------
+    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
+    if (!q0) { return; }
+    survey.updateSurveyItem(q0_def(q0));
+    // -----------------------------------------
 
-
-    survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
     console.log(anySymptomSelected);
     // console.log(q32Editor.findResponseComponent('rg'));
@@ -503,7 +495,6 @@ const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     expWithArgs('checkResponseValueWithRegex', editor.getItem().key, [responseGroupKey, inputKey].join('.'), '.*\\S.*'),
                     expWithArgs('not', expWithArgs('checkResponseValueWithRegex', editor.getItem().key, [responseGroupKey, inputKey].join('.'), '^(?=(\\D*\\d){5}\\D*$)')),
                 )
-
         }
     );
     editor.addDisplayComponent(
