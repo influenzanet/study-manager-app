@@ -130,6 +130,8 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q5_def(q5, anySymptomSelected));
     // -----------------------------------------
 
+    survey.addNewSurveyItem({ itemKey: 'pb7', type: 'pageBreak' }, rootKey);
+
     // Q7 --------------------------------------
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
     if (!q7) { return; }
@@ -154,6 +156,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q8b_def(q8b, q8.key, anySymptomSelected));
     // -----------------------------------------
 
+    survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
     // Qcov10 --------------------------------------
     const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
     if (!qcov10) { return; }
@@ -167,17 +170,18 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // -----------------------------------------
 
     // Qcov15 --------------------------------------
-    const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
-    if (!qcov15) { return; }
-    survey.updateSurveyItem(qcov15_def(qcov15));
+    // TODO: not working on mobile
+    // const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
+    // if (!qcov15) { return; }
+    // survey.updateSurveyItem(qcov15_def(qcov15));
     // -----------------------------------------
 
     survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
 
-    // Q0 --------------------------------------
-    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
-    if (!q0) { return; }
-    survey.updateSurveyItem(q0_def(q0));
+    // q_postal_code --------------------------------------
+    const q_postal_code = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
+    if (!q_postal_code) { return; }
+    survey.updateSurveyItem(q0_def(q_postal_code));
     // -----------------------------------------
 
 
