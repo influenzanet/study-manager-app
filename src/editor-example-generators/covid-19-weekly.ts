@@ -1,5 +1,5 @@
 import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
-import { generateLocStrings, generateTitleComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
+import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion } from "../editor-engine/utils/question-type-generator";
@@ -563,6 +563,38 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     editor.setCondition(
         anySymptomSelected
     );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To make filling out the rest of the survey quicker for you."],
+                    ["de", "Um das Ausfüllen des restlichen Fragebogens für Sie schneller zu gestalten."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”. To save you time, we have filled in the information you gave us previously about your illness.Please check that it is still correct, and make any changes – for instance, if you have visited a doctor or taken additional time off work since you last completed the survey."],
+                    ["de", "Falls Sie denken, dass die Symptome, die Sie heute angeben, vom selben Krankheitsschub stammen wie Ihre vorherigen, wählen Sie bitte „Ja“. Um Ihre Zeit zu sparen, haben wir die Informationen, die Sie uns letztes Mal gegeben haben, bereits eingetragen. Bitte prüfen Sie, ob diese noch richtig sind und machen sie gegebenenfalls Änderungen (z.B falls Sie einen Arzt besucht oder Sie sich zusätzliche Zeit von der Arbeit abgemeldet haben, seit Sie das letzte Mal den Fragebogen ausgefüllt haben)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
@@ -601,6 +633,38 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["de", "Wann sind die ersten Symptome aufgetreten?"]
         ]))
     );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To help us work out the number of cases of flu that arise each day."],
+                    ["de", "Sie helfen uns damit, die täglich hinzukommenden Fälle von Grippe zu bestimmen."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please give as accurate an estimate as possible."],
+                    ["de", "Bitte geben Ihre Schätzung so genau wie möglich an."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
     editor.setCondition(
         anySymptomSelected
     );
@@ -635,11 +699,70 @@ const q4_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["de", "Wann sind Ihre Symptome abgeklungen?"],
         ]))
     );
-    // editor.setHelpGroupComponent(
-    //     [
-
-    //     ]
-    // )
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Using the beginning and end dates of symptoms we can work out how long respiratory infections last."],
+                    ["de", "Durch Verwendung der Anfangs- und Enddaten der Symptome können wir feststellen, wie lange Atemwegserkrankungen dauern."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please give as accurate an estimate as possible."],
+                    ["de", "Bitte geben Ihre Schätzung so genau wie möglich an."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Using the beginning and end dates of symptoms we can work out how long respiratory infections last."],
+                    ["de", "Durch Verwendung der Anfangs- und Enddaten der Symptome können wir feststellen, wie lange Atemwegserkrankungen dauern."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please give as accurate an estimate as possible."],
+                    ["de", "Bitte geben Ihre Schätzung so genau wie möglich an."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
     editor.setCondition(
         anySymptomSelected
     );
@@ -681,6 +804,38 @@ const q5_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["de", "Sind Ihre Symptome plötzlich über wenige Stunden erschienen?"],
         ]))
     );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Sudden onset of symptoms is believed to be common for flu."],
+                    ["de", "Plötzliches Auftreten von Symptomen gilt als häufig für die Grippe."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick yes if your symptoms appeared over a few hours rather than gradually developing over a few days."],
+                    ["de", "Wählen Sie ja, falls Ihre Symptome über wenige Stunden aufgetreten sind statt über einige Tage hinweg."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
     editor.setCondition(
         anySymptomSelected
     );
@@ -721,6 +876,38 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
             ["de", "Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
         ]))
+    );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out whether people contact the health services because of their symptoms."],
+                    ["de", "Um herauszufinden, ob Menschen aufgrund Ihrer Symptome Kontakt zu gesundheitlichen Einrichtungen suchen."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
+                    ["de", "Wählen Sie alle Optionen, die zutreffen. Falls Sie es vorhaben, wählen Sie bitte die letzte Option."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
     );
     editor.setCondition(
         anySymptomSelected
@@ -783,6 +970,38 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string, anySymptomSelected: Expre
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
             ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie das erste Mal eine medizinische Einrichtung BESUCHT?"],
         ]))
+    );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out how quickly people with symptoms are seen by the health services."],
+                    ["de", "Um herauszufinden, wie schnell Menschen mit Symptomen von gesundheitlichen Einrichtungen wahrgenommen werden."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Only record the time until your FIRST contact with the health services."],
+                    ["de", "Geben Sie nur die Zeit an, bis Sie zum ERSTEN MAL Kontakt zu gesundheitlichen Einrichtungen aufgenommen haben."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
     );
     editor.setCondition(
         expWithArgs('and', anySymptomSelected, expWithArgs('and', expWithArgs('responseHasOnlyKeysOtherThan', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0'), expWithArgs('responseHasOnlyKeysOtherThan', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '5'))));
@@ -1067,6 +1286,38 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["de", "Haben Sie aufgrund Ihrer Syptome irgendwelche medizinischen Einrichtungen per TELEFON oder INTERNET kontaktiert?"],
         ]))
     );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out whether people contact the health services because of their symptoms."],
+                    ["de", "Um herauszufinden, ob Menschen aufgrund Ihrer Symptome medizinische Einrichtungen kontaktieren."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick all options that apply"],
+                    ["de", "Wählen Sie alle Optionen, die zutreffen."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
     editor.setCondition(
         anySymptomSelected
     );
@@ -1128,6 +1379,38 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string, anySymptomSelected: Expre
             ["en", "How soon after your symptoms appeared did you first contact a medical service via TELEPHONE or INTERNET?"],
             ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie eine medizinische Einrichtung das erste Mal per TELEFON oder INTERNET kontaktiert?"],
         ]))
+    );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out how quickly people with symptoms contact the health services."],
+                    ["de", "Um herauszufinden, wie schnell Menschen mit Symptomen Kontakt zu medizinischen Einrichtungen aufnehmen."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Only record the time until your FIRST contact with the health services."],
+                    ["de", "Geben Sie nur die Zeit an, nach der Sie das ERSTE MAL Kontakt aufgenommen haben."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
     );
     editor.setCondition(
         expWithArgs('and', anySymptomSelected, expWithArgs('responseHasOnlyKeysOtherThan', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0')));
