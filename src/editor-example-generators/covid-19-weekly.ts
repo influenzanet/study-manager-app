@@ -12,6 +12,7 @@ const singleChoiceKey = 'scg';
 const multipleChoiceKey = 'mcg';
 const dropDownKey = 'ddg'
 const sliderCategoricalKey = "scc"
+const inputKey = "ic"
 const matrixKey = "mat"
 
 export const generateCovid19Weekly = (): Survey | undefined => {
@@ -492,8 +493,22 @@ const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Wie lautet ihre Postleitzahl?"],
         ]))
     );
+    editor.addValidation(
+        {
+            key: 'V1',
+            type: 'soft',
+            rule: expWithArgs('responseHasOnlyKeysOtherThan', [editor.getItem().key], [responseGroupKey, inputKey].join('.'), '[0-9]{5}'),
+        }
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'warning',
+            displayCondition: expWithArgs('getSurveyItemValidation', [editor.getItem().key], 'V1')
+        }
+    )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
     const descEdit = new ComponentEditor(undefined, {
         role: 'text'
     });
@@ -505,7 +520,7 @@ const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.addExistingResponseComponent(descEdit.getComponent(), rg?.key);
 
     const input = new ComponentEditor(undefined, {
-        key: '1',
+        key: inputKey,
         role: 'input'
     }).getComponent();
     editor.addExistingResponseComponent(input, rg?.key);
@@ -1062,8 +1077,8 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "In your opinion, what is the gravity of this coronavirus?"],
-            ["de", "Wie schwerwiegend ist Ihrer Meinung nach dieses Coronavirus?"],
+            ["en", "If lockdown measures were extended (that is to say, continued beyond the date announced by the government), do you think you would follow the recommendations with as much rigour as you do now?"],
+            ["de", "Falls die Sperrmassnahmen über das von der Regierung angekundigte Datum hinaus verlängert würden, glauben Sie, dass Sie die Empfehlungen mit gleicher Disziplin weiter verfolgen würden?"],
         ]))
     );
 
