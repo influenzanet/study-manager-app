@@ -1727,6 +1727,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '1',
             role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4', '5'),
             content: new Map([
                 ["en", "Yes, I work from home"],
                 ["de", "Ja, ich arbeite von zu Hause aus "],
@@ -1735,6 +1736,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '2',
             role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4', '5'),
             content: new Map([
                 ["en", "Yes, I work outside from home"],
                 ["de", "Ja, ich arbeite ausser Haus "],
@@ -1743,6 +1745,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '3',
             role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3'),
             content: new Map([
                 ["en", "No, I have a leave of absence to take care of my kid(s)"],
                 ["de", "Nein, ich habe eine Beurlaubung, um mich um mein(e) Kind(er) zu kümmern "],
@@ -1751,6 +1754,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '4',
             role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["en", "No, I have a sick leave (because of Covid-19)"],
                 ["de", "Nein, ich bin krankgeschrieben (wegen Covid-19) "],
@@ -1759,6 +1763,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '5',
             role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "No, I have another situation (retired, job-seeker, student, house-wife/husband, other sick-leave, partial unemployment, forced leave…)"],
                 ["de", "Nein, ich habe eine andere Situation (Rentner, Arbeitssuchender, Student, Hausfrau/Ehemann, anderen Krankheitsurlaub...) "],
