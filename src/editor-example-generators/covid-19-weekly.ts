@@ -976,7 +976,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string, anySymptomSelected: Expre
         ])
     );
     editor.setCondition(
-        expWithArgs('and', anySymptomSelected, expWithArgs('and', expWithArgs('responseHasOnlyKeysOtherThan', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0'), expWithArgs('responseHasOnlyKeysOtherThan', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '5'))));
+        expWithArgs('and', anySymptomSelected, expWithArgs('responseHasKeysAny', q7, [responseGroupKey, multipleChoiceKey].join('.'), '1', '2', '3', '4')));
 
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1385,7 +1385,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string, anySymptomSelected: Expre
         ])
     );
     editor.setCondition(
-        expWithArgs('and', anySymptomSelected, expWithArgs('responseHasOnlyKeysOtherThan', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0')));
+        expWithArgs('and', anySymptomSelected, expWithArgs('responseHasKeysAny', q8, [responseGroupKey, multipleChoiceKey].join('.'), '1', '2', '3', '5')));
 
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
