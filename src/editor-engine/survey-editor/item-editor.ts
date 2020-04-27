@@ -77,7 +77,6 @@ export class ItemEditor implements ItemEditorInt {
                 const currentItem: SurveyItem = {
                     key,
                     version: 1,
-                    components: { ...initialRootComp() },
                 }
                 if (newItem?.type) {
                     currentItem.type = newItem.type;
