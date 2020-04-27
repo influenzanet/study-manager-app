@@ -536,7 +536,7 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             {
                 content: new Map([
                     ["en", "To help us work out the number of cases of flu that arise each day."],
-                    ["de", "Sie helfen uns damit, die täglich hinzukommenden Fälle von Grippe zu bestimmen."],
+                    ["de", "Du hilfst uns damit, die täglich hinzukommenden Fälle zu bestimmen."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -550,7 +550,7 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             {
                 content: new Map([
                     ["en", "Please give as accurate an estimate as possible."],
-                    ["de", "Bitte geben Ihre Schätzung so genau wie möglich an."],
+                    ["de", "Bitte gib deine Schätzung so genau wie möglich an."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
