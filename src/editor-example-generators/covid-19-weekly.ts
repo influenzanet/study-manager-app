@@ -678,6 +678,10 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '0', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
+            },
             content: new Map([
                 ["en", "Choose date"],
                 ["de", "Wählen Sie ein Datum"],
@@ -744,6 +748,10 @@ const q4_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '0', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
+            },
             content: new Map([
                 ["en", "Choose date"],
                 ["de", "Wählen Sie ein Datum"],
@@ -1305,7 +1313,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
-            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            // disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
