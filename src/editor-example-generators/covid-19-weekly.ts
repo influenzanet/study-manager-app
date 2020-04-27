@@ -890,6 +890,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
@@ -897,6 +898,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "GP or GP's practice nurse"],
                 ["de", "Allgemeinarzt oder Allgemeinarztassisten/in"],
@@ -904,6 +906,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Hospital accident & emergency department / out of hours service"],
                 ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
@@ -911,6 +914,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Hospital admission"],
                 ["de", "Einlieferung ins Krankenhaus"],
@@ -918,6 +922,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Other medical services"],
                 ["de", "Andere medizinische Einrichtungen"],
@@ -925,6 +930,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '5', role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "No, but I have an appointment scheduled"],
                 ["de", "Nein, aber ich habe schon einen Termin"],
@@ -1299,6 +1305,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
@@ -1306,6 +1313,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GP - spoke to receptionist only"],
                 ["de", "Allgemeinarzt (habe nur mit der Empfangsperson gesprochen)"],
@@ -1313,6 +1321,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GP - spoke to doctor or nurse"],
                 ["de", "Allgemeinarzt (habe mit Arzt oder Assistent/in gesprochen)"],
@@ -1320,6 +1329,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "NHS Direct / NHS 24 / NHS Choices"],
                 ["de", "Bezug von Informationen über Telefon oder Internet, direkt beim Gesundheitsministerium"],
@@ -1327,6 +1337,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "NPFS"],
                 ["de", "Öffentlicher Grippe-Informationsdienst"],
@@ -1334,6 +1345,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
         {
             key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
