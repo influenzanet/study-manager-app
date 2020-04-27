@@ -16,8 +16,10 @@ const inputKey = "ic"
 const matrixKey = "mat"
 
 export const generateCovid19Weekly = (): Survey | undefined => {
+    const surveyKey = 'weekly';
+
     const survey = new SurveyEditor();
-    survey.changeItemKey('survey', 'intake');
+    survey.changeItemKey('survey', surveyKey);
 
     // define name and description of the survey
     survey.setSurveyName(generateLocStrings(

@@ -1,16 +1,29 @@
 import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor"
-import { generateLocStrings } from "../editor-engine/utils/simple-generators";
+import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent } from "../editor-engine/utils/simple-generators";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
+import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { initSingleChoiceGroup } from "../editor-engine/utils/question-type-generator";
 
-export const generateCovid19Intake = () => {
+
+const responseGroupKey = 'rg';
+const singleChoiceKey = 'scg';
+const multipleChoiceKey = 'mcg';
+const dropDownKey = 'ddg'
+const sliderCategoricalKey = "scc"
+const inputKey = "ic"
+const matrixKey = "mat"
+
+export const generateCovid19Intake = (): Survey | undefined => {
+    const surveyKey = 'intake';
+
     const survey = new SurveyEditor();
-    survey.changeItemKey('survey', 'weekly');
+    survey.changeItemKey('survey', surveyKey);
 
     // define name and description of the survey
     survey.setSurveyName(generateLocStrings(
         new Map([
-            ["en", "Welcome"],
-            ["de", "Willkommen"],
+            ["en", "Intake Survey"],
+            ["de", "Aufnahmefragebogen"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
@@ -19,41 +32,77 @@ export const generateCovid19Intake = () => {
             ["de", "Fragebogen über den Hintergrund des Teilnehmers."],
         ])
     ));
-
     // max item per page
     // set prefill rules
     // set context rules
 
-    const group1 = survey.addNewSurveyItem({ itemKey: 'Q1', isGroup: true });
-    if (!group1) { return }
 
-    const q0 = survey.addNewSurveyItem({ itemKey: 'Q0' }, group1.key);
-
-    const g1Edit = new ItemEditor(group1);
-    g1Edit.addToFollows('weekly');
-    survey.updateSurveyItem(g1Edit.getItem());
-
-    const q0Edit = new ItemEditor(q0);
-    q0Edit.addToFollows(group1.key);
-    survey.updateSurveyItem(q0Edit.getItem());
+    const rootItemEditor = new ItemEditor(survey.findSurveyItem('weekly') as SurveyGroupItem);
+    rootItemEditor.setSelectionMethod({ name: 'sequential' });
+    survey.updateSurveyItem(rootItemEditor.getItem());
+    const rootKey = rootItemEditor.getItem().key;
 
 
 
+    // gender --------------------------------------
+    const q_gender = survey.addNewSurveyItem({ itemKey: 'todo_1' }, rootKey);
+    if (!q_gender) { return; }
+    survey.updateSurveyItem(q_gender_def(q_gender));
+    // -----------------------------------------
 
 
-    const found = survey.findSurveyItem('weekly');
-    console.log(found);
-    const test = generateLocStrings(
-        new Map([
-            ["en", "hello"],
-            ["de", "hallo"],
+
+    return survey.getSurvey();
+}
+
+
+
+const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What is your gender?"],
+            ["de", "Welches Geschlecht haben Sie?"],
+        ]))
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out whether the chance of getting flu is different between men and women."],
+                    ["de", "Um herauszufinden, ob das Risiko, an der Grippe zu erkranken, unterschiedlich für Männer und Frauen ist."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
         ])
     );
-    // console.log(test);
 
-    //console.log(survey.getSurveyJSON(true));
-    //console.log(survey.getSurveyJSON());
-    console.log(survey.getSurvey().current.surveyDefinition);
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
-    console.log(survey.getSurveyJSON());
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '767', role: 'option',
+            content: new Map([
+                ["en", "Male"],
+                ["de", "Männlich"],
+            ])
+        },
+        {
+            key: '768', role: 'option',
+            content: new Map([
+                ["en", "Female"],
+                ["de", "Weiblich"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
 }
