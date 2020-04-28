@@ -11,13 +11,15 @@ import { Survey } from 'survey-engine/lib/data_types';
 const availableLanguages = [
     { code: 'en', label: '🇬🇧 English' },
     { code: 'de', label: '🇩🇪 Deutsch' },
+    { code: 'fr', label: '🇫🇷 Français' },
 ]
 
 const TestEditor: React.FC = () => {
     const [studyName, setStudyName] = useState('covid-19');
 
     useEffect(() => {
-        const s = generateCovid19Weekly();
+        // const s = generateCovid19Weekly();
+        const s = generateCovid19Intake();
         setSurvey(s);
     }, [])
 

@@ -10,6 +10,7 @@ import NumberInput from './NumberInput/NumberInput';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import "moment/locale/de";
+import "moment/locale/fr";
 
 // pick a date util library
 import MomentUtils from '@date-io/moment';

@@ -57,7 +57,11 @@ export const generateCovid19Intake = (): Survey | undefined => {
     survey.updateSurveyItem(q_birthday_def(q_birthday));
     // -----------------------------------------
 
-    // country ??
+    // country --------------------------------------
+    const q_3 = survey.addNewSurveyItem({ itemKey: 'todo_3' }, rootKey);
+    if (!q_3) { return; }
+    survey.updateSurveyItem(q_3_def(q_3));
+    // -----------------------------------------
 
     // home postal-code --------------------------------------
     const q_4 = survey.addNewSurveyItem({ itemKey: 'todo_4' }, rootKey);
@@ -126,88 +130,82 @@ export const generateCovid19Intake = (): Survey | undefined => {
     survey.updateSurveyItem(q_14_def(q_14));
     // -----------------------------------------
 
-    // flu vaccine  --------------------------------------
+    // flu vaccine last --------------------------------------
     const q_15 = survey.addNewSurveyItem({ itemKey: 'todo_15' }, rootKey);
     if (!q_15) { return; }
     survey.updateSurveyItem(q_15_def(q_15));
     // -----------------------------------------
 
-    // flue vaccine last --------------------------------------
+    // flue vaccine this --------------------------------------
     const q_16 = survey.addNewSurveyItem({ itemKey: 'todo_16' }, rootKey);
     if (!q_16) { return; }
     survey.updateSurveyItem(q_16_def(q_16));
     // -----------------------------------------
 
-    // flue vaccine this --------------------------------------
+    // flue vaccine when --------------------------------------
     const q_17 = survey.addNewSurveyItem({ itemKey: 'todo_17' }, rootKey);
     if (!q_17) { return; }
     survey.updateSurveyItem(q_17_def(q_17));
     // -----------------------------------------
 
-    // flue vaccine when --------------------------------------
+    // flue vaccine reason for --------------------------------------
     const q_18 = survey.addNewSurveyItem({ itemKey: 'todo_18' }, rootKey);
     if (!q_18) { return; }
     survey.updateSurveyItem(q_18_def(q_18));
     // -----------------------------------------
 
-    // flue vaccine reason for --------------------------------------
+    // flue vaccine reason against --------------------------------------
     const q_19 = survey.addNewSurveyItem({ itemKey: 'todo_19' }, rootKey);
     if (!q_19) { return; }
     survey.updateSurveyItem(q_19_def(q_19));
     // -----------------------------------------
 
-    // flue vaccine reason against --------------------------------------
+    // regular medication --------------------------------------
     const q_20 = survey.addNewSurveyItem({ itemKey: 'todo_20' }, rootKey);
     if (!q_20) { return; }
     survey.updateSurveyItem(q_20_def(q_20));
     // -----------------------------------------
 
-    // regular medication --------------------------------------
+    // pregnant --------------------------------------
     const q_21 = survey.addNewSurveyItem({ itemKey: 'todo_21' }, rootKey);
     if (!q_21) { return; }
     survey.updateSurveyItem(q_21_def(q_21));
     // -----------------------------------------
 
-    // pregnant --------------------------------------
+    // trimester --------------------------------------
     const q_22 = survey.addNewSurveyItem({ itemKey: 'todo_22' }, rootKey);
     if (!q_22) { return; }
     survey.updateSurveyItem(q_22_def(q_22));
     // -----------------------------------------
 
-    // trimester --------------------------------------
+    // do you smoke --------------------------------------
     const q_23 = survey.addNewSurveyItem({ itemKey: 'todo_23' }, rootKey);
     if (!q_23) { return; }
     survey.updateSurveyItem(q_23_def(q_23));
     // -----------------------------------------
 
-    // do you smoke --------------------------------------
+    // allergies --------------------------------------
     const q_24 = survey.addNewSurveyItem({ itemKey: 'todo_24' }, rootKey);
     if (!q_24) { return; }
     survey.updateSurveyItem(q_24_def(q_24));
     // -----------------------------------------
 
-    // allergies --------------------------------------
+    // special diet --------------------------------------
     const q_25 = survey.addNewSurveyItem({ itemKey: 'todo_25' }, rootKey);
     if (!q_25) { return; }
     survey.updateSurveyItem(q_25_def(q_25));
     // -----------------------------------------
 
-    // special diet --------------------------------------
+    // pets --------------------------------------
     const q_26 = survey.addNewSurveyItem({ itemKey: 'todo_26' }, rootKey);
     if (!q_26) { return; }
     survey.updateSurveyItem(q_26_def(q_26));
     // -----------------------------------------
 
-    // pets --------------------------------------
+    // how did you find us --------------------------------------
     const q_27 = survey.addNewSurveyItem({ itemKey: 'todo_27' }, rootKey);
     if (!q_27) { return; }
     survey.updateSurveyItem(q_27_def(q_27));
-    // -----------------------------------------
-
-    // how did you find us --------------------------------------
-    const q_28 = survey.addNewSurveyItem({ itemKey: 'todo_28' }, rootKey);
-    if (!q_28) { return; }
-    survey.updateSurveyItem(q_28_def(q_28));
     // -----------------------------------------
 
     return survey.getSurvey();
@@ -221,6 +219,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your gender?"],
             ["de", "Welches Geschlecht haben Sie?"],
+            ["fr", " Quel est votre sexe?"],
         ]))
     );
 
@@ -230,6 +229,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -237,6 +237,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To find out whether the chance of getting flu is different between men and women."],
                     ["de", "Um herauszufinden, ob das Risiko, an der Grippe zu erkranken, unterschiedlich für Männer und Frauen ist."],
+                    ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -251,6 +252,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Male"],
                 ["de", "Männlich"],
+                ["fr", "Homme"],
             ])
         },
         {
@@ -258,6 +260,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Female"],
                 ["de", "Weiblich"],
+                ["fr", "Femme"],
             ])
         },
     ]);
@@ -272,6 +275,7 @@ const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
             ["de", "Was ist Ihr Geburtsdatum (Monat und Jahr)?"],
+            ["fr", "Quelle est votre date de naissance (mois et année)"],
         ]))
     );
 
@@ -281,6 +285,7 @@ const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -288,6 +293,7 @@ const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "The chance of getting flu and the risk of more serious complications vary by age."],
                     ["de", "Das Risiko an der Grippe zu erkranken und das Risiko ernster Komplikationen variiert mit dem Alter."],
+                    ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -310,14 +316,88 @@ const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
+const q_3_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What country are you from?"],
+            ["de", "Aus welchem Land stammen Sie?"],
+            ["fr", "Quel est votre pays d'origine?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '771', role: 'option',
+            content: new Map([
+                ["en", "Netherlands"],
+                ["de", "Niederlande"],
+                ["fr", "Pays-Bas"],
+            ])
+        },
+        {
+            key: '772', role: 'option',
+            content: new Map([
+                ["en", "Belgium"],
+                ["de", "Belgien"],
+                ["fr", "Belgique"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
 const q_4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "What is the first part of your home postcode (the part before the space)?"],
+            ["de", "Wie lautet der Anfang Ihrer Postleitzahl (der Teil vor dem Leerzeichen)?"],
+            ["fr", "Quelle est le code postal de votre domicile?"],
         ]))
     );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To check how representative our sample is, and to see whether the chance of getting flu varies across the country."],
+                    ["de", "Um zu prüfen, wie repräsentativ unsere Stichprobe ist und ob das Risiko, an der Grippe zu erkranken, innerhalb eines Landes variiert."],
+                    ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please choose the first part of the post-code (the part before the space)."],
+                    ["de", "Bitte wählen Sie den Anfang Ihrer Postleitzahl (der Teil vor dem Leerzeichen)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
 
     // TODO
     return editor.getItem();
@@ -329,6 +409,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main activity?"],
             ["de", "Was ist Ihre Hauptbeschäftigung?"],
+            ["fr", "Quelle est votre activité principale?"],
         ]))
     );
 
@@ -338,6 +419,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -345,6 +427,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population as a whole, and to find out whether the chance of getting flu is different for people in different types of occupation."],
                     ["de", "Um zu prüfen, wie repräsentativ unserer Stichprobe - im Vergleich zur Gesamtbevölkerung - ist. Sowie um herauszufinden, ob das Risiko, an der Grippe zu erkranken, für Menschen mit verschiedenen Berufen variiert."],
+                    ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble, et savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -373,6 +456,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Paid employment, full time"],
                 ["de", "Bezahlte Beschäftigung (Vollzeit)"],
+                ["fr", "Employé à plein temps"],
             ])
         },
         {
@@ -380,6 +464,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Paid employment, part time"],
                 ["de", "Bezahlte Beschäftigung (Teilzeit)"],
+                ["fr", "Employé à temps partiel"],
             ])
         },
         {
@@ -387,6 +472,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Self-employed (businessman, farmer, tradesman, etc.)"],
                 ["de", "Selbstständig (UnternehmerIn, LandwirtIn, HändlerIn, usw.)"],
+                ["fr", " Indépendant (homme d'affaires , agriculteur , commerçant, etc.)"],
             ])
         },
         {
@@ -394,6 +480,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Attending daycare/school/college/university"],
                 ["de", "Tagespflege/ Schule/ Hochschule/ Universität"],
+                ["fr", "Ecolier, étudiant (garderie / école / université)"],
             ])
         },
         {
@@ -401,6 +488,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Home-maker (e.g. housewife)"],
                 ["de", "Im Haushalt tätig (z.B. Hausfrau/ Hausmann)"],
+                ["fr", "Femme/homme au foyer"],
             ])
         },
         {
@@ -408,6 +496,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Unemployed"],
                 ["de", "Arbeitslos"],
+                ["fr", "Sans-emploi"],
             ])
         },
         {
@@ -415,6 +504,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Long-term sick-leave or parental leave"],
                 ["de", "Langfristiger Krankenurlaub oder Elternzeit"],
+                ["fr", "En congé maladie à long terme, en congé maternité"],
             ])
         },
         {
@@ -422,6 +512,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Retired"],
                 ["de", "Im Ruhestand"],
+                ["fr", "Retraité"],
             ])
         },
         {
@@ -429,6 +520,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
+                ["fr", "Autre"],
             ])
         },
     ]);
@@ -441,10 +533,15 @@ const q_6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "What is the first part of your school/college/workplace postcode? (Where you spend the majority of your work/study time)"],
+            ["de", "Was ist der erste Teil der Postleitzahl Ihrer Schule/Hochschule/Arbeitsstelle? (Wo Sie den Großteil Ihrer Arbeitszeit/ Ihres Studiums ableisten)"],
+            ["fr", "Quelle est le code postal de l'endroit où vous passez la majorité de votre temps de travail ou d'étude?"],
         ]))
     );
+
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
 
     // TODO
     return editor.getItem();
@@ -454,11 +551,15 @@ const q_7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Which of the following descriptions most closely matches with your main occupation?"],
+            ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
+            ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -467,11 +568,15 @@ const q_8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "What is the highest level of formal education/qualification that you have?"],
+            ["de", "Was ist die höchste Stufe formaler Ausbildung/ Qualifikation, die Sie aufweisen?"],
+            ["fr", " Quel est votre plus haut niveau d'éducation/qualification formelle?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -480,11 +585,15 @@ const q_9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day? (Select all options that apply, if any)"],
+            ["de", "Ausgenommen die Menschen, denen Sie in öffentlichen Verkehrsmitteln begegnen, haben Sie  Kontakt zu irgendwelchen der folgenden Personen im Laufe eines typischen Tages?"],
+            ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique? (Sélectionnez toutes les options applicables)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -493,11 +602,15 @@ const q_10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
+            ["de", "Wie viele Menschen in den folgenden Altersgruppen leben in Ihrem Haushalt? (SIE EINGESCHLOSSEN)"],
+            ["fr", " VOUS Y COMPRIS, combien de personnes de chaque groupe d'âge suivants vivent dans votre maison?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -506,11 +619,15 @@ const q_11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "How many of the children in your household go to school or day-care?"],
+            ["de", "Wie viele Kinder Ihres Haushalts gehen zur Schule oder in die Tagespflege?"],
+            ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -519,11 +636,15 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "What is your main means of transport?"],
+            ["de", "Was ist ihr hauptsächliches Transportmittel?"],
+            ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -532,11 +653,15 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.)"],
+            ["de", "Wie viel Zeit verbringen Sie an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
+            ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -545,11 +670,15 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "How often do you have common colds or flu-like diseases?"],
+            ["de", "Wie oft haben Sie eine gewöhnliche Erkältung oder grippeähnliche Erkrankungen?"],
+            ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -558,11 +687,15 @@ const q_15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2016-2017)"],
+            ["de", "Haben Sie in der letzten Herbst/Wintersaison eine Grippeimpfung erhalten? (2018-2019)"],
+            ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -571,11 +704,15 @@ const q_16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Have you received a flu vaccine this autumn/winter season? (2017-2018)"],
+            ["de", "Haben Sie eine Grippeimpfung in dieser Herbst-/ Wintersaison erhalten? (2019-2020)"],
+            ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -584,11 +721,15 @@ const q_17_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "When were you vaccinated against this flu season? (2017-2018)"],
+            ["de", "Wann wurden Sie in dieser Saison gegen Grippe geimpft?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2019-2020)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -597,11 +738,15 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "What were your reasons for getting a seasonal influenza vaccination this year? (Select all options that apply)"],
+            ["de", "Was waren Ihre Gründe, sich in diesem Jahr impfen zu lassen? (Wählen sie alle Optionen, die zutreffen sind)"],
+            ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année? (sélectionnez toutes les options applicables)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -610,11 +755,15 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination this year? (Select all options that apply)"],
+            ["de", "Was waren Ihre Gründe, sich in dieser Saison nicht impfen zu lassen? (Wählen Sie alle Optionen, die zutreffen)"],
+            ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année ? (sélectionnez toutes les options applicables)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -623,11 +772,15 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Do you take regular medication for any of the following medical conditions? (Select all options that apply)"],
+            ["de", "Nehmen Sie regelmässig Medikamente gegen eine der folgenden Erkrankungen? (Wählen Sie alle Optionen, die zutreffen)"],
+            ["fr", " Souffrez-vous de l'une des maladies suivantes? (sélectionnez toutes les options applicables)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -636,11 +789,15 @@ const q_21_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Are you currently pregnant?"],
+            ["de", "Sind sie im Augenblick schwanger?"],
+            ["fr", " Êtes-vous actuellement enceinte?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -649,11 +806,15 @@ const q_22_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Which trimester of the pregnancy are you in?"],
+            ["de", "In welchem Trimester (3 Monatsperiode) Ihrer Schwangerschaft befinden Sie sich?"],
+            ["fr", "A quel stade de grossesse êtes-vous?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -662,11 +823,15 @@ const q_23_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Do you smoke tobacco?"],
+            ["de", "Rauchen Sie Tabak?"],
+            ["fr", "Etes-vous fumeur?"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -675,11 +840,15 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Do you have one of the following allergies that can cause respiratory symptoms? (Select all options that apply)"],
+            ["de", "Haben Sie eine der folgenden Allergien, die Atemwegssymptome auslösen kann? (Wählen Sie alle  Optionen, die zutreffen)"],
+            ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires? (sélectionnez toutes les options applicables)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -688,10 +857,15 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Do you follow a special diet? (Select all options that apply)"],
+            ["de", "Haben Sie eine spezielle Ernährung? (Wählen Sie alle Optionen, die zutreffen)"],
+            ["fr", " Suivez-vous un régime alimentaire particulier? (sélectionnez toutes les options applicables)"],
         ]))
     );
+
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
 
     // TODO
     return editor.getItem();
@@ -701,11 +875,15 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Do you have pets at home? (Select all options that apply)"],
+            ["de", "Haben Sie Haustiere? (Wählen Sie alle Optionen, die zutreffen)"],
+            ["fr", " Avez-vous un animal domestique? (sélectionnez toutes les options applicables)"],
         ]))
     );
 
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
@@ -714,25 +892,15 @@ const q_27_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
+            ["en", "Where did you first hear about the flusurvey?"],
+            ["de", "Wo haben Sie zum ersten mal von GrippeNet gehört?"],
+            ["fr", "Où avez-vous entendu parler de Grippenet?"],
         ]))
     );
 
-    // TODO
-    return editor.getItem();
-}
-
-
-const q_28_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "TODO"],
-            ["de", "TODO"],
-        ]))
-    );
-
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     // TODO
     return editor.getItem();
 }
