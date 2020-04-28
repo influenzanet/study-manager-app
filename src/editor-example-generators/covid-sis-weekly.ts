@@ -160,6 +160,12 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q8b_def(q8b, q8.key, anySymptomSelected));
     // -----------------------------------------
 
+    // Q9 --------------------------------------
+    const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
+    if (!q9) { return; }
+    survey.updateSurveyItem(q9_def(q9, anySymptomSelected));
+    // -----------------------------------------
+
     survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
     // Qcov10 --------------------------------------
     const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
@@ -1564,6 +1570,130 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string, anySymptomSelected: Expre
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
+    return editor.getItem();
+}
+
+const q9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Did you take medication for these symptoms (tick all that apply)?"],
+            ["de", "Hast du Medikamente gegen die folgenden Symptome genommen (alle auswählen, die zutreffen)?"],
+        ]))
+    );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out who gets treated, and how effective treatment is."],
+                    ["de", "Um herauszufinden, wer behandelt wird und wie effektiv die Behandlung ist."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Only record those medications that you used because of  this bout of illness. If you are on other medications because of a pre-existing illness then do not record these."],
+                    ["de", "Gib nur die Medikamente an, die du aufgrund dieses Krankheitsschubs nimmst. Falls du auch Medikamente aufgrund von bereits existierenden Krankheiten nimmst, gib diese bitte nicht an."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+    editor.setCondition(
+        anySymptomSelected
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "No medication"],
+                ["de", "Keine Medikamente"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
+                ["de", "Schmerzmittel (z.B. Paracetamol, Aspirin, Ibuprofen)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Cough medication (e.g. expectorants)"],
+                ["de", "Erkältungsmittel (z.B. Schleimlöser)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Antivirals (Tamiflu, Relenza)"],
+                ["de", "Antivirale Medikamente (Tamiflu, Relenza)"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Antibiotics"],
+                ["de", "Antibiotica"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Homeopathy"],
+                ["de", "Homöopathie"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Alternative medicine (essential oil, phytotherapy, etc.)"],
+                ["de", "Alternativmedizin (ätherisches Öl, Phytotherapie usw.)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '6'),
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
