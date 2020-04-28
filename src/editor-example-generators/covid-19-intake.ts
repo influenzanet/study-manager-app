@@ -857,17 +857,69 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Do you follow a special diet? (Select all options that apply)"],
-            ["de", "Haben Sie eine spezielle Ernährung? (Wählen Sie alle Optionen, die zutreffen)"],
-            ["fr", " Suivez-vous un régime alimentaire particulier? (sélectionnez toutes les options applicables)"],
+            ["en", "Do you follow a special diet?"],
+            ["de", "Haben Sie eine spezielle Ernährung?"],
+            ["fr", " Suivez-vous un régime alimentaire particulier?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
-    // TODO
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '889', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            content: new Map([
+                ["en", "Vegetarian"],
+                ["de", "Vegetarisch"],
+                ["fr", "Végétarien"],
+            ])
+        }, {
+            key: '890', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            content: new Map([
+                ["en", "Veganism"],
+                ["de", "Vegan"],
+                ["fr", "Végétalien"],
+            ])
+        }, {
+            key: '891', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            content: new Map([
+                ["en", "Low-calorie"],
+                ["de", "Kalorienarm"],
+                ["fr", "Basse-calorie"],
+            ])
+        }, {
+            key: '892', role: 'input',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+                ["fr", "Autre"],
+            ])
+        }, {
+            key: '888', role: 'option',
+            content: new Map([
+                ["en", "No special diet"],
+                ["de", "Keine spezielle Ernährung"],
+                ["fr", "Non, pas de régime particulier"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
