@@ -699,7 +699,7 @@ const q5_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             {
                 content: new Map([
                     ["en", "Tick yes if your symptoms appeared over a few hours rather than gradually developing over a few days."],
-                    ["de", "Wählen Sie ja, falls Ihre Symptome über wenige Stunden aufgetreten sind statt über einige Tage hinweg."],
+                    ["de", "Wähle ja, falls deine Symptome über wenige Stunden aufgetreten sind statt über einige Tage hinweg."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -772,7 +772,7 @@ const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             {
                 content: new Map([
                     ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
-                    ["de", "Wählen Sie alle Optionen, die zutreffen. Falls Sie es vorhaben, wählen Sie bitte die letzte Option."],
+                    ["de", "Wähle alle Optionen, die zutreffen. Falls du es vorhast, wähle bitte die letzte Option."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -872,7 +872,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string, anySymptomSelected: Expre
             {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
-                    ["de", "Geben Sie nur die Zeit an, bis Sie zum ERSTEN MAL Kontakt zu gesundheitlichen Einrichtungen aufgenommen haben."],
+                    ["de", "Gib nur die Zeit an, bis du zum ERSTEN MAL Kontakt zu gesundheitlichen Einrichtungen aufgenommen hast."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1187,7 +1187,7 @@ const q8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             {
                 content: new Map([
                     ["en", "Tick all options that apply"],
-                    ["de", "Wählen Sie alle Optionen, die zutreffen."],
+                    ["de", "Wähle alle Optionen, die zutreffen."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1286,7 +1286,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string, anySymptomSelected: Expre
             {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
-                    ["de", "Geben Sie nur die Zeit an, nach der Sie das ERSTE MAL Kontakt aufgenommen haben."],
+                    ["de", "Gib nur die Zeit an, nach der du das ERSTE MAL Kontakt aufgenommen hast."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
