@@ -772,16 +772,128 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Do you take regular medication for any of the following medical conditions? (Select all options that apply)"],
-            ["de", "Nehmen Sie regelmässig Medikamente gegen eine der folgenden Erkrankungen? (Wählen Sie alle Optionen, die zutreffen)"],
-            ["fr", " Souffrez-vous de l'une des maladies suivantes? (sélectionnez toutes les options applicables)"],
+            ["en", "Do you take regular medication for any of the following medical conditions?"],
+            ["de", "Nehmen Sie regelmässig Medikamente gegen eine der folgenden Erkrankungen?"],
+            ["fr", " Souffrez-vous de l'une des maladies suivantes?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "This question allows us to find out whether you have other medical conditions that may increase your risk of having more severe illness if you are infected with flu."],
+                    ["de", "Diese Frage erlaubt es uns, herauszufinden, ob Sie andere Krankheiten haben, die Ihr Risiko für ernstere Krankheiten erhöhen könnten, falls Sie sich mit der Grippe infizieren."],
+                    ["fr", "Cette question nous permet de savoir si vous avez des prédispositions qui pourraient augmenter votre risque d'avoir des complications si vous contractez la grippe."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", 'Only answer "yes" if you take regular medication for your medical problem. If, for instance, you only occasionally take an asthma inhaler, then do not answer "yes" for asthma.'],
+                    ["de", "Antworten Sie nur mit ja, falls Sie regelmässig Medikamente gegen Ihre Krankheit nehmen. Falls Sie z.B. gelegentlich eine Asthmainhalator verwenden, dann antworten sie nicht mit ja für Asthma."],
+                    ["fr", "Répondez «oui» seulement si vous prenez <b>régulièrement</b> des médicaments pour votre problème médical. Si, par exemple, vous n'utilisez qu'occasionnellement un inhalateur pour l'asthme, alors ne répondez pas «oui» pour l'asthme ."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '864', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '865', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            content: new Map([
+                ["en", "Asthma"],
+                ["de", "Asthma"],
+                ["fr", "Asthme"],
+            ])
+        }, {
+            key: '866', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            content: new Map([
+                ["en", "Diabetes"],
+                ["de", " Diabetes "],
+                ["fr", "Diabètes"],
+            ])
+        },
+        {
+            key: '867', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            content: new Map([
+                ["en", "Chronic lung disorder besides asthma e.g. COPD, emphysema, or other disorders that affect your breathing"],
+                ["de", "Chronische Lungenerkrankungen außer Asthma, z.B. COPD, Emphysem oder andere Beschwerden, die Ihre Atmung betreffen"],
+                ["fr", "Troubles pulmonaires chroniques à part l'asthme (p. ex. MPOC, emphysème, ou autres troubles affectant votre respiration)"],
+            ])
+        },
+        {
+            key: '868', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            content: new Map([
+                ["en", "Heart disorder"],
+                ["de", "Herzbeschwerden"],
+                ["fr", "Troubles cardiaques"],
+            ])
+        },
+        {
+            key: '869', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            content: new Map([
+                ["en", "Kidney disorder"],
+                ["de", "Nierenbeschwerden"],
+                ["fr", "Troubles rénaux"],
+            ])
+        },
+        {
+            key: '870', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            content: new Map([
+                ["en", "An immunocompromising condition (e.g. splenectomy, organ transplant, acquired immune deficiency, cancer treatment)"],
+                ["de", "Eine immunschwächende Behandlung oder Erkrankung (z.B. Splenektomie, Organtransplantation, erworbenen Immunschwäche, Krebsbehandlung)"],
+                ["fr", "Immunodéficience (p.ex splénectomie, greffe d'organe, immunodéficience acquise, traitement anti-cancéreux)"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
