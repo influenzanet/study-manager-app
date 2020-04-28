@@ -2,7 +2,7 @@ import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor"
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
-import { initSingleChoiceGroup } from "../editor-engine/utils/question-type-generator";
+import { initSingleChoiceGroup, initMultipleChoiceGroup } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
@@ -875,16 +875,73 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Do you have pets at home? (Select all options that apply)"],
-            ["de", "Haben Sie Haustiere? (Wählen Sie alle Optionen, die zutreffen)"],
-            ["fr", " Avez-vous un animal domestique? (sélectionnez toutes les options applicables)"],
+            ["en", "Do you have pets at home?"],
+            ["de", "Haben Sie Haustiere?"],
+            ["fr", "Avez-vous un animal domestique?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '894', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            content: new Map([
+                ["en", "Yes, one or more dogs"],
+                ["de", "Ja, einen oder mehrere Hunde"],
+                ["fr", "Oui, un ou plusieurs chien(s)"],
+            ])
+        },
+        {
+            key: '895', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            content: new Map([
+                ["en", "Yes, one or more cats"],
+                ["de", "Ja, eine oder mehrere Katzen"],
+                ["fr", "Oui, un ou plusieurs chat(s)"],
+            ])
+        },
+        {
+            key: '896', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            content: new Map([
+                ["en", "Yes, one or more birds"],
+                ["de", "Ja, einen oder mehrere Vögel"],
+                ["fr", "Oui, un ou plusieurs oiseau(x)"],
+            ])
+        },
+        {
+            key: '897', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            content: new Map([
+                ["en", "Yes, one ore more other animals"],
+                ["de", "Ja, ein oder mehrere andere Tiere"],
+                ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
+            ])
+        },
+        {
+            key: '893', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
