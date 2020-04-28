@@ -829,10 +829,84 @@ const q_23_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Smoking might make you more likely to get a more severe dose of flu. We would like to test this."],
+                    ["de", "Rauchen könnte die Wahrscheinlichkeit erhöhen, dass Sie Ihre Grippe schwere verläuft. Wir möchten dies gerne testen."],
+                    ["fr", "Fumer pourrait vous rendre plus susceptible de contracter une grippe sévère."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please, answer as accurately as possible. If you smoke other products (e.g. pipe or cigars), then indicate roughly how many times a day."],
+                    ["de", "Bitte seien Sie so genau wie möglich. Falls sie andere Produkte rauchen (z.B. Pfeife oder Zigarre), dann geben Sie bitte ungefähr an, wie oft am Tag sie diese konsumieren."],
+                    ["fr", "Répondez aussi précisément que possible. Si vous fumez autres produits (p. ex. pipe ou cigares), indiquez à peu près combien de fois par jour."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '878', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        }, {
+            key: '879', role: 'option',
+            content: new Map([
+                ["en", "Yes, occasionally"],
+                ["de", "Ja, manchmal"],
+                ["fr", "Oui, de temps en temps"],
+            ])
+        }, {
+            key: '880', role: 'option',
+            content: new Map([
+                ["en", "Yes, daily, fewer than 10 times a day"],
+                ["de", "Ja, täglich, weniger als 10 mal am Tag"],
+                ["fr", " Oui, quotidiennement, moins de 10 fois par jour"],
+            ])
+        }, {
+            key: '881', role: 'option',
+            content: new Map([
+                ["en", "Yes, daily, 10 or more times a day"],
+                ["de", "Ja, täglich, 10 mal oder öfter am Tag"],
+                ["fr", " Oui, quotidiennement, 10 fois ou plus par jour"],
+            ])
+        }, {
+            key: '882', role: 'option',
+            content: new Map([
+                ["en", "Dont know/would rather not answer"],
+                ["de", "Ich weiß nicht bzw. ich möchte das nicht beantworten"],
+                ["fr", "Je ne sais pas, je ne désire pas répondre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
