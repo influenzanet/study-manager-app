@@ -955,9 +955,65 @@ const q_27_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '898', role: 'option',
+            content: new Map([
+                ["en", "On radio or television"],
+                ["de", "Im Radio oder Fernsehen"],
+                ["fr", "A la radio ou à la télévision"],
+            ])
+        }, {
+            key: '899', role: 'option',
+            content: new Map([
+                ["en", "In the newspaper or in a magazine"],
+                ["de", "In der Zeitung oder in einem Magazin"],
+                ["fr", "Dans un journal ou un magazine"],
+            ])
+        }, {
+            key: '900', role: 'option',
+            content: new Map([
+                ["en", "Via an internet site (search engine or link)"],
+                ["de", "Über eine Internetseite (Suchmaschine oder Link)"],
+                ["fr", "Sur internet"],
+            ])
+        }, {
+            key: '901', role: 'option',
+            content: new Map([
+                ["en", "By poster"],
+                ["de", "Über ein Poster"],
+                ["fr", "Sur une affiche"],
+            ])
+        }, {
+            key: '902', role: 'option',
+            content: new Map([
+                ["en", "Via family or friends"],
+                ["de", "Über Freunde oder Familie"],
+                ["fr", "Par ma famille ou des amis"],
+            ])
+        }, {
+            key: '903', role: 'option',
+            content: new Map([
+                ["en", "Via school or work"],
+                ["de", "Über Schule oder Arbeit"],
+                ["fr", "A l'école ou au travail"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
