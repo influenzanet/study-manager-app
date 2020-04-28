@@ -794,11 +794,54 @@ const q_21_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", " Êtes-vous actuellement enceinte?"],
         ]))
     );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Pregnancy can result in more severe illness if you are infected with flu."],
+                    ["de", "Schwangerschaft kann zu ernsteren Erkrankungen führen, wenn Sie mit der Grippe infiziert sind."],
+                    ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '871', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        }, {
+            key: '872', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        }, {
+            key: '873', role: 'option',
+            content: new Map([
+                ["en", "Don't know/would rather not answer"],
+                ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten."],
+                ["fr", "Je ne sais pas, je ne désire pas répondre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -812,10 +855,61 @@ const q_22_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "The stage of pregnancy might alter your risk of severe flu if you are infected, although this is not very clear."],
+                    ["de", "Die Phase Ihrer Schwangerschaft könnte Ihr Risiko eines schweren Verlaufs der Grippe beeinflussen, auch wenn dies nicht sicher ist."],
+                    ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '874', role: 'option',
+            content: new Map([
+                ["en", "First trimester (week 1-12)"],
+                ["de", "Erstes Trimester (Woche 1-12)"],
+                ["fr", "Premier trimestre (semaine 1-12)"],
+            ])
+        }, {
+            key: '875', role: 'option',
+            content: new Map([
+                ["en", "Second trimester (week 13-28)"],
+                ["de", "Zweites Trimester (Woche 13-28)"],
+                ["fr", "Deuxième trimestre (semaine 13-28)"],
+            ])
+        }, {
+            key: '876', role: 'option',
+            content: new Map([
+                ["en", "Third trimester (week 29-delivery)"],
+                ["de", "Drittes Trimester (Woche 29 bis Entbindung)"],
+                ["fr", "Troisième trimestre (semaine 29 ou plus)"],
+            ])
+        }, {
+            key: '877', role: 'option',
+            content: new Map([
+                ["en", "Don't know/would rather not answer"],
+                ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten"],
+                ["fr", "Je ne sais pas, je ne désire pas répondre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
