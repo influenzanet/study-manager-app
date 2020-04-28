@@ -9,6 +9,7 @@ import {
   createMuiTheme,
   StylesProvider,
   MuiThemeProvider,
+  responsiveFontSizes,
 } from '@material-ui/core';
 
 import TestEditor from './pages/TestEditor/TestEditor';
@@ -16,7 +17,7 @@ import TestEditor from './pages/TestEditor/TestEditor';
 import './App.css';
 
 const App: React.FC = () => {
-  const theme = createMuiTheme({
+  const InfNetColors = {
     palette: {
       primary: {
         light: '#475d9d',
@@ -33,7 +34,47 @@ const App: React.FC = () => {
         default: '#f2f2f2',
       }
     },
-  });
+  };
+
+  const theme = responsiveFontSizes(createMuiTheme(InfNetColors));
+
+  theme.overrides = {
+    MuiSlider: {
+      root: {
+        height: 6,
+      },
+      thumb: {
+        height: 16,
+        width: 16,
+        marginTop: -5,
+        marginLeft: -8,
+      },
+      rail: {
+        height: 6,
+        borderRadius: 1000,
+        color: "#9e9e9e",
+      },
+      track: {
+        height: 6,
+        borderRadius: 1000,
+      },
+      mark: {
+        height: 6,
+        width: 6,
+        marginLeft: -3,
+        borderRadius: 1000,
+        backgroundColor: "grey",
+      },
+      markActive: {
+        opacity: 1,
+        backgroundColor: theme.palette.secondary.main,
+        height: 10,
+        width: 10,
+        marginLeft: -5,
+        marginTop: -2,
+      }
+    },
+  };
 
   return (
     <MuiThemeProvider theme={theme}>

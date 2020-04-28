@@ -2,7 +2,7 @@ import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor"
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
-import { initSingleChoiceGroup, initMultipleChoiceGroup } from "../editor-engine/utils/question-type-generator";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
@@ -608,10 +608,114 @@ const q_10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Members of larger households, or those with children, may be more likely to catch flu than the others."],
+                    ["de", "Mitglieder von großen Haushalten oder Haushalten mit Kindern könnten einen höheres Risiko als andere haben, sich mit der Grippe zu infizieren."],
+                    ["fr", "Les membres des ménages les plus grands, ou ceux possédant des enfants, peuvent être plus susceptibles d'attraper la grippe que les autres."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initMatrixQuestion(matrixKey, [
+        {
+            key: '802', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "0-4 years"],
+                        ["de", "0-4 Jahre"],
+                        ["fr", "0-4 ans"],
+                    ])
+                },
+                {
+                    key: 'v', role: 'numberInput',
+                    properties: {
+                        min: { dtype: 'num', num: 0 },
+                        max: { dtype: 'num', num: 10 },
+                    }
+                }
+            ],
+        },
+        {
+            key: '802', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "5-18 years"],
+                        ["de", "5-18 Jahre"],
+                        ["fr", "5-18 ans"],
+                    ])
+                },
+                {
+                    key: 'v', role: 'dropDownGroup',
+                    items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "0"],
+                                ["de", "0"],
+                                ["fr", "0"],
+                            ])
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1"],
+                                ["de", "1"],
+                                ["fr", "1"],
+                            ]),
+                        }, {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2"],
+                                ["de", "2"],
+                                ["fr", "2"],
+                            ]),
+                        }, {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3"],
+                                ["de", "3"],
+                                ["fr", "3"],
+                            ]),
+                        }, {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4"],
+                                ["de", "4"],
+                                ["fr", "4"],
+                            ]),
+                        }, {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5"],
+                                ["de", "5"],
+                                ["fr", "5"],
+                            ]),
+                        }, {
+                            key: '5+', role: 'option', content: new Map([
+                                ["en", "5+"],
+                                ["de", "5+"],
+                                ["fr", "5+"],
+                            ]),
+                        },
+                    ]
+                }
+            ],
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -625,10 +729,94 @@ const q_11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Attending school or day-care may be a risk for acquiring flu and similar illnesses. We would like to check this."],
+                    ["de", "Der Besuch einer Schule oder Tagespflege könnte ein Risiko darstellen, an der Grippe und ähnlichen Krankheiten zu erkranken. Wir würden dies gerne überprüfen."],
+                    ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "If your child attends regular school or day-care (even this is just one day a week) then please answer yes to this. Attendance of clubs and activities does not count - even if regular."],
+                    ["de", "Falls Ihr Kind regelmässig die Schule oder Tagespflege besucht (auch wenn es nur ein Tag pro Woche ist), antworten Sie bitte mit ja. Anwesenheit in Vereinen oder andere Aktivitäten zählen nicht, auch dann nicht, wenn Sie regelmässig sind."],
+                    ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '807', role: 'option',
+            content: new Map([
+                ["en", "None"],
+                ["de", "Keine"],
+                ["fr", "Aucun"],
+            ])
+        },
+        {
+            key: '808', role: 'option',
+            content: new Map([
+                ["en", "1"],
+            ])
+        },
+        {
+            key: '809', role: 'option',
+            content: new Map([
+                ["en", "2"],
+            ])
+        },
+        {
+            key: '810', role: 'option',
+            content: new Map([
+                ["en", "3"],
+            ])
+        },
+        {
+            key: '811', role: 'option',
+            content: new Map([
+                ["en", "4"],
+            ])
+        },
+        {
+            key: '812', role: 'option',
+            content: new Map([
+                ["en", "5"],
+            ])
+        },
+        {
+            key: '813', role: 'option',
+            content: new Map([
+                ["en", "More than 5"],
+                ["de", "Mehr als 5"],
+                ["fr", "Plus de 5"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -642,10 +830,96 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "It has been suggested that using public transport may be a risk for flu. We would like to check this."],
+                    ["de", "Es wurde vorgeschlagen, dass die Benutzung von öffentlichen Verkehrsmitteln ein Risiko für eine Grippeinfektion darstellt."],
+                    ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick the option that best represents your most normal mode of transport."],
+                    ["de", "Wählen Sie die Option, die am besten Ihrem normalerweise verwendeten Transportmittel entspricht."],
+                    ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '814', role: 'option',
+            content: new Map([
+                ["en", "Walking"],
+                ["de", "zu Fuß"],
+                ["fr", "La marche"],
+            ])
+        },
+        {
+            key: '815', role: 'option',
+            content: new Map([
+                ["en", "Bike"],
+                ["de", "Fahrrad"],
+                ["fr", "Le vélo"],
+            ])
+        },
+        {
+            key: '816', role: 'option',
+            content: new Map([
+                ["en", "Motorbike/scooter"],
+                ["de", "Motorrad/Roller"],
+                ["fr", "Le scooter, la moto"],
+            ])
+        },
+        {
+            key: '817', role: 'option',
+            content: new Map([
+                ["en", "Car"],
+                ["de", "Auto"],
+                ["fr", "La voiture"],
+            ])
+        },
+        {
+            key: '818', role: 'option',
+            content: new Map([
+                ["en", "Public transportation (bus, train, tube, etc)"],
+                ["de", "Öffentliche Verkehrsmittel (Bus, Zug, U-Bahn, usw.)"],
+                ["fr", "Transports publics (bus, train, métro, etc)"],
+            ])
+        },
+        {
+            key: '819', role: 'input',
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+                ["fr", "Autre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -659,10 +933,88 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],
+                    ["de", "Es wurde vorgeschlagen, dass die Benutzung von öffentlichen Verkehrsmitteln ein Risiko für eine Grippeinfektion darstellt. Wir möchten dies überprüfen."],
+                    ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
+                    ["de", "Denken Sie an einen gewöhnlichen Tag. Falls Sie mehrere verschiedene Transportmittel benutzen, vergessen Sie nicht, alle Reisen mit einzubeziehen. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
+                    ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '820', role: 'option',
+            content: new Map([
+                ["en", "No time at all"],
+                ["de", "Gar nicht"],
+                ["fr", "Pas de temps du tout"],
+            ])
+        },
+        {
+            key: '821', role: 'option',
+            content: new Map([
+                ["en", "0-30 minutes"],
+                ["de", "0 - 30 Minuten"],
+                ["fr", "0-30 minutes"],
+            ])
+        },
+        {
+            key: '822', role: 'option',
+            content: new Map([
+                ["en", "30 minutes - 1.5 hours"],
+                ["de", "30 Minuten – 1.5 Stunden"],
+                ["fr", "30 minutes - 1.5 heures"],
+            ])
+        },
+        {
+            key: '823', role: 'option',
+            content: new Map([
+                ["en", "1.5 hours - 4 hours"],
+                ["de", "1.5 Stunden – 4 Stunden"],
+                ["fr", "1.5 - 4 heures"],
+            ])
+        },
+        {
+            key: '824', role: 'option',
+            content: new Map([
+                ["en", "Over 4 hours"],
+                ["de", "Mehr als 4 Stunden"],
+                ["fr", "Plus de 4 heures"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -676,10 +1028,59 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '825', role: 'option',
+            content: new Map([
+                ["en", "Never"],
+                ["de", "Nie"],
+                ["fr", "Jamais"],
+            ])
+        },
+        {
+            key: '826', role: 'option',
+            content: new Map([
+                ["en", "Once or twice a year"],
+                ["de", "Einmal oder zweimal im Jahr"],
+                ["fr", "1 ou 2 fois par an"],
+            ])
+        },
+        {
+            key: '827', role: 'option',
+            content: new Map([
+                ["en", "Between 3 and 5 times a year"],
+                ["de", "Zwischen 3 und 5 mal im Jahr"],
+                ["fr", "De 3 à 5 fois par an"],
+            ])
+        },
+        {
+            key: '828', role: 'option',
+            content: new Map([
+                ["en", "Between 6 and 10 times a year"],
+                ["de", "Zwischen 6 und 10 mal im Jahr"],
+                ["fr", "De 6 à 10 fois par an"],
+            ])
+        },
+        {
+            key: '829', role: 'option',
+            content: new Map([
+                ["en", "More that 10 times a year"],
+                ["de", "Mehr als 10 mal"],
+                ["fr", "Plus de 10 fois par an"],
+            ])
+        },
+        {
+            key: '830', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiß nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
