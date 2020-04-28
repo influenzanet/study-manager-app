@@ -840,16 +840,106 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Do you have one of the following allergies that can cause respiratory symptoms? (Select all options that apply)"],
-            ["de", "Haben Sie eine der folgenden Allergien, die Atemwegssymptome auslösen kann? (Wählen Sie alle  Optionen, die zutreffen)"],
-            ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires? (sélectionnez toutes les options applicables)"],
+            ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
+            ["de", "Haben Sie eine der folgenden Allergien, die Atemwegssymptome auslösen kann?"],
+            ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Some allergic reactions can have similar symptoms to respiratory infections."],
+                    ["de", "Manche allergische Reaktionen können ähnlich Symptome wie Atemwegsinfektionen auslösen."],
+                    ["fr", "Certaines réactions allergiques peuvent avoir des symptômes similaires ceux d'une infection respiratoire."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick all the options that apply. We are only interested in those allergies that cause respiratory symptoms (i.e. sneezing, sunny nose, runny eyes)."],
+                    ["de", "Wählen Sie alle Optionen, die zutreffen. Wir interessieren uns nur für jene Allergien, die Atemwegssymptome (z.B. Niesen, laufenden Nase, tränende Augen) verursachen."],
+                    ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '883', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            content: new Map([
+                ["en", "Hay fever"],
+                ["de", "Heuschnupfen"],
+                ["fr", "Rhume des foins"],
+            ])
+        }, {
+            key: '884', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            content: new Map([
+                ["en", "Allergy against house dust mite"],
+                ["de", "Allergie gegen Hausstaubmilbe"],
+                ["fr", "Allergie aux acariens"],
+            ])
+        }, {
+            key: '885', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            content: new Map([
+                ["en", "Allergy against domestic animals or pets"],
+                ["de", "Allergien gegen domestizierte Tiere und Haustiere"],
+                ["fr", "Allergie à des animaux domestiques"],
+            ])
+        }, {
+            key: '886', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            content: new Map([
+                ["en", "Other allergies that cause respiratory symptoms (e.g. sneezing, runny eyes)"],
+                ["de", "Andere Allergien, die Atemwegssymptome verursachen (z.B. Niesen, tränende Augen)"],
+                ["fr", " Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
+            ])
+        }, {
+            key: '887', role: 'option',
+            content: new Map([
+                ["en", "I do not have an allergy that causes respiratory symptoms"],
+                ["de", "Ich habe keine Allergie, die Atemwegssymptome verursacht"],
+                ["fr", "Je n'ai pas d'allergie causant des symptômes respiratoires"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
