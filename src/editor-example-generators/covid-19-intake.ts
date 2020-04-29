@@ -395,11 +395,27 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ])
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'input',
+            content: new Map([
+                ["en", "Postcode:"],
+                ["de", "Postleitzahl"],
+                ["fr", "Code postal"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiß nicht bzw. ich erinnere mich nicht"],
+                ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
+            ])
+        },
+    ]);
 
-    // TODO
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -539,11 +555,71 @@ const q4b_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out roughly how far you travel on a regular basis."],
+                    ["de", "Um abzuschätzen, wie weit Sie regelmässig reisen."],
+                    ["fr", "Pour avoir une estimation grossière de vos déplacements réguliers."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please, choose the first part of the post-code (the part before the space)."],
+                    ["de", "Wählen Sie bitte den ersten Teil der Postleitzahl (der Teil von dem Leerzeichen)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
 
-    // TODO
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'input',
+            content: new Map([
+                ["en", "Postcode:"],
+                ["de", "Postleitzahl"],
+                ["fr", "Code postal"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiß nicht bzw. ich erinnere mich nicht"],
+                ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Not applicable (e.g. don't have a fixed workplace)"],
+                ["de", "Keine Angabe möglich (z.B. falls Sie keinen festen Arbeitsort besitzen)"],
+                ["fr", "Non applicable (p. ex. je n'ai pas de lieu de travail fixe)"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -557,10 +633,96 @@ const q4c_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To check how representative our sample is compared to the population as a whole and to find out whether the chance of getting flu is different for people in different types of occupation."],
+                    ["de", "Um festzustellen, wie repräsentativ unsere Stichprobe ist - im Vergleich mit der Gesamtbevölkerung - ist. Sowie, ob das Risiko, an der Grippe zu erkranken, zwischen Berufen unterscheidet."],
+                    ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble et pour savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please tick the box that most closely resembles your main occupation."],
+                    ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
+                    ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Professional (e.g. manager, doctor, teacher, nurse, engineer)"],
+                ["de", "Fachkraft (z.B. Manager, Doktor, Lehrer, Krankenschwester, Ingenieur)"],
+                ["fr", "Professionnel (p. ex. gestionnaire, médecin, enseignant, infirmier, ingénieur)"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Office work (e.g. admin, finance assistant, receptionist etc)"],
+                ["de", "Bürokraft (z.B. Administrator, Finanzassistent, Rezeptionist)"],
+                ["fr", " Travail de bureau (p. ex. administration, banque, réceptionniste, etc.)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Retail, sales, catering and hospitality and leisure (e.g. shop assistant, waiter, bar-staff, gym instructor etc)"],
+                ["de", "Einzelhandel, Verkauf, Catering, Gastwirtschaft oder Freizeit (z.B. Verkäufer, Kellner, Barkeeper, Fitness-Trainer usw.)"],
+                ["fr", " Vente au détail, vente, restauration et hôtellerie, loisirs (p. ex. vendeur/se, serveur/se, instructeur de gym, etc.)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Skilled manual worker (e.g. mechanic, electrician, technician)"],
+                ["de", "Ausgebildeter Arbeiter (z.B. Mechaniker, Elektriker, Techniker)"],
+                ["fr", " Ouvrier qualifié (p. ex. mécanicien, électricien, technicien)"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Other manual work (e.g. cleaning, security, driver etc)"],
+                ["de", "Andere Arbeit (z.B. Reinigung, Sicherheit, Fahrer usw.)"],
+                ["fr", " Autre travail manuel (p. ex. nettoyage, sécurité, transport, etc.)"],
+            ])
+        },
+        {
+            key: '5', role: 'input',
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+                ["fr", "Autre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -574,10 +736,96 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To check how representative our sample is compared to the population of the UK (Italy, Belgium..) as a whole."],
+                    ["de", "Um zu prüfen, wie repräsentativ unsere Stichprobe - im Vergleich zur gesamten Bevölkerung der Schweiz - ist."],
+                    ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population suisse dans son ensemble."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please choose the box that represents your HIGHEST level of educational achievements. The different option rougly equate to: 1 - no qualifications, 2 - school-leaving exams at around 16 years of age, 3 - school-leaving exams at around 18 years of age, 4 - University degree or equivalent professional qualification, 5 - Higher degree or advanced professional qualification. If you are an adult who is currently undergoing part - time training(e.g.night school) then tick the box that represents your current highest level of education."],
+                    ["de", "Bitte wählen Sie die Option, die Ihrer HÖCHSTEN Ausbildung entspricht. Die verschiedenen Optionen entsprechen in etwa: 1 - keine Qualifikation, 2 – Schulabschlussprüfung im Alter von ca. 16 Jahren, 3 – Schulabschlussprüfung im Alter von ca. 18 Jahren, 4 – Universitätsabschluss oder vergleichbare fachliche Qualifikation, 5 – Höherer Abschluss oder fortgeschrittene fachliche Qualifikation. Falls Sie ein Erwachsener sind, der im Augenblick eine Teilzeitausbildung absolviert (z.B. Abendschule), wählen Sie bitte die Option die Ihrer derzeitigen höchsten Qualifikation entspricht."],
+                    ["fr", "Cochez la case qui correspond à votre plus haut niveau d'éducation scolaire. Les différentes options équivalent à 1 - pas de qualifications, 2 - examens de fin de scolarité à environ 16 ans, 3 - examens de fin de scolarité à environ 18 ans, 4 - diplôme universitaire ou qualification professionnelle équivalente, 5 - diplôme ou qualification professionnelle avancé.Si vous êtes un adulte actuellement en cours de formation à temps partiel(p.ex.cours du soir) cochez la case qui représente votre plus haut niveau actuel de l'éducation."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "I have no formal qualification"],
+                ["de", "Ich habe keine formale Qualifikation"],
+                ["fr", "Aucune qualification"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "GCSE's, levels, CSEs or equivalent"],
+                ["de", "Realschulabschluss, Qualifizierender Hauptschulabschluss oder gleichwertig"],
+                ["fr", "Scolarité obligatoire"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "A-levels or equivalent (e.g. Higher, NVQ Level3, BTEC)"],
+                ["de", "Abitur, Fachabitur oder gleichwertig"],
+                ["fr", "Maturité fédérale, maturité professionnelle"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Batchelors Degree (BA, BSc) or equivalent"],
+                ["de", "Bachelor oder gleichwertig"],
+                ["fr", "Diplôme de Bachelor ou équivalent"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Higher Degree or equivalent (e.g. Masters Degree, PGCE, PhD, Medical Doctorate, Advanced Professional Award)"],
+                ["de", "Höherer Abschluss oder gleichwertig (z.B. Master, Diplom, PhD, MBA)"],
+                ["fr", "Diplôme de Master ou équivalent, PhD, doctorat en médecine (MD)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "I am still in education"],
+                ["de", "Ich befinde mich noch in Ausbildung"],
+                ["fr", "Je suis encore étudiant"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -585,16 +833,108 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day? (Select all options that apply, if any)"],
+            ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
             ["de", "Ausgenommen die Menschen, denen Sie in öffentlichen Verkehrsmitteln begegnen, haben Sie  Kontakt zu irgendwelchen der folgenden Personen im Laufe eines typischen Tages?"],
-            ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique? (Sélectionnez toutes les options applicables)"],
+            ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    // TODO
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out whether you are likely to be exposed to more flu than the average person (e.g. work with children, or patients)."],
+                    ["de", "Um herauszufinden, ob Sie mehr der Grippe ausgesetzt sind als eine Durchschnittsperson (z.B. Arbeit mit Kindern oder Patienten)."],
+                    ["fr", "Pour savoir si vous êtes susceptible d'être exposés à la grippe plus que la moyenne (p. ex. via une votre travail avec des enfants ou des patients)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Groups of people could include any setting where you come into contact with large numbers of people at one, e.g. a teacher who may contact many children in a day."],
+                    ["de", "Gruppen von Menschen können jede Gelegenheit umfassen, bei der Sie in Kontakt mit einer großen Anzahl von Menschen kommen (z.B. ein Lehrer, der jeden Tag Kontakt zu Schülern hat)."],
+                    ["fr", "Sélectionnez les groupes de personnes avec lesquelles vous êtes en contact au cours d'une journée (p. ex. un enseignant peut interagir avec de nombreux enfants dans une journée)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            content: new Map([
+                ["en", "More than 10 children or teenagers over the course of the day"],
+                ["de", "Mehr als 10 Kinder oder Jugendliche im Laufe eines Tages"],
+                ["fr", " Plus de 10 enfants ou adolescents au cours de la journée"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            content: new Map([
+                ["en", "More than 10 people aged over 65 over the course of day"],
+                ["de", "Mehr als 10 Menschen im Alter von über 65 Jahren im Laufe eines Tages"],
+                ["fr", " Plus de 10 personnes âgées de plus de 65 ans au cours de la journée"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            content: new Map([
+                ["en", "Patients"],
+                ["de", "Patienten"],
+                ["fr", "Patients"],
+            ])
+        }, {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            content: new Map([
+                ["en", "Groups of people (more than 10 individuals at any one time)"],
+                ["de", "Gruppen von Menschen (mehr als 10 Individuen auf einmal)"],
+                ["fr", "Groupe de personnes (plus de 10 personnes à un moment donné )"],
+            ])
+        }, {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "None of the above"],
+                ["de", "Keines der oben aufgeführten"],
+                ["fr", " Aucune des réponses ci-dessus"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -643,12 +983,53 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ])
                 },
                 {
-                    key: 'v', role: 'numberInput',
-                    properties: {
-                        min: { dtype: 'num', num: -5 },
-                        max: { dtype: 'num', num: 10 },
-                        stepSize: { dtype: 'num', num: 1 }
-                    }
+                    key: 'v', role: 'dropDownGroup',
+                    items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "0"],
+                                ["de", "0"],
+                                ["fr", "0"],
+                            ])
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1"],
+                                ["de", "1"],
+                                ["fr", "1"],
+                            ]),
+                        }, {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2"],
+                                ["de", "2"],
+                                ["fr", "2"],
+                            ]),
+                        }, {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3"],
+                                ["de", "3"],
+                                ["fr", "3"],
+                            ]),
+                        }, {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4"],
+                                ["de", "4"],
+                                ["fr", "4"],
+                            ]),
+                        }, {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5"],
+                                ["de", "5"],
+                                ["fr", "5"],
+                            ]),
+                        }, {
+                            key: '5+', role: 'option', content: new Map([
+                                ["en", "5+"],
+                                ["de", "5+"],
+                                ["fr", "5+"],
+                            ]),
+                        },
+                    ]
                 }
             ],
         },
@@ -726,11 +1107,54 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ])
                 },
                 {
-                    key: 'v', role: 'label',
-                    content: new Map([
-                        ["en", "todo"],
-                    ])
-                },
+                    key: 'v', role: 'dropDownGroup',
+                    items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "0"],
+                                ["de", "0"],
+                                ["fr", "0"],
+                            ])
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1"],
+                                ["de", "1"],
+                                ["fr", "1"],
+                            ]),
+                        }, {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2"],
+                                ["de", "2"],
+                                ["fr", "2"],
+                            ]),
+                        }, {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3"],
+                                ["de", "3"],
+                                ["fr", "3"],
+                            ]),
+                        }, {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4"],
+                                ["de", "4"],
+                                ["fr", "4"],
+                            ]),
+                        }, {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5"],
+                                ["de", "5"],
+                                ["fr", "5"],
+                            ]),
+                        }, {
+                            key: '5+', role: 'option', content: new Map([
+                                ["en", "5+"],
+                                ["de", "5+"],
+                                ["fr", "5+"],
+                            ]),
+                        },
+                    ]
+                }
             ]
         },
         {
@@ -745,11 +1169,54 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ])
                 },
                 {
-                    key: 'v', role: 'label',
-                    content: new Map([
-                        ["en", "todo"],
-                    ])
-                },
+                    key: 'v', role: 'dropDownGroup',
+                    items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "0"],
+                                ["de", "0"],
+                                ["fr", "0"],
+                            ])
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1"],
+                                ["de", "1"],
+                                ["fr", "1"],
+                            ]),
+                        }, {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2"],
+                                ["de", "2"],
+                                ["fr", "2"],
+                            ]),
+                        }, {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3"],
+                                ["de", "3"],
+                                ["fr", "3"],
+                            ]),
+                        }, {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4"],
+                                ["de", "4"],
+                                ["fr", "4"],
+                            ]),
+                        }, {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5"],
+                                ["de", "5"],
+                                ["fr", "5"],
+                            ]),
+                        }, {
+                            key: '5+', role: 'option', content: new Map([
+                                ["en", "5+"],
+                                ["de", "5+"],
+                                ["fr", "5+"],
+                            ]),
+                        },
+                    ]
+                }
             ]
         },
         {
@@ -764,11 +1231,54 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ])
                 },
                 {
-                    key: 'v', role: 'label',
-                    content: new Map([
-                        ["en", "todo"],
-                    ])
-                },
+                    key: 'v', role: 'dropDownGroup',
+                    items: [
+                        {
+                            key: '0', role: 'option', content: new Map([
+                                ["en", "0"],
+                                ["de", "0"],
+                                ["fr", "0"],
+                            ])
+                        },
+                        {
+                            key: '1', role: 'option', content: new Map([
+                                ["en", "1"],
+                                ["de", "1"],
+                                ["fr", "1"],
+                            ]),
+                        }, {
+                            key: '2', role: 'option', content: new Map([
+                                ["en", "2"],
+                                ["de", "2"],
+                                ["fr", "2"],
+                            ]),
+                        }, {
+                            key: '3', role: 'option', content: new Map([
+                                ["en", "3"],
+                                ["de", "3"],
+                                ["fr", "3"],
+                            ]),
+                        }, {
+                            key: '4', role: 'option', content: new Map([
+                                ["en", "4"],
+                                ["de", "4"],
+                                ["fr", "4"],
+                            ]),
+                        }, {
+                            key: '5', role: 'option', content: new Map([
+                                ["en", "5"],
+                                ["de", "5"],
+                                ["fr", "5"],
+                            ]),
+                        }, {
+                            key: '5+', role: 'option', content: new Map([
+                                ["en", "5+"],
+                                ["de", "5+"],
+                                ["fr", "5+"],
+                            ]),
+                        },
+                    ]
+                }
             ]
         }
     ]);
