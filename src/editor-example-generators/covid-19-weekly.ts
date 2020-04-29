@@ -2136,12 +2136,25 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity? (Select all the relevant answers)"],
-            ["de", "Führen Sie seit Beginn der COVID-19-Sperrmassnahmen eine berufliche Tätigkeit aus? (Wählen Sie alle relevanten Antworten aus) "],
+            ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity?"],
+            ["de", "Führen Sie seit Beginn der COVID-19-Sperrmassnahmen eine berufliche Tätigkeit aus?"],
+            ["fr", "Depuis le début des mesures de confinement liées au COVID-19, exercez-vous une activité professionnelle ? "],
         ]))
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
@@ -2200,6 +2213,7 @@ const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How many days a week do you work outside from home?"],
             ["de", "Wie viele Tage in der Woche arbeiten Sie ausserhalb von zu Hause?"],
+            ["fr", "Combien de jours par semaine travaillez-vous hors de votre domicile ?"],
         ]))
     );
     /*
@@ -2208,17 +2222,81 @@ const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
     );*/
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const sliderNumericEditor = new ComponentEditor(undefined, {
-        key: 'sliderNumeric',
-        role: 'sliderNumeric'
-    });
-    sliderNumericEditor.setProperties({
-        min: { dtype: 'num', num: 1 },
-        max: { dtype: 'num', num: 7 },
-        stepSize: { dtype: 'num', num: 1 },
-    })
-    editor.addExistingResponseComponent(sliderNumericEditor.getComponent(), rg?.key);
+    const rg_inner = initSliderCategoricalGroup(sliderCategoricalKey, [
+        {
+            key: '0',
+            role: 'option',
+            content: new Map([
+                ["en", "0"],
+                ["de", "0"],
+                ["fr", "0"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "1"],
+                ["de", "1"],
+                ["fr", "1"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "2"],
+                ["de", "2"],
+                ["fr", "2"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "3"],
+                ["de", "3"],
+                ["fr", "3"],
+            ])
+        },
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "4"],
+                ["de", "4"],
+                ["fr", "4"],
+            ])
+        },
+        {
+            key: '5',
+            role: 'option',
+            content: new Map([
+                ["en", "5"],
+                ["de", "5"],
+                ["fr", "5"],
+            ])
+        },
+        {
+            key: '6',
+            role: 'option',
+            content: new Map([
+                ["en", "6"],
+                ["de", "6"],
+                ["fr", "6"],
+            ])
+        },
+        {
+            key: '7',
+            role: 'option',
+            content: new Map([
+                ["en", "7"],
+                ["de", "7"],
+                ["fr", "7"],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2228,13 +2306,71 @@ const qcov11_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Over recent days, at which frequency did you go out of home to buy products, on average?"],
+            ["de", "Wie oft haben Sie in den letzten Tagen im Durchschnitt Ihre Wohnung verlassen, um Waren zu kaufen?"],
+            ["fr", "Durant ces derniers jours, à quelle fréquence êtes-vous sorti de la maison pour acheter des produits, en moyenne ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "I do not go out of home anymore"],
+                ["de", "Ich gehe nicht mehr aus dem Haus "],
+                ["fr", "Je ne sors plus de la maison"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "Less than once a week"],
+                ["de", "Weniger als einmal pro Woche "],
+                ["fr", "Moins d'une fois par semaine"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "Once a week"],
+                ["de", "Einmal wöchentlich "],
+                ["fr", "Une fois par semaine"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "2 to 6 times a week"],
+                ["de", "2 bis 6 Mal pro Woche "],
+                ["fr", "2 à 6 fois par semaine"],
+            ])
+        },
+        {
+            key: '99',
+            role: 'option',
+            content: new Map([
+                ["en", "Once a day"],
+                ["de", "Einmal täglich "],
+                ["fr", "Une fois par jour"],
+            ])
+        },
+        {
+            key: '991',
+            role: 'option',
+            content: new Map([
+                ["en", "Several times per day"],
+                ["de", "Mehrmals am Tag "],
+                ["fr", "Plusieurs fois par jour"],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2242,13 +2378,71 @@ const qcov12_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Over recent days, at which frequency did you go out of home to get fresh air or exercise (outside your home, balcony, garden, private courtyard), on average?"],
+            ["de", "Wie oft sind Sie in den letzten Tagen durchschnittlich aus dem Haus gegangen, um frische Luft zu schnappen oder sich zu bewegen?"],
+            ["fr", "Durant ces derniers jours, à quelle fréquence êtes vous sorti, en moyenne, pour prendre l'air ou faire de l'exercice (en dehors de votre maison, balcon, jardin ou terrain privé) ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "I do not go out of home anymore"],
+                ["de", "Ich gehe nicht mehr aus dem Haus "],
+                ["fr", "Je ne sors plus de la maison"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "Less than once a week"],
+                ["de", "Weniger als einmal pro Woche "],
+                ["fr", "Moins d'une fois par semaine"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "Once a week"],
+                ["de", "Einmal wöchentlich "],
+                ["fr", "Une fois par semaine"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "2 to 6 times a week"],
+                ["de", "2 bis 6 Mal pro Woche "],
+                ["fr", "2 à 6 fois par semaine"],
+            ])
+        },
+        {
+            key: '99',
+            role: 'option',
+            content: new Map([
+                ["en", "Once a day"],
+                ["de", "Einmal täglich "],
+                ["fr", "Une fois par jour"],
+            ])
+        },
+        {
+            key: '991',
+            role: 'option',
+            content: new Map([
+                ["en", "Several times per day"],
+                ["de", "Mehrmals am Tag "],
+                ["fr", "Plusieurs fois par jour"],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2256,13 +2450,62 @@ const qcov13_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Over the course of yesterday, how many people (outside your household) did you approach at a distance lower than 1 meter?"],
+            ["de", "Wie viele Personen (ausserhalb Ihres Haushalts) haben Sie sich im Laufe des gestrigen Tages aus einer Entfernung von weniger als 1 Meter angenähert?"],
+            ["fr", "Durant la journée d'hier, avec combien de personnes (en dehors de votre foyer) avez vous été en contact à moins d'un mètre ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "0"],
+                ["de", "0"],
+                ["fr", "0"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "1"],
+                ["de", "1"],
+                ["fr", "1"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "2 to 5"],
+                ["de", "2 bis 5"],
+                ["fr", "2 à 5"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "6 to 10"],
+                ["de", "6 bis 10"],
+                ["fr", "6 à 10"],
+            ])
+        },
+        {
+            key: '99',
+            role: 'option',
+            content: new Map([
+                ["en", "More than 10"],
+                ["de", "Merh als 10"],
+                ["fr", "Plus de 10"],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2270,13 +2513,82 @@ const qcov14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "If lockdown measures were lifted up, but collective childcare / schools / university were closed, what would be your situation?"],
+            ["de", "Wenn die Sperrmassnahmen aufgehoben würden, aber kollektive Kinderbetreuungseinrichtungen / Schulen/Universitäten geschlossen würden, wie würde Ihre Situation aussehen?"],
+            ["fr", "Si les mesures de confinement étaient levées, mais les garderies / crèches / écoles/universités étaient fermées, quelle serait votre situation ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "I would work from home"],
+                ["de", "Ich würde von zu Hause aus arbeiten "],
+                ["fr", "Je travaillerais depuis mon domicile"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "I would work outside from home"],
+                ["de", "Ich würde ausserhalb von zu Hause arbeiten "],
+                ["fr", "Je travaillerais hors de mon domicile"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "I would have a leave of absence to take care of my kid(s)"],
+                ["de", "Ich hätte eine Arbeitsbefreiung, um mich um mein(e) Kind(er) zu kümmern "],
+                ["fr", "Je serais en congé pour pouvoir m'occuper de mes enfants"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "I would have a sick leave (because of Covid-19)"],
+                ["de", "Ich wäre krankgeschrieben (wegen Covid-19) "],
+                ["fr", "Je serais en congé-maladie (en raison du COVID-19)"],
+            ])
+        },
+        {
+            key: '99',
+            role: 'option',
+            content: new Map([
+                ["en", "I would be in another situation (retired, job-seeker, student, house-wife/husband, other sick-leave, partial unemployment, forced leave…)"],
+                ["de", "Ich befände mich in einer anderen Situation (Rentner, Arbeitssuchender, Student, Hausfrau/-mann, andere krankheitsbedingte Abwesenheit...) "],
+                ["fr", "Je serais dans une autre situation (retraité, au chômage, étudiant, femme/homme au foyer, congé-maladie pour une autre raison, au chomâge partiel, ...)"],
+            ])
+        },
+        {
+            key: '991',
+            role: 'option',
+            content: new Map([
+                ["en", "I don’t know"],
+                ["de", "Ich weiss es nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2284,13 +2596,88 @@ const qcov14b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): 
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "How many days a week would you work outside from home?"],
+            ["de", "Wie viele Tage pro Woche würden Sie ausserhalb von zu Hause arbeiten?"],
+            ["fr", "Combien de jours par semaine travailleriez-vous hors de votre domicile ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSliderCategoricalGroup(sliderCategoricalKey, [
+        {
+            key: '0',
+            role: 'option',
+            content: new Map([
+                ["en", "0"],
+                ["de", "0"],
+                ["fr", "0"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "1"],
+                ["de", "1"],
+                ["fr", "1"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "2"],
+                ["de", "2"],
+                ["fr", "2"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "3"],
+                ["de", "3"],
+                ["fr", "3"],
+            ])
+        },
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "4"],
+                ["de", "4"],
+                ["fr", "4"],
+            ])
+        },
+        {
+            key: '5',
+            role: 'option',
+            content: new Map([
+                ["en", "5"],
+                ["de", "5"],
+                ["fr", "5"],
+            ])
+        },
+        {
+            key: '6',
+            role: 'option',
+            content: new Map([
+                ["en", "6"],
+                ["de", "6"],
+                ["fr", "6"],
+            ])
+        },
+        {
+            key: '7',
+            role: 'option',
+            content: new Map([
+                ["en", "7"],
+                ["de", "7"],
+                ["fr", "7"],
+            ])
+        }
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2300,18 +2687,20 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "If lockdown measures were extended (that is to say, continued beyond the date announced by the government), do you think you would follow the recommendations with as much rigour as you do now?"],
             ["de", "Falls die Sperrmassnahmen über das von der Regierung angekundigte Datum hinaus verlängert würden, glauben Sie, dass Sie die Empfehlungen mit gleicher Disziplin weiter verfolgen würden?"],
+            ["fr", "Si les mesures de confinement étaient prolongées (c'est-à-dire au-delà de la date annoncée par le gouvernement), pensez-vous que vous suivriez les recommandations avec autant de rigueur qu'actuellement ?"],
         ]))
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
-    const rg_inner = initSliderCategoricalGroup(sliderCategoricalKey, [
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '4',
             role: 'option',
             content: new Map([
                 ["en", "Yes, absolutely"],
                 ["de", "Ja, absolut"],
+                ["fr", "Oui, absolument"],
             ])
         },
         {
@@ -2320,6 +2709,7 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Yes, moderately"],
                 ["de", "Ja, mässig"],
+                ["fr", "Oui, plus ou moins"],
             ])
         },
         {
@@ -2328,6 +2718,7 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No, not really"],
                 ["de", "Nein, nicht wirklich"],
+                ["fr", "Non, pas vraiment"],
             ])
         },
         {
@@ -2336,6 +2727,7 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No, not at all"],
                 ["de", "Nein, überhaupt nicht"],
+                ["fr", "Non, pas du tout"],
             ])
         },
         {
@@ -2344,6 +2736,7 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "I don't know"],
                 ["de", "Ich weiss nicht"],
+                ["fr", "Je ne sais pas"],
             ])
         }
     ])
