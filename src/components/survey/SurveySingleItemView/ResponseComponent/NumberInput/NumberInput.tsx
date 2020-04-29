@@ -33,7 +33,27 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
     if (!key) { return; }
     setTouched(true);
 
-    const value = (event.target as HTMLInputElement).value;
+    let value = (event.target as HTMLInputElement).value;
+
+    const numVal = parseFloat(value);
+    console.log(numVal);
+    console.log(props.compDef.properties);
+    console.log(props.compDef.properties?.max);
+    if (props.compDef.properties?.min !== undefined) {
+      if (numVal < props.compDef.properties?.min) {
+        console.log('smaller')
+        value = props.compDef.properties?.min.toString();
+      }
+    }
+    if (props.compDef.properties?.max !== undefined) {
+      if (numVal > props.compDef.properties?.max) {
+        console.log('larger')
+        value = props.compDef.properties?.max.toString();
+      }
+      console.log(value);
+    }
+    console.log(value);
+
     setInputValue(value);
     setResponse(prev => {
       if (!prev) {

@@ -632,7 +632,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '802', role: 'responseRow',
+            key: '1', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -645,14 +645,14 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 {
                     key: 'v', role: 'numberInput',
                     properties: {
-                        min: { dtype: 'num', num: 0 },
+                        min: { dtype: 'num', num: -5 },
                         max: { dtype: 'num', num: 10 },
                     }
                 }
             ],
         },
         {
-            key: '802', role: 'responseRow',
+            key: '2', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -713,6 +713,63 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 }
             ],
         },
+        {
+            key: '3', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "19-44 years"],
+                        ["de", "19-44 Jahre"],
+                        ["fr", "19-44 ans"],
+                    ])
+                },
+                {
+                    key: 'v', role: 'label',
+                    content: new Map([
+                        ["en", "todo"],
+                    ])
+                },
+            ]
+        },
+        {
+            key: '4', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "45-64 years"],
+                        ["de", "45-65 Jahre"],
+                        ["fr", "45-64 ans"],
+                    ])
+                },
+                {
+                    key: 'v', role: 'label',
+                    content: new Map([
+                        ["en", "todo"],
+                    ])
+                },
+            ]
+        },
+        {
+            key: '5', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "65+"],
+                        ["de", "65+"],
+                        ["fr", "plus de 65 ans"],
+                    ])
+                },
+                {
+                    key: 'v', role: 'label',
+                    content: new Map([
+                        ["en", "todo"],
+                    ])
+                },
+            ]
+        }
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
