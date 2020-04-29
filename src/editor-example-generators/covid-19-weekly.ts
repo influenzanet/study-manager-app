@@ -100,31 +100,31 @@ export const generateCovid19Weekly = (): Survey | undefined => {
 
     survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
-    // Q2 --------------------------------------
+    // Q2 symptoms same bout of illness --------------------------------------
     const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
     if (!q2) { return; }
     survey.updateSurveyItem(q2_def(q2, anySymptomSelected));
     // -----------------------------------------
 
-    // Qcov3 --------------------------------------
+    // Qcov3 14 days contact with Covid-19 --------------------------------------
     const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
     if (!qcov3) { return; }
     survey.updateSurveyItem(qcov3_def(qcov3, q2.key, anySymptomSelected));
     // -----------------------------------------
 
-    // Q3 --------------------------------------
+    // Q3 when first symptoms --------------------------------------
     const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
     if (!q3) { return; }
     survey.updateSurveyItem(q3_def(q3, anySymptomSelected));
     // -----------------------------------------
 
-    // Q4 --------------------------------------
+    // Q4 when symptoms end --------------------------------------
     const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
     if (!q4) { return; }
     survey.updateSurveyItem(q4_def(q4, anySymptomSelected));
     // -----------------------------------------
 
-    // Q5 --------------------------------------
+    // Q5 symptoms developed suddenly --------------------------------------
     const q5 = survey.addNewSurveyItem({ itemKey: 'Q5' }, rootKey);
     if (!q5) { return; }
     survey.updateSurveyItem(q5_def(q5, anySymptomSelected));
@@ -132,44 +132,183 @@ export const generateCovid19Weekly = (): Survey | undefined => {
 
     survey.addNewSurveyItem({ itemKey: 'pb7', type: 'pageBreak' }, rootKey);
 
-    // Q7 --------------------------------------
+    // Q6 when fever began -------------------------------------- TODO
+    // const q6 = survey.addNewSurveyItem({ itemKey: 'Q6' }, rootKey);
+    // if (!q6) { return; }
+    // survey.updateSurveyItem(q6_def(q6, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q6b fever developed suddenly -------------------------------------- TODO
+    // const q6b = survey.addNewSurveyItem({ itemKey: 'Q6b' }, rootKey);
+    // if (!q6b) { return; }
+    // survey.updateSurveyItem(q6b_def(q6b, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q6c took temperature -------------------------------------- TODO
+    // const q6c = survey.addNewSurveyItem({ itemKey: 'Q6c' }, rootKey);
+    // if (!q6c) { return; }
+    // survey.updateSurveyItem(q6c_def(q6c, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q6d highest temperature -------------------------------------- TODO
+    // const q6d = survey.addNewSurveyItem({ itemKey: 'Q6d' }, rootKey);
+    // if (!q6d) { return; }
+    // survey.updateSurveyItem(q6d_def(q6d, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q7 visited medical service --------------------------------------
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
     if (!q7) { return; }
     survey.updateSurveyItem(q7_def(q7, anySymptomSelected));
     // -----------------------------------------
 
-    // Q7b --------------------------------------
+    // Q7b how soon visited medical service --------------------------------------
     const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, rootKey);
     if (!q7b) { return; }
     survey.updateSurveyItem(q7b_def(q7b, q7.key, anySymptomSelected));
     // -----------------------------------------
 
-    // Q8 --------------------------------------
+    // Qcov4 call COVID-19 emergency line -------------------------------------- TODO
+    // const qcov4 = survey.addNewSurveyItem({ itemKey: 'Qcov4' }, rootKey);
+    // if (!qcov4) { return; }
+    // survey.updateSurveyItem(qcov4_def(qcov4, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov5 call general emergency line -------------------------------------- TODO
+    // const qcov5 = survey.addNewSurveyItem({ itemKey: 'Qcov5' }, rootKey);
+    // if (!qcov5) { return; }
+    // survey.updateSurveyItem(qcov5_def(qcov5, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q8 contacted medical service --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
     if (!q8) { return; }
     survey.updateSurveyItem(q8_def(q8, anySymptomSelected));
     // -----------------------------------------
 
-    // Q8b --------------------------------------
+    // Q8b how soon contacted medical service --------------------------------------
     const q8b = survey.addNewSurveyItem({ itemKey: 'Q8b' }, rootKey);
     if (!q8b) { return; }
     survey.updateSurveyItem(q8b_def(q8b, q8.key, anySymptomSelected));
     // -----------------------------------------
 
     survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
-    // Qcov10 --------------------------------------
+
+    // Q9 took medication -------------------------------------- TODO
+    // const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
+    // if (!q9) { return; }
+    // survey.updateSurveyItem(q9_def(q9, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q9b how soon after symptoms taking antivirals -------------------------------------- TODO
+    // const q9b = survey.addNewSurveyItem({ itemKey: 'Q9b' }, rootKey);
+    // if (!q9b) { return; }
+    // survey.updateSurveyItem(q9b_def(q9b, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q14 hospitalized because symptoms -------------------------------------- TODO
+    // const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
+    // if (!q14) { return; }
+    // survey.updateSurveyItem(q14_def(q14, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q10 changed daily routine because illness -------------------------------------- TODO
+    // const q10 = survey.addNewSurveyItem({ itemKey: 'Q10' }, rootKey);
+    // if (!q10) { return; }
+    // survey.updateSurveyItem(q10_def(q10, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q10b still off work/school -------------------------------------- TODO
+    // const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
+    // if (!q10b) { return; }
+    // survey.updateSurveyItem(q10b_def(q10b, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q10c still off work/school -------------------------------------- TODO
+    // const q10c = survey.addNewSurveyItem({ itemKey: 'Q10c' }, rootKey);
+    // if (!q10c) { return; }
+    // survey.updateSurveyItem(q10c_def(q10c, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov6 wear mask because symptoms -------------------------------------- TODO
+    // const qcov6 = survey.addNewSurveyItem({ itemKey: 'Qcov6' }, rootKey);
+    // if (!qcov6) { return; }
+    // survey.updateSurveyItem(qcov6_def(qcov6, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov7 took or strengthened measures because symptoms -------------------------------------- TODO
+    // const qcov7 = survey.addNewSurveyItem({ itemKey: 'Qcov7' }, rootKey);
+    // if (!qcov7) { return; }
+    // survey.updateSurveyItem(qcov7_def(qcov7, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov8 14 days contact COVID-19 before symptoms -------------------------------------- TODO
+    // const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, rootKey);
+    // if (!qcov8) { return; }
+    // survey.updateSurveyItem(qcov8_def(qcov8, anySymptomSelected));
+    // -----------------------------------------
+
+    // Q11 think cause of symptoms -------------------------------------- TODO
+    // const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
+    // if (!q11) { return; }
+    // survey.updateSurveyItem(q11_def(q11, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov9 think reasons having disease -------------------------------------- TODO
+    // const qcov9 = survey.addNewSurveyItem({ itemKey: 'Qcov9' }, rootKey);
+    // if (!qcov9) { return; }
+    // survey.updateSurveyItem(qcov9_def(qcov9, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov9b informed contacts about suspicion COVID-19b infection -------------------------------------- TODO
+    // const qcov9b = survey.addNewSurveyItem({ itemKey: 'Qcov9b' }, rootKey);
+    // if (!qcov9b) { return; }
+    // survey.updateSurveyItem(qcov9b_def(qcov9b, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov10 lockdown professional activity --------------------------------------
     const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
     if (!qcov10) { return; }
     survey.updateSurveyItem(qcov10_def(qcov10));
     // -----------------------------------------
 
-    // Qcov10b --------------------------------------
+    // Qcov10b days work outside home  --------------------------------------
     const qcov10b = survey.addNewSurveyItem({ itemKey: 'Qcov10b' }, rootKey);
     if (!qcov10b) { return; }
     survey.updateSurveyItem(qcov10b_def(qcov10b, qcov10.key));
     // -----------------------------------------
 
-    // Qcov15 --------------------------------------
+    // Qcov11 frequency go out to buy products -------------------------------------- TODO
+    // const qcov11 = survey.addNewSurveyItem({ itemKey: 'Qcov11' }, rootKey);
+    // if (!qcov11) { return; }
+    // survey.updateSurveyItem(qcov11_def(qcov11, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov12 frequency go out for fresh air or exercise -------------------------------------- TODO
+    // const qcov12 = survey.addNewSurveyItem({ itemKey: 'Qcov12' }, rootKey);
+    // if (!qcov12) { return; }
+    // survey.updateSurveyItem(qcov12_def(qcov12, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov13 how many people nearer then 1 meter -------------------------------------- TODO
+    // const qcov13 = survey.addNewSurveyItem({ itemKey: 'Qcov13' }, rootKey);
+    // if (!qcov13) { return; }
+    // survey.updateSurveyItem(qcov13_def(qcov13, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov14 situation if lockdown lifted, but childcare/schools closed -------------------------------------- TODO
+    // const qcov14 = survey.addNewSurveyItem({ itemKey: 'Qcov14' }, rootKey);
+    // if (!qcov14) { return; }
+    // survey.updateSurveyItem(qcov14_def(qcov14, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov14b days work outside from home -------------------------------------- TODO
+    // const qcov14b = survey.addNewSurveyItem({ itemKey: 'Qcov14b' }, rootKey);
+    // if (!qcov14b) { return; }
+    // survey.updateSurveyItem(qcov14b_def(qcov14b, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov15 lockdown extended, would follow --------------------------------------
     // TODO: not working on mobile
     // const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
     // if (!qcov15) { return; }
