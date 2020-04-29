@@ -39,64 +39,65 @@ export const generateCovid19Weekly = (): Survey | undefined => {
 
     const rootKey = rootItemEditor.getItem().key;
 
+    // ------> Symptoms group
+    const qg1 = survey.addNewSurveyItem({ itemKey: 'q1', isGroup: true }, rootKey);
 
-    const qg32 = survey.addNewSurveyItem({ itemKey: '32', isGroup: true }, rootKey);
+    const qg1ItemEditor = new ItemEditor(qg1 as SurveyGroupItem);
+    qg1ItemEditor.setSelectionMethod({ name: 'sequential' });
+    survey.updateSurveyItem(qg1ItemEditor.getItem());
 
-    const qg32ItemEditor = new ItemEditor(qg32 as SurveyGroupItem);
-    qg32ItemEditor.setSelectionMethod({ name: 'sequential' });
-    survey.updateSurveyItem(qg32ItemEditor.getItem());
+    const q1Key = qg1ItemEditor.getItem().key;
 
-    const q32Key = qg32ItemEditor.getItem().key;
-
-    // 32 title
-    const q32_title = survey.addNewSurveyItem({ itemKey: 'title' }, q32Key);
-    if (!q32_title) { return; }
-    survey.updateSurveyItem(q32title_def(q32_title));
+    // 1 title
+    const q1_title = survey.addNewSurveyItem({ itemKey: 'title' }, q1Key);
+    if (!q1_title) { return; }
+    survey.updateSurveyItem(q1_title_def(q1_title));
 
 
-    // 32a --------------------------------------
-    const q32a = survey.addNewSurveyItem({ itemKey: '1' }, q32Key);
-    if (!q32a) { return; }
-    survey.updateSurveyItem(q32a_def(q32a));
+    // general --------------------------------------
+    const q1_1 = survey.addNewSurveyItem({ itemKey: '1' }, q1Key);
+    if (!q1_1) { return; }
+    survey.updateSurveyItem(q1_1_def(q1_1));
     // -----------------------------------------
 
-    // 32b --------------------------------------
-    const q32b = survey.addNewSurveyItem({ itemKey: '2' }, q32Key);
-    if (!q32b) { return; }
-    survey.updateSurveyItem(q32b_def(q32b));
+    // respriratory --------------------------------------
+    const q1_2 = survey.addNewSurveyItem({ itemKey: '2' }, q1Key);
+    if (!q1_2) { return; }
+    survey.updateSurveyItem(q1_2_def(q1_2));
     // -----------------------------------------
 
-    // 32c --------------------------------------
-    const q32c = survey.addNewSurveyItem({ itemKey: '3' }, q32Key);
-    if (!q32c) { return; }
-    survey.updateSurveyItem(q32c_def(q32c));
+    // gastro --------------------------------------
+    const q1_3 = survey.addNewSurveyItem({ itemKey: '3' }, q1Key);
+    if (!q1_3) { return; }
+    survey.updateSurveyItem(q1_3_def(q1_3));
     // -----------------------------------------
 
-    // 32d --------------------------------------
-    const q32d = survey.addNewSurveyItem({ itemKey: '4' }, q32Key);
-    if (!q32d) { return; }
-    survey.updateSurveyItem(q32d_def(q32d));
+    // misc --------------------------------------
+    const q1_4 = survey.addNewSurveyItem({ itemKey: '4' }, q1Key);
+    if (!q1_4) { return; }
+    survey.updateSurveyItem(q1_4_def(q1_4));
     // -----------------------------------------
 
-    // 32e --------------------------------------
-    const q32e = survey.addNewSurveyItem({ itemKey: '5' }, q32Key);
-    if (!q32e) { return; }
-    survey.updateSurveyItem(q32e_def(q32e));
+    // Other symptom --------------------------------------
+    const q1_5 = survey.addNewSurveyItem({ itemKey: '5' }, q1Key);
+    if (!q1_5) { return; }
+    survey.updateSurveyItem(q1_5_def(q1_5));
     // -----------------------------------------
 
-    const q32_1_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q32_2_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '2'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q32_3_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '3'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q32_4_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q32Key, '4'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q32_5_symptom = expWithArgs('checkResponseValueWithRegex', [q32Key, '5'].join('.'), [responseGroupKey, '160'].join('.'), '.*\\S.*');
+    const q1_1_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q1_2_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '2'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q1_3_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '3'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q1_4_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '4'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    const q1_5_symptom = expWithArgs('checkResponseValueWithRegex', [q1Key, '5'].join('.'), [responseGroupKey, '1'].join('.'), '.*\\S.*');
 
     const anySymptomSelected = expWithArgs('or',
-        q32_1_symptom,
-        q32_2_symptom,
-        q32_3_symptom,
-        q32_4_symptom,
-        q32_5_symptom
+        q1_1_symptom,
+        q1_2_symptom,
+        q1_3_symptom,
+        q1_4_symptom,
+        q1_5_symptom
     );
+    // <------ Symptoms group
 
     survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
@@ -132,29 +133,42 @@ export const generateCovid19Weekly = (): Survey | undefined => {
 
     survey.addNewSurveyItem({ itemKey: 'pb7', type: 'pageBreak' }, rootKey);
 
-    // Q6 when fever began -------------------------------------- TODO
-    // const q6 = survey.addNewSurveyItem({ itemKey: 'Q6' }, rootKey);
-    // if (!q6) { return; }
-    // survey.updateSurveyItem(q6_def(q6, anySymptomSelected));
+    // ----> fever group
+    const feverGroup = survey.addNewSurveyItem({ itemKey: 'Q6', isGroup: true }, rootKey);
+    const feverGroupEditor = new ItemEditor(feverGroup as SurveyGroupItem);
+    feverGroupEditor.setSelectionMethod({ name: 'sequential' });
+    feverGroupEditor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    )
+    survey.updateSurveyItem(feverGroupEditor.getItem());
+
+    const feverGroupKey = feverGroupEditor.getItem().key;
+
+    // Q6 when fever began --------------------------------------
+    const q6a = survey.addNewSurveyItem({ itemKey: 'a' }, feverGroupKey);
+    if (!q6a) { return; }
+    survey.updateSurveyItem(q6a_def(q6a));
     // -----------------------------------------
 
     // Q6b fever developed suddenly -------------------------------------- TODO
-    // const q6b = survey.addNewSurveyItem({ itemKey: 'Q6b' }, rootKey);
+    // const q6b = survey.addNewSurveyItem({ itemKey: 'b' }, feverGroupKey);
     // if (!q6b) { return; }
     // survey.updateSurveyItem(q6b_def(q6b, anySymptomSelected));
     // -----------------------------------------
 
     // Q6c took temperature -------------------------------------- TODO
-    // const q6c = survey.addNewSurveyItem({ itemKey: 'Q6c' }, rootKey);
+    // const q6c = survey.addNewSurveyItem({ itemKey: 'c' }, feverGroupKey);
     // if (!q6c) { return; }
-    // survey.updateSurveyItem(q6c_def(q6c, anySymptomSelected));
+    // survey.updateSurveyItem(q6c_def(q6c));
     // -----------------------------------------
 
     // Q6d highest temperature -------------------------------------- TODO
-    // const q6d = survey.addNewSurveyItem({ itemKey: 'Q6d' }, rootKey);
+    // const q6d = survey.addNewSurveyItem({ itemKey: 'd' }, feverGroupKey);
     // if (!q6d) { return; }
-    // survey.updateSurveyItem(q6d_def(q6d, anySymptomSelected));
+    // survey.updateSurveyItem(q6d_def(q6d, ));
     // -----------------------------------------
+    // <------ fever group
+
 
     // Q7 visited medical service --------------------------------------
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
@@ -192,7 +206,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q8b_def(q8b, q8.key, anySymptomSelected));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
+    // survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
 
     // Q9 took medication -------------------------------------- TODO
     // const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
@@ -315,13 +329,8 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // survey.updateSurveyItem(qcov15_def(qcov15));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
+    // survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
 
-    // q_postal_code --------------------------------------
-    const q_postal_code = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
-    if (!q_postal_code) { return; }
-    survey.updateSurveyItem(q0_def(q_postal_code));
-    // -----------------------------------------
 
 
     console.log(anySymptomSelected);
@@ -336,7 +345,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     return survey.getSurvey();
 }
 
-const q32title_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -356,7 +365,7 @@ const q32title_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -369,7 +378,7 @@ const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '142', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Fever"],
@@ -377,7 +386,7 @@ const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '143', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chills"],
@@ -385,7 +394,7 @@ const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '149', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Headache"],
@@ -393,7 +402,7 @@ const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '152', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Feeling tired or exhausted (malaise)"],
@@ -401,7 +410,7 @@ const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '153', role: 'option',
+            key: '5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of appetite"],
@@ -419,7 +428,7 @@ const q32a_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -432,7 +441,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '145', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sneezing"],
@@ -440,7 +449,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '146', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sore throat"],
@@ -448,7 +457,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '147', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Cough"],
@@ -456,7 +465,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '144', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Runny or blocked nose"],
@@ -464,7 +473,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '148', role: 'option',
+            key: '5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Shortness of breath"],
@@ -472,7 +481,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '154', role: 'option',
+            key: '6', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Coloured sputum/phlegm"],
@@ -490,7 +499,7 @@ const q32b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q32c_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -503,7 +512,7 @@ const q32c_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '156', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nausea"],
@@ -511,7 +520,7 @@ const q32c_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '157', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Vomiting"],
@@ -519,7 +528,7 @@ const q32c_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '158', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Diarrhoea"],
@@ -527,7 +536,7 @@ const q32c_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '159', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Stomach ache"],
@@ -545,7 +554,7 @@ const q32c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -558,7 +567,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '150', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Muscle/joint pain"],
@@ -566,7 +575,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '151', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chest pain"],
@@ -574,7 +583,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '155', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Watery, bloodshot eyes"],
@@ -582,7 +591,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '22', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nose bleed"],
@@ -590,7 +599,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '20', role: 'option',
+            key: '5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of smell"],
@@ -598,7 +607,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '21', role: 'option',
+            key: '6', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of taste"],
@@ -616,7 +625,7 @@ const q32d_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q32e_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -637,59 +646,8 @@ const q32e_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.addExistingResponseComponent(descEdit.getComponent(), rg?.key);
 
     const input = new ComponentEditor(undefined, {
-        key: '160',
+        key: '1',
         role: 'multilineTextInput'
-    }).getComponent();
-    editor.addExistingResponseComponent(input, rg?.key);
-    return editor.getItem();
-}
-
-const q0_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What is your postal code?"],
-            ["de", "Wie lautet ihre Postleitzahl?"],
-        ]))
-    );
-
-    editor.addValidation(
-        {
-            key: 'V1',
-            type: 'soft',
-            rule:
-                expWithArgs('and',
-                    expWithArgs('checkResponseValueWithRegex', editor.getItem().key, [responseGroupKey, inputKey].join('.'), '.*\\S.*'),
-                    expWithArgs('not', expWithArgs('checkResponseValueWithRegex', editor.getItem().key, [responseGroupKey, inputKey].join('.'), '^(?=(\\D*\\d){5}\\D*$)')),
-                )
-        }
-    );
-    editor.addDisplayComponent(
-        {
-            role: 'warning',
-            content: generateLocStrings(new Map([
-                ["en", "Please enter a correct value"],
-                ["de", "Bitte geben Sie eine korrekte PLZ ein"],
-            ])),
-            displayCondition: expWithArgs('getSurveyItemValidation', 'this', 'V1')
-        }
-    )
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const descEdit = new ComponentEditor(undefined, {
-        role: 'text'
-    });
-    descEdit.setContent(generateLocStrings(new Map([
-        ["en", "The completeness of your postal code is automatically checked:"],
-        ["de", "Die Vollständigkeit ihrer Postleitzahl wird automatisch geprüft:"],
-    ])));
-    descEdit.setStyles([{ key: 'variant', value: 'annotation' }])
-    editor.addExistingResponseComponent(descEdit.getComponent(), rg?.key);
-
-    const input = new ComponentEditor(undefined, {
-        key: inputKey,
-        role: 'input'
     }).getComponent();
     editor.addExistingResponseComponent(input, rg?.key);
     return editor.getItem();
@@ -987,6 +945,18 @@ const q5_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
+
+const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "TODO"],
+            ["de", "TODO"],
+        ]))
+    );
+    return editor.getItem();
+}
+
 
 const q7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
