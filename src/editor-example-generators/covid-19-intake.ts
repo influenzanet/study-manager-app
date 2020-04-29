@@ -647,6 +647,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     properties: {
                         min: { dtype: 'num', num: -5 },
                         max: { dtype: 'num', num: 10 },
+                        stepSize: { dtype: 'num', num: 1 }
                     }
                 }
             ],

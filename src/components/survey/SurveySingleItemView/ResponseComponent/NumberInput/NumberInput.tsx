@@ -35,24 +35,24 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
 
     let value = (event.target as HTMLInputElement).value;
 
-    const numVal = parseFloat(value);
-    console.log(numVal);
-    console.log(props.compDef.properties);
-    console.log(props.compDef.properties?.max);
+    if (props.compDef.properties?.stepSize === 1.0) {
+      const numVal = parseFloat(value);
+      if (!isNaN(numVal) && !Number.isInteger(numVal)) {
+        value = Math.round(numVal).toString();
+      }
+    }
     if (props.compDef.properties?.min !== undefined) {
+      const numVal = parseFloat(value);
       if (numVal < props.compDef.properties?.min) {
-        console.log('smaller')
         value = props.compDef.properties?.min.toString();
       }
     }
     if (props.compDef.properties?.max !== undefined) {
+      const numVal = parseFloat(value);
       if (numVal > props.compDef.properties?.max) {
-        console.log('larger')
         value = props.compDef.properties?.max.toString();
       }
-      console.log(value);
     }
-    console.log(value);
 
     setInputValue(value);
     setResponse(prev => {
