@@ -1733,7 +1733,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Asthma"],
                 ["de", "Asthma"],
@@ -1741,7 +1741,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Diabetes"],
                 ["de", " Diabetes "],
@@ -1750,7 +1750,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chronic lung disorder besides asthma e.g. COPD, emphysema, or other disorders that affect your breathing"],
                 ["de", "Chronische Lungenerkrankungen außer Asthma, z.B. COPD, Emphysem oder andere Beschwerden, die Ihre Atmung betreffen"],
@@ -1759,7 +1759,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Heart disorder"],
                 ["de", "Herzbeschwerden"],
@@ -1768,7 +1768,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '5', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Kidney disorder"],
                 ["de", "Nierenbeschwerden"],
@@ -1777,7 +1777,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '6', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "An immunocompromising condition (e.g. splenectomy, organ transplant, acquired immune deficiency, cancer treatment)"],
                 ["de", "Eine immunschwächende Behandlung oder Erkrankung (z.B. Splenektomie, Organtransplantation, erworbenen Immunschwäche, Krebsbehandlung)"],
@@ -2072,7 +2072,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Hay fever"],
                 ["de", "Heuschnupfen"],
@@ -2080,7 +2080,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Allergy against house dust mite"],
                 ["de", "Allergie gegen Hausstaubmilbe"],
@@ -2088,7 +2088,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Allergy against domestic animals or pets"],
                 ["de", "Allergien gegen domestizierte Tiere und Haustiere"],
@@ -2096,7 +2096,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Other allergies that cause respiratory symptoms (e.g. sneezing, runny eyes)"],
                 ["de", "Andere Allergien, die Atemwegssymptome verursachen (z.B. Niesen, tränende Augen)"],
@@ -2149,7 +2149,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Vegetarian"],
                 ["de", "Vegetarisch"],
@@ -2157,7 +2157,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Veganism"],
                 ["de", "Vegan"],
@@ -2165,7 +2165,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Low-calorie"],
                 ["de", "Kalorienarm"],
@@ -2173,7 +2173,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         }, {
             key: '4', role: 'input',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
@@ -2220,7 +2220,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one or more dogs"],
                 ["de", "Ja, einen oder mehrere Hunde"],
@@ -2229,7 +2229,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one or more cats"],
                 ["de", "Ja, eine oder mehrere Katzen"],
@@ -2238,7 +2238,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one or more birds"],
                 ["de", "Ja, einen oder mehrere Vögel"],
@@ -2247,7 +2247,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one ore more other animals"],
                 ["de", "Ja, ein oder mehrere andere Tiere"],
