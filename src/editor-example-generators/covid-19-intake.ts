@@ -45,167 +45,167 @@ export const generateCovid19Intake = (): Survey | undefined => {
 
 
 
-    // --------------------------------------
-    const q_gender = survey.addNewSurveyItem({ itemKey: 'todo_1' }, rootKey);
-    if (!q_gender) { return; }
-    survey.updateSurveyItem(q_gender_def(q_gender));
+    // gender --------------------------------------
+    const q1 = survey.addNewSurveyItem({ itemKey: 'Q1' }, rootKey);
+    if (!q1) { return; }
+    survey.updateSurveyItem(q1_def(q1));
     // -----------------------------------------
 
-    // --------------------------------------
-    const q_birthday = survey.addNewSurveyItem({ itemKey: 'todo_2' }, rootKey);
-    if (!q_birthday) { return; }
-    survey.updateSurveyItem(q_birthday_def(q_birthday));
+    // birthday --------------------------------------
+    const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
+    if (!q2) { return; }
+    survey.updateSurveyItem(q2_def(q2));
     // -----------------------------------------
 
     // country --------------------------------------
-    const q_3 = survey.addNewSurveyItem({ itemKey: 'todo_3' }, rootKey);
-    if (!q_3) { return; }
-    survey.updateSurveyItem(q_3_def(q_3));
+    const qcountry = survey.addNewSurveyItem({ itemKey: 'Qcountry' }, rootKey);
+    if (!qcountry) { return; }
+    survey.updateSurveyItem(Qcountry_def(qcountry));
     // -----------------------------------------
 
     // home postal-code --------------------------------------
-    const q_4 = survey.addNewSurveyItem({ itemKey: 'todo_4' }, rootKey);
-    if (!q_4) { return; }
-    survey.updateSurveyItem(q_4_def(q_4));
+    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
+    if (!q3) { return; }
+    survey.updateSurveyItem(q3_def(q3));
     // -----------------------------------------
 
     // main activity --------------------------------------
-    const q_main_activity = survey.addNewSurveyItem({ itemKey: 'todo_5' }, rootKey);
-    if (!q_main_activity) { return; }
-    survey.updateSurveyItem(q_main_activity_def(q_main_activity));
+    const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
+    if (!q4) { return; }
+    survey.updateSurveyItem(q4_def(q4));
     // -----------------------------------------
 
 
     // school/work postal code  --------------------------------------
-    const q_6 = survey.addNewSurveyItem({ itemKey: 'todo_6' }, rootKey);
-    if (!q_6) { return; }
-    survey.updateSurveyItem(q_6_def(q_6));
+    const q4b = survey.addNewSurveyItem({ itemKey: 'Q4b' }, rootKey);
+    if (!q4b) { return; }
+    survey.updateSurveyItem(q4b_def(q4b));
     // -----------------------------------------
 
     // job category  --------------------------------------
-    const q_7 = survey.addNewSurveyItem({ itemKey: 'todo_7' }, rootKey);
-    if (!q_7) { return; }
-    survey.updateSurveyItem(q_7_def(q_7));
+    const q4c = survey.addNewSurveyItem({ itemKey: 'Q4c' }, rootKey);
+    if (!q4c) { return; }
+    survey.updateSurveyItem(q4c_def(q4c));
     // -----------------------------------------
 
     // eductaion_level  --------------------------------------
-    const q_8 = survey.addNewSurveyItem({ itemKey: 'todo_8' }, rootKey);
-    if (!q_8) { return; }
-    survey.updateSurveyItem(q_8_def(q_8));
+    const q4d = survey.addNewSurveyItem({ itemKey: 'Q4d' }, rootKey);
+    if (!q4d) { return; }
+    survey.updateSurveyItem(q4d_def(q4d));
     // -----------------------------------------
 
     // people you meet  --------------------------------------
-    const q_9 = survey.addNewSurveyItem({ itemKey: 'todo_9' }, rootKey);
-    if (!q_9) { return; }
-    survey.updateSurveyItem(q_9_def(q_9));
+    const q5 = survey.addNewSurveyItem({ itemKey: 'Q5' }, rootKey);
+    if (!q5) { return; }
+    survey.updateSurveyItem(q5_def(q5));
     // -----------------------------------------
 
     // age groups  --------------------------------------
-    const q_10 = survey.addNewSurveyItem({ itemKey: 'todo_10' }, rootKey);
-    if (!q_10) { return; }
-    survey.updateSurveyItem(q_10_def(q_10));
+    const q6 = survey.addNewSurveyItem({ itemKey: 'Q6' }, rootKey);
+    if (!q6) { return; }
+    survey.updateSurveyItem(q6_def(q6));
     // -----------------------------------------
 
     // children/school/daycare  --------------------------------------
-    const q_11 = survey.addNewSurveyItem({ itemKey: 'todo_11' }, rootKey);
-    if (!q_11) { return; }
-    survey.updateSurveyItem(q_11_def(q_11));
+    const q6b = survey.addNewSurveyItem({ itemKey: 'Q6b' }, rootKey);
+    if (!q6b) { return; }
+    survey.updateSurveyItem(q6b_def(q6b));
     // -----------------------------------------
 
     // means of transport  --------------------------------------
-    const q_12 = survey.addNewSurveyItem({ itemKey: 'todo_12' }, rootKey);
-    if (!q_12) { return; }
-    survey.updateSurveyItem(q_12_def(q_12));
+    const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
+    if (!q7) { return; }
+    survey.updateSurveyItem(q7_def(q7));
     // -----------------------------------------
 
     // public transport duration  --------------------------------------
-    const q_13 = survey.addNewSurveyItem({ itemKey: 'todo_13' }, rootKey);
-    if (!q_13) { return; }
-    survey.updateSurveyItem(q_13_def(q_13));
+    const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, rootKey);
+    if (!q7b) { return; }
+    survey.updateSurveyItem(q7b_def(q7b));
     // -----------------------------------------
 
     // common cold how often  --------------------------------------
-    const q_14 = survey.addNewSurveyItem({ itemKey: 'todo_14' }, rootKey);
-    if (!q_14) { return; }
-    survey.updateSurveyItem(q_14_def(q_14));
+    const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
+    if (!q8) { return; }
+    survey.updateSurveyItem(q8_def(q8));
     // -----------------------------------------
 
-    // flu vaccine last --------------------------------------
-    const q_15 = survey.addNewSurveyItem({ itemKey: 'todo_15' }, rootKey);
-    if (!q_15) { return; }
-    survey.updateSurveyItem(q_15_def(q_15));
+    // flu vaccine last season --------------------------------------
+    const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
+    if (!q9) { return; }
+    survey.updateSurveyItem(q9_def(q9));
     // -----------------------------------------
 
-    // flue vaccine this --------------------------------------
-    const q_16 = survey.addNewSurveyItem({ itemKey: 'todo_16' }, rootKey);
-    if (!q_16) { return; }
-    survey.updateSurveyItem(q_16_def(q_16));
+    // flue vaccine this season --------------------------------------
+    const q10 = survey.addNewSurveyItem({ itemKey: 'Q10' }, rootKey);
+    if (!q10) { return; }
+    survey.updateSurveyItem(q10_def(q10));
     // -----------------------------------------
 
-    // flue vaccine when --------------------------------------
-    const q_17 = survey.addNewSurveyItem({ itemKey: 'todo_17' }, rootKey);
-    if (!q_17) { return; }
-    survey.updateSurveyItem(q_17_def(q_17));
+    // flue vaccine this season when --------------------------------------
+    const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
+    if (!q10b) { return; }
+    survey.updateSurveyItem(q10b_def(q10b));
     // -----------------------------------------
 
     // flue vaccine reason for --------------------------------------
-    const q_18 = survey.addNewSurveyItem({ itemKey: 'todo_18' }, rootKey);
-    if (!q_18) { return; }
-    survey.updateSurveyItem(q_18_def(q_18));
+    const q10c = survey.addNewSurveyItem({ itemKey: 'Q10c' }, rootKey);
+    if (!q10c) { return; }
+    survey.updateSurveyItem(q10c_def(q10c));
     // -----------------------------------------
 
     // flue vaccine reason against --------------------------------------
-    const q_19 = survey.addNewSurveyItem({ itemKey: 'todo_19' }, rootKey);
-    if (!q_19) { return; }
-    survey.updateSurveyItem(q_19_def(q_19));
+    const q10d = survey.addNewSurveyItem({ itemKey: 'Q10d' }, rootKey);
+    if (!q10d) { return; }
+    survey.updateSurveyItem(q10d_def(q10d));
     // -----------------------------------------
 
     // regular medication --------------------------------------
-    const q_20 = survey.addNewSurveyItem({ itemKey: 'todo_20' }, rootKey);
-    if (!q_20) { return; }
-    survey.updateSurveyItem(q_20_def(q_20));
+    const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
+    if (!q11) { return; }
+    survey.updateSurveyItem(q11_def(q11));
     // -----------------------------------------
 
     // pregnant --------------------------------------
-    const q_21 = survey.addNewSurveyItem({ itemKey: 'todo_21' }, rootKey);
-    if (!q_21) { return; }
-    survey.updateSurveyItem(q_21_def(q_21));
+    const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
+    if (!q12) { return; }
+    survey.updateSurveyItem(q12_def(q12));
     // -----------------------------------------
 
     // trimester --------------------------------------
-    const q_22 = survey.addNewSurveyItem({ itemKey: 'todo_22' }, rootKey);
-    if (!q_22) { return; }
-    survey.updateSurveyItem(q_22_def(q_22));
+    const q12b = survey.addNewSurveyItem({ itemKey: 'Q12b' }, rootKey);
+    if (!q12b) { return; }
+    survey.updateSurveyItem(q12b_def(q12b));
     // -----------------------------------------
 
     // do you smoke --------------------------------------
-    const q_23 = survey.addNewSurveyItem({ itemKey: 'todo_23' }, rootKey);
-    if (!q_23) { return; }
-    survey.updateSurveyItem(q_23_def(q_23));
+    const q13 = survey.addNewSurveyItem({ itemKey: 'Q13' }, rootKey);
+    if (!q13) { return; }
+    survey.updateSurveyItem(q13_def(q13));
     // -----------------------------------------
 
     // allergies --------------------------------------
-    const q_24 = survey.addNewSurveyItem({ itemKey: 'todo_24' }, rootKey);
-    if (!q_24) { return; }
-    survey.updateSurveyItem(q_24_def(q_24));
+    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
+    if (!q14) { return; }
+    survey.updateSurveyItem(q14_def(q14));
     // -----------------------------------------
 
     // special diet --------------------------------------
-    const q_25 = survey.addNewSurveyItem({ itemKey: 'todo_25' }, rootKey);
-    if (!q_25) { return; }
-    survey.updateSurveyItem(q_25_def(q_25));
+    const q15 = survey.addNewSurveyItem({ itemKey: 'Q15' }, rootKey);
+    if (!q15) { return; }
+    survey.updateSurveyItem(q15_def(q15));
     // -----------------------------------------
 
     // pets --------------------------------------
-    const q_26 = survey.addNewSurveyItem({ itemKey: 'todo_26' }, rootKey);
-    if (!q_26) { return; }
-    survey.updateSurveyItem(q_26_def(q_26));
+    const q16 = survey.addNewSurveyItem({ itemKey: 'Q16' }, rootKey);
+    if (!q16) { return; }
+    survey.updateSurveyItem(q16_def(q16));
     // -----------------------------------------
 
     // how did you find us --------------------------------------
-    const q_27 = survey.addNewSurveyItem({ itemKey: 'todo_27' }, rootKey);
-    if (!q_27) { return; }
-    survey.updateSurveyItem(q_27_def(q_27));
+    const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
+    if (!q17) { return; }
+    survey.updateSurveyItem(q17_def(q17));
     // -----------------------------------------
 
     return survey.getSurvey();
@@ -213,7 +213,7 @@ export const generateCovid19Intake = (): Survey | undefined => {
 
 
 
-const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -248,7 +248,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '767', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Male"],
                 ["de", "Männlich"],
@@ -256,7 +256,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '768', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Female"],
                 ["de", "Weiblich"],
@@ -269,7 +269,7 @@ const q_gender_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -303,7 +303,7 @@ const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const dateInputEditor = new ComponentEditor(undefined, {
-        key: '769',
+        key: 'TODO',
         role: 'dateInput'
     });
     dateInputEditor.setProperties({
@@ -316,7 +316,7 @@ const q_birthday_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const q_3_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const Qcountry_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -330,7 +330,7 @@ const q_3_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '771', role: 'option',
+            key: 'NL', role: 'option',
             content: new Map([
                 ["en", "Netherlands"],
                 ["de", "Niederlande"],
@@ -338,7 +338,7 @@ const q_3_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '772', role: 'option',
+            key: 'BE', role: 'option',
             content: new Map([
                 ["en", "Belgium"],
                 ["de", "Belgien"],
@@ -350,7 +350,7 @@ const q_3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_4_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -403,7 +403,7 @@ const q_4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -452,7 +452,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '773', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Paid employment, full time"],
                 ["de", "Bezahlte Beschäftigung (Vollzeit)"],
@@ -460,7 +460,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '774', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Paid employment, part time"],
                 ["de", "Bezahlte Beschäftigung (Teilzeit)"],
@@ -468,7 +468,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '775', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Self-employed (businessman, farmer, tradesman, etc.)"],
                 ["de", "Selbstständig (UnternehmerIn, LandwirtIn, HändlerIn, usw.)"],
@@ -476,7 +476,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '776', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "Attending daycare/school/college/university"],
                 ["de", "Tagespflege/ Schule/ Hochschule/ Universität"],
@@ -484,7 +484,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '777', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "Home-maker (e.g. housewife)"],
                 ["de", "Im Haushalt tätig (z.B. Hausfrau/ Hausmann)"],
@@ -492,7 +492,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '778', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "Unemployed"],
                 ["de", "Arbeitslos"],
@@ -500,7 +500,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '779', role: 'option',
+            key: '6', role: 'option',
             content: new Map([
                 ["en", "Long-term sick-leave or parental leave"],
                 ["de", "Langfristiger Krankenurlaub oder Elternzeit"],
@@ -508,7 +508,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '780', role: 'option',
+            key: '7', role: 'option',
             content: new Map([
                 ["en", "Retired"],
                 ["de", "Im Ruhestand"],
@@ -516,7 +516,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '781', role: 'input',
+            key: '8', role: 'input',
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
@@ -529,7 +529,7 @@ const q_main_activity_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const q_6_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -547,7 +547,7 @@ const q_6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_7_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -564,7 +564,7 @@ const q_7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_8_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -581,7 +581,7 @@ const q_8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_9_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -598,7 +598,7 @@ const q_9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_10_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -719,7 +719,7 @@ const q_10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_11_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -769,7 +769,7 @@ const q_11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '807', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "None"],
                 ["de", "Keine"],
@@ -777,37 +777,37 @@ const q_11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '808', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "1"],
             ])
         },
         {
-            key: '809', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "2"],
             ])
         },
         {
-            key: '810', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "3"],
             ])
         },
         {
-            key: '811', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "4"],
             ])
         },
         {
-            key: '812', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "5"],
             ])
         },
         {
-            key: '813', role: 'option',
+            key: '99', role: 'option',
             content: new Map([
                 ["en", "More than 5"],
                 ["de", "Mehr als 5"],
@@ -820,7 +820,7 @@ const q_11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -870,7 +870,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '814', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Walking"],
                 ["de", "zu Fuß"],
@@ -878,7 +878,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '815', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Bike"],
                 ["de", "Fahrrad"],
@@ -886,7 +886,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '816', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Motorbike/scooter"],
                 ["de", "Motorrad/Roller"],
@@ -894,7 +894,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '817', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "Car"],
                 ["de", "Auto"],
@@ -902,7 +902,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '818', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "Public transportation (bus, train, tube, etc)"],
                 ["de", "Öffentliche Verkehrsmittel (Bus, Zug, U-Bahn, usw.)"],
@@ -910,7 +910,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '819', role: 'input',
+            key: '5', role: 'input',
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
@@ -923,7 +923,7 @@ const q_12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -973,7 +973,7 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '820', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "No time at all"],
                 ["de", "Gar nicht"],
@@ -981,7 +981,7 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '821', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "0-30 minutes"],
                 ["de", "0 - 30 Minuten"],
@@ -989,7 +989,7 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '822', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "30 minutes - 1.5 hours"],
                 ["de", "30 Minuten – 1.5 Stunden"],
@@ -997,7 +997,7 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '823', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "1.5 hours - 4 hours"],
                 ["de", "1.5 Stunden – 4 Stunden"],
@@ -1005,7 +1005,7 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '824', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "Over 4 hours"],
                 ["de", "Mehr als 4 Stunden"],
@@ -1018,7 +1018,7 @@ const q_13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1031,7 +1031,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '825', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Never"],
                 ["de", "Nie"],
@@ -1039,7 +1039,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '826', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Once or twice a year"],
                 ["de", "Einmal oder zweimal im Jahr"],
@@ -1047,7 +1047,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '827', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Between 3 and 5 times a year"],
                 ["de", "Zwischen 3 und 5 mal im Jahr"],
@@ -1055,7 +1055,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '828', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "Between 6 and 10 times a year"],
                 ["de", "Zwischen 6 und 10 mal im Jahr"],
@@ -1063,7 +1063,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '829', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "More that 10 times a year"],
                 ["de", "Mehr als 10 mal"],
@@ -1071,7 +1071,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '830', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
                 ["de", "Ich weiß nicht"],
@@ -1084,7 +1084,7 @@ const q_14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_15_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1134,7 +1134,7 @@ const q_15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '831', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes"],
                 ["de", "Ja"],
@@ -1142,7 +1142,7 @@ const q_15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '832', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
@@ -1150,7 +1150,7 @@ const q_15_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '833', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
                 ["de", "Ich weiß nicht"],
@@ -1163,7 +1163,7 @@ const q_15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_16_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1213,7 +1213,7 @@ const q_16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '834', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes"],
                 ["de", "Ja"],
@@ -1221,7 +1221,7 @@ const q_16_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '835', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
@@ -1229,7 +1229,7 @@ const q_16_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '836', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
                 ["de", "Ich weiß nicht"],
@@ -1242,7 +1242,7 @@ const q_16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_17_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1292,7 +1292,7 @@ const q_17_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '837', role: 'dateInput',
+            key: '1', role: 'dateInput',
             optionProps: {
                 min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
@@ -1304,7 +1304,7 @@ const q_17_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '838', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
                 ["de", "Ich weiß nicht bzw. ich kann mich nicht erinnern"],
@@ -1317,7 +1317,7 @@ const q_17_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1342,7 +1342,7 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '839', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "I belong to a risk group (e.g, pregnant, over 65, underlying health condition, etc)"],
                 ["de", "Ich gehöre zu einer Risikogruppe (z.B. Schwangere, über 65, allgemeiner Gesundheitszustand)"],
@@ -1350,14 +1350,14 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '840', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Vaccination decreases my risk of getting influenza"],
                 ["de", "Eine Impfung verringert mein Risiko, die Grippe zu bekommen"],
                 ["fr", " La vaccination diminue mon risque de contracter la grippe"],
             ])
         }, {
-            key: '841', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Vaccination decreases the risk of spreading influenza to others"],
                 ["de", "Eine Impfung verringert das Risiko, andere mit der Grippe zu infizieren"],
@@ -1365,7 +1365,7 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '842', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "My doctor recommended it"],
                 ["de", "Mein Arzt hat es mir empfohlen"],
@@ -1373,7 +1373,7 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '843', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "It was recommended in my workplace/school"],
                 ["de", "Es wurde mir von der Arbeit/ Schule empfohlen"],
@@ -1381,7 +1381,7 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '844', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "The vaccine was readily available and vaccine administration was convenient"],
                 ["de", "Der Impfstoff war leicht verfügbar und die Organisation der Impfung war einfach."],
@@ -1389,7 +1389,7 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '845', role: 'option',
+            key: '6', role: 'option',
             content: new Map([
                 ["en", "The vaccine was free (no cost)"],
                 ["de", "Der Impfstoff war kostenlos."],
@@ -1397,21 +1397,21 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '846', role: 'option',
+            key: '7', role: 'option',
             content: new Map([
                 ["en", "I don't want to miss work/school"],
                 ["de", "Ich möchte in der Arbeit/ Schule nicht fehlen"],
                 ["fr", " Je ne veux pas manquer le travail / l'école"],
             ])
         }, {
-            key: '847', role: 'option',
+            key: '8', role: 'option',
             content: new Map([
                 ["en", "I always get the vaccine"],
                 ["de", "Ich lasse mich immer impfen."],
                 ["fr", "Je me fais systématiquement vacciner"],
             ])
         }, {
-            key: '848', role: 'option',
+            key: '9', role: 'option',
             content: new Map([
                 ["en", "Other reason(s)"],
                 ["de", "Andere Gründe"],
@@ -1424,7 +1424,7 @@ const q_18_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10d_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1486,7 +1486,7 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '849', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "I am planning to be vaccinated, but haven't been yet"],
                 ["de", "Ich habe vor, mich impfen zu lassen, es aber noch nicht getan."],
@@ -1494,14 +1494,14 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '850', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "I haven't been offered the vaccine"],
                 ["de", "Mir wurde die Impfung nicht angeboten"],
                 ["fr", "La vaccination ne m'a pas été proposée"],
             ])
         }, {
-            key: '851', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't belong to a risk group"],
                 ["de", "Ich gehöre zu keiner Risikogruppe"],
@@ -1509,7 +1509,7 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '852', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "It is better to build your own natural immunity against influenza"],
                 ["de", "Es ist besser, seine eigenen, natürlichen Abwehrkräfte gegen die Grippe zu entwickeln."],
@@ -1517,7 +1517,7 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '853', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "I doubt that the influenza vaccine is effective"],
                 ["de", "Ich bezweifle, dass der Grippeimpfstoff wirkungsvoll ist"],
@@ -1525,7 +1525,7 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '854', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "Influenza is a minor illness"],
                 ["de", "Die Grippe ist eine harmlose Krankheit"],
@@ -1533,7 +1533,7 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '855', role: 'option',
+            key: '6', role: 'option',
             content: new Map([
                 ["en", "I don't think I am likely to get influenza"],
                 ["de", "Ich denke es ist unwahrscheinlich, dass ich die Grippe bekomme"],
@@ -1541,56 +1541,56 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '856', role: 'option',
+            key: '7', role: 'option',
             content: new Map([
                 ["en", "I believe that influenza vaccine can cause influenza"],
                 ["de", "Ich glaube, dass der Grippeimpfstoff die Grippe auslösen kann"],
                 ["fr", " Je crois que le vaccin antigrippal peut causer la grippe"],
             ])
         }, {
-            key: '857', role: 'option',
+            key: '8', role: 'option',
             content: new Map([
                 ["en", "I am worried that the vaccine is not safe or will cause illness or other adverse events"],
                 ["de", "Ich bin besorgt, dass der Impfstoff nicht sicher ist oder, dass dieser andere Krankheiten oder unerwünschte Ereignisse fördern wird"],
                 ["fr", "Je pense que le vaccin n'est pas sûr ou qu'il peut causer d'autres maladies ou effets indésirables"],
             ])
         }, {
-            key: '858', role: 'option',
+            key: '9', role: 'option',
             content: new Map([
                 ["en", "I don't like having vaccinations"],
                 ["de", "Ich mag keine Impfungen"],
                 ["fr", "Je n'aime pas me faire vacciner"],
             ])
         }, {
-            key: '859', role: 'option',
+            key: '10', role: 'option',
             content: new Map([
                 ["en", "The vaccine is not readily available to me"],
                 ["de", "Der Impfstoff ist für mich nicht leicht verfügbar"],
                 ["fr", " Le vaccin n'est pas facilement disponible pour moi"],
             ])
         }, {
-            key: '860', role: 'option',
+            key: '11', role: 'option',
             content: new Map([
                 ["en", "The vaccine is not free of charge"],
                 ["de", "Der Impfstoff ist nicht kostenlos"],
                 ["fr", " Le vaccin n'est pas gratuit"],
             ])
         }, {
-            key: '861', role: 'option',
+            key: '12', role: 'option',
             content: new Map([
                 ["en", "No particular reason"],
                 ["de", "Kein bestimmter Grund"],
                 ["fr", " Aucune raison particulière"],
             ])
         }, {
-            key: '862', role: 'option',
+            key: '13', role: 'option',
             content: new Map([
                 ["en", "Although my doctor recommended a vaccine, I did not get one"],
                 ["de", "Obwohl mein Arzt mir eine Impfung empfohlen hat, habe ich keine erhalten"],
                 ["fr", " Bien que mon médecin me l'ait recommandé, je ne me suis pas fait vacciner"],
             ])
         }, {
-            key: '863', role: 'option',
+            key: '14', role: 'option',
             content: new Map([
                 ["en", "Other reason(s)"],
                 ["de", "Andere Gründe"],
@@ -1603,7 +1603,7 @@ const q_19_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1666,7 +1666,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '864', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
@@ -1674,7 +1674,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '865', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
             content: new Map([
                 ["en", "Asthma"],
@@ -1682,7 +1682,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Asthme"],
             ])
         }, {
-            key: '866', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
             content: new Map([
                 ["en", "Diabetes"],
@@ -1691,7 +1691,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '867', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
             content: new Map([
                 ["en", "Chronic lung disorder besides asthma e.g. COPD, emphysema, or other disorders that affect your breathing"],
@@ -1700,7 +1700,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '868', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
             content: new Map([
                 ["en", "Heart disorder"],
@@ -1709,7 +1709,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '869', role: 'option',
+            key: '5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
             content: new Map([
                 ["en", "Kidney disorder"],
@@ -1718,7 +1718,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '870', role: 'option',
+            key: '6', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '864'),
             content: new Map([
                 ["en", "An immunocompromising condition (e.g. splenectomy, organ transplant, acquired immune deficiency, cancer treatment)"],
@@ -1732,7 +1732,7 @@ const q_20_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_21_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1765,21 +1765,21 @@ const q_21_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '871', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes"],
                 ["de", "Ja"],
                 ["fr", "Oui"],
             ])
         }, {
-            key: '872', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
                 ["fr", "Non"],
             ])
         }, {
-            key: '873', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
                 ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten."],
@@ -1792,7 +1792,7 @@ const q_21_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_22_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q12b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1826,28 +1826,28 @@ const q_22_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '874', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "First trimester (week 1-12)"],
                 ["de", "Erstes Trimester (Woche 1-12)"],
                 ["fr", "Premier trimestre (semaine 1-12)"],
             ])
         }, {
-            key: '875', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Second trimester (week 13-28)"],
                 ["de", "Zweites Trimester (Woche 13-28)"],
                 ["fr", "Deuxième trimestre (semaine 13-28)"],
             ])
         }, {
-            key: '876', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Third trimester (week 29-delivery)"],
                 ["de", "Drittes Trimester (Woche 29 bis Entbindung)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
             ])
         }, {
-            key: '877', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
                 ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten"],
@@ -1860,7 +1860,7 @@ const q_22_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_23_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1910,35 +1910,35 @@ const q_23_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '878', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
                 ["fr", "Non"],
             ])
         }, {
-            key: '879', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, occasionally"],
                 ["de", "Ja, manchmal"],
                 ["fr", "Oui, de temps en temps"],
             ])
         }, {
-            key: '880', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Yes, daily, fewer than 10 times a day"],
                 ["de", "Ja, täglich, weniger als 10 mal am Tag"],
                 ["fr", " Oui, quotidiennement, moins de 10 fois par jour"],
             ])
         }, {
-            key: '881', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "Yes, daily, 10 or more times a day"],
                 ["de", "Ja, täglich, 10 mal oder öfter am Tag"],
                 ["fr", " Oui, quotidiennement, 10 fois ou plus par jour"],
             ])
         }, {
-            key: '882', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "Dont know/would rather not answer"],
                 ["de", "Ich weiß nicht bzw. ich möchte das nicht beantworten"],
@@ -1951,7 +1951,7 @@ const q_23_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2013,7 +2013,7 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '883', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
             content: new Map([
                 ["en", "Hay fever"],
@@ -2021,7 +2021,7 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Rhume des foins"],
             ])
         }, {
-            key: '884', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
             content: new Map([
                 ["en", "Allergy against house dust mite"],
@@ -2029,7 +2029,7 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Allergie aux acariens"],
             ])
         }, {
-            key: '885', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
             content: new Map([
                 ["en", "Allergy against domestic animals or pets"],
@@ -2037,7 +2037,7 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Allergie à des animaux domestiques"],
             ])
         }, {
-            key: '886', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '887'),
             content: new Map([
                 ["en", "Other allergies that cause respiratory symptoms (e.g. sneezing, runny eyes)"],
@@ -2045,7 +2045,7 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", " Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
             ])
         }, {
-            key: '887', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "I do not have an allergy that causes respiratory symptoms"],
                 ["de", "Ich habe keine Allergie, die Atemwegssymptome verursacht"],
@@ -2058,7 +2058,7 @@ const q_24_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2083,7 +2083,14 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '889', role: 'option',
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No special diet"],
+                ["de", "Keine spezielle Ernährung"],
+                ["fr", "Non, pas de régime particulier"],
+            ])
+        }, {
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
             content: new Map([
                 ["en", "Vegetarian"],
@@ -2091,7 +2098,7 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Végétarien"],
             ])
         }, {
-            key: '890', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
             content: new Map([
                 ["en", "Veganism"],
@@ -2099,7 +2106,7 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Végétalien"],
             ])
         }, {
-            key: '891', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
             content: new Map([
                 ["en", "Low-calorie"],
@@ -2107,19 +2114,12 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Basse-calorie"],
             ])
         }, {
-            key: '892', role: 'input',
+            key: '4', role: 'input',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '888'),
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
                 ["fr", "Autre"],
-            ])
-        }, {
-            key: '888', role: 'option',
-            content: new Map([
-                ["en", "No special diet"],
-                ["de", "Keine spezielle Ernährung"],
-                ["fr", "Non, pas de régime particulier"],
             ])
         },
     ]);
@@ -2128,7 +2128,7 @@ const q_25_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2153,7 +2153,15 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '894', role: 'option',
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
             content: new Map([
                 ["en", "Yes, one or more dogs"],
@@ -2162,7 +2170,7 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '895', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
             content: new Map([
                 ["en", "Yes, one or more cats"],
@@ -2171,7 +2179,7 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '896', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
             content: new Map([
                 ["en", "Yes, one or more birds"],
@@ -2180,20 +2188,12 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '897', role: 'option',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '893'),
             content: new Map([
                 ["en", "Yes, one ore more other animals"],
                 ["de", "Ja, ein oder mehrere andere Tiere"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
-            ])
-        },
-        {
-            key: '893', role: 'option',
-            content: new Map([
-                ["en", "No"],
-                ["de", "Nein"],
-                ["fr", "Non"],
             ])
         },
     ]);
@@ -2202,7 +2202,7 @@ const q_26_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q_27_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q17_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2227,42 +2227,42 @@ const q_27_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            key: '898', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "On radio or television"],
                 ["de", "Im Radio oder Fernsehen"],
                 ["fr", "A la radio ou à la télévision"],
             ])
         }, {
-            key: '899', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "In the newspaper or in a magazine"],
                 ["de", "In der Zeitung oder in einem Magazin"],
                 ["fr", "Dans un journal ou un magazine"],
             ])
         }, {
-            key: '900', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Via an internet site (search engine or link)"],
                 ["de", "Über eine Internetseite (Suchmaschine oder Link)"],
                 ["fr", "Sur internet"],
             ])
         }, {
-            key: '901', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "By poster"],
                 ["de", "Über ein Poster"],
                 ["fr", "Sur une affiche"],
             ])
         }, {
-            key: '902', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "Via family or friends"],
                 ["de", "Über Freunde oder Familie"],
                 ["fr", "Par ma famille ou des amis"],
             ])
         }, {
-            key: '903', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "Via school or work"],
                 ["de", "Über Schule oder Arbeit"],
