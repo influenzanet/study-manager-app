@@ -901,13 +901,41 @@ const qcov8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov8 TODO"],
+            ["en", "In the 14 days before your symptoms started, have you been in close contact with someone presenting symptoms of COVID-19? (Symptoms of COVID-19 include: fever or chills, cough, sore throat, shortness of breath, sore muscles and headache.)"],
+            ["de", "Hatten Sie in den 14 Tagen vor dem Auftreten Ihrer Symptome engen Kontakt mit jemandem, der Symptome von COVID-19 aufweist?"],
+            ["fr", "Dans les 14 jours avant l’apparition de vos symptômes, avez-vous été en contact étroit avec une personne présentant des symptômes du COVID-19 ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Don’t Know"],
+                ["de", "Ich weiss es nicht."],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -915,13 +943,41 @@ const qcov8b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov8b TODO"],
+            ["en", "Do you live in the same household as that person?"],
+            ["de", "Wohnen Sie im selben Haushalt wie diese Person?"],
+            ["fr", "Vivez-vous sous le même toit que cette personne ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Don’t Know"],
+                ["de", "Ich weiss es nicht."],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -1172,9 +1228,68 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Fever is very important for diagnosing flu, so we want to know when this started."],
+                    ["de", "Fieber ist sehr wichtig für die Diagnose von Grippe. Aus diesem Grund möchten wir gern wissen, wann dieses angefangen hat."],
+                    ["fr", "La fièvre est très importante pour le diagnostic de la grippe. Nous voulons donc savoir quand cela a commencé."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please give as accurate an estimate as possible."],
+                    ["de", "Bitte geben Sie Ihre Abschätzung so genau wie möglich an."],
+                    ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
+            },
+            content: new Map([
+                ["en", "Choose date"],
+                ["de", "Wählen Sie ein Datum"],
+                ["fr", "Sélectionner la date"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't rember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2231,13 +2346,182 @@ const qcov7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov7 TODO"],
+            ["en", "Because of your symptoms, have you taken or strengthened one or more of the following measures?"],
+            ["de", "Haben Sie aufgrund Ihrer Symptome eine oder mehrere der folgenden Massnahmen ergriffen oder verstärkt?"],
+            ["fr", "En raison de vos symptômes, avez-vous adopté ou renforcé une ou plusieurs des mesure(s) suivante(s) ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Regularly wash or disinfect hands"],
+                ["de", "regelmässiges Waschen oder Desinfizieren der Hände"],
+                ["fr", "Vous laver ou désinfecter les mains régulièrement"],
+            ])
+        }, {
+            key: '2',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Use a disposable tissue"],
+                ["de", "Verwendung eines Taschentuchs"],
+                ["fr", "Utiliser un mouchoir à usage unique"],
+            ])
+        }, {
+            key: '3',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Cough or sneeze into your elbow"],
+                ["de", "in den Ellenbogen husten oder niesen"],
+                ["fr", "Tousser ou éternuer dans votre coude"],
+            ])
+        }, {
+            key: '4',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Wear a disposable mask"],
+                ["de", "Tragen einer Einwegmaske"],
+                ["fr", "Porter un masque jetable"],
+            ])
+        },
+        {
+            key: '5',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Avoid shaking hands"],
+                ["de", "Vermeiden von Händeschütteln"],
+                ["fr", "Eviter de serrer les mains"],
+            ])
+        },
+        {
+            key: '11',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Stop greeting by hugging and/or kissing on both cheeks"],
+                ["de", "durch Umarmen und/oder Küssen zu grüssen aufgehört"],
+                ["fr", "Eviter de faire la bise et/ou serrer les gens dans vos bras"],
+            ])
+        },
+        {
+            key: '6',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Limit your use of public transport"],
+                ["de", "Ihre Nutzung der öffentlichen Verkehrsmittel eingeschränkt"],
+                ["fr", "Limiter votre utilisation des transports en commun"],
+            ])
+        },
+        {
+            key: '7',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Avoid gatherings (going to the theater, cinema, stadium, supermarket, etc.)"],
+                ["de", "Vermeiden von Versammlungen (Ausflüge ins Theater, Kino, Stadion, in den Supermarkt usw.)"],
+                ["fr", "Eviter les rassemblements (sortie au théâtre, au cinéma, au stade, au supermarché …)"],
+            ])
+        },
+        {
+            key: '8',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Stay at home"],
+                ["de", "zu Hause bleiben"],
+                ["fr", "Rester chez vous"],
+            ])
+        },
+        {
+            key: '9',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Telework or increase your number of telework days"],
+                ["de", "Telearbeit oder Erhöhung der Anzahl von Telearbeitstagen"],
+                ["fr", "Télétravailler ou augmenter votre nombre de jours de télétravail"],
+            ])
+        },
+        {
+            key: '10',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Avoid travel outside your own country or region"],
+                ["de", "Vermeiden der Reisen ausserhalb Ihres eigenen Landes oder Ihrer Region"],
+                ["fr", "Eviter de voyager à l'extérieur de votre pays ou région"],
+            ])
+        },
+        {
+            key: '13',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Have your food-shopping delivered by a store or a friend/family member"],
+                ["de", "sich Ihre Einkäufe von einem Laden oder einem Freund/Familienmitglied liefern gelassen"],
+                ["fr", "Vous faire livrer vos courses par un magasin ou un ami/membre de la famille"],
+            ])
+        },
+        {
+            key: '14',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Avoid seeing friends and family"],
+                ["de", "Freunde und Familie vermieden zu sehen"],
+                ["fr", "Eviter de voir vos amis et famille"],
+            ])
+        }, {
+            key: '15',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Avoid being in contact with people over 65 years or with a chronic disease"],
+                ["de", "Den Kontakt mit Menschen über 65 Jahre oder mit einer chronischen Krankheit vermieden"],
+                ["fr", "Eviter le contact avec des personnes de plus de 65 ans ou avec une maladie chronique"],
+            ])
+        },
+        {
+            key: '16',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '12'),
+            content: new Map([
+                ["en", "Avoid being in contact with children"],
+                ["de", "Den Kontakt mit Kindern vermieden"],
+                ["fr", "Eviter le contact avec les enfants"],
+            ])
+        },
+        {
+            key: '12',
+            role: 'option',
+            content: new Map([
+                ["en", "None of these measures"],
+                ["de", "Keine dieser Massnahmen"],
+                ["fr", "Aucune de ces mesures"],
+            ])
+        },
+
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
