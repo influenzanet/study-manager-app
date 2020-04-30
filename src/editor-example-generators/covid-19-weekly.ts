@@ -1568,6 +1568,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
             ["de", "Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
+            ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
         ]))
     );
     editor.setHelpGroupComponent(
@@ -1576,6 +1577,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1583,6 +1585,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To find out whether people contact the health services because of their symptoms."],
                     ["de", "Um herauszufinden, ob Menschen aufgrund Ihrer Symptome Kontakt zu gesundheitlichen Einrichtungen suchen."],
+                    ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1590,6 +1593,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1597,6 +1601,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
                     ["de", "Wählen Sie alle Optionen, die zutreffen. Falls Sie es vorhaben, wählen Sie bitte die letzte Option."],
+                    ["fr", "Merci de cocher toutes les réponses qui s'appliquent . Si vous avez rendez-vous prochainement, merci de cocher l'option finale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1612,6 +1617,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
+                ["fr", "Non"],
             ])
         },
         {
@@ -1620,6 +1626,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "GP or GP's practice nurse"],
                 ["de", "Allgemeinarzt oder Allgemeinarztassisten/in"],
+                ["fr", "Médecin généraliste"],
             ])
         },
         {
@@ -1628,6 +1635,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Hospital accident & emergency department / out of hours service"],
                 ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
+                ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
             ])
         },
         {
@@ -1636,6 +1644,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Hospital admission"],
                 ["de", "Einlieferung ins Krankenhaus"],
+                ["fr", "Consultation ambulatoire à l'hôpital"],
             ])
         },
         {
@@ -1644,6 +1653,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Other medical services"],
                 ["de", "Andere medizinische Einrichtungen"],
+                ["fr", "Autre service médical"],
             ])
         },
         {
@@ -1652,6 +1662,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No, but I have an appointment scheduled"],
                 ["de", "Nein, aber ich habe schon einen Termin"],
+                ["fr", "Non, mais j'ai rendez-vous prochainement"],
             ])
         },
     ]);
@@ -1665,6 +1676,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
             ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie das erste Mal eine medizinische Einrichtung BESUCHT?"],
+            ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
     );
     editor.setHelpGroupComponent(
@@ -1673,6 +1685,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1680,6 +1693,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "To find out how quickly people with symptoms are seen by the health services."],
                     ["de", "Um herauszufinden, wie schnell Menschen mit Symptomen von gesundheitlichen Einrichtungen wahrgenommen werden."],
+                    ["fr", "Pour savoir à quelle vitesse les personnes présentant des symptômes sont vus par les services de santé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1687,6 +1701,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1694,6 +1709,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
                     ["de", "Geben Sie nur die Zeit an, bis Sie zum ERSTEN MAL Kontakt zu gesundheitlichen Einrichtungen aufgenommen haben."],
+                    ["fr", "En saisissant le temps séparant l'apparition de vos symptômes et votre PREMIER contact avec les services de santé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1712,36 +1728,42 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 key: '0', role: 'option', content: new Map([
                     ["en", "Same day"],
                     ["de", "Am gleichen Tag"],
+                    ["fr", "Jour même"],
                 ]),
             },
             {
                 key: '1', role: 'option', content: new Map([
                     ["en", "1 day"],
                     ["de", "1 Tag"],
+                    ["fr", "1 jour"],
                 ]),
             },
             {
                 key: '2', role: 'option', content: new Map([
                     ["en", "2 days"],
                     ["de", "2 Tage"],
+                    ["fr", "2 jours"],
                 ]),
             },
             {
                 key: '3', role: 'option', content: new Map([
                     ["en", "3 days"],
                     ["de", "3 Tage"],
+                    ["fr", "3 jours"],
                 ]),
             },
             {
                 key: '4', role: 'option', content: new Map([
                     ["en", "4 days"],
                     ["de", "4 Tage"],
+                    ["fr", "4 jours"],
                 ]),
             },
             {
                 key: '5', role: 'option', content: new Map([
                     ["en", "5-7 days"],
                     ["de", "5-7 Tage"],
+                    ["fr", "5–7 jours"],
                 ]),
             },
             {
@@ -1752,8 +1774,16 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
             },
             {
                 key: '7', role: 'option', content: new Map([
+                    ["en", "More than 7 days"],
+                    ["de", "Mehr als 7 Tage"],
+                    ["fr", "Plus de 7 jours"],
+                ]),
+            },
+            {
+                key: '8', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
                     ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                    ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ]),
             },
         ]
@@ -1766,6 +1796,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                     key: 'col0', role: 'text', content: new Map([
                         ["en", "Medical Service"],
                         ["de", "Medizinische Einrichtungen"],
+                        ["fr", "Service médical"],
                     ]),
                 },
                 {
@@ -1779,6 +1810,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP or GP'r practice nurse"],
                         ["de", "Allgemeinarzt oder Allgemeinarztassistent/in"],
+                        ["fr", "Médecin généraliste"],
                     ]),
                 },
                 { ...ddOptions }
@@ -1791,6 +1823,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Hospital admission"],
                         ["de", "Einlieferung ins Krankenhaus"],
+                        ["fr", "Consultation ambulatoire à l'hôpital"],
                     ]),
                 },
                 { ...ddOptions }
@@ -1803,6 +1836,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Hospital accident & department/out of hours service"],
                         ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
+                        ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
                     ]),
                 },
                 { ...ddOptions }
@@ -1815,6 +1849,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Other medical services"],
                         ["de", "Andere medizinische Einrichtungen"],
+                        ["fr", "Autre service médical"],
                     ]),
                 },
                 { ...ddOptions }
@@ -1834,6 +1869,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you contact via TELEPHONE or INTERNET any of medical services?"],
             ["de", "Haben Sie aufgrund Ihrer Syptome irgendwelche medizinischen Einrichtungen per TELEFON oder INTERNET kontaktiert?"],
+            ["fr", "En raison de vos symptômes, avez-vous contacté un service médical par téléphone ou par Internet?"],
         ]))
     );
     editor.setHelpGroupComponent(
@@ -1842,6 +1878,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1849,6 +1886,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To find out whether people contact the health services because of their symptoms."],
                     ["de", "Um herauszufinden, ob Menschen aufgrund Ihrer Symptome medizinische Einrichtungen kontaktieren."],
+                    ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1856,6 +1894,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1863,6 +1902,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick all options that apply"],
                     ["de", "Wählen Sie alle Optionen, die zutreffen."],
+                    ["fr", "Cochez toutes les options qui s'appliquent"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1878,6 +1918,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
+                ["fr", "Non"],
             ])
         },
         {
@@ -1886,6 +1927,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "GP - spoke to receptionist only"],
                 ["de", "Allgemeinarzt (habe nur mit der Empfangsperson gesprochen)"],
+                ["fr", "Médecin généraliste – Echange avec la réceptionniste uniquement"],
             ])
         },
         {
@@ -1894,6 +1936,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "GP - spoke to doctor or nurse"],
                 ["de", "Allgemeinarzt (habe mit Arzt oder Assistent/in gesprochen)"],
+                ["fr", "Médecin généraliste – Echange avec le médecin ou l'infirmière"],
             ])
         },
         {
@@ -1902,6 +1945,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "NHS Direct / NHS 24 / NHS Choices"],
                 ["de", "Bezug von Informationen über Telefon oder Internet, direkt beim Gesundheitsministerium"],
+                ["fr", "Service de conseil santé par téléphone (par exemple : compagnie d'assurance)"],
             ])
         },
         {
@@ -1918,6 +1962,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
+                ["fr", "Autre"],
             ])
         },
     ]);
@@ -1931,6 +1976,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first contact a medical service via TELEPHONE or INTERNET?"],
             ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie eine medizinische Einrichtung das erste Mal per TELEFON oder INTERNET kontaktiert?"],
+            ["fr", "Combien de temps après l'apparition de vos symptômes avez-vous contacté un service médical par téléphone ou par Internet?"],
         ]))
     );
     editor.setHelpGroupComponent(
@@ -1939,6 +1985,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1946,6 +1993,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                 content: new Map([
                     ["en", "To find out how quickly people with symptoms contact the health services."],
                     ["de", "Um herauszufinden, wie schnell Menschen mit Symptomen Kontakt zu medizinischen Einrichtungen aufnehmen."],
+                    ["fr", "Pour savoir à quelle vitesse la population présentant des symptômes entre en contact avec les services de santé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1953,6 +2001,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -1960,6 +2009,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
                     ["de", "Geben Sie nur die Zeit an, nach der Sie das ERSTE MAL Kontakt aufgenommen haben."],
+                    ["fr", "En saisissant le temps séparant l'apparition de vos symptômes et votre PREMIER contact avec les services de santé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -1975,49 +2025,57 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
             {
                 key: '0', role: 'option', content: new Map([
                     ["en", "Same day"],
-                    ["de", "Am gleichen Tag"],
+                    ["de", "Am selben Tag"],
+                    ["fr", "Le jour même"],
                 ]),
             },
             {
                 key: '1', role: 'option', content: new Map([
                     ["en", "1 day"],
                     ["de", "1 Tag"],
+                    ["fr", "1 jour"],
                 ]),
             },
             {
                 key: '2', role: 'option', content: new Map([
                     ["en", "2 days"],
                     ["de", "2 Tage"],
+                    ["fr", "2 jours"],
                 ]),
             },
             {
                 key: '3', role: 'option', content: new Map([
                     ["en", "3 days"],
                     ["de", "3 Tage"],
+                    ["fr", "3 jours"],
                 ]),
             },
             {
                 key: '4', role: 'option', content: new Map([
                     ["en", "4 days"],
                     ["de", "4 Tage"],
+                    ["fr", "4 jours"],
                 ]),
             },
             {
                 key: '5', role: 'option', content: new Map([
                     ["en", "5-7 days"],
                     ["de", "5-7 Tage"],
+                    ["fr", "5-7 jours"],
                 ]),
             },
             {
                 key: '6', role: 'option', content: new Map([
                     ["en", "More than 7 days"],
                     ["de", "Mehr als 7 Tage"],
+                    ["fr", "Plus de 7 jours"],
                 ]),
             },
             {
                 key: '7', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
                     ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                    ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ]),
             },
         ]
@@ -2044,6 +2102,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP - spoke to receptionist only"],
                         ["de", "Allgemeinarzt (habe nur mit Empfangsperson gesprochen)"],
+                        ["fr", "Médecin généraliste – Echange avec la réceptionniste uniquement"],
                     ]),
                 },
                 { ...ddOptions },
@@ -2056,6 +2115,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP – spoke to doctor or nurse"],
                         ["de", "Allgemeinarzt (habe mit Arzt oder Assistent/in gesprochen)"],
+                        ["fr", "Médecin généraliste – Echange avec le médecin ou l'infirmière"],
                     ]),
                 },
                 { ...ddOptions },
@@ -2068,6 +2128,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "NHS Direct / NHS 24 / NHS Choices"],
                         ["de", "Bezug von Informationen über Telefon oder Internet, direkt beim Gesundheitsministerium"],
+                        ["fr", "Service de conseil santé par téléphone (par exemple : compagnie d'assurance)"],
                     ]),
                 },
                 { ...ddOptions },
@@ -2080,6 +2141,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Other"],
                         ["de", "Andere"],
+                        ["fr", "Autre"],
                     ]),
                 },
                 { ...ddOptions },
