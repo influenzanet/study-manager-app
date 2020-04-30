@@ -110,7 +110,25 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // Qcov3 14 days contact with Covid-19 --------------------------------------
     const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
     if (!qcov3) { return; }
-    survey.updateSurveyItem(qcov3_def(qcov3, q2.key, anySymptomSelected));
+    survey.updateSurveyItem(qcov3_def(qcov3));
+    // -----------------------------------------
+
+    // Qcov3b 14 days contact with Covid-19 --------------------------------------
+    const qcov3b = survey.addNewSurveyItem({ itemKey: 'Qcov3b' }, rootKey);
+    if (!qcov3b) { return; }
+    survey.updateSurveyItem(qcov3b_def(qcov3b));
+    // -----------------------------------------
+
+    // Qcov8 14 days contact COVID-19 before symptoms -------------------------------------- TODO
+    const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, rootKey);
+    if (!qcov8) { return; }
+    survey.updateSurveyItem(qcov8_def(qcov8, anySymptomSelected));
+    // -----------------------------------------
+
+    // Qcov8b same household -------------------------------------- TODO
+    const qcov8b = survey.addNewSurveyItem({ itemKey: 'Qcov8b' }, rootKey);
+    if (!qcov8b) { return; }
+    survey.updateSurveyItem(qcov8b_def(qcov8b, anySymptomSelected));
     // -----------------------------------------
 
     // Q3 when first symptoms --------------------------------------
@@ -191,18 +209,6 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q7b_def(q7b, q7.key));
     // -----------------------------------------
 
-    // Qcov4 call COVID-19 emergency line --------------------------------------
-    const qcov4 = survey.addNewSurveyItem({ itemKey: 'Qcov4' }, contactGroupKey);
-    if (!qcov4) { return; }
-    survey.updateSurveyItem(qcov4_def(qcov4));
-    // -----------------------------------------
-
-    // Qcov5 call general emergency line -------------------------------------- TODO
-    const qcov5 = survey.addNewSurveyItem({ itemKey: 'Qcov5' }, contactGroupKey);
-    if (!qcov5) { return; }
-    survey.updateSurveyItem(qcov5_def(qcov5));
-    // -----------------------------------------
-
     // Q8 contacted medical service --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, contactGroupKey);
     if (!q8) { return; }
@@ -215,9 +221,39 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(q8b_def(q8b, q8.key));
     // -----------------------------------------
 
+    // Qcov4 call COVID-19 emergency line --------------------------------------
+    const qcov4 = survey.addNewSurveyItem({ itemKey: 'Qcov4' }, contactGroupKey);
+    if (!qcov4) { return; }
+    survey.updateSurveyItem(qcov4_def(qcov4));
+    // -----------------------------------------
+
+    // Qcov5 call general emergency line -------------------------------------- TODO
+    const qcov5 = survey.addNewSurveyItem({ itemKey: 'Qcov5' }, contactGroupKey);
+    if (!qcov5) { return; }
+    survey.updateSurveyItem(qcov5_def(qcov5));
+    // -----------------------------------------
+
+    // analysis if infection --------------------------------------
+    const qcov16 = survey.addNewSurveyItem({ itemKey: 'Qcov16' }, rootKey);
+    if (!qcov16) { return; }
+    survey.updateSurveyItem(qcov16_def(qcov16));
+    // -----------------------------------------
+
+    // test PCR result --------------------------------------
+    const qcov16b = survey.addNewSurveyItem({ itemKey: 'Qcov16b' }, rootKey);
+    if (!qcov16b) { return; }
+    survey.updateSurveyItem(qcov16b_def(qcov16b));
+    // -----------------------------------------
+
+    // test serological result --------------------------------------
+    const qcov16c = survey.addNewSurveyItem({ itemKey: 'Qcov16c' }, rootKey);
+    if (!qcov16c) { return; }
+    survey.updateSurveyItem(qcov16c_def(qcov16c));
+    // -----------------------------------------
     // <----- contact/visit group
 
     // survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
+
     // Q9 took medication -------------------------------------- TODO
     const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
     if (!q9) { return; }
@@ -264,12 +300,6 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     const qcov7 = survey.addNewSurveyItem({ itemKey: 'Qcov7' }, rootKey);
     if (!qcov7) { return; }
     survey.updateSurveyItem(qcov7_def(qcov7, anySymptomSelected));
-    // -----------------------------------------
-
-    // Qcov8 14 days contact COVID-19 before symptoms -------------------------------------- TODO
-    const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, rootKey);
-    if (!qcov8) { return; }
-    survey.updateSurveyItem(qcov8_def(qcov8, anySymptomSelected));
     // -----------------------------------------
 
     // Q11 think cause of symptoms -------------------------------------- TODO
@@ -338,10 +368,25 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(qcov15_def(qcov15));
     // -----------------------------------------
 
+
+    // Qcov17 lockdown extended, would follow --------------------------------------
+    const qcov17 = survey.addNewSurveyItem({ itemKey: 'Qcov17' }, rootKey);
+    if (!qcov17) { return; }
+    survey.updateSurveyItem(qcov17_def(qcov17));
+    // -----------------------------------------
+
+    // Qcov17b lockdown extended, would follow --------------------------------------
+    const qcov17b = survey.addNewSurveyItem({ itemKey: 'Qcov17b' }, rootKey);
+    if (!qcov17b) { return; }
+    survey.updateSurveyItem(qcov17b_def(qcov17b));
+    // -----------------------------------------
+
     // survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
     console.log(survey.getSurvey());
     return survey.getSurvey();
 }
+
+
 
 const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -764,7 +809,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     return editor.getItem();
 }
 
-const qcov3_def = (itemSkeleton: SurveyItem, q2: string, anySymptomSelected: Expression): SurveyItem => {
+const qcov3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -806,6 +851,53 @@ const qcov3_def = (itemSkeleton: SurveyItem, q2: string, anySymptomSelected: Exp
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+
+const qcov3b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov3b TODO"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "TODO"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+
+
+const qcov8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov8 TODO"],
+        ]))
+    );
+
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
+    return editor.getItem();
+}
+
+const qcov8b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov8b TODO"],
+        ]))
+    );
+
+    editor.addDisplayComponent({
+        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
+    })
     return editor.getItem();
 }
 
@@ -1529,7 +1621,7 @@ const qcov4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Qcov4 TODO"],
         ]))
     );
 
@@ -1543,7 +1635,7 @@ const qcov5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Qcov5 TODO"],
         ]))
     );
 
@@ -1964,12 +2056,61 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
     return editor.getItem();
 }
 
+const qcov16_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov16 TODO"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "TODO"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+const qcov16b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov16b TODO"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "TODO"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+
+const qcov16c_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov16c TODO"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "TODO"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
 
 const q9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Q9 TODO"],
         ]))
     );
 
@@ -1982,7 +2123,7 @@ const q9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Q9b TODO"],
         ]))
     );
 
@@ -1996,7 +2137,7 @@ const q14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Q14 TODO"],
         ]))
     );
 
@@ -2010,7 +2151,7 @@ const q10_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Q10 TODO"],
         ]))
     );
 
@@ -2024,7 +2165,7 @@ const q10b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Q10b TODO"],
         ]))
     );
 
@@ -2038,7 +2179,7 @@ const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Q10c TODO"],
         ]))
     );
 
@@ -2052,7 +2193,7 @@ const qcov6_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Qcov6 TODO"],
         ]))
     );
 
@@ -2066,21 +2207,7 @@ const qcov7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
-        ]))
-    );
-
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    return editor.getItem();
-}
-
-const qcov8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Qcov7 TODO"],
         ]))
     );
 
@@ -2094,13 +2221,114 @@ const q11_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "What do you think is causing your symptoms?"],
+            ["de", "Was halten Sie für die Ursache Ihrer Symptome?"],
+            ["fr", "Quelle est selon vous l'origine de vos symptômes ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To help find out if our assessment of your illness based on your symptoms matches what you believe to be the cause. You might have a better idea of what is causing your illness than our computer algorithms."],
+                    ["de", "Um herauszufinden, ob Ihre Einschätzung der Ursache mit der tatsächlichen Ursache übereinstimmt. Sie könnten eine bessere Vorstellung der Ursache haben, als unsere Computeralgorithmen."],
+                    ["fr", "Pour nous aider à trouver si notre évaluation de votre maladie en fonction de vos symptômes correspond à ce que vous croyez en être la cause. Vous pourriez avoir une meilleure idée de ce qui est la cause de votre maladie que nos algorithmes informatiques ."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment devez-vous répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "If you are reasonably sure about what is causing your symptoms, please tick the appropriate box. Otherwise, please tick “I don’t know”."],
+                    ["de", "Falls Sie sich sicher genug sind, was die Ursache Ihrer Symptome ist, wählen Sie die entsprechenden Option. Wählen Sie ansonsten „Ich weiss nicht“."],
+                    ["fr", "Si vous êtes raisonnablement sûr de ce qui est la cause de vos symptômes, s'il vous plaît cochez la case appropriée. Sinon, cochez la case «Je ne sais pas»."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Flu or flu-like illness"],
+                ["de", "Grippe oder grippeähnliche Krankheit"],
+                ["fr", " Grippe ou syndrome pseudo-grippal"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Common cold"],
+                ["de", "Gewöhnliche Erkältung"],
+                ["fr", "Rhume / refroidissement"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Allergy/hay fever"],
+                ["de", "Allergie/ Heuschnupfen"],
+                ["fr", " Allergie / rhume des foins"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Ashtma"],
+                ["de", "Asthma"],
+                ["fr", "Asthme"],
+            ])
+        }, {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Gastroenteritis/gastric flu"],
+                ["de", "Magen-Darm-Grippe"],
+                ["fr", "Gastro-entérite / grippe intestinale"],
+            ])
+        }, {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "New coronavirus (Covid-19)"],
+                ["de", "Neues Coronavirus (Covid-19)"],
+                ["fr", "Nouveau coronavirus (Covid-19)"],
+            ])
+        }, {
+            key: '6', role: 'input',
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+                ["fr", "Autre"],
+            ])
+        }, {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiss nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2108,13 +2336,90 @@ const qcov9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "For which reason(s) do you think you have this disease?"],
+            ["de", "Warum glauben Sie, dass Sie diese Krankheit haben?"],
+            ["fr", "Pour quelle(s) raison(s) pensez-vous avoir cette maladie ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "My doctor told me I have this disease"],
+                ["de", "Mein Arzt hat mir gesagt, dass ich diese Krankheit habe "],
+                ["fr", "Mon médecin m’a dit qu’il s’agissait de cette maladie "],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "I had a laboratory confirmation that I have this disease"],
+                ["de", "Die Krankheit wurde durch Labortests bestätigt "],
+                ["fr", "J’ai fait des analyses en laboratoire qui ont confirmé que j’ai cette maladie "],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "I had direct contact with a laboratory confirmed case"],
+                ["de", "Ich hatte direkten Kontakt mit einem im Labor bestätigten Fall "],
+                ["fr", "J’ai été en contact direct avec un cas confirmé en laboratoire"],
+            ])
+        },
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "I had close contact with someone for whom a doctor diagnosed this disease"],
+                ["de", "Ich hatte engen Kontakt zu jemandem, bei dem ein Arzt diese Krankheit diagnostiziert hat"],
+                ["fr", "J’ai été en contact étroit avec une personne pour laquelle le médecin a diagnostiqué cette maladie"],
+            ])
+        },
+        {
+            key: '5',
+            role: 'option',
+            content: new Map([
+                ["en", "I was in close contact with someone presenting symptoms of this disease"],
+                ["de", "Ich war in engem Kontakt mit jemandem, der Symptome dieser Krankheit zeigt"],
+                ["fr", "J’ai été en contact étroit avec une personne présentant des symptômes de cette maladie"],
+            ])
+        },
+        {
+            key: '6',
+            role: 'option',
+            content: new Map([
+                ["en", "I was at an event/location with a confirmed case"],
+                ["de", "Ich war bei einer Veranstaltung/einem Ort mit einem bestätigten Fall"],
+                ["fr", "J’ai été dans un lieu ou à un évènement où s’est rendu un cas confirmé "],
+            ])
+        },
+        {
+            key: '7',
+            role: 'option',
+            content: new Map([
+                ["en", "I think I have this disease"],
+                ["de", "Ich glaube, ich habe diese Krankheit "],
+                ["fr", "J’ai l’impression d’avoir cette maladie "],
+            ])
+        },
+
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2122,13 +2427,44 @@ const qcov9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "TODO"],
+            ["en", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
+            ["de", "Haben Sie Personen, die mit Ihnen in engem Kontakt waren, über Ihren Verdacht auf eine COVID-19-Infektion informiert?"],
+            ["fr", "Avez-vous informé les personnes avec qui vous avez eu un contact rapproché de votre suspicion de COVID-19 ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "Some of them"],
+                ["de", "Einige von ihnen "],
+                ["fr", "Quelques personnes, pas toutes"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2741,5 +3077,39 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
         }
     ])
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const qcov17_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov17 TODO"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "TODO"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+
+const qcov17b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Qcov17b TODO"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "TODO"],
+            ]))
+        }
+    )
     return editor.getItem();
 }
