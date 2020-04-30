@@ -151,26 +151,30 @@ interface RadioRow {
     }>
 
 }
+
+export interface ResponseRowCell {
+    role: 'label' | 'check' | 'input' | 'numberInput' | 'dropDownGroup',
+    key: string,
+    content?: Map<string, string>,
+    description?: Map<string, string>,
+    properties?: ComponentProperties;
+    // for dropdown group
+    items?: Array<{
+        role: 'option',
+        key: string,
+        content?: Map<string, string>,
+        disabled?: Expression;
+        displayCondition?: Expression;
+    }>
+}
+
+
 interface ResponseRow {
     role: 'responseRow',
     key: string;
     displayCondition?: Expression;
     disabled?: Expression;
-    cells: Array<{
-        role: 'label' | 'check' | 'input' | 'numberInput' | 'dropDownGroup',
-        key: string,
-        content?: Map<string, string>,
-        description?: Map<string, string>,
-        properties?: ComponentProperties;
-        // for dropdown group
-        items?: Array<{
-            role: 'option',
-            key: string,
-            content?: Map<string, string>,
-            disabled?: Expression;
-            displayCondition?: Expression;
-        }>
-    }>
+    cells: Array<ResponseRowCell>
 }
 
 type MatrixRow = HeaderRow | RadioRow | ResponseRow;

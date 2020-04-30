@@ -2,7 +2,7 @@ import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
-import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion } from "../editor-engine/utils/question-type-generator";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
@@ -338,7 +338,7 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     survey.updateSurveyItem(qcov11_def(qcov11, anySymptomSelected));
     // -----------------------------------------
 
-    // Qcov12 frequency go out for fresh air or exercise -------------------------------------- TODO
+    // Qcov12 frequency go out for fresh air or exercise --------------------------------------
     const qcov12 = survey.addNewSurveyItem({ itemKey: 'Qcov12' }, rootKey);
     if (!qcov12) { return; }
     survey.updateSurveyItem(qcov12_def(qcov12, anySymptomSelected));
@@ -1303,9 +1303,72 @@ const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Flu is often associated with a sudden onset of fever"],
+                    ["de", "Grippe wird oft mit einem plötzlichen Auftreten von Fieber in Verbindung gebracht."],
+                    ["fr", "La grippe est souvent associée à une apparition soudaine de fièvre."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick yes if your fever appeared over a few hours rather than gradually developing over a few days."],
+                    ["de", "Wählen Sie ja, falls Ihr Fieber über wenige Stunden aufgetreten ist, statt über einige Tage hinweg."],
+                    ["fr", "Cochez «oui» si votre fièvre est apparue en quelques heures plutôt que progressivement sur quelques jours."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiss nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -1319,9 +1382,72 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Flu often causes a high temperature. However, not everyone takes their temperature when they are ill."],
+                    ["de", "Grippe verursacht häufig eine hohe Körpertemperatur. Aber nicht jeder misst seine Körpertemperatur, wenn er krank ist."],
+                    ["fr", "La grippe est souvent associée à une température élevée. Cependant tout le monde ne prend pas sa température lorsqu'il est malade."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Answer yes, if you took your temperature using a thermometer."],
+                    ["de", "Wählen Sie ja, falls Sie Ihre Körpertemperatur mit einem Thermometer gemessen haben."],
+                    ["fr", "Cochez «oui» si vous avez pris votre température à l'aide d'un thermomètre."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiss nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -1335,9 +1461,103 @@ const q6d_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Flu often causes a high temperature."],
+                    ["de", "Grippe verursacht häufig eine hohe Körpertemperatur."],
+                    ["fr", "La grippe provoque souvent une température élevée."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Give the highest temperature you recorded during this episode of illness."],
+                    ["de", "Geben Sie die höchste Körpertemperatur an, die Sie während Ihrer Krankheit gemessen haben."],
+                    ["fr", "Indiquez la plus haute température que vous avez enregistrée au cours de cette épisode de maladie."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Below 37°C"],
+                ["de", "Unter 37°C"],
+                ["fr", "Moins de 37°C"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "37° - 37.4°C"],
+                ["de", "37°C - 37.4°C"],
+                ["fr", "37° – 37.4°C"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "37.5° - 37.9°C"],
+                ["de", "37.5° - 37.9°C"],
+                ["fr", "37.5° – 37.9°C"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "38° - 38.9°C"],
+                ["de", "38° - 38.9°C"],
+                ["fr", "38° – 38.9°C"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "39° - 39.9°C"],
+                ["de", "39° - 39.9°C"],
+                ["fr", "39° – 39.9°C"],
+            ])
+        }, {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "40°C or more"],
+                ["de", "40°C or more"],
+                ["fr", "40°C ou plus"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -1486,6 +1706,58 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
 
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const ddOptions: ResponseRowCell = {
+        key: 'col1', role: 'dropDownGroup', items: [
+            {
+                key: '0', role: 'option', content: new Map([
+                    ["en", "Same day"],
+                    ["de", "Am gleichen Tag"],
+                ]),
+            },
+            {
+                key: '1', role: 'option', content: new Map([
+                    ["en", "1 day"],
+                    ["de", "1 Tag"],
+                ]),
+            },
+            {
+                key: '2', role: 'option', content: new Map([
+                    ["en", "2 days"],
+                    ["de", "2 Tage"],
+                ]),
+            },
+            {
+                key: '3', role: 'option', content: new Map([
+                    ["en", "3 days"],
+                    ["de", "3 Tage"],
+                ]),
+            },
+            {
+                key: '4', role: 'option', content: new Map([
+                    ["en", "4 days"],
+                    ["de", "4 Tage"],
+                ]),
+            },
+            {
+                key: '5', role: 'option', content: new Map([
+                    ["en", "5-7 days"],
+                    ["de", "5-7 Tage"],
+                ]),
+            },
+            {
+                key: '6', role: 'option', content: new Map([
+                    ["en", "More than 7 days"],
+                    ["de", "Mehr als 7 Tage"],
+                ]),
+            },
+            {
+                key: '7', role: 'option', content: new Map([
+                    ["en", "I don't know/can't remember"],
+                    ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                ]),
+            },
+        ]
+    };
 
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
@@ -1509,59 +1781,9 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                         ["de", "Allgemeinarzt oder Allgemeinarztassistent/in"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
+                { ...ddOptions }
+            ],
+            // displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
         },
         {
             key: 'r2', role: 'responseRow', cells: [
@@ -1571,59 +1793,9 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                         ["de", "Einlieferung ins Krankenhaus"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+                { ...ddOptions }
+            ],
+            // displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
         },
         {
             key: 'r3', role: 'responseRow', cells: [
@@ -1633,59 +1805,9 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                         ["de", "Notaufnahme/ Notfallstelle/ Notdienst außerhalb der Öffnungszeiten"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
+                { ...ddOptions }
+            ],
+            // displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
         },
         {
             key: 'r4', role: 'responseRow', cells: [
@@ -1695,92 +1817,14 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                         ["de", "Andere medizinische Einrichtungen"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '4')
+                { ...ddOptions }
+            ],
+            //displayCondition: expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '4')
         },
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    return editor.getItem();
-}
-
-const qcov4_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Qcov4 TODO"],
-        ]))
-    );
-
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
-    return editor.getItem();
-}
-
-const qcov5_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Qcov5 TODO"],
-        ]))
-    );
-
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
     return editor.getItem();
 }
 
@@ -1845,7 +1889,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GP - spoke to doctor or nurse"],
@@ -1853,7 +1897,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '2', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "NHS Direct / NHS 24 / NHS Choices"],
@@ -1926,6 +1970,59 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
+    const ddOptions: ResponseRowCell = {
+        key: 'col1', role: 'dropDownGroup', items: [
+            {
+                key: '0', role: 'option', content: new Map([
+                    ["en", "Same day"],
+                    ["de", "Am gleichen Tag"],
+                ]),
+            },
+            {
+                key: '1', role: 'option', content: new Map([
+                    ["en", "1 day"],
+                    ["de", "1 Tag"],
+                ]),
+            },
+            {
+                key: '2', role: 'option', content: new Map([
+                    ["en", "2 days"],
+                    ["de", "2 Tage"],
+                ]),
+            },
+            {
+                key: '3', role: 'option', content: new Map([
+                    ["en", "3 days"],
+                    ["de", "3 Tage"],
+                ]),
+            },
+            {
+                key: '4', role: 'option', content: new Map([
+                    ["en", "4 days"],
+                    ["de", "4 Tage"],
+                ]),
+            },
+            {
+                key: '5', role: 'option', content: new Map([
+                    ["en", "5-7 days"],
+                    ["de", "5-7 Tage"],
+                ]),
+            },
+            {
+                key: '6', role: 'option', content: new Map([
+                    ["en", "More than 7 days"],
+                    ["de", "Mehr als 7 Tage"],
+                ]),
+            },
+            {
+                key: '7', role: 'option', content: new Map([
+                    ["en", "I don't know/can't remember"],
+                    ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                ]),
+            },
+        ]
+    };
+
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
             key: 'header', role: 'headerRow', cells: [
@@ -1933,6 +2030,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                     key: 'col0', role: 'text', content: new Map([
                         ["en", "Medical Service"],
                         ["de", "Medizinische Dienstleistung"],
+                        ["fr", "Service médical"],
                     ]),
                 },
                 {
@@ -1948,59 +2046,9 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                         ["de", "Allgemeinarzt (habe nur mit Empfangsperson gesprochen)"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
+                { ...ddOptions },
+            ],
+            //displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
         },
         {
             key: 'r2', role: 'responseRow', cells: [
@@ -2010,59 +2058,9 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                         ["de", "Allgemeinarzt (habe mit Arzt oder Assistent/in gesprochen)"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
+                { ...ddOptions },
+            ],
+            //displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
         },
         {
             key: 'r3', role: 'responseRow', cells: [
@@ -2072,59 +2070,9 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                         ["de", "Bezug von Informationen über Telefon oder Internet, direkt beim Gesundheitsministerium"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+                { ...ddOptions },
+            ],
+            //displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
         },
         {
             key: 'r4', role: 'responseRow', cells: [
@@ -2134,64 +2082,98 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
                         ["de", "Andere"],
                     ]),
                 },
-                {
-                    key: 'col1', role: 'dropDownGroup', items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "Same day"],
-                                ["de", "Am gleichen Tag"],
-                            ]),
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1 day"],
-                                ["de", "1 Tag"],
-                            ]),
-                        },
-                        {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2 days"],
-                                ["de", "2 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3 days"],
-                                ["de", "3 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4 days"],
-                                ["de", "4 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5-7 days"],
-                                ["de", "5-7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '6', role: 'option', content: new Map([
-                                ["en", "More than 7 days"],
-                                ["de", "Mehr als 7 Tage"],
-                            ]),
-                        },
-                        {
-                            key: '7', role: 'option', content: new Map([
-                                ["en", "I don't know/can't remember"],
-                                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
-                            ]),
-                        },
-                    ]
-                }
-            ], displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '5')
+                { ...ddOptions },
+            ],
+            //displayCondition: expWithArgs('responseHasKeysAny', [q8].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '5')
         },
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
+    return editor.getItem();
+}
+
+const qcov4_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Because of your symptoms, did you call [write the COVID-19 emergency line of your country]?"],
+            ["de", "Haben Sie wegen Ihrer Symptome die Infoline Coronavirus angerufen?"],
+            ["fr", "En raison de vos symptômes, avez-vous contacté par téléphone l'infoline Coronavirus mise en place par le gouvernement ?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiss nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const qcov5_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Because of your symptoms, did you call [write the general emergency line of your country]?"],
+            ["de", 'Haben Sie wegen Ihrer Symptome "144" angerufen?'],
+            ["fr", "En raison de vos symptômes, avez-vous contacté le 144 par téléphone?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "Ich weiss nicht"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2249,26 +2231,269 @@ const q9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Q9 TODO"],
+            ["en", "Did you take medication for these symptoms?"],
+            ["de", "Haben Sie Medikamente gegen die folgenden Symptome genommen?"],
+            ["fr", "Avez-vous pris des médicaments pour ces symptômes ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out who gets treated, and how effective treatment is."],
+                    ["de", "Um herauszufinden, wer behandelt wird und wie effektiv die Behandlung ist."],
+                    ["fr", "Pour savoir qui se fait soigner, et si le traitement est efficace."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment devez-vous répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Only record those medications that you used because of  this bout of illness. If you are on other medications because of a pre-existing illness then do not record these."],
+                    ["de", "Geben Sie nur die Medikamente an, die Sie aufgrund dieses Krankheitsschubs nehmen. Falls Sie auch Medikamente aufgrund von bereits existierenden Krankheiten nehmen, geben Sie diese bitte nicht an."],
+                    ["fr", "Ne saisissez que les médicaments que vous pris en raison de cette épisode de maladie. Si vous avez pris d'autres médicaments pour une maladie préexistante, alors ne les enregistrez pas."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
+                ["de", "Schmerzmittel (z.B. Paracetamol, Aspirin, Ibuprofen)"],
+                ["fr", "Médicaments contre la douleur ou la fièvre (p. ex. Paracetamol, Dafalgan, Ibuprofen, Aspirin, Pretuval, etc)"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Cough medication (e.g. expectorants)"],
+                ["de", "Erkältungsmittel (z.B. Schleimlöser)"],
+                ["fr", "Médicaments contre la toux (p. ex. expectorants)"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Antivirals (Tamiflu, Relenza)"],
+                ["de", "Antivirale Medikamente (Tamiflu, Relenza)"],
+                ["fr", "Antiviraux (par ex. Tamiflu)"],
+            ])
+        },
+        {
+            key: '4',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Antibiotics"],
+                ["de", "Antibiotica"],
+                ["fr", "Antibiotiques"],
+            ])
+        },
+        {
+            key: '7',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Homeopathy"],
+                ["de", "Homöopathie"],
+                ["fr", "Homéopathie"],
+            ])
+        },
+        {
+            key: '8',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Alternative medicine (essential oil, phytotherapy, etc.)"],
+                ["de", "Alternativmedizin (ätherisches Öl, Phytotherapie usw.)"],
+                ["fr", "Médecines douces (huiles essentielles, phytothérapie, etc.)"],
+            ])
+        },
+        {
+            key: '5',
+            role: 'input',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Other"],
+                ["de", "Andere"],
+                ["fr", "Autre"],
+            ])
+        },
+        {
+            key: '6',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
+        {
+            key: '0',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '6'),
+            content: new Map([
+                ["en", "No medication"],
+                ["de", "Keine Medikamente"],
+                ["fr", "Aucun médicament"],
+            ])
+        },
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
+
 const q9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Q9b TODO"],
+            ["en", "How long after the beginning of your symptoms did you start taking antiviral medication?"],
+            ["de", "Wie lange nach Beginn Ihrer Symptome habe Sie angefangen, antivirale Medikamente zu nehmen?"],
+            ["fr", "Combien de temps après le début de vos symptômes avez-vous commencé à prendre des médicaments antiviraux ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Antivirals are thought to be most effective if taken quickly after disease onset."],
+                    ["de", "Antivirale Medikamente gelten als am effektivsten, wenn Sie kurz nach Beginn der Krankheit eingenommen werden."],
+                    ["fr", "Les antiviraux sont supposés être plus efficace si pris rapidement après l'apparition de la maladie ."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment devez-vous répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report the time until  you first started taking antivirals (which may not be the same day as you got your prescription)."],
+                    ["de", "Geben Sie die Zeit an, nach der Sie das erste Mal angefangen haben, antivirale Medikamente zu nehmen (was möglicherweise nicht der selbe Tag ist, an dem Sie Ihnen verschrieben wurden)."],
+                    ["fr", "Signaler le temps écoulé jusqu'à ce que vous ayez commencé à prendre des antiviraux (qui peut ne pas être le même jour que celui ou vous avez obtenu votre prescription)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Same day (within 24 hours)"],
+                ["de", "Am selben Tag (innerhalb von 24 Stunden)"],
+                ["fr", "Le jour même (dans les 24 heures)"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "1 day"],
+                ["de", "1 Tag"],
+                ["fr", "1 jour"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "2 days"],
+                ["de", "2 Tage"],
+                ["fr", "2 jours"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "3 days"],
+                ["de", "3 Tage"],
+                ["fr", "3 jours"],
+            ])
+        }, {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "4 days"],
+                ["de", "4 Tage"],
+                ["fr", "4 jours"],
+            ])
+        }, {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "5-7 days"],
+                ["de", "5-7 Tage"],
+                ["fr", "5 – 7 jours"],
+            ])
+        }, {
+            key: '6', role: 'input',
+            content: new Map([
+                ["en", "More than 7 days"],
+                ["de", "Mehr als 7 Tage"],
+                ["fr", "Plus de 7 jours"],
+            ])
+        }, {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
+                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2276,13 +2501,33 @@ const q14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Q14 TODO"],
+            ["en", "Because of your symptoms, were you hospitalized?"],
+            ["de", "Wurden Sie wegen Ihrer Symptome ins Krankenhaus eingeliefert?"],
+            ["fr", "Avez-vous été hospitalisé à cause des symptômes que vous rapportez aujourd’hui ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2290,13 +2535,77 @@ const q10_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Q10 TODO"],
+            ["en", "Did you change your daily routine because of your illness?"],
+            ["de", "Haben Sie aufgrund Ihrer Krankheit Ihren Tagesablauf geändert?"],
+            ["fr", "Avez-vous changé votre routine quotidienne en raison de votre maladie ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Antivirals are thought to be most effective if taken quickly after disease onset."],
+                    ["de", "Antivirale Medikamente gelten als am effektivsten, wenn Sie kurz nach Beginn der Krankheit eingenommen werden."],
+                    ["fr", "Les antiviraux sont supposés être plus efficace si pris rapidement après l'apparition de la maladie ."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment devez-vous répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report the time until  you first started taking antivirals (which may not be the same day as you got your prescription)."],
+                    ["de", "Geben Sie die Zeit an, nach der Sie das erste Mal angefangen haben, antivirale Medikamente zu nehmen (was möglicherweise nicht der selbe Tag ist, an dem Sie Ihnen verschrieben wurden)."],
+                    ["fr", "Signaler le temps écoulé jusqu'à ce que vous ayez commencé à prendre des antiviraux (qui peut ne pas être le même jour que celui ou vous avez obtenu votre prescription)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, but I did not take time off work/school"],
+                ["de", "Ja, aber ich habe mich nicht von der Arbeit/ Schule abgemeldet"],
+                ["fr", "Oui, mais je n'ai pas pris congé au travail / à l'école"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Yes, I took time off work/school"],
+                ["de", "Ja, ich habe mich von der Schule/Arbeit abgemeldet"],
+                ["fr", "Oui, j'ai pris congé au travail / à l'école"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2304,13 +2613,77 @@ const q10b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Q10b TODO"],
+            ["en", "Are you still off work/school?"],
+            ["de", "Sind Sie immer noch von der Arbeit/ Schule abgemeldet?"],
+            ["fr", "Êtes-vous toujours en arrêt maladie ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To estimate the average  amount of time that people take off work, we need to know if people are still off work."],
+                    ["de", "Um die durchschnittliche Zeit abzuschätzen, für die sich Menschen von der Schule/ Arbeit abmelden, müssen wir wissen, ob sie immer noch abwesend sind."],
+                    ["fr", "Afin d'estimer le temps moyen que les gens passent en arrêt de travail."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment devez-vous répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick “yes” if you would be at work/school today if you were not currently ill."],
+                    ["de", "Wählen Sie „Ja“, wenn Sie heute in der Arbeit/ Schule wären, wenn Sie nicht gerade krank wären."],
+                    ["fr", "Cochez «oui» si vous vous seriez rendu au travail / à l'école aujourd'hui si vous n'étiez pas actuellement malade."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Other (e.g. I wouldn’t usually be at work/school today anyway)"],
+                ["de", "Andere (z.B. Ich wäre jetzt sowieso nicht in der Arbeit/Schule)"],
+                ["fr", "Autre (p. ex «Je ne me serais de toute façon pas rendu au travail / à l'école aujourd'hui»)"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2318,13 +2691,112 @@ const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Q10c TODO"],
+            ["en", "How long have you been off work/school?"],
+            ["de", "Wie lange sind Sie schon von der Arbeit/ Schule abwesend?"],
+            ["fr", "Combien de temps avez-vous été absent du travail / de l'école ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To measure the effect of symptoms on people’s daily lives."],
+                    ["de", "Um zu sehen, wie die Krankheitssymptome das tägliche Leben von Menschen beeinflussen."],
+                    ["fr", "Afin de mesurer l'effet des symptômes sur la vie quotidienne des gens."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["fr", "Comment devez-vous répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Only count the days that you normally would have been in school or work (e.g. don’t count weekends)."],
+                    ["de", "Zählen Sie nur die Tage, die Sie normalerweise in der Arbeit/ Schule gewesen wären (zählen sie z.B. keine Wochenenden)."],
+                    ["fr", "Ne comptez que les jours durant lesquels vous seriez normalement allé à l'école ou au travail (par exemple, ne comptez pas le week-end)."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "1 day"],
+                ["de", "1 Tag"],
+                ["fr", "1 jour"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "2 days"],
+                ["de", "2 Tage"],
+                ["fr", "2 jours"],
+            ])
+        }, {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "3 days"],
+                ["de", "3 Tage"],
+                ["fr", "3 jours"],
+            ])
+        }, {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "4 days"],
+                ["de", "4 Tage"],
+                ["fr", "4 jours"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "5 days"],
+                ["de", "5 Tage"],
+                ["fr", "5 jours"],
+            ])
+        }, {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "6 to 10 days"],
+                ["de", "6 bis 10 Tage"],
+                ["fr", "6 à 10 jours"],
+            ])
+        }, {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "11 to 15 days"],
+                ["de", "11 bis 15 Tage"],
+                ["fr", "11 à 15 jours"],
+            ])
+        }, {
+            key: '8', role: 'option',
+            content: new Map([
+                ["en", "More than 15 days"],
+                ["de", "Mehr als 15 Tage"],
+                ["fr", "Plus de 15 jours"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2332,13 +2804,38 @@ const qcov6_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov6 TODO"],
+            ["en", "Because of your symptoms, did you wear a mask (surgical mask sold in pharmacies)?"],
+            ["de", "Haben Sie aufgrund Ihrer Symptome eine Maske (chirurgische Maske, die in Apotheken verkauft wird) getragen?"],
+            ["fr", "En raison de vos symptômes, avez-vous porté un masque (masque chirurgical en vente en pharmacie, ou masque FFP1, FFP2, FFP3)) ?"],
         ]))
     );
 
-    editor.addDisplayComponent({
-        role: 'text', content: generateLocStrings(new Map([['en', 'todo']]))
-    })
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        }, {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "No, I would have liked but could not find any"],
+                ["de", "Nein, ich hätte gerne, konnte aber keine finden."],
+                ["fr", "Non, j’aurais aimé mais je n’ai pas réussi à en trouver"],
+            ])
+        }, {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
