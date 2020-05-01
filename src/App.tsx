@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, Redirect,
+  BrowserRouter as Router, Route, Redirect, Switch,
 } from "react-router-dom";
 
 
@@ -15,6 +15,7 @@ import {
 import TestEditor from './pages/TestEditor/TestEditor';
 
 import './App.css';
+import TestViewer from './pages/TestViewer/TestViewer';
 
 const App: React.FC = () => {
   const InfNetColors = {
@@ -108,8 +109,11 @@ const App: React.FC = () => {
       <CssBaseline />
       <StylesProvider injectFirst>
         <Router>
-          <Route path="/test-editor" component={TestEditor} />
-          <Redirect to="/test-editor"></Redirect>
+          <Switch>
+            <Route path="/test-editor" component={TestEditor} />
+            <Route path="/test-viewer" component={TestViewer} />
+            <Redirect to="/test-viewer"></Redirect>
+          </Switch>
         </Router>
       </StylesProvider>
     </MuiThemeProvider>
