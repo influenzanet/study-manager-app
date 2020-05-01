@@ -102,62 +102,72 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
     // Q2 symptoms same bout of illness --------------------------------------
-    const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
-    if (!q2) { return; }
-    survey.updateSurveyItem(q2_def(q2, anySymptomSelected));
+    // const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
+    // if (!q2) { return; }
+    // survey.updateSurveyItem(q2_def(q2, anySymptomSelected));
     // -----------------------------------------
 
+
+    // -------> HAS SYMPTOMS GROUP
+    const hasSymptomGroup = survey.addNewSurveyItem({ itemKey: 'HS', isGroup: true }, rootKey);
+    const hasSymptomGroupEditor = new ItemEditor(hasSymptomGroup as SurveyGroupItem);
+    hasSymptomGroupEditor.setSelectionMethod({ name: 'sequential' });
+    hasSymptomGroupEditor.setCondition(anySymptomSelected)
+    survey.updateSurveyItem(hasSymptomGroupEditor.getItem());
+
+    const hasSymptomGroupKey = hasSymptomGroupEditor.getItem().key;
+
     // Qcov3 14 days contact with Covid-19 --------------------------------------
-    const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, rootKey);
+    const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, hasSymptomGroupKey);
     if (!qcov3) { return; }
     survey.updateSurveyItem(qcov3_def(qcov3));
     // -----------------------------------------
 
     // Qcov3b 14 days contact with Covid-19 --------------------------------------
-    const qcov3b = survey.addNewSurveyItem({ itemKey: 'Qcov3b' }, rootKey);
+    const qcov3b = survey.addNewSurveyItem({ itemKey: 'Qcov3b' }, hasSymptomGroupKey);
     if (!qcov3b) { return; }
-    survey.updateSurveyItem(qcov3b_def(qcov3b));
+    survey.updateSurveyItem(qcov3b_def(qcov3b, qcov3.key));
     // -----------------------------------------
 
     // Qcov8 14 days contact COVID-19 before symptoms --------------------------------------
-    const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, rootKey);
+    const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, hasSymptomGroupKey);
     if (!qcov8) { return; }
-    survey.updateSurveyItem(qcov8_def(qcov8, anySymptomSelected));
+    survey.updateSurveyItem(qcov8_def(qcov8));
     // -----------------------------------------
 
     // Qcov8b same household --------------------------------------
-    const qcov8b = survey.addNewSurveyItem({ itemKey: 'Qcov8b' }, rootKey);
+    const qcov8b = survey.addNewSurveyItem({ itemKey: 'Qcov8b' }, hasSymptomGroupKey);
     if (!qcov8b) { return; }
-    survey.updateSurveyItem(qcov8b_def(qcov8b, anySymptomSelected));
+    survey.updateSurveyItem(qcov8b_def(qcov8b, qcov8.key));
     // -----------------------------------------
 
     // Q3 when first symptoms --------------------------------------
-    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
+    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, hasSymptomGroupKey);
     if (!q3) { return; }
-    survey.updateSurveyItem(q3_def(q3, anySymptomSelected));
+    survey.updateSurveyItem(q3_def(q3));
     // -----------------------------------------
 
     // Q4 when symptoms end --------------------------------------
-    const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
+    const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, hasSymptomGroupKey);
     if (!q4) { return; }
-    survey.updateSurveyItem(q4_def(q4, anySymptomSelected));
+    survey.updateSurveyItem(q4_def(q4));
     // -----------------------------------------
 
     // Q5 symptoms developed suddenly --------------------------------------
-    const q5 = survey.addNewSurveyItem({ itemKey: 'Q5' }, rootKey);
+    const q5 = survey.addNewSurveyItem({ itemKey: 'Q5' }, hasSymptomGroupKey);
     if (!q5) { return; }
-    survey.updateSurveyItem(q5_def(q5, anySymptomSelected));
+    survey.updateSurveyItem(q5_def(q5));
     // -----------------------------------------
 
     // survey.addNewSurveyItem({ itemKey: 'pb7', type: 'pageBreak' }, rootKey);
 
     // ----> fever group
-    const feverGroup = survey.addNewSurveyItem({ itemKey: 'Q6', isGroup: true }, rootKey);
+    const feverGroup = survey.addNewSurveyItem({ itemKey: 'Q6', isGroup: true }, hasSymptomGroupKey);
     const feverGroupEditor = new ItemEditor(feverGroup as SurveyGroupItem);
     feverGroupEditor.setSelectionMethod({ name: 'sequential' });
-    /*feverGroupEditor.setCondition(
+    feverGroupEditor.setCondition(
         expWithArgs('responseHasKeysAny', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
-    )*/
+    )
     survey.updateSurveyItem(feverGroupEditor.getItem());
 
     const feverGroupKey = feverGroupEditor.getItem().key;
@@ -183,13 +193,13 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // Q6d highest temperature --------------------------------------
     const q6d = survey.addNewSurveyItem({ itemKey: 'd' }, feverGroupKey);
     if (!q6d) { return; }
-    survey.updateSurveyItem(q6d_def(q6d));
+    survey.updateSurveyItem(q6d_def(q6d, q6c.key));
     // -----------------------------------------
     // <------ fever group
 
 
     // -----> contact/visit group
-    const contactGroup = survey.addNewSurveyItem({ itemKey: 'contact', isGroup: true }, rootKey);
+    const contactGroup = survey.addNewSurveyItem({ itemKey: 'contact', isGroup: true }, hasSymptomGroupKey);
     const contactGroupEditor = new ItemEditor(contactGroup as SurveyGroupItem);
     contactGroupEditor.setSelectionMethod({ name: 'sequential' });
     // contactGroupEditor.setCondition(anySymptomSelected)
@@ -234,19 +244,19 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // -----------------------------------------
 
     // analysis if infection --------------------------------------
-    const qcov16 = survey.addNewSurveyItem({ itemKey: 'Qcov16' }, rootKey);
+    const qcov16 = survey.addNewSurveyItem({ itemKey: 'Qcov16' }, hasSymptomGroupKey);
     if (!qcov16) { return; }
     survey.updateSurveyItem(qcov16_def(qcov16));
     // -----------------------------------------
 
     // test PCR result --------------------------------------
-    const qcov16b = survey.addNewSurveyItem({ itemKey: 'Qcov16b' }, rootKey);
+    const qcov16b = survey.addNewSurveyItem({ itemKey: 'Qcov16b' }, hasSymptomGroupKey);
     if (!qcov16b) { return; }
     survey.updateSurveyItem(qcov16b_def(qcov16b));
     // -----------------------------------------
 
     // test serological result --------------------------------------
-    const qcov16c = survey.addNewSurveyItem({ itemKey: 'Qcov16c' }, rootKey);
+    const qcov16c = survey.addNewSurveyItem({ itemKey: 'Qcov16c' }, hasSymptomGroupKey);
     if (!qcov16c) { return; }
     survey.updateSurveyItem(qcov16c_def(qcov16c));
     // -----------------------------------------
@@ -255,70 +265,72 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
 
     // Q9 took medication --------------------------------------
-    const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
+    const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, hasSymptomGroupKey);
     if (!q9) { return; }
-    survey.updateSurveyItem(q9_def(q9, anySymptomSelected));
+    survey.updateSurveyItem(q9_def(q9));
     // -----------------------------------------
 
     // Q9b how soon after symptoms taking antivirals --------------------------------------
-    const q9b = survey.addNewSurveyItem({ itemKey: 'Q9b' }, rootKey);
+    const q9b = survey.addNewSurveyItem({ itemKey: 'Q9b' }, hasSymptomGroupKey);
     if (!q9b) { return; }
-    survey.updateSurveyItem(q9b_def(q9b, anySymptomSelected));
+    survey.updateSurveyItem(q9b_def(q9b));
     // -----------------------------------------
 
     // Q14 hospitalized because symptoms --------------------------------------
-    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
+    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, hasSymptomGroupKey);
     if (!q14) { return; }
-    survey.updateSurveyItem(q14_def(q14, anySymptomSelected));
+    survey.updateSurveyItem(q14_def(q14));
     // -----------------------------------------
 
     // Q10 changed daily routine because illness --------------------------------------
-    const q10 = survey.addNewSurveyItem({ itemKey: 'Q10' }, rootKey);
+    const q10 = survey.addNewSurveyItem({ itemKey: 'Q10' }, hasSymptomGroupKey);
     if (!q10) { return; }
-    survey.updateSurveyItem(q10_def(q10, anySymptomSelected));
+    survey.updateSurveyItem(q10_def(q10));
     // -----------------------------------------
 
     // Q10b still off work/school --------------------------------------
-    const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
+    const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, hasSymptomGroupKey);
     if (!q10b) { return; }
     survey.updateSurveyItem(q10b_def(q10b));
     // -----------------------------------------
 
     // Q10c still off work/school --------------------------------------
-    const q10c = survey.addNewSurveyItem({ itemKey: 'Q10c' }, rootKey);
+    const q10c = survey.addNewSurveyItem({ itemKey: 'Q10c' }, hasSymptomGroupKey);
     if (!q10c) { return; }
     survey.updateSurveyItem(q10c_def(q10c));
     // -----------------------------------------
 
     // Qcov6 wear mask because symptoms --------------------------------------
-    const qcov6 = survey.addNewSurveyItem({ itemKey: 'Qcov6' }, rootKey);
+    const qcov6 = survey.addNewSurveyItem({ itemKey: 'Qcov6' }, hasSymptomGroupKey);
     if (!qcov6) { return; }
-    survey.updateSurveyItem(qcov6_def(qcov6, anySymptomSelected));
+    survey.updateSurveyItem(qcov6_def(qcov6));
     // -----------------------------------------
 
     // Qcov7 took or strengthened measures because symptoms --------------------------------------
-    const qcov7 = survey.addNewSurveyItem({ itemKey: 'Qcov7' }, rootKey);
+    const qcov7 = survey.addNewSurveyItem({ itemKey: 'Qcov7' }, hasSymptomGroupKey);
     if (!qcov7) { return; }
-    survey.updateSurveyItem(qcov7_def(qcov7, anySymptomSelected));
+    survey.updateSurveyItem(qcov7_def(qcov7));
     // -----------------------------------------
 
     // Q11 think cause of symptoms --------------------------------------
-    const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
+    const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, hasSymptomGroupKey);
     if (!q11) { return; }
-    survey.updateSurveyItem(q11_def(q11, anySymptomSelected));
+    survey.updateSurveyItem(q11_def(q11));
     // -----------------------------------------
 
     // Qcov9 think reasons having disease --------------------------------------
-    const qcov9 = survey.addNewSurveyItem({ itemKey: 'Qcov9' }, rootKey);
+    const qcov9 = survey.addNewSurveyItem({ itemKey: 'Qcov9' }, hasSymptomGroupKey);
     if (!qcov9) { return; }
-    survey.updateSurveyItem(qcov9_def(qcov9, anySymptomSelected));
+    survey.updateSurveyItem(qcov9_def(qcov9));
     // -----------------------------------------
 
     // Qcov9b informed contacts about suspicion COVID-19b infection --------------------------------------
-    const qcov9b = survey.addNewSurveyItem({ itemKey: 'Qcov9b' }, rootKey);
+    const qcov9b = survey.addNewSurveyItem({ itemKey: 'Qcov9b' }, hasSymptomGroupKey);
     if (!qcov9b) { return; }
-    survey.updateSurveyItem(qcov9b_def(qcov9b, anySymptomSelected));
+    survey.updateSurveyItem(qcov9b_def(qcov9b));
     // -----------------------------------------
+
+    // <------- HAS SYMPTOMS GROUP
 
     // Qcov10 lockdown professional activity --------------------------------------
     const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
@@ -335,31 +347,31 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // Qcov11 frequency go out to buy products --------------------------------------
     const qcov11 = survey.addNewSurveyItem({ itemKey: 'Qcov11' }, rootKey);
     if (!qcov11) { return; }
-    survey.updateSurveyItem(qcov11_def(qcov11, anySymptomSelected));
+    survey.updateSurveyItem(qcov11_def(qcov11));
     // -----------------------------------------
 
     // Qcov12 frequency go out for fresh air or exercise --------------------------------------
     const qcov12 = survey.addNewSurveyItem({ itemKey: 'Qcov12' }, rootKey);
     if (!qcov12) { return; }
-    survey.updateSurveyItem(qcov12_def(qcov12, anySymptomSelected));
+    survey.updateSurveyItem(qcov12_def(qcov12));
     // -----------------------------------------
 
     // Qcov13 how many people nearer then 1 meter --------------------------------------
     const qcov13 = survey.addNewSurveyItem({ itemKey: 'Qcov13' }, rootKey);
     if (!qcov13) { return; }
-    survey.updateSurveyItem(qcov13_def(qcov13, anySymptomSelected));
+    survey.updateSurveyItem(qcov13_def(qcov13));
     // -----------------------------------------
 
     // Qcov14 situation if lockdown lifted, but childcare/schools closed --------------------------------------
     const qcov14 = survey.addNewSurveyItem({ itemKey: 'Qcov14' }, rootKey);
     if (!qcov14) { return; }
-    survey.updateSurveyItem(qcov14_def(qcov14, anySymptomSelected));
+    survey.updateSurveyItem(qcov14_def(qcov14));
     // -----------------------------------------
 
     // Qcov14b days work outside from home --------------------------------------
     const qcov14b = survey.addNewSurveyItem({ itemKey: 'Qcov14b' }, rootKey);
     if (!qcov14b) { return; }
-    survey.updateSurveyItem(qcov14b_def(qcov14b, anySymptomSelected));
+    survey.updateSurveyItem(qcov14b_def(qcov14b));
     // -----------------------------------------
 
     // Qcov15 lockdown extended, would follow --------------------------------------
@@ -369,13 +381,13 @@ export const generateCovid19Weekly = (): Survey | undefined => {
     // -----------------------------------------
 
 
-    // Qcov17 lockdown extended, would follow --------------------------------------
+    // Qcov17 had lab test --------------------------------------
     const qcov17 = survey.addNewSurveyItem({ itemKey: 'Qcov17' }, rootKey);
     if (!qcov17) { return; }
     survey.updateSurveyItem(qcov17_def(qcov17));
     // -----------------------------------------
 
-    // Qcov17b lockdown extended, would follow --------------------------------------
+    // Qcov17b test result--------------------------------------
     const qcov17b = survey.addNewSurveyItem({ itemKey: 'Qcov17b' }, rootKey);
     if (!qcov17b) { return; }
     survey.updateSurveyItem(qcov17b_def(qcov17b));
@@ -739,7 +751,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
         ]))
     );
-    // editor.setCondition( anySymptomSelected);
+    editor.setCondition(anySymptomSelected);
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
             {
@@ -781,7 +793,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '1', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes"],
                 ["de", "Ja"],
@@ -789,7 +801,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ])
         },
         {
-            key: '0', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
@@ -855,7 +867,7 @@ const qcov3_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const qcov3b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const qcov3b_def = (itemSkeleton: SurveyItem, qcov3Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -864,6 +876,9 @@ const qcov3b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", "Vivez-vous sous le même toit que cette personne ?"],
         ]))
     );
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [qcov3Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
@@ -897,7 +912,7 @@ const qcov3b_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const qcov8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -939,7 +954,7 @@ const qcov8_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     return editor.getItem();
 }
 
-const qcov8b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov8b_def = (itemSkeleton: SurveyItem, qcov8Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -948,6 +963,10 @@ const qcov8b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
             ["fr", "Vivez-vous sous le même toit que cette personne ?"],
         ]))
     );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [qcov8Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
@@ -981,7 +1000,7 @@ const qcov8b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     return editor.getItem();
 }
 
-const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1056,7 +1075,7 @@ const q3_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     return editor.getItem();
 }
 
-const q4_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1139,7 +1158,7 @@ const q4_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     return editor.getItem();
 }
 
-const q5_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1451,7 +1470,7 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q6d_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1460,6 +1479,10 @@ const q6d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", " Quel a été votre température mesurée la plus élevée?"],
         ]))
     );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q6cKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
 
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
@@ -2395,7 +2418,7 @@ const qcov16c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2550,7 +2573,7 @@ const q9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
     return editor.getItem();
 }
 
-const q9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q9b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2665,7 +2688,7 @@ const q9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     return editor.getItem();
 }
 
-const q14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2699,7 +2722,7 @@ const q14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     return editor.getItem();
 }
 
-const q10_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2968,7 +2991,7 @@ const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const qcov6_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3007,7 +3030,7 @@ const qcov6_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     return editor.getItem();
 }
 
-const qcov7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3190,7 +3213,7 @@ const qcov7_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     return editor.getItem();
 }
 
-const q11_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3305,7 +3328,7 @@ const q11_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
     return editor.getItem();
 }
 
-const qcov9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3396,7 +3419,7 @@ const qcov9_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Su
     return editor.getItem();
 }
 
-const qcov9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov9b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3611,7 +3634,7 @@ const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
 
 
 
-const qcov11_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3683,7 +3706,7 @@ const qcov11_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     return editor.getItem();
 }
 
-const qcov12_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3755,7 +3778,7 @@ const qcov12_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     return editor.getItem();
 }
 
-const qcov13_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3818,7 +3841,7 @@ const qcov13_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     return editor.getItem();
 }
 
-const qcov14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -3901,7 +3924,7 @@ const qcov14_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): S
     return editor.getItem();
 }
 
-const qcov14b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+const qcov14b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
