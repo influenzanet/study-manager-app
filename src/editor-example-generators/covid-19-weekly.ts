@@ -2243,32 +2243,106 @@ const qcov16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov16 TODO"],
+            ["en", "Because of your symptoms, did you undergo analyses to know if you have COVID-19 (infection due to SRAS-CoV-2)?"],
+            ["de", "Haben Sie sich aufgrund Ihrer Symptome Analysen unterzogen, um zu wissen, ob Sie COVID-19 (Infektion durch SARS-CoV-2) haben?"],
+            ["fr", "En raison de vos symptômes, avez-vous effectué des analyses pour savoir si vous aviez le COVID-19 (infection due au nouveau coronavirus SARS-CoV-2) ?"],
         ]))
     );
-    editor.addDisplayComponent(
+
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO"],
-            ]))
-        }
-    )
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, a PCR test (virus search, on a swab in nose or mouth, or a sputum or saliva sample)"],
+                ["de", "Ja, ein PCR-Test (Virussuche, auf einem Abstrich in Nase oder Mund oder auf einer Sputum- oder Speichelprobe)"],
+                ["fr", "Oui, un test PCR (recherche du virus à partir d’un frottis dans le nez ou dans la bouche, ou d’un prélèvement de crachat ou de salive)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Yes, a serological analysis (screening for antibodies against this virus, from a drop of blood at fingertip or a blood sample)"],
+                ["de", "Ja, eine serologische Analyse (Screening auf Antikörper gegen dieses Virus, aus einem Blutstropfen an der Fingerspitze oder einer Blutprobe)"],
+                ["fr", "Oui, une sérologie (recherche d’anticorps contre le virus à partir d’une goutte de sang au bout du doigt ou d’une prise de sang)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Not yet, I have a prescription and plan to shortly undergo a test"],
+                ["de", "Noch nicht, ich habe ein Rezept und plane, mich in Kürze einem Test zu unterziehen"],
+                ["fr", "Pas encore, j'ai une prescription et prévois de réaliser un test prochainement"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "No, I have a prescription but will not undergo the test"],
+                ["de", "Nein, ich habe ein Rezept, unterziehe mich aber nicht dem Test"],
+                ["fr", "Non, j'ai une prescription mais ne prévois pas de réaliser de test"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
     return editor.getItem();
 }
 const qcov16b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov16b TODO"],
+            ["en", "Do you already get the result of this PCR test?"],
+            ["de", "Haben Sie das Ergebnis dieses PCR-Tests bereits erhalten?"],
+            ["fr", "Avez-vous déjà reçu le résultat de cette analyse par PCR ?"],
         ]))
     );
-    editor.addDisplayComponent(
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO"],
-            ]))
-        }
-    )
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, Positive for this new coronavirus (SARS-CoV-2, COVID-19)"],
+                ["de", "Ja, positiv für das SARS-CoV-2 Coronavirus (COVID-19)"],
+                ["fr", "Oui, positif pour le coronavirus SARS-CoV-2 (COVID-19)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Yes, Negative for this new coronavirus (SARS-CoV-2, COVID-19)"],
+                ["de", "Ja, negativ für das SARS-CoV-2 Coronavirus (COVID-19)"],
+                ["fr", "Oui, négatif pour le coronavirus SARS-CoV-2 (COVID-19)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Yes, the result is non interpretable"],
+                ["de", "Ja, das Ergebnis ist nicht interpretierbar"],
+                ["fr", "Oui, le résultat est non interprétable"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "No, I do not have the result yet"],
+                ["de", "Nein, ich habe das Ergebnis noch nicht"],
+                ["fr", "Non, je n'ai pas encore le résultat"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2276,16 +2350,48 @@ const qcov16c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov16c TODO"],
+            ["en", "Do you already get the result of this serological analysis?"],
+            ["de", "Haben Sie das Ergebnis dieser serologischen Analyse bereits erhalten?"],
+            ["fr", "Avez-vous déjà reçu le résultat de cette analyse de sang ?"],
         ]))
     );
-    editor.addDisplayComponent(
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO"],
-            ]))
-        }
-    )
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, Positive for this new coronavirus (SARS-CoV-2, COVID-19)"],
+                ["de", "Ja, positiv für das SARS-CoV-2 Coronavirus (COVID-19)"],
+                ["fr", "Oui, positif pour le coronavirus SARS-CoV-2 (COVID-19)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Yes, Negative for this new coronavirus (SARS-CoV-2, COVID-19)"],
+                ["de", "Ja, negativ für das SARS-CoV-2 Coronavirus (COVID-19)"],
+                ["fr", "Oui, négatif pour le coronavirus SARS-CoV-2 (COVID-19)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Yes, the result is non interpretable"],
+                ["de", "Ja, das Ergebnis ist nicht interpretierbar"],
+                ["fr", "Oui, le résultat est non interprétable"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "No, I do not have the result yet"],
+                ["de", "Nein, ich habe das Ergebnis noch nicht"],
+                ["fr", "Non, je n'ai pas encore le résultat"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -2540,7 +2646,7 @@ const q9b_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surv
                 ["fr", "5 – 7 jours"],
             ])
         }, {
-            key: '6', role: 'input',
+            key: '6', role: 'option',
             content: new Map([
                 ["en", "More than 7 days"],
                 ["de", "Mehr als 7 Tage"],
@@ -3895,7 +4001,6 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '4',
@@ -3951,16 +4056,34 @@ const qcov17_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov17 TODO"],
+            ["en", "Since January 2020, did you undergo a laboratory test to know if you have been in contact with this new coronavirus (SARS-CoV-2, COVID-19)?"],
+            ["de", "Haben Sie sich seit Januar 2020 einem Labortest unterzogen, um zu wissen, ob Sie mit dem SARS-CoV-2 Coronavirus (COVID-19) in Kontakt gekommen sind?"],
+            ["fr", "Depuis janvier 2020, avez-vous effectué des analyses pour savoir si vous avez été infecté par ce nouveau coronavirus (SARS-CoV-2, COVID-19) ?"],
         ]))
     );
-    editor.addDisplayComponent(
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO"],
-            ]))
-        }
-    )
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '0',
+            role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["fr", "Non"],
+            ])
+        },
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
 
@@ -3968,15 +4091,87 @@ const qcov17b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Qcov17b TODO"],
+            ["en", "What was the result of this (these) analysis? (if you realized several analyses, please give the results of all these analyses)"],
+            ["de", "Was war das Ergebnis dieses Tests? (mehrere Antworten möglich)"],
+            ["fr", "Quel a(ont) été le(s) résultat(s) de cette(ces) analyse(s) ?"],
         ]))
     );
-    editor.addDisplayComponent(
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO"],
-            ]))
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["en", "Positive for this coronavirus, on a swab in nose or mouth, or a sputum or saliva sample (PCR)"],
+                ["de", "Positiv für dieses Coronavirus, auf einem Abstrich in Nase oder Mund, oder einer Sputum- oder Speichelprobe (PCR)"],
+                ["fr", "Positif pour ce coronavirus, sur prélèvement nasal/buccal ou prélèvement de crachat/salive (test PCR)"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            content: new Map([
+                ["en", "Negative for this coronavirus, on a swab in nose or mouth, or a sputum or saliva sample (PCR)"],
+                ["de", "Negativ für dieses Coronavirus, auf einem Abstrich in Nase oder Mund, oder einer Sputum- oder Speichelprobe (PCR)"],
+                ["fr", "Négatif pour ce coronavirus, sur prélèvement nasal/buccal ou prélèvement de crachat/salive (test PCR)"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["en", "Positive for this coronavirus on a blood sample (serology)"],
+                ["de", "Positiv für dieses Coronavirus in einer Blutprobe (Serologie)"],
+                ["fr", "Positif pour ce coronavirus, sur prélèvement sanguin (sérologie)"],
+            ])
+        },
+        {
+            key: '4',
+            role: 'option',
+            content: new Map([
+                ["en", "Negative for this coronavirus on a blood sample (serology)"],
+                ["de", "Negativ für dieses Coronavirus in einer Blutprobe (Serologie)"],
+                ["fr", "Négatif pour ce coronavirus, sur prélèvement sanguin (sérologie)"],
+            ])
+        },
+        {
+            key: '5',
+            role: 'option',
+            content: new Map([
+                ["en", "Positive, but I don't know which test was done (it showed that I was infected by the coronavirus)"],
+                ["de", "Positiv (er zeigte, dass ich mit dem Coronavirus infiziert war), aber ich weiss nicht, welcher Test durchgeführt wurde"],
+                ["fr", "Positif (cela montrait que j’ai été infecté(e) par ce coronavirus), mais je ne sais pas de quel type de test il s'agissait"],
+            ])
+        },
+        {
+            key: '6',
+            role: 'option',
+            content: new Map([
+                ["en", "Negative, but I don't know which test was done (it showed that I wasn't infected by the coronavirus)"],
+                ["de", "Negativ (er zeigte, dass ich nicht mit dem Coronavirus infiziert war), aber ich weiss nicht, welcher Test durchgeführt wurde"],
+                ["fr", "Négatif (cela montrait que je n’ai pas été infecté(e) par ce coronavirus), mais je ne sais pas de quel type de test il s'agissait"],
+            ])
+        },
+        {
+            key: '7',
+            role: 'option',
+            content: new Map([
+                ["en", "The result was non interpretable"],
+                ["de", "Das Ergebnis war nicht interpretierbar"],
+                ["fr", "Le résultat était non interprétable"],
+            ])
+        },
+        {
+            key: '8',
+            role: 'option',
+            content: new Map([
+                ["en", "I don't know the result"],
+                ["de", "Ich kenne das Ergebnis nicht"],
+                ["fr", "Je ne connais pas le résultat"],
+            ])
         }
-    )
+    ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
