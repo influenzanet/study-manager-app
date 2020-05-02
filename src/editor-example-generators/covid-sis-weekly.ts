@@ -228,7 +228,7 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "This was all for now, please submit your responses. By filling out this survey regularly, you can help us fight the virus."],
-                ["de", "Das war die letzte Frage, du kannst deine Antworten absenden. Mit regelmäßiger Teilnahme an dieser Umfrage, unterstützt du die Medzinforscher bei ihrer Arbeit, Danke!"],
+                ["de", "Das war die letzte Frage. Du kannst deine Antworten nun absenden. Mit regelmäßiger Teilnahme an dieser Umfrage unterstützt du die Medizinforscher bei ihrer Arbeit. Danke!"],
             ]))
         }
     )

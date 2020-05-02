@@ -303,7 +303,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const dateInputEditor = new ComponentEditor(undefined, {
-        key: 'TODO',
+        key: '1',
         role: 'dateInput'
     });
     dateInputEditor.setProperties({
@@ -312,6 +312,33 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
         max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
     })
     editor.addExistingResponseComponent(dateInputEditor.getComponent(), rg?.key);
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'caption' }],
+        displayCondition: expWithArgs('isDefined',
+            expWithArgs('getResponseItem', editor.getItem().key, [responseGroupKey, '1'].join('.'))
+        ),
+        content: [
+            {
+                code: 'en', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' years old' }
+                ]
+            },
+            {
+                code: 'de', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' Jahre alt' }
+                ]
+            },
+            {
+                code: 'fr', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' ??' }
+                ]
+            }
+        ]
+    }, rg?.key);
     return editor.getItem();
 }
 
@@ -556,7 +583,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+        expWithArgs('responseHasKeysAny', q4Key, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
     )
 
     editor.setHelpGroupComponent(
