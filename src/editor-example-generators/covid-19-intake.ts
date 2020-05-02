@@ -2,7 +2,7 @@ import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor"
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
-import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion } from "../editor-engine/utils/question-type-generator";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
@@ -79,13 +79,13 @@ export const generateCovid19Intake = (): Survey | undefined => {
     // school/work postal code  --------------------------------------
     const q4b = survey.addNewSurveyItem({ itemKey: 'Q4b' }, rootKey);
     if (!q4b) { return; }
-    survey.updateSurveyItem(q4b_def(q4b));
+    survey.updateSurveyItem(q4b_def(q4b, q4.key));
     // -----------------------------------------
 
     // job category  --------------------------------------
     const q4c = survey.addNewSurveyItem({ itemKey: 'Q4c' }, rootKey);
     if (!q4c) { return; }
-    survey.updateSurveyItem(q4c_def(q4c));
+    survey.updateSurveyItem(q4c_def(q4c, q4.key));
     // -----------------------------------------
 
     // eductaion_level  --------------------------------------
@@ -109,7 +109,7 @@ export const generateCovid19Intake = (): Survey | undefined => {
     // children/school/daycare  --------------------------------------
     const q6b = survey.addNewSurveyItem({ itemKey: 'Q6b' }, rootKey);
     if (!q6b) { return; }
-    survey.updateSurveyItem(q6b_def(q6b));
+    survey.updateSurveyItem(q6b_def(q6b, q6.key));
     // -----------------------------------------
 
     // means of transport  --------------------------------------
@@ -145,19 +145,19 @@ export const generateCovid19Intake = (): Survey | undefined => {
     // flue vaccine this season when --------------------------------------
     const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
     if (!q10b) { return; }
-    survey.updateSurveyItem(q10b_def(q10b));
+    survey.updateSurveyItem(q10b_def(q10b, q10.key));
     // -----------------------------------------
 
     // flue vaccine reason for --------------------------------------
     const q10c = survey.addNewSurveyItem({ itemKey: 'Q10c' }, rootKey);
     if (!q10c) { return; }
-    survey.updateSurveyItem(q10c_def(q10c));
+    survey.updateSurveyItem(q10c_def(q10c, q10.key));
     // -----------------------------------------
 
     // flue vaccine reason against --------------------------------------
     const q10d = survey.addNewSurveyItem({ itemKey: 'Q10d' }, rootKey);
     if (!q10d) { return; }
-    survey.updateSurveyItem(q10d_def(q10d));
+    survey.updateSurveyItem(q10d_def(q10d, q10.key));
     // -----------------------------------------
 
     // regular medication --------------------------------------
@@ -169,13 +169,13 @@ export const generateCovid19Intake = (): Survey | undefined => {
     // pregnant --------------------------------------
     const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
     if (!q12) { return; }
-    survey.updateSurveyItem(q12_def(q12));
+    survey.updateSurveyItem(q12_def(q12, q1.key));
     // -----------------------------------------
 
     // trimester --------------------------------------
     const q12b = survey.addNewSurveyItem({ itemKey: 'Q12b' }, rootKey);
     if (!q12b) { return; }
-    survey.updateSurveyItem(q12b_def(q12b));
+    survey.updateSurveyItem(q12b_def(q12b, q12.key));
     // -----------------------------------------
 
     // do you smoke --------------------------------------
@@ -545,7 +545,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
 }
 
 
-const q4b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -554,6 +554,10 @@ const q4b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", "Quelle est le code postal de l'endroit où vous passez la majorité de votre temps de travail ou d'étude?"],
         ]))
     );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+    )
 
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
@@ -623,7 +627,7 @@ const q4b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q4c_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -632,6 +636,10 @@ const q4c_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
         ]))
     );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+    )
 
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
@@ -969,6 +977,56 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ])
     );
 
+    const ddg: ResponseRowCell = {
+        key: 'col2', role: 'dropDownGroup',
+        items: [
+            {
+                key: '0', role: 'option', content: new Map([
+                    ["en", "0"],
+                    ["de", "0"],
+                    ["fr", "0"],
+                ])
+            },
+            {
+                key: '1', role: 'option', content: new Map([
+                    ["en", "1"],
+                    ["de", "1"],
+                    ["fr", "1"],
+                ]),
+            }, {
+                key: '2', role: 'option', content: new Map([
+                    ["en", "2"],
+                    ["de", "2"],
+                    ["fr", "2"],
+                ]),
+            }, {
+                key: '3', role: 'option', content: new Map([
+                    ["en", "3"],
+                    ["de", "3"],
+                    ["fr", "3"],
+                ]),
+            }, {
+                key: '4', role: 'option', content: new Map([
+                    ["en", "4"],
+                    ["de", "4"],
+                    ["fr", "4"],
+                ]),
+            }, {
+                key: '5', role: 'option', content: new Map([
+                    ["en", "5"],
+                    ["de", "5"],
+                    ["fr", "5"],
+                ]),
+            }, {
+                key: '5+', role: 'option', content: new Map([
+                    ["en", "5+"],
+                    ["de", "5+"],
+                    ["fr", "5+"],
+                ]),
+            },
+        ]
+    };
+
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
@@ -982,55 +1040,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                         ["fr", "0-4 ans"],
                     ])
                 },
-                {
-                    key: 'v', role: 'dropDownGroup',
-                    items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "0"],
-                                ["de", "0"],
-                                ["fr", "0"],
-                            ])
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1"],
-                                ["de", "1"],
-                                ["fr", "1"],
-                            ]),
-                        }, {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2"],
-                                ["de", "2"],
-                                ["fr", "2"],
-                            ]),
-                        }, {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3"],
-                                ["de", "3"],
-                                ["fr", "3"],
-                            ]),
-                        }, {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4"],
-                                ["de", "4"],
-                                ["fr", "4"],
-                            ]),
-                        }, {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5"],
-                                ["de", "5"],
-                                ["fr", "5"],
-                            ]),
-                        }, {
-                            key: '5+', role: 'option', content: new Map([
-                                ["en", "5+"],
-                                ["de", "5+"],
-                                ["fr", "5+"],
-                            ]),
-                        },
-                    ]
-                }
+                { ...ddg }
             ],
         },
         {
@@ -1044,55 +1054,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                         ["fr", "5-18 ans"],
                     ])
                 },
-                {
-                    key: 'v', role: 'dropDownGroup',
-                    items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "0"],
-                                ["de", "0"],
-                                ["fr", "0"],
-                            ])
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1"],
-                                ["de", "1"],
-                                ["fr", "1"],
-                            ]),
-                        }, {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2"],
-                                ["de", "2"],
-                                ["fr", "2"],
-                            ]),
-                        }, {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3"],
-                                ["de", "3"],
-                                ["fr", "3"],
-                            ]),
-                        }, {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4"],
-                                ["de", "4"],
-                                ["fr", "4"],
-                            ]),
-                        }, {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5"],
-                                ["de", "5"],
-                                ["fr", "5"],
-                            ]),
-                        }, {
-                            key: '5+', role: 'option', content: new Map([
-                                ["en", "5+"],
-                                ["de", "5+"],
-                                ["fr", "5+"],
-                            ]),
-                        },
-                    ]
-                }
+                { ...ddg }
             ],
         },
         {
@@ -1106,55 +1068,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                         ["fr", "19-44 ans"],
                     ])
                 },
-                {
-                    key: 'v', role: 'dropDownGroup',
-                    items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "0"],
-                                ["de", "0"],
-                                ["fr", "0"],
-                            ])
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1"],
-                                ["de", "1"],
-                                ["fr", "1"],
-                            ]),
-                        }, {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2"],
-                                ["de", "2"],
-                                ["fr", "2"],
-                            ]),
-                        }, {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3"],
-                                ["de", "3"],
-                                ["fr", "3"],
-                            ]),
-                        }, {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4"],
-                                ["de", "4"],
-                                ["fr", "4"],
-                            ]),
-                        }, {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5"],
-                                ["de", "5"],
-                                ["fr", "5"],
-                            ]),
-                        }, {
-                            key: '5+', role: 'option', content: new Map([
-                                ["en", "5+"],
-                                ["de", "5+"],
-                                ["fr", "5+"],
-                            ]),
-                        },
-                    ]
-                }
+                { ...ddg }
             ]
         },
         {
@@ -1168,55 +1082,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                         ["fr", "45-64 ans"],
                     ])
                 },
-                {
-                    key: 'v', role: 'dropDownGroup',
-                    items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "0"],
-                                ["de", "0"],
-                                ["fr", "0"],
-                            ])
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1"],
-                                ["de", "1"],
-                                ["fr", "1"],
-                            ]),
-                        }, {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2"],
-                                ["de", "2"],
-                                ["fr", "2"],
-                            ]),
-                        }, {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3"],
-                                ["de", "3"],
-                                ["fr", "3"],
-                            ]),
-                        }, {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4"],
-                                ["de", "4"],
-                                ["fr", "4"],
-                            ]),
-                        }, {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5"],
-                                ["de", "5"],
-                                ["fr", "5"],
-                            ]),
-                        }, {
-                            key: '5+', role: 'option', content: new Map([
-                                ["en", "5+"],
-                                ["de", "5+"],
-                                ["fr", "5+"],
-                            ]),
-                        },
-                    ]
-                }
+                { ...ddg }
             ]
         },
         {
@@ -1230,55 +1096,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                         ["fr", "plus de 65 ans"],
                     ])
                 },
-                {
-                    key: 'v', role: 'dropDownGroup',
-                    items: [
-                        {
-                            key: '0', role: 'option', content: new Map([
-                                ["en", "0"],
-                                ["de", "0"],
-                                ["fr", "0"],
-                            ])
-                        },
-                        {
-                            key: '1', role: 'option', content: new Map([
-                                ["en", "1"],
-                                ["de", "1"],
-                                ["fr", "1"],
-                            ]),
-                        }, {
-                            key: '2', role: 'option', content: new Map([
-                                ["en", "2"],
-                                ["de", "2"],
-                                ["fr", "2"],
-                            ]),
-                        }, {
-                            key: '3', role: 'option', content: new Map([
-                                ["en", "3"],
-                                ["de", "3"],
-                                ["fr", "3"],
-                            ]),
-                        }, {
-                            key: '4', role: 'option', content: new Map([
-                                ["en", "4"],
-                                ["de", "4"],
-                                ["fr", "4"],
-                            ]),
-                        }, {
-                            key: '5', role: 'option', content: new Map([
-                                ["en", "5"],
-                                ["de", "5"],
-                                ["fr", "5"],
-                            ]),
-                        }, {
-                            key: '5+', role: 'option', content: new Map([
-                                ["en", "5+"],
-                                ["de", "5+"],
-                                ["fr", "5+"],
-                            ]),
-                        },
-                    ]
-                }
+                { ...ddg }
             ]
         }
     ]);
@@ -1287,7 +1105,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1295,6 +1113,14 @@ const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Wie viele Kinder Ihres Haushalts gehen zur Schule oder in die Tagespflege?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
         ]))
+    );
+
+
+    editor.setCondition(
+        expWithArgs('or',
+            expWithArgs('responseHasOnlyKeysOtherThan', [q6Key].join('.'), [responseGroupKey, matrixKey, '1', 'col2'].join('.'), '0'),
+            expWithArgs('responseHasOnlyKeysOtherThan', [q6Key].join('.'), [responseGroupKey, matrixKey, '2', 'col2'].join('.'), '0')
+        )
     );
 
     editor.setHelpGroupComponent(
@@ -1810,7 +1636,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q10b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1818,6 +1644,10 @@ const q10b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Wann wurden Sie in dieser Saison gegen Grippe geimpft?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2019-2020)"],
         ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
     );
 
     editor.setHelpGroupComponent(
@@ -1885,7 +1715,7 @@ const q10b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -1893,6 +1723,10 @@ const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Was waren Ihre Gründe, sich in diesem Jahr impfen zu lassen?"],
             ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1992,7 +1826,7 @@ const q10c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q10d_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2000,6 +1834,10 @@ const q10d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "Was waren Ihre Gründe, sich in dieser Saison nicht impfen zu lassen?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '1')
     );
 
     editor.setHelpGroupComponent(
@@ -2300,7 +2138,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q12_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2328,6 +2166,10 @@ const q12_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 style: [{ key: 'variant', value: 'body2' }],
             },
         ])
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q1Key, [responseGroupKey, singleChoiceKey].join('.'), '1')
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -2360,7 +2202,7 @@ const q12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q12b_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -2368,6 +2210,10 @@ const q12b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["de", "In welchem Trimester (3 Monatsperiode) Ihrer Schwangerschaft befinden Sie sich?"],
             ["fr", "A quel stade de grossesse êtes-vous?"],
         ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q12Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
     );
 
     editor.setHelpGroupComponent(
