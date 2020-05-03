@@ -23,14 +23,14 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     // define name and description of the survey
     survey.setSurveyName(generateLocStrings(
         new Map([
-            ["en", "Intake Survey"],
-            ["de", "Aufnahmefragebogen"],
+            ["en", "About You"],
+            ["de", "Über Dich"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["en", "The intake survey is focues on some background and demographic information."],
-            ["de", "Fragebogen über den Hintergrund des Teilnehmers."],
+            ["en", "The intake survey focues on some background and demographic information."],
+            ["de", "In diesem ersten Fragebogen geht es darum, ein paar grundlegende Informationen über Dich zu erfahren."],
         ])
     ));
     // max item per page
@@ -183,8 +183,8 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.addDisplayComponent(
         {
             role: 'text', content: generateLocStrings(new Map([
-                ["en", "This was all for now, please submit your responses.  ... next time you click the button, weekly survey..."],
-                ["de", "Das war die letzte Frage. Du kannst deine Antworten nun absenden. ... nächstes mal werden andere fragen gestellt... "],
+                ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
+                ["de", "Danke, das war die letzte Frage. Du kannst Deine Antworten nun absenden. Bitte schaue wieder vorbei. Das nächste mal gibt es einen Fragebogen über wie Du Dich fühlst und Deinen Gesundheitszustand."],
             ]))
         }
     )
@@ -196,7 +196,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your gender?"],
-            ["de", "Welches Geschlecht hast du?"],
+            ["de", "Welches Geschlecht hast Du?"],
             ["fr", " Quel est votre sexe?"],
         ]))
     );
@@ -213,8 +213,8 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "To find out whether the chance of getting flu is different between men and women."],
-                    ["de", "Um herauszufinden, ob das Risiko, an der Grippe zu erkranken, unterschiedlich für Männer und Frauen ist."],
+                    ["en", "To find out whether the chance of getting flu is different between genders."],
+                    ["de", "Um herauszufinden, ob das Risiko, an der Grippe zu erkranken vom Geschlecht abhängt."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -228,17 +228,24 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Male"],
-                ["de", "Männlich"],
+                ["en", "male"],
+                ["de", "männlich"],
                 ["fr", "Homme"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Female"],
-                ["de", "Weiblich"],
+                ["en", "female"],
+                ["de", "weiblich"],
                 ["fr", "Femme"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "other"],
+                ["de", "divers"],
             ])
         },
     ]);
@@ -252,7 +259,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
-            ["de", "Was ist dein Geburtsdatum (Monat und Jahr)?"],
+            ["de", "Wann bist Du geboren (Monat und Jahr)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
         ]))
     );
@@ -269,8 +276,8 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "The chance of getting flu and the risk of more serious complications vary by age."],
-                    ["de", "Das Risiko an der Grippe zu erkranken und das Risiko ernster Komplikationen variiert mit dem Alter."],
+                    ["en", "The chance of getting COVID-19 and the risk of more serious complications vary by age."],
+                    ["de", "Das Risiko an COVID-19 zu erkranken und das Risiko ernster Komplikationen variiert mit dem Alter."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -325,7 +332,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
-            ["de", "Ausgenommen die Menschen, denen Sie in öffentlichen Verkehrsmitteln begegnen, hast du Kontakt zu irgendwelchen der folgenden Personen im Laufe eines typischen Tages?"],
+            ["de", "Hast Du irgendwelche der folgenden Kontakte im Laufe eines typischen Tages? (ausgenommen Menschen, denen Du in öffentlichen Verkehrsmitteln begegnest)"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
@@ -342,16 +349,16 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "To find out whether you are likely to be exposed to more flu than the average person (e.g. work with children, or patients)."],
-                    ["de", "Um herauszufinden, ob Sie mehr der Grippe ausgesetzt sind als eine Durchschnittsperson (z.B. Arbeit mit Kindern oder Patienten)."],
+                    ["en", "To find out whether you are likely to be exposed to more infection risk than the average person (e.g. work with children, or patients)."],
+                    ["de", "Wir wollen herausfinden, ob Du einem höhren Ansteckungsrisiko ausgesetzt bist als eine Durchschnittsperson (z.B. durch Arbeit mit Kindern oder Patienten)."],
                     ["fr", "Pour savoir si vous êtes susceptible d'être exposés à la grippe plus que la moyenne (p. ex. via une votre travail avec des enfants ou des patients)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["de", "Wie soll ich das beantworten?"],
+                    ["en", "Hint:"],
+                    ["de", "Hinweis:"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -359,7 +366,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Groups of people could include any setting where you come into contact with large numbers of people at one, e.g. a teacher who may contact many children in a day."],
-                    ["de", "Gruppen von Menschen können jede Gelegenheit umfassen, bei der Sie in Kontakt mit einer großen Anzahl von Menschen kommen (z.B. ein Lehrer, der jeden Tag Kontakt zu Schülern hat)."],
+                    ["de", "Als Gruppen von Menschen zählt jede Gelegenheit, bei der Du in Kontakt mit einer großen Anzahl von Menschen kommst (z.B. ein Lehrer, der jeden Tag Kontakt zu Schülern hat)."],
                     ["fr", "Sélectionnez les groupes de personnes avec lesquelles vous êtes en contact au cours d'une journée (p. ex. un enseignant peut interagir avec de nombreux enfants dans une journée)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -375,7 +382,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wählen alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -385,8 +392,8 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '0', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
-                ["en", "More than 10 children or teenagers over the course of the day"],
-                ["de", "Mehr als 10 Kinder oder Jugendliche im Laufe eines Tages"],
+                ["en", "More than 10 children or teenagers"],
+                ["de", "mehr als 10 Kinder oder Jugendliche"],
                 ["fr", " Plus de 10 enfants ou adolescents au cours de la journée"],
             ])
         },
@@ -394,8 +401,8 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
-                ["en", "More than 10 people aged over 65 over the course of day"],
-                ["de", "Mehr als 10 Menschen im Alter von über 65 Jahren im Laufe eines Tages"],
+                ["en", "More than 10 people aged over 65"],
+                ["de", "mehr als 10 Menschen im Alter von über 65 Jahren"],
                 ["fr", " Plus de 10 personnes âgées de plus de 65 ans au cours de la journée"],
             ])
         },
@@ -419,7 +426,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "None of the above"],
-                ["de", "Keines der oben aufgeführten"],
+                ["de", "keines der oben aufgeführten"],
                 ["fr", " Aucune des réponses ci-dessus"],
             ])
         },
@@ -434,7 +441,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
-            ["de", "Wie viele Menschen in den folgenden Altersgruppen leben in deinem Haushalt? (DICH EINGESCHLOSSEN)"],
+            ["de", "Wie viele Menschen der folgenden Altersgruppen leben in Deinem Haushalt? (DICH EINGESCHLOSSEN)"],
             ["fr", " VOUS Y COMPRIS, combien de personnes de chaque groupe d'âge suivants vivent dans votre maison?"],
         ]))
     );
@@ -451,8 +458,8 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "Members of larger households, or those with children, may be more likely to catch flu than the others."],
-                    ["de", "Mitglieder von großen Haushalten oder Haushalten mit Kindern könnten einen höheres Risiko als andere haben, sich mit der Grippe zu infizieren."],
+                    ["en", "Members of larger households, or those with children, may more likely get infected than the others."],
+                    ["de", "Mitglieder von größeren Haushalten oder Haushalten mit Kindern könnten ein höheres Risiko als andere haben, sich zu infizieren."],
                     ["fr", "Les membres des ménages les plus grands, ou ceux possédant des enfants, peuvent être plus susceptibles d'attraper la grippe que les autres."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -593,7 +600,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How many of the children in your household go to school or day-care?"],
-            ["de", "Wie viele Kinder deines Haushalts gehen zur Schule oder in die Tagespflege?"],
+            ["de", "Wie viele Kinder aus Deinem Haushalts gehen zur Schule oder in eine Kindertagesstätte?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
         ]))
     );
@@ -618,8 +625,8 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "Attending school or day-care may be a risk for acquiring flu and similar illnesses. We would like to check this."],
-                    ["de", "Der Besuch einer Schule oder Tagespflege könnte ein Risiko darstellen, an der Grippe und ähnlichen Krankheiten zu erkranken. Wir würden dies gerne überprüfen."],
+                    ["en", "Attending school or day-care may be a risk for acquiring certain virus based illnesses. We would like to check this."],
+                    ["de", "Der Besuch einer Schule oder KiTa könnte ein Risiko für bestimmte Viruserkrankungen darstellen. Wir würden dies gerne überprüfen."],
                     ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -634,8 +641,8 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "If your child attends regular school or day-care (even this is just one day a week) then please answer yes to this. Attendance of clubs and activities does not count - even if regular."],
-                    ["de", "Falls Ihr Kind regelmässig die Schule oder Tagespflege besucht (auch wenn es nur ein Tag pro Woche ist), antworten Sie bitte mit ja. Anwesenheit in Vereinen oder andere Aktivitäten zählen nicht, auch dann nicht, wenn Sie regelmässig sind."],
+                    ["en", "If the child is attending regular school or day-care (even this is just one day a week) then please count it. Attendance of clubs and activities does not count - even if regular."],
+                    ["de", "Es zählt, falls das Kind regelmässig die Schule oder eine KiTa besucht (auch wenn es nur ein Tag pro Woche ist). Anwesenheit in Vereinen oder andere Aktivitäten zählen nicht, auch dann nicht, wenn Sie regelmässig sind."],
                     ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -687,7 +694,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
             key: '99', role: 'option',
             content: new Map([
                 ["en", "More than 5"],
-                ["de", "Mehr als 5"],
+                ["de", "mehr als 5"],
                 ["fr", "Plus de 5"],
             ])
         },
@@ -702,7 +709,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport?"],
-            ["de", "Was ist dein hauptsächliches Transportmittel?"],
+            ["de", "Was ist Dein Haupttransportmittel?"],
             ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
@@ -719,8 +726,8 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "It has been suggested that using public transport may be a risk for flu. We would like to check this."],
-                    ["de", "Es wurde vorgeschlagen, dass die Benutzung von öffentlichen Verkehrsmitteln ein Risiko für eine Grippeinfektion darstellt."],
+                    ["en", "It has been suggested that using public transport may be a risk for infection. We would like to check this."],
+                    ["de", "Es kann sein, dass die Benutzung von öffentlichen Verkehrsmitteln ein höheres Risiko für eine Infektion darstellt. Wir wollen das überprüfen."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -736,7 +743,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Tick the option that best represents your most normal mode of transport."],
-                    ["de", "Wählen Sie die Option, die am besten Ihrem normalerweise verwendeten Transportmittel entspricht."],
+                    ["de", "Wähle die Option, die am besten Deinem normalerweise verwendeten Transportmittel entspricht."],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -782,7 +789,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Public transportation (bus, train, tube, etc)"],
-                ["de", "Öffentliche Verkehrsmittel (Bus, Zug, U-Bahn, usw.)"],
+                ["de", "öffentliche Verkehrsmittel (Bus, Zug, U-Bahn, usw.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
             ])
         },
@@ -790,7 +797,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '5', role: 'input',
             content: new Map([
                 ["en", "Other"],
-                ["de", "Andere"],
+                ["de", "andere"],
                 ["fr", "Autre"],
             ])
         },
@@ -805,7 +812,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.)"],
-            ["de", "Wie viel Zeit verbringst du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
+            ["de", "Wie viel Zeit verbringst Du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
         ]))
     );
@@ -823,7 +830,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],
-                    ["de", "Es wurde vorgeschlagen, dass die Benutzung von öffentlichen Verkehrsmitteln ein Risiko für eine Grippeinfektion darstellt. Wir möchten dies überprüfen."],
+                    ["de", "Es kann sein, dass die Benutzung von öffentlichen Verkehrsmitteln ein höheres Risiko für eine Infektion darstellt. Wir wollen das überprüfen."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -839,7 +846,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
-                    ["de", "Denk an einen gewöhnlichen Tag. Falls Sie mehrere verschiedene Transportmittel benutzen, vergessen Sie nicht, alle Reisen mit einzubeziehen. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
+                    ["de", "Denke an einen gewöhnlichen Tag. Falls Du mehrere verschiedene Transportmittel benutzt, beziehe alle Reiseabschnitte mit ein. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -853,7 +860,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '0', role: 'option',
             content: new Map([
                 ["en", "No time at all"],
-                ["de", "Gar nicht"],
+                ["de", "gar nicht"],
                 ["fr", "Pas de temps du tout"],
             ])
         },
@@ -861,7 +868,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "0-30 minutes"],
-                ["de", "0 - 30 Minuten"],
+                ["de", "unter 30 Minuten"],
                 ["fr", "0-30 minutes"],
             ])
         },
@@ -869,7 +876,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "30 minutes - 1.5 hours"],
-                ["de", "30 Minuten – 1.5 Stunden"],
+                ["de", "30 - 90 Minuten"],
                 ["fr", "30 minutes - 1.5 heures"],
             ])
         },
@@ -877,7 +884,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "1.5 hours - 4 hours"],
-                ["de", "1.5 Stunden – 4 Stunden"],
+                ["de", "90 Minuten – 4 Stunden"],
                 ["fr", "1.5 - 4 heures"],
             ])
         },
@@ -885,7 +892,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Over 4 hours"],
-                ["de", "Mehr als 4 Stunden"],
+                ["de", "mehr als 4 Stunden"],
                 ["fr", "Plus de 4 heures"],
             ])
         },
@@ -900,7 +907,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How often do you have common colds or flu-like diseases?"],
-            ["de", "Wie oft hast du eine gewöhnliche Erkältung oder grippeähnliche Erkrankungen?"],
+            ["de", "Wie oft hast Du eine gewöhnliche Erkältung oder grippeähnliche Erkrankungen?"],
             ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
         ]))
     );
@@ -911,7 +918,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Never"],
-                ["de", "Nie"],
+                ["de", "nie"],
                 ["fr", "Jamais"],
             ])
         },
@@ -919,7 +926,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Once or twice a year"],
-                ["de", "Einmal oder zweimal im Jahr"],
+                ["de", "ein- oder zweimal im Jahr"],
                 ["fr", "1 ou 2 fois par an"],
             ])
         },
@@ -927,7 +934,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Between 3 and 5 times a year"],
-                ["de", "Zwischen 3 und 5 mal im Jahr"],
+                ["de", "zwischen 3 und 5 mal im Jahr"],
                 ["fr", "De 3 à 5 fois par an"],
             ])
         },
@@ -935,7 +942,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Between 6 and 10 times a year"],
-                ["de", "Zwischen 6 und 10 mal im Jahr"],
+                ["de", "zwischen 6 und 10 mal im Jahr"],
                 ["fr", "De 6 à 10 fois par an"],
             ])
         },
@@ -943,7 +950,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "More that 10 times a year"],
-                ["de", "Mehr als 10 mal"],
+                ["de", "mehr als 10 mal"],
                 ["fr", "Plus de 10 fois par an"],
             ])
         },
@@ -951,7 +958,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '5', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
-                ["de", "Ich weiß nicht"],
+                ["de", "keine Ahnung"],
                 ["fr", "Je ne sais pas"],
             ])
         },
@@ -966,7 +973,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2018-2019)"],
-            ["de", "Hast du in der letzten Herbst/Wintersaison eine Grippeimpfung erhalten? (2018-2019)"],
+            ["de", "Hast du in der Herbst/Wintersaison 2018/2019 eine Grippeimpfung erhalten?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
         ]))
     );
@@ -999,8 +1006,8 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
-                    ["de", "Antworten Sie mit ja, falls Sie eine Impfung in dieser Saison, normalerweise im Herbst, erhalten haben. Falls Sie nach Beantwortung dieses Fragebogens geimpft werden, kehren Sie bitte hierher zurück und aktualisieren Sie Ihre Antwort."],
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
+                    ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2018, erhalten hast."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1030,7 +1037,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
-                ["de", "Ich weiß nicht"],
+                ["de", "weiß ich nicht"],
                 ["fr", "Je ne sais pas"],
             ])
         },
@@ -1045,7 +1052,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you received a flu vaccine this autumn/winter season? (2019-2020)"],
-            ["de", "Hast du eine Grippeimpfung in dieser Herbst-/ Wintersaison erhalten? (2019-2020)"],
+            ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2019/2020 erhalten?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
@@ -1062,8 +1069,8 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "We would like to be able to work out how much protection the vaccine gives."],
-                    ["de", "Wir möchten in der Lage sein herauszufinden, wie viel Schutz die Impfung bietet."],
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
+                    ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2019, erhalten hast."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1109,7 +1116,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
-                ["de", "Ich weiß nicht"],
+                ["de", "weiß ich nicht"],
                 ["fr", "Je ne sais pas"],
             ])
         },
@@ -1123,8 +1130,8 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When were you vaccinated against this flu season? (2017-2018)"],
-            ["de", "Wann wurdest du in dieser Saison gegen Grippe geimpft?"],
+            ["en", "When were you vaccinated against flu in the season 2029/2020?"],
+            ["de", "Wann wurdest du in der Saison 2019/2020 gegen Grippe geimpft?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2019-2020)"],
         ]))
     );
@@ -1162,7 +1169,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Please, try and answer as accurately as possible. If you don't know the precise date, please give your best estimate. For instance, you might remember the month, then try and remember if it was at the beginning or the end of the month. Were there any significant events (e.g. a holiday or a birthday) that might help jog your memory?"],
-                    ["de", "Bitte versuchen Sie so genau wie möglich zu antworten. Falls Sie das genaue Datum nicht kennen, dann geben Sie bitte Ihre bestmögliche Abschätzung. Falls Sie sich z.B. den Monat wissen, versuchen Sie sich zu erinnern, ob es am Anfang oder Ende des Monats war. Waren an diesem Tag vielleicht irgendwelche bedeutenden Ereignisse (z.B. ein Feiertag oder ein Geburtstag), die Ihrem Gedächtnis weiterhelfen könnten?"],
+                    ["de", "Bitte versuche so genau wie möglich zu antworten. Falls Du das genaue Datum nicht kennst, gib bitte eine bestmögliche Abschätzung. Falls Du z.B. den Monat weisst, versuche Dich zu erinnern, ob es am Anfang oder Ende des Monats war. Waren an diesem Tag vielleicht irgendwelche bedeutenden Ereignisse (z.B. ein Feiertag oder ein Geburtstag), die Deinem Gedächtnis weiterhelfen könnten?"],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1180,7 +1187,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             },
             content: new Map([
                 ["en", "Choose date:"],
-                ["de", "Wählen Sie das Datum:"],
+                ["de", "Wähle ein Datum:"],
                 ["fr", "Sélectionner une date"],
             ])
         },
@@ -1188,7 +1195,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
-                ["de", "Ich weiß nicht bzw. ich kann mich nicht erinnern"],
+                ["de", "Ich weiß es nicht bzw. kann mich nicht erinnern"],
                 ["fr", "Je ne sais pas, je ne m'en souviens plus"],
             ])
         },
@@ -1203,7 +1210,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What were your reasons for getting a seasonal influenza vaccination this year?"],
-            ["de", "Was waren deine Gründe, sich in diesem Jahr impfen zu lassen?"],
+            ["de", "Welche Gründe hattest Du, Dich impfen zu lassen?"],
             ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -1220,7 +1227,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen aus, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1230,7 +1237,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I belong to a risk group (e.g, pregnant, over 65, underlying health condition, etc)"],
-                ["de", "Ich gehöre zu einer Risikogruppe (z.B. Schwangere, über 65, allgemeiner Gesundheitszustand)"],
+                ["de", "Ich gehöre zu einer Risikogruppe (z.B. Schwangere, über 65, Vorerkrankungen)"],
                 ["fr", "Je fais partie d'un groupe à risque (p. ex. femmes enceintes, plus de 65 ans, état de santé créant un prédisposition, etc.)"],
             ])
         },
@@ -1261,7 +1268,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "It was recommended in my workplace/school"],
-                ["de", "Es wurde mir von der Arbeit/ Schule empfohlen"],
+                ["de", "Es wurde mir von der Arbeit/Schule empfohlen"],
                 ["fr", " Il a été recommandé sur mon lieu de travail / à l'école"],
             ])
         },
@@ -1269,7 +1276,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '5', role: 'option',
             content: new Map([
                 ["en", "The vaccine was readily available and vaccine administration was convenient"],
-                ["de", "Der Impfstoff war leicht verfügbar und die Organisation der Impfung war einfach."],
+                ["de", "Der Impfstoff war leicht verfügbar und die Impfung war für mich bequem durchführbar."],
                 ["fr", " Le vaccin était disponible et l'administration du vaccin était pratique"],
             ])
         },
@@ -1285,7 +1292,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '7', role: 'option',
             content: new Map([
                 ["en", "I don't want to miss work/school"],
-                ["de", "Ich möchte in der Arbeit/ Schule nicht fehlen"],
+                ["de", "Ich möchte in der Arbeit/Schule nicht fehlen"],
                 ["fr", " Je ne veux pas manquer le travail / l'école"],
             ])
         }, {
@@ -1299,7 +1306,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '9', role: 'option',
             content: new Map([
                 ["en", "Other reason(s)"],
-                ["de", "Andere Gründe"],
+                ["de", "andere Gründe"],
                 ["fr", "Autres raisons"],
             ])
         },
@@ -1314,7 +1321,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What were your reasons for NOT getting a seasonal influenza vaccination this year?"],
-            ["de", "Was waren deine Gründe, sich in dieser Saison nicht impfen zu lassen?"],
+            ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -1352,7 +1359,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Tick all those reasons that were important in your decision."],
-                    ["de", "Wählen Sie alle Gründe, die für Ihre Entscheidung wichtig waren."],
+                    ["de", "Wähle alle Gründe, die für Deine Entscheidung wichtig waren."],
                     ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1368,7 +1375,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1440,7 +1447,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '8', role: 'option',
             content: new Map([
                 ["en", "I am worried that the vaccine is not safe or will cause illness or other adverse events"],
-                ["de", "Ich bin besorgt, dass der Impfstoff nicht sicher ist oder, dass dieser andere Krankheiten oder unerwünschte Ereignisse fördern wird"],
+                ["de", "Ich bin besorgt, dass der Impfstoff nicht sicher ist oder, dass dieser andere Krankheiten oder unerwünschte Ereignisse fördert"],
                 ["fr", "Je pense que le vaccin n'est pas sûr ou qu'il peut causer d'autres maladies ou effets indésirables"],
             ])
         }, {
@@ -1482,7 +1489,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             key: '14', role: 'option',
             content: new Map([
                 ["en", "Other reason(s)"],
-                ["de", "Andere Gründe"],
+                ["de", "andere Gründe"],
                 ["fr", "Autre(s) raison(s)"],
             ])
         },
@@ -1515,8 +1522,8 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "This question allows us to find out whether you have other medical conditions that may increase your risk of having more severe illness if you are infected with flu."],
-                    ["de", "Diese Frage erlaubt es uns, herauszufinden, ob Sie andere Krankheiten haben, die Ihr Risiko für ernstere Krankheiten erhöhen könnten, falls Sie sich mit der Grippe infizieren."],
+                    ["en", "This question allows us to find out whether you have other medical conditions that may increase your risk of having more severe illness if you are infected."],
+                    ["de", "Diese Frage erlaubt es uns, herauszufinden, ob Du andere Krankheiten hast, die das Risiko für ernstere Verläufe im Falle einer Infektion erhöht."],
                     ["fr", "Cette question nous permet de savoir si vous avez des prédispositions qui pourraient augmenter votre risque d'avoir des complications si vous contractez la grippe."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1532,7 +1539,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", 'Only answer "yes" if you take regular medication for your medical problem. If, for instance, you only occasionally take an asthma inhaler, then do not answer "yes" for asthma.'],
-                    ["de", "Antworten Sie nur mit ja, falls Sie regelmässig Medikamente gegen Ihre Krankheit nehmen. Falls Sie z.B. gelegentlich eine Asthmainhalator verwenden, dann antworten sie nicht mit ja für Asthma."],
+                    ["de", "Antworten nur mit ja, falls Du regelmässig Medikamente gegen die Krankheit nimmst. Falls Du z.B. nur gelegentlich einen Asthmainhalator verwendest, dann wähle nicht Asthma aus."],
                     ["fr", "Répondez «oui» seulement si vous prenez <b>régulièrement</b> des médicaments pour votre problème médical. Si, par exemple, vous n'utilisez qu'occasionnellement un inhalateur pour l'asthme, alors ne répondez pas «oui» pour l'asthme ."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1548,7 +1555,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1584,7 +1591,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chronic lung disorder besides asthma e.g. COPD, emphysema, or other disorders that affect your breathing"],
-                ["de", "Chronische Lungenerkrankungen außer Asthma, z.B. COPD, Emphysem oder andere Beschwerden, die Ihre Atmung betreffen"],
+                ["de", "Chronische Lungenerkrankungen außer Asthma, z.B. COPD, Emphysem oder andere Beschwerden, die die Atmung betreffen"],
                 ["fr", "Troubles pulmonaires chroniques à part l'asthme (p. ex. MPOC, emphysème, ou autres troubles affectant votre respiration)"],
             ])
         },
@@ -1593,7 +1600,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Heart disorder"],
-                ["de", "Herzbeschwerden"],
+                ["de", "Herzerkrankungen"],
                 ["fr", "Troubles cardiaques"],
             ])
         },
@@ -1602,7 +1609,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Kidney disorder"],
-                ["de", "Nierenbeschwerden"],
+                ["de", "Nierenerkrankungen"],
                 ["fr", "Troubles rénaux"],
             ])
         },
@@ -1643,8 +1650,8 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "Smoking might make you more likely to get a more severe dose of flu. We would like to test this."],
-                    ["de", "Rauchen könnte die Wahrscheinlichkeit erhöhen, dass Sie Ihre Grippe schwere verläuft. Wir möchten dies gerne testen."],
+                    ["en", "Smoking might make you more likely to get a more severe dose of virus disease. We would like to test this."],
+                    ["de", "Rauchen könnte die Wahrscheinlichkeit erhöhen, dass Sie eine mögliche Erkrankung schwerer verläuft. Wir möchten dies gerne prüfen."],
                     ["fr", "Fumer pourrait vous rendre plus susceptible de contracter une grippe sévère."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1659,8 +1666,8 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "Please, answer as accurately as possible. If you smoke other products (e.g. pipe or cigars), then indicate roughly how many times a day."],
-                    ["de", "Bitte seien Sie so genau wie möglich. Falls sie andere Produkte rauchen (z.B. Pfeife oder Zigarre), dann geben Sie bitte ungefähr an, wie oft am Tag sie diese konsumieren."],
+                    ["en", "Please, answer as accurately as possible."],
+                    ["de", "Bitte sein so genau wie möglich."],
                     ["fr", "Répondez aussi précisément que possible. Si vous fumez autres produits (p. ex. pipe ou cigares), indiquez à peu près combien de fois par jour."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1702,7 +1709,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Dont know/would rather not answer"],
-                ["de", "Ich weiß nicht bzw. ich möchte das nicht beantworten"],
+                ["de", "Ich weiß es icht bzw. möchte das nicht beantworten"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
             ])
         },
@@ -1751,7 +1758,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Tick all the options that apply. We are only interested in those allergies that cause respiratory symptoms (i.e. sneezing, sunny nose, runny eyes)."],
-                    ["de", "Wählen Sie alle Optionen, die zutreffen. Wir interessieren uns nur für jene Allergien, die Atemwegssymptome (z.B. Niesen, laufenden Nase, tränende Augen) verursachen."],
+                    ["de", "Wähle alle Optionen, die zutreffen. Wir interessieren uns nur für jene Allergien, die Atemwegssymptome (z.B. Niesen, laufenden Nase, tränende Augen) verursachen."],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1767,7 +1774,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1786,7 +1793,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Allergy against house dust mite"],
-                ["de", "Allergie gegen Hausstaubmilbe"],
+                ["de", "Allergie gegen Hausstaubmilben"],
                 ["fr", "Allergie aux acariens"],
             ])
         }, {
@@ -1837,7 +1844,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1907,7 +1914,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wählen alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1953,7 +1960,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one ore more other animals"],
-                ["de", "Ja, ein oder mehrere andere Tiere"],
+                ["de", "Ja, mindestens ein anderes Tier"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
             ])
         },
@@ -1968,7 +1975,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity?"],
-            ["de", "Führst du seit Beginn der COVID-19-Sperrmassnahmen eine berufliche Tätigkeit aus?"],
+            ["de", "Gehst Du seit Beginn der COVID-19-Sperrmaßnahmen einer berufliche Tätigkeit nach?"],
             ["fr", "Depuis le début des mesures de confinement liées au COVID-19, exercez-vous une activité professionnelle ? "],
         ]))
     );
@@ -1981,7 +1988,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1994,7 +2001,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4', '5'),
             content: new Map([
                 ["en", "Yes, I work from home"],
-                ["de", "Ja, ich arbeite von zu Hause aus "],
+                ["de", "Ja, ich arbeite von zu Hause aus"],
             ])
         },
         {
@@ -2003,7 +2010,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4', '5'),
             content: new Map([
                 ["en", "Yes, I work outside from home"],
-                ["de", "Ja, ich arbeite ausser Haus "],
+                ["de", "Ja, ich arbeite ausser Haus"],
             ])
         },
         {
@@ -2030,7 +2037,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "No, I have another situation (retired, job-seeker, student, house-wife/husband, other sick-leave, partial unemployment, forced leave…)"],
-                ["de", "Nein, ich habe eine andere Situation (Rentner, Arbeitssuchender, Student, Hausfrau/Ehemann, anderen Krankheitsurlaub...) "],
+                ["de", "Nein, ich befinde mich in einer anderen Situation (Rentner, Arbeitssuchender, Student, Hausfrau/Ehemann, anderen Krankheitsurlaub...) "],
             ])
         }
     ])
