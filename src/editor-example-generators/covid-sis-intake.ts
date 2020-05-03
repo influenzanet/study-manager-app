@@ -382,7 +382,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1633,7 +1633,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you smoke tobacco?"],
-            ["de", "Rauchen Sie Tabak?"],
+            ["de", "Rauchst Du (Tabak)?"],
             ["fr", "Etes-vous fumeur?"],
         ]))
     );
@@ -1914,7 +1914,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);

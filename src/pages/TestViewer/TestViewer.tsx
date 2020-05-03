@@ -6,8 +6,8 @@ import { generateCovidSISWeekly } from '../../editor-example-generators/covid-si
 import { generateCovidSISIntake } from '../../editor-example-generators/covid-sis-intake';
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
-import { Box, Button, TextField } from '@material-ui/core';
-import { Survey } from 'survey-engine/lib/data_types';
+import { Box, Button, TextField, Typography, Paper } from '@material-ui/core';
+import { Survey, LocalizedString, LocalizedObject } from 'survey-engine/lib/data_types';
 
 const availableLanguages = [
     { code: 'en', label: '🇬🇧 English' },
@@ -43,19 +43,42 @@ const TestViewer: React.FC = () => {
         </Box>
     )
 
+    const getSurveyNameByLocaleCode = (translations: LocalizedObject[] | undefined, code: string): string | undefined => {
+        if (!translations) { return; }
+        const translation = (translations.find(cont => cont.code === code) as LocalizedString);
+        if (!translation) { return }
+        return translation.parts.map(p => p.str).join('');
+    }
+
+
     return (
         <Container maxWidth="lg">
             {languageSelector}
-            {survey ? <SurveyView
-                survey={survey}
-                languageCode={selectedLanguage}
-                onSubmit={(resp) => {
-                    console.log(resp)
-                }}
-                submitBtnText={'submit'}
-                nextBtnText={'next'}
-                backBtnText={'previous'}
-            /> : null}
+            {survey ?
+                <Box>
+                    <Paper>
+                        <Box p={2}>
+                            <Typography variant="subtitle1">
+                                {getSurveyNameByLocaleCode(survey.name, selectedLanguage)}
+                            </Typography>
+                            <Typography variant="caption">
+                                {getSurveyNameByLocaleCode(survey.description, selectedLanguage)}
+                            </Typography>
+                        </Box>
+                    </Paper>
+
+                    <SurveyView
+                        survey={survey}
+                        languageCode={selectedLanguage}
+                        onSubmit={(resp) => {
+                            console.log(resp)
+                        }}
+                        submitBtnText={'submit'}
+                        nextBtnText={'next'}
+                        backBtnText={'previous'}
+                    />
+                </Box>
+                : null}
 
             <Box display="flex" alignItems="center" justifyContent="center">
 
