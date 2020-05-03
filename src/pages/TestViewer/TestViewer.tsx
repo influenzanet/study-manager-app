@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import { generateCovid19Intake } from '../../editor-example-generators/covid-19-intake';
 import { generateCovid19Weekly } from '../../editor-example-generators/covid-19-weekly';
-// import { generateCovidSISWeekly } from '../../editor-example-generators/covid-sis-weekly';
+import { generateCovidSISWeekly } from '../../editor-example-generators/covid-sis-weekly';
+import { generateCovidSISIntake } from '../../editor-example-generators/covid-sis-intake';
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 import { Box, Button, TextField } from '@material-ui/core';
@@ -15,11 +16,14 @@ const availableLanguages = [
 ]
 
 const TestViewer: React.FC = () => {
-    const [studyName, setStudyName] = useState('covid-19');
+    // const [studyName, setStudyName] = useState('covid-19');
+    const [studyName, setStudyName] = useState('pwc-internal-covid-app');
 
     useEffect(() => {
-        const s = generateCovid19Weekly();
+        // const s = generateCovid19Weekly();
         // const s = generateCovid19Intake();
+        // const s = generateCovidSISWeekly();
+        const s = generateCovidSISIntake();
         setSurvey(s);
     }, [])
 

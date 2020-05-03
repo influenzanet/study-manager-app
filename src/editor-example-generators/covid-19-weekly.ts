@@ -1567,7 +1567,7 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
             key: '6', role: 'option',
             content: new Map([
                 ["en", "40°C or more"],
-                ["de", "40°C or more"],
+                ["de", "40°C oder mehr"],
                 ["fr", "40°C ou plus"],
             ])
         },
@@ -1793,17 +1793,11 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 key: '6', role: 'option', content: new Map([
                     ["en", "More than 7 days"],
                     ["de", "Mehr als 7 Tage"],
-                ]),
-            },
-            {
-                key: '7', role: 'option', content: new Map([
-                    ["en", "More than 7 days"],
-                    ["de", "Mehr als 7 Tage"],
                     ["fr", "Plus de 7 jours"],
                 ]),
             },
             {
-                key: '8', role: 'option', content: new Map([
+                key: '7', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
                     ["de", "Ich weiss nicht bzw. ich kann mich nicht erinnern"],
                     ["fr", "Je ne sais pas / je ne m'en souviens plus"],
