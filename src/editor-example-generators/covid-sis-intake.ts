@@ -196,7 +196,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your gender?"],
-            ["de", "Welches Geschlecht haben Sie?"],
+            ["de", "Welches Geschlecht hast du?"],
             ["fr", " Quel est votre sexe?"],
         ]))
     );
@@ -252,7 +252,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
-            ["de", "Was ist Ihr Geburtsdatum (Monat und Jahr)?"],
+            ["de", "Was ist dein Geburtsdatum (Monat und Jahr)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
         ]))
     );
@@ -325,7 +325,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
-            ["de", "Ausgenommen die Menschen, denen Sie in öffentlichen Verkehrsmitteln begegnen, haben Sie  Kontakt zu irgendwelchen der folgenden Personen im Laufe eines typischen Tages?"],
+            ["de", "Ausgenommen die Menschen, denen Sie in öffentlichen Verkehrsmitteln begegnen, hast du Kontakt zu irgendwelchen der folgenden Personen im Laufe eines typischen Tages?"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
@@ -434,7 +434,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
-            ["de", "Wie viele Menschen in den folgenden Altersgruppen leben in Ihrem Haushalt? (SIE EINGESCHLOSSEN)"],
+            ["de", "Wie viele Menschen in den folgenden Altersgruppen leben in deinem Haushalt? (DICH EINGESCHLOSSEN)"],
             ["fr", " VOUS Y COMPRIS, combien de personnes de chaque groupe d'âge suivants vivent dans votre maison?"],
         ]))
     );
@@ -593,7 +593,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How many of the children in your household go to school or day-care?"],
-            ["de", "Wie viele Kinder Ihres Haushalts gehen zur Schule oder in die Tagespflege?"],
+            ["de", "Wie viele Kinder deines Haushalts gehen zur Schule oder in die Tagespflege?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
         ]))
     );
@@ -702,7 +702,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport?"],
-            ["de", "Was ist ihr hauptsächliches Transportmittel?"],
+            ["de", "Was ist dein hauptsächliches Transportmittel?"],
             ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
@@ -805,7 +805,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.)"],
-            ["de", "Wie viel Zeit verbringen Sie an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
+            ["de", "Wie viel Zeit verbringst du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
         ]))
     );
@@ -839,7 +839,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
-                    ["de", "Denken Sie an einen gewöhnlichen Tag. Falls Sie mehrere verschiedene Transportmittel benutzen, vergessen Sie nicht, alle Reisen mit einzubeziehen. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
+                    ["de", "Denk an einen gewöhnlichen Tag. Falls Sie mehrere verschiedene Transportmittel benutzen, vergessen Sie nicht, alle Reisen mit einzubeziehen. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -900,7 +900,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How often do you have common colds or flu-like diseases?"],
-            ["de", "Wie oft haben Sie eine gewöhnliche Erkältung oder grippeähnliche Erkrankungen?"],
+            ["de", "Wie oft hast du eine gewöhnliche Erkältung oder grippeähnliche Erkrankungen?"],
             ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
         ]))
     );
@@ -966,7 +966,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2018-2019)"],
-            ["de", "Haben Sie in der letzten Herbst/Wintersaison eine Grippeimpfung erhalten? (2018-2019)"],
+            ["de", "Hast du in der letzten Herbst/Wintersaison eine Grippeimpfung erhalten? (2018-2019)"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
         ]))
     );
@@ -1045,7 +1045,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you received a flu vaccine this autumn/winter season? (2019-2020)"],
-            ["de", "Haben Sie eine Grippeimpfung in dieser Herbst-/ Wintersaison erhalten? (2019-2020)"],
+            ["de", "Hast du eine Grippeimpfung in dieser Herbst-/ Wintersaison erhalten? (2019-2020)"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
@@ -1124,7 +1124,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "When were you vaccinated against this flu season? (2017-2018)"],
-            ["de", "Wann wurden Sie in dieser Saison gegen Grippe geimpft?"],
+            ["de", "Wann wurdest du in dieser Saison gegen Grippe geimpft?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2019-2020)"],
         ]))
     );
@@ -1203,7 +1203,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What were your reasons for getting a seasonal influenza vaccination this year?"],
-            ["de", "Was waren Ihre Gründe, sich in diesem Jahr impfen zu lassen?"],
+            ["de", "Was waren deine Gründe, sich in diesem Jahr impfen zu lassen?"],
             ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -1314,7 +1314,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What were your reasons for NOT getting a seasonal influenza vaccination this year?"],
-            ["de", "Was waren Ihre Gründe, sich in dieser Saison nicht impfen zu lassen?"],
+            ["de", "Was waren deine Gründe, sich in dieser Saison nicht impfen zu lassen?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -1497,7 +1497,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you take regular medication for any of the following medical conditions?"],
-            ["de", "Nehmen Sie regelmässig Medikamente gegen eine der folgenden Erkrankungen?"],
+            ["de", "Nimmst du regelmässig Medikamente gegen eine der folgenden Erkrankungen?"],
             ["fr", " Souffrez-vous de l'une des maladies suivantes?"],
         ]))
     );
@@ -1621,142 +1621,6 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Are you currently pregnant?"],
-            ["de", "Sind sie im Augenblick schwanger?"],
-            ["fr", " Êtes-vous actuellement enceinte?"],
-        ]))
-    );
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["de", "Warum fragen wir das?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Pregnancy can result in more severe illness if you are infected with flu."],
-                    ["de", "Schwangerschaft kann zu ernsteren Erkrankungen führen, wenn Sie mit der Grippe infiziert sind."],
-                    ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
-                ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-        ])
-    );
-
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', q1Key, [responseGroupKey, singleChoiceKey].join('.'), '1')
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "Yes"],
-                ["de", "Ja"],
-                ["fr", "Oui"],
-            ])
-        }, {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "No"],
-                ["de", "Nein"],
-                ["fr", "Non"],
-            ])
-        }, {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "Don't know/would rather not answer"],
-                ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten."],
-                ["fr", "Je ne sais pas, je ne désire pas répondre"],
-            ])
-        },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
-const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Which trimester of the pregnancy are you in?"],
-            ["de", "In welchem Trimester (3 Monatsperiode) Ihrer Schwangerschaft befinden Sie sich?"],
-            ["fr", "A quel stade de grossesse êtes-vous?"],
-        ]))
-    );
-
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', q12Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
-    );
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["de", "Warum fragen wir das?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "The stage of pregnancy might alter your risk of severe flu if you are infected, although this is not very clear."],
-                    ["de", "Die Phase Ihrer Schwangerschaft könnte Ihr Risiko eines schweren Verlaufs der Grippe beeinflussen, auch wenn dies nicht sicher ist."],
-                    ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
-                ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "First trimester (week 1-12)"],
-                ["de", "Erstes Trimester (Woche 1-12)"],
-                ["fr", "Premier trimestre (semaine 1-12)"],
-            ])
-        }, {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "Second trimester (week 13-28)"],
-                ["de", "Zweites Trimester (Woche 13-28)"],
-                ["fr", "Deuxième trimestre (semaine 13-28)"],
-            ])
-        }, {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "Third trimester (week 29-delivery)"],
-                ["de", "Drittes Trimester (Woche 29 bis Entbindung)"],
-                ["fr", "Troisième trimestre (semaine 29 ou plus)"],
-            ])
-        }, {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "Don't know/would rather not answer"],
-                ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten"],
-                ["fr", "Je ne sais pas, je ne désire pas répondre"],
-            ])
-        },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
 const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
@@ -1853,7 +1717,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
-            ["de", "Haben Sie eine der folgenden Allergien, die Atemwegssymptome auslösen kann?"],
+            ["de", "Hast du eine der folgenden Allergien, die Atemwegssymptome auslösen kann?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
         ]))
     );
@@ -1960,7 +1824,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you follow a special diet?"],
-            ["de", "Haben Sie eine spezielle Ernährung?"],
+            ["de", "Hast du eine spezielle Ernährung?"],
             ["fr", " Suivez-vous un régime alimentaire particulier?"],
         ]))
     );
@@ -2030,7 +1894,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you have pets at home?"],
-            ["de", "Haben Sie Haustiere?"],
+            ["de", "Hast du Haustiere?"],
             ["fr", "Avez-vous un animal domestique?"],
         ]))
     );
@@ -2104,7 +1968,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity?"],
-            ["de", "Führen Sie seit Beginn der COVID-19-Sperrmassnahmen eine berufliche Tätigkeit aus?"],
+            ["de", "Führst du seit Beginn der COVID-19-Sperrmassnahmen eine berufliche Tätigkeit aus?"],
             ["fr", "Depuis le début des mesures de confinement liées au COVID-19, exercez-vous une activité professionnelle ? "],
         ]))
     );
@@ -2179,7 +2043,7 @@ const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How many days a week do you work outside from home?"],
-            ["de", "Wie viele Tage in der Woche arbeiten Sie ausserhalb von zu Hause?"],
+            ["de", "Wie viele Tage in der Woche arbeitest du ausserhalb von zu Hause?"],
             ["fr", "Combien de jours par semaine travaillez-vous hors de votre domicile ?"],
         ]))
     );

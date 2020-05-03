@@ -723,7 +723,7 @@ const qcov3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "In the 14 days before your symptoms started, have you been in contact with someone for whom tests have confirmed that they have Covid-19?"],
-            ["de", "Hatten Sie in den 14 Tagen vor dem Beginn Ihrer Symptome Kontakt zu jemandem, für den Tests bestätigt haben, dass er Covid-19 hat?"],
+            ["de", "Hattest du in den 14 Tagen vor dem Beginn deiner Symptome Kontakt zu jemandem, für den Tests bestätigt haben, dass er Covid-19 hat?"],
             ["fr", "Dans les 14 jours avant l’apparition de vos symptômes, avez-vous été en contact étroit avec une personne pour laquelle les analyses ont confirmé qu’elle avait le Covid-19 ?"],
         ]))
     );
@@ -769,7 +769,7 @@ const qcov3b_def = (itemSkeleton: SurveyItem, qcov3Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you live in the same household as that person?"],
-            ["de", "Wohnen Sie im selben Haushalt wie diese Person?"],
+            ["de", "Wohnst du im selben Haushalt wie diese Person?"],
             ["fr", "Vivez-vous sous le même toit que cette personne ?"],
         ]))
     );
@@ -814,7 +814,7 @@ const qcov8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "In the 14 days before your symptoms started, have you been in close contact with someone presenting symptoms of COVID-19? (Symptoms of COVID-19 include: fever or chills, cough, sore throat, shortness of breath, sore muscles and headache.)"],
-            ["de", "Hatten Sie in den 14 Tagen vor dem Auftreten Ihrer Symptome engen Kontakt mit jemandem, der Symptome von COVID-19 aufweist?"],
+            ["de", "Hattest du in den 14 Tagen vor dem Auftreten deiner Symptome engen Kontakt mit jemandem, der Symptome von COVID-19 aufweist?"],
             ["fr", "Dans les 14 jours avant l’apparition de vos symptômes, avez-vous été en contact étroit avec une personne présentant des symptômes du COVID-19 ?"],
         ]))
     );
@@ -856,7 +856,7 @@ const qcov8b_def = (itemSkeleton: SurveyItem, qcov8Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you live in the same household as that person?"],
-            ["de", "Wohnen Sie im selben Haushalt wie diese Person?"],
+            ["de", "Wohnst du im selben Haushalt wie diese Person?"],
             ["fr", "Vivez-vous sous le même toit que cette personne ?"],
         ]))
     );
@@ -1030,7 +1030,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             content: new Map([
                 ["en", "Choose date"],
-                ["de", "Wählen Sie ein Datum"],
+                ["de", "Wähle ein Datum"],
                 ["fr", "Sélectionner la date"],
             ])
         },
@@ -1060,7 +1060,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did your symptoms develop suddenly over a few hours?"],
-            ["de", "Sind Ihre Symptome plötzlich über wenige Stunden erschienen?"],
+            ["de", "Sind deine Symptome plötzlich über wenige Stunden erschienen?"],
             ["fr", "Est-ce que vos symptômes se sont déclarés soudainement, en l'espace de quelques heures?"],
         ]))
     );
@@ -1139,7 +1139,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "When did your fever begin?"],
-            ["de", "Wann hat Ihr Fieber angefangen?"],
+            ["de", "Wann hat dein Fieber angefangen?"],
             ["fr", " Quand est-ce que votre fièvre a commencé ?"],
         ]))
     );
@@ -1191,7 +1191,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
             },
             content: new Map([
                 ["en", "Choose date"],
-                ["de", "Wählen Sie ein Datum"],
+                ["de", "Wähle ein Datum"],
                 ["fr", "Sélectionner la date"],
             ])
         },
@@ -1214,7 +1214,7 @@ const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did your fever develop suddenly over a few hours?"],
-            ["de", "Ist Ihr Fieber plötzlich über wenige Stunden aufgetreten?"],
+            ["de", "Ist dein Fieber plötzlich über wenige Stunden aufgetreten?"],
             ["fr", "Est-ce que votre fièvre s'est déclarée soudainement, en l'espace de quelques heures?"],
         ]))
     );
@@ -1293,7 +1293,7 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you take your temperature?"],
-            ["de", "Haben Sie Ihre Temperatur gemessen?"],
+            ["de", "Hast du deine Temperatur gemessen?"],
             ["fr", "Avez-vous pris votre température?"],
         ]))
     );
@@ -1372,7 +1372,7 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What was your highest temperature measured?"],
-            ["de", "Was war Ihre höchste gemessene Temperatur?"],
+            ["de", "Was war deine höchste gemessene Temperatur?"],
             ["fr", " Quel a été votre température mesurée la plus élevée?"],
         ]))
     );
@@ -1487,7 +1487,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
-            ["de", "Haben Sie auf Grund Ihrer Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
+            ["de", "Hast du auf Grund deiner Symptome irgendeine Form von medizinischer Einrichtung BESUCHT (persönlich dort erschienen)?"],
             ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
         ]))
     );
@@ -1595,7 +1595,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
-            ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie das erste Mal eine medizinische Einrichtung BESUCHT?"],
+            ["de", "Wie lange, nachdem deine Symptome aufgetreten sind, hast du das erste Mal eine medizinische Einrichtung BESUCHT?"],
             ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
     );
@@ -1782,7 +1782,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you contact via TELEPHONE or INTERNET any of medical services?"],
-            ["de", "Haben Sie aufgrund Ihrer Syptome irgendwelche medizinischen Einrichtungen per TELEFON oder INTERNET kontaktiert?"],
+            ["de", "Hast du aufgrund deiner Syptome irgendwelche medizinischen Einrichtungen per TELEFON oder INTERNET kontaktiert?"],
             ["fr", "En raison de vos symptômes, avez-vous contacté un service médical par téléphone ou par Internet?"],
         ]))
     );
@@ -1889,7 +1889,7 @@ const q8b_def = (itemSkeleton: SurveyItem, q8: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first contact a medical service via TELEPHONE or INTERNET?"],
-            ["de", "Wie lange, nachdem Ihre Symptome aufgetreten sind, haben Sie eine medizinische Einrichtung das erste Mal per TELEFON oder INTERNET kontaktiert?"],
+            ["de", "Wie lange, nachdem deine Symptome aufgetreten sind, hast du eine medizinische Einrichtung das erste Mal per TELEFON oder INTERNET kontaktiert?"],
             ["fr", "Combien de temps après l'apparition de vos symptômes avez-vous contacté un service médical par téléphone ou par Internet?"],
         ]))
     );
@@ -2073,7 +2073,7 @@ const qcov4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you call [write the COVID-19 emergency line of your country]?"],
-            ["de", "Haben Sie wegen Ihrer Symptome die Infoline Coronavirus angerufen?"],
+            ["de", "Hast du wegen deiner Symptome die Infoline Coronavirus angerufen?"],
             ["fr", "En raison de vos symptômes, avez-vous contacté par téléphone l'infoline Coronavirus mise en place par le gouvernement ?"],
         ]))
     );
@@ -2115,7 +2115,7 @@ const qcov5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you call [write the general emergency line of your country]?"],
-            ["de", 'Haben Sie wegen Ihrer Symptome "144" angerufen?'],
+            ["de", 'Hast du wegen deiner Symptome "144" angerufen?'],
             ["fr", "En raison de vos symptômes, avez-vous contacté le 144 par téléphone?"],
         ]))
     );
@@ -2157,7 +2157,7 @@ const qcov16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you undergo analyses to know if you have COVID-19 (infection due to SRAS-CoV-2)?"],
-            ["de", "Haben Sie sich aufgrund Ihrer Symptome Analysen unterzogen, um zu wissen, ob Sie COVID-19 (Infektion durch SARS-CoV-2) haben?"],
+            ["de", "Hast du dich aufgrund Ihrer Symptome Analysen unterzogen, um zu wissen, ob du COVID-19 (Infektion durch SARS-CoV-2) hast?"],
             ["fr", "En raison de vos symptômes, avez-vous effectué des analyses pour savoir si vous aviez le COVID-19 (infection due au nouveau coronavirus SARS-CoV-2) ?"],
         ]))
     );
@@ -2215,7 +2215,7 @@ const qcov16b_def = (itemSkeleton: SurveyItem, qcov16Key: string): SurveyItem =>
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you already get the result of this PCR test?"],
-            ["de", "Haben Sie das Ergebnis dieses PCR-Tests bereits erhalten?"],
+            ["de", "Hast du das Ergebnis dieses PCR-Tests bereits erhalten?"],
             ["fr", "Avez-vous déjà reçu le résultat de cette analyse par PCR ?"],
         ]))
     );
@@ -2268,7 +2268,7 @@ const qcov16c_def = (itemSkeleton: SurveyItem, qcov16Key: string): SurveyItem =>
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you already get the result of this serological analysis?"],
-            ["de", "Haben Sie das Ergebnis dieser serologischen Analyse bereits erhalten?"],
+            ["de", "Hast du das Ergebnis dieser serologischen Analyse bereits erhalten?"],
             ["fr", "Avez-vous déjà reçu le résultat de cette analyse de sang ?"],
         ]))
     );
@@ -2321,7 +2321,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you take medication for these symptoms?"],
-            ["de", "Haben Sie Medikamente gegen die folgenden Symptome genommen?"],
+            ["de", "Hast du Medikamente gegen die folgenden Symptome genommen?"],
             ["fr", "Avez-vous pris des médicaments pour ces symptômes ?"],
         ]))
     );
@@ -2371,7 +2371,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -2476,7 +2476,7 @@ const q9b_def = (itemSkeleton: SurveyItem, q9Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How long after the beginning of your symptoms did you start taking antiviral medication?"],
-            ["de", "Wie lange nach Beginn Ihrer Symptome habe Sie angefangen, antivirale Medikamente zu nehmen?"],
+            ["de", "Wie lange nach Beginn deiner Symptome hast du angefangen, antivirale Medikamente zu nehmen?"],
             ["fr", "Combien de temps après le début de vos symptômes avez-vous commencé à prendre des médicaments antiviraux ?"],
         ]))
     );
@@ -2595,7 +2595,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, were you hospitalized?"],
-            ["de", "Wurden Sie wegen Ihrer Symptome ins Krankenhaus eingeliefert?"],
+            ["de", "Wurdest du wegen deiner Symptome ins Krankenhaus eingeliefert?"],
             ["fr", "Avez-vous été hospitalisé à cause des symptômes que vous rapportez aujourd’hui ?"],
         ]))
     );
@@ -2629,7 +2629,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you change your daily routine because of your illness?"],
-            ["de", "Haben Sie aufgrund Ihrer Krankheit Ihren Tagesablauf geändert?"],
+            ["de", "Hast du aufgrund deiner Krankheit deinen Tagesablauf geändert?"],
             ["fr", "Avez-vous changé votre routine quotidienne en raison de votre maladie ?"],
         ]))
     );
@@ -2707,7 +2707,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Are you still off work/school?"],
-            ["de", "Sind Sie immer noch von der Arbeit/ Schule abgemeldet?"],
+            ["de", "Bist du immer noch von der Arbeit/ Schule abgemeldet?"],
             ["fr", "Êtes-vous toujours en arrêt maladie ?"],
         ]))
     );
@@ -2789,7 +2789,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How long have you been off work/school?"],
-            ["de", "Wie lange sind Sie schon von der Arbeit/ Schule abwesend?"],
+            ["de", "Wie lange bist du schon von der Arbeit/ Schule abwesend?"],
             ["fr", "Combien de temps avez-vous été absent du travail / de l'école ?"],
         ]))
     );
@@ -2907,7 +2907,7 @@ const qcov6_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you wear a mask (surgical mask sold in pharmacies)?"],
-            ["de", "Haben Sie aufgrund Ihrer Symptome eine Maske (chirurgische Maske, die in Apotheken verkauft wird) getragen?"],
+            ["de", "Hast du aufgrund deiner Symptome eine Maske (chirurgische Maske, die in Apotheken verkauft wird) getragen?"],
             ["fr", "En raison de vos symptômes, avez-vous porté un masque (masque chirurgical en vente en pharmacie, ou masque FFP1, FFP2, FFP3)) ?"],
         ]))
     );
@@ -2946,7 +2946,7 @@ const qcov7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, have you taken or strengthened one or more of the following measures?"],
-            ["de", "Haben Sie aufgrund Ihrer Symptome eine oder mehrere der folgenden Massnahmen ergriffen oder verstärkt?"],
+            ["de", "Hast du aufgrund deiner Symptome eine oder mehrere der folgenden Massnahmen ergriffen oder verstärkt?"],
             ["fr", "En raison de vos symptômes, avez-vous adopté ou renforcé une ou plusieurs des mesure(s) suivante(s) ?"],
         ]))
     );
@@ -3129,7 +3129,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What do you think is causing your symptoms?"],
-            ["de", "Was halten Sie für die Ursache Ihrer Symptome?"],
+            ["de", "Was hälst du für die Ursache deiner Symptome?"],
             ["fr", "Quelle est selon vous l'origine de vos symptômes ?"],
         ]))
     );
@@ -3244,7 +3244,7 @@ const qcov9_def = (itemSkeleton: SurveyItem, q11Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "For which reason(s) do you think you have this disease?"],
-            ["de", "Warum glauben Sie, dass Sie diese Krankheit haben?"],
+            ["de", "Warum glaubst du, dass du diese Krankheit hast?"],
             ["fr", "Pour quelle(s) raison(s) pensez-vous avoir cette maladie ?"],
         ]))
     );
@@ -3339,7 +3339,7 @@ const qcov9b_def = (itemSkeleton: SurveyItem, q11Key: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
-            ["de", "Haben Sie Personen, die mit Ihnen in engem Kontakt waren, über Ihren Verdacht auf eine COVID-19-Infektion informiert?"],
+            ["de", "Hast du Personen, die mit dir in engem Kontakt waren, über deinen Verdacht auf eine COVID-19-Infektion informiert?"],
             ["fr", "Avez-vous informé les personnes avec qui vous avez eu un contact rapproché de votre suspicion de COVID-19 ?"],
         ]))
     );
@@ -3389,7 +3389,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you currently carry out a professional activity?"],
-            ["de", "Führen Sie zurzeit eine berufliche Tätigkeit aus?"],
+            ["de", "Führst du zurzeit eine berufliche Tätigkeit aus?"],
             ["fr", "Exercez-vous une activité professionnelle ? "],
         ]))
     );
@@ -3464,7 +3464,7 @@ const qcov11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Over recent days, at which frequency did you go out of home to buy products, on average?"],
-            ["de", "Wie oft haben Sie in den letzten Tagen im Durchschnitt Ihre Wohnung verlassen, um Waren zu kaufen?"],
+            ["de", "Wie oft hast du in den letzten Tagen im Durchschnitt deine Wohnung verlassen, um Waren zu kaufen?"],
             ["fr", "Durant ces derniers jours, à quelle fréquence êtes-vous sorti de la maison pour acheter des produits, en moyenne ?"],
         ]))
     );
@@ -3536,7 +3536,7 @@ const qcov12_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Over recent days, at which frequency did you go out of home to get fresh air or exercise (outside your home, balcony, garden, private courtyard), on average?"],
-            ["de", "Wie oft sind Sie in den letzten Tagen durchschnittlich aus dem Haus gegangen, um frische Luft zu schnappen oder sich zu bewegen?"],
+            ["de", "Wie oft bist du in den letzten Tagen durchschnittlich aus dem Haus gegangen, um frische Luft zu schnappen oder sich zu bewegen?"],
             ["fr", "Durant ces derniers jours, à quelle fréquence êtes vous sorti, en moyenne, pour prendre l'air ou faire de l'exercice (en dehors de votre maison, balcon, jardin ou terrain privé) ?"],
         ]))
     );
@@ -3608,7 +3608,7 @@ const qcov13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Over the course of yesterday, how many people (outside your household) did you approach at a distance lower than 1 meter?"],
-            ["de", "Wie viele Personen (ausserhalb Ihres Haushalts) haben Sie sich im Laufe des gestrigen Tages aus einer Entfernung von weniger als 1 Meter angenähert?"],
+            ["de", "Wie viele Personen (ausserhalb deines Haushalts) hast du dich im Laufe des gestrigen Tages aus einer Entfernung von weniger als 1 Meter angenähert?"],
             ["fr", "Durant la journée d'hier, avec combien de personnes (en dehors de votre foyer) avez vous été en contact à moins d'un mètre ?"],
         ]))
     );
@@ -3671,7 +3671,7 @@ const qcov14_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "If lockdown measures were lifted up, but collective childcare / schools / university were closed, what would be your situation?"],
-            ["de", "Wenn die Sperrmassnahmen aufgehoben würden, aber kollektive Kinderbetreuungseinrichtungen / Schulen/Universitäten geschlossen würden, wie würde Ihre Situation aussehen?"],
+            ["de", "Wenn die Sperrmassnahmen aufgehoben würden, aber kollektive Kinderbetreuungseinrichtungen / Schulen/Universitäten geschlossen würden, wie würde deine Situation aussehen?"],
             ["fr", "Si les mesures de confinement étaient levées, mais les garderies / crèches / écoles/universités étaient fermées, quelle serait votre situation ?"],
         ]))
     );
@@ -3754,7 +3754,7 @@ const qcov14b_def = (itemSkeleton: SurveyItem, qcov14Key: string): SurveyItem =>
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How many days a week would you work outside from home?"],
-            ["de", "Wie viele Tage pro Woche würden Sie ausserhalb von zu Hause arbeiten?"],
+            ["de", "Wie viele Tage pro Woche würdest du ausserhalb von zu Hause arbeiten?"],
             ["fr", "Combien de jours par semaine travailleriez-vous hors de votre domicile ?"],
         ]))
     );
@@ -3848,7 +3848,7 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "If lockdown measures were extended (that is to say, continued beyond the date announced by the government), do you think you would follow the recommendations with as much rigour as you do now?"],
-            ["de", "Falls die Sperrmassnahmen über das von der Regierung angekundigte Datum hinaus verlängert würden, glauben Sie, dass Sie die Empfehlungen mit gleicher Disziplin weiter verfolgen würden?"],
+            ["de", "Falls die Sperrmassnahmen über das von der Regierung angekundigte Datum hinaus verlängert würden, glaubst du, dass du die Empfehlungen mit gleicher Disziplin weiter verfolgen würdest?"],
             ["fr", "Si les mesures de confinement étaient prolongées (c'est-à-dire au-delà de la date annoncée par le gouvernement), pensez-vous que vous suivriez les recommandations avec autant de rigueur qu'actuellement ?"],
         ]))
     );
@@ -3898,130 +3898,6 @@ const qcov15_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["en", "I don't know"],
                 ["de", "Ich weiss nicht"],
                 ["fr", "Je ne sais pas"],
-            ])
-        }
-    ])
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
-const qcov17_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Since January 2020, did you undergo a laboratory test to know if you have been in contact with this new coronavirus (SARS-CoV-2, COVID-19)?"],
-            ["de", "Haben Sie sich seit Januar 2020 einem Labortest unterzogen, um zu wissen, ob Sie mit dem SARS-CoV-2 Coronavirus (COVID-19) in Kontakt gekommen sind?"],
-            ["fr", "Depuis janvier 2020, avez-vous effectué des analyses pour savoir si vous avez été infecté par ce nouveau coronavirus (SARS-CoV-2, COVID-19) ?"],
-        ]))
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '1',
-            role: 'option',
-            content: new Map([
-                ["en", "Yes"],
-                ["de", "Ja"],
-                ["fr", "Oui"],
-            ])
-        },
-        {
-            key: '0',
-            role: 'option',
-            content: new Map([
-                ["en", "No"],
-                ["de", "Nein"],
-                ["fr", "Non"],
-            ])
-        },
-    ])
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
-const qcov17b_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What was the result of this (these) analysis? (if you realized several analyses, please give the results of all these analyses)"],
-            ["de", "Was war das Ergebnis dieses Tests? (mehrere Antworten möglich)"],
-            ["fr", "Quel a(ont) été le(s) résultat(s) de cette(ces) analyse(s) ?"],
-        ]))
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
-        {
-            key: '1',
-            role: 'option',
-            content: new Map([
-                ["en", "Positive for this coronavirus, on a swab in nose or mouth, or a sputum or saliva sample (PCR)"],
-                ["de", "Positiv für dieses Coronavirus, auf einem Abstrich in Nase oder Mund, oder einer Sputum- oder Speichelprobe (PCR)"],
-                ["fr", "Positif pour ce coronavirus, sur prélèvement nasal/buccal ou prélèvement de crachat/salive (test PCR)"],
-            ])
-        },
-        {
-            key: '2',
-            role: 'option',
-            content: new Map([
-                ["en", "Negative for this coronavirus, on a swab in nose or mouth, or a sputum or saliva sample (PCR)"],
-                ["de", "Negativ für dieses Coronavirus, auf einem Abstrich in Nase oder Mund, oder einer Sputum- oder Speichelprobe (PCR)"],
-                ["fr", "Négatif pour ce coronavirus, sur prélèvement nasal/buccal ou prélèvement de crachat/salive (test PCR)"],
-            ])
-        },
-        {
-            key: '3',
-            role: 'option',
-            content: new Map([
-                ["en", "Positive for this coronavirus on a blood sample (serology)"],
-                ["de", "Positiv für dieses Coronavirus in einer Blutprobe (Serologie)"],
-                ["fr", "Positif pour ce coronavirus, sur prélèvement sanguin (sérologie)"],
-            ])
-        },
-        {
-            key: '4',
-            role: 'option',
-            content: new Map([
-                ["en", "Negative for this coronavirus on a blood sample (serology)"],
-                ["de", "Negativ für dieses Coronavirus in einer Blutprobe (Serologie)"],
-                ["fr", "Négatif pour ce coronavirus, sur prélèvement sanguin (sérologie)"],
-            ])
-        },
-        {
-            key: '5',
-            role: 'option',
-            content: new Map([
-                ["en", "Positive, but I don't know which test was done (it showed that I was infected by the coronavirus)"],
-                ["de", "Positiv (er zeigte, dass ich mit dem Coronavirus infiziert war), aber ich weiss nicht, welcher Test durchgeführt wurde"],
-                ["fr", "Positif (cela montrait que j’ai été infecté(e) par ce coronavirus), mais je ne sais pas de quel type de test il s'agissait"],
-            ])
-        },
-        {
-            key: '6',
-            role: 'option',
-            content: new Map([
-                ["en", "Negative, but I don't know which test was done (it showed that I wasn't infected by the coronavirus)"],
-                ["de", "Negativ (er zeigte, dass ich nicht mit dem Coronavirus infiziert war), aber ich weiss nicht, welcher Test durchgeführt wurde"],
-                ["fr", "Négatif (cela montrait que je n’ai pas été infecté(e) par ce coronavirus), mais je ne sais pas de quel type de test il s'agissait"],
-            ])
-        },
-        {
-            key: '7',
-            role: 'option',
-            content: new Map([
-                ["en", "The result was non interpretable"],
-                ["de", "Das Ergebnis war nicht interpretierbar"],
-                ["fr", "Le résultat était non interprétable"],
-            ])
-        },
-        {
-            key: '8',
-            role: 'option',
-            content: new Map([
-                ["en", "I don't know the result"],
-                ["de", "Ich kenne das Ergebnis nicht"],
-                ["fr", "Je ne connais pas le résultat"],
             ])
         }
     ])
