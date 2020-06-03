@@ -6,6 +6,7 @@ import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGr
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
 
 
+
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
 const multipleChoiceKey = 'mcg';
