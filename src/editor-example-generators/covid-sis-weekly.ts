@@ -404,10 +404,6 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
 
 const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(generateTitleComponent(new Map([
-        ["en", "Weekly Health Check"],
-        ["de", "Wöchentlicher Gesundheits-Check"],
-    ])))
     editor.addDisplayComponent(
         {
             role: 'text', content: generateLocStrings(new Map([

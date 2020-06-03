@@ -11,6 +11,7 @@ import { Survey, LocalizedString, LocalizedObject } from 'survey-engine/lib/data
 
 const availableLanguages = [
     { code: 'en', label: '🇬🇧 English' },
+    { code: 'nl', label: 'NL Nederlands' },
     { code: 'de', label: '🇩🇪 Deutsch' },
     { code: 'fr', label: '🇫🇷 Français' },
 ]
@@ -28,7 +29,7 @@ const TestViewer: React.FC = () => {
     }, [])
 
     // Language settings
-    const [selectedLanguage, setSelectedLanguage] = useState('de');
+    const [selectedLanguage, setSelectedLanguage] = useState('nl');
     const [survey, setSurvey] = useState<Survey | undefined>();
 
     const languageSelector = (

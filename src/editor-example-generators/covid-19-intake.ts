@@ -313,7 +313,6 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     })
     editor.addExistingResponseComponent(dateInputEditor.getComponent(), rg?.key);
     editor.addExistingResponseComponent({
-        key: 'summary',
         role: 'text',
         style: [{ key: 'variant', value: 'caption' }],
         displayCondition: expWithArgs('isDefined',
