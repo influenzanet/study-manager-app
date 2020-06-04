@@ -59,6 +59,36 @@ export const generateCovidSISIntake = (): Survey | undefined => {
 
     survey.addNewSurveyItem({ itemKey: 'pbQ5', type: 'pageBreak' }, rootKey);
     
+    // main activity --------------------------------------
+    const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
+    if (!q4) { return; }
+    survey.updateSurveyItem(q4_def(q4));
+    // -----------------------------------------
+
+     // school/work postal code  --------------------------------------
+    const q4b = survey.addNewSurveyItem({ itemKey: 'Q4b' }, rootKey);
+    if (!q4b) { return; }
+    survey.updateSurveyItem(q4b_def(q4b, q4.key));
+    // -----------------------------------------
+
+    // job category NL --------------------------------------
+    const q4cNL = survey.addNewSurveyItem({ itemKey: 'Q4cNL' }, rootKey);
+    if (!q4cNL) { return; }
+    survey.updateSurveyItem(q4cNL_def(q4cNL, q4.key));
+    // -------------------------------------------------------
+
+    // job sub-category education NL --------------------------------------
+    const q4cNLb = survey.addNewSurveyItem({ itemKey: 'Q4cNLb' }, rootKey);
+    if (!q4cNLb) { return; }
+    survey.updateSurveyItem(q4cNLb_def(q4cNLb, q4cNL.key));
+    // -------------------------------------------------------
+
+    // job sub-category health care NL --------------------------------------
+    const q4cNLc = survey.addNewSurveyItem({ itemKey: 'Q4cNLc' }, rootKey);
+    if (!q4cNLc) { return; }
+    survey.updateSurveyItem(q4cNLc_def(q4cNLc, q4cNL.key));
+    // -------------------------------------------------------
+
     // people you meet  --------------------------------------
     const q5 = survey.addNewSurveyItem({ itemKey: 'Q5' }, rootKey);
     if (!q5) { return; }
@@ -77,7 +107,8 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q6b_def(q6b, q6.key));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);   // means of transport  --------------------------------------
+    survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);   
+    // means of transport  --------------------------------------
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
     if (!q7) { return; }
     survey.updateSurveyItem(q7_def(q7));
@@ -87,6 +118,24 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, rootKey);
     if (!q7b) { return; }
     survey.updateSurveyItem(q7b_def(q7b));
+    // -----------------------------------------
+
+    // Previous exposure with COVID --------------------------------------
+    const q20NL = survey.addNewSurveyItem({ itemKey: 'Q20NL' }, rootKey);
+    if (!q20NL) { return; }
+    survey.updateSurveyItem(q20NL_def(q20NL));
+    // -----------------------------------------
+
+   // Previous exposure with COVID test -------------------------------------
+   const q20NLb = survey.addNewSurveyItem({ itemKey: 'Q20NLb' }, rootKey);
+   if (!q20NLb) { return; }
+   survey.updateSurveyItem(q20NLb_def(q20NLb, q20NL.key));
+   // -----------------------------------------
+
+    // Previous exposure with COVID test -------------------------------------
+    const q20NLc = survey.addNewSurveyItem({ itemKey: 'Q20NLc' }, rootKey);
+    if (!q20NLc) { return; }
+    survey.updateSurveyItem(q20NLc_def(q20NLc, q20NL.key));
     // -----------------------------------------
 
     // Qcov10 lockdown professional activity --------------------------------------
@@ -261,7 +310,6 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-
 const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
@@ -343,7 +391,6 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     }, rg?.key);
     return editor.getItem();
 }
-
 
 const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -558,7 +605,6 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-
 const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
@@ -649,12 +695,13 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     return editor.getItem();
 }
 
-const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
+const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Which of the following descriptions most closely matches with your main occupation?"],
             ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
+            ["nl", "Welke omschrijving past het beste bij uw dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele coronam maatregelen)"],
             ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
         ]))
     );
@@ -669,6 +716,7 @@ const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
+                    ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -677,6 +725,7 @@ const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population as a whole and to find out whether the chance of getting flu is different for people in different types of occupation."],
                     ["de", "Um festzustellen, wie repräsentativ unsere Stichprobe ist - im Vergleich mit der Gesamtbevölkerung - ist. Sowie, ob das Risiko, an der Grippe zu erkranken, zwischen Berufen unterscheidet."],
+                    ["nl","Om in te schatten of we representatief zijn, en om infectierisico per beroepsgroep uit te splitsen"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble et pour savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -685,6 +734,7 @@ const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
+                    ["nl", "Hoe moet je deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -693,6 +743,7 @@ const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please tick the box that most closely resembles your main occupation."],
                     ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
+                    ["de", "Selecteer het antwoord die het best uw sitautie beschrijft."],
                     ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -705,51 +756,225 @@ const q4c_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Professional (e.g. manager, doctor, teacher, nurse, engineer)"],
-                ["de", "Fachkraft (z.B. Manager, Doktor, Lehrer, Krankenschwester, Ingenieur)"],
-                ["fr", "Professionnel (p. ex. gestionnaire, médecin, enseignant, infirmier, ingénieur)"],
+              ["nl","Ik werk in de gezondheidzorg"],               
             ])
         },
         {
             key: '1', role: 'option',
-            content: new Map([
-                ["en", "Office work (e.g. admin, finance assistant, receptionist etc)"],
-                ["de", "Bürokraft (z.B. Administrator, Finanzassistent, Rezeptionist)"],
-                ["fr", " Travail de bureau (p. ex. administration, banque, réceptionniste, etc.)"],
+            content: new Map([           
+                ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "Retail, sales, catering and hospitality and leisure (e.g. shop assistant, waiter, bar-staff, gym instructor etc)"],
-                ["de", "Einzelhandel, Verkauf, Catering, Gastwirtschaft oder Freizeit (z.B. Verkäufer, Kellner, Barkeeper, Fitness-Trainer usw.)"],
-                ["fr", " Vente au détail, vente, restauration et hôtellerie, loisirs (p. ex. vendeur/se, serveur/se, instructeur de gym, etc.)"],
+                ["nl","Ik werk in de kinderopvang/onderwijs (basis/voortgezet/MBO/HBO/WO-onderwijs)"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "Skilled manual worker (e.g. mechanic, electrician, technician)"],
-                ["de", "Ausgebildeter Arbeiter (z.B. Mechaniker, Elektriker, Techniker)"],
-                ["fr", " Ouvrier qualifié (p. ex. mécanicien, électricien, technicien)"],
+                ["nl","Horeca"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["en", "Other manual work (e.g. cleaning, security, driver etc)"],
-                ["de", "Andere Arbeit (z.B. Reinigung, Sicherheit, Fahrer usw.)"],
-                ["fr", " Autre travail manuel (p. ex. nettoyage, sécurité, transport, etc.)"],
+                ["nl","Detailhandel (supermarkt, en andere verkoop in winkels)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl","Werk in het openbaar vervoer (bijv. trein/bus/metro/taxi)"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl","Overig kenniswerk (manager,onderzoeker,accountant)"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["nl","Administratiefwerk (administratie, financieel assistent,receptionist etc.)"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            content: new Map([
+                ["nl","Technisch werk (uitvoerend in Techniek/Bouw/Productie)"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            content: new Map([
+                ["nl","Anders uitvoerend werk"],
+            ])
+        },
+        {
+            key: '10', role: 'option',
+            content: new Map([
+                ["nl","Anders, valt niet in bovengenoemde opties"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Waar werkt u in het onderdwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4cNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '2')
+    )
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                   
+                    ["nl", "Waarom vragen we dit?"],
+               ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([                                     
+                    ["nl","Om de verschillende lagen van het onderwijs verder uit te splitsen"],
+                    ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+                             
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+              ["nl","Kinderdagverblijf/peuterspeelzaal"],               
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([           
+                ["nl", "Basisonderwijs of BSO"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl","Voortgezet onderwijs (VMBO/Havo/VWO"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl","MBO"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl","HBO of WO"],
             ])
         },
         {
             key: '5', role: 'input',
             content: new Map([
-                ["en", "Other"],
-                ["de", "Andere"],
-                ["fr", "Autre"],
+                ["nl","Anders"],
+            ])
+        },     
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4cNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0')
+    )
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                   
+                    ["nl", "Waarom vragen we dit?"],
+               ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([                                     
+                    ["nl","Om de verschillende lagen van de zorg verder uit te splitsen"],
+                    ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+                             
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+              ["nl","Ziekenhuis"],               
             ])
         },
+        {
+            key: '1', role: 'option',
+            content: new Map([           
+                ["nl", "Verpleeghuis"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl","Verzorgingstehuis"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl","Geestelijke gezondheidszorg/zorgverlening"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl","Huisartsenpraktijk"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl","Andere eerstelijnszorg (bijv. fysiotherapie)"],
+            ])
+        }, 
+        {
+            key: '6', role: 'input',
+            content: new Map([
+                ["nl","Overig"],
+            ])
+        },     
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -869,8 +1094,6 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
-
-
 
 const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -2884,6 +3107,168 @@ const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
             ])
         }
     ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q20NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl", "Nee, ik denk niet dat ik het nieuwe coronavirus al heb gehad"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+               ["nl", "Ik weet het niet"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl", "Ja, misschien wel, ik had/heb klachten die erop lijken"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl", "Ja, ik denk het wel, ik had/heb klachten die erop lijken, en mensen om me heen ook"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en een of meer van die mensen zijn positief getest op het coronavirus"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken, "],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, maar ik heb geen klachten gehad"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Welke test voor het nieuwe coronavirus is bij u gedaan? (bij beide vermeld dan de eerste positieve test)"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q20NLKey, [responseGroupKey, singleChoiceKey].join('.'), '5','6')
+    );
+
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl", "Bloedtest (antistoftest)"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+               ["nl", "Keel-/neuslijmvliestest (PCR)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl", "Dat weet ik niet (meer)"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Wanneer is de coronatest bij u gedaan? Als u de datum niet meer precies weet mag u deze schatten. Het gaat om de datum dat uw bloed is afgenomen, of dat een monster is genomen van uw keel/neus slijmvlies"],
+            ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q20NLKey, [responseGroupKey, singleChoiceKey].join('.'), '5','6')
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl", "Waarom vragen we dit?"],
+                    ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["nl", "Het weten van de timing van testen is belangrijk om uw gegevens te interpreteren"],
+                    ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["nl", "Hoe zal ik dit beantwoorden?"],
+                    ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please, try and answer as accurately as possible. If you don't know the precise date, please give your best estimate. For instance, you might remember the month, then try and remember if it was at the beginning or the end of the month. Were there any significant events (e.g. a holiday or a birthday) that might help jog your memory?"],
+                    ["de", "Bitte versuche so genau wie möglich zu antworten. Falls Du das genaue Datum nicht kennst, gib bitte eine bestmögliche Abschätzung. Falls Du z.B. den Monat weisst, versuche Dich zu erinnern, ob es am Anfang oder Ende des Monats war. Waren an diesem Tag vielleicht irgendwelche bedeutenden Ereignisse (z.B. ein Feiertag oder ein Geburtstag), die Deinem Gedächtnis weiterhelfen könnten?"],
+                    ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was"],
+                    ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
+            },
+            content: new Map([
+                ["en", "Choose date:"],
+                ["de", "Wähle ein Datum:"],
+                ["nl", "Kier datum:"],
+                ["fr", "Sélectionner une date"],
+            ])
+        },
+     ]);
+
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
