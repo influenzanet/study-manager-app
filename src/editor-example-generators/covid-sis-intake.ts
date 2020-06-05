@@ -137,19 +137,7 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     if (!q20NLc) { return; }
     survey.updateSurveyItem(q20NLc_def(q20NLc, q20NL.key));
     // -----------------------------------------
-
-    // Qcov10 lockdown professional activity --------------------------------------
-    const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
-    if (!qcov10) { return; }
-    survey.updateSurveyItem(qcov10_def(qcov10));
-    // -----------------------------------------
-
-    // Qcov10b days work outside home  --------------------------------------
-    const qcov10b = survey.addNewSurveyItem({ itemKey: 'Qcov10b' }, rootKey);
-    if (!qcov10b) { return; }
-    survey.updateSurveyItem(qcov10b_def(qcov10b, qcov10.key));
-    // -----------------------------------------
-
+ 
     survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
     // common cold how often  --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
@@ -194,6 +182,18 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q11_def(q11));
     // -----------------------------------------
 
+    // pregnant --------------------------------------
+    const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
+    if (!q12) { return; }
+    survey.updateSurveyItem(q12_def(q12, q1.key));
+    // -----------------------------------------
+
+    // trimester --------------------------------------
+    const q12b = survey.addNewSurveyItem({ itemKey: 'Q12b' }, rootKey);
+    if (!q12b) { return; }
+    survey.updateSurveyItem(q12b_def(q12b, q12.key));
+    // -----------------------------------------
+
     // do you smoke --------------------------------------
     const q13 = survey.addNewSurveyItem({ itemKey: 'Q13' }, rootKey);
     if (!q13) { return; }
@@ -219,6 +219,14 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q16_def(q16));
     // -----------------------------------------
 
+   
+    // how did you find us --------------------------------------
+    const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
+    if (!q17) { return; }
+    survey.updateSurveyItem(q17_def(q17));
+    // -----------------------------------------
+
+
     survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
 
     const final_text = survey.addNewSurveyItem({ itemKey: 'finalText' }, rootKey);
@@ -227,7 +235,6 @@ export const generateCovidSISIntake = (): Survey | undefined => {
 
     return survey.getSurvey();
 }
-
 
 const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -617,7 +624,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q4Key, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+        expWithArgs('responseHasKeysAny', q4Key, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
     )
 
     editor.setHelpGroupComponent(
@@ -689,292 +696,6 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 ["fr", "Non applicable (p. ex. je n'ai pas de lieu de travail fixe)"],
             ])
         },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
-const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Which of the following descriptions most closely matches with your main occupation?"],
-            ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
-            ["nl", "Welke omschrijving past het beste bij uw dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele coronam maatregelen)"],
-            ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
-        ]))
-    );
-
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
-    )
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["de", "Warum fragen wir das?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "To check how representative our sample is compared to the population as a whole and to find out whether the chance of getting flu is different for people in different types of occupation."],
-                    ["de", "Um festzustellen, wie repräsentativ unsere Stichprobe ist - im Vergleich mit der Gesamtbevölkerung - ist. Sowie, ob das Risiko, an der Grippe zu erkranken, zwischen Berufen unterscheidet."],
-                    ["nl","Om in te schatten of we representatief zijn, en om infectierisico per beroepsgroep uit te splitsen"],
-                    ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble et pour savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
-                ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet je deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Please tick the box that most closely resembles your main occupation."],
-                    ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
-                    ["de", "Selecteer het antwoord die het best uw sitautie beschrijft."],
-                    ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
-                ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-              ["nl","Ik werk in de gezondheidzorg"],               
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([           
-                ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["nl","Ik werk in de kinderopvang/onderwijs (basis/voortgezet/MBO/HBO/WO-onderwijs)"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["nl","Horeca"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["nl","Detailhandel (supermarkt, en andere verkoop in winkels)"],
-            ])
-        },
-        {
-            key: '5', role: 'option',
-            content: new Map([
-                ["nl","Werk in het openbaar vervoer (bijv. trein/bus/metro/taxi)"],
-            ])
-        },
-        {
-            key: '6', role: 'option',
-            content: new Map([
-                ["nl","Overig kenniswerk (manager,onderzoeker,accountant)"],
-            ])
-        },
-        {
-            key: '7', role: 'option',
-            content: new Map([
-                ["nl","Administratiefwerk (administratie, financieel assistent,receptionist etc.)"],
-            ])
-        },
-        {
-            key: '8', role: 'option',
-            content: new Map([
-                ["nl","Technisch werk (uitvoerend in Techniek/Bouw/Productie)"],
-            ])
-        },
-        {
-            key: '9', role: 'option',
-            content: new Map([
-                ["nl","Anders uitvoerend werk"],
-            ])
-        },
-        {
-            key: '10', role: 'option',
-            content: new Map([
-                ["nl","Anders, valt niet in bovengenoemde opties"],
-            ])
-        },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
-const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl", "Waar werkt u in het onderdwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
-        ]))
-    );
-
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q4cNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '2')
-    )
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                   
-                    ["nl", "Waarom vragen we dit?"],
-               ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([                                     
-                    ["nl","Om de verschillende lagen van het onderwijs verder uit te splitsen"],
-                    ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-                             
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-              ["nl","Kinderdagverblijf/peuterspeelzaal"],               
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([           
-                ["nl", "Basisonderwijs of BSO"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["nl","Voortgezet onderwijs (VMBO/Havo/VWO"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["nl","MBO"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["nl","HBO of WO"],
-            ])
-        },
-        {
-            key: '5', role: 'input',
-            content: new Map([
-                ["nl","Anders"],
-            ])
-        },     
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-    return editor.getItem();
-}
-
-const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
-        ]))
-    );
-
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q4cNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0')
-    )
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                   
-                    ["nl", "Waarom vragen we dit?"],
-               ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
-            },
-            {
-                content: new Map([                                     
-                    ["nl","Om de verschillende lagen van de zorg verder uit te splitsen"],
-                    ]),
-                style: [{ key: 'variant', value: 'body2' }],
-            },
-                             
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-              ["nl","Ziekenhuis"],               
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([           
-                ["nl", "Verpleeghuis"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["nl","Verzorgingstehuis"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["nl","Geestelijke gezondheidszorg/zorgverlening"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["nl","Huisartsenpraktijk"],
-            ])
-        },
-        {
-            key: '5', role: 'option',
-            content: new Map([
-                ["nl","Andere eerstelijnszorg (bijv. fysiotherapie)"],
-            ])
-        }, 
-        {
-            key: '6', role: 'input',
-            content: new Map([
-                ["nl","Overig"],
-            ])
-        },     
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -2558,6 +2279,155 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
+const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Are you currently pregnant?"],
+            ["de", "Sind sie im Augenblick schwanger?"],
+            ["nl", "Bent u op dit moment zwanger?"],
+            ["fr", " Êtes-vous actuellement enceinte?"],
+        ]))
+    );
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Pregnancy can result in more severe illness if you are infected with flu."],
+                    ["de", "Schwangerschaft kann zu ernsteren Erkrankungen führen, wenn Sie mit der Grippe infiziert sind."],
+                    ["nl", "Zwangerschap is een risico-factor voor ernstige klachten bij infecties"],
+                    ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q1Key, [responseGroupKey, singleChoiceKey].join('.'), '1')
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["nl", "Ja"],
+                ["fr", "Oui"],
+            ])
+        }, {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["nl", "Nee"],
+                ["fr", "Non"],
+            ])
+        }, {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Don't know/would rather not answer"],
+                ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten."],
+                ["nl", "Dit weet ik niet/wil ik liever niet aangeven"],
+                ["fr", "Je ne sais pas, je ne désire pas répondre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Which trimester of the pregnancy are you in?"],
+            ["de", "In welchem Trimester (3 Monatsperiode) Ihrer Schwangerschaft befinden Sie sich?"],
+            ["nl", "In welk trimester bent u van uw zwangerschap?"],
+            ["fr", "A quel stade de grossesse êtes-vous?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q12Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "The stage of pregnancy might alter your risk of severe flu if you are infected, although this is not very clear."],
+                    ["de", "Die Phase Ihrer Schwangerschaft könnte Ihr Risiko eines schweren Verlaufs der Grippe beeinflussen, auch wenn dies nicht sicher ist."],
+                    ["nl", "Het risico op ernstige klachten van een infectie kan verschillen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet"],
+                    ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "First trimester (week 1-12)"],
+                ["de", "Erstes Trimester (Woche 1-12)"],
+                ["nl", "Eerste trimester (week 1-12)"],
+                ["fr", "Premier trimestre (semaine 1-12)"],
+            ])
+        }, {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Second trimester (week 13-28)"],
+                ["de", "Zweites Trimester (Woche 13-28)"],
+                ["nl", "Tweede trimester (week 13-28)"],
+                ["fr", "Deuxième trimestre (semaine 13-28)"],
+            ])
+        }, {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Third trimester (week 29-delivery)"],
+                ["de", "Drittes Trimester (Woche 29 bis Entbindung)"],
+                ["nl", "Derde trimester (week 29 tot bevalling)"],
+                ["fr", "Troisième trimestre (semaine 29 ou plus)"],
+            ])
+        }, {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Don't know/would rather not answer"],
+                ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten"],
+                ["nl", "Dit weetk ik niet / wil ik niet aangeven"],
+                ["fr", "Je ne sais pas, je ne désire pas répondre"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
 const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
@@ -2943,6 +2813,88 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
+const q17_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Where did you first hear about Infectieradar?"],
+            ["de", "Wo haben Sie zum ersten mal von Infectieradar gehört?"],
+            ["nl", "Waar heeft u van Infectieradar gehoord?"],
+            ["fr", "Où avez-vous entendu parler de Infectieradar?"],
+        ]))
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wählen Sie alle Optionen, die zutreffen'],
+                ['nl', 'Meerdere antwoorden mogelijk'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "On radio or television"],
+                ["de", "Im Radio oder Fernsehen"],
+                ["nl", "Op radio of televisie"],
+                ["fr", "A la radio ou à la télévision"],
+            ])
+        }, {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "In the newspaper or in a magazine"],
+                ["de", "In der Zeitung oder in einem Magazin"],
+                ["nl", "In de krant of magazine"],
+                ["fr", "Dans un journal ou un magazine"],
+            ])
+        }, {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Via an internet site (search engine or link)"],
+                ["de", "Über eine Internetseite (Suchmaschine oder Link)"],
+                ["nl", "Via internet (website, nieuwswebsite, zoekmachine)"],
+                ["fr", "Sur internet"],
+            ])
+        }, {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "By poster"],
+                ["de", "Über ein Poster"],
+                ["nl", "Via sociale media (facebook, twitter, instagram, etc.)"],
+                ["fr", "Sur une affiche"],
+            ])
+        }, {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Via family or friends"],
+                ["de", "Über Freunde oder Familie"],
+                ["nl", "Via vrienden en familie"],
+                ["fr", "Par ma famille ou des amis"],
+            ])
+        }, {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Via school or work"],
+                ["de", "Über Schule oder Arbeit"],
+                ["nl", "Via school of werk"],
+                ["fr", "A l'école ou au travail"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+////////COVID INFLUENZANET
 const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
@@ -3107,6 +3059,293 @@ const qcov10b_def = (itemSkeleton: SurveyItem, qcov10: string): SurveyItem => {
             ])
         }
     ])
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+/////// DUTCH QUESTIONS
+const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Which of the following descriptions most closely matches with your main occupation?"],
+            ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
+            ["nl", "Welke omschrijving past het beste bij uw dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele coronam maatregelen)"],
+            ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1','2')
+    )
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To check how representative our sample is compared to the population as a whole and to find out whether the chance of getting flu is different for people in different types of occupation."],
+                    ["de", "Um festzustellen, wie repräsentativ unsere Stichprobe ist - im Vergleich mit der Gesamtbevölkerung - ist. Sowie, ob das Risiko, an der Grippe zu erkranken, zwischen Berufen unterscheidet."],
+                    ["nl","Om in te schatten of we representatief zijn, en om infectierisico per beroepsgroep uit te splitsen"],
+                    ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble et pour savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["nl", "Hoe moet je deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please tick the box that most closely resembles your main occupation."],
+                    ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
+                    ["de", "Selecteer het antwoord die het best uw sitautie beschrijft."],
+                    ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+              ["nl","Ik werk in de gezondheidzorg"],               
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([           
+                ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in de kinderopvang/onderwijs (basis/voortgezet/MBO/HBO/WO-onderwijs)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in de horeca"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in de detailhandel (supermarkt, en andere verkoop in winkels)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in het openbaar vervoer (bijv. trein/bus/metro/taxi)"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl","Ik doe overig kenniswerk (manager,onderzoeker,accountant)"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["nl","Ik doe administratiefwerk (administratie, financieel assistent,receptionist etc.)"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            content: new Map([
+                ["nl","Ik doe technisch werk (uitvoerend in Techniek/Bouw/Productie)"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            content: new Map([
+                ["nl","Ik doe anders uitvoerend werk"],
+            ])
+        },
+        {
+            key: '10', role: 'option',
+            content: new Map([
+                ["nl","Anders, valt niet in bovengenoemde opties"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Waar werkt u in het onderdwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4cNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '2')
+    )
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                   
+                    ["nl", "Waarom vragen we dit?"],
+               ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([                                     
+                    ["nl","Om de verschillende lagen van het onderwijs verder uit te splitsen"],
+                    ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+                             
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+              ["nl","Ik werk in een kinderdagverblijf/peuterspeelzaal"],               
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([           
+                ["nl", "Ik werk op een basisonderwijs of op de BSO"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in het voortgezet onderwijs (VMBO/Havo/VWO"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl","Ik werk op het MBO"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl","Ik werk op het HBO of WO"],
+            ])
+        },
+        {
+            key: '5', role: 'input',
+            content: new Map([
+                ["nl","Anders"],
+            ])
+        },     
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    return editor.getItem();
+}
+
+const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q4cNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0')
+    )
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                   
+                    ["nl", "Waarom vragen we dit?"],
+               ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([                                     
+                    ["nl","Om de verschillende lagen van de zorg verder uit te splitsen"],
+                    ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+                             
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+              ["nl","Ik werk in een ziekenhuis"],               
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([           
+                ["nl", "Ik werk in een verpleeghuis"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in een verzorgingstehuis"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in de geestelijke gezondheidszorg/zorgverlening"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in een huisartsenpraktijk"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl","Ik werk in een andere eerstelijnszorg (bijv. fysiotherapie)"],
+            ])
+        }, 
+        {
+            key: '6', role: 'input',
+            content: new Map([
+                ["nl","Overig"],
+            ])
+        },     
+    ]);
+
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }

@@ -25,12 +25,14 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
         new Map([
             ["en", "How do you feel today?"],
             ["de", "Wie geht es Dir?"],
+            ["nl", "Heeft u vandaag gezondheidsklachten?"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["en", "Survey about your health status."],
             ["de", "Ein Fragebogen über Deinen Gesundheitszustand."],
+            ["nl", "Vragenlijst over uw gezondheidstoestand."],
         ])
     ));
 
@@ -435,6 +437,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you have any general symptoms such as"],
             ["de", "Allgemeine Symptome"],
+            ["nl", "Had u sinds de vorige keer een of meerdere van deze algemene klachten?"],
         ]))
     );
 
@@ -447,6 +450,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Fever"],
                 ["de", "Fieber"],
+                ["nl", "Koorts"],
             ])
         },
         {
@@ -455,6 +459,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Chills"],
                 ["de", "Schüttelfrost"],
+                ["nl", "Rillingen"],
             ])
         },
         {
@@ -463,6 +468,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Headache"],
                 ["de", "Kopfschmerzen"],
+                ["nl", "Hoofdpijn"],
             ])
         },
         {
@@ -471,6 +477,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Feeling tired or exhausted (malaise)"],
                 ["de", "Müdigkeit oder Erschöpfung"],
+                ["nl", "Vermoeid en lamlendig (algehele malaise)"],
             ])
         },
         {
@@ -479,12 +486,14 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Loss of appetite"],
                 ["de", "Appetitlosigkeit"],
+                ["nl", "Verminderde eetlust"],
             ])
         },
         {
             key: '0', role: 'option', content: new Map([
                 ["en", "No symptoms"],
                 ["de", "Keine allgemeinen Symptome"],
+                ["nl", "Geen van deze algemene klachten"],
             ])
         },
     ]);
@@ -498,6 +507,7 @@ const q1_2_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you have any respiratorial symptoms such as"],
             ["de", "Atemwegsbeschwerden"],
+            ["nl", "HAd u sinds de vorige keer "],
         ]))
     );
 
