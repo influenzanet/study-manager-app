@@ -64,42 +64,42 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     // -----------------------------------------
 
     // respriratory --------------------------------------
-    const q1_2 = survey.addNewSurveyItem({ itemKey: '2' }, q1Key);
-    if (!q1_2) { return; }
-    survey.updateSurveyItem(q1_2_def(q1_2));
+    //const q1_2 = survey.addNewSurveyItem({ itemKey: '2' }, q1Key);
+    //if (!q1_2) { return; }
+    //survey.updateSurveyItem(q1_2_def(q1_2));
     // -----------------------------------------
 
     // gastro --------------------------------------
-    const q1_3 = survey.addNewSurveyItem({ itemKey: '3' }, q1Key);
-    if (!q1_3) { return; }
-    survey.updateSurveyItem(q1_3_def(q1_3));
+    //const q1_3 = survey.addNewSurveyItem({ itemKey: '3' }, q1Key);
+    //if (!q1_3) { return; }
+    //survey.updateSurveyItem(q1_3_def(q1_3));
     // -----------------------------------------
 
     // misc --------------------------------------
-    const q1_4 = survey.addNewSurveyItem({ itemKey: '4' }, q1Key);
-    if (!q1_4) { return; }
-    survey.updateSurveyItem(q1_4_def(q1_4));
+    //const q1_4 = survey.addNewSurveyItem({ itemKey: '4' }, q1Key);
+    //if (!q1_4) { return; }
+    //survey.updateSurveyItem(q1_4_def(q1_4));
     // -----------------------------------------
 
     // Other symptom --------------------------------------
-    const q1_5 = survey.addNewSurveyItem({ itemKey: '5' }, q1Key);
-    if (!q1_5) { return; }
-    survey.updateSurveyItem(q1_5_def(q1_5));
+    //const q1_5 = survey.addNewSurveyItem({ itemKey: '5' }, q1Key);
+    //if (!q1_5) { return; }
+    //survey.updateSurveyItem(q1_5_def(q1_5));
     // -----------------------------------------
 
-    const q1_1_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q1_2_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '2'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q1_3_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '3'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q1_4_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '4'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    const q1_5_symptom = expWithArgs('checkResponseValueWithRegex', [q1Key, '5'].join('.'), [responseGroupKey, '1'].join('.'), '.*\\S.*');
+    //const q1_1_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    //const q1_2_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '2'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    //const q1_3_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '3'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    //const q1_4_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '4'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
+    //const q1_5_symptom = expWithArgs('checkResponseValueWithRegex', [q1Key, '5'].join('.'), [responseGroupKey, '1'].join('.'), '.*\\S.*');
 
-    const anySymptomSelected = expWithArgs('or',
-        q1_1_symptom,
-        q1_2_symptom,
-        q1_3_symptom,
-        q1_4_symptom,
-        q1_5_symptom
-    );
+    //const anySymptomSelected = expWithArgs('or',
+    //    q1_1_symptom,
+    //    q1_2_symptom,
+    //    q1_3_symptom,
+    //    q1_4_symptom,
+    //    q1_5_symptom
+    //);
     // <------ Symptoms group
 
     survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
@@ -114,30 +114,31 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     const hasSymptomGroupKey = hasSymptomGroupEditor.getItem().key;
 
     // Qcov3 14 days contact with Covid-19 --------------------------------------
-    const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, hasSymptomGroupKey);
-    if (!qcov3) { return; }
-    survey.updateSurveyItem(qcov3_def(qcov3));
+    //const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, hasSymptomGroupKey);
+    //if (!qcov3) { return; }
+    //survey.updateSurveyItem(qcov3_def(qcov3));
     // -----------------------------------------
 
     // Qcov3b 14 days contact with Covid-19 --------------------------------------
-    const qcov3b = survey.addNewSurveyItem({ itemKey: 'Qcov3b' }, hasSymptomGroupKey);
-    if (!qcov3b) { return; }
-    survey.updateSurveyItem(qcov3b_def(qcov3b, qcov3.key));
+    //const qcov3b = survey.addNewSurveyItem({ itemKey: 'Qcov3b' }, hasSymptomGroupKey);
+    //if (!qcov3b) { return; }
+    //survey.updateSurveyItem(qcov3b_def(qcov3b, qcov3.key));
     // -----------------------------------------
 
     // Qcov8 14 days contact COVID-19 before symptoms --------------------------------------
-    const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, hasSymptomGroupKey);
-    if (!qcov8) { return; }
-    survey.updateSurveyItem(qcov8_def(qcov8));
+    //const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, hasSymptomGroupKey);
+    //if (!qcov8) { return; }
+    //survey.updateSurveyItem(qcov8_def(qcov8));
     // -----------------------------------------
 
     // Qcov8b same household --------------------------------------
-    const qcov8b = survey.addNewSurveyItem({ itemKey: 'Qcov8b' }, hasSymptomGroupKey);
-    if (!qcov8b) { return; }
-    survey.updateSurveyItem(qcov8b_def(qcov8b, qcov8.key));
+    //const qcov8b = survey.addNewSurveyItem({ itemKey: 'Qcov8b' }, hasSymptomGroupKey);
+    //if (!qcov8b) { return; }
+    //survey.updateSurveyItem(qcov8b_def(qcov8b, qcov8.key));
     // -----------------------------------------
 
     survey.addNewSurveyItem({ itemKey: 'pbQ3', type: 'pageBreak' }, hasSymptomGroupKey);
+    
     // Q3 when first symptoms --------------------------------------
     const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, hasSymptomGroupKey);
     if (!q3) { return; }
@@ -159,6 +160,7 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     // survey.addNewSurveyItem({ itemKey: 'pb7', type: 'pageBreak' }, rootKey);
 
     survey.addNewSurveyItem({ itemKey: 'pbFever', type: 'pageBreak' }, hasSymptomGroupKey);
+    
     // ----> fever group
     const feverGroup = survey.addNewSurveyItem({ itemKey: 'Q6', isGroup: true }, hasSymptomGroupKey);
     const feverGroupEditor = new ItemEditor(feverGroup as SurveyGroupItem);
