@@ -42,6 +42,39 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
 
     const rootKey = rootItemEditor.getItem().key;
 
+    
+   
+    // Test results yes/no
+     const q1aNL = survey.addNewSurveyItem({ itemKey: 'Q1aNL' }, rootKey);
+    if (!q1aNL) { return; }
+    survey.updateSurveyItem(q1aNL_def(q1aNL));
+    // ---------------------------------------------------------
+ 
+    // Test results positive/negative
+    const q1bNL = survey.addNewSurveyItem({ itemKey: 'Q1bNL' }, rootKey);
+    if (!q1bNL) { return; }
+    survey.updateSurveyItem(q1bNL_def(q1bNL,q1aNL.key));
+    // ---------------------------------------------------------
+
+    // Test PCR how long after symptoms
+    const q1cNL = survey.addNewSurveyItem({ itemKey: 'Q1cNL' }, rootKey);
+    if (!q1cNL) { return; }
+    survey.updateSurveyItem(q1cNL_def(q1cNL,q1aNL.key));
+    // ---------------------------------------------------------
+
+    // Test SERO date
+    const q1dNL = survey.addNewSurveyItem({ itemKey: 'Q1dNL' }, rootKey);
+    if (!q1dNL) { return; }
+    survey.updateSurveyItem(q1dNL_def(q1dNL,q1aNL.key));
+    // ---------------------------------------------------------
+
+    // Test results positive/negative
+    const q1eNL = survey.addNewSurveyItem({ itemKey: 'Q1eNL' }, rootKey);
+    if (!q1eNL) { return; }
+    survey.updateSurveyItem(q1eNL_def(q1eNL,q1aNL.key));
+    // ---------------------------------------------------------
+
+
     // ------> Symptoms group
     const qg1 = survey.addNewSurveyItem({ itemKey: 'q1', isGroup: true }, rootKey);
 
@@ -56,51 +89,16 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     if (!q1_title) { return; }
     survey.updateSurveyItem(q1_title_def(q1_title));
 
-
     // general --------------------------------------
     const q1_1 = survey.addNewSurveyItem({ itemKey: '1' }, q1Key);
     if (!q1_1) { return; }
     survey.updateSurveyItem(q1_1_def(q1_1));
     // -----------------------------------------
 
-    // respriratory --------------------------------------
-    //const q1_2 = survey.addNewSurveyItem({ itemKey: '2' }, q1Key);
-    //if (!q1_2) { return; }
-    //survey.updateSurveyItem(q1_2_def(q1_2));
-    // -----------------------------------------
+    const anySymptomSelected = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
 
-    // gastro --------------------------------------
-    //const q1_3 = survey.addNewSurveyItem({ itemKey: '3' }, q1Key);
-    //if (!q1_3) { return; }
-    //survey.updateSurveyItem(q1_3_def(q1_3));
-    // -----------------------------------------
-
-    // misc --------------------------------------
-    //const q1_4 = survey.addNewSurveyItem({ itemKey: '4' }, q1Key);
-    //if (!q1_4) { return; }
-    //survey.updateSurveyItem(q1_4_def(q1_4));
-    // -----------------------------------------
-
-    // Other symptom --------------------------------------
-    //const q1_5 = survey.addNewSurveyItem({ itemKey: '5' }, q1Key);
-    //if (!q1_5) { return; }
-    //survey.updateSurveyItem(q1_5_def(q1_5));
-    // -----------------------------------------
-
-    //const q1_1_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    //const q1_2_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '2'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    //const q1_3_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '3'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    //const q1_4_symptom = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '4'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-    //const q1_5_symptom = expWithArgs('checkResponseValueWithRegex', [q1Key, '5'].join('.'), [responseGroupKey, '1'].join('.'), '.*\\S.*');
-
-    //const anySymptomSelected = expWithArgs('or',
-    //    q1_1_symptom,
-    //    q1_2_symptom,
-    //    q1_3_symptom,
-    //    q1_4_symptom,
-    //    q1_5_symptom
-    //);
-    // <------ Symptoms group
+   
+    
 
     survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
@@ -112,30 +110,6 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(hasSymptomGroupEditor.getItem());
 
     const hasSymptomGroupKey = hasSymptomGroupEditor.getItem().key;
-
-    // Qcov3 14 days contact with Covid-19 --------------------------------------
-    //const qcov3 = survey.addNewSurveyItem({ itemKey: 'Qcov3' }, hasSymptomGroupKey);
-    //if (!qcov3) { return; }
-    //survey.updateSurveyItem(qcov3_def(qcov3));
-    // -----------------------------------------
-
-    // Qcov3b 14 days contact with Covid-19 --------------------------------------
-    //const qcov3b = survey.addNewSurveyItem({ itemKey: 'Qcov3b' }, hasSymptomGroupKey);
-    //if (!qcov3b) { return; }
-    //survey.updateSurveyItem(qcov3b_def(qcov3b, qcov3.key));
-    // -----------------------------------------
-
-    // Qcov8 14 days contact COVID-19 before symptoms --------------------------------------
-    //const qcov8 = survey.addNewSurveyItem({ itemKey: 'Qcov8' }, hasSymptomGroupKey);
-    //if (!qcov8) { return; }
-    //survey.updateSurveyItem(qcov8_def(qcov8));
-    // -----------------------------------------
-
-    // Qcov8b same household --------------------------------------
-    //const qcov8b = survey.addNewSurveyItem({ itemKey: 'Qcov8b' }, hasSymptomGroupKey);
-    //if (!qcov8b) { return; }
-    //survey.updateSurveyItem(qcov8b_def(qcov8b, qcov8.key));
-    // -----------------------------------------
 
     survey.addNewSurveyItem({ itemKey: 'pbQ3', type: 'pageBreak' }, hasSymptomGroupKey);
     
@@ -221,45 +195,21 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     // -----------------------------------------
 
     // Q8 contacted medical service --------------------------------------
-    const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, contactGroupKey);
-    if (!q8) { return; }
-    survey.updateSurveyItem(q8_def(q8));
+    //const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, contactGroupKey);
+    //if (!q8) { return; }
+    //survey.updateSurveyItem(q8_def(q8));
     // -----------------------------------------
 
     // Q8b how soon contacted medical service --------------------------------------
-    const q8b = survey.addNewSurveyItem({ itemKey: 'Q8b' }, contactGroupKey);
-    if (!q8b) { return; }
-    survey.updateSurveyItem(q8b_def(q8b, q8.key));
-    // -----------------------------------------
-
-    // Qcov4 call COVID-19 emergency line --------------------------------------
-    const qcov4 = survey.addNewSurveyItem({ itemKey: 'Qcov4' }, contactGroupKey);
-    if (!qcov4) { return; }
-    survey.updateSurveyItem(qcov4_def(qcov4));
-    // -----------------------------------------
-
-    // Qcov5 call general emergency line --------------------------------------
-    const qcov5 = survey.addNewSurveyItem({ itemKey: 'Qcov5' }, contactGroupKey);
-    if (!qcov5) { return; }
-    survey.updateSurveyItem(qcov5_def(qcov5));
-    // -----------------------------------------
-
-    // analysis if infection --------------------------------------
-    const qcov16 = survey.addNewSurveyItem({ itemKey: 'Qcov16' }, hasSymptomGroupKey);
-    if (!qcov16) { return; }
-    survey.updateSurveyItem(qcov16_def(qcov16));
-    // -----------------------------------------
-
-    // test PCR result --------------------------------------
-    const qcov16b = survey.addNewSurveyItem({ itemKey: 'Qcov16b' }, hasSymptomGroupKey);
-    if (!qcov16b) { return; }
-    survey.updateSurveyItem(qcov16b_def(qcov16b, qcov16.key));
+    //const q8b = survey.addNewSurveyItem({ itemKey: 'Q8b' }, contactGroupKey);
+    //if (!q8b) { return; }
+    //survey.updateSurveyItem(q8b_def(q8b, q8.key));
     // -----------------------------------------
 
     // test serological result --------------------------------------
-    const qcov16c = survey.addNewSurveyItem({ itemKey: 'Qcov16c' }, hasSymptomGroupKey);
-    if (!qcov16c) { return; }
-    survey.updateSurveyItem(qcov16c_def(qcov16c, qcov16.key));
+    //const qcov16c = survey.addNewSurveyItem({ itemKey: 'Qcov16c' }, hasSymptomGroupKey);
+    //if (!qcov16c) { return; }
+    //survey.updateSurveyItem(qcov16c_def(qcov16c, qcov16.key));
     // -----------------------------------------
     // <----- contact/visit group
 
@@ -279,9 +229,9 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     // -----------------------------------------
 
     // Q14 hospitalized because symptoms --------------------------------------
-    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, hasSymptomGroupKey);
-    if (!q14) { return; }
-    survey.updateSurveyItem(q14_def(q14));
+    // const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, hasSymptomGroupKey);
+    // if (!q14) { return; }
+    // survey.updateSurveyItem(q14_def(q14));
     // -----------------------------------------
 
     survey.addNewSurveyItem({ itemKey: 'pbChange', type: 'pageBreak' }, rootKey);
@@ -303,81 +253,72 @@ export const generateCovidSISWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(q10c_def(q10c, q10.key));
     // -----------------------------------------
 
-    // Qcov6 wear mask because symptoms --------------------------------------
-    const qcov6 = survey.addNewSurveyItem({ itemKey: 'Qcov6' }, hasSymptomGroupKey);
-    if (!qcov6) { return; }
-    survey.updateSurveyItem(qcov6_def(qcov6));
-    // -----------------------------------------
-
-    // Qcov7 took or strengthened measures because symptoms --------------------------------------
-    const qcov7 = survey.addNewSurveyItem({ itemKey: 'Qcov7' }, hasSymptomGroupKey);
-    if (!qcov7) { return; }
-    survey.updateSurveyItem(qcov7_def(qcov7));
-    // -----------------------------------------
-
     survey.addNewSurveyItem({ itemKey: 'pbCause', type: 'pageBreak' }, rootKey);
+    
     // Q11 think cause of symptoms --------------------------------------
     const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, hasSymptomGroupKey);
     if (!q11) { return; }
     survey.updateSurveyItem(q11_def(q11));
     // -----------------------------------------
 
+    //q1aNL_def
+
     // Qcov9 think reasons having disease --------------------------------------
-    const qcov9 = survey.addNewSurveyItem({ itemKey: 'Qcov9' }, hasSymptomGroupKey);
-    if (!qcov9) { return; }
-    survey.updateSurveyItem(qcov9_def(qcov9, q11.key));
+    //const qcov9 = survey.addNewSurveyItem({ itemKey: 'Qcov9' }, hasSymptomGroupKey);
+    //if (!qcov9) { return; }
+    //survey.updateSurveyItem(qcov9_def(qcov9, q11.key));
     // -----------------------------------------
 
     // Qcov9b informed contacts about suspicion COVID-19b infection --------------------------------------
-    const qcov9b = survey.addNewSurveyItem({ itemKey: 'Qcov9b' }, hasSymptomGroupKey);
-    if (!qcov9b) { return; }
-    survey.updateSurveyItem(qcov9b_def(qcov9b, q11.key));
+    //const qcov9b = survey.addNewSurveyItem({ itemKey: 'Qcov9b' }, hasSymptomGroupKey);
+    //if (!qcov9b) { return; }
+    //survey.updateSurveyItem(qcov9b_def(qcov9b, q11.key));
     // -----------------------------------------
 
     // <------- HAS SYMPTOMS GROUP
 
-    survey.addNewSurveyItem({ itemKey: 'pbBehave', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbBehave', type: 'pageBreak' }, rootKey);
     // Qcov10 lockdown professional activity --------------------------------------
-    const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
-    if (!qcov10) { return; }
-    survey.updateSurveyItem(qcov10_def(qcov10));
+    //const qcov10 = survey.addNewSurveyItem({ itemKey: 'Qcov10' }, rootKey);
+    //if (!qcov10) { return; }
+    //survey.updateSurveyItem(qcov10_def(qcov10));
     // -----------------------------------------
 
     // Qcov11 frequency go out to buy products --------------------------------------
-    const qcov11 = survey.addNewSurveyItem({ itemKey: 'Qcov11' }, rootKey);
-    if (!qcov11) { return; }
-    survey.updateSurveyItem(qcov11_def(qcov11));
+    //const qcov11 = survey.addNewSurveyItem({ itemKey: 'Qcov11' }, rootKey);
+    //if (!qcov11) { return; }
+    //survey.updateSurveyItem(qcov11_def(qcov11));
     // -----------------------------------------
 
     // Qcov12 frequency go out for fresh air or exercise --------------------------------------
-    const qcov12 = survey.addNewSurveyItem({ itemKey: 'Qcov12' }, rootKey);
-    if (!qcov12) { return; }
-    survey.updateSurveyItem(qcov12_def(qcov12));
+    //const qcov12 = survey.addNewSurveyItem({ itemKey: 'Qcov12' }, rootKey);
+    //if (!qcov12) { return; }
+    //survey.updateSurveyItem(qcov12_def(qcov12));
     // -----------------------------------------
 
     // Qcov13 how many people nearer then 1 meter --------------------------------------
-    const qcov13 = survey.addNewSurveyItem({ itemKey: 'Qcov13' }, rootKey);
-    if (!qcov13) { return; }
-    survey.updateSurveyItem(qcov13_def(qcov13));
+    //const qcov13 = survey.addNewSurveyItem({ itemKey: 'Qcov13' }, rootKey);
+    //if (!qcov13) { return; }
+    //survey.updateSurveyItem(qcov13_def(qcov13));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbLockdown', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbLockdown', type: 'pageBreak' }, rootKey);
     // Qcov14 situation if lockdown lifted, but childcare/schools closed --------------------------------------
-    const qcov14 = survey.addNewSurveyItem({ itemKey: 'Qcov14' }, rootKey);
-    if (!qcov14) { return; }
-    survey.updateSurveyItem(qcov14_def(qcov14));
+    //const qcov14 = survey.addNewSurveyItem({ itemKey: 'Qcov14' }, rootKey);
+    //if (!qcov14) { return; }
+    //survey.updateSurveyItem(qcov14_def(qcov14));
     // -----------------------------------------
 
     // Qcov14b days work outside from home --------------------------------------
-    const qcov14b = survey.addNewSurveyItem({ itemKey: 'Qcov14b' }, rootKey);
-    if (!qcov14b) { return; }
-    survey.updateSurveyItem(qcov14b_def(qcov14b, qcov14.key));
+    //const qcov14b = survey.addNewSurveyItem({ itemKey: 'Qcov14b' }, rootKey);
+    //if (!qcov14b) { return; }
+    //survey.updateSurveyItem(qcov14b_def(qcov14b, qcov14.key));
     // -----------------------------------------
 
     // Qcov15 lockdown extended, would follow --------------------------------------
-    const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
-    if (!qcov15) { return; }
-    survey.updateSurveyItem(qcov15_def(qcov15));
+    //const qcov15 = survey.addNewSurveyItem({ itemKey: 'Qcov15' }, rootKey);
+    //if (!qcov15) { return; }
+    //survey.updateSurveyItem(qcov15_def(qcov15));
     // -----------------------------------------
 
 
@@ -441,7 +382,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you have any general symptoms such as"],
             ["de", "Allgemeine Symptome"],
-            ["nl", "Had u sinds de vorige keer een of meerdere van deze klachten?"],
+            ["nl", "Had u sinds de vorige vragenlijst één of meerdere van deze klachten?"],
         ]))
     );
 
@@ -748,7 +689,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To help us work out the number of cases that arise each day."],
                     ["de", "Du hilfst uns damit, die täglich hinzukommenden Fälle zu bestimmen."],
-                    ["de", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag."],
+                    ["nl", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag."],
                     ["fr", "Pour nous aider à travailler sur le nombre de cas de grippe qui se déclarent chaque jour."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -930,7 +871,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["de", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1027,7 +968,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Please give as accurate an estimate as possible."],
                     ["de", "Bitte gib Deine Abschätzung so genau wie möglich an."],
-                    ["de", "Wees alstublieft zo nauwkeurig mogelijk."],
+                    ["nl", "Wees alstublieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1269,7 +1210,7 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
                 content: new Map([
                     ["en", "Certain infections often causes a high temperature."],
                     ["de", "Bestimmte Infektionen verursachen häufig eine hohe Körpertemperatur."],
-                    ["de", "Bepaalde infectieziekten veroorzaken een hoge temperatuur."],
+                    ["nl", "Bepaalde infectieziekten veroorzaken een hoge temperatuur."],
                     ["fr", "La grippe provoque souvent une température élevée."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1287,7 +1228,7 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
                 content: new Map([
                     ["en", "Give the highest temperature you recorded during this episode of illness."],
                     ["de", "Gib die höchste Körpertemperatur an, die Du während Deiner Krankheit gemessen hast."],
-                    ["de", "Geef de hoogste temperatuur die u gemeten heeft tijdens uw klachtenperiode."],
+                    ["nl", "Geef de hoogste temperatuur die u gemeten heeft tijdens uw klachtenperiode."],
                     ["fr", "Indiquez la plus haute température que vous avez enregistrée au cours de cette épisode de maladie."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1371,7 +1312,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
             ["de", "Hast du auf Grund deiner Symptome irgendeine Form von medizinischer Einrichtung besucht (persönlich dort erschienen)?"],
-            ["de", "Heeft u medische hulp gezocht vanwege uw klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
+            ["nl", "Heeft u medische hulp gezocht vanwege uw klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
             ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
         ]))
     );
@@ -1381,7 +1322,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["de", "Warum fragen wir das?"],
-                    ["de", "Waarom vragen we dit?"],
+                    ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1455,7 +1396,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Hospital admission"],
                 ["de", "Einlieferung ins Krankenhaus"],
-                ["de", "Ja, ik ben opgenomen in het ziekenhuis"],
+                ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
                 ["fr", "Consultation ambulatoire à l'hôpital"],
             ])
         },
@@ -1475,7 +1416,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No, but I have an appointment scheduled"],
                 ["de", "Nein, aber ich habe schon einen Termin"],
-                ["de", "Nog niet, maar ik heb een afspraak gemaakt"],
+                ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
                 ["fr", "Non, mais j'ai rendez-vous prochainement"],
             ])
         },
@@ -1490,7 +1431,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
             ["de", "Wie lange, nachdem die Symptome aufgetreten sind, hast Du das erste Mal eine medizinische Einrichtung besucht?"],
-            ["de", "Waar en hoe snel na de start van uw klachten heeft u voor de EERSTE keer medische hulp gezocht?"],
+            ["nl", "Waar en hoe snel na de start van uw klachten heeft u voor de EERSTE keer medische hulp gezocht?"],
             ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
     );
@@ -1911,7 +1852,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Other"],
                 ["de", "andere"],
-                ["de", "Ja, andere medicatie"],
+                ["nl", "Ja, andere medicatie"],
                 ["fr", "Autre"],
             ])
         },
@@ -2055,7 +1996,7 @@ const q9b_def = (itemSkeleton: SurveyItem, q9Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I don't know/can't remember"],
                 ["de", "Ich weiss es nicht bzw.  kann mich nicht erinnern"],
-                ["de", "Dat weet ik niet (meer)."],
+                ["nl", "Dat weet ik niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
             ])
         },
@@ -2437,7 +2378,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Nouveau coronavirus (Covid-19)"],
             ])
         }, {
-            key: '4', role: 'input',
+            key: '4', role: 'option',
             content: new Map([
                 ["en", "Other"],
                 ["de", "andere"],
@@ -2570,13 +2511,13 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["de", "Hoeveel dagen na de eerste klachten heeft u zich laten testen?"],
+            ["nl", "Hoeveel dagen na de eerste klachten heeft u zich laten testen?"],
         ]))
     );
     
     editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', q1aNLKey, [responseGroupKey, multipleChoiceKey].join('.'), '1')
-    );
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
 
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -2718,7 +2659,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         ]
     };
 
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    //editor.addExistingResponseComponent(ddOptions, rg?.key);
 
     return editor.getItem();
 }
@@ -2733,8 +2674,8 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
     
     editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', q1aNLKey, [responseGroupKey, multipleChoiceKey].join('.'), '2')
-    );
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '2')
+    )
    
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
@@ -2765,7 +2706,6 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();
 }
-
 
 
 const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
