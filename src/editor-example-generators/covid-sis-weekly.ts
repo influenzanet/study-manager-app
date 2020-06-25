@@ -2449,12 +2449,14 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl", "Ja, ik heb een testuitslag gehad voor een keel/neus slijmvliestest (PCR)"],
             ])
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl", "Ja, ik heb een testuitslag gehad voor een bloedtest (antistoftest)"],
             ])
