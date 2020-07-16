@@ -1,10 +1,12 @@
-import { Survey, LocalizedString, SurveyItem, isSurveyGroupItem, SurveyGroupItem } from "survey-engine/lib/data_types";
+import { Survey, LocalizedString, SurveyItem, isSurveyGroupItem, SurveyGroupItem, SurveyContextDef, Expression } from "survey-engine/lib/data_types";
 import { NewItemProps } from "./data-types";
 import { ItemEditor } from "./item-editor";
 
 interface SurveyEditorInt {
     setSurveyName: (name: Array<LocalizedString>) => void;
     setSurveyDescription: (description: Array<LocalizedString>) => void;
+    setSurveyContextRules: (contextRules: SurveyContextDef) => void;
+    setPrefillRules: (rules: Expression[]) => void;
 
     changeItemKey: (oldKey: string, newKey: string) => void;
     addNewSurveyItem: (itemProps: NewItemProps, parentKey?: string, atPosition?: number) => SurveyItem | undefined;
@@ -12,6 +14,7 @@ interface SurveyEditorInt {
     removeItem: (key: string) => void;
     findSurveyItem: (itemKey: string) => SurveyItem | undefined;
     moveSurveyItem: (item: SurveyItem, destination: string) => void;
+
 
     getSurvey: () => Survey;
     getSurveyJSON: (pretty?: boolean) => string;
@@ -45,6 +48,14 @@ export class SurveyEditor implements SurveyEditorInt {
 
     setSurveyDescription(description: Array<LocalizedString>) {
         this.survey.description = description;
+    };
+
+    setSurveyContextRules(contextRules: SurveyContextDef) {
+        this.survey.contextRules = { ...contextRules };
+    };
+
+    setPrefillRules(rules: Expression[]) {
+        this.survey.prefillRules = [...rules];
     };
 
     addNewSurveyItem(newItem: NewItemProps, parentKey?: string, atPosition?: number): SurveyItem | undefined {
