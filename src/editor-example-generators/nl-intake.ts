@@ -14,7 +14,7 @@ const sliderCategoricalKey = "scc"
 const inputKey = "ic"
 const matrixKey = "mat"
 
-export const generateCovidSISIntake = (): Survey | undefined => {
+export const generateNLIntake = (): Survey | undefined => {
     const surveyKey = 'intake';
 
     const survey = new SurveyEditor();
@@ -33,6 +33,14 @@ export const generateCovidSISIntake = (): Survey | undefined => {
             ["en", "The intake survey focues on some background and demographic information."],
             ["de", "In diesem ersten Fragebogen geht es darum, ein paar grundlegende Informationen über Dich zu erfahren."],
             ["nl", "Het aanmeldingsformulier vraagt om achtergrond informatie."],
+        ])
+    ));
+
+    survey.setSurveyDuration(generateLocStrings(
+        new Map([
+            ["en", "5 min."],
+            ["de", "5 min."],
+            ["nl", "5 min."],
         ])
     ));
     // max item per page
@@ -58,14 +66,14 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     // -----------------------------------------
 
     survey.addNewSurveyItem({ itemKey: 'pbQ5', type: 'pageBreak' }, rootKey);
-    
+
     // main activity --------------------------------------
     const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
     if (!q4) { return; }
     survey.updateSurveyItem(q4_def(q4));
     // -----------------------------------------
 
-     // school/work postal code  --------------------------------------
+    // school/work postal code  --------------------------------------
     const q4b = survey.addNewSurveyItem({ itemKey: 'Q4b' }, rootKey);
     if (!q4b) { return; }
     survey.updateSurveyItem(q4b_def(q4b, q4.key));
@@ -107,7 +115,7 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q6b_def(q6b, q6.key));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);   
+    survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);
     // means of transport  --------------------------------------
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
     if (!q7) { return; }
@@ -126,18 +134,18 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q20NL_def(q20NL));
     // -----------------------------------------
 
-   // Previous exposure with COVID test -------------------------------------
-   const q20NLb = survey.addNewSurveyItem({ itemKey: 'Q20NLb' }, rootKey);
-   if (!q20NLb) { return; }
-   survey.updateSurveyItem(q20NLb_def(q20NLb, q20NL.key));
-   // -----------------------------------------
+    // Previous exposure with COVID test -------------------------------------
+    const q20NLb = survey.addNewSurveyItem({ itemKey: 'Q20NLb' }, rootKey);
+    if (!q20NLb) { return; }
+    survey.updateSurveyItem(q20NLb_def(q20NLb, q20NL.key));
+    // -----------------------------------------
 
     // Previous exposure with COVID test -------------------------------------
     const q20NLc = survey.addNewSurveyItem({ itemKey: 'Q20NLc' }, rootKey);
     if (!q20NLc) { return; }
     survey.updateSurveyItem(q20NLc_def(q20NLc, q20NL.key));
     // -----------------------------------------
- 
+
     survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
     // common cold how often  --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
@@ -219,7 +227,7 @@ export const generateCovidSISIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q16_def(q16));
     // -----------------------------------------
 
-   
+
     // how did you find us --------------------------------------
     const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
     if (!q17) { return; }
@@ -641,7 +649,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
             {
                 content: new Map([
                     ["en", "To find out roughly how far you travel on a regular basis."],
-                    ["de", "Um abzuschätzen, wie weit Sie regelmässig reisen."], 
+                    ["de", "Um abzuschätzen, wie weit Sie regelmässig reisen."],
                     ["nl", "Om uw dagelijkse reisafstand te schatten"],
                     ["fr", "Pour avoir une estimation grossière de vos déplacements réguliers."],
                 ]),
@@ -787,7 +795,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Batchelors Degree (BA, BSc) or equivalent"],
-                ["de", "Bachelor oder gleichwertig"], 
+                ["de", "Bachelor oder gleichwertig"],
                 ["nl", "HBO of WO Bachelor"],
                 ["fr", "Diplôme de Bachelor ou équivalent"],
             ])
@@ -1023,21 +1031,21 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "6"],
                     ["fr", "6"],
                 ]),
-            },  {
+            }, {
                 key: '7', role: 'option', content: new Map([
                     ["en", "7"],
                     ["de", "7"],
                     ["nl", "7"],
                     ["fr", "7"],
                 ]),
-            },  {
+            }, {
                 key: '8', role: 'option', content: new Map([
                     ["en", "8"],
                     ["de", "8"],
                     ["nl", "8"],
                     ["fr", "8"],
                 ]),
-            },  {
+            }, {
                 key: '9', role: 'option', content: new Map([
                     ["en", "9"],
                     ["de", "9"],
@@ -1045,7 +1053,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["fr", "9"],
                 ]),
             },
-            
+
         ]
     };
 
@@ -2522,7 +2530,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["nl", "Ja, maar alleen e-sigaretten"],
                 ["fr", "e-sigarettes"],
             ])
-        },  {
+        }, {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Dont know/would rather not answer"],
@@ -3076,7 +3084,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1','2')
+        expWithArgs('responseHasKeysAny', [q4Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
     )
 
     editor.setHelpGroupComponent(
@@ -3094,7 +3102,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population as a whole and to find out whether the chance of getting flu is different for people in different types of occupation."],
                     ["de", "Um festzustellen, wie repräsentativ unsere Stichprobe ist - im Vergleich mit der Gesamtbevölkerung - ist. Sowie, ob das Risiko, an der Grippe zu erkranken, zwischen Berufen unterscheidet."],
-                    ["nl","Om in te schatten of we representatief zijn, en om infectierisico per beroepsgroep uit te splitsen"],
+                    ["nl", "Om in te schatten of we representatief zijn, en om infectierisico per beroepsgroep uit te splitsen"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble et pour savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3125,67 +3133,67 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-              ["nl","Ik werk in de gezondheidzorg"],               
+                ["nl", "Ik werk in de gezondheidzorg"],
             ])
         },
         {
             key: '1', role: 'option',
-            content: new Map([           
+            content: new Map([
                 ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl","Ik werk in de kinderopvang/onderwijs (basis/voortgezet/MBO/HBO/WO-onderwijs)"],
+                ["nl", "Ik werk in de kinderopvang/onderwijs (basis/voortgezet/MBO/HBO/WO-onderwijs)"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl","Ik werk in de horeca"],
+                ["nl", "Ik werk in de horeca"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl","Ik werk in de detailhandel (supermarkt, en andere verkoop in winkels)"],
+                ["nl", "Ik werk in de detailhandel (supermarkt, en andere verkoop in winkels)"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl","Ik werk in het openbaar vervoer (bijv. trein/bus/metro/taxi)"],
+                ["nl", "Ik werk in het openbaar vervoer (bijv. trein/bus/metro/taxi)"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
-                ["nl","Ik doe overig kenniswerk (manager,onderzoeker,accountant)"],
+                ["nl", "Ik doe overig kenniswerk (manager,onderzoeker,accountant)"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
-                ["nl","Ik doe administratiefwerk (administratie, financieel assistent,receptionist etc.)"],
+                ["nl", "Ik doe administratiefwerk (administratie, financieel assistent,receptionist etc.)"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
-                ["nl","Ik doe technisch werk (uitvoerend in Techniek/Bouw/Productie)"],
+                ["nl", "Ik doe technisch werk (uitvoerend in Techniek/Bouw/Productie)"],
             ])
         },
         {
             key: '9', role: 'option',
             content: new Map([
-                ["nl","Ik doe anders uitvoerend werk"],
+                ["nl", "Ik doe anders uitvoerend werk"],
             ])
         },
         {
             key: '10', role: 'option',
             content: new Map([
-                ["nl","Anders, valt niet in bovengenoemde opties"],
+                ["nl", "Anders, valt niet in bovengenoemde opties"],
             ])
         },
     ]);
@@ -3198,7 +3206,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl", "Waar werkt u in het onderdwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
+            ["nl", "Waar werkt u in het onderdwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
 
@@ -3210,18 +3218,18 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         generateHelpGroupComponent([
             {
                 content: new Map([
-                   
+
                     ["nl", "Waarom vragen we dit?"],
-               ]),
+                ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
-                content: new Map([                                     
-                    ["nl","Om de verschillende lagen van het onderwijs verder uit te splitsen"],
-                    ]),
+                content: new Map([
+                    ["nl", "Om de verschillende lagen van het onderwijs verder uit te splitsen"],
+                ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
-                             
+
         ])
     );
 
@@ -3230,39 +3238,39 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-              ["nl","Ik werk in een kinderdagverblijf/peuterspeelzaal"],               
+                ["nl", "Ik werk in een kinderdagverblijf/peuterspeelzaal"],
             ])
         },
         {
             key: '1', role: 'option',
-            content: new Map([           
+            content: new Map([
                 ["nl", "Ik werk op een basisonderwijs of op de BSO"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl","Ik werk in het voortgezet onderwijs (VMBO/Havo/VWO"],
+                ["nl", "Ik werk in het voortgezet onderwijs (VMBO/Havo/VWO"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl","Ik werk op het MBO"],
+                ["nl", "Ik werk op het MBO"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl","Ik werk op het HBO of WO"],
+                ["nl", "Ik werk op het HBO of WO"],
             ])
         },
         {
             key: '5', role: 'input',
             content: new Map([
-                ["nl","Anders"],
+                ["nl", "Anders"],
             ])
-        },     
+        },
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -3273,7 +3281,7 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"], 
+            ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
 
@@ -3285,18 +3293,18 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         generateHelpGroupComponent([
             {
                 content: new Map([
-                   
+
                     ["nl", "Waarom vragen we dit?"],
-               ]),
+                ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
-                content: new Map([                                     
-                    ["nl","Om de verschillende lagen van de zorg verder uit te splitsen"],
-                    ]),
+                content: new Map([
+                    ["nl", "Om de verschillende lagen van de zorg verder uit te splitsen"],
+                ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
-                             
+
         ])
     );
 
@@ -3305,45 +3313,45 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-              ["nl","Ik werk in een ziekenhuis"],               
+                ["nl", "Ik werk in een ziekenhuis"],
             ])
         },
         {
             key: '1', role: 'option',
-            content: new Map([           
+            content: new Map([
                 ["nl", "Ik werk in een verpleeghuis"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl","Ik werk in een verzorgingstehuis"],
+                ["nl", "Ik werk in een verzorgingstehuis"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl","Ik werk in de geestelijke gezondheidszorg/zorgverlening"],
+                ["nl", "Ik werk in de geestelijke gezondheidszorg/zorgverlening"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl","Ik werk in een huisartsenpraktijk"],
+                ["nl", "Ik werk in een huisartsenpraktijk"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl","Ik werk in een andere eerstelijnszorg (bijv. fysiotherapie)"],
+                ["nl", "Ik werk in een andere eerstelijnszorg (bijv. fysiotherapie)"],
             ])
-        }, 
+        },
         {
             key: '6', role: 'input',
             content: new Map([
-                ["nl","Overig"],
+                ["nl", "Overig"],
             ])
-        },     
+        },
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -3369,7 +3377,7 @@ const q20NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
-               ["nl", "Ik weet het niet"],
+                ["nl", "Ik weet het niet"],
             ])
         },
         {
@@ -3417,7 +3425,7 @@ const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q20NLKey, [responseGroupKey, singleChoiceKey].join('.'), '5','6')
+        expWithArgs('responseHasKeysAny', q20NLKey, [responseGroupKey, singleChoiceKey].join('.'), '5', '6')
     );
 
 
@@ -3432,7 +3440,7 @@ const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
-               ["nl", "Keel-/neuslijmvliestest (PCR)"],
+                ["nl", "Keel-/neuslijmvliestest (PCR)"],
             ])
         },
         {
@@ -3452,11 +3460,11 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl", "Wanneer is de coronatest bij u gedaan? Als u de datum niet meer precies weet mag u deze schatten. Het gaat om de datum dat uw bloed is afgenomen, of dat een monster is genomen van uw keel/neus slijmvlies"],
-            ]))
+        ]))
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q20NLKey, [responseGroupKey, singleChoiceKey].join('.'), '5','6')
+        expWithArgs('responseHasKeysAny', q20NLKey, [responseGroupKey, singleChoiceKey].join('.'), '5', '6')
     );
 
     editor.setHelpGroupComponent(
@@ -3464,19 +3472,19 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
             {
                 content: new Map([
                     ["nl", "Waarom vragen we dit?"],
-                    ]),
+                ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
                 content: new Map([
                     ["nl", "Het weten van de timing van testen is belangrijk om uw gegevens te interpreteren"],
-                    ]),
+                ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
             {
                 content: new Map([
                     ["nl", "Hoe zal ik dit beantwoorden?"],
-                    ]),
+                ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
@@ -3506,7 +3514,7 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
                 ["fr", "Sélectionner une date"],
             ])
         },
-     ]);
+    ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
     return editor.getItem();

@@ -5,6 +5,7 @@ import { ItemEditor } from "./item-editor";
 interface SurveyEditorInt {
     setSurveyName: (name: Array<LocalizedString>) => void;
     setSurveyDescription: (description: Array<LocalizedString>) => void;
+    setSurveyDuration: (duration: Array<LocalizedString>) => void;
 
     changeItemKey: (oldKey: string, newKey: string) => void;
     addNewSurveyItem: (itemProps: NewItemProps, parentKey?: string, atPosition?: number) => SurveyItem | undefined;
@@ -28,6 +29,7 @@ export class SurveyEditor implements SurveyEditorInt {
         } else {
             this.surveyKey = 'survey';
             this.survey = {
+                props: {},
                 current: {
                     surveyDefinition: {
                         key: this.surveyKey,
@@ -40,11 +42,24 @@ export class SurveyEditor implements SurveyEditorInt {
     }
 
     setSurveyName(name: Array<LocalizedString>) {
-        this.survey.name = name;
+        if (!this.survey.props) {
+            this.survey.props = {};
+        }
+        this.survey.props.name = name;
     };
 
     setSurveyDescription(description: Array<LocalizedString>) {
-        this.survey.description = description;
+        if (!this.survey.props) {
+            this.survey.props = {};
+        }
+        this.survey.props.description = description;
+    };
+
+    setSurveyDuration(duration: Array<LocalizedString>) {
+        if (!this.survey.props) {
+            this.survey.props = {};
+        }
+        this.survey.props.typicalDuration = duration;
     };
 
     addNewSurveyItem(newItem: NewItemProps, parentKey?: string, atPosition?: number): SurveyItem | undefined {
