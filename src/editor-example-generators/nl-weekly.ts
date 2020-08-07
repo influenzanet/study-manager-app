@@ -25,14 +25,14 @@ export const generateNLWeekly = (): Survey | undefined => {
         new Map([
             ["en", "How do you feel today?"],
             ["de", "Wie geht es Dir?"],
-            ["nl", "Had u in de afgelopen week gezondheidsklachten?"],
+            ["nl", "Wekelijkse vragenlijst"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["en", "Survey about your health status."],
             ["de", "Ein Fragebogen über Deinen Gesundheitszustand."],
-            ["nl", "Vragenlijst over uw gezondheidstoestand."],
+            ["nl", "Vragenlijst over uw afgelopen week. Had u klachten? Bent u getest? Had u een test uitslag?  Voor het onderzoek is het belangrijk dat u ook meld als u geen klachten had."],
         ])
     ));
 
@@ -40,7 +40,7 @@ export const generateNLWeekly = (): Survey | undefined => {
         new Map([
             ["en", "3 min."],
             ["de", "3 Min."],
-            ["nl", "3 min."],
+            ["nl", "Invullen duurt 15 seconden tot 3 minuten."],
         ])
     ));
 
@@ -362,7 +362,7 @@ const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "Please choose if you had any of the following symptoms since your last survey."],
                 ["de", "Hast du irgendwelche der folgenden Symptome seit dem letzten Fragebogen?"],
-                ["nl", "Geef alstublieft aan of u een van de volgende klachten heeft gehad sinds uw vorige vragenlijst?"],
+                ["nl", "Geef alstublieft aan of u geen of een van de volgende klachten heeft gehad in de afgelopen week"],
             ]))
         }
     )
@@ -376,7 +376,7 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "This was all for now, please submit your responses. By filling out this survey regularly (eg. weekly), you can help us fight the virus."],
                 ["de", "Das war die letzte Frage. Du kannst deine Antworten nun absenden. Mit regelmäßiger Teilnahme (z.B. wöchentlich) an dieser Umfrage unterstützt Du Mediziner und Epidemiologen bei ihrer Arbeit. Danke!"],
-                ["nl", "Dit was de laatste vraag, dank voor het incvullen. Volgende week vragen u weer"],
+                ["nl", "Dit was de laatste vraag. Sla nu uw antwoorden op. Dank voor het invullen. Volgende week vragen we u weer."],
             ]))
         }
     )
@@ -390,7 +390,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you have any general symptoms such as"],
             ["de", "Allgemeine Symptome"],
-            ["nl", "Had u sinds de vorige vragenlijst één of meerdere van deze klachten?"],
+            ["nl", "Had u in de afgelopen week geen, één of meerdere van deze klachten?"],
         ]))
     );
 
@@ -1855,7 +1855,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
         {
             key: '5',
-            role: 'input',
+            role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Other"],
