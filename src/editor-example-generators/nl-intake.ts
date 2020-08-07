@@ -32,15 +32,15 @@ export const generateNLIntake = (): Survey | undefined => {
         new Map([
             ["en", "The intake survey focues on some background and demographic information."],
             ["de", "In diesem ersten Fragebogen geht es darum, ein paar grundlegende Informationen über Dich zu erfahren."],
-            ["nl", "Het aanmeldingsformulier vraagt om achtergrond informatie."],
+            ["nl", "In dit aanmeldingsformulier vragen we om achtergrond informatie."],
         ])
     ));
 
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["en", "5 min."],
+            ["en", "This will take 5 minutes."],
             ["de", "5 min."],
-            ["nl", "5 min."],
+            ["nl", "Invullen duurt 5 minuten."],
         ])
     ));
     // max item per page
@@ -74,9 +74,9 @@ export const generateNLIntake = (): Survey | undefined => {
     // -----------------------------------------
 
     // school/work postal code  --------------------------------------
-    const q4b = survey.addNewSurveyItem({ itemKey: 'Q4b' }, rootKey);
-    if (!q4b) { return; }
-    survey.updateSurveyItem(q4b_def(q4b, q4.key));
+    //const q4b = survey.addNewSurveyItem({ itemKey: 'Q4b' }, rootKey);
+    //if (!q4b) { return; }
+    //survey.updateSurveyItem(q4b_def(q4b, q4.key));
     // -----------------------------------------
 
     // job category NL --------------------------------------
@@ -95,6 +95,12 @@ export const generateNLIntake = (): Survey | undefined => {
     const q4cNLc = survey.addNewSurveyItem({ itemKey: 'Q4cNLc' }, rootKey);
     if (!q4cNLc) { return; }
     survey.updateSurveyItem(q4cNLc_def(q4cNLc, q4cNL.key));
+    // -------------------------------------------------------
+
+    // highest education --------------------------------------
+    const q4d = survey.addNewSurveyItem({ itemKey: 'Q4d' }, rootKey);
+    if (!q4d) { return; }
+    survey.updateSurveyItem(q4d_def(q4d));
     // -------------------------------------------------------
 
     // people you meet  --------------------------------------
@@ -251,6 +257,7 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
                 ["de", "Danke, das war die letzte Frage. Du kannst Deine Antworten nun absenden. Bitte schaue wieder vorbei. Das nächste mal gibt es einen Fragebogen über wie Du Dich fühlst und Deinen Gesundheitszustand."],
+                ["nl", "Dank u wel. Dit was de laatste vraag. Na het opslaan kunt u verder met het melden of uw wel of geen klachten had in de afgelopen week"],
             ]))
         }
     )
@@ -299,7 +306,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "male"],
                 ["de", "männlich"],
-                ["nl", "man"],
+                ["nl", "Man"],
                 ["fr", "Homme"],
             ])
         },
@@ -308,7 +315,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "female"],
                 ["de", "weiblich"],
-                ["nl", "vrouw"],
+                ["nl", "Vrouw"],
                 ["fr", "Femme"],
             ])
         },
@@ -317,7 +324,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "other"],
                 ["de", "divers"],
-                ["nl", "anders"],
+                ["nl", "Anders"],
             ])
         },
     ]);
@@ -351,7 +358,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "The chance of getting COVID-19 and the risk of more serious complications vary by age."],
                     ["de", "Das Risiko an COVID-19 zu erkranken und das Risiko ernster Komplikationen variiert mit dem Alter."],
-                    ["nl", "Om te kijken naar verschillend tussen leeftijdsgroepen."],
+                    ["nl", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -433,7 +440,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is, and to see whether the chance of getting flu varies across the country."],
                     ["de", "Um zu prüfen, wie repräsentativ unsere Stichprobe ist und ob das Risiko, an der Grippe zu erkranken, innerhalb eines Landes variiert."],
-                    ["nl", "We hopen onderzoek te doen naar de regionale verspreiding van infecties"],
+                    ["nl", "We doen onderzoek naar de regionale verspreiding van infecties"],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -489,7 +496,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main activity?"],
             ["de", "Was ist Ihre Hauptbeschäftigung?"],
-            ["de", "Wat is uw voornaamste bezigheid overdag? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Wat is uw voornaamste bezigheid overdag? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", "Quelle est votre activité principale?"],
         ]))
     );
@@ -509,7 +516,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population as a whole, and to find out whether the chance of getting flu is different for people in different types of occupation."],
                     ["de", "Um zu prüfen, wie repräsentativ unserer Stichprobe - im Vergleich zur Gesamtbevölkerung - ist. Sowie um herauszufinden, ob das Risiko, an der Grippe zu erkranken, für Menschen mit verschiedenen Berufen variiert."],
-                    ["nl", "Met deze informatie kunnen we zien of ons cohort wel representatief is voor de bevolking"],
+                    ["nl", "Met deze informatie kunnen we zien of ons cohort (iederdeen die deelneemt) wel representatief is voor de bevolking"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble, et savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -518,6 +525,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -525,6 +533,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", 'Please, tick the box that most closely resembles your main occupation. For pre-school children who don\'t go to daycare tick the "other" box.'],
                     ["de", 'Für Vorschulkinder, die nicht in die Tagespflege gehen, wählen Sie bitte „andere“ aus.'],
+                    ["nl", 'Selecteer wat van toepassing is. Voor kinderen die te jong zijn - selecteer "anders".'],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -558,7 +567,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["en", "Self-employed (businessman, farmer, tradesman, etc.)"],
                 ["de", "Selbstständig (UnternehmerIn, LandwirtIn, HändlerIn, usw.)"],
                 ["nl", "Ik werk als zelfstandige/ondernemer"],
-                ["fr", " Indépendant (homme d'affaires , agriculteur , commerçant, etc.)"],
+                ["fr", "Indépendant (homme d'affaires , agriculteur , commerçant, etc.)"],
             ])
         },
         {
@@ -607,7 +616,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '8', role: 'input',
+            key: '8', role: 'option',
             content: new Map([
                 ["en", "Other"],
                 ["de", "Andere"],
@@ -736,7 +745,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population of the UK (Italy, Belgium..) as a whole."],
                     ["de", "Um zu prüfen, wie repräsentativ unsere Stichprobe - im Vergleich zur gesamten Bevölkerung der Schweiz - ist."],
-                    ["nl", "We willen weten hoe representatief het cohort is ten opzichte van de populatie van Nederland"],
+                    ["nl", "Met deze informatie kunnen we zien of ons cohort (iederdeen die deelneemt) wel representatief is voor de bevolking"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population suisse dans son ensemble."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -778,7 +787,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "GCSE's, levels, CSEs or equivalent"],
                 ["de", "Realschulabschluss, Qualifizierender Hauptschulabschluss oder gleichwertig"],
-                ["de", "Mavo of VMBO"],
+                ["nl", "Mavo of VMBO"],
                 ["fr", "Scolarité obligatoire"],
             ])
         },
@@ -787,7 +796,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "A-levels or equivalent (e.g. Higher, NVQ Level3, BTEC)"],
                 ["de", "Abitur, Fachabitur oder gleichwertig"],
-                ["nl", "Havo,VWO,of MBO"],
+                ["nl", "Havo, VWO, of MBO"],
                 ["fr", "Maturité fédérale, maturité professionnelle"],
             ])
         },
@@ -830,7 +839,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
             ["de", "Hast Du irgendwelche der folgenden Kontakte im Laufe eines typischen Tages? (ausgenommen Menschen, denen Du in öffentlichen Verkehrsmitteln begegnest)"],
-            ["nl", "Heeft u tijdens een normale dag (dus zonder corona maatregelen) contact met: (meerdere antwoorden mogelijk/ en laat openbaar vervoer buiten beschouwing)"],
+            ["nl", "Heeft u tijdens een normale dag (dus zonder corona maatregelen) contact met: (laat openbaar vervoer buiten beschouwing)"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
@@ -1065,10 +1074,10 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 {
                     key: 'l', role: 'label',
                     content: new Map([
-                        ["en", "0-4 years"],
-                        ["de", "0-4 Jahre"],
-                        ["nl", "0-4 jaar"],
-                        ["fr", "0-4 ans"],
+                        ["en", "0 - 4 years"],
+                        ["de", "0 - 4 Jahre"],
+                        ["nl", "0 - 4 jaar"],
+                        ["fr", "0 - 4 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1080,10 +1089,10 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 {
                     key: 'l', role: 'label',
                     content: new Map([
-                        ["en", "5-18 years"],
-                        ["de", "5-18 Jahre"],
-                        ["nl", "5-18 jaar"],
-                        ["fr", "5-18 ans"],
+                        ["en", "5 - 18 years"],
+                        ["de", "5 - 18 Jahre"],
+                        ["nl", "5 - 18 jaar"],
+                        ["fr", "5 - 18 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1095,10 +1104,10 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 {
                     key: 'l', role: 'label',
                     content: new Map([
-                        ["en", "19-44 years"],
-                        ["de", "19-44 Jahre"],
-                        ["nl", "19-44 jaar"],
-                        ["fr", "19-44 ans"],
+                        ["en", "19 - 44 years"],
+                        ["de", "19 - 44 Jahre"],
+                        ["nl", "19 - 44 jaar"],
+                        ["fr", "19 - 44 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1110,10 +1119,10 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 {
                     key: 'l', role: 'label',
                     content: new Map([
-                        ["en", "45-64 years"],
-                        ["de", "45-65 Jahre"],
-                        ["nl", "45-65 jaar"],
-                        ["fr", "45-64 ans"],
+                        ["en", "45 - 64 years"],
+                        ["de", "45 - 64 Jahre"],
+                        ["nl", "45 - 64 jaar"],
+                        ["fr", "45 - 64 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1127,7 +1136,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     content: new Map([
                         ["en", "65+"],
                         ["de", "65+"],
-                        ["nl", "65+"],
+                        ["nl", "65 of ouder"],
                         ["fr", "plus de 65 ans"],
                     ])
                 },
@@ -1246,7 +1255,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
             content: new Map([
                 ["en", "More than 5"],
                 ["de", "mehr als 5"],
-                ["nl", "meer dan 5"],
+                ["nl", "Meer dan 5"],
                 ["fr", "Plus de 5"],
             ])
         },
@@ -1356,7 +1365,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
-            key: '5', role: 'input',
+            key: '5', role: 'option',
             content: new Map([
                 ["en", "Other"],
                 ["de", "andere"],
@@ -1414,7 +1423,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
                     ["de", "Denke an einen gewöhnlichen Tag. Falls Du mehrere verschiedene Transportmittel benutzt, beziehe alle Reiseabschnitte mit ein. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
-                    ["de", "Denk aan een typische dag. Als u verschillende vormen van openbaar vervoer gebuikt tel dan de duur bijelkaar op."],
+                    ["nl", "Denk aan een typische dag. Als u verschillende vormen van openbaar vervoer gebuikt tel dan de duur bijelkaar op."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1937,7 +1946,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What were your reasons for NOT getting a seasonal influenza vaccination this year?"],
             ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
-            ["nl", "Wat was de reden waarom u zich niet liet vaccineren in het afgelopen griepseizoen(2019/2020)?"],
+            ["nl", "Wat was de reden waarom u zich niet liet vaccineren in het afgelopen griepseizoen (2019/2020)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -2208,7 +2217,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
-                ["de", "Nee, voor geen van de onderstaande aandoeningen"],
+                ["nl", "Nee, voor geen van de onderstaande aandoeningen"],
                 ["fr", "Non"],
             ])
         },
@@ -2511,7 +2520,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Yes, daily, fewer than 10 times a day"],
                 ["de", "Ja, täglich, weniger als 10 mal am Tag"],
-                ["nl", "Dagelijks, maar wel minder dan 10 keer per dag"],
+                ["nl", "Dagelijks, minder dan 10 keer per dag"],
                 ["fr", " Oui, quotidiennement, moins de 10 fois par jour"],
             ])
         }, {
@@ -2525,9 +2534,9 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
         }, {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "Yes, but only e-sigarets"],
+                ["en", "Yes, only e-sigarets"],
                 ["de", "Alein e-sigarets"],
-                ["nl", "Ja, maar alleen e-sigaretten"],
+                ["nl", "Ja, alleen e-sigaretten"],
                 ["fr", "e-sigarettes"],
             ])
         }, {
@@ -2725,7 +2734,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "Basse-calorie"],
             ])
         }, {
-            key: '4', role: 'input',
+            key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
@@ -3120,7 +3129,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please tick the box that most closely resembles your main occupation."],
                     ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
-                    ["de", "Selecteer het antwoord die het best uw sitautie beschrijft."],
+                    ["nl", "Selecteer het antwoord die het best uw sitautie beschrijft."],
                     ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3266,7 +3275,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
             ])
         },
         {
-            key: '5', role: 'input',
+            key: '5', role: 'option',
             content: new Map([
                 ["nl", "Anders"],
             ])
@@ -3347,7 +3356,7 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
             ])
         },
         {
-            key: '6', role: 'input',
+            key: '6', role: 'option',
             content: new Map([
                 ["nl", "Overig"],
             ])
