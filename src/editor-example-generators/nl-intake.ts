@@ -2025,7 +2025,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I haven't been offered the vaccine"],
                 ["de", "Mir wurde die Impfung nicht angeboten"],
-                ["nl", "Het griepvaccine is me niet aangeboden"],
+                ["nl", "Het griepvaccin is me niet aangeboden"],
                 ["fr", "La vaccination ne m'a pas été proposée"],
             ])
         }, {
@@ -2435,7 +2435,7 @@ const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
                 ["de", "Ich weiß nicht bzw. ich möchte das lieber nicht beantworten"],
-                ["nl", "Dit weetk ik niet / wil ik niet aangeven"],
+                ["nl", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
             ])
         },
@@ -3087,7 +3087,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Which of the following descriptions most closely matches with your main occupation?"],
             ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
-            ["nl", "Welke omschrijving past het beste bij uw dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele coronam maatregelen)"],
+            ["nl", "Welke omschrijving past het beste bij uw dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
         ]))
     );
@@ -3129,7 +3129,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please tick the box that most closely resembles your main occupation."],
                     ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
-                    ["nl", "Selecteer het antwoord die het best uw sitautie beschrijft."],
+                    ["nl", "Selecteer het antwoord die het best uw situatie beschrijft."],
                     ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3154,7 +3154,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl", "Ik werk in de kinderopvang/onderwijs (basis/voortgezet/MBO/HBO/WO-onderwijs)"],
+                ["nl", "Ik werk in de kinderopvang/onderwijs (basis, voortgezet, MBO, HBO, WO-onderwijs)"],
             ])
         },
         {
@@ -3172,25 +3172,25 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl", "Ik werk in het openbaar vervoer (bijv. trein/bus/metro/taxi)"],
+                ["nl", "Ik werk in het openbaar vervoer (bijv. trein, bus, metro, taxi)"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
-                ["nl", "Ik doe overig kenniswerk (manager,onderzoeker,accountant)"],
+                ["nl", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
-                ["nl", "Ik doe administratiefwerk (administratie, financieel assistent,receptionist etc.)"],
+                ["nl", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist)"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
-                ["nl", "Ik doe technisch werk (uitvoerend in Techniek/Bouw/Productie)"],
+                ["nl", "Ik doe technisch werk (uitvoerend in techniek, bouw, productie)"],
             ])
         },
         {
@@ -3215,7 +3215,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl", "Waar werkt u in het onderdwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
+            ["nl", "Waar werkt u in het onderwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
 

@@ -527,7 +527,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Watery, bloodshot eyes"],
                 ["de", "tränende, blutunterlaufene Augen"],
-                ["nl", "Waterige, of bloedoorlopen ogen"],
+                ["nl", "Waterige of bloeddoorlopen ogen"],
             ])
         },
         {
@@ -572,7 +572,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Loss of smell"],
                 ["de", "Geruchsverlust"],
-                ["nl", "Geen reuk/of smaak"],
+                ["nl", "Geen reuk en/of smaak"],
             ])
         },
 
