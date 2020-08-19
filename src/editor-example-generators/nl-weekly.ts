@@ -30,17 +30,17 @@ export const generateNLWeekly = (): Survey | undefined => {
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["en", "Survey about your health status."],
+            ["en", "Survey about your health status in the last week."],
             ["de", "Ein Fragebogen über Deinen Gesundheitszustand."],
-            ["nl", "Vragenlijst over uw afgelopen week. Had u klachten? Bent u getest? Had u een test uitslag?  Voor het onderzoek is het belangrijk dat u ook meld als u geen klachten had."],
+            ["nl", "Vragenlijst over uw klachten in de afgelopen week. Meld alstublieft ook als u geen klachten had."],
         ])
     ));
 
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["en", "3 min."],
+            ["en", "15 seconds to 3 minutes, depending on your symptoms."],
             ["de", "3 Min."],
-            ["nl", "Invullen duurt 15 seconden tot 3 minuten."],
+            ["nl", "Invullen duurt 15 seconden tot 3 minuten, afhanklijk van uw klachten."],
         ])
     ));
 
@@ -362,7 +362,7 @@ const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "Please choose if you had any of the following symptoms since your last survey."],
                 ["de", "Hast du irgendwelche der folgenden Symptome seit dem letzten Fragebogen?"],
-                ["nl", "Geef alstublieft aan of u geen of een van de volgende klachten heeft gehad in de afgelopen week"],
+                ["nl", "Geef alstublieft aan of u geen of tenminste één van de volgende klachten heeft gehad in de afgelopen week"],
             ]))
         }
     )
@@ -482,7 +482,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Muscle/joint pain"],
                 ["de", "Muskel- oder Gelenkschmerzen"],
-                ["nl", "Spierpijn/Gewrichtspijn (niet sport gerelateerd)"],
+                ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
             ])
         },
         {
@@ -591,7 +591,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         generateTitleComponent(new Map([
             ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
             ["de", "Bei Ihrem letzten Besuch haben Sie angegeben, noch krank zu sein. Sind die Symptome, die Sie heute berichten, Teil des gleichen Krankheitsschubs?"],
-            ["nl", "In uw laatste vragenlijst gaf u aan nog steeds ziek te zijn. Behoren de klachten die u nu meldt tot dezelfde klachtenperiode als de klachten die u de vorige keer al gemeld heeft?"],
+            ["nl", "In uw laatste vragenlijst gaf u aan nog steeds klachten te hebben. Behoren de klachten die u nu meldt tot dezelfde klachtenperiode als de klachten die u de vorige keer al gemeld heeft?"],
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
         ]))
     );
@@ -611,7 +611,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
                 content: new Map([
                     ["en", "To make filling out the rest of the survey quicker for you."],
                     ["de", "Um das Ausfüllen des restlichen Fragebogens für Sie schneller zu gestalten."],
-                    ["nl", "Om het invullend van de rest van de vragenlijst te versnellen."],
+                    ["nl", "Om te bepalen of uw klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
                     ["fr", "Afin que vous puissiez remplir le reste de l'enquête plus rapidement."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -627,9 +627,9 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             },
             {
                 content: new Map([
-                    ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”. To save you time, we have filled in the information you gave us previously about your illness.Please check that it is still correct, and make any changes – for instance, if you have visited a doctor or taken additional time off work since you last completed the survey."],
+                    ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."],
                     ["de", "Falls Sie denken, dass die Symptome, die Sie heute angeben, vom selben Krankheitsschub stammen wie Ihre vorherigen, wählen Sie bitte „Ja“. Um Ihre Zeit zu sparen, haben wir die Informationen, die Sie uns letztes Mal gegeben haben, bereits eingetragen. Bitte prüfen Sie, ob diese noch richtig sind und machen sie gegebenenfalls Änderungen (z.B falls Sie einen Arzt besucht oder Sie sich zusätzliche Zeit von der Arbeit abgemeldet haben, seit Sie das letzte Mal den Fragebogen ausgefüllt haben)."],
-                    ["nl", "Als u denkt dat de klachten die u vandaag raporteerd nog wordt veroorzaakte door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vaag met 'Ja'. Om u dan tijd te besparen hebben we veel antwoorden alvast ingevuld op basis van de antwoorden van vorige keer, kunt u controleren of deze nog steeds kloppen? Bijvoorbeeld of u nu wel naar de huisarts bent geweest of niet naar het werk bent geweest."],
+                    ["nl", "Als u denkt dat de klachten die u vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachten periode), beantwoord dan de vraag met 'Ja'"],
                     ["fr", "Si vous pensez que les symptômes que vous avez déclarés aujourd'hui sont causés par le même épisode de maladie que vos symptômes précédents, s'il vous plaît cochez «oui» . Pour gagner du temps, nous avons rempli les informations que vous nous avez déjà fournies sur votre maladie.  S'il vous plaît, vérifiez qu'elles sont toujours correctes ou faites les modifications nécessaires si, par exemple, vous avez consulté un médecin ou pris plus de temps hors travail depuis la dernière fois que vous avez répondu au questionnaire."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -938,7 +938,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "When did your fever begin?"],
             ["de", "Wann hat dein Fieber angefangen?"],
-            ["nl", "Op welke dag kwam de koors opzetten? Als u de dag niet precies weet, kies dan een geschatte datum"],
+            ["nl", "Op welke dag kwam de koorts opzetten? Als u de dag niet precies weet, kies dan een geschatte datum"],
             ["fr", " Quand est-ce que votre fièvre a commencé ?"],
         ]))
     );
@@ -1145,7 +1145,7 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Answer yes, if you took your temperature using a thermometer."],
                     ["de", "Wähle ja, falls Du Deine Körpertemperatur mit einem Thermometer gemessen hast."],
-                    ["nl", "Beantwoord deze vraag me Ja wanneer u uw temperatuur heeft gemeten met een thermometer."],
+                    ["nl", "Beantwoord deze vraag met Ja wanneer u uw temperatuur heeft gemeten met een thermometer."],
                     ["fr", "Cochez «oui» si vous avez pris votre température à l'aide d'un thermomètre."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1250,18 +1250,18 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Below 37°C"],
+                ["en", "Below 37.0°C"],
                 ["de", "Unter 37°C"],
-                ["nl", "Onder de 37°C"],
+                ["nl", "Onder de 37,0°C"],
                 ["fr", "Moins de 37°C"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "37° - 37.4°C"],
+                ["en", "37.0° - 37.4°C"],
                 ["de", "37°C - 37,4°C"],
-                ["nl", "37°C - 37,4°C"],
+                ["nl", "37,0°C - 37,4°C"],
                 ["fr", "37° – 37.4°C"],
             ])
         },
@@ -1277,26 +1277,26 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
         {
             key: '4', role: 'option',
             content: new Map([
-                ["en", "38° - 38.9°C"],
+                ["en", "38.0° - 38.9°C"],
                 ["de", "38° - 38,9°C"],
-                ["nl", "38° - 38,9°C"],
+                ["nl", "38,0° - 38,9°C"],
                 ["fr", "38° – 38.9°C"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "39° - 39.9°C"],
+                ["en", "39.0° - 39.9°C"],
                 ["de", "39° - 39,9°C"],
-                ["nl", "39° - 39,9°C"],
+                ["nl", "39,0° - 39,9°C"],
                 ["fr", "39° – 39.9°C"],
             ])
         }, {
             key: '6', role: 'option',
             content: new Map([
-                ["en", "40°C or more"],
+                ["en", "40.0°C or more"],
                 ["de", "40°C oder mehr"],
-                ["nl", "40°C of meer"],
+                ["nl", "40,0°C of meer"],
                 ["fr", "40°C ou plus"],
             ])
         },
@@ -1357,7 +1357,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
                     ["de", "Wähle alle Optionen, die zutreffen. Falls Du planst eine Einrichtung zu besuchen, wähle bitte die letzte Option."],
-                    ["nl", "Selecteerd alle relevante vormen van medische hulp die u heeft bezogt. Wanneer u nog niet bent geweest maar wel een afspraak heeft gemaakt, selecteer dan de laaste optie."],
+                    ["nl", "Selecteer alle relevante vormen van medische hulp die u heeft bezocht. Wanneer u nog niet bent geweest maar wel een afspraak heeft gemaakt, selecteer dan de laatste optie."],
                     ["fr", "Merci de cocher toutes les réponses qui s'appliquent . Si vous avez rendez-vous prochainement, merci de cocher l'option finale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2413,6 +2413,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "Did you receive a corona test result since the last survey? (positive or negative?"],
             ["nl", "Heeft u sind de vorige vragenlijst een testuitslag (positief of negatief) gehad voor het nieuwe coronavirus?"],
         ]))
     );
@@ -2421,24 +2422,28 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateHelpGroupComponent([
             {
                 content: new Map([
+                    ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
                 content: new Map([
+                    ["en", "To create an overview (over time) of how many participants tested positive"],
                     ["nl", "Om een overzicht te krijgen (over de tijd) hoeveel mensen binnen infectieradar al eens positief zijn getest"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
             {
                 content: new Map([
+                    ["en", "How should you answer this question?"],
                     ["nl", "Hoe moet u deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
                 content: new Map([
+                    ["en", "Please indicate your test result."],
                     ["nl", "Geef aan voor welke test u een uitslag heeft gehad."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2452,6 +2457,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
+                ["en", "No, I did not receive a test result"],
                 ["nl", "Nee, ik heb geen testuitslag gehad"],
             ])
         },
@@ -2459,6 +2465,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
+                ["en", "Yes, I recieved the result of a throat/nose swap (PCR)"],
                 ["nl", "Ja, ik heb een testuitslag gehad voor een keel/neus slijmvliestest (PCR)"],
             ])
         },
@@ -2466,6 +2473,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
+                ["en", "Yes, I recieved the result of a bloodtest (antibodytest)"],
                 ["nl", "Ja, ik heb een testuitslag gehad voor een bloedtest (antistoftest)"],
             ])
         },
@@ -2479,7 +2487,7 @@ const q1bNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What was your highest temperature measured?"],
+            ["en", "What was your test result?"],
             ["de", "Was war die höchste gemessene Temperatur?"],
             ["nl", "Wat was de uitslag van de test?"],
             ["fr", " Quel a été votre température mesurée la plus élevée?"],
@@ -2496,18 +2504,21 @@ const q1bNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "Positive, evidence for infection with coronavirus"],
                 ["nl", "Positief, dus WEL bestmet (geweest) met het nieuwe coronavirus"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "Negative, NO evidence for infection with coronavirus"],
                 ["nl", "Negatief, dus GEEN bewijs voor besmetting met het nieuwe coronavirus"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
+                ["en", "I prever not to say"],
                 ["nl", "Dit wil ik niet aangeven"],
             ])
         },
@@ -2521,6 +2532,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "How many days after your first symptoms was the swap/sample taken?"],
             ["nl", "Hoeveel dagen na de eerste klachten heeft u zich laten testen?"],
         ]))
     );
@@ -2535,6 +2547,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         key: 'col1', role: 'dropDownGroup', items: [
             {
                 key: '0', role: 'option', content: new Map([
+                    ["en", "On the same day as the first symptoms"],
                     ["nl", "Op dezelfde dag als de eerste klachten"],
                 ]),
             },
@@ -2679,6 +2692,7 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "On which day was the blood taken for the corona test? Please guess if you can't remember the date exactly."],
             ["nl", "Wanneer is de test voor het nieuwe coronavirus bij u gedaan? Als u de datum niet meer precies weet mag u deze schatten. Het gaat om de datum dat uw bloed is afgenomen."],
         ]))
     );
@@ -2722,6 +2736,7 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "In the two weeks before your test were you approached in the context of contact-tracing by the GGD (local public health service)?"],
             ["nl", "Bent u in de twee weken voor uw test benaderd door de GGD in verband met contactonderzoek?"],
         ]))
     );
@@ -2736,18 +2751,21 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "No, I have not been contacted"],
                 ["nl", "Nee, ik ben niet door de GGD benaderd in verband met contactonderzoek"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "Yes, I am contacted"],
                 ["nl", "Ja, ik ben wel door de GGD benaderd in verband met contactonderzoek"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
+                ["en", "I don't want to say"],
                 ["nl", "Dit wil ik niet aangeven"],
             ])
         },

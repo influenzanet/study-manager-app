@@ -65,6 +65,12 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q2_def(q2));
     // -----------------------------------------
 
+    // postcode --------------------------------------
+    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
+    if (!q3) { return; }
+    survey.updateSurveyItem(q3_def(q3));
+    // -----------------------------------------
+
     survey.addNewSurveyItem({ itemKey: 'pbQ5', type: 'pageBreak' }, rootKey);
 
     // main activity --------------------------------------
@@ -516,7 +522,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population as a whole, and to find out whether the chance of getting flu is different for people in different types of occupation."],
                     ["de", "Um zu prüfen, wie repräsentativ unserer Stichprobe - im Vergleich zur Gesamtbevölkerung - ist. Sowie um herauszufinden, ob das Risiko, an der Grippe zu erkranken, für Menschen mit verschiedenen Berufen variiert."],
-                    ["nl", "Met deze informatie kunnen we zien of ons cohort (iederdeen die deelneemt) wel representatief is voor de bevolking"],
+                    ["nl", "Met deze informatie kunnen we zien of de mensen die meedoen representatief zijn voor de bevolking"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble, et savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -778,7 +784,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "I have no formal qualification"],
                 ["de", "Ich habe keine formale Qualifikation"],
-                ["nl", "Ik heb geen officiële dimploma's of alleen lager onderwijs"],
+                ["nl", "Ik heb geen officiële diploma's of alleen lager onderwijs"],
                 ["fr", "Aucune qualification"],
             ])
         },
@@ -859,7 +865,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To find out whether you are likely to be exposed to more infection risk than the average person (e.g. work with children, or patients)."],
                     ["de", "Wir wollen herausfinden, ob Du einem höhren Ansteckungsrisiko ausgesetzt bist als eine Durchschnittsperson (z.B. durch Arbeit mit Kindern oder Patienten)."],
-                    ["nl", "Om uit te zoeken of contact met deze groepen het risico op klachten beinvloed"],
+                    ["nl", "Om uit te zoeken of contact met deze groepen het risico op klachten beïnvloedt"],
                     ["fr", "Pour savoir si vous êtes susceptible d'être exposés à la grippe plus que la moyenne (p. ex. via une votre travail avec des enfants ou des patients)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -868,7 +874,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Hint:"],
                     ["de", "Hinweis:"],
-                    ["nl", "Hint:"],
+                    ["nl", "Uitleg:"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -877,7 +883,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Groups of people could include any setting where you come into contact with large numbers of people at once, e.g. a teacher who may contact many children in a day."],
                     ["de", "Als Gruppen von Menschen zählt jede Gelegenheit, bei der Du in Kontakt mit einer großen Anzahl von Menschen kommst (z.B. ein Lehrer, der jeden Tag Kontakt zu Schülern hat)."],
-                    ["nl", "Voor groepen mensen kan het gaan om elke situatie waar er contact is met meerdere personen tegelijk"],
+                    ["nl", "Voor groepen mensen kan het gaan om elke situatie waar er contact is met meer dan 10 personen tegelijk"],
                     ["fr", "Sélectionnez les groupes de personnes avec lesquelles vous êtes en contact au cours d'une journée (p. ex. un enseignant peut interagir avec de nombreux enfants dans une journée)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1309,7 +1315,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick the option that best represents your most normal mode of transport."],
                     ["de", "Wähle die Option, die am besten Deinem normalerweise verwendeten Transportmittel entspricht."],
-                    ["nl", "Ga uit van de normale situatie en uw meest gangbare - dagelijkse - mannier van verplaatsen"],
+                    ["nl", "Ga uit van de normale situatie en uw meest gangbare - dagelijkse - manier van verplaatsen"],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1423,7 +1429,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
                     ["de", "Denke an einen gewöhnlichen Tag. Falls Du mehrere verschiedene Transportmittel benutzt, beziehe alle Reiseabschnitte mit ein. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
-                    ["nl", "Denk aan een typische dag. Als u verschillende vormen van openbaar vervoer gebuikt tel dan de duur bijelkaar op."],
+                    ["nl", "Denk aan een typische dag. Als u verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1561,9 +1567,9 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2018-2019)"],
-            ["de", "Hast du in der Herbst/Wintersaison 2018/2019 eine Grippeimpfung erhalten?"],
-            ["nl", "Heeft u in het griepseizoen van twee jaar geleden (2018/2019) een griepprik gehaald?"],
+            ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],
+            ["de", "Hast du in der Herbst/Wintersaison 2019/2020 eine Grippeimpfung erhalten?"],
+            ["nl", "Heeft u in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
         ]))
     );
@@ -1583,7 +1589,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "We would like to be able to work out how much protection the vaccine gives. We would also like to find out if there is some protection from vaccines received in previous years."],
                     ["de", "Wir möchten in der Lage sein herauszufinden, wie viel Schutz die Impfung bietet. Wir möchten außerdem feststellen, ob ein gewisser Schutz durch Impfungen des vorausgehenden Jahres besteht."],
-                    ["nl", "We willen de beschermende werking van het vaccine onderzoeken"],
+                    ["nl", "We willen de beschermende werking van het vaccin onderzoeken"],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1601,7 +1607,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
                     ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2018, erhalten hast."],
-                    ["nl", "Zeg ja wanneer u het vaccine heeft ontvangen. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl", "Zeg ja wanneer u de griepprik heeft gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1648,9 +1654,9 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Have you received a flu vaccine this autumn/winter season? (2019-2020)"],
-            ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2019/2020 erhalten?"],
-            ["nl", "Heeft u het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
+            ["en", "Are you planning to recieve a flu vaccine this autumn/winter season? (2020-2021)"],
+            ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2020/2021 erhalten?"],
+            ["nl", "Bent u van plan om voor het komende griepseizoen (2020/2021) een griepprik te halen?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
@@ -1670,7 +1676,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
                     ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2019, erhalten hast."],
-                    ["nl", "We willen de beschermende werking van het vaccine onderzoeken"],
+                    ["nl", "We willen de beschermende werking van het vaccin onderzoeken"],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1688,7 +1694,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
                     ["de", "Antworten Sie mit ja, falls Sie eine Impfung in dieser Saison, normalerweise im Herbst, erhalten haben. Falls Sie nach Beantwortung dieses Fragebogens geimpft werden, kehren Sie bitte hierher zurück und aktualisieren Sie Ihre Antwort."],
-                    ["nl", "Zeg ja wanneer u het vaccine heeft ontvangen. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl", "Zeg ja wanneer u van plan bent om de griepprik te nemen. Normaal ontvang je een griepprik in het najaar"],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1721,7 +1727,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "I don't know"],
                 ["de", "weiß ich nicht"],
-                ["nl", "Dat weet ik niet (meer)"],
+                ["nl", "Dat weet ik (nog) niet"],
                 ["fr", "Je ne sais pas"],
             ])
         },
@@ -1823,7 +1829,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What were your reasons for getting a seasonal influenza vaccination this year?"],
             ["de", "Welche Gründe hattest Du, Dich impfen zu lassen?"],
-            ["nl", "Wat waren voor u de belangrijkste redenen om afgelopen jaar een griepprik te halen?"],
+            ["nl", "Wat zijn voor u de belangrijkste redenen om dit jaar een griepprik te halen?"],
             ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -1852,7 +1858,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I belong to a risk group (e.g, pregnant, over 65, underlying health condition, etc)"],
                 ["de", "Ich gehöre zu einer Risikogruppe (z.B. Schwangere, über 65, Vorerkrankungen)"],
-                ["nl", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouderm, chronische ziekte)"],
+                ["nl", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziekte)"],
                 ["fr", "Je fais partie d'un groupe à risque (p. ex. femmes enceintes, plus de 65 ans, état de santé créant un prédisposition, etc.)"],
             ])
         },
@@ -1926,6 +1932,14 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                 ["fr", "Je me fais systématiquement vacciner"],
             ])
         }, {
+            key: '10', role: 'option',
+            content: new Map([
+                ["en", "I try to protect myself against infections, because of the circulation of the pandemic coronavirus"],
+                ["de", "Ich lasse mich immer impfen."],
+                ["nl", "Ik ben probeer mezelf te beschermen tegen infecties vanwege het pandemische coronavirus"],
+                ["fr", "Je me fais systématiquement vacciner"],
+            ])
+        }, {
             key: '9', role: 'option',
             content: new Map([
                 ["en", "Other reason(s)"],
@@ -1944,9 +1958,9 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination this year?"],
+            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination last season?"],
             ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
-            ["nl", "Wat was de reden waarom u zich niet liet vaccineren in het afgelopen griepseizoen (2019/2020)?"],
+            ["nl", "Wat is de reden waarom u zich niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -2011,24 +2025,25 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     }, rg?.key);
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        //{
+        //    key: '0', role: 'option',
+        //    content: new Map([
+        //        ["en", "I am planning to be vaccinated, but haven't been yet"],
+        //        ["de", "Ich habe vor, mich impfen zu lassen, es aber noch nicht getan."],
+        //        ["nl", "Ik ben van plan om me te laten vaccineren, maar heb het nog niet gedaan"],
+        //        ["fr", "Je prévois de me faire vacciner mais ne l'ai pas encore fait"],
+        //    ])
+        //},
+        //{
+        //    key: '1', role: 'option',
+        //    content: new Map([
+        //        ["en", "I haven't been offered the vaccine"],
+        //        ["de", "Mir wurde die Impfung nicht angeboten"],
+        //        ["nl", "Het griepvaccin is me niet aangeboden"],
+        //        ["fr", "La vaccination ne m'a pas été proposée"],
+        //    ])
+        //},
         {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I am planning to be vaccinated, but haven't been yet"],
-                ["de", "Ich habe vor, mich impfen zu lassen, es aber noch nicht getan."],
-                ["nl", "Ik ben van plan om me te laten vaccineren, maar heb het nog niet gedaan"],
-                ["fr", "Je prévois de me faire vacciner mais ne l'ai pas encore fait"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I haven't been offered the vaccine"],
-                ["de", "Mir wurde die Impfung nicht angeboten"],
-                ["nl", "Het griepvaccin is me niet aangeboden"],
-                ["fr", "La vaccination ne m'a pas été proposée"],
-            ])
-        }, {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't belong to a risk group"],
@@ -2051,7 +2066,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I doubt that the influenza vaccine is effective"],
                 ["de", "Ich bezweifle, dass der Grippeimpfstoff wirkungsvoll ist"],
-                ["nl", "Ik twijfel aan de effectiviteit van het griepvaccine"],
+                ["nl", "Ik twijfel aan de effectiviteit van het griepvaccin"],
                 ["fr", "Je doute que le vaccin contre la grippe soit efficace"],
             ])
         },
@@ -2078,7 +2093,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I believe that influenza vaccine can cause influenza"],
                 ["de", "Ich glaube, dass der Grippeimpfstoff die Grippe auslösen kann"],
-                ["nl", "Ik geloof dat het vaccine ook griep kan veroorzaken"],
+                ["nl", "Ik geloof dat het vaccin ook griep kan veroorzaken"],
                 ["fr", " Je crois que le vaccin antigrippal peut causer la grippe"],
             ])
         }, {
@@ -2086,7 +2101,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I am worried that the vaccine is not safe or will cause illness or other adverse events"],
                 ["de", "Ich bin besorgt, dass der Impfstoff nicht sicher ist oder, dass dieser andere Krankheiten oder unerwünschte Ereignisse fördert"],
-                ["nl", "Ik ben bang dat het vaccine niet veilig is, en me juist ziek maakt of andre neveneffecten heeft"],
+                ["nl", "Ik ben bang dat het vaccin niet veilig is, en me juist ziek maakt of andre neveneffecten heeft"],
                 ["fr", "Je pense que le vaccin n'est pas sûr ou qu'il peut causer d'autres maladies ou effets indésirables"],
             ])
         }, {
@@ -2124,9 +2139,9 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         }, {
             key: '13', role: 'option',
             content: new Map([
-                ["en", "Although my doctor recommended a vaccine, I did not get one"],
+                ["en", "Although my doctor recommend a vaccine, I do not get one"],
                 ["de", "Obwohl mein Arzt mir eine Impfung empfohlen hat, habe ich keine erhalten"],
-                ["nl", "Ondanks dat mijn huisarts het griepvaccine adviseerde, heb ik het niet genomen"],
+                ["nl", "Ondanks dat mijn huisarts het griepvaccin adviseerd, neem ik het niet"],
                 ["fr", " Bien que mon médecin me l'ait recommandé, je ne me suis pas fait vacciner"],
             ])
         }, {
@@ -2189,7 +2204,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", 'Only answer "yes" if you take regular medication for your medical problem. If, for instance, you only occasionally take an asthma inhaler, then do not answer "yes" for asthma.'],
                     ["de", "Antworten nur mit ja, falls Du regelmässig Medikamente gegen die Krankheit nimmst. Falls Du z.B. nur gelegentlich einen Asthmainhalator verwendest, dann wähle nicht Asthma aus."],
-                    ["nl", "Het gaat ons alleen om regelmatig gebruik van medicatie, niet om af en toe. Het af en toe gebruiken van een inhaler bij astma valth hier bijvoorbeeld buiten."],
+                    ["nl", "Het gaat ons alleen om regelmatig gebruik van medicatie, niet om af en toe. Het af en toe gebruiken van een inhaler bij astma valt hier bijvoorbeeld buiten."],
                     ["fr", "Répondez «oui» seulement si vous prenez <b>régulièrement</b> des médicaments pour votre problème médical. Si, par exemple, vous n'utilisez qu'occasionnellement un inhalateur pour l'asthme, alors ne répondez pas «oui» pour l'asthme ."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2319,9 +2334,9 @@ const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "Pregnancy can result in more severe illness if you are infected with flu."],
+                    ["en", "Infections during pregnancy can be different."],
                     ["de", "Schwangerschaft kann zu ernsteren Erkrankungen führen, wenn Sie mit der Grippe infiziert sind."],
-                    ["nl", "Zwangerschap is een risico-factor voor ernstige klachten bij infecties"],
+                    ["nl", "Infecties kunnen soms anders verlopen bij zwangeren."],
                     ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2394,9 +2409,9 @@ const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
             },
             {
                 content: new Map([
-                    ["en", "The stage of pregnancy might alter your risk of severe flu if you are infected, although this is not very clear."],
+                    ["en", "The stage of pregnancy might alter your infection, although this is not very clear."],
                     ["de", "Die Phase Ihrer Schwangerschaft könnte Ihr Risiko eines schweren Verlaufs der Grippe beeinflussen, auch wenn dies nicht sicher ist."],
-                    ["nl", "Het risico op ernstige klachten van een infectie kan verschillen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet"],
+                    ["nl", "Infecties kunnen soms anders verlopen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet"],
                     ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2598,7 +2613,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick all the options that apply. We are only interested in those allergies that cause respiratory symptoms (i.e. sneezing, sunny nose, runny eyes)."],
                     ["de", "Wähle alle Optionen, die zutreffen. Wir interessieren uns nur für jene Allergien, die Atemwegssymptome (z.B. Niesen, laufenden Nase, tränende Augen) verursachen."],
-                    ["nl", "Meerdere antwoorden mogelijk, tick alle opties die relevant zijn"],
+                    ["nl", "Meerdere antwoorden mogelijk, klik alle opties die relevant zijn"],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3129,7 +3144,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please tick the box that most closely resembles your main occupation."],
                     ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
-                    ["nl", "Selecteer het antwoord die het best uw situatie beschrijft."],
+                    ["nl", "Selecteer het antwoord dat het best uw situatie beschrijft."],
                     ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3142,66 +3157,77 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
+                ["en", "I work in health care"],
                 ["nl", "Ik werk in de gezondheidzorg"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "I have a job in wich I am in close contact with others ('contactberoep') (for example hairdresser)"],
                 ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "I work in child care / education (primary, secondary, MBO, HBO, University)"],
                 ["nl", "Ik werk in de kinderopvang/onderwijs (basis, voortgezet, MBO, HBO, WO-onderwijs)"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
+                ["en", "I work in a hotel, restaurant or cafe ('horeca')"],
                 ["nl", "Ik werk in de horeca"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
+                ["en", "I work in a shop (supermarket, or other kind of shop)"],
                 ["nl", "Ik werk in de detailhandel (supermarkt, en andere verkoop in winkels)"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
+                ["en", "I work in public transport (for example train, bus, metro, taxi)"],
                 ["nl", "Ik werk in het openbaar vervoer (bijv. trein, bus, metro, taxi)"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
+                ["en", "I am a knowledgeworker (manager, researcher, accountant)"],
                 ["nl", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
+                ["en", "I have an administrative role (administration, financial assistent, receptionist)"],
                 ["nl", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist)"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
+                ["en", "I work with my hands (builder, technic, production)"],
                 ["nl", "Ik doe technisch werk (uitvoerend in techniek, bouw, productie)"],
             ])
         },
-        {
-            key: '9', role: 'option',
-            content: new Map([
-                ["nl", "Ik doe anders uitvoerend werk"],
-            ])
-        },
+        //{
+        //    key: '9', role: 'option',
+        //    content: new Map([
+        //        ["en", "Job is not listed"],
+        //        ["nl", "Ik doe anders uitvoerend werk"],
+        //    ])
+        //},
         {
             key: '10', role: 'option',
             content: new Map([
+                ["en", "Different, not mentioned above"],
                 ["nl", "Anders, valt niet in bovengenoemde opties"],
             ])
         },
@@ -3215,6 +3241,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "Where are you employed in education or childcare? Assume the normal situation (thus without measures against corona)"],
             ["nl", "Waar werkt u in het onderwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
@@ -3227,13 +3254,14 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         generateHelpGroupComponent([
             {
                 content: new Map([
-
+                    ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
                 content: new Map([
+                    ["en", "To differentiate between the different tiers in education"],
                     ["nl", "Om de verschillende lagen van het onderwijs verder uit te splitsen"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3247,36 +3275,42 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
+                ["en", "I work in a nursery/childcare"],
                 ["nl", "Ik werk in een kinderdagverblijf/peuterspeelzaal"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "I work in primary education, or 'BSO'"],
                 ["nl", "Ik werk op een basisonderwijs of op de BSO"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "I work in secundary education (VMBO/Havo/VWO"],
                 ["nl", "Ik werk in het voortgezet onderwijs (VMBO/Havo/VWO"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
+                ["en", "I work at the 'MBO'"],
                 ["nl", "Ik werk op het MBO"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
+                ["en", "Ik work at the HBO or WO"],
                 ["nl", "Ik werk op het HBO of WO"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
+                ["en", "Other"],
                 ["nl", "Anders"],
             ])
         },
@@ -3290,6 +3324,7 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "Where are you employed within health care? Assume the normal situation (thus without measures against the coronavirus)"],
             ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
@@ -3302,13 +3337,14 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         generateHelpGroupComponent([
             {
                 content: new Map([
-
+                    ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
                 content: new Map([
+                    ["en", "To differentiate between the ways of providing care"],
                     ["nl", "Om de verschillende lagen van de zorg verder uit te splitsen"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3322,43 +3358,50 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
+                ["en", "I work in a hospital"],
                 ["nl", "Ik werk in een ziekenhuis"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "Ik work in a nursinghome"],
                 ["nl", "Ik werk in een verpleeghuis"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "Ik work in a care home"],
                 ["nl", "Ik werk in een verzorgingstehuis"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
+                ["en", "I work in mental health"],
                 ["nl", "Ik werk in de geestelijke gezondheidszorg/zorgverlening"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
+                ["en", "I work in a GP practice"],
                 ["nl", "Ik werk in een huisartsenpraktijk"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl", "Ik werk in een andere eerstelijnszorg (bijv. fysiotherapie)"],
+                ["en", "I provide other kind of care (for example physiotherapy)"],
+                ["nl", "Ik werk in een andere zorg (bijv. fysiotherapie)"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
-                ["nl", "Overig"],
+                ["en", "Other, not mentioned above"],
+                ["nl", "Overig, nog niet genoemd"],
             ])
         },
     ]);
@@ -3371,6 +3414,7 @@ const q20NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "Have you already been (or are you) infected with the new coronavirus?"],
             ["nl", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus?"],
         ]))
     );
@@ -3380,42 +3424,49 @@ const q20NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
+                ["en", "No, I don't think I have been infected with the new coronavirus"],
                 ["nl", "Nee, ik denk niet dat ik het nieuwe coronavirus al heb gehad"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "I don't know"],
                 ["nl", "Ik weet het niet"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "Yes, perhaps, I had/have symptoms that look like it"],
                 ["nl", "Ja, misschien wel, ik had/heb klachten die erop lijken"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
+                ["en", "Yes, I do think so. I had symptoms, just as people around me"],
                 ["nl", "Ja, ik denk het wel, ik had/heb klachten die erop lijken, en mensen om me heen ook"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
+                ["en", "Yes, I am prety sure, I and people around my had symptoms, and one or more of those people tested positive"],
                 ["nl", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en een of meer van die mensen zijn positief getest op het coronavirus"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken, "],
+                ["en", "Yes, I know for sure, as I tested positive and I had/have symptoms"],
+                ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
+                ["en", "Yes, I know for sure, I tested positive, however I did not have any symptoms"],
                 ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, maar ik heb geen klachten gehad"],
             ])
         },
@@ -3429,6 +3480,7 @@ const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "Which test has been performed (if different tests are applicable, focus on the test that was positive first"],
             ["nl", "Welke test voor het nieuwe coronavirus is bij u gedaan? (bij beide vermeld dan de eerste positieve test)"],
         ]))
     );
@@ -3443,18 +3495,21 @@ const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
+                ["en", "Bloodtest (antibody test)"],
                 ["nl", "Bloedtest (antistoftest)"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
+                ["en", "Throat/Nose test (PCR)"],
                 ["nl", "Keel-/neuslijmvliestest (PCR)"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
+                ["en", "I can't remember (anymore)"],
                 ["nl", "Dat weet ik niet (meer)"],
             ])
         },
@@ -3468,6 +3523,7 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
+            ["en", "When was the test performed? If you can't remember the date, please guess. It should be the day the sample was taken"],
             ["nl", "Wanneer is de coronatest bij u gedaan? Als u de datum niet meer precies weet mag u deze schatten. Het gaat om de datum dat uw bloed is afgenomen, of dat een monster is genomen van uw keel/neus slijmvlies"],
         ]))
     );
@@ -3480,18 +3536,21 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
         generateHelpGroupComponent([
             {
                 content: new Map([
+                    ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
                 content: new Map([
+                    ["en", "The timing of the test is important to interpret the data"],
                     ["nl", "Het weten van de timing van testen is belangrijk om uw gegevens te interpreteren"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
             {
                 content: new Map([
+                    ["en", "How shall you answer this question?"],
                     ["nl", "Hoe zal ik dit beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
