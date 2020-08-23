@@ -130,7 +130,7 @@ export const generateNLWeekly = (): Survey | undefined => {
     // Q4 when symptoms end --------------------------------------
     const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, hasSymptomGroupKey);
     if (!q4) { return; }
-    survey.updateSurveyItem(q4_def(q4));
+    survey.updateSurveyItem(q4_def(q4, q3.key));
     // -----------------------------------------
 
     // Q5 symptoms developed suddenly --------------------------------------
@@ -754,7 +754,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q4_def = (itemSkeleton: SurveyItem, q3Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -812,7 +812,16 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '0', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                min: {
+                    dtype: 'exp', exp: {
+                        name: 'getAttribute',
+                        data: [
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', q3Key, [responseGroupKey, singleChoiceKey, '0'].join('.')) },
+                            { str: 'value', dtype: 'str' }
+                        ],
+                        returnType: 'int',
+                    }
+                },
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
             content: new Map([

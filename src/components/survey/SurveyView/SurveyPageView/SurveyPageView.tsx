@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import RoundedButton from '../../../ui/buttons/RoundedButton';
 import RoundedBox from '../../../ui/RoundedBox';
+import { checkSurveyItemsValidity } from 'survey-engine/lib/validation-checkers';
 
 interface SurveyPageViewProps {
   surveyEngine: SurveyEngineCore;
@@ -67,6 +68,7 @@ const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
 
   const actionButton = (
     <Box textAlign="center" m={1}>
+      {checkSurveyItemsValidity(props.surveyItems).hard ? 'valid' : 'invalid'}
       <RoundedButton className={classes.btn}
         color="primary"
         onClick={props.action}

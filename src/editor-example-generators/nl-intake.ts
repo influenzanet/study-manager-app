@@ -335,6 +335,12 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
     return editor.getItem();
 }
 
@@ -385,6 +391,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     })
     editor.addExistingResponseComponent(dateInputEditor.getComponent(), rg?.key);
     editor.addExistingResponseComponent({
+        key: 'feedback',
         role: 'text',
         style: [{ key: 'variant', value: 'caption' }],
         displayCondition: expWithArgs('isDefined',
@@ -417,6 +424,11 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
             }
         ]
     }, rg?.key);
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
     return editor.getItem();
 }
 
