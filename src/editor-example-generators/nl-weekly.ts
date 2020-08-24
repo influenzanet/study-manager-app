@@ -580,6 +580,13 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -669,6 +676,13 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -751,6 +765,13 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         //},
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -851,6 +872,13 @@ const q4_def = (itemSkeleton: SurveyItem, q3Key: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -938,6 +966,13 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1020,6 +1055,13 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1107,6 +1149,13 @@ const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1194,6 +1243,13 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1320,6 +1376,13 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1439,6 +1502,13 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1716,6 +1786,12 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -1887,6 +1963,13 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     ])
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2019,6 +2102,13 @@ const q9b_def = (itemSkeleton: SurveyItem, q9Key: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2064,6 +2154,13 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2154,6 +2251,13 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2285,6 +2389,13 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2413,6 +2524,13 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2488,6 +2606,13 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2533,6 +2658,13 @@ const q1bNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2692,6 +2824,11 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     };
 
     //editor.addExistingResponseComponent(ddOptions, rg?.key);
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
 
     return editor.getItem();
 }
@@ -2737,6 +2874,13 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         //},
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
     return editor.getItem();
 }
 
@@ -2780,6 +2924,13 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+    
     return editor.getItem();
 }
 
