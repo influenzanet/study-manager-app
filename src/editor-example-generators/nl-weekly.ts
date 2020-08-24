@@ -1700,7 +1700,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 ]),
             },
             {
-                key: '7', role: 'option', content: new Map([
+                key: '16', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
                     ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
                     ["nl", "Dat weet ik niet (meer)"],
@@ -2930,7 +2930,7 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });
-    
+
     return editor.getItem();
 }
 
