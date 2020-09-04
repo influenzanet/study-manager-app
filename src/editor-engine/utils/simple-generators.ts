@@ -57,6 +57,7 @@ export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression =>
         data: args.map(arg => {
             if (typeof (arg) === 'string') {
                 return {
+                    dtype: 'str',
                     str: arg
                 }
             } else if (typeof (arg) === 'number') {
