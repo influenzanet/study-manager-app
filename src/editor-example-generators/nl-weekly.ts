@@ -2691,7 +2691,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     )
 
     
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg = editor.addNewResponseComponent({role: 'responseGroup'});
     const ddOptions: ResponseRowCell = {
         key: 'col1', role: 'dropDownGroup', items: [
             {
