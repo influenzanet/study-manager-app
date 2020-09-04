@@ -71,7 +71,7 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q3_def(q3));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbQ5', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbQ5', type: 'pageBreak' }, rootKey);
 
     // main activity --------------------------------------
     const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
@@ -127,7 +127,8 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q6b_def(q6b, q6.key));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);
+
     // means of transport  --------------------------------------
     const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
     if (!q7) { return; }
@@ -158,7 +159,8 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q20NLc_def(q20NLc, q20NL.key));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
+    
     // common cold how often  --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
     if (!q8) { return; }
@@ -195,7 +197,8 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q10d_def(q10d, q10.key));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbMedications', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbMedications', type: 'pageBreak' }, rootKey);
+
     // regular medication --------------------------------------
     const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
     if (!q11) { return; }
@@ -220,7 +223,8 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q13_def(q13));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbQ14', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbQ14', type: 'pageBreak' }, rootKey);
+
     // allergies --------------------------------------
     const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
     if (!q14) { return; }
@@ -241,13 +245,13 @@ export const generateNLIntake = (): Survey | undefined => {
 
 
     // how did you find us --------------------------------------
-    const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
-    if (!q17) { return; }
-    survey.updateSurveyItem(q17_def(q17));
+    //const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
+    //if (!q17) { return; }
+    //survey.updateSurveyItem(q17_def(q17));
     // -----------------------------------------
 
 
-    survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
 
     const final_text = survey.addNewSurveyItem({ itemKey: 'finalText' }, rootKey);
     if (!final_text) { return; }
@@ -441,7 +445,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is the first part of your home postcode (the part before the space)?"],
             ["de", "Wie lautet der Anfang Ihrer Postleitzahl (der Teil vor dem Leerzeichen)?"],
-            ["nl", "Wat zijn de eerste vier cijfers van uw postcode?"],
+            ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
         ]))
     );
@@ -524,7 +528,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main activity?"],
             ["de", "Was ist Ihre Hauptbeschäftigung?"],
-            ["nl", "Wat is uw voornaamste bezigheid overdag? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Wat is je voornaamste bezigheid overdag? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", "Quelle est votre activité principale?"],
         ]))
     );
@@ -670,7 +674,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is the first part of your school/college/workplace postcode? (Where you spend the majority of your work/study time)"],
             ["de", "Was ist der erste Teil der Postleitzahl Ihrer Schule/Hochschule/Arbeitsstelle? (Wo Sie den Großteil Ihrer Arbeitszeit/ Ihres Studiums ableisten)"],
-            ["nl", "Wat zijn de eerste vier cijfers van de postcode van uw werkplek/school/universiteit?"],
+            ["nl", "Wat zijn de eerste vier cijfers van de postcode van je werkplek/school/universiteit?"],
             ["fr", "Quelle est le code postal de l'endroit où vous passez la majorité de votre temps de travail ou d'étude?"],
         ]))
     );
@@ -767,7 +771,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is the highest level of formal education/qualification that you have?"],
             ["de", "Was ist die höchste Stufe formaler Ausbildung/ Qualifikation, die Sie aufweisen?"],
-            ["nl", "Wat is uw hoogst voltooide opleiding?"],
+            ["nl", "Wat is je hoogst voltooide opleiding?"],
             ["fr", " Quel est votre plus haut niveau d'éducation/qualification formelle?"],
         ]))
     );
@@ -888,7 +892,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
             ["de", "Hast Du irgendwelche der folgenden Kontakte im Laufe eines typischen Tages? (ausgenommen Menschen, denen Du in öffentlichen Verkehrsmitteln begegnest)"],
-            ["nl", "Heeft u tijdens een normale dag (dus zonder corona maatregelen) contact met: (laat openbaar vervoer buiten beschouwing)"],
+            ["nl", "Heb je tijdens een normale dag (dus zonder corona maatregelen) contact met:"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
@@ -943,7 +947,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
             new Map([
                 ['en', 'Select all options that apply'],
                 ['de', 'Wähle alle Optionen, die zutreffen'],
-                ['nl', 'Selecteer alle opties die relevant zijn'],
+                ['nl', 'Selecteer alle opties die relevant zijn (laat contacten in het openbaar vervoer buiten beschouwing)'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -1015,7 +1019,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
             ["de", "Wie viele Menschen der folgenden Altersgruppen leben in Deinem Haushalt? (DICH EINGESCHLOSSEN)"],
-            ["nl", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"],
+            ["nl", "INCLUSIEF JEZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in je huishouden?"],
             ["fr", " VOUS Y COMPRIS, combien de personnes de chaque groupe d'âge suivants vivent dans votre maison?"],
         ]))
     );
@@ -1218,7 +1222,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How many of the children in your household go to school or day-care?"],
             ["de", "Wie viele Kinder aus Deinem Haushalts gehen zur Schule oder in eine Kindertagesstätte?"],
-            ["nl", "Hoeveel van de kinderen in uw huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
         ]))
     );
@@ -1341,7 +1345,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport?"],
             ["de", "Was ist Dein Haupttransportmittel?"],
-            ["nl", "Hoe verplaatst u zich meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoe verplaatst je zich meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
@@ -1462,7 +1466,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.)"],
             ["de", "Wie viel Zeit verbringst Du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
-            ["nl", "Hoeveel tijd brengt u op een normale dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoeveel tijd breng je op een normale dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
         ]))
     );
@@ -1574,7 +1578,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How often do you have common colds or flu-like diseases?"],
             ["de", "Wie oft hast Du eine gewöhnliche Erkältung oder grippeähnliche Erkrankungen?"],
-            ["nl", "Hoe vaak heeft u last van verkoudheid of griepachtige verschijnselen?"],
+            ["nl", "Hoe vaak heb je last van verkoudheid of griepachtige verschijnselen?"],
             ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
         ]))
     );
@@ -1654,7 +1658,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],
             ["de", "Hast du in der Herbst/Wintersaison 2019/2020 eine Grippeimpfung erhalten?"],
-            ["nl", "Heeft u in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
+            ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
         ]))
     );
@@ -1692,7 +1696,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
                     ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2018, erhalten hast."],
-                    ["nl", "Zeg ja wanneer u de griepprik heeft gehad. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl", "Zeg ja wanneer je de griepprik heeft gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1748,7 +1752,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Are you planning to recieve a flu vaccine this autumn/winter season? (2020-2021)"],
             ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2020/2021 erhalten?"],
-            ["nl", "Bent u van plan om voor het komende griepseizoen (2020/2021) een griepprik te halen?"],
+            ["nl", "Ben je van plan om voor het komende griepseizoen (2020/2021) een griepprik te halen?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
@@ -1842,7 +1846,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "When were you vaccinated against flu in the season 2029/2020?"],
             ["de", "Wann wurdest du in der Saison 2019/2020 gegen Grippe geimpft?"],
-            ["nl", "Wanneer bent u in het afgelopen griepseizoen (2019/2020) gevaccineerd tegen de griep?"],
+            ["nl", "Wanneer ben je in het afgelopen griepseizoen (2019/2020) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2019-2020)"],
         ]))
     );
@@ -1903,7 +1907,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "Choose date:"],
                 ["de", "Wähle ein Datum:"],
-                ["nl", "Kier datum:"],
+                ["nl", "Kies datum:"],
                 ["fr", "Sélectionner une date"],
             ])
         },
@@ -1935,7 +1939,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What were your reasons for getting a seasonal influenza vaccination this year?"],
             ["de", "Welche Gründe hattest Du, Dich impfen zu lassen?"],
-            ["nl", "Wat zijn voor u de belangrijkste redenen om dit jaar een griepprik te halen?"],
+            ["nl", "Wat zijn voor jouw de belangrijkste redenen om dit jaar een griepprik te halen?"],
             ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -2073,7 +2077,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What were your reasons for NOT getting a seasonal influenza vaccination last season?"],
             ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
-            ["nl", "Wat is de reden waarom u zich niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
+            ["nl", "Wat is de reden waarom je je niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -2285,7 +2289,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Do you take regular medication for any of the following medical conditions?"],
             ["de", "Nimmst du regelmässig Medikamente gegen eine der folgenden Erkrankungen?"],
-            ["nl", "Gebruikt u medicatie (regelmatig) voor een of meer van de volgende aandoeningen?"],
+            ["nl", "Gebruik je medicatie (regelmatig) voor een of meer van de volgende aandoeningen?"],
             ["fr", " Souffrez-vous de l'une des maladies suivantes?"],
         ]))
     );
@@ -2444,7 +2448,7 @@ const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Are you currently pregnant?"],
             ["de", "Sind sie im Augenblick schwanger?"],
-            ["nl", "Bent u op dit moment zwanger?"],
+            ["nl", "Ben je op dit moment zwanger?"],
             ["fr", " Êtes-vous actuellement enceinte?"],
         ]))
     );
@@ -2521,7 +2525,7 @@ const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Which trimester of the pregnancy are you in?"],
             ["de", "In welchem Trimester (3 Monatsperiode) Ihrer Schwangerschaft befinden Sie sich?"],
-            ["nl", "In welk trimester bent u van uw zwangerschap?"],
+            ["nl", "In welk trimester ben je van je zwangerschap?"],
             ["fr", "A quel stade de grossesse êtes-vous?"],
         ]))
     );
@@ -2607,7 +2611,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Do you smoke tobacco?"],
             ["de", "Rauchst Du (Tabak)?"],
-            ["nl", "Rookt u?"],
+            ["nl", "Rook je?"],
             ["fr", "Etes-vous fumeur?"],
         ]))
     );
@@ -2723,7 +2727,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
             ["de", "Hast du eine der folgenden Allergien, die Atemwegssymptome auslösen kann?"],
-            ["nl", "Heeft u een of meer van de volgende allergieën?"],
+            ["nl", "Heb je één of meer van de volgende allergieën?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
         ]))
     );
@@ -2848,7 +2852,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Do you follow a special diet?"],
             ["de", "Hast du eine spezielle Ernährung?"],
-            ["nl", "Volgt u een specifiek dieet?"],
+            ["nl", "Volg je een specifiek dieet?"],
             ["fr", " Suivez-vous un régime alimentaire particulier?"],
         ]))
     );
@@ -2932,7 +2936,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Do you have pets at home?"],
             ["de", "Hast du Haustiere?"],
-            ["nl", "Heeft u huisdieren?"],
+            ["nl", "Heb je huisdieren?"],
             ["fr", "Avez-vous un animal domestique?"],
         ]))
     );
@@ -3278,7 +3282,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Which of the following descriptions most closely matches with your main occupation?"],
             ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
-            ["nl", "Welke omschrijving past het beste bij uw dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
         ]))
     );
@@ -3311,7 +3315,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet je deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -3425,7 +3429,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Where are you employed in education or childcare? Assume the normal situation (thus without measures against corona)"],
-            ["nl", "Waar werkt u in het onderwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
+            ["nl", "Waar werkt je in het onderwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
 
@@ -3473,7 +3477,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I work in secundary education (VMBO/Havo/VWO"],
-                ["nl", "Ik werk in het voortgezet onderwijs (VMBO/Havo/VWO"],
+                ["nl", "Ik werk in het voortgezet onderwijs (VMBO/Havo/VWO)"],
             ])
         },
         {
@@ -3515,7 +3519,7 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Where are you employed within health care? Assume the normal situation (thus without measures against the coronavirus)"],
-            ["nl", "Waar werkt u in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
+            ["nl", "Waar werkt je in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
         ]))
     );
 
@@ -3612,7 +3616,7 @@ const q20NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you already been (or are you) infected with the new coronavirus?"],
-            ["nl", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus?"],
+            ["nl", "Denk je dat je al besmet bent (geweest) met het nieuwe coronavirus?"],
         ]))
     );
 
@@ -3685,7 +3689,7 @@ const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Which test has been performed (if different tests are applicable, focus on the test that was positive first"],
-            ["nl", "Welke test voor het nieuwe coronavirus is bij u gedaan? (bij beide vermeld dan de eerste positieve test)"],
+            ["nl", "Welke test voor het nieuwe coronavirus is bij je gedaan? (als meerdere testen zijn gedaan vermeld dan de eerste positieve test)"],
         ]))
     );
 
@@ -3735,7 +3739,7 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "When was the test performed? If you can't remember the date, please guess. It should be the day the sample was taken"],
-            ["nl", "Wanneer is de coronatest bij u gedaan? Als u de datum niet meer precies weet mag u deze schatten. Het gaat om de datum dat uw bloed is afgenomen, of dat een monster is genomen van uw keel/neus slijmvlies"],
+            ["nl", "Wanneer is de coronatest bij je gedaan? Als je de datum niet meer precies weet mag je deze schatten. Het gaat om de datum dat je bloed is afgenomen, of dat een monster is genomen van uw keel/neus slijmvlies"],
         ]))
     );
 
@@ -3789,7 +3793,7 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
             content: new Map([
                 ["en", "Choose date:"],
                 ["de", "Wähle ein Datum:"],
-                ["nl", "Kier datum:"],
+                ["nl", "Kies datum:"],
                 ["fr", "Sélectionner une date"],
             ])
         },

@@ -50,8 +50,6 @@ export const generateNLWeekly = (): Survey | undefined => {
 
     const rootKey = rootItemEditor.getItem().key;
 
-
-
     // Test results yes/no
     const q1aNL = survey.addNewSurveyItem({ itemKey: 'Q1aNL' }, rootKey);
     if (!q1aNL) { return; }
@@ -108,7 +106,7 @@ export const generateNLWeekly = (): Survey | undefined => {
 
 
 
-    survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
 
     // -------> HAS SYMPTOMS GROUP
     const hasSymptomGroup = survey.addNewSurveyItem({ itemKey: 'HS', isGroup: true }, rootKey);
@@ -119,7 +117,7 @@ export const generateNLWeekly = (): Survey | undefined => {
 
     const hasSymptomGroupKey = hasSymptomGroupEditor.getItem().key;
 
-    survey.addNewSurveyItem({ itemKey: 'pbQ3', type: 'pageBreak' }, hasSymptomGroupKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbQ3', type: 'pageBreak' }, hasSymptomGroupKey);
 
     // Q3 when first symptoms --------------------------------------
     const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, hasSymptomGroupKey);
@@ -141,7 +139,7 @@ export const generateNLWeekly = (): Survey | undefined => {
 
     // survey.addNewSurveyItem({ itemKey: 'pb7', type: 'pageBreak' }, rootKey);
 
-    survey.addNewSurveyItem({ itemKey: 'pbFever', type: 'pageBreak' }, hasSymptomGroupKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbFever', type: 'pageBreak' }, hasSymptomGroupKey);
 
     // ----> fever group
     const feverGroup = survey.addNewSurveyItem({ itemKey: 'Q6', isGroup: true }, hasSymptomGroupKey);
@@ -180,7 +178,7 @@ export const generateNLWeekly = (): Survey | undefined => {
     // <------ fever group
 
 
-    survey.addNewSurveyItem({ itemKey: 'pbContact', type: 'pageBreak' }, hasSymptomGroupKey);
+   // survey.addNewSurveyItem({ itemKey: 'pbContact', type: 'pageBreak' }, hasSymptomGroupKey);
     // -----> contact/visit group
     const contactGroup = survey.addNewSurveyItem({ itemKey: 'contact', isGroup: true }, hasSymptomGroupKey);
     const contactGroupEditor = new ItemEditor(contactGroup as SurveyGroupItem);
@@ -223,7 +221,7 @@ export const generateNLWeekly = (): Survey | undefined => {
 
     // survey.addNewSurveyItem({ itemKey: 'pb10', type: 'pageBreak' }, rootKey);
 
-    survey.addNewSurveyItem({ itemKey: 'pbMedication', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbMedication', type: 'pageBreak' }, rootKey);
     // Q9 took medication --------------------------------------
     const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, hasSymptomGroupKey);
     if (!q9) { return; }
@@ -242,7 +240,7 @@ export const generateNLWeekly = (): Survey | undefined => {
     // survey.updateSurveyItem(q14_def(q14));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbChange', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbChange', type: 'pageBreak' }, rootKey);
     // Q10 changed daily routine because illness --------------------------------------
     const q10 = survey.addNewSurveyItem({ itemKey: 'Q10' }, hasSymptomGroupKey);
     if (!q10) { return; }
@@ -261,7 +259,7 @@ export const generateNLWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(q10c_def(q10c, q10.key));
     // -----------------------------------------
 
-    survey.addNewSurveyItem({ itemKey: 'pbCause', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pbCause', type: 'pageBreak' }, rootKey);
 
     // Q11 think cause of symptoms --------------------------------------
     const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, hasSymptomGroupKey);
@@ -331,7 +329,7 @@ export const generateNLWeekly = (): Survey | undefined => {
 
 
 
-    survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
+    //survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
 
     const final_text = survey.addNewSurveyItem({ itemKey: 'finalText' }, rootKey);
     if (!final_text) { return; }
@@ -362,7 +360,7 @@ const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "Please choose if you had any of the following symptoms since your last survey."],
                 ["de", "Hast du irgendwelche der folgenden Symptome seit dem letzten Fragebogen?"],
-                ["nl", "Geef alstublieft aan of u geen of tenminste één van de volgende klachten heeft gehad in de afgelopen week"],
+                ["nl", "Geef alstublieft aan of je geen of tenminste één van de volgende klachten hebt gehad in de afgelopen week"],
             ]))
         }
     )
@@ -376,13 +374,12 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "This was all for now, please submit your responses. By filling out this survey regularly (eg. weekly), you can help us fight the virus."],
                 ["de", "Das war die letzte Frage. Du kannst deine Antworten nun absenden. Mit regelmäßiger Teilnahme (z.B. wöchentlich) an dieser Umfrage unterstützt Du Mediziner und Epidemiologen bei ihrer Arbeit. Danke!"],
-                ["nl", "Dit was de laatste vraag. Sla nu uw antwoorden op. Dank voor het invullen. Volgende week vragen we u weer."],
+                ["nl", "Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen. Volgende week vragen we je weer."],
             ]))
         }
     )
     return editor.getItem();
 }
-
 
 const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -390,7 +387,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you have any general symptoms such as"],
             ["de", "Allgemeine Symptome"],
-            ["nl", "Had u in de afgelopen week geen, één of meerdere van deze klachten?"],
+            ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten?"],
         ]))
     );
 
@@ -590,15 +587,13 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-
-
 const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
             ["de", "Bei Ihrem letzten Besuch haben Sie angegeben, noch krank zu sein. Sind die Symptome, die Sie heute berichten, Teil des gleichen Krankheitsschubs?"],
-            ["nl", "In uw laatste vragenlijst gaf u aan nog steeds klachten te hebben. Behoren de klachten die u nu meldt tot dezelfde klachtenperiode als de klachten die u de vorige keer al gemeld heeft?"],
+            ["nl", "In je laatste vragenlijst gaf je aan nog steeds klachten te hebben. Behoren de klachten die je nu meldt tot dezelfde klachtenperiode als de klachten die je de vorige keer al gemeld had?"],
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
         ]))
     );
@@ -618,7 +613,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
                 content: new Map([
                     ["en", "To make filling out the rest of the survey quicker for you."],
                     ["de", "Um das Ausfüllen des restlichen Fragebogens für Sie schneller zu gestalten."],
-                    ["nl", "Om te bepalen of uw klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
+                    ["nl", "Om te bepalen of je klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
                     ["fr", "Afin que vous puissiez remplir le reste de l'enquête plus rapidement."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -627,7 +622,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -692,7 +687,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "When did the first symptoms appear?"],
             ["de", "Wann sind die ersten Symptome aufgetreten?"],
-            ["nl", "Op welke dag kwamen de eerste klachten opzetten? Als u de datum niet precies meer weet, kies dan een geschatte datum"],
+            ["nl", "Op welke dag kwamen de eerste klachten opzetten? Als je de datum niet precies meer weet, kies dan een geschatte datum"],
             ["fr", " Quand les premiers symptômes sont-ils apparus?"],
         ]))
     );
@@ -720,7 +715,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -781,7 +776,7 @@ const q4_def = (itemSkeleton: SurveyItem, q3Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "When did your symptoms end?"],
             ["de", "Wann sind die Symptome abgeklungen?"],
-            ["nl", "Op welke dag waren uw klachten weer verdwenen?"],
+            ["nl", "Op welke dag waren je klachten weer verdwenen?"],
             ["fr", "Quand vos symptômes ont-ils disparu?"],
         ]))
     );
@@ -888,7 +883,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did your symptoms develop suddenly over a few hours?"],
             ["de", "Sind deine Symptome plötzlich über wenige Stunden erschienen?"],
-            ["nl", "Kwamen uw klachten plotseling opzetten? (binnen een paar uur)"],
+            ["nl", "Kwamen je klachten plotseling opzetten? (binnen een paar uur)"],
             ["fr", "Est-ce que vos symptômes se sont déclarés soudainement, en l'espace de quelques heures?"],
         ]))
     );
@@ -916,7 +911,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -982,7 +977,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "When did your fever begin?"],
             ["de", "Wann hat dein Fieber angefangen?"],
-            ["nl", "Op welke dag kwam de koorts opzetten? Als u de dag niet precies weet, kies dan een geschatte datum"],
+            ["nl", "Op welke dag kwam de koorts opzetten? Als je de dag niet precies weet, kies dan een geschatte datum"],
             ["fr", " Quand est-ce que votre fièvre a commencé ?"],
         ]))
     );
@@ -1011,7 +1006,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1100,7 +1095,7 @@ const q6b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1165,7 +1160,7 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you take your temperature?"],
             ["de", "Hast du Deine Körpertemperatur gemessen?"],
-            ["nl", "Heeft u uw temperatuur gemeten?"],
+            ["nl", "Heb je de temperatuur gemeten?"],
             ["fr", "Avez-vous pris votre température?"],
         ]))
     );
@@ -1194,7 +1189,7 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1259,7 +1254,7 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What was your highest temperature measured?"],
             ["de", "Was war die höchste gemessene Temperatur?"],
-            ["nl", "Wat is uw hoogst gemeten temperatuur?"],
+            ["nl", "Wat is je hoogst gemeten temperatuur?"],
             ["fr", " Quel a été votre température mesurée la plus élevée?"],
         ]))
     );
@@ -1392,7 +1387,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
             ["de", "Hast du auf Grund deiner Symptome irgendeine Form von medizinischer Einrichtung besucht (persönlich dort erschienen)?"],
-            ["nl", "Heeft u medische hulp gezocht vanwege uw klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
+            ["nl", "Hen je medische hulp gezocht vanwege je klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
             ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
         ]))
     );
@@ -1420,7 +1415,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1518,7 +1513,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
             ["de", "Wie lange, nachdem die Symptome aufgetreten sind, hast Du das erste Mal eine medizinische Einrichtung besucht?"],
-            ["nl", "Waar en hoe snel na de start van uw klachten heeft u voor de EERSTE keer medische hulp gezocht?"],
+            ["nl", "Waar en hoe snel na de start van uw klachten hen je voor de EERSTE keer medische hulp gezocht?"],
             ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
     );
@@ -1546,7 +1541,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1567,8 +1562,20 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
         expWithArgs('responseHasOnlyKeysOtherThan', q7, [responseGroupKey, multipleChoiceKey].join('.'), '0', '5')
     );
 
-
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select the correct number of days'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
+                ['nl', 'Selecteer het juiste aantal dagen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
     const ddOptions: ResponseRowCell = {
         key: 'col1', role: 'dropDownGroup', items: [
             {
@@ -1801,7 +1808,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you take medication for these symptoms?"],
             ["de", "Hast du Medikamente gegen die Symptome genommen?"],
-            ["nl", "Heeft u vanwege uw klachten medicijnen gebruikt? En zo ja, welke?"],
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt? En zo ja, welke?"],
             ["fr", "Avez-vous pris des médicaments pour ces symptômes ?"],
         ]))
     );
@@ -1830,7 +1837,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1860,6 +1867,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
+
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0',
@@ -1979,7 +1987,7 @@ const q9b_def = (itemSkeleton: SurveyItem, q9Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How long after the beginning of your symptoms did you start taking antiviral medication?"],
             ["de", "Wie lange nach Beginn deiner Symptome hast du angefangen, antivirale Medikamente zu nehmen?"],
-            ["nl", "Hoe snel nadat uw klachten opkwamen bent u begonnen met het gebruiken van antivirale middelen?"],
+            ["nl", "Hoe snel nadat je klachten opkwamen ben je begonnen met het gebruiken van antivirale middelen?"],
             ["fr", "Combien de temps après le début de vos symptômes avez-vous commencé à prendre des médicaments antiviraux ?"],
         ]))
     );
@@ -2012,7 +2020,7 @@ const q9b_def = (itemSkeleton: SurveyItem, q9Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -2021,7 +2029,7 @@ const q9b_def = (itemSkeleton: SurveyItem, q9Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Report the time until you first started taking antivirals (which may not be the same day as you got your prescription)."],
                     ["de", "Gib die Zeit an, nach der Du das erste mal angefangen hast, antivirale Medikamente zu nehmen (was möglicherweise nicht der selbe Tag ist, an dem Du sie verschrieben bekommen hast)."],
-                    ["nl", "Geef het aantal dagen tussen het begin van de klachten en de dag u met de antivirale middelen begon."],
+                    ["nl", "Geef het aantal dagen tussen het begin van de klachten en de dag dat je met de antivirale middelen begon."],
                     ["fr", "Signaler le temps écoulé jusqu'à ce que vous ayez commencé à prendre des antiviraux (qui peut ne pas être le même jour que celui ou vous avez obtenu votre prescription)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2118,7 +2126,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you change your daily routine because of your illness?"],
             ["de", "Hat sich Dein Tagesablauf aufgrund Deiner Krankheit geändert?"],
-            ["nl", "Heeft u vanwege uw klachten uw dagelijkse bezigheden moeten aanpassen?"],
+            ["nl", "Heb je vanwege je klachten je dagelijkse bezigheden moeten aanpassen?"],
             ["fr", "Avez-vous changé votre routine quotidienne en raison de votre maladie ?"],
         ]))
     );
@@ -2170,7 +2178,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Are you still off work/school?"],
             ["de", "Bist du aktuell immer noch von der Arbeit/Schule abgemeldet?"],
-            ["nl", "Blijft u nog steeds thuis in plaats van werk/school?"],
+            ["nl", "Blijf je nog steeds thuis in plaats van werk/school?"],
             ["fr", "Êtes-vous toujours en arrêt maladie ?"],
         ]))
     );
@@ -2267,7 +2275,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How long have you been off work/school?"],
             ["de", "Wie lange bist du schon von der Arbeit/ Schule abwesend?"],
-            ["de", "Hoeveel dagen bent u niet naar werk/school geweest (terwijl dat wel had gemoeten)?"],
+            ["nl", "Hoeveel dagen ben je niet naar werk/school geweest (terwijl dat wel had gemoeten)?"],
             ["fr", "Combien de temps avez-vous été absent du travail / de l'école ?"],
         ]))
     );
@@ -2301,7 +2309,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -2310,7 +2318,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Only count the days that you normally would have been in school or work (e.g. don’t count weekends)."],
                     ["de", "Zähle nur die Tage, die Du normalerweise in der Arbeit/ Schule gewesen wärst (zählen z.B. keine Wochenenden)."],
-                    ["nl", "Tel alleen de dagen waar u normaal naar het werk/school had moeten gaan"],
+                    ["nl", "Tel alleen de dagen waar je normaal naar het werk/school had moeten gaan"],
                     ["fr", "Ne comptez que les jours durant lesquels vous seriez normalement allé à l'école ou au travail (par exemple, ne comptez pas le week-end)."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2405,7 +2413,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What do you think is causing your symptoms?"],
             ["de", "Was hälst du für die Ursache deiner Symptome?"],
-            ["nl", "Heeft u zelf enig idee waar uw klachten vandaan komen?"],
+            ["nl", "Heb je zelf enig idee waar je klachten vandaan komen?"],
             ["fr", "Quelle est selon vous l'origine de vos symptômes ?"],
         ]))
     );
@@ -2443,7 +2451,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "If you are reasonably sure about what is causing your symptoms, please tick the appropriate box. Otherwise, please tick “I don’t know”."],
                     ["de", "Falls Du Dir sicher genug bist, was die Ursache Deiner Symptome ist, wählen  die entsprechenden Option. Wählen ansonsten „Ich weiss es nicht“."],
-                    ["nl", "Bent u vrij zeker van de oorzaak van uw klachten geef deze oorzaak dan aan."],
+                    ["nl", "Bent je vrij zeker van de oorzaak van je klachten geef deze oorzaak dan aan."],
                     ["fr", "Si vous êtes raisonnablement sûr de ce qui est la cause de vos symptômes, s'il vous plaît cochez la case appropriée. Sinon, cochez la case «Je ne sais pas»."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2486,7 +2494,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Ashtma"],
                 ["de", "Asthma"],
-                ["nl", "Ja, ik heb last van asthma"],
+                ["nl", "Ja, ik heb last van astma"],
                 ["fr", "Asthme"],
             ])
         }, {
@@ -2500,10 +2508,10 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         }, {
             key: '9', role: 'option',
             content: new Map([
-                ["en", "New coronavirus (Covid-19)"],
-                ["de", "neuartiges Coronavirus (Covid-19)"],
-                ["nl", "Ja, het nieuwe coronavirus (Covid-19)"],
-                ["fr", "Nouveau coronavirus (Covid-19)"],
+                ["en", "New coronavirus (COVID-19)"],
+                ["de", "neuartiges Coronavirus (COVID-19)"],
+                ["nl", "Ja, het nieuwe coronavirus (COVID-19)"],
+                ["fr", "Nouveau coronavirus (COVID-19)"],
             ])
         }, {
             key: '4', role: 'option',
@@ -2541,7 +2549,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a corona test result since the last survey? (positive or negative?"],
-            ["nl", "Heeft u sind de vorige vragenlijst een testuitslag (positief of negatief) gehad voor het nieuwe coronavirus?"],
+            ["nl", "Heb je sinds de vorige vragenlijst een testuitslag (positief of negatief) gehad voor het nieuwe coronavirus?"],
         ]))
     );
 
@@ -2564,7 +2572,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "How should you answer this question?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
@@ -2674,7 +2682,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How many days after your first symptoms was the swap/sample taken?"],
-            ["nl", "Hoeveel dagen na de eerste klachten heeft u zich laten testen?"],
+            ["nl", "Hoeveel dagen na de eerste klachten heb je jezelf laten testen?"],
         ]))
     );
 
@@ -2682,18 +2690,24 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
     )
 
-
+    
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const ddOptions: ResponseRowCell = {
         key: 'col1', role: 'dropDownGroup', items: [
             {
                 key: '0', role: 'option', content: new Map([
+                    ["en", "Not applicable, I did not have any symptoms"],
+                    ["nl", "Niet van toepassing, ik had/heb geen symptomen"],
+                ]),
+            },
+            {
+                key: '1', role: 'option', content: new Map([
                     ["en", "On the same day as the first symptoms"],
                     ["nl", "Op dezelfde dag als de eerste klachten"],
                 ]),
             },
             {
-                key: '1', role: 'option', content: new Map([
+                key: '2', role: 'option', content: new Map([
                     ["en", "1 day"],
                     ["de", "1 Tag"],
                     ["nl", "1 dag"],
@@ -2701,7 +2715,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '2', role: 'option', content: new Map([
+                key: '3', role: 'option', content: new Map([
                     ["en", "2 days"],
                     ["de", "2 Tage"],
                     ["nl", "2 dagen"],
@@ -2709,7 +2723,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '3', role: 'option', content: new Map([
+                key: '4', role: 'option', content: new Map([
                     ["en", "3 days"],
                     ["de", "3 Tage"],
                     ["nl", "3 dagen"],
@@ -2717,7 +2731,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '4', role: 'option', content: new Map([
+                key: '5', role: 'option', content: new Map([
                     ["en", "4 days"],
                     ["de", "4 Tage"],
                     ["nl", "4 dagen"],
@@ -2725,7 +2739,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '5', role: 'option', content: new Map([
+                key: '6', role: 'option', content: new Map([
                     ["en", "5 days"],
                     ["de", "5 Tage"],
                     ["nl", "5 dagen"],
@@ -2733,7 +2747,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '6', role: 'option', content: new Map([
+                key: '7', role: 'option', content: new Map([
                     ["en", "6 days"],
                     ["de", "6 Tage"],
                     ["nl", "6 dagen"],
@@ -2741,7 +2755,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '7', role: 'option', content: new Map([
+                key: '8', role: 'option', content: new Map([
                     ["en", "7 days"],
                     ["de", "7 Tage"],
                     ["nl", "7 dagen"],
@@ -2749,7 +2763,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '8', role: 'option', content: new Map([
+                key: '9', role: 'option', content: new Map([
                     ["en", "8 days"],
                     ["de", "8 Tage"],
                     ["nl", "8 dagen"],
@@ -2757,7 +2771,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '9', role: 'option', content: new Map([
+                key: '10', role: 'option', content: new Map([
                     ["en", "9 days"],
                     ["de", "9 Tage"],
                     ["nl", "9 dagen"],
@@ -2765,7 +2779,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '10', role: 'option', content: new Map([
+                key: '11', role: 'option', content: new Map([
                     ["en", "10 days"],
                     ["de", "10 Tage"],
                     ["nl", "10 dagen"],
@@ -2773,7 +2787,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '11', role: 'option', content: new Map([
+                key: '12', role: 'option', content: new Map([
                     ["en", "11 days"],
                     ["de", "11 Tage"],
                     ["nl", "11 dagen"],
@@ -2781,7 +2795,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '12', role: 'option', content: new Map([
+                key: '13', role: 'option', content: new Map([
                     ["en", "12 days"],
                     ["de", "12 Tage"],
                     ["nl", "12 dagen"],
@@ -2789,7 +2803,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '13', role: 'option', content: new Map([
+                key: '14', role: 'option', content: new Map([
                     ["en", "13 days"],
                     ["de", "13 Tage"],
                     ["nl", "13 dagen"],
@@ -2797,7 +2811,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '14', role: 'option', content: new Map([
+                key: '15', role: 'option', content: new Map([
                     ["en", "14 days"],
                     ["de", "14 Tage"],
                     ["nl", "14 dagen"],
@@ -2805,7 +2819,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '15', role: 'option', content: new Map([
+                key: '16', role: 'option', content: new Map([
                     ["en", "More than 14 days"],
                     ["de", "mehr als 14 Tage"],
                     ["nl", "meer dan 14 dagen"],
@@ -2813,7 +2827,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
                 ]),
             },
             {
-                key: '7', role: 'option', content: new Map([
+                key: '17', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
                     ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
                     ["nl", "Dat weet ik niet (meer)"],
@@ -2823,7 +2837,8 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         ]
     };
 
-    //editor.addExistingResponseComponent(ddOptions, rg?.key);
+    //editor.addExistingResponseComponent(ddOptions,rg?.key);
+    
     editor.addValidation({
         key: 'r1',
         type: 'hard',
@@ -2839,7 +2854,7 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On which day was the blood taken for the corona test? Please guess if you can't remember the date exactly."],
-            ["nl", "Wanneer is de test voor het nieuwe coronavirus bij u gedaan? Als u de datum niet meer precies weet mag u deze schatten. Het gaat om de datum dat uw bloed is afgenomen."],
+            ["nl", "Wanneer is de test voor het nieuwe coronavirus bij je gedaan? Als je de datum niet meer precies weet mag je deze schatten. Het gaat om de datum dat je bloed is afgenomen."],
         ]))
     );
 
@@ -2890,7 +2905,7 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "In the two weeks before your test were you approached in the context of contact-tracing by the GGD (local public health service)?"],
-            ["nl", "Bent u in de twee weken voor uw test benaderd door de GGD in verband met contactonderzoek?"],
+            ["nl", "Ben je in de twee weken voor je test benaderd door de GGD in verband met contactonderzoek?"],
         ]))
     );
 
