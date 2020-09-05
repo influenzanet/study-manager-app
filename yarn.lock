@@ -10235,10 +10235,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-survey-engine@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.9.0.tgz#651fbf1139299b9893706de177266f98f0907c18"
-  integrity sha512-fnRXdEWsLNZNTnPrIfrKFOAfHf2EZ4KXJjTLe9FZ4IyM5gmu7lLNcdfNiqJV7xjZ6tUKKUd/vZ3hmEnxa11U8A==
+survey-engine@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.9.1.tgz#6c8157c0ffb1f23bdfac787585e0da35d4e5b3c6"
+  integrity sha512-FRlDLETn9DS8uiYM3/UJzwDrFeqEKR/0j61AjH3g6vo+mdBtMlT7m3/8tTItTOMf3e/dY6N3PY8DxCRwxwE6gA==
   dependencies:
     moment "2.24.0"
 
