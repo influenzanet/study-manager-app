@@ -280,7 +280,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your gender?"],
             ["de", "Welches Geschlecht hast Du?"],
-            ["nl", "Wat is uw geslacht?"],
+            ["nl", "Wat is je geslacht?"],
             ["fr", " Quel est votre sexe?"],
         ]))
     );
@@ -355,7 +355,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
             ["de", "Wann bist Du geboren (Monat und Jahr)?"],
-            ["nl", "Wanneer bent u geboren (maand en jaar)?"],
+            ["nl", "Wanneer ben je geboren (maand en jaar)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
         ]))
     );
@@ -482,7 +482,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Please choose the first part of the post-code (the part before the space)."],
                     ["de", "Bitte wählen Sie den Anfang Ihrer Postleitzahl (der Teil vor dem Leerzeichen)."],
-                    ["nl", "Het gaat alleen om de eerste 4 cijfers van uw postcode (dus niet de letters)"],
+                    ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -800,7 +800,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -809,7 +809,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Please choose the box that represents your HIGHEST level of educational achievements. The different option rougly equate to: 1 - no qualifications, 2 - school-leaving exams at around 16 years of age, 3 - school-leaving exams at around 18 years of age, 4 - University degree or equivalent professional qualification, 5 - Higher degree or advanced professional qualification. If you are an adult who is currently undergoing part - time training(e.g.night school) then tick the box that represents your current highest level of education."],
                     ["de", "Bitte wählen Sie die Option, die Ihrer HÖCHSTEN Ausbildung entspricht. Die verschiedenen Optionen entsprechen in etwa: 1 - keine Qualifikation, 2 – Schulabschlussprüfung im Alter von ca. 16 Jahren, 3 – Schulabschlussprüfung im Alter von ca. 18 Jahren, 4 – Universitätsabschluss oder vergleichbare fachliche Qualifikation, 5 – Höherer Abschluss oder fortgeschrittene fachliche Qualifikation. Falls Sie ein Erwachsener sind, der im Augenblick eine Teilzeitausbildung absolviert (z.B. Abendschule), wählen Sie bitte die Option die Ihrer derzeitigen höchsten Qualifikation entspricht."],
-                    ["de", "Geef aan wat uw hoogste diploma is"],
+                    ["de", "Geef aan wat je hoogste diploma is"],
                     ["fr", "Cochez la case qui correspond à votre plus haut niveau d'éducation scolaire. Les différentes options équivalent à 1 - pas de qualifications, 2 - examens de fin de scolarité à environ 16 ans, 3 - examens de fin de scolarité à environ 18 ans, 4 - diplôme universitaire ou qualification professionnelle équivalente, 5 - diplôme ou qualification professionnelle avancé.Si vous êtes un adulte actuellement en cours de formation à temps partiel(p.ex.cours du soir) cochez la case qui représente votre plus haut niveau actuel de l'éducation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1374,7 +1374,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe zal ik antwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1383,7 +1383,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick the option that best represents your most normal mode of transport."],
                     ["de", "Wähle die Option, die am besten Deinem normalerweise verwendeten Transportmittel entspricht."],
-                    ["nl", "Ga uit van de normale situatie en uw meest gangbare - dagelijkse - manier van verplaatsen"],
+                    ["nl", "Ga uit van de normale situatie en je meest gangbare - dagelijkse - manier van verplaatsen"],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1495,7 +1495,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe zal ik dit beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1504,7 +1504,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
                     ["de", "Denke an einen gewöhnlichen Tag. Falls Du mehrere verschiedene Transportmittel benutzt, beziehe alle Reiseabschnitte mit ein. Taxis und andere private Transportmittel zählen allerdings nicht dazu."],
-                    ["nl", "Denk aan een typische dag. Als u verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
+                    ["nl", "Denk aan een typische dag. Als je verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1687,7 +1687,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet ik dit beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1781,7 +1781,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe zal ik dit beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1790,7 +1790,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
                     ["de", "Antworten Sie mit ja, falls Sie eine Impfung in dieser Saison, normalerweise im Herbst, erhalten haben. Falls Sie nach Beantwortung dieses Fragebogens geimpft werden, kehren Sie bitte hierher zurück und aktualisieren Sie Ihre Antwort."],
-                    ["nl", "Zeg ja wanneer u van plan bent om de griepprik te nemen. Normaal ontvang je een griepprik in het najaar"],
+                    ["nl", "Zeg ja wanneer je van plan bent om de griepprik te nemen. Normaal ontvang je een griepprik in het najaar"],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2077,7 +2077,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What were your reasons for NOT getting a seasonal influenza vaccination last season?"],
             ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
-            ["nl", "Wat is de reden waarom je je niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
+            ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -2289,7 +2289,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Do you take regular medication for any of the following medical conditions?"],
             ["de", "Nimmst du regelmässig Medikamente gegen eine der folgenden Erkrankungen?"],
-            ["nl", "Gebruik je medicatie (regelmatig) voor een of meer van de volgende aandoeningen?"],
+            ["nl", "Gebruik je (regelmatig) medicatie voor een of meer van de volgende aandoeningen?"],
             ["fr", " Souffrez-vous de l'une des maladies suivantes?"],
         ]))
     );
@@ -2319,7 +2319,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet ik dit beantwoorden"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -3688,7 +3688,7 @@ const q20NLb_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Which test has been performed (if different tests are applicable, focus on the test that was positive first"],
+            ["en", "Which test has been performed (if different tests are applicable, report the test that was positive first"],
             ["nl", "Welke test voor het nieuwe coronavirus is bij je gedaan? (als meerdere testen zijn gedaan vermeld dan de eerste positieve test)"],
         ]))
     );

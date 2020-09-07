@@ -32,7 +32,7 @@ export const generateNLWeekly = (): Survey | undefined => {
         new Map([
             ["en", "Survey about your health status in the last week."],
             ["de", "Ein Fragebogen über Deinen Gesundheitszustand."],
-            ["nl", "Vragenlijst over uw klachten in de afgelopen week. Meld alstublieft ook als u geen klachten had."],
+            ["nl", "Vragenlijst over je klachten in de afgelopen week. Meld alsjeblieft ook als je geen klachten had."],
         ])
     ));
 
@@ -40,7 +40,7 @@ export const generateNLWeekly = (): Survey | undefined => {
         new Map([
             ["en", "15 seconds to 3 minutes, depending on your symptoms."],
             ["de", "3 Min."],
-            ["nl", "Invullen duurt 15 seconden tot 3 minuten, afhanklijk van uw klachten."],
+            ["nl", "Invullen duurt 15 seconden tot 3 minuten, afhanklijk van je klachten."],
         ])
     ));
 
@@ -360,7 +360,7 @@ const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "Please choose if you had any of the following symptoms since your last survey."],
                 ["de", "Hast du irgendwelche der folgenden Symptome seit dem letzten Fragebogen?"],
-                ["nl", "Geef alstublieft aan of je geen of tenminste één van de volgende klachten hebt gehad in de afgelopen week"],
+                ["nl", "Geef alsjeblieft aan of je geen of tenminste één van de volgende klachten hebt gehad in de afgelopen week"],
             ]))
         }
     )
@@ -724,7 +724,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Please give as accurate an estimate as possible."],
                     ["de", "Bitte gib Deine Schätzung so genau wie möglich an."],
-                    ["nl", "Wees alstublieft zo nauwkeurig mogelijk."],
+                    ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -795,7 +795,7 @@ const q4_def = (itemSkeleton: SurveyItem, q3Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Using the beginning and end dates of symptoms we can work out how long respiratory infections last."],
                     ["de", "Durch Verwendung der Anfangs- und Enddaten der Symptome können wir feststellen, wie lange Atemwegserkrankungen dauern."],
-                    ["nl", "Op basis van de eerste en laatste dag van klachten kunnen we uitrekenen hoelang u last heeft gehad van (deze) klachten."],
+                    ["nl", "Op basis van de eerste en laatste dag van klachten kunnen we uitrekenen hoelang je last hebt gehad van (deze) klachten."],
                     ["fr", "En utilisant les dates de début et de fin des symptômes, nous pouvons travailler sur la durée des infections respiratoires."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -813,7 +813,7 @@ const q4_def = (itemSkeleton: SurveyItem, q3Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please give as accurate an estimate as possible."],
                     ["de", "Bitte gib Deine Schätzung so genau wie möglich an."],
-                    ["nl", "Wees alstublieft zo nauwkeurig mogelijk."],
+                    ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1015,7 +1015,7 @@ const q6a_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Please give as accurate an estimate as possible."],
                     ["de", "Bitte gib Deine Abschätzung so genau wie möglich an."],
-                    ["nl", "Wees alstublieft zo nauwkeurig mogelijk."],
+                    ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1198,7 +1198,7 @@ const q6c_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Answer yes, if you took your temperature using a thermometer."],
                     ["de", "Wähle ja, falls Du Deine Körpertemperatur mit einem Thermometer gemessen hast."],
-                    ["nl", "Beantwoord deze vraag met Ja wanneer u uw temperatuur heeft gemeten met een thermometer."],
+                    ["nl", "Beantwoord deze vraag met Ja wanneer je de temperatuur hebt gemeten met een thermometer."],
                     ["fr", "Cochez «oui» si vous avez pris votre température à l'aide d'un thermomètre."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1296,7 +1296,7 @@ const q6d_def = (itemSkeleton: SurveyItem, q6cKey: string): SurveyItem => {
                 content: new Map([
                     ["en", "Give the highest temperature you recorded during this episode of illness."],
                     ["de", "Gib die höchste Körpertemperatur an, die Du während Deiner Krankheit gemessen hast."],
-                    ["nl", "Geef de hoogste temperatuur die u gemeten heeft tijdens uw klachtenperiode."],
+                    ["nl", "Geef de hoogste temperatuur die je gemeten hebt tijdens je klachtenperiode."],
                     ["fr", "Indiquez la plus haute température que vous avez enregistrée au cours de cette épisode de maladie."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1424,7 +1424,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
                     ["de", "Wähle alle Optionen, die zutreffen. Falls Du planst eine Einrichtung zu besuchen, wähle bitte die letzte Option."],
-                    ["nl", "Selecteer alle relevante vormen van medische hulp die u heeft bezocht. Wanneer u nog niet bent geweest maar wel een afspraak heeft gemaakt, selecteer dan de laatste optie."],
+                    ["nl", "Selecteer alle relevante vormen van medische hulp die je hebt bezocht. Wanneer je nog niet bent geweest maar wel een afspraak heeft gemaakt, selecteer dan de laatste optie."],
                     ["fr", "Merci de cocher toutes les réponses qui s'appliquent . Si vous avez rendez-vous prochainement, merci de cocher l'option finale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1513,7 +1513,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
             ["de", "Wie lange, nachdem die Symptome aufgetreten sind, hast Du das erste Mal eine medizinische Einrichtung besucht?"],
-            ["nl", "Waar en hoe snel na de start van uw klachten hen je voor de EERSTE keer medische hulp gezocht?"],
+            ["nl", "Waar en hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
             ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
     );
@@ -1550,7 +1550,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
                     ["de", "Gib nur die Zeit an, bis Du zum ERSTEN MAL Kontakt zu gesundheitlichen Einrichtungen aufgenommen haben."],
-                    ["nl", "Geef alleen het aantal dagen van het begin van de klachten tot uw EERSTE bezoek aan de desbetreffende medische hulpverlener/specialist."],
+                    ["nl", "Geef alleen het aantal dagen van het begin van de klachten tot je EERSTE bezoek aan de desbetreffende medische hulpverlener/specialist."],
                     ["fr", "En saisissant le temps séparant l'apparition de vos symptômes et votre PREMIER contact avec les services de santé."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1846,7 +1846,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Only record those medications that you used because of this illness. If you are on other medications because of a pre-existing illness then do not record these."],
                     ["de", "Gib  nur die Medikamente an, die Du aufgrund dieser aktuellen Krankheit nimmst. Falls Du auch Medikamente aufgrund von bereits existierender Krankheiten nimmst, gib diese bitte nicht an."],
-                    ["nl", "Geef alleen de medicatie aan die u gebruikt in verband met uw gemelde klachten. Medicatie die u gebruikt voor een al bestaande aandoening hoeft u niet te noemen."],
+                    ["nl", "Geef alleen de medicatie aan die je gebruikt in verband met je gemelde klachten. Medicatie die je gebruikt voor een al bestaande aandoening hoef je niet te noemen."],
                     ["fr", "Ne saisissez que les médicaments que vous pris en raison de cette épisode de maladie. Si vous avez pris d'autres médicaments pour une maladie préexistante, alors ne les enregistrez pas."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2220,7 +2220,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Tick “yes” if you would be at work/school today if you were not currently ill."],
                     ["de", "Wähle „Ja“, wenn Du heute eigentlich in der Arbeit/ Schule wärst, falls Du nicht gerade krank wärst."],
-                    ["nl", "Antwoord 'Ja' als u vanwege klachten vandaag nog thuis zit in plaats van werk/school"],
+                    ["nl", "Antwoord 'Ja' als je vanwege klachten vandaag nog thuis zit in plaats van werk/school"],
                     ["fr", "Cochez «oui» si vous vous seriez rendu au travail / à l'école aujourd'hui si vous n'étiez pas actuellement malade."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2300,7 +2300,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "To measure the effect of symptoms on people’s daily lives."],
                     ["de", "Um zu sehen, wie die Krankheitssymptome das tägliche Leben von Menschen beeinflussen."],
-                    ["nl", "Om het effect te bepalen van de klachten op uw dagelijksleven"],
+                    ["nl", "Om het effect te bepalen van de klachten op je dagelijksleven"],
                     ["fr", "Afin de mesurer l'effet des symptômes sur la vie quotidienne des gens."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2433,7 +2433,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To help find out if our assessment of your illness based on your symptoms matches what you believe to be the cause. You might have a better idea of what is causing your illness than our computer algorithms."],
                     ["de", "Um herauszufinden, ob Deine Einschätzung der Ursache mit der tatsächlichen Ursache übereinstimmt. Du könntest eine viel bessere Vorstellung der Ursache haben, als unsere Computeralgorithmen."],
-                    ["nl", "Om uit te zoeken of uw eigen idee wat de oorzaak kan zijn past bij uw eigen klachten, en klachten van anderen. Ook heeft u waarschijnlijk een beter idee wat het zou kunnen zijn dan computer algoritmes."],
+                    ["nl", "Om uit te zoeken of je eigen idee wat de oorzaak kan zijn past bij je eigen klachten, en klachten van anderen. Ook heb je waarschijnlijk een beter idee wat het zou kunnen zijn dan computer algoritmes."],
                     ["fr", "Pour nous aider à trouver si notre évaluation de votre maladie en fonction de vos symptômes correspond à ce que vous croyez en être la cause. Vous pourriez avoir une meilleure idée de ce qui est la cause de votre maladie que nos algorithmes informatiques ."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2579,7 +2579,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Please indicate your test result."],
-                    ["nl", "Geef aan voor welke test u een uitslag heeft gehad."],
+                    ["nl", "Geef aan voor welke test je een uitslag hebt gehad."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
