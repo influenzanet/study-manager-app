@@ -587,8 +587,11 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
+const hadOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute',expWithArgs('getAttribute',expWithArgs('getContext'),'participantFlags'),'prev'),"1");
+
 const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
+    
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
@@ -597,7 +600,9 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
         ]))
     );
+    
     editor.setCondition(anySymptomSelected);
+    
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
             {
@@ -631,7 +636,7 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
                 content: new Map([
                     ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."],
                     ["de", "Falls Sie denken, dass die Symptome, die Sie heute angeben, vom selben Krankheitsschub stammen wie Ihre vorherigen, wählen Sie bitte „Ja“. Um Ihre Zeit zu sparen, haben wir die Informationen, die Sie uns letztes Mal gegeben haben, bereits eingetragen. Bitte prüfen Sie, ob diese noch richtig sind und machen sie gegebenenfalls Änderungen (z.B falls Sie einen Arzt besucht oder Sie sich zusätzliche Zeit von der Arbeit abgemeldet haben, seit Sie das letzte Mal den Fragebogen ausgefüllt haben)."],
-                    ["nl", "Als u denkt dat de klachten die u vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachten periode), beantwoord dan de vraag met 'Ja'"],
+                    ["nl", "Als je denkt dat de klachten die je vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'"],
                     ["fr", "Si vous pensez que les symptômes que vous avez déclarés aujourd'hui sont causés par le même épisode de maladie que vos symptômes précédents, s'il vous plaît cochez «oui» . Pour gagner du temps, nous avons rempli les informations que vous nous avez déjà fournies sur votre maladie.  S'il vous plaît, vérifiez qu'elles sont toujours correctes ou faites les modifications nécessaires si, par exemple, vous avez consulté un médecin ou pris plus de temps hors travail depuis la dernière fois que vous avez répondu au questionnaire."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
