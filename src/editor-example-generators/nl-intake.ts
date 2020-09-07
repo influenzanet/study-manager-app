@@ -267,7 +267,7 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
             role: 'text', content: generateLocStrings(new Map([
                 ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
                 ["de", "Danke, das war die letzte Frage. Du kannst Deine Antworten nun absenden. Bitte schaue wieder vorbei. Das nächste mal gibt es einen Fragebogen über wie Du Dich fühlst und Deinen Gesundheitszustand."],
-                ["nl", "Dank u wel. Dit was de laatste vraag. Na het opslaan kunt u verder met het melden of uw wel of geen klachten had in de afgelopen week"],
+                ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week"],
             ]))
         }
     )
@@ -698,7 +698,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "To find out roughly how far you travel on a regular basis."],
                     ["de", "Um abzuschätzen, wie weit Sie regelmässig reisen."],
-                    ["nl", "Om uw dagelijkse reisafstand te schatten"],
+                    ["nl", "Om je dagelijkse reisafstand te schatten"],
                     ["fr", "Pour avoir une estimation grossière de vos déplacements réguliers."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -707,7 +707,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet u deze vraag beantwoorden?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -716,7 +716,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please, choose the first part of the post-code (the part before the space)."],
                     ["de", "Wählen Sie bitte den ersten Teil der Postleitzahl (der Teil von dem Leerzeichen)."],
-                    ["nl", "Het gaat alleen om de eerste 4 cijfers van uw postcode (dus niet de letters)"],
+                    ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)"],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
             },
@@ -3024,7 +3024,7 @@ const q17_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Where did you first hear about Infectieradar?"],
             ["de", "Wo haben Sie zum ersten mal von Infectieradar gehört?"],
-            ["nl", "Waar heeft u van Infectieradar gehoord?"],
+            ["nl", "Waar heb je van Infectieradar gehoord?"],
             ["fr", "Où avez-vous entendu parler de Infectieradar?"],
         ]))
     );
@@ -3324,7 +3324,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "Please tick the box that most closely resembles your main occupation."],
                     ["de", "Bitte wählen Sie die Option die am ehesten Ihrer Hauptbeschäftigung entspricht."],
-                    ["nl", "Selecteer het antwoord dat het best uw situatie beschrijft."],
+                    ["nl", "Selecteer het antwoord dat het best je situatie beschrijft."],
                     ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
