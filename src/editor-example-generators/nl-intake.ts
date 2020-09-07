@@ -791,7 +791,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "To check how representative our sample is compared to the population of the UK (Italy, Belgium..) as a whole."],
                     ["de", "Um zu prüfen, wie repräsentativ unsere Stichprobe - im Vergleich zur gesamten Bevölkerung der Schweiz - ist."],
-                    ["nl", "Met deze informatie kunnen we zien of ons cohort (iederdeen die deelneemt) wel representatief is voor de bevolking"],
+                    ["nl", "Met deze informatie kunnen we zien of de mensen die meedoen representatief zijn voor de bevolking"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population suisse dans son ensemble."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1259,7 +1259,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe zal ik antwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1345,7 +1345,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport?"],
             ["de", "Was ist Dein Haupttransportmittel?"],
-            ["nl", "Hoe verplaatst je zich meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoe verplaats je zich meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
@@ -1687,7 +1687,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -1879,7 +1879,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe zal ik dit beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -2319,7 +2319,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet ik deze vraag beantwoorden"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -2640,7 +2640,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -3315,7 +3315,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["de", "Wie soll ich das beantworten?"],
-                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
@@ -3661,7 +3661,7 @@ const q20NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '5', role: 'option',
             content: new Map([
                 ["en", "Yes, I know for sure, as I tested positive and I had/have symptoms"],
-                ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken"],
+                ["nl", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten"],
             ])
         },
         {
@@ -3766,7 +3766,7 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
             {
                 content: new Map([
                     ["en", "How shall you answer this question?"],
-                    ["nl", "Hoe zal ik dit beantwoorden?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
