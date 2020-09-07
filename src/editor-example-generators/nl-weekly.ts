@@ -119,6 +119,12 @@ export const generateNLWeekly = (): Survey | undefined => {
 
     //survey.addNewSurveyItem({ itemKey: 'pbQ3', type: 'pageBreak' }, hasSymptomGroupKey);
 
+    // Q2 same illnes --------------------------------------
+    const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, hasSymptomGroupKey);
+    if (!q2) { return; }
+    survey.updateSurveyItem(q2_def(q2));
+    // -----------------------------------------
+
     // Q3 when first symptoms --------------------------------------
     const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, hasSymptomGroupKey);
     if (!q3) { return; }
@@ -587,11 +593,11 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const hadOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute',expWithArgs('getAttribute',expWithArgs('getContext'),'participantFlags'),'prev'),"1");
 
-const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): SurveyItem => {
+
+const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
-    
+
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
@@ -600,9 +606,10 @@ const q2_def = (itemSkeleton: SurveyItem, anySymptomSelected: Expression): Surve
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
         ]))
     );
-    
-    editor.setCondition(anySymptomSelected);
-    
+
+    const hadOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "1");
+    editor.setCondition(hadOngoingSymptomsLastWeek);
+
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
             {
