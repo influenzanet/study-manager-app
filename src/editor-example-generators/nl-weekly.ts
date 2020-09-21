@@ -200,6 +200,12 @@ export const generateNLWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(q7_def(q7));
     // -----------------------------------------
 
+    // Q7a visited GP practice --------------------------------------
+    const q7a = survey.addNewSurveyItem({ itemKey: 'Q7a' }, contactGroupKey);
+    if (!q7a) { return; }
+    survey.updateSurveyItem(q7a_def(q7a, q7.key));
+    // -----------------------------------------
+
     // Q7b how soon visited medical service --------------------------------------
     const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, contactGroupKey);
     if (!q7b) { return; }
@@ -575,7 +581,31 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Loss of smell"],
                 ["de", "Geruchsverlust"],
-                ["nl", "Geen reuk en/of smaak"],
+                ["nl", "Geen reuk"],
+            ])
+        },
+        {
+            key: '20', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Loss of taste"],
+                ["nl", "Geen smaak"],
+            ])
+        },
+        {
+            key: '21', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Nose bleed"],
+                ["nl", "Bloedneus"],
+            ])
+        },
+        {
+            key: '22', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Other"],
+                ["nl", "Andere klacht"],
             ])
         },
 
@@ -592,7 +622,6 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     return editor.getItem();
 }
-
 
 
 const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
@@ -745,6 +774,9 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     );
     // editor.setCondition(anySymptomSelected);
 
+    const hadNOOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "0");
+    editor.setCondition(hadNOOngoingSymptomsLastWeek);
+    
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
@@ -1505,6 +1537,68 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["de", "Nein, aber ich habe schon einen Termin"],
                 ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
                 ["fr", "Non, mais j'ai rendez-vous prochainement"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q7a_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Did you visit the GP practice for your consult with the GP?"],
+            ["nl", "Heb je de huisartsenpost bezocht voor het gesprek met de huisarts/huisartsassistent?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+               ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Select the most relevant option"],
+                    ["nl", "Geef aan of je ook de huisartsenpost hebt bezocht."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No, the consult happend by phone or video-connection (video consult)"],
+                ["nl", "Nee, ik heb de huisarts/huisartsassistent alleen gesproken per telefoon/video verbinding (video-consult)"],
+            ])
+        },
+       
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, I went to the GP practice to consult the GP"],
+                ["nl", "Ja, ik ben naar de huisartsenpost gegaan, en heb daar met de huisarts/huisartsassistent gesproken"],
             ])
         },
     ]);
