@@ -600,17 +600,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["nl", "Bloedneus"],
             ])
         },
-        {
-            key: '22', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Other"],
-                ["nl", "Andere klacht"],
-            ])
-        },
-
-
-
+        
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -732,6 +722,10 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", " Quand les premiers symptômes sont-ils apparus?"],
         ]))
     );
+   
+    // const hadNOOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "0");
+    // editor.setCondition(hadNOOngoingSymptomsLastWeek);
+   
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
             {
@@ -774,9 +768,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     );
     // editor.setCondition(anySymptomSelected);
 
-    const hadNOOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "0");
-    editor.setCondition(hadNOOngoingSymptomsLastWeek);
-    
+        
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
