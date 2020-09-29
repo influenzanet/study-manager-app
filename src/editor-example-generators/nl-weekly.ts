@@ -32,7 +32,7 @@ export const generateNLWeekly = (): Survey | undefined => {
         new Map([
             ["en", "Survey about your health status in the last week."],
             ["de", "Ein Fragebogen über Deinen Gesundheitszustand."],
-            ["nl", "Vragenlijst over je klachten in de afgelopen week. Meld alsjeblieft ook als je geen klachten had."],
+            ["nl", "Klik hier voor je vragenlijst over je klachten in de afgelopen week. Meld alsjeblieft ook als je geen klachten had."],
         ])
     ));
 
@@ -612,7 +612,6 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     return editor.getItem();
 }
-
 
 const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);

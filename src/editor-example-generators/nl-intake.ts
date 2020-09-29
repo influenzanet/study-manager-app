@@ -32,7 +32,7 @@ export const generateNLIntake = (): Survey | undefined => {
         new Map([
             ["en", "The intake survey focues on some background and demographic information."],
             ["de", "In diesem ersten Fragebogen geht es darum, ein paar grundlegende Informationen über Dich zu erfahren."],
-            ["nl", "In dit aanmeldingsformulier vragen we om achtergrond informatie."],
+            ["nl", "Klik op dit aanmeldingsformulier om uw achtergrondinformatie in te vullen."],
         ])
     ));
 
