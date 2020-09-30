@@ -443,7 +443,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What is the first part of your home postcode (the part before the space)?"],
+            ["en", "What are the first four digits of your home postcode (the part before the space)?"],
             ["de", "Wie lautet der Anfang Ihrer Postleitzahl (der Teil vor dem Leerzeichen)?"],
             ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
@@ -529,7 +529,8 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             role: 'error',
             content: generateLocStrings(new Map([
-                ["en", "Please enter a correct value"],
+                ["en", "Please enter the first four digits of your postcode"],
+                ["nl", "Voer de eerste vier cijfers van je postcode in"],
             ])),
             displayCondition: expWithArgs('and',
                 expWithArgs('responseHasKeysAny', itemSkeleton.key, [responseGroupKey, singleChoiceKey].join('.'), '0'),
