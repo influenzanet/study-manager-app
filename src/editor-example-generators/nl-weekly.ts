@@ -128,7 +128,7 @@ export const generateNLWeekly = (): Survey | undefined => {
     // Q3 when first symptoms --------------------------------------
     const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, hasSymptomGroupKey);
     if (!q3) { return; }
-    survey.updateSurveyItem(q3_def(q3));
+    survey.updateSurveyItem(q3_def(q3, q2.key));
     // -----------------------------------------
 
     // Q4 when symptoms end --------------------------------------
@@ -600,7 +600,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["nl", "Bloedneus"],
             ])
         },
-        
+
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -711,7 +711,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
+const q3_def = (itemSkeleton: SurveyItem, q2Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -721,10 +721,11 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ["fr", " Quand les premiers symptômes sont-ils apparus?"],
         ]))
     );
-   
+
+
     // const hadNOOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "0");
-    // editor.setCondition(hadNOOngoingSymptomsLastWeek);
-   
+    editor.setCondition(expWithArgs('not', expWithArgs('responseHasKeysAny', [q2Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0')));
+
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
             {
@@ -767,7 +768,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     );
     // editor.setCondition(anySymptomSelected);
 
-        
+
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
@@ -1561,7 +1562,7 @@ const q7a_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-               ]),
+                ]),
                 style: [{ key: 'variant', value: 'subtitle2' }],
             },
             {
@@ -1584,7 +1585,7 @@ const q7a_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                 ["nl", "Nee, ik heb de huisarts/huisartsassistent alleen gesproken per telefoon/video verbinding (video-consult)"],
             ])
         },
-       
+
         {
             key: '1', role: 'option',
             content: new Map([
