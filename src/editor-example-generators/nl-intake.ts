@@ -180,9 +180,9 @@ export const generateNLIntake = (): Survey | undefined => {
     // -----------------------------------------
 
     // flue vaccine this season when --------------------------------------
-    const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
-    if (!q10b) { return; }
-    survey.updateSurveyItem(q10b_def(q10b, q10.key));
+    //const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
+    //if (!q10b) { return; }
+    //survey.updateSurveyItem(q10b_def(q10b, q10.key));
     // -----------------------------------------
 
     // flue vaccine reason for --------------------------------------
@@ -828,7 +828,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Please choose the box that represents your HIGHEST level of educational achievements. The different option rougly equate to: 1 - no qualifications, 2 - school-leaving exams at around 16 years of age, 3 - school-leaving exams at around 18 years of age, 4 - University degree or equivalent professional qualification, 5 - Higher degree or advanced professional qualification. If you are an adult who is currently undergoing part - time training(e.g.night school) then tick the box that represents your current highest level of education."],
                     ["de", "Bitte wählen Sie die Option, die Ihrer HÖCHSTEN Ausbildung entspricht. Die verschiedenen Optionen entsprechen in etwa: 1 - keine Qualifikation, 2 – Schulabschlussprüfung im Alter von ca. 16 Jahren, 3 – Schulabschlussprüfung im Alter von ca. 18 Jahren, 4 – Universitätsabschluss oder vergleichbare fachliche Qualifikation, 5 – Höherer Abschluss oder fortgeschrittene fachliche Qualifikation. Falls Sie ein Erwachsener sind, der im Augenblick eine Teilzeitausbildung absolviert (z.B. Abendschule), wählen Sie bitte die Option die Ihrer derzeitigen höchsten Qualifikation entspricht."],
-                    ["de", "Geef aan wat je hoogste diploma is"],
+                    ["nl", "Geef aan wat je hoogste diploma is"],
                     ["fr", "Cochez la case qui correspond à votre plus haut niveau d'éducation scolaire. Les différentes options équivalent à 1 - pas de qualifications, 2 - examens de fin de scolarité à environ 16 ans, 3 - examens de fin de scolarité à environ 18 ans, 4 - diplôme universitaire ou qualification professionnelle équivalente, 5 - diplôme ou qualification professionnelle avancé.Si vous êtes un adulte actuellement en cours de formation à temps partiel(p.ex.cours du soir) cochez la case qui représente votre plus haut niveau actuel de l'éducation."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -1364,7 +1364,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport?"],
             ["de", "Was ist Dein Haupttransportmittel?"],
-            ["nl", "Hoe verplaats je zich meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
             ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
@@ -1715,7 +1715,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
                     ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2018, erhalten hast."],
-                    ["nl", "Zeg ja wanneer je de griepprik heeft gehad. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -2237,7 +2237,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I am worried that the vaccine is not safe or will cause illness or other adverse events"],
                 ["de", "Ich bin besorgt, dass der Impfstoff nicht sicher ist oder, dass dieser andere Krankheiten oder unerwünschte Ereignisse fördert"],
-                ["nl", "Ik ben bang dat het vaccin niet veilig is, en me juist ziek maakt of andre neveneffecten heeft"],
+                ["nl", "Ik ben bang dat het vaccin niet veilig is, en me juist ziek maakt of andere neveneffecten heeft"],
                 ["fr", "Je pense que le vaccin n'est pas sûr ou qu'il peut causer d'autres maladies ou effets indésirables"],
             ])
         }, {
