@@ -160,7 +160,7 @@ export const generateNLIntake = (): Survey | undefined => {
     // -----------------------------------------
 
     //survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
-    
+
     // common cold how often  --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
     if (!q8) { return; }
@@ -345,7 +345,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });
-    
+
     return editor.getItem();
 }
 
@@ -450,6 +450,8 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         ]))
     );
 
+
+
     editor.setHelpGroupComponent(
         generateHelpGroupComponent([
             {
@@ -518,6 +520,22 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });
+    editor.addValidation({
+        key: 'r2',
+        type: 'hard',
+        rule: expWithArgs('checkResponseValueWithRegex', itemSkeleton.key, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$')
+    });
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["en", "Please enter a correct value"],
+            ])),
+            displayCondition: expWithArgs('and',
+                expWithArgs('responseHasKeysAny', itemSkeleton.key, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+                expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2')))
+        }
+    );
 
     return editor.getItem();
 }
@@ -2061,13 +2079,13 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
-    
+
     editor.addValidation({
         key: 'r1',
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });
-    
+
     return editor.getItem();
 }
 
@@ -3806,6 +3824,6 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });
-    
+
     return editor.getItem();
 }
