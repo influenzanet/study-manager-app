@@ -40,7 +40,7 @@ export const generateNLWeekly = (): Survey | undefined => {
         new Map([
             ["en", "15 seconds to 3 minutes, depending on your symptoms."],
             ["de", "3 Min."],
-            ["nl", "Invullen duurt 15 seconden tot 3 minuten, afhanklijk van je klachten."],
+            ["nl", "Invullen duurt 15 seconden tot 3 minuten, afhankelijk van je klachten."],
         ])
     ));
 
@@ -74,10 +74,16 @@ export const generateNLWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(q1dNL_def(q1dNL, q1aNL.key));
     // ---------------------------------------------------------
 
-    // Test results positive/negative
+    // Contact GGD
     const q1eNL = survey.addNewSurveyItem({ itemKey: 'Q1eNL' }, rootKey);
     if (!q1eNL) { return; }
     survey.updateSurveyItem(q1eNL_def(q1eNL, q1aNL.key));
+    // ---------------------------------------------------------
+
+    // Contact CoronaMelder app
+    const q1fNL = survey.addNewSurveyItem({ itemKey: 'Q1fNL' }, rootKey);
+    if (!q1fNL) { return; }
+    survey.updateSurveyItem(q1fNL_def(q1fNL, q1aNL.key));
     // ---------------------------------------------------------
 
 
@@ -3046,6 +3052,61 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     return editor.getItem();
 }
 
+const q1fNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "In the two weeks before your test were you approached in the context of contact-tracing by the GGD (local public health service)?"],
+            ["nl", "Ben je in de twee weken voor je test gewaarschuwd door de mobiele telefoon app CoronaMelder?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No, I have have the CoronaMelder app installed on my phone"],
+                ["nl", "Nee, ik heb de app CoronaMelder niet geïnstalleerd op mijn mobiel."],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, I am contacted"],
+                ["nl", "Nee, ik heb de app CoronaMelder wel geïnstalleerd op mijn mobiel maar ben niet gewaarschuwd."],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't want to say"],
+                ["nl", "Ja, ik heb de app CoronaMelder geïnstalleerd op mijn mobiel en ik ben gewaarschuwd."],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I don't want to say"],
+                ["nl", "Dit wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
 
 
 
