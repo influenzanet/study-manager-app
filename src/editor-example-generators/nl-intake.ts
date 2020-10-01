@@ -550,7 +550,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main activity?"],
             ["de", "Was ist Ihre Hauptbeschäftigung?"],
-            ["nl", "Wat is je voornaamste bezigheid overdag? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Welke situatie is het meest van toepassing? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", "Quelle est votre activité principale?"],
         ]))
     );
@@ -914,7 +914,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
             ["de", "Hast Du irgendwelche der folgenden Kontakte im Laufe eines typischen Tages? (ausgenommen Menschen, denen Du in öffentlichen Verkehrsmitteln begegnest)"],
-            ["nl", "Heb je tijdens een normale dag (dus zonder corona maatregelen) contact met:"],
+            ["nl", "Heb je tijdens een normale dag (dus zonder coronamaatregelen) contact met:"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
@@ -1244,7 +1244,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "How many of the children in your household go to school or day-care?"],
             ["de", "Wie viele Kinder aus Deinem Haushalts gehen zur Schule oder in eine Kindertagesstätte?"],
-            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
         ]))
     );
@@ -1367,7 +1367,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport?"],
             ["de", "Was ist Dein Haupttransportmittel?"],
-            ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", " Quel est votre principal moyen de transport ?"],
         ]))
     );
@@ -1488,7 +1488,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.)"],
             ["de", "Wie viel Zeit verbringst Du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
-            ["nl", "Hoeveel tijd breng je op een normale dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Hoeveel tijd breng je op een normale dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
         ]))
     );
@@ -2264,7 +2264,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "The vaccine is not free of charge"],
                 ["de", "Der Impfstoff ist nicht kostenlos"],
-                ["nl", "Ik moet betalen voor een griepvaccinate, het is niet gratis"],
+                ["nl", "Ik moet betalen voor een griepvaccinatie, het is niet gratis"],
                 ["fr", " Le vaccin n'est pas gratuit"],
             ])
         }, {
@@ -2280,7 +2280,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "Although my doctor recommend a vaccine, I do not get one"],
                 ["de", "Obwohl mein Arzt mir eine Impfung empfohlen hat, habe ich keine erhalten"],
-                ["nl", "Ondanks dat mijn huisarts het griepvaccin adviseerd, neem ik het niet"],
+                ["nl", "Hoewel mijn huisarts het griepvaccin adviseert, neem ik het niet"],
                 ["fr", " Bien que mon médecin me l'ait recommandé, je ne me suis pas fait vacciner"],
             ])
         }, {
@@ -2653,7 +2653,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Smoking might make you more likely to get a more severe dose of virus disease. We would like to test this."],
                     ["de", "Rauchen könnte die Wahrscheinlichkeit erhöhen, dass Sie eine mögliche Erkrankung schwerer verläuft. Wir möchten dies gerne prüfen."],
-                    ["nl", "Roken is een risico-factor voor ernstige luchtwegklachten, dit willen we graag onderzoeken"],
+                    ["nl", "Roken is een risicofactor voor ernstige luchtwegklachten, dit willen we graag onderzoeken"],
                     ["fr", "Fumer pourrait vous rendre plus susceptible de contracter une grippe sévère."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3304,7 +3304,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Which of the following descriptions most closely matches with your main occupation?"],
             ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
-            ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+            ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
         ]))
     );
@@ -3451,7 +3451,7 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Where are you employed in education or childcare? Assume the normal situation (thus without measures against corona)"],
-            ["nl", "Waar werkt je in het onderwijs of kinderopvang? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
+            ["nl", "Waar werkt je in het onderwijs of kinderopvang? Ga uit van de normale situatie (dus zonder coronamaatregelen)"],
         ]))
     );
 
@@ -3541,7 +3541,7 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Where are you employed within health care? Assume the normal situation (thus without measures against the coronavirus)"],
-            ["nl", "Waar werkt je in de gezondheidszorg? Ga uit van de normale situatie (dus zonder corona maatregelen)"],
+            ["nl", "Waar werkt je in de gezondheidszorg? Ga uit van de normale situatie (dus zonder coronamaatregelen)"],
         ]))
     );
 
