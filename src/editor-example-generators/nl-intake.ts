@@ -180,9 +180,9 @@ export const generateNLIntake = (): Survey | undefined => {
     // -----------------------------------------
 
     // flue vaccine this season when --------------------------------------
-    //const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
-    //if (!q10b) { return; }
-    //survey.updateSurveyItem(q10b_def(q10b, q10.key));
+    const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
+    if (!q10b) { return; }
+    survey.updateSurveyItem(q10b_def(q10b, q10.key));
     // -----------------------------------------
 
     // flue vaccine reason for --------------------------------------
@@ -855,7 +855,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "GCSE's, levels, CSEs or equivalent"],
                 ["de", "Realschulabschluss, Qualifizierender Hauptschulabschluss oder gleichwertig"],
-                ["nl", "Mavo of VMBO"],
+                ["nl", "MAVO of VMBO"],
                 ["fr", "Scolarité obligatoire"],
             ])
         },
@@ -864,7 +864,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "A-levels or equivalent (e.g. Higher, NVQ Level3, BTEC)"],
                 ["de", "Abitur, Fachabitur oder gleichwertig"],
-                ["nl", "Havo, VWO, of MBO"],
+                ["nl", "HAVO, VWO, of MBO"],
                 ["fr", "Maturité fédérale, maturité professionnelle"],
             ])
         },
@@ -1774,7 +1774,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Are you planning to recieve a flu vaccine this autumn/winter season? (2020-2021)"],
             ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2020/2021 erhalten?"],
-            ["nl", "Ben je van plan om voor het komende griepseizoen (2020/2021) een griepprik te halen?"],
+            ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
@@ -1827,7 +1827,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Yes"],
                 ["de", "Ja"],
-                ["nl", "Ja"],
+                ["nl", "Ja, dit ben ik van plan"],
                 ["fr", "Oui"],
             ])
         },
@@ -1836,12 +1836,21 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "No"],
                 ["de", "Nein"],
-                ["nl", "Nee"],
+                ["nl", "Ja, deze heb ik al gehaald"],
                 ["fr", "Non"],
             ])
         },
         {
             key: '2', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["nl", "Nee"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
                 ["de", "weiß ich nicht"],
@@ -1866,15 +1875,15 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When were you vaccinated against flu in the season 2029/2020?"],
-            ["de", "Wann wurdest du in der Saison 2019/2020 gegen Grippe geimpft?"],
-            ["nl", "Wanneer ben je in het afgelopen griepseizoen (2019/2020) gevaccineerd tegen de griep?"],
-            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2019-2020)"],
+            ["en", "When were you vaccinated against flu in the season 2020/2021?"],
+            ["de", "Wann wurdest du in der Saison 2020/2021 gegen Grippe geimpft?"],
+            ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
         ]))
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '1')
     );
 
     editor.setHelpGroupComponent(
@@ -2240,7 +2249,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             content: new Map([
                 ["en", "I am worried that the vaccine is not safe or will cause illness or other adverse events"],
                 ["de", "Ich bin besorgt, dass der Impfstoff nicht sicher ist oder, dass dieser andere Krankheiten oder unerwünschte Ereignisse fördert"],
-                ["nl", "Ik ben bang dat het vaccin niet veilig is, en me juist ziek maakt of andere neveneffecten heeft"],
+                ["nl", "Ik ben bang dat het vaccin niet veilig is en me juist ziek maakt of andere neveneffecten heeft"],
                 ["fr", "Je pense que le vaccin n'est pas sûr ou qu'il peut causer d'autres maladies ou effets indésirables"],
             ])
         }, {
