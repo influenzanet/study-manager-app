@@ -547,7 +547,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What is your main activity?"],
             ["de", "Was ist Ihre Hauptbeschäftigung?"],
-            ["nl", "Wat is je voornaamste bezigheid overdag? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
+            ["nl", "Welke situatie is het meest van toepassing? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", "Quelle est votre activité principale?"],
         ]))
     );
