@@ -1423,7 +1423,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
             ["de", "Hast du auf Grund deiner Symptome irgendeine Form von medizinischer Einrichtung besucht (persönlich dort erschienen)?"],
-            ["nl", "Heb je medische hulp gezocht vanwege je klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
+            ["nl", "Heb je een arts gezien of gesproken vanwege je klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
             ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
         ]))
     );
@@ -1487,7 +1487,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "GP or GP's practice nurse"],
                 ["de", "Allgemeinarzt"],
-                ["nl", "Ja, bij de huisarts of huisarts assistent"],
+                ["nl", "Ja, bij de huisarts of huisartsassistent"],
                 ["fr", "Médecin généraliste"],
             ])
         },
@@ -1837,7 +1837,7 @@ const q7b_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP or GP'r practice nurse"],
                         ["de", "Allgemeinarzt"],
-                        ["nl", "Huisarts of huisarts assistent"],
+                        ["nl", "Huisarts of huisartsassistent"],
                         ["fr", "Médecin généraliste"],
                     ]),
                 },
@@ -2029,7 +2029,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Homeopathy"],
                 ["de", "Homöopathie"],
-                ["nl", "Ja, homeopathisch middelen"],
+                ["nl", "Ja, homeopathische middelen"],
                 ["fr", "Homéopathie"],
             ])
         },
@@ -2745,7 +2745,7 @@ const q1bNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Positive, evidence for infection with coronavirus"],
-                ["nl", "Positief, dus WEL bestmet (geweest) met het nieuwe coronavirus"],
+                ["nl", "Positief, dus WEL besmet (geweest) met het nieuwe coronavirus"],
             ])
         },
         {
