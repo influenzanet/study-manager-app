@@ -24,8 +24,8 @@ const TestViewer: React.FC = () => {
         // const s = generateCovid19Weekly();
         // const s = generateCovid19Intake();
         // const s = generateCovidSISWeekly();
-         const s = generateNLWeekly();
-        // const s = generateNLIntake();
+        // const s = generateNLWeekly();
+         const s = generateNLIntake();
         setSurvey(s);
     }, [])
 
