@@ -523,8 +523,13 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.addValidation({
         key: 'r2',
         type: 'hard',
-        rule: expWithArgs('checkResponseValueWithRegex', itemSkeleton.key, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$')
+        rule: expWithArgs('or',
+            expWithArgs('not', expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)),
+            expWithArgs('checkResponseValueWithRegex', itemSkeleton.key, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+            expWithArgs('responseHasKeysAny', itemSkeleton.key, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        )
     });
+
     editor.addDisplayComponent(
         {
             role: 'error',
@@ -532,9 +537,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["en", "Please enter the first four digits of your postcode"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
             ])),
-            displayCondition: expWithArgs('and',
-                expWithArgs('responseHasKeysAny', itemSkeleton.key, [responseGroupKey, singleChoiceKey].join('.'), '0'),
-                expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2')))
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
     );
 
