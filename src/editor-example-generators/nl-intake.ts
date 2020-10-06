@@ -3881,7 +3881,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
                     ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2019, erhalten hast."],
-                    ["nl", "We willen de beschermende werking van het vaccin onderzoeken"],
+                    ["nl", "We willen de mogelijke opname van het coronavaccin onderzoeken"],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -3899,7 +3899,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
                     ["de", "Antworten Sie mit ja, falls Sie eine Impfung in dieser Saison, normalerweise im Herbst, erhalten haben. Falls Sie nach Beantwortung dieses Fragebogens geimpft werden, kehren Sie bitte hierher zurück und aktualisieren Sie Ihre Antwort."],
-                    ["nl", "Zeg ja wanneer je van plan bent om het coronavaccin te nemen. Normaal ontvang je een griepprik in het najaar"],
+                    ["nl", "Zeg ja wanneer je van plan bent om het coronavaccin te nemen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
@@ -4015,7 +4015,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
                 content: new Map([
                     ["en", "Tick all those reasons that were important in your decision."],
                     ["de", "Wähle alle Gründe, die für Deine Entscheidung wichtig waren."],
-                    ["nl", "Geef alle redenen aan die een rol speelden in de beslissing."],
+                    ["nl", "Geef alle redenen aan die een rol spelen in de beslissing."],
                     ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
