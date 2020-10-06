@@ -1559,7 +1559,7 @@ const q7a_def = (itemSkeleton: SurveyItem, q7: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+        expWithArgs('responseHasKeysAny', [q7].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     editor.setHelpGroupComponent(
@@ -2004,6 +2004,16 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["de", "Erkältungsmittel (z.B. Schleimlöser)"],
                 ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
                 ["fr", "Médicaments contre la toux (p. ex. expectorants)"],
+            ])
+        },
+        {
+            key: '9',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            content: new Map([
+                ["en", "Hayfever medication"],
+                ["nl", "Ja, medicatie tegen hooikoorst"],
+                
             ])
         },
         {
