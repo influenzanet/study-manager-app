@@ -199,6 +199,18 @@ export const generateNLIntake = (): Survey | undefined => {
     survey.updateSurveyItem(q10d_def(q10d, q10.key));
     // -----------------------------------------
 
+    // corona vaccine --------------------------------------
+    const q10NL = survey.addNewSurveyItem({ itemKey: 'Q10NL' }, rootKey);
+    if (!q10NL) { return; }
+    survey.updateSurveyItem(q10NL_def(q10NL));
+    // -----------------------------------------
+
+    // corona vaccine reason against -----------------------------
+    const q10NLc = survey.addNewSurveyItem({ itemKey: 'Q10NLc' }, rootKey);
+    if (!q10NLc) { return; }
+    survey.updateSurveyItem(q10NLc_def(q10NLc, q10NL.key));
+    // -----------------------------------------
+
     //survey.addNewSurveyItem({ itemKey: 'pbMedications', type: 'pageBreak' }, rootKey);
 
     // regular medication --------------------------------------
@@ -3842,3 +3854,263 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
 
     return editor.getItem();
 }
+
+const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "If there is a vaccine available against coronavirus, would you get yourself vaccinated?"],
+            ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2020/2021 erhalten?"],
+            ["nl", "Als er straks een vaccin is tegen het coronavirus, wilt u zich dan laten vaccineren?"],
+            ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
+        ]))
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
+                    ["de", "Antworte mit ja, falls Du eine Impfung in der angegebenen Saison, normalerweise im Herbst 2019, erhalten hast."],
+                    ["nl", "We willen de beschermende werking van het vaccin onderzoeken"],
+                    ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
+                    ["de", "Antworten Sie mit ja, falls Sie eine Impfung in dieser Saison, normalerweise im Herbst, erhalten haben. Falls Sie nach Beantwortung dieses Fragebogens geimpft werden, kehren Sie bitte hierher zurück und aktualisieren Sie Ihre Antwort."],
+                    ["nl", "Zeg ja wanneer je van plan bent om het coronavaccin te nemen. Normaal ontvang je een griepprik in het najaar"],
+                    ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["de", "Ja"],
+                ["nl", "Ja, dit ben ik zeker van plan"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["nl", "Ja, dit ben ik waarschijnlijk van plan"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["de", "Nein"],
+                ["nl", "Dat weet ik (nog) niet"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "weiß ich nicht"],
+                ["nl", "Nee, dit ben ik waarschijnlijk niet van plan"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["de", "weiß ich nicht"],
+                ["nl", "Nee, dit ben ik zeker niet van plan"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What were your reasons for NOT getting a coronavirus vaccination?"],
+            ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
+            ["nl", "Wat zijn voor jouw de belangrijkste redenen geen vaccin tegen het coronavirus te halen?"],
+            ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q10NLKey, [responseGroupKey, singleChoiceKey].join('.'), '3', '4')
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["de", "Warum fragen wir das?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "We would like to know why some people get vaccinated and others do not."],
+                    ["de", "Wir möchten wissen, warum manche Menschen geimpft werden und andere nicht."],
+                    ["de", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet"],
+                    ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["de", "Wie soll ich das beantworten?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'subtitle2' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick all those reasons that were important in your decision."],
+                    ["de", "Wähle alle Gründe, die für Deine Entscheidung wichtig waren."],
+                    ["nl", "Geef alle redenen aan die een rol speelden in de beslissing."],
+                    ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
+                ]),
+                style: [{ key: 'variant', value: 'body2' }],
+            },
+        ])
+    );
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'variant', value: 'annotation' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['de', 'Wähle alle Optionen, die zutreffen'],
+                ['nl', 'Meerdere antwoorden mogelijk'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "I am planning to be vaccinated, but haven't been yet"],
+                ["de", "Ich habe vor, mich impfen zu lassen, es aber noch nicht getan."],
+                ["nl", "Ik heb al corona gehad"],
+                ["fr", "Je prévois de me faire vacciner mais ne l'ai pas encore fait"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I haven't been offered the vaccine"],
+                ["de", "Mir wurde die Impfung nicht angeboten"],
+                ["nl", "Ik behoor niet tot een risicogroep"],
+                ["fr", "La vaccination ne m'a pas été proposée"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't belong to a risk group"],
+                ["de", "Ich gehöre zu keiner Risikogruppe"],
+                ["nl", "Ik vind het vaccin te nieuw"],
+                ["fr", "Je ne fais pas partie d'un groupe à risque"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "It is better to build your own natural immunity against influenza"],
+                ["de", "Es ist besser, seine eigenen, natürlichen Abwehrkräfte gegen die Grippe zu entwickeln."],
+                ["nl", "Ik ben bang voor mogelijke bijwerkingen (op lange of korte termijn)"],
+                ["fr", "Il est préférable de développer sa propre immunité naturelle contre la grippe"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "I doubt that the influenza vaccine is effective"],
+                ["de", "Ich bezweifle, dass der Grippeimpfstoff wirkungsvoll ist"],
+                ["nl", "Ik hou niet van het krijgen van vaccinaties"],
+                ["fr", "Je doute que le vaccin contre la grippe soit efficace"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Influenza is a minor illness"],
+                ["de", "Die Grippe ist eine harmlose Krankheit"],
+                ["nl", "Ik twijfel aan de werking van het coronavaccin"],
+                ["fr", " La grippe est une maladie bénigne"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "Other reason(s)"],
+                ["de", "andere Gründe"],
+                ["nl", "Andere reden"],
+                ["fr", "Autre(s) raison(s)"],
+            ])
+        },
+    ]);
+
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
