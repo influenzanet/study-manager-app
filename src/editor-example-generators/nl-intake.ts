@@ -163,6 +163,50 @@ export const generateNLIntake = (): Survey | undefined => {
 
     //survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
 
+    // regular medication --------------------------------------
+    const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
+    if (!q11) { return; }
+    survey.updateSurveyItem(q11_def(q11));
+    // -----------------------------------------
+
+    // pregnant --------------------------------------
+    const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
+    if (!q12) { return; }
+    survey.updateSurveyItem(q12_def(q12, q1.key));
+    // -----------------------------------------
+
+    // trimester --------------------------------------
+    const q12b = survey.addNewSurveyItem({ itemKey: 'Q12b' }, rootKey);
+    if (!q12b) { return; }
+    survey.updateSurveyItem(q12b_def(q12b, q12.key));
+    // -----------------------------------------
+
+    // do you smoke --------------------------------------
+    const q13 = survey.addNewSurveyItem({ itemKey: 'Q13' }, rootKey);
+    if (!q13) { return; }
+    survey.updateSurveyItem(q13_def(q13));
+    // -----------------------------------------
+
+    //survey.addNewSurveyItem({ itemKey: 'pbQ14', type: 'pageBreak' }, rootKey);
+
+    // allergies --------------------------------------
+    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
+    if (!q14) { return; }
+    survey.updateSurveyItem(q14_def(q14));
+    // -----------------------------------------
+
+    // special diet --------------------------------------
+    const q15 = survey.addNewSurveyItem({ itemKey: 'Q15' }, rootKey);
+    if (!q15) { return; }
+    survey.updateSurveyItem(q15_def(q15));
+    // -----------------------------------------
+
+    // pets --------------------------------------
+    const q16 = survey.addNewSurveyItem({ itemKey: 'Q16' }, rootKey);
+    if (!q16) { return; }
+    survey.updateSurveyItem(q16_def(q16));
+    // -----------------------------------------
+
     // common cold how often  --------------------------------------
     const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
     if (!q8) { return; }
@@ -213,51 +257,7 @@ export const generateNLIntake = (): Survey | undefined => {
 
     //survey.addNewSurveyItem({ itemKey: 'pbMedications', type: 'pageBreak' }, rootKey);
 
-    // regular medication --------------------------------------
-    const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
-    if (!q11) { return; }
-    survey.updateSurveyItem(q11_def(q11));
-    // -----------------------------------------
-
-    // pregnant --------------------------------------
-    const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
-    if (!q12) { return; }
-    survey.updateSurveyItem(q12_def(q12, q1.key));
-    // -----------------------------------------
-
-    // trimester --------------------------------------
-    const q12b = survey.addNewSurveyItem({ itemKey: 'Q12b' }, rootKey);
-    if (!q12b) { return; }
-    survey.updateSurveyItem(q12b_def(q12b, q12.key));
-    // -----------------------------------------
-
-    // do you smoke --------------------------------------
-    const q13 = survey.addNewSurveyItem({ itemKey: 'Q13' }, rootKey);
-    if (!q13) { return; }
-    survey.updateSurveyItem(q13_def(q13));
-    // -----------------------------------------
-
-    //survey.addNewSurveyItem({ itemKey: 'pbQ14', type: 'pageBreak' }, rootKey);
-
-    // allergies --------------------------------------
-    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
-    if (!q14) { return; }
-    survey.updateSurveyItem(q14_def(q14));
-    // -----------------------------------------
-
-    // special diet --------------------------------------
-    const q15 = survey.addNewSurveyItem({ itemKey: 'Q15' }, rootKey);
-    if (!q15) { return; }
-    survey.updateSurveyItem(q15_def(q15));
-    // -----------------------------------------
-
-    // pets --------------------------------------
-    const q16 = survey.addNewSurveyItem({ itemKey: 'Q16' }, rootKey);
-    if (!q16) { return; }
-    survey.updateSurveyItem(q16_def(q16));
-    // -----------------------------------------
-
-
+   
     // how did you find us --------------------------------------
     //const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
     //if (!q17) { return; }
