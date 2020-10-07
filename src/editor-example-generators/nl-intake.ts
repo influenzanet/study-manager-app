@@ -1990,7 +1990,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0','1')
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -2128,7 +2128,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '2')
     );
 
     editor.setHelpGroupComponent(
@@ -3861,7 +3861,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "If there is a vaccine available against coronavirus, would you get yourself vaccinated?"],
             ["de", "Hast du eine Grippeimpfung in der Herbst-/ Wintersaison 2020/2021 erhalten?"],
-            ["nl", "Als er straks een vaccin is tegen het coronavirus, wilt u zich dan laten vaccineren?"],
+            ["nl", "Als er straks een vaccin is tegen het coronavirus, wil je jezelf dan laten vaccineren?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))
     );
@@ -3973,7 +3973,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "What were your reasons for NOT getting a coronavirus vaccination?"],
             ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
-            ["nl", "Wat zijn voor jouw de belangrijkste redenen geen vaccin tegen het coronavirus te halen?"],
+            ["nl", "Wat zijn voor jouw de belangrijkste redenen om geen vaccin tegen het coronavirus te halen?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
@@ -3997,7 +3997,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
                 content: new Map([
                     ["en", "We would like to know why some people get vaccinated and others do not."],
                     ["de", "Wir möchten wissen, warum manche Menschen geimpft werden und andere nicht."],
-                    ["de", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet"],
+                    ["nl", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet"],
                     ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
                 ]),
                 style: [{ key: 'variant', value: 'body2' }],
