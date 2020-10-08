@@ -569,7 +569,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Diarrhoea"],
                 ["de", "Durchfall"],
-                ["nl", "Diarree"],
+                ["nl", "Diarree (minstens 3 keer per dag)"],
             ])
         },
         {
