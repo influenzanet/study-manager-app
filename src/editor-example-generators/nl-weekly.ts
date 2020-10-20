@@ -567,7 +567,7 @@ const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '17', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["en", "Diarrhoea"],
+                ["en", "Diarrhoea (at least three times a day)"],
                 ["de", "Durchfall"],
                 ["nl", "Diarree (minstens 3 keer per dag)"],
             ])
@@ -3066,7 +3066,7 @@ const q1fNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "In the two weeks before your test were you approached in the context of contact-tracing by the GGD (local public health service)?"],
+            ["en", "In the two weeks before your test were you warned by the mobile phone app CoronaMelder?"],
             ["nl", "Ben je in de twee weken voor je test gewaarschuwd door de mobiele telefoon app CoronaMelder?"],
         ]))
     );
@@ -3081,21 +3081,21 @@ const q1fNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "No, I have have the CoronaMelder app installed on my phone"],
+                ["en", "No, I don't have the CoronaMelder app installed on my phone"],
                 ["nl", "Nee, ik heb de app CoronaMelder niet geïnstalleerd op mijn mobiel."],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Yes, I am contacted"],
+                ["en", "No, I have the app installed, but haven't been warned"],
                 ["nl", "Nee, ik heb de app CoronaMelder wel geïnstalleerd op mijn mobiel maar ben niet gewaarschuwd."],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I don't want to say"],
+                ["en", "Yes, I have the app installed and have been warned"],
                 ["nl", "Ja, ik heb de app CoronaMelder geïnstalleerd op mijn mobiel en ik ben gewaarschuwd."],
             ])
         },

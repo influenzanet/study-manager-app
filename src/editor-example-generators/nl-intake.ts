@@ -562,7 +562,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What is your main activity?"],
+            ["en", "What is your main activity? Assume a normal situation, without any covid measures."],
             ["de", "Was ist Ihre Hauptbeschäftigung?"],
             ["nl", "Welke situatie is het meest van toepassing? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["fr", "Quelle est votre activité principale?"],
@@ -926,7 +926,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day?"],
+            ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day (so without covid measures)?"],
             ["de", "Hast Du irgendwelche der folgenden Kontakte im Laufe eines typischen Tages? (ausgenommen Menschen, denen Du in öffentlichen Verkehrsmitteln begegnest)"],
             ["nl", "Heb je tijdens een normale dag (dus zonder coronamaatregelen) contact met:"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
@@ -1256,7 +1256,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "How many of the children in your household go to school or day-care?"],
+            ["en", "How many of the children in your household go to school or day-care? Assume a normal situation, without any covid measures"],
             ["de", "Wie viele Kinder aus Deinem Haushalts gehen zur Schule oder in eine Kindertagesstätte?"],
             ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
@@ -1379,7 +1379,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What is your main means of transport?"],
+            ["en", "What is your main means of transport? Assume a normal situation, without any covid measures"],
             ["de", "Was ist Dein Haupttransportmittel?"],
             ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["fr", " Quel est votre principal moyen de transport ?"],
@@ -1500,7 +1500,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.)"],
+            ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.) Assume a normal situation, without any covid measures"],
             ["de", "Wie viel Zeit verbringst Du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
             ["nl", "Hoeveel tijd breng je op een normale dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
@@ -1839,7 +1839,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Yes"],
+                ["en", "Yes, I'm planning to"],
                 ["de", "Ja"],
                 ["nl", "Ja, dit ben ik van plan"],
                 ["fr", "Oui"],
@@ -1848,7 +1848,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "No"],
+                ["en", "Yes, I have got one"],
                 ["de", "Nein"],
                 ["nl", "Ja, deze heb ik al gehaald"],
                 ["fr", "Non"],
@@ -1866,7 +1866,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "I don't know"],
+                ["en", "I don't know (yet)"],
                 ["de", "weiß ich nicht"],
                 ["nl", "Dat weet ik (nog) niet"],
                 ["fr", "Je ne sais pas"],
@@ -2120,7 +2120,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination last season?"],
+            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination in seaseon 2020/2021?"],
             ["de", "Was waren deine Gründe, sich in der Saison 2019/2020 nicht impfen zu lassen?"],
             ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
@@ -3325,7 +3325,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Which of the following descriptions most closely matches with your main occupation?"],
+            ["en", "Which of the following descriptions most closely matches with your main occupation? Assume a normal situation, without any covid measures"],
             ["de", "Welche der folgenden Beschreibungen passt am ehesten zu Ihrer Hauptbeschäftigung?"],
             ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["fr", "Laquelle des descriptions suivantes correspond le mieux à votre activité principale?"],
@@ -3912,7 +3912,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Yes"],
+                ["en", "Yes, I will certainly get a vaccination"],
                 ["de", "Ja"],
                 ["nl", "Ja, dit ben ik zeker van plan"],
                 ["fr", "Oui"],
@@ -3921,7 +3921,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "No"],
+                ["en", "Yes, I will likely get a vaccination"],
                 ["de", "Nein"],
                 ["nl", "Ja, dit ben ik waarschijnlijk van plan"],
                 ["fr", "Non"],
@@ -3930,7 +3930,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "No"],
+                ["en", "I don't know (yet)"],
                 ["de", "Nein"],
                 ["nl", "Dat weet ik (nog) niet"],
                 ["fr", "Non"],
@@ -3939,7 +3939,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "I don't know"],
+                ["en", "No, I will most likely not get a vaccination"],
                 ["de", "weiß ich nicht"],
                 ["nl", "Nee, dit ben ik waarschijnlijk niet van plan"],
                 ["fr", "Je ne sais pas"],
@@ -3948,7 +3948,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         {
             key: '4', role: 'option',
             content: new Map([
-                ["en", "I don't know"],
+                ["en", "No, I will certainly not get a vaccination"],
                 ["de", "weiß ich nicht"],
                 ["nl", "Nee, dit ben ik zeker niet van plan"],
                 ["fr", "Je ne sais pas"],
@@ -4041,7 +4041,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "I am planning to be vaccinated, but haven't been yet"],
+                ["en", "I have already had corona"],
                 ["de", "Ich habe vor, mich impfen zu lassen, es aber noch nicht getan."],
                 ["nl", "Ik heb al corona gehad"],
                 ["fr", "Je prévois de me faire vacciner mais ne l'ai pas encore fait"],
@@ -4050,7 +4050,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "I haven't been offered the vaccine"],
+                ["en", "I don't belong to a risk group"],
                 ["de", "Mir wurde die Impfung nicht angeboten"],
                 ["nl", "Ik behoor niet tot een risicogroep"],
                 ["fr", "La vaccination ne m'a pas été proposée"],
@@ -4059,7 +4059,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I don't belong to a risk group"],
+                ["en", "I believe the vaccine is too new"],
                 ["de", "Ich gehöre zu keiner Risikogruppe"],
                 ["nl", "Ik vind het vaccin te nieuw"],
                 ["fr", "Je ne fais pas partie d'un groupe à risque"],
@@ -4068,7 +4068,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "It is better to build your own natural immunity against influenza"],
+                ["en", "I am afraid of possible side-effects"],
                 ["de", "Es ist besser, seine eigenen, natürlichen Abwehrkräfte gegen die Grippe zu entwickeln."],
                 ["nl", "Ik ben bang voor mogelijke bijwerkingen (op lange of korte termijn)"],
                 ["fr", "Il est préférable de développer sa propre immunité naturelle contre la grippe"],
@@ -4077,7 +4077,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         {
             key: '4', role: 'option',
             content: new Map([
-                ["en", "I doubt that the influenza vaccine is effective"],
+                ["en", "I don't like vaccinations"],
                 ["de", "Ich bezweifle, dass der Grippeimpfstoff wirkungsvoll ist"],
                 ["nl", "Ik hou niet van het krijgen van vaccinaties"],
                 ["fr", "Je doute que le vaccin contre la grippe soit efficace"],
@@ -4086,7 +4086,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
         {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "Influenza is a minor illness"],
+                ["en", "I doubt the effectiveness of the coronavaccine"],
                 ["de", "Die Grippe ist eine harmlose Krankheit"],
                 ["nl", "Ik twijfel aan de werking van het coronavaccin"],
                 ["fr", " La grippe est une maladie bénigne"],
