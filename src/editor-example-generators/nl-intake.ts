@@ -928,7 +928,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Except people you meet on public transports, do you have contact with any of the following during the course of a typical day (so without covid measures)?"],
             ["de", "Hast Du irgendwelche der folgenden Kontakte im Laufe eines typischen Tages? (ausgenommen Menschen, denen Du in öffentlichen Verkehrsmitteln begegnest)"],
-            ["nl", "Heb je tijdens een normale dag (dus zonder coronamaatregelen) contact met:"],
+            ["nl", "Heb je tijdens een gemiddelde dag (dus zonder coronamaatregelen) contact met:"],
             ["fr", " A part les gens que vous croisez dans les transports publics, avez-vous des contacts avec un ou plusieurs des groupes suivants au cours d'une journée typique?"],
         ]))
     );
@@ -1154,7 +1154,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 key: '9', role: 'option', content: new Map([
                     ["en", "9"],
                     ["de", "9"],
-                    ["nl", "9"],
+                    ["nl", "> 8"],
                     ["fr", "9"],
                 ]),
             },
@@ -1502,7 +1502,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.) Assume a normal situation, without any covid measures"],
             ["de", "Wie viel Zeit verbringst Du an einem gewöhnlichen Tag in öffentlichen Verkehrsmitteln? (Bus, Zug, U-Bahn, usw.)"],
-            ["nl", "Hoeveel tijd breng je op een normale dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
+            ["nl", "Hoeveel tijd breng je op een gemiddelde dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
         ]))
     );
@@ -1626,7 +1626,7 @@ const q8_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Never"],
                 ["de", "nie"],
-                ["nl", "Nooit"],
+                ["nl", "Minder dan 1 keer per jaar"],
                 ["fr", "Jamais"],
             ])
         },
