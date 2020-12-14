@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
-import { generateCovid19Intake } from '../../editor-example-generators/covid-19-intake';
-import { generateCovid19Weekly } from '../../editor-example-generators/covid-19-weekly';
-import { generateNLWeekly } from '../../editor-example-generators/nl-weekly';
-import { generateNLIntake } from '../../editor-example-generators/nl-intake';
+
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
-import { Box, Button, TextField, Typography, Paper } from '@material-ui/core';
-import { Survey, LocalizedString, LocalizedObject } from 'survey-engine/lib/data_types';
+import { Box, Button, TextField, Typography, Paper, Select } from '@material-ui/core';
+import { LocalizedString, LocalizedObject } from 'survey-engine/lib/data_types';
+
+import availableSurveys from '../../editor-example-generators/surveys';
 
 const availableLanguages = [
     { code: 'en', label: '🇬🇧 English' },
@@ -20,18 +19,10 @@ const TestViewer: React.FC = () => {
     // const [studyName, setStudyName] = useState('covid-19');
     const [studyName, setStudyName] = useState('covid-19');
 
-    useEffect(() => {
-        // const s = generateCovid19Weekly();
-        // const s = generateCovid19Intake();
-        // const s = generateCovidSISWeekly();
-         const s = generateNLWeekly();
-        // const s = generateNLIntake();
-        setSurvey(s);
-    }, [])
+    const [selectedSurvey, setSelectedSurvey] = useState(availableSurveys[0]);
 
     // Language settings
     const [selectedLanguage, setSelectedLanguage] = useState('nl');
-    const [survey, setSurvey] = useState<Survey | undefined>();
 
     const languageSelector = (
         <Box display="flex" justifyContent="center">
@@ -51,6 +42,8 @@ const TestViewer: React.FC = () => {
         if (!translation) { return }
         return translation.parts.map(p => p.str).join('');
     }
+
+    const survey = selectedSurvey.survey;
 
 
     return (

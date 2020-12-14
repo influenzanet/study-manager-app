@@ -274,6 +274,8 @@ export const generateNLIntake = (): Survey | undefined => {
     return survey.getSurvey();
 }
 
+export default generateNLIntake;
+
 const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.addDisplayComponent(
@@ -1990,7 +1992,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0','1')
+        expWithArgs('responseHasKeysAny', q10Key, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
     );
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });

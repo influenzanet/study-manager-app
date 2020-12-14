@@ -211,6 +211,7 @@ export const generateCovid19Intake = (): Survey | undefined => {
     return survey.getSurvey();
 }
 
+export default generateCovid19Intake;
 
 
 const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
