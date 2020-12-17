@@ -105,18 +105,23 @@ const App: React.FC = () => {
 
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <StylesProvider injectFirst>
-        <Router>
-          <Switch>
-            <Route path="/test-editor" component={TestEditor} />
-            <Route path="/test-viewer" component={TestViewer} />
-            <Redirect to="/test-viewer"></Redirect>
-          </Switch>
-        </Router>
-      </StylesProvider>
-    </MuiThemeProvider>
+    <div >
+
+      <h2>test</h2>
+      <p>test</p>
+      <MuiThemeProvider theme={theme}>
+
+        <StylesProvider injectFirst>
+          <Router>
+            <Switch>
+              <Route path="/test-editor" component={TestEditor} />
+              <Route path="/test-viewer" component={TestViewer} />
+              <Redirect to="/test-viewer"></Redirect>
+            </Switch>
+          </Router>
+        </StylesProvider>
+      </MuiThemeProvider>
+    </div>
   );
 }
 
