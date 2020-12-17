@@ -1,9 +1,9 @@
-import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
-import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
+import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
+import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../../editor-engine/utils/simple-generators";
 import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
-import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
-import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../editor-engine/utils/question-type-generator";
-import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
+import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { ComponentEditor } from "../../editor-engine/survey-editor/component-editor";
 
 
 const responseGroupKey = 'rg';
@@ -2050,7 +2050,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Hayfever medication"],
                 ["nl", "Ja, medicatie tegen hooikoorst"],
-                
+
             ])
         },
         {
@@ -3286,7 +3286,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "Did you change your daily routine because of your illness?"],
             ["nl", "Heb je je vanwege je klachten ziek gemeld van werk/school?"],
-            
+
         ]))
     );
 
@@ -3304,7 +3304,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Yes, but I did not take time off work/school"],
                 ["nl", "Nee, maar het had wel effect op mijn dagelijkse praktijk"],
-               
+
             ])
         },
         {
@@ -3312,7 +3312,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Yes, I took time off work/school"],
                 ["nl", "Ja"],
-               
+
             ])
         },
     ]);

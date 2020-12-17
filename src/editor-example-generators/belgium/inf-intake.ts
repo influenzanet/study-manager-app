@@ -1,6 +1,8 @@
 import { Survey } from "survey-engine/lib/data_types";
 
-export default (): Survey | undefined => {
+const intake = (): Survey | undefined => {
 
     return;
 }
+
+export default intake;

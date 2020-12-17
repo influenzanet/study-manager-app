@@ -1,9 +1,9 @@
-import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor"
-import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
-import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
+import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor"
+import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../../editor-engine/utils/simple-generators";
+import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
-import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../editor-engine/utils/question-type-generator";
-import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { ComponentEditor } from "../../editor-engine/survey-editor/component-editor";
 
 
 const responseGroupKey = 'rg';
@@ -257,7 +257,7 @@ export const generateNLIntake = (): Survey | undefined => {
 
     //survey.addNewSurveyItem({ itemKey: 'pbMedications', type: 'pageBreak' }, rootKey);
 
-   
+
     // how did you find us --------------------------------------
     //const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
     //if (!q17) { return; }

@@ -1,6 +1,6 @@
 import getBelIntake from './belgium/inf-intake';
 import getBelWeekly from './belgium/inf-weekly';
-import getExampleIntake from './nl-intake';
+import getExampleIntake from './nl/inf-intake';
 
 const surveys = [
     { name: "EX intake", survey: getExampleIntake() },
