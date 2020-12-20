@@ -5,6 +5,7 @@ import { DatePicker, DatePickerView } from '@material-ui/pickers';
 import moment from 'moment';
 import { getLocaleStringTextByCode } from '../../utils';
 import { Box, Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 interface DateInputProps {
   compDef: ItemComponent;
@@ -14,6 +15,8 @@ interface DateInputProps {
 }
 
 const DateInput: React.FC<DateInputProps> = (props) => {
+
+  const { t } = useTranslation(["common"]);
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
 
@@ -119,6 +122,9 @@ const DateInput: React.FC<DateInputProps> = (props) => {
           placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
           clearable
           disabled={props.compDef.disabled !== undefined}
+          okLabel={t("common:datePicker.okLabel")}
+          clearLabel={t("common:datePicker.clearLabel")}
+          cancelLabel={t("common:datePicker.cancelLabel")}
         />
       </Box>
     </Box>

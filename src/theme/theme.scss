@@ -1,0 +1,33 @@
+// ---------------------------------------------
+// Colors:
+// ---------------------------------------------
+$theme-colors: (
+  "primary": #3464D5,
+  //"secondary":  $secondary,
+  "success": #00A733,
+  //"info":       $info,
+  "warning": #FD9644,
+  "danger": #DA3659,
+);
+
+$custom-colors: (
+    "grey-1": #EDEFF4,
+    "grey-2": #D2D8E1,
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// ---------------------------------------------
+// Typography:
+// ---------------------------------------------
+$font-family-base:
+  "Open Sans",
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+
+// ---------------------------------------------
+// Other:
+// ---------------------------------------------
+$enable-rounded: false !default;

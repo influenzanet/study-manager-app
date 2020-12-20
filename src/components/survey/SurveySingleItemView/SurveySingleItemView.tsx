@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { SurveySingleItem, ItemGroupComponent, ResponseItem, ItemComponent } from 'survey-engine/lib/data_types';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { getItemComponentTranslationByRole, getItemComponentByRole } from './utils';
 import Box from '@material-ui/core/Box';
@@ -9,26 +8,21 @@ import TextViewComponent from './TextViewComponent/TextViewComponent';
 import ErrorComponent from './ErrorComponent/ErrorComponent';
 import WarningComponent from './WarningComponent/WarningComponent';
 import ResponseComponent from './ResponseComponent/ResponseComponent';
+import clsx from 'clsx';
 
+import styles from './SurveySingleItemView.module.scss';
 
 interface SurveySingleItemViewProps {
   renderItem: SurveySingleItem;
   languageCode: string;
   responsePrefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
+  showInvalid?: boolean;
+  invalidWarning: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      // display: 'flex',
-    },
-  }),
-);
 
 const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
-  const classes = useStyles();
-
   const [response, setResponse] = useState<ResponseItem | undefined>(props.responsePrefill);
   const [touched, setTouched] = useState(false);
 
@@ -53,6 +47,7 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
     )
   }
 
+  const requiredItem = props.renderItem.validations?.find(val => val.type === 'hard');
 
   const renderBodyComponents = (): React.ReactNode => {
     if (!props.renderItem.components) { return null; }
@@ -108,18 +103,63 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
     </React.Fragment>;
   }
 
+  const titleComp = props.renderItem.components ? getItemComponentTranslationByRole(props.renderItem.components.items, 'title', props.languageCode) : undefined;
+
   return (
-    <div className={classes.root}>
-      <Box display="flex" alignItems="center">
-        <Box flexGrow="1">
-          {props.renderItem.components ?
-            <Typography variant="h6" style={{ marginTop: 12, marginBottom: 12 }} >
-              {getItemComponentTranslationByRole(props.renderItem.components.items, 'title', props.languageCode)}
-            </Typography> : null}
-        </Box>
-        {renderHelpGroup()}
-      </Box>
-      {renderBodyComponents()}
+    <div
+      className={
+        styles.itemContainer
+      }>
+      {
+        titleComp ?
+          <Box display="flex" alignItems="center"
+            className={clsx(
+              'px-2 font-weight-bold',
+              styles.itemHeader,
+              {
+                'custom-error-bg': props.showInvalid
+              }
+            )}
+          >
+            <Box flexGrow="1">
+
+              <h6 style={{ fontWeight: 'bold', marginTop: 12, marginBottom: 12 }} >
+                {titleComp}
+                {requiredItem ?
+                  <span
+                    className={clsx(
+                      'ms-1',
+                      {
+                        'text-primary': !props.showInvalid,
+                        'text-danger': props.showInvalid
+                      }
+                    )}
+                  >
+                    {'*'}
+                  </span> : null}
+              </h6>
+
+            </Box>
+            {renderHelpGroup()}
+          </Box>
+          : null
+      }
+      <div className={
+        clsx({
+          'p-2': !titleComp
+        })
+      }>
+        {renderBodyComponents()}
+      </div>
+      { props.showInvalid ?
+        <p className='custom-error-bg p-2 m-0 text-danger font-weight-bold'
+          style={{ fontSize: '1.1875rem' }}
+        >
+          {props.invalidWarning}
+        </p>
+
+        : null}
+
     </div>
   );
 };

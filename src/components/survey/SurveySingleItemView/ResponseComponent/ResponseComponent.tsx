@@ -9,16 +9,16 @@ import MultilineTextInput from './MultilineTextInput/MultilineTextInput';
 import NumberInput from './NumberInput/NumberInput';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-
-import "moment/locale/fr";
 import "moment/locale/de";
+import "moment/locale/fr";
+import "moment/locale/nl";
+
 // pick a date util library
 import MomentUtils from '@date-io/moment';
 import SliderNumeric from './Sliders/SliderNumeric/SliderNumeric';
 import SliderNumericRange from './Sliders/SliderNumericRange/SliderNumericRange';
 import SliderCategorical from './Sliders/SliderCategorical/SliderCategorical';
 import Matrix from './Matrix/Matrix';
-import RoundedBox from '../../../ui/RoundedBox';
 import TextViewComponent from '../TextViewComponent/TextViewComponent';
 import moment from 'moment';
 
@@ -85,15 +85,18 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
   };
 
   return <MuiPickersUtilsProvider utils={MomentUtils} locale={props.languageCode}>
-    <RoundedBox color="#f2f2f2" style={{ padding: "8px 16px" }}>
+    <div
+      // color="#f2f2f2"
+      style={{ padding: "8px 16px" }}>
       {(props.compDef as ItemGroupComponent).items.map((respComp, index) => {
+
         if (respComp.displayCondition === false) {
-          return <div key={respComp.key} hidden></div>;
+          return <div key={respComp.key ? respComp.key : 'p' + index.toString()} hidden></div>;
         }
         switch (respComp.role) {
           case 'text':
             return <TextViewComponent
-              key={respComp.key ? respComp.key : index.toString()}
+              key={respComp.key ? respComp.key : 'p' + index.toString()}
               compDef={respComp}
               languageCode={props.languageCode}
             />
@@ -190,7 +193,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
         }
       })
       }
-    </RoundedBox>
+    </div>
   </MuiPickersUtilsProvider>
 };
 

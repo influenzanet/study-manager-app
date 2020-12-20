@@ -54,6 +54,7 @@ const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
 
     return <SurveySingleItemView
       renderItem={surveyItem}
+      invalidWarning={'TODO: invalid'}
       languageCode={props.selectedLanguage}
       responseChanged={(response) => {
         if (response) {

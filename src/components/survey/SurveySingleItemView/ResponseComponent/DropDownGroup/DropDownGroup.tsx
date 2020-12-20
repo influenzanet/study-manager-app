@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ItemComponent, ResponseItem, ItemGroupComponent } from 'survey-engine/lib/data_types';
-import { FormControl, Select, MenuItem, NativeSelect, Box, Typography, Tooltip } from '@material-ui/core';
+import { FormControl, Select, MenuItem, Box, Typography, Tooltip, NativeSelect } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { getLocaleStringTextByCode } from '../../utils';
 import { isMobile } from 'react-device-detect';
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
   const classes = useStyles();
 
@@ -33,10 +32,6 @@ const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
   const [touched, setTouched] = useState(false);
   const labelRef = useRef<HTMLLabelElement>(null);
   const labelWidth = labelRef.current ? labelRef.current.clientWidth : 0;
-
-  useEffect(() => {
-
-  })
 
 
   useEffect(() => {
@@ -60,6 +55,9 @@ const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
     setTouched(true);
     const key = (event.target as HTMLInputElement).value as string;
     setResponse(prev => {
+      if (!key || key === '') {
+        return undefined;
+      }
       if (!prev) {
         return {
           key: props.compDef.key ? props.compDef.key : 'no key found',
@@ -74,8 +72,6 @@ const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
       }
     });
   };
-
-
 
   let renderedInput = <FormControl
     className={classes.formControl}
@@ -103,6 +99,7 @@ const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
         value={getSelectedKey()}
         onChange={handleSelectionChange}
       >
+        <option aria-label="None" value="" />
         {
           (props.compDef as ItemGroupComponent).items.map(
             item => {
@@ -149,7 +146,6 @@ const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
         }
       </Select>
     }
-
   </FormControl>;
 
   let description = getLocaleStringTextByCode(props.compDef.description, props.languageCode);

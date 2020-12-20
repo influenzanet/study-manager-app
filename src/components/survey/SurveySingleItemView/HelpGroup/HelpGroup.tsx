@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     helpBox: {
       backgroundColor: '#f1f1f1',
+    },
+    helpIcon: {
+      color: theme.palette.primary.light,
     }
   }),
 );
@@ -39,7 +42,7 @@ const HelpGroup: React.FC<HelpGroupProps> = (props) => {
 
   return (
     <Box alignItems="center">
-      <IconButton aria-describedby={id} onClick={openHelpGroup} size="small" color="secondary">
+      <IconButton aria-describedby={id} onClick={openHelpGroup} size="small" className={classes.helpIcon}>
         <InfoOutlinedIcon />
       </IconButton>
       <Popover

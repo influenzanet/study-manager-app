@@ -107,20 +107,18 @@ const App: React.FC = () => {
   return (
     <div >
 
-      <h2>test</h2>
+      <h2 className="ps-4 bg-grey-1">test</h2>
       <p>test</p>
-      <MuiThemeProvider theme={theme}>
+      <button className="btn btn-primary"> Test</button>
+      <button className="btn btn-grey-1"> Test</button>
 
-        <StylesProvider injectFirst>
-          <Router>
-            <Switch>
-              <Route path="/test-editor" component={TestEditor} />
-              <Route path="/test-viewer" component={TestViewer} />
-              <Redirect to="/test-viewer"></Redirect>
-            </Switch>
-          </Router>
-        </StylesProvider>
-      </MuiThemeProvider>
+      <Router>
+        <Switch>
+          <Route path="/test-editor" component={TestEditor} />
+          <Route path="/test-viewer" component={TestViewer} />
+          <Redirect to="/test-viewer"></Redirect>
+        </Switch>
+      </Router>
     </div>
   );
 }
