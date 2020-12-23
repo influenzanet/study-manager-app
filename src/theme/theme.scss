@@ -1,13 +1,18 @@
 // ---------------------------------------------
 // Colors:
 // ---------------------------------------------
+$primary: #3464D5;
+$success: #00A733;
+$warning: #FD9644;
+$danger: #DA3659;
+
 $theme-colors: (
-  "primary": #3464D5,
+  "primary": $primary,
   //"secondary":  $secondary,
-  "success": #00A733,
+  "success": $success,
   //"info":       $info,
-  "warning": #FD9644,
-  "danger": #DA3659,
+  "warning": $warning,
+  "danger": $danger,
 );
 
 $custom-colors: (
