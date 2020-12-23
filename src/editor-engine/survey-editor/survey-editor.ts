@@ -91,28 +91,9 @@ export class SurveyEditor implements SurveyEditorInt {
             }
             return item;
         }
-        const ids = parentKey.split('.');
-        const paths = this.getKeyListForPath(ids);
-
-        let obj: SurveyItem | undefined = undefined;
-        for (const currentKey of paths) {
-            if (!obj) {
-                obj = this.survey.current.surveyDefinition;
-                continue;
-            }
-            if (!isSurveyGroupItem(obj)) {
-                console.warn('survey item is not a group: ', obj.key);
-                return;
-            }
-            const index = obj.items.findIndex(it => it.key === currentKey);
-            if (index < 0) {
-                console.warn('survey item cannot be found: ', currentKey);
-                return;
-            }
-            obj = (obj.items[index] as SurveyGroupItem);
-        }
+        const obj = this.findSurveyItem(parentKey);
         if (!obj) {
-            console.warn('survey item cannot be found: ', parentKey);
+            console.warn('parent survey item cannot be found: ', parentKey);
             return
         }
 
@@ -130,37 +111,23 @@ export class SurveyEditor implements SurveyEditorInt {
         return item;
     }
 
+    addExistingSurveyItem(surveyItem: SurveyItem, parentKey?: string, atPosition?: number): SurveyItem | undefined {
+        console.log('todo');
+        return;
+    }
+
     changeItemKey(oldKey: string, newKey: string, ignoreReferences?: boolean) {
         if (oldKey === this.surveyKey) {
             this.surveyKey = newKey;
             this.survey.current.surveyDefinition = this.changeItemKeyForSubtree(this.survey.current.surveyDefinition, newKey) as SurveyGroupItem;
             return;
         }
-        const ids = oldKey.split('.');
-        const paths = this.getKeyListForPath(ids);
 
-        let obj: SurveyItem | undefined = undefined;
-        for (const currentKey of paths) {
-            if (!obj) {
-                obj = this.survey.current.surveyDefinition;
-                continue;
-            }
-            if (!isSurveyGroupItem(obj)) {
-                console.warn('survey item is not a group: ', obj.key);
-                return;
-            }
-            const index = obj.items.findIndex(it => it.key === currentKey);
-            if (index < 0) {
-                console.warn('survey item cannot be found: ', currentKey);
-                return;
-            }
-            obj = (obj.items[index] as SurveyGroupItem);
-        }
+        let obj = this.findSurveyItem(oldKey);
         if (!obj) {
             console.warn('survey item cannot be found: ', oldKey);
             return
         }
-
         obj = Object.assign(obj, this.changeItemKeyForSubtree(obj, newKey));
 
         if (!ignoreReferences) {
@@ -180,27 +147,11 @@ export class SurveyEditor implements SurveyEditorInt {
         }
         const ids = item.key.split('.');
         const parentIds = ids.slice(0, ids.length - 1);
-        const paths = this.getKeyListForPath(parentIds);
+        const parentKey = parentIds.join('.');
 
-        let obj: SurveyItem | undefined = undefined;
-        for (const currentKey of paths) {
-            if (!obj) {
-                obj = this.survey.current.surveyDefinition;
-                continue;
-            }
-            if (!isSurveyGroupItem(obj)) {
-                console.warn('survey item is not a group: ', obj.key);
-                return;
-            }
-            const index = obj.items.findIndex(it => it.key === currentKey);
-            if (index < 0) {
-                console.warn('survey item cannot be found: ', currentKey);
-                return;
-            }
-            obj = (obj.items[index] as SurveyGroupItem);
-        }
+        const obj = this.findSurveyItem(parentKey);
         if (!obj) {
-            console.warn('survey item cannot be found: ', item.key);
+            console.warn('parent survey item cannot be found: ', parentKey);
             return
         }
 
@@ -250,12 +201,7 @@ export class SurveyEditor implements SurveyEditorInt {
             }
             obj = (obj.items[index] as SurveyGroupItem);
         }
-        if (!obj) {
-            console.warn('survey item cannot be found: ', itemKey);
-            return;
-        }
-
-        return { ...obj };
+        return obj;
     };
 
     getSurvey(): Survey {
@@ -293,5 +239,4 @@ export class SurveyEditor implements SurveyEditorInt {
         currentItem.key = newKey;
         return currentItem;
     }
-
 }
