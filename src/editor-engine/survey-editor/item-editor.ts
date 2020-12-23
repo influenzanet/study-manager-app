@@ -63,7 +63,7 @@ export class ItemEditor implements ItemEditorInt {
         this.surveyItem = { key: '', version: 0 };
         if (existingItem) {
             this.surveyItem = { ...existingItem };
-            console.log(this.surveyItem);
+            // console.log(this.surveyItem);
         } else {
             const key = newItem?.itemKey ? newItem.itemKey : 'no key';
             if (newItem?.isGroup) {

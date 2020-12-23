@@ -111,9 +111,22 @@ export class SurveyEditor implements SurveyEditorInt {
         return item;
     }
 
-    addExistingSurveyItem(surveyItem: SurveyItem, parentKey?: string, atPosition?: number): SurveyItem | undefined {
-        console.log('todo');
-        return;
+    addExistingSurveyItem(surveyItem: SurveyItem, parentKey: string, atPosition?: number): SurveyItem | undefined {
+        const parent = this.findSurveyItem(parentKey);
+        if (!parent) {
+            console.warn('parent survey item cannot be found: ', parentKey);
+            return
+        }
+        if ((parent as SurveyGroupItem).items.find(it => surveyItem.key === it.key)) {
+            console.warn('item already exists with key: ', surveyItem.key);
+            return undefined;
+        }
+        if (atPosition !== undefined) {
+            (parent as SurveyGroupItem).items.splice(atPosition, 0, surveyItem);
+        } else {
+            (parent as SurveyGroupItem).items.push(surveyItem);
+        }
+        return surveyItem;
     }
 
     changeItemKey(oldKey: string, newKey: string, ignoreReferences?: boolean) {

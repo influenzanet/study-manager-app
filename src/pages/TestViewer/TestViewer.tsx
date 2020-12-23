@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Container from '@material-ui/core/Container';
 
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
-import { Box, Button, TextField, Typography, Paper, Select } from '@material-ui/core';
+import { Box, Button, TextField } from '@material-ui/core';
 import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data_types';
 
 import availableSurveys from '../../editor-example-generators/surveys';
@@ -19,10 +18,12 @@ const TestViewer: React.FC = () => {
     // const [studyName, setStudyName] = useState('covid-19');
     const [studyName, setStudyName] = useState('covid-19');
 
-    const [selectedSurvey, setSelectedSurvey] = useState(availableSurveys[0]);
+    const [selectedSurvey, setSelectedSurvey] = useState(availableSurveys[1]);
+
+    console.log(selectedSurvey);
 
     // Language settings
-    const [selectedLanguage, setSelectedLanguage] = useState('nl');
+    const [selectedLanguage, setSelectedLanguage] = useState('en');
 
     const languageSelector = (
         <Box display="flex" justifyContent="center">

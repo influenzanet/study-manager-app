@@ -14,7 +14,7 @@ const sliderCategoricalKey = "scc"
 const inputKey = "ic"
 const matrixKey = "mat"
 
-export const generateNLWeekly = (): Survey | undefined => {
+const generateNLWeekly = (): Survey | undefined => {
     const surveyKey = 'weekly';
 
     const survey = new SurveyEditor();
@@ -400,6 +400,8 @@ export const generateNLWeekly = (): Survey | undefined => {
     return survey.getSurvey();
 }
 
+export default generateNLWeekly;
+
 const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.addDisplayComponent(
@@ -413,6 +415,8 @@ const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
     )
     return editor.getItem();
 }
+
+
 
 const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
