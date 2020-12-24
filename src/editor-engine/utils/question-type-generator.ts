@@ -279,6 +279,45 @@ export const initMatrixQuestion = (
         groupEdit.addItemComponent(rowEditor.getComponent());
     });
 
+    return groupEdit.getComponent() as ItemGroupComponent;
+}
+
+interface EQ5DHealthSliderProps {
+    role: 'eq5d-health-indicator',
+    key: string;
+    displayCondition?: Expression;
+    disabled?: Expression;
+    instructionText: Map<string, string>,
+    valueBoxText: Map<string, string>,
+    maxHealthText: Map<string, string>,
+    minHealthText: Map<string, string>,
+}
+
+export const initEQ5DHealthIndicatorQuestion = (
+    props: EQ5DHealthSliderProps
+): ItemGroupComponent => {
+    // init group
+    const groupEdit = new ComponentEditor(undefined, {
+        key: props.key,
+        isGroup: true,
+        role: props.role,
+    });
+
+    const instructionTextEditor = new ComponentEditor(undefined, { role: 'instruction', });
+    instructionTextEditor.setContent(generateLocStrings(props.instructionText))
+    groupEdit.addItemComponent(instructionTextEditor.getComponent());
+
+    const valueBoxTextEditor = new ComponentEditor(undefined, { role: 'valuebox', });
+    valueBoxTextEditor.setContent(generateLocStrings(props.valueBoxText))
+    groupEdit.addItemComponent(valueBoxTextEditor.getComponent());
+
+    const minHealthTextEditor = new ComponentEditor(undefined, { role: 'mintext', });
+    minHealthTextEditor.setContent(generateLocStrings(props.minHealthText))
+    groupEdit.addItemComponent(minHealthTextEditor.getComponent());
+
+    const maxHealthTextEditor = new ComponentEditor(undefined, { role: 'maxtext', });
+    maxHealthTextEditor.setContent(generateLocStrings(props.maxHealthText))
+    groupEdit.addItemComponent(maxHealthTextEditor.getComponent());
 
     return groupEdit.getComponent() as ItemGroupComponent;
 }
