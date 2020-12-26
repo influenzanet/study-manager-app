@@ -310,7 +310,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -319,7 +319,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -385,7 +385,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -394,7 +394,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -477,7 +477,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -486,7 +486,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "We doen onderzoek naar de regionale verspreiding van infecties."],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -494,7 +494,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["de", "Wie soll ich das beantworten?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -502,7 +502,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["de", "Bitte wählen Sie den Anfang Ihrer Postleitzahl (der Teil vor dem Leerzeichen)."],
                     ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -580,7 +580,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -589,7 +589,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Met deze informatie kunnen we zien of de mensen die meedoen representatief zijn voor de bevolking."],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble, et savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -597,7 +597,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["de", "Wie soll ich das beantworten?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -605,7 +605,7 @@ const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["de", 'Für Vorschulkinder, die nicht in die Tagespflege gehen, wählen Sie bitte „andere“ aus.'],
                     ["nl", 'Selecteer wat van toepassing is. Voor kinderen die te jong zijn - selecteer "anders".'],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -730,7 +730,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -739,7 +739,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Om je dagelijkse reisafstand te schatten"],
                     ["fr", "Pour avoir une estimation grossière de vos déplacements réguliers."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -748,7 +748,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -756,7 +756,7 @@ const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["de", "Wählen Sie bitte den ersten Teil der Postleitzahl (der Teil von dem Leerzeichen)."],
                     ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -823,7 +823,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -832,7 +832,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Met deze informatie kunnen we zien of de mensen die meedoen representatief zijn voor de bevolking."],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population suisse dans son ensemble."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -841,7 +841,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -850,7 +850,7 @@ const q4d_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Geef aan wat je hoogste diploma is."],
                     ["fr", "Cochez la case qui correspond à votre plus haut niveau d'éducation scolaire. Les différentes options équivalent à 1 - pas de qualifications, 2 - examens de fin de scolarité à environ 16 ans, 3 - examens de fin de scolarité à environ 18 ans, 4 - diplôme universitaire ou qualification professionnelle équivalente, 5 - diplôme ou qualification professionnelle avancé.Si vous êtes un adulte actuellement en cours de formation à temps partiel(p.ex.cours du soir) cochez la case qui représente votre plus haut niveau actuel de l'éducation."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -944,7 +944,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -953,7 +953,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Om uit te zoeken of contact met deze groepen het risico op klachten beïnvloedt."],
                     ["fr", "Pour savoir si vous êtes susceptible d'être exposés à la grippe plus que la moyenne (p. ex. via une votre travail avec des enfants ou des patients)."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -962,7 +962,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Uitleg:"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -971,7 +971,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Voor groepen mensen kan het gaan om elke situatie waar er contact is met meer dan 10 personen tegelijk."],
                     ["fr", "Sélectionnez les groupes de personnes avec lesquelles vous êtes en contact au cours d'une journée (p. ex. un enseignant peut interagir avec de nombreux enfants dans une journée)."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -980,7 +980,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
+        // style: [{ key: 'className', value: 'fw-bolder' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -1071,7 +1071,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1080,7 +1080,7 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "De samenstelling van het huishouden kan invloed hebben op het risico van infectie, dit willen we graag onderzoeken."],
                     ["fr", "Les membres des ménages les plus grands, ou ceux possédant des enfants, peuvent être plus susceptibles d'attraper la grippe que les autres."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1282,7 +1282,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1291,7 +1291,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
                     ["nl", "Het bezoeken van een school of kinderdagverblijf kan het risico voor infecties verhogen. Of dit het geval is en in welke mate willen we graag onderzoeken."],
                     ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -1300,7 +1300,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1309,7 +1309,7 @@ const q6b_def = (itemSkeleton: SurveyItem, q6Key: string): SurveyItem => {
                     ["nl", "Zelfs als het kind slechts 1 maal per week naar een kinderdagverblijf gaat, geef dit dan aan (clubs en verenigingen tellen niet mee)"],
                     ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1397,7 +1397,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1406,7 +1406,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -1415,7 +1415,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1424,7 +1424,7 @@ const q7_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Ga uit van de normale situatie en je meest gangbare - dagelijkse - manier van verplaatsen."],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1518,7 +1518,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1527,7 +1527,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -1536,7 +1536,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1545,7 +1545,7 @@ const q7b_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Denk aan een typische dag. Als je verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1710,7 +1710,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1719,7 +1719,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -1728,7 +1728,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1737,7 +1737,7 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1804,7 +1804,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1813,7 +1813,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -1822,7 +1822,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1831,7 +1831,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Zeg ja wanneer je van plan bent om de griepprik te nemen. Normaal ontvang je een griepprik in het najaar"],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1911,7 +1911,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1920,7 +1920,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Het weten van de timing van vaccinatie is belangrijk om de effectiviteit te schatten."],
                     ["fr", "Savoir quand les gens sont vaccinés nous permet d'évaluer le succès des campagnes de vaccination."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -1929,7 +1929,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -1938,7 +1938,7 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was."],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -1999,7 +1999,6 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2142,7 +2141,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2151,7 +2150,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["de", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet."],
                     ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -2160,7 +2159,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2169,7 +2168,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
                     ["nl", "Geef alle redenen aan die een rol speelden in de beslissing."],
                     ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -2178,7 +2177,6 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2351,7 +2349,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2360,7 +2358,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "De vraag maakt het voor ons mogelijk om te onderzoeken welke aandoeningen gelinkt zijn aan een hoger risico voor infectie"],
                     ["fr", "Cette question nous permet de savoir si vous avez des prédispositions qui pourraient augmenter votre risque d'avoir des complications si vous contractez la grippe."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -2369,7 +2367,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2378,7 +2376,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Het gaat ons alleen om regelmatig gebruik van medicatie, niet om af en toe. Het af en toe gebruiken van een inhaler bij astma valt hier bijvoorbeeld buiten."],
                     ["fr", "Répondez «oui» seulement si vous prenez <b>régulièrement</b> des médicaments pour votre problème médical. Si, par exemple, vous n'utilisez qu'occasionnellement un inhalateur pour l'asthme, alors ne répondez pas «oui» pour l'asthme ."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -2387,7 +2385,6 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2508,7 +2505,7 @@ const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2517,7 +2514,7 @@ const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
                     ["nl", "Infecties kunnen soms anders verlopen bij zwangeren."],
                     ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -2590,7 +2587,7 @@ const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2599,7 +2596,7 @@ const q12b_def = (itemSkeleton: SurveyItem, q12Key: string): SurveyItem => {
                     ["nl", "Infecties kunnen soms anders verlopen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -2672,7 +2669,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2681,7 +2678,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Roken is een risicofactor voor ernstige luchtwegklachten, dit willen we graag onderzoeken."],
                     ["fr", "Fumer pourrait vous rendre plus susceptible de contracter une grippe sévère."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -2690,7 +2687,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2699,7 +2696,7 @@ const q13_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Antwoord zo precies mogelijk."],
                     ["fr", "Répondez aussi précisément que possible. Si vous fumez autres produits (p. ex. pipe ou cigares), indiquez à peu près combien de fois par jour."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -2788,7 +2785,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2797,7 +2794,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Sommige allergieën geven dezelfde klachten als luchtweginfecties"],
                     ["fr", "Certaines réactions allergiques peuvent avoir des symptômes similaires ceux d'une infection respiratoire."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -2806,7 +2803,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -2815,7 +2812,6 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Meerdere antwoorden mogelijk, klik alle opties die relevant zijn."],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
             },
         ])
     );
@@ -2824,7 +2820,6 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2908,7 +2903,6 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2992,7 +2986,6 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -3080,7 +3073,6 @@ const q17_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -3168,7 +3160,6 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -3347,7 +3338,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -3356,7 +3347,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Om in te schatten of we representatief zijn, en om infectierisico per beroepsgroep uit te splitsen"],
                     ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble et pour savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -3365,7 +3356,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -3374,7 +3365,7 @@ const q4cNL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                     ["nl", "Selecteer het antwoord dat het best je situatie beschrijft."],
                     ["fr", "Cochez la case qui correspond le plus à votre profession principale."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -3491,14 +3482,14 @@ const q4cNLb_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
                     ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "To differentiate between the different tiers in education"],
                     ["nl", "Om de verschillende lagen van het onderwijs verder uit te splitsen"],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
 
         ])
@@ -3581,14 +3572,14 @@ const q4cNLc_def = (itemSkeleton: SurveyItem, q4cNLKey: string): SurveyItem => {
                     ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "To differentiate between the ways of providing care"],
                     ["nl", "Om de verschillende lagen van de zorg verder uit te splitsen"],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
 
         ])
@@ -3801,21 +3792,21 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
                     ["en", "Why do we ask this question?"],
                     ["nl", "Waarom vragen we dit?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "The timing of the test is important to interpret the data"],
                     ["nl", "Het weten van de timing van testen is belangrijk om uw gegevens te interpreteren."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How shall you answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -3824,7 +3815,7 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
                     ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was."],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -3877,7 +3868,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -3886,7 +3877,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "We willen de mogelijke opname van het coronavaccin onderzoeken."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -3895,7 +3886,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -3904,7 +3895,7 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Zeg ja wanneer je van plan bent om het coronavaccin te nemen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -3993,7 +3984,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -4002,7 +3993,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
                     ["nl", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet."],
                     ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
@@ -4011,7 +4002,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
-                style: [{ key: 'variant', value: 'subtitle2' }],
+                style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
@@ -4020,7 +4011,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
                     ["nl", "Geef alle redenen aan die een rol spelen in de beslissing."],
                     ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
                 ]),
-                style: [{ key: 'variant', value: 'body2' }],
+                style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -4029,7 +4020,6 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        style: [{ key: 'variant', value: 'annotation' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
