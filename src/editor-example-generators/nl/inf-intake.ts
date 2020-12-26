@@ -1018,14 +1018,12 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 key: '0', role: 'option', content: new Map([
                     ["en", "0"],
-                    ["nl", "0"],
                     ["fr", "0"],
                 ])
             },
             {
                 key: '1', role: 'option', content: new Map([
                     ["en", "1"],
-                    ["de", "1"],
                     ["fr", "1"],
                 ]),
             }, {
@@ -1984,7 +1982,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
             {
                 content: new Map([
                     ["en", "We would like to know why some people get vaccinated and others do not."],
-                    ["de", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet."],
+                    ["nl", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet."],
                     ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -2901,7 +2899,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity?"],
-            ["fr", "Depuis le début des mesures de confinement liées au COVID-19, exercez-vous une activité professionnelle ? "],
+            ["fr", "Depuis le début des mesures de confinement liées au COVID-19, exercez-vous une activité professionnelle?"],
         ]))
     );
 
