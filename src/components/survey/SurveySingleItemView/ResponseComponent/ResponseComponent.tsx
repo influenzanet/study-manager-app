@@ -28,6 +28,7 @@ interface ResponseComponentProps {
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
+  isRequired: boolean;
 }
 
 const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
@@ -197,10 +198,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}
-              isRequired={
-                false
-                // todo: get required from props
-              }
+              isRequired={props.isRequired}
               responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
             />
           default:

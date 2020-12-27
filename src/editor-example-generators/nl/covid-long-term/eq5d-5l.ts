@@ -1,8 +1,9 @@
 import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initEQ5DHealthIndicatorQuestion } from "../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../editor-engine/utils/simple-generators";
+import { expWithArgs, generateLocStrings } from "../../../editor-engine/utils/simple-generators";
 
+const responseGroupKey = 'rg';
 
 const getEQ5DGroup = (parentKey: string, itemKey: string): SurveyGroupItem => {
     const key = [parentKey, itemKey].join('.');
@@ -172,14 +173,8 @@ const q_healthstatus_instructions_def = (parentKey: string, key: string): Survey
 }
 
 const q_healthstatus_def = (parentKey: string, key: string): SurveyItem => {
-    const editor = new ItemEditor(undefined, { itemKey: parentKey + '.' + key, isGroup: false });
-    editor.addDisplayComponent(
-        {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO: health indicator"],
-            ]))
-        }
-    )
+    const itemKey = parentKey + '.' + key;
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
@@ -188,25 +183,25 @@ const q_healthstatus_def = (parentKey: string, key: string): SurveyItem => {
         key: '0',
         role: 'eq5d-health-indicator',
         instructionText: new Map([
-            ["en", "TODO: instruction"],
+            ["en", "Please click/tap on the scale to indiciate how your health is TODAY."],
         ]),
         valueBoxText: new Map([
-            ["en", "TODO: value text"],
+            ["en", "YOUR HEALTH TODAY ="],
         ]),
-        minHealthText: new Map([
-            ["en", "TODO: min text"],
+         minHealthText: new Map([
+            ["en", "The worst health you can imagine"],
         ]),
         maxHealthText: new Map([
-            ["en", "TODO: max text"],
+            ["en", "The best health you can imagine"],
         ]),
     });
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    /*editor.addValidation({
+    editor.addValidation({
         key: 'r1',
         type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });*/
+        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+    });
 
     editor.addDisplayComponent(
         {

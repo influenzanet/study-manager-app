@@ -74,6 +74,7 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
                 languageCode={props.languageCode}
                 compDef={component}
                 prefill={props.responsePrefill}
+                isRequired={requiredItem ? true : false}
                 responseChanged={(response) => {
                   console.log('new response set', response)
                   setTouched(true);
