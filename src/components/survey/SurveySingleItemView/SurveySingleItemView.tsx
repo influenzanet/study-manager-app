@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { SurveySingleItem, ItemGroupComponent, ResponseItem, ItemComponent } from 'survey-engine/lib/data_types';
-import Typography from '@material-ui/core/Typography';
-import { getItemComponentTranslationByRole, getItemComponentByRole } from './utils';
-import Box from '@material-ui/core/Box';
-import HelpGroup from './HelpGroup/HelpGroup';
-import TextViewComponent from './TextViewComponent/TextViewComponent';
-import ErrorComponent from './ErrorComponent/ErrorComponent';
-import WarningComponent from './WarningComponent/WarningComponent';
+import { getItemComponentTranslationByRole, getItemComponentByRole, getItemComponentsByRole } from './utils';
+import HelpGroup from './SurveyComponents/HelpGroup';
+import TextViewComponent from './SurveyComponents/TextViewComponent';
+import ErrorComponent from './SurveyComponents/ErrorComponent';
+import WarningComponent from './SurveyComponents/WarningComponent';
 import ResponseComponent from './ResponseComponent/ResponseComponent';
 import clsx from 'clsx';
-
-import styles from './SurveySingleItemView.module.scss';
+import BulletList from './SurveyComponents/BulletList';
 
 interface SurveySingleItemViewProps {
   renderItem: SurveySingleItem;
@@ -25,6 +22,8 @@ interface SurveySingleItemViewProps {
 const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
   const [response, setResponse] = useState<ResponseItem | undefined>(props.responsePrefill);
   const [touched, setTouched] = useState(false);
+
+  const horizontalPadding = 'px-2 px-sm-3';
 
   useEffect(() => {
     if (touched) {
@@ -62,6 +61,8 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
               return null;
             case 'helpGroup':
               return null;
+            case 'footnote':
+              return null;
             case 'responseGroup':
               if (!response) {
                 setResponse({
@@ -83,6 +84,11 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
               return <TextViewComponent key={index.toFixed()}
                 compDef={component}
                 languageCode={props.languageCode}
+              />;
+            case 'bullets':
+              return <BulletList key={index.toFixed()}
+                compDef={component}
+                languageCode={props.languageCode}
               />
             case 'error':
               return <ErrorComponent key={index.toFixed()}
@@ -95,7 +101,7 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
                 languageCode={props.languageCode}
               />
             default:
-              console.warn('compment role not implemented: ' + component.role);
+              console.warn('component role not implemented: ' + component.role);
               return <p key={index.toFixed()}>{component.role} not implemented</p>
           }
         })
@@ -105,62 +111,88 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
 
   const titleComp = props.renderItem.components ? getItemComponentTranslationByRole(props.renderItem.components.items, 'title', props.languageCode) : undefined;
 
-  return (
-    <div
-      className={
-        styles.itemContainer
-      }>
-      {
-        titleComp ?
-          <Box display="flex" alignItems="center"
-            className={clsx(
-              'px-2 font-weight-bold',
-              styles.itemHeader,
-              {
-                'custom-error-bg': props.showInvalid
-              }
-            )}
-          >
-            <Box flexGrow="1">
+  const renderTitleComp = (): React.ReactNode => {
+    if (!titleComp) { return null; }
 
-              <h6 style={{ fontWeight: 'bold', marginTop: 12, marginBottom: 12 }} >
-                {titleComp}
-                {requiredItem ?
-                  <span
-                    className={clsx(
-                      'ms-1',
-                      {
-                        'text-primary': !props.showInvalid,
-                        'text-danger': props.showInvalid
-                      }
-                    )}
-                  >
-                    {'*'}
-                  </span> : null}
-              </h6>
+    return (
+      <div
+        className={
+          clsx(
+            'd-flex align-items-center',
+            horizontalPadding,
+            'py-2a',
+            'bg-grey-2',
+            {
+              'custom-error-bg': props.showInvalid
+            }
+          )}
+      >
+        <h5 className="m-0 flex-grow-1 fw-bold">
+          {titleComp}
+          {requiredItem ?
+            <span
+              className={clsx(
+                'ms-1',
+                {
+                  'text-primary': !props.showInvalid,
+                  'text-danger': props.showInvalid
+                }
+              )}
+            >
+              {'*'}
+            </span> : null}
+        </h5>
+        { renderHelpGroup()}
+      </div >
+    )
+  }
 
-            </Box>
-            {renderHelpGroup()}
-          </Box>
-          : null
+  const renderFootnote = (): React.ReactNode => {
+    if (!props.renderItem.components) { return null; }
+    const currentComponents = getItemComponentsByRole(props.renderItem.components.items, 'footnote');
+    if (currentComponents.length < 1) {
+      return null;
+    }
+
+    return currentComponents.map((component: ItemComponent, index: number) => {
+      if (component.displayCondition === false) {
+        return null;
       }
-      <div className={
-        clsx({
-          'p-2': !titleComp
-        })
-      }>
-        {renderBodyComponents()}
-      </div>
-      { props.showInvalid ?
-        <p className='custom-error-bg p-2 m-0 text-danger font-weight-bold'
-          style={{ fontSize: '1.1875rem' }}
+      return <TextViewComponent
+        className={clsx(horizontalPadding, 'mt-2a')}
+        key={index.toFixed()}
+        compDef={component}
+        languageCode={props.languageCode}
+      />
+    })
+  }
+
+  return (
+    <React.Fragment>
+      <div
+        className={'bg-grey-1'}>
+        {renderTitleComp()}
+        <div className={clsx(
+          horizontalPadding,
+          'py-2a'
+        )}
         >
-          {props.invalidWarning}
-        </p>
-
-        : null}
-
-    </div>
+          {renderBodyComponents()}
+        </div>
+        {props.showInvalid ?
+          <p className={clsx(
+            horizontalPadding,
+            'fw-bold',
+            'custom-error-bg m-0 text-danger'
+          )}
+            style={{ fontSize: '1.1875rem' }}
+          >
+            {props.invalidWarning}
+          </p>
+          : null}
+      </div>
+      {renderFootnote()}
+    </React.Fragment>
   );
 };
 

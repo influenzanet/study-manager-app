@@ -52,7 +52,7 @@ const TestViewer: React.FC = () => {
                 <h5 className="d-inline fw-bold">
                     {getSurveyNameByLocaleCode(survey.props?.name, selectedLanguage)}
                 </h5>
-                <span className="ms-2 fw-lighter text-primary">
+                <span className="ms-2 text-primary">
                     {getSurveyNameByLocaleCode(survey.props?.typicalDuration, selectedLanguage)}
                 </span>
             </div>

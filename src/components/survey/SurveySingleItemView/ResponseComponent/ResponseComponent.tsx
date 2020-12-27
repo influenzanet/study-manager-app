@@ -19,8 +19,9 @@ import SliderNumeric from './Sliders/SliderNumeric/SliderNumeric';
 import SliderNumericRange from './Sliders/SliderNumericRange/SliderNumericRange';
 import SliderCategorical from './Sliders/SliderCategorical/SliderCategorical';
 import Matrix from './Matrix/Matrix';
-import TextViewComponent from '../TextViewComponent/TextViewComponent';
+import TextViewComponent from '../SurveyComponents/TextViewComponent';
 import moment from 'moment';
+import EQ5DHealthIndicatorInput from './EQ5DHealthIndicatorInput/EQ5DHealthIndicatorInput';
 
 interface ResponseComponentProps {
   compDef: ItemComponent;
@@ -86,8 +87,10 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
 
   return <MuiPickersUtilsProvider utils={MomentUtils} locale={props.languageCode}>
     <div
-      // color="#f2f2f2"
-      style={{ padding: "8px 16px" }}>
+    // className="px-3 py-2a"
+    // color="#f2f2f2"
+    // style={{ padding: "8px 16px" }}
+    >
       {(props.compDef as ItemGroupComponent).items.map((respComp, index) => {
 
         if (respComp.displayCondition === false) {
@@ -186,6 +189,18 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}
+              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+            />
+          case 'eq5d-health-indicator':
+            return <EQ5DHealthIndicatorInput
+              key={respComp.key}
+              languageCode={props.languageCode}
+              compDef={respComp}
+              prefill={getPrefillForItem(respComp)}
+              isRequired={
+                false
+                // todo: get required from props
+              }
               responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
             />
           default:

@@ -109,9 +109,63 @@ const q_healthstatus_instructions_def = (parentKey: string, key: string): Survey
     const editor = new ItemEditor(undefined, { itemKey: parentKey + '.' + key, isGroup: false });
     editor.addDisplayComponent(
         {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "TODO: health status bullets"],
-            ]))
+            role: 'bullets', items: [
+                {
+                    role: 'text', content: generateLocStrings(new Map([
+                        ["en", "We would like to know how good or bad your health is TODAY."],
+                    ])),
+                    style: [{ key: 'variant', value: 'li' }]
+                },
+                {
+                    role: 'text', content: generateLocStrings(new Map([
+                        ["en", "This scale is numbered from 0 to 100."],
+                    ])),
+                    style: [{ key: 'variant', value: 'li' }]
+                },
+                {
+                    role: 'text',
+                    style: [{ key: 'variant', value: 'li' }],
+                    items: [
+                        {
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "100 means the "],
+                            ]))
+                        },
+                        {
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "best"],
+                            ])),
+                            style: [{ key: 'className', value: 'text-decoration-underline' }]
+                        },
+                        {
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", " health you can imagine."],
+                            ]))
+                        },
+                    ],
+                },
+                {
+                    role: 'text',
+                    items: [
+                        {
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "0 means the "],
+                            ]))
+                        },
+                        {
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "worst"],
+                            ])),
+                            style: [{ key: 'className', value: 'text-decoration-underline' }]
+                        },
+                        {
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", " health you can imagine."],
+                            ]))
+                        },
+                    ],
+                },
+            ]
         }
     )
     return editor.getItem();
@@ -153,5 +207,15 @@ const q_healthstatus_def = (parentKey: string, key: string): SurveyItem => {
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });*/
+
+    editor.addDisplayComponent(
+        {
+            role: 'footnote', content: generateLocStrings(new Map([
+                ["en", "TODO: copyright statement"],
+            ])), style: [
+                { key: 'className', value: 'fst-italic text-center' }
+            ]
+        }
+    )
     return editor.getItem();
 }

@@ -312,7 +312,7 @@ const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
                     ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
                 ]),
-                style: [{ key: 'variant', value: 'p' }],
+                style: [{ key: 'variant', value: 'p' }, { key: 'className', value: 'm-0' }],
             },
         ])
     );

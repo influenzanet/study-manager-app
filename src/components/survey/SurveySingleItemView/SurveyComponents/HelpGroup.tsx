@@ -4,7 +4,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { ItemGroupComponent } from 'survey-engine/lib/data_types';
 
-import TextViewComponent from '../TextViewComponent/TextViewComponent';
+import TextViewComponent from './TextViewComponent';
 
 interface HelpGroupProps {
   componentGroup: ItemGroupComponent;

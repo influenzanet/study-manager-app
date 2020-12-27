@@ -5,7 +5,6 @@ import SurveySingleItemView from '../../SurveySingleItemView/SurveySingleItemVie
 import Box from '@material-ui/core/Box';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import RoundedButton from '../../../ui/buttons/RoundedButton';
-import RoundedBox from '../../../ui/RoundedBox';
 import { checkSurveyItemsValidity } from 'survey-engine/lib/validation-checkers';
 
 interface SurveyPageViewProps {
@@ -83,11 +82,11 @@ const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
     <div >
       {
         props.surveyItems.map(surveyItem =>
-          <Box mt={2} key={surveyItem.key}>
-            <RoundedBox style={{ paddingTop: 0, paddingBottom: 16 }}>
-              {mapSurveyItemToComp(surveyItem)}
-            </RoundedBox>
-          </Box>
+          <div
+            className="mt-2a p-0"
+            key={surveyItem.key}>
+            {mapSurveyItemToComp(surveyItem)}
+          </div>
         )
       }
       {actionButton}
