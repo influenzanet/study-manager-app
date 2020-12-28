@@ -1,4 +1,4 @@
-import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent } from "survey-engine/lib/data_types";
+import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent, SurveySingleItem } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 
 export const generateLocStrings = (translations: Map<string, string>): LocalizedString[] => {
@@ -14,10 +14,11 @@ export const generateLocStrings = (translations: Map<string, string>): Localized
     return locString;
 }
 
-export const generateTitleComponent = (translations: Map<string, string>): ItemComponent => {
+export const generateTitleComponent = (content: Map<string, string>, description?: Map<string, string>): ItemComponent => {
     return {
         role: 'title',
-        content: generateLocStrings(translations)
+        content: generateLocStrings(content),
+        description: description ? generateLocStrings(description) : undefined,
     };
 }
 
@@ -72,4 +73,13 @@ export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression =>
             }
         })
     }
+}
+
+export const generatePageBreak = (parentKey: string, key?: string): SurveySingleItem => {
+
+    return {
+        key: parentKey + '.' + (key ? key : Math.round(Math.random() * 10000).toFixed()),
+        version: 0,
+        type: 'pageBreak'
+    };
 }

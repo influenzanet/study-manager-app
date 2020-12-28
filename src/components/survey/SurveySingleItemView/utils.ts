@@ -26,7 +26,8 @@ export const getLocaleStringTextByCode = (translations: LocalizedObject[] | unde
   return translation.parts.map(p => p).join('');
 }
 
-export const getItemComponentByRole = (components: Array<ItemComponent>, role: string): ItemComponent | undefined => {
+export const getItemComponentByRole = (components: Array<ItemComponent> | undefined, role: string): ItemComponent | undefined => {
+  if (!components) { return; }
   return components.find(comp => comp.role === role);
 
 }

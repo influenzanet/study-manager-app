@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SurveySingleItem, ItemGroupComponent, ResponseItem, ItemComponent } from 'survey-engine/lib/data_types';
-import { getItemComponentTranslationByRole, getItemComponentByRole, getItemComponentsByRole } from './utils';
+import { getItemComponentByRole, getItemComponentsByRole, getLocaleStringTextByCode } from './utils';
 import HelpGroup from './SurveyComponents/HelpGroup';
 import TextViewComponent from './SurveyComponents/TextViewComponent';
 import ErrorComponent from './SurveyComponents/ErrorComponent';
@@ -110,10 +110,14 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
     </React.Fragment>;
   }
 
-  const titleComp = props.renderItem.components ? getItemComponentTranslationByRole(props.renderItem.components.items, 'title', props.languageCode) : undefined;
+  // const titleComp = props.renderItem.components ? getItemComponentTranslationByRole(props.renderItem.components.items, 'title', props.languageCode) : undefined;
+  const titleComp = getItemComponentByRole(props.renderItem.components?.items, 'title')
 
   const renderTitleComp = (): React.ReactNode => {
     if (!titleComp) { return null; }
+
+    const content = getLocaleStringTextByCode(titleComp.content, props.languageCode);
+    const description = getLocaleStringTextByCode(titleComp.description, props.languageCode);
 
     return (
       <div
@@ -128,21 +132,25 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
             }
           )}
       >
-        <h5 className="m-0 flex-grow-1 fw-bold">
-          {titleComp}
-          {requiredItem ?
-            <span
-              className={clsx(
-                'ms-1',
-                {
-                  'text-primary': !props.showInvalid,
-                  'text-danger': props.showInvalid
-                }
-              )}
-            >
-              {'*'}
-            </span> : null}
-        </h5>
+        <div className="flex-grow-1">
+          <h5 className="m-0 fw-bold">
+            {content}
+            {requiredItem ?
+              <span
+                className={clsx(
+                  'ms-1',
+                  {
+                    'text-primary': !props.showInvalid,
+                    'text-danger': props.showInvalid
+                  }
+                )}
+              >
+                {'*'}
+              </span> : null}
+          </h5>
+          {description ? <p className="m-0 fst-italic">{description} </p> : null}
+        </div>
+
         { renderHelpGroup()}
       </div >
     )

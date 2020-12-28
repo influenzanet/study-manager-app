@@ -3,7 +3,6 @@ import { Survey, SurveySingleItem, SurveySingleItemResponse, SurveyContext } fro
 import { SurveyEngineCore } from 'survey-engine/lib/engine';
 import SurveyPageView from './SurveyPageView/SurveyPageView';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router';
-import { Box } from '@material-ui/core';
 import SurveyProgress from './SurveyProgress/SurveyProgress';
 
 interface SurveyViewProps {
@@ -58,15 +57,12 @@ const SurveyView: React.FC<SurveyViewProps> = (props) => {
   return (
     <Fragment>
       {surveyPages.length > 1 ?
-        <Box px={4} my={4}
-        >
-          <Box>
-            <SurveyProgress
-              currentIndex={currentPage}
-              totalCount={surveyPages.length}
-            />
-          </Box>
-        </Box> : null}
+        <div className="py-3 px-2 px-sm-3">
+          <SurveyProgress
+            currentIndex={currentPage}
+            totalCount={surveyPages.length}
+          />
+        </div> : null}
 
       <Switch>
         <Route path={`${pagesPath}/:index`} render={routeProps => {

@@ -94,11 +94,8 @@ const EQ5DHealthIndicatorInput: React.FC<EQ5DHealthIndicatorInputProps> = (props
         const height = sliderRef.current?.getBoundingClientRect().height;
         if (!top || !height) { return; }
         const value = Math.min(Math.max(1 - (event.clientY - top - 17) / (height - 35), 0), 1);
-        console.log(value);
 
         setValue(Math.round(value * 100));
-        //var x = event.clientX - bounds.left;
-        // var y = event.clientY - bounds.top;
     }
 
     return (
@@ -119,17 +116,30 @@ const EQ5DHealthIndicatorInput: React.FC<EQ5DHealthIndicatorInputProps> = (props
                         style={{
                             cursor: 'pointer',
                             userSelect: 'none',
+                            WebkitUserSelect: 'none',
+                            touchAction: 'none',
                         }}
                         ref={sliderRef}
                         onClick={mouseHandler}
                         onMouseMove={(event) => {
-                            if (isDragging) {
+                            if (isDragging && event.buttons > 0) {
                                 mouseHandler(event);
                             }
                         }}
+                        onTouchMove={(event) => {
+                            console.log(event);
+                            event.preventDefault();
+                            const top = sliderRef.current?.getBoundingClientRect().top;
+                            const height = sliderRef.current?.getBoundingClientRect().height;
+                            if (!top || !height) { return; }
+                            const value = Math.min(Math.max(1 - (event.touches[0].clientY - top - 17) / (height - 35), 0), 1);
+                            console.log(value);
+
+                            setValue(Math.round(value * 100));
+                        }}
                         onMouseDown={() => setIsDragging(true)}
                         onMouseUp={() => setIsDragging(false)}
-                        onMouseLeave={() => setIsDragging(false)}
+                    // onMouseLeave={() => setIsDragging(false)}
                     >
                         {Array(101).fill(0).map((v: any, index: number) =>
                             getTickItem(index)
@@ -151,7 +161,7 @@ const EQ5DHealthIndicatorInput: React.FC<EQ5DHealthIndicatorInputProps> = (props
                     <p className="m-0 fw-bold">{maxValueComp ? getLocaleStringTextByCode(maxValueComp.content, props.languageCode) : null}</p >
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -2,10 +2,10 @@ import React, { useState, Dispatch, SetStateAction } from 'react';
 import { SurveySingleItem } from 'survey-engine/lib/data_types';
 import { SurveyEngineCore } from 'survey-engine/lib/engine';
 import SurveySingleItemView from '../../SurveySingleItemView/SurveySingleItemView';
-import Box from '@material-ui/core/Box';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
 import RoundedButton from '../../../ui/buttons/RoundedButton';
 import { checkSurveyItemsValidity } from 'survey-engine/lib/validation-checkers';
+import clsx from 'clsx';
 
 interface SurveyPageViewProps {
   surveyEngine: SurveyEngineCore;
@@ -17,18 +17,7 @@ interface SurveyPageViewProps {
   setResponseCount: Dispatch<SetStateAction<number>>
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    btn: {
-      margin: theme.spacing(1),
-      minWidth: 150,
-    },
-  }),
-);
-
 const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
-  const classes = useStyles();
-
   const [displayedKeys, setDisplayedKeys] = useState<Array<string>>([]);
 
   const responses = props.surveyEngine.getResponses();
@@ -67,23 +56,29 @@ const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
   }
 
   const actionButton = (
-    <Box textAlign="center" m={1}>
+    <div className="text-center">
       {checkSurveyItemsValidity(props.surveyItems).hard ? 'valid' : 'invalid'}
-      <RoundedButton className={classes.btn}
+      <RoundedButton
+        className="m-3"
         color="primary"
         onClick={props.action}
       >
         {props.actionLabel}
       </RoundedButton>
-    </Box>
+    </div>
   )
 
   return (
     <div >
       {
-        props.surveyItems.map(surveyItem =>
+        props.surveyItems.map((surveyItem, index) =>
           <div
-            className="mt-2a p-0"
+            className={clsx(
+              'p-0',
+              {
+                'mt-2a': index > 0
+              }
+            )}
             key={surveyItem.key}>
             {mapSurveyItemToComp(surveyItem)}
           </div>
