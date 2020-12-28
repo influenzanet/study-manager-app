@@ -55,7 +55,7 @@ const eq5dCopyright = {
     role: 'footnote', content: generateLocStrings(new Map([
         ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
     ])), style: [
-        { key: 'className', value: 'fst-italic text-center' }
+        { key: 'className', value: 'fs-small fst-italic text-center' }
     ]
 };
 

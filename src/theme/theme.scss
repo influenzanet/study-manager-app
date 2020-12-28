@@ -33,12 +33,14 @@ $font-family-base:
   // Emoji fonts
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
+.fs-small {
+    font-size: 0.875rem;
+}
 
-// ---------------------------------------------
-// Other:
-// ---------------------------------------------
-$enable-rounded: false !default;
-
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+}
 
 // ---------------------------------------------
 // Spacing:
@@ -55,3 +57,12 @@ $spacers: (
 ) !default;
 
 $enable-negative-margins: true;
+
+// ---------------------------------------------
+// Other:
+// ---------------------------------------------
+$enable-rounded: false !default;
+
+.cursor-pointer {
+    cursor: pointer;
+}
