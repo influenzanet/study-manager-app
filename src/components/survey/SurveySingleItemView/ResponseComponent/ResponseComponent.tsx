@@ -24,6 +24,7 @@ import moment from 'moment';
 import EQ5DHealthIndicatorInput from './EQ5DHealthIndicatorInput/EQ5DHealthIndicatorInput';
 
 interface ResponseComponentProps {
+  itemKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
@@ -97,6 +98,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
         if (respComp.displayCondition === false) {
           return <div key={respComp.key ? respComp.key : 'p' + index.toString()} hidden></div>;
         }
+        const currentKeyPath = [props.itemKey, props.compDef.key, respComp.key].join('.');
         switch (respComp.role) {
           case 'text':
             return <TextViewComponent
@@ -107,6 +109,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
           case 'singleChoiceGroup':
             return <SingleChoiceGroup
               key={respComp.key}
+              parentKey={currentKeyPath}
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}
@@ -115,6 +118,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
           case 'multipleChoiceGroup':
             return <MultipleChoiceGroup
               key={respComp.key}
+              parentKey={currentKeyPath}
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}

@@ -71,6 +71,7 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
                 })
               }
               return <ResponseComponent key={index.toFixed()}
+                itemKey={props.renderItem.key}
                 languageCode={props.languageCode}
                 compDef={component}
                 prefill={props.responsePrefill}

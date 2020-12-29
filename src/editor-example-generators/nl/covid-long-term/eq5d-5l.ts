@@ -72,7 +72,9 @@ const q_mobility_def = (parentKey: string, key: string): SurveyItem => {
 
     editor.addDisplayComponent(
         {
-            role: 'text', content: generateLocStrings(new Map([
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-2' }],
+            content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
             ]))
         }
@@ -135,7 +137,9 @@ const q_selfcare_def = (parentKey: string, key: string): SurveyItem => {
 
     editor.addDisplayComponent(
         {
-            role: 'text', content: generateLocStrings(new Map([
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-2' }],
+            content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
             ]))
         }
@@ -203,7 +207,9 @@ const q_activities_def = (parentKey: string, key: string): SurveyItem => {
 
     editor.addDisplayComponent(
         {
-            role: 'text', content: generateLocStrings(new Map([
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-2' }],
+            content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
             ]))
         }
@@ -266,7 +272,9 @@ const q_pain_def = (parentKey: string, key: string): SurveyItem => {
 
     editor.addDisplayComponent(
         {
-            role: 'text', content: generateLocStrings(new Map([
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-2' }],
+            content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
             ]))
         }
@@ -328,7 +336,9 @@ const q_anxiety_def = (parentKey: string, key: string): SurveyItem => {
 
     editor.addDisplayComponent(
         {
-            role: 'text', content: generateLocStrings(new Map([
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-2' }],
+            content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
             ]))
         }

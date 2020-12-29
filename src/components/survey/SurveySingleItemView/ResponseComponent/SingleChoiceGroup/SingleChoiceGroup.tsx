@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { ItemComponent, ItemGroupComponent } from 'survey-engine/lib/data_types/survey-item-component';
 import { ResponseItem } from 'survey-engine/lib/data_types/response';
-import { FormControl, RadioGroup, FormControlLabel, Radio, Tooltip, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { FormControlLabel, Radio, createStyles, makeStyles, Theme } from '@material-ui/core';
 import { getLocaleStringTextByCode } from '../../utils';
 import DateInput from '../DateInput/DateInput';
 import TextInput from '../TextInput/TextInput';
 import NumberInput from '../NumberInput/NumberInput';
 
+import clsx from 'clsx';
+
 interface SingleChoiceGroupProps {
+  parentKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
@@ -107,28 +110,40 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
     return response.items[0].key;
   }
 
-  const renderResponseOption = (option: ItemComponent): React.ReactNode => {
+  const renderResponseOption = (option: ItemComponent, isLast: boolean): React.ReactNode => {
     if (option.displayCondition === false) {
       return null;
     }
     const prefill = getSelectedItem();
+    const optionKey = props.parentKey + '.' + option.key;
     switch (option.role) {
       case 'option':
-        const renderedOption = <FormControlLabel
-          style={{ marginRight: "auto" }}
-          key={option.key}
-          value={option.key}
-          control={<Radio />}
-          label={getLocaleStringTextByCode(option.content, props.languageCode)}
-          disabled={option.disabled === true}
-        />;
-        const description = getLocaleStringTextByCode(option.description, props.languageCode);
-        if (description) {
-          return <Tooltip key={option.key} title={description} arrow>
-            {renderedOption}
-          </Tooltip>
-        }
-        return renderedOption;
+        return (
+          <div className={clsx("form-check", {
+            'mb-2': !isLast
+          })}
+            key={option.key} >
+            <input
+              className="form-check-input"
+              type="radio"
+              name={props.parentKey}
+              id={optionKey}
+              value={option.key}
+              disabled={option.disabled === true}
+              onChange={handleSelectionChange}
+            />
+            <label className="form-check-label" htmlFor={optionKey}>
+              {getLocaleStringTextByCode(option.content, props.languageCode)}
+            </label>
+          </div>)
+      /*
+      const description = getLocaleStringTextByCode(option.description, props.languageCode);
+      if (description) {
+        return <Tooltip key={option.key} title={description} arrow>
+          {renderedOption}
+        </Tooltip>
+      }*/
+      // return renderedOption;
       case 'input':
         return <FormControlLabel
           style={{ marginRight: "auto", width: "100%" }}
@@ -183,20 +198,14 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
     }
   }
   return (
-    <FormControl component="fieldset"
-      //className={classes.formControl}
-      style={{ width: "100%" }}
+    <fieldset
+      id={props.parentKey}
+      aria-label="options"
     >
-      <RadioGroup aria-label="options"
-        name={props.compDef.key}
-        value={getSelectedKey()}
-        onChange={handleSelectionChange}
-      >
-        {
-          (props.compDef as ItemGroupComponent).items.map(option => renderResponseOption(option))
-        }
-      </RadioGroup>
-    </FormControl>
+      {
+        (props.compDef as ItemGroupComponent).items.map((option, index) => renderResponseOption(option, (props.compDef as ItemGroupComponent).items.length - 1 === index))
+      }
+    </fieldset>
   );
 };
 

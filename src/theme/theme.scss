@@ -59,6 +59,12 @@ $spacers: (
 $enable-negative-margins: true;
 
 // ---------------------------------------------
+// Form Inputs:
+// ---------------------------------------------
+$form-check-input-width: 1.5em !default;
+$form-check-input-border: 2px solid  map-get($theme-colors, "grey-7") !default;
+
+// ---------------------------------------------
 // Other:
 // ---------------------------------------------
 $enable-rounded: false !default;
@@ -66,3 +72,14 @@ $enable-rounded: false !default;
 .cursor-pointer {
     cursor: pointer;
 }
+
+.border-top-2 {
+  border-top-style: solid;
+  border-top-width: 2px !important;
+}
+
+.border-bottom-2 {
+  border-bottom-style: solid;
+  border-bottom-width: 2px !important;
+}
+
