@@ -134,6 +134,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
             />
           case 'input':
             return <TextInput
+              parentKey={currentKeyPath}
               key={respComp.key}
               languageCode={props.languageCode}
               compDef={respComp}

@@ -487,6 +487,7 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '0', role: 'input',
+            // style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["en", "Postcode:"],
                 ["nl", "Postcode"],
@@ -916,7 +917,7 @@ const q5_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
-        // style: [{ key: 'className', value: 'fw-bolder' }],
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -1849,6 +1850,7 @@ const q10c_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2010,6 +2012,7 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2199,6 +2202,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2596,6 +2600,7 @@ const q14_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2672,6 +2677,7 @@ const q15_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2748,6 +2754,7 @@ const q16_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2828,6 +2835,7 @@ const q17_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -2907,6 +2915,7 @@ const qcov10_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
@@ -3730,6 +3739,7 @@ const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
 
     editor.addExistingResponseComponent({
         role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],

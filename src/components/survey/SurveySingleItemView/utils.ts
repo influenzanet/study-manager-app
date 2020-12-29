@@ -35,3 +35,14 @@ export const getItemComponentByRole = (components: Array<ItemComponent> | undefi
 export const getItemComponentsByRole = (components: Array<ItemComponent>, role: string): ItemComponent[] => {
   return components.filter(comp => comp.role === role);
 }
+
+export const getClassName = (styles?: Array<{ key: string, value: string }>): string | undefined => {
+  if (!styles) {
+    return;
+  }
+  const className = styles.find(st => st.key === 'className');
+  if (!className) {
+    return;
+  }
+  return className.value;
+}

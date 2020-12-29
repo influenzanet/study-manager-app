@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
 import { TextField } from '@material-ui/core';
-import { getLocaleStringTextByCode } from '../../utils';
+import { getClassName, getLocaleStringTextByCode } from '../../utils';
+import clsx from 'clsx';
 
 interface TextInputProps {
+  parentKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
   updateDelay?: number;
+  onClick?: () => void;
 }
 
 const TextInput: React.FC<TextInputProps> = (props) => {
@@ -50,29 +53,38 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     })
   };
 
-
+  const fullKey = [props.parentKey, props.compDef.key].join('.');
   return (
-    <TextField
-      fullWidth
-      placeholder={getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
-      value={inputValue}
-      margin="dense"
-      variant="filled"
-      inputProps={{
-        style: {
-          padding: "8px 16px",
-        },
-        maxLength: 4000,
-      }}
-      InputProps={{
-        disableUnderline: true,
-        style: {
-          borderRadius: 1000,
-        }
-      }}
-      onChange={handleInputValueChange(props.compDef.key)}
-      disabled={props.compDef.disabled !== undefined}
-    ></TextField>
+    <div
+      className={clsx("d-flex align-items-center", getClassName(props.compDef.style))}
+      onClick={props.onClick}
+    >
+      <label htmlFor={fullKey} className="me-1">
+        {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
+      </label>
+      <TextField
+        id={fullKey}
+        fullWidth
+        placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
+        value={inputValue}
+        margin="dense"
+        variant="filled"
+        inputProps={{
+          style: {
+            padding: "8px 16px",
+          },
+          maxLength: 4000,
+        }}
+        InputProps={{
+          disableUnderline: true,
+          style: {
+            borderRadius: 1000,
+          }
+        }}
+        onChange={handleInputValueChange(props.compDef.key)}
+        disabled={props.compDef.disabled !== undefined}
+      ></TextField>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { isItemGroupComponent, ItemComponent } from 'survey-engine/lib/data_types';
-import { getLocaleStringTextByCode } from '../utils';
+import { getClassName, getLocaleStringTextByCode } from '../utils';
 import clsx from 'clsx';
 
 interface TextViewComponentProps {
@@ -32,16 +32,7 @@ const getVariant = (styles?: Array<{ key: string, value: string }>): Variant | u
   return variant;
 }
 
-const getClassName = (styles?: Array<{ key: string, value: string }>): string | undefined => {
-  if (!styles) {
-    return;
-  }
-  const className = styles.find(st => st.key === 'className');
-  if (!className) {
-    return;
-  }
-  return className.value;
-}
+
 
 const TextViewComponent: React.FC<TextViewComponentProps> = (props) => {
   const variant = getVariant(props.compDef.style);

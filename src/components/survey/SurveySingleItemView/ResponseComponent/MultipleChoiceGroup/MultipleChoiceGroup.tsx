@@ -4,24 +4,17 @@ import { FormControl, FormGroup, FormControlLabel, Checkbox, Box, TextField, Too
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { getLocaleStringTextByCode } from '../../utils';
 
+import clsx from 'clsx';
+
 interface MultipleChoiceGroupProps {
   compDef: ItemComponent;
+  parentKey: string;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    inputLabel: {
-      width: "100%",
-    }
-  }),
-);
-
 const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
-  const classes = useStyles();
-
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
 
@@ -126,31 +119,42 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
     return false;
   }
 
-  const renderResponseOption = (option: ItemComponent): React.ReactNode => {
+  const renderResponseOption = (option: ItemComponent, isLast: boolean): React.ReactNode => {
     if (option.displayCondition === false) {
       return null;
     }
+    const optionKey = props.parentKey + '.' + option.key;
     switch (option.role) {
       case 'option':
-        const renderedOption =
-          <FormControlLabel
-            key={option.key}
-            style={{ marginRight: "auto" }}
-            value={option.key}
-            control={
-              <Checkbox checked={isChecked(option.key ? option.key : 'no key found')}
-                onChange={handleSelectionChange}
-                value={option.key} />}
-            label={getLocaleStringTextByCode(option.content, props.languageCode)}
-            disabled={isDisabled(option)}
-          />
-        const description = getLocaleStringTextByCode(option.description, props.languageCode);
-        if (description) {
-          return <Tooltip key={option.key} title={description} arrow>
-            {renderedOption}
-          </Tooltip>
-        }
-        return renderedOption;
+        return (
+          <div className={clsx("form-check", {
+            'mb-2': !isLast
+          })}
+            key={option.key} >
+            <input
+              className="form-check-input cursor-pointer"
+              type="checkbox"
+              name={props.parentKey}
+              id={optionKey}
+              value={option.key}
+              checked={isChecked(option.key ? option.key : 'no key found')}
+              disabled={isDisabled(option)}
+              onChange={handleSelectionChange}
+            />
+            <label
+              className="form-check-label cursor-pointer w-100"
+              htmlFor={optionKey}>
+              {getLocaleStringTextByCode(option.content, props.languageCode)}
+            </label>
+          </div>)
+      /*
+      const description = getLocaleStringTextByCode(option.description, props.languageCode);
+      if (description) {
+        return <Tooltip key={option.key} title={description} arrow>
+          {renderedOption}
+        </Tooltip>
+      }
+      return renderedOption;*/
       case 'input':
         let r = inputValues.find(v => v.key === option.key);
         if (!r) {
@@ -194,7 +198,6 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
         </Box >;
 
         return <FormControlLabel
-          classes={{ label: classes.inputLabel }}
           style={{ marginRight: 0 }}
           key={option.key}
           value={option.key}
@@ -212,17 +215,16 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
   }
 
   return (
-    <FormControl component="fieldset"
-      style={{ width: "100%" }}
+    <fieldset
+      id={props.parentKey}
+      aria-label="options"
     >
-      <FormGroup>
-        {
-          (props.compDef as ItemGroupComponent).items.map(option =>
-            renderResponseOption(option)
-          )
-        }
-      </FormGroup>
-    </FormControl>
+      {
+        (props.compDef as ItemGroupComponent).items.map((option, index) =>
+          renderResponseOption(option, (props.compDef as ItemGroupComponent).items.length - 1 === index)
+        )
+      }
+    </fieldset>
   );
 };
 

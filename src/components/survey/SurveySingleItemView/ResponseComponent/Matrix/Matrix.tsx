@@ -293,6 +293,7 @@ const Matrix: React.FC<MatrixProps> = (props) => {
         case 'input':
           currentCellContent = <div className={classes.textfield}>
             <TextInput
+              parentKey={'todo'}
               compDef={cell}
               languageCode={props.languageCode}
               responseChanged={handleCellResponseChange(compDef.key, cell.key)}

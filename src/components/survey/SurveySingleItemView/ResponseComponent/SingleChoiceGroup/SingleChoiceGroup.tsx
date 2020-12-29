@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ItemComponent, ItemGroupComponent } from 'survey-engine/lib/data_types/survey-item-component';
 import { ResponseItem } from 'survey-engine/lib/data_types/response';
-import { FormControlLabel, Radio, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { FormControlLabel, Radio } from '@material-ui/core';
 import { getLocaleStringTextByCode } from '../../utils';
 import DateInput from '../DateInput/DateInput';
 import TextInput from '../TextInput/TextInput';
@@ -17,18 +17,8 @@ interface SingleChoiceGroupProps {
   languageCode: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    inputLabel: {
-      width: "100%",
-    },
-  }),
-);
-
 
 const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
-  const classes = useStyles();
-
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
 
@@ -48,8 +38,12 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
 
 
   const handleSelectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTouched(true);
     const key = (event.target as HTMLInputElement).value;
+    onOptionSelected(key);
+  };
+
+  const onOptionSelected = (key: string) => {
+    setTouched(true);
     setResponse(prev => {
       if (!prev) {
         return {
@@ -65,7 +59,7 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
         ]
       }
     });
-  };
+  }
 
   const setResponseForKey = (key: string | undefined) => (response: ResponseItem | undefined) => {
     if (!key || !props.compDef.key) { return; }
@@ -116,26 +110,15 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
     }
     const prefill = getSelectedItem();
     const optionKey = props.parentKey + '.' + option.key;
+
+    let labelComponent = <p>{'loading...'}</p>
     switch (option.role) {
       case 'option':
-        return (
-          <div className={clsx("form-check", {
-            'mb-2': !isLast
-          })}
-            key={option.key} >
-            <input
-              className="form-check-input"
-              type="radio"
-              name={props.parentKey}
-              id={optionKey}
-              value={option.key}
-              disabled={option.disabled === true}
-              onChange={handleSelectionChange}
-            />
-            <label className="form-check-label" htmlFor={optionKey}>
-              {getLocaleStringTextByCode(option.content, props.languageCode)}
-            </label>
-          </div>)
+        labelComponent = <label className="form-check-label cursor-pointer flex-grow-1" htmlFor={optionKey}>
+          {getLocaleStringTextByCode(option.content, props.languageCode)}
+        </label>
+        break;
+
       /*
       const description = getLocaleStringTextByCode(option.description, props.languageCode);
       if (description) {
@@ -145,23 +128,18 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
       }*/
       // return renderedOption;
       case 'input':
-        return <FormControlLabel
-          style={{ marginRight: "auto", width: "100%" }}
-          classes={{ label: classes.inputLabel }}
-          key={option.key}
-          value={option.key}
-          control={<Radio />}
-          label={<TextInput
+        labelComponent =
+          <TextInput
+            parentKey={props.parentKey}
             key={option.key}
             compDef={option}
             prefill={(prefill && prefill.key === option.key) ? prefill : undefined}
             languageCode={props.languageCode}
             responseChanged={setResponseForKey(option.key)}
             updateDelay={5}
+            onClick={() => onOptionSelected(option.key ? option.key : 'unknown')}
           />
-          }
-          disabled={option.disabled !== undefined}
-        />;
+        break;
       case 'numberInput':
         return <FormControlLabel
           style={{ marginRight: "auto" }}
@@ -194,16 +172,41 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
         />;
 
       default:
-        return <p key={option.key}>role inside single choice group not implemented yet: {option.role}</p>
+        labelComponent = <p key={option.key}>role inside single choice group not implemented yet: {option.role}</p>;
     }
+
+    return (<div className={clsx(
+      "form-check d-flex align-items-center",
+      {
+        'mb-2': !isLast
+      })}
+      key={option.key} >
+      <div>
+        <input
+          className="form-check-input cursor-pointer"
+          type="radio"
+          name={props.parentKey}
+          id={optionKey}
+          value={option.key}
+          checked={getSelectedKey() === option.key}
+          disabled={option.disabled === true}
+          onChange={handleSelectionChange}
+        />
+      </div>
+      {labelComponent}
+
+    </div>)
   }
+
   return (
     <fieldset
       id={props.parentKey}
       aria-label="options"
     >
       {
-        (props.compDef as ItemGroupComponent).items.map((option, index) => renderResponseOption(option, (props.compDef as ItemGroupComponent).items.length - 1 === index))
+        (props.compDef as ItemGroupComponent).items.map(
+          (option, index) => renderResponseOption(option, (props.compDef as ItemGroupComponent).items.length - 1 === index)
+        )
       }
     </fieldset>
   );
