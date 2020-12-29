@@ -1,30 +1,25 @@
 import React from 'react';
 import { ItemComponent } from 'survey-engine/lib/data_types';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { FormHelperText } from '@material-ui/core';
-import { getLocaleStringTextByCode } from '../utils';
+import { getClassName, getLocaleStringTextByCode } from '../utils';
+import clsx from 'clsx';
 
 interface WarningComponentProps {
   compDef: ItemComponent;
   languageCode: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    warning: {
-      color: "#ffce00",
-      fontWeight: "bold"
-    },
-  }),
-);
-
 const WarningComponent: React.FC<WarningComponentProps> = (props) => {
-  const classes = useStyles();
   return (
-    <FormHelperText
-      className={classes.warning}>
+    <p
+      className={
+        clsx(
+          "m-0 mt-2",
+          "fw-bold text-warning",
+          getClassName(props.compDef.style),
+        )
+      }>
       {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
-    </FormHelperText>
+    </p>
   );
 };
 

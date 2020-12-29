@@ -111,22 +111,23 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
     const prefill = getSelectedItem();
     const optionKey = props.parentKey + '.' + option.key;
 
+    const isDisabled = option.disabled === true;
+
     let labelComponent = <p>{'loading...'}</p>
     switch (option.role) {
       case 'option':
         labelComponent = <label className="form-check-label cursor-pointer flex-grow-1" htmlFor={optionKey}>
           {getLocaleStringTextByCode(option.content, props.languageCode)}
         </label>
+        /*
+          const description = getLocaleStringTextByCode(option.description, props.languageCode);
+          if (description) {
+          return <Tooltip key={option.key} title={description} arrow>
+            {renderedOption}
+          </Tooltip>
+          }*/
+        // return renderedOption;
         break;
-
-      /*
-      const description = getLocaleStringTextByCode(option.description, props.languageCode);
-      if (description) {
-        return <Tooltip key={option.key} title={description} arrow>
-          {renderedOption}
-        </Tooltip>
-      }*/
-      // return renderedOption;
       case 'input':
         labelComponent =
           <TextInput
@@ -137,40 +138,31 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
             languageCode={props.languageCode}
             responseChanged={setResponseForKey(option.key)}
             updateDelay={5}
-            onClick={() => onOptionSelected(option.key ? option.key : 'unknown')}
-          />
+            disabled={isDisabled}
+          />;
         break;
       case 'numberInput':
-        return <FormControlLabel
-          style={{ marginRight: "auto" }}
-          key={option.key}
-          value={option.key}
-          control={<Radio />}
-          label={<NumberInput
+        labelComponent =
+          <NumberInput
+            parentKey={props.parentKey}
             key={option.key}
             compDef={option}
             prefill={(prefill && prefill.key === option.key) ? prefill : undefined}
             languageCode={props.languageCode}
             responseChanged={setResponseForKey(option.key)}
-          />}
-          disabled={option.disabled !== undefined}
-        />;
+          />;
+        break;
       case 'dateInput':
-        return <FormControlLabel
-          style={{ marginRight: "auto" }}
+        labelComponent = <DateInput
+          parentKey={props.parentKey}
           key={option.key}
-          value={option.key}
-          control={<Radio />}
-          label={<DateInput
-            key={option.key}
-            compDef={option}
-            prefill={(prefill && prefill.key === option.key) ? prefill : undefined}
-            languageCode={props.languageCode}
-            responseChanged={setResponseForKey(option.key)}
-          />}
-          disabled={option.disabled !== undefined}
+          compDef={option}
+          prefill={(prefill && prefill.key === option.key) ? prefill : undefined}
+          languageCode={props.languageCode}
+          responseChanged={setResponseForKey(option.key)}
+          disabled={isDisabled}
         />;
-
+        break;
       default:
         labelComponent = <p key={option.key}>role inside single choice group not implemented yet: {option.role}</p>;
     }
@@ -189,7 +181,7 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
           id={optionKey}
           value={option.key}
           checked={getSelectedKey() === option.key}
-          disabled={option.disabled === true}
+          disabled={isDisabled}
           onChange={handleSelectionChange}
         />
       </div>

@@ -304,6 +304,7 @@ const Matrix: React.FC<MatrixProps> = (props) => {
         case 'numberInput':
           currentCellContent = <div className={classes.numberInput}>
             <NumberInput
+              parentKey={'todo'}
               compDef={cell}
               languageCode={props.languageCode}
               responseChanged={handleCellResponseChange(compDef.key, cell.key)}

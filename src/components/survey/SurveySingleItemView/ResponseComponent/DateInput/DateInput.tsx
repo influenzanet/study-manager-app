@@ -8,10 +8,12 @@ import { Box, Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 
 interface DateInputProps {
+  parentKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
+  disabled?: boolean;
 }
 
 const DateInput: React.FC<DateInputProps> = (props) => {
@@ -121,7 +123,7 @@ const DateInput: React.FC<DateInputProps> = (props) => {
           }}
           placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
           clearable
-          disabled={props.compDef.disabled !== undefined}
+          disabled={props.compDef.disabled !== undefined || props.disabled === true}
           okLabel={t("common:datePicker.okLabel")}
           clearLabel={t("common:datePicker.clearLabel")}
           cancelLabel={t("common:datePicker.cancelLabel")}

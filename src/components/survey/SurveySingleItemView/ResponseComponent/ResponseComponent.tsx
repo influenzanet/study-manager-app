@@ -151,6 +151,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
             />
           case 'numberInput':
             return <NumberInput
+              parentKey={currentKeyPath}
               key={respComp.key}
               languageCode={props.languageCode}
               compDef={respComp}
@@ -159,6 +160,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
             />
           case 'dateInput':
             return <DateInput
+              parentKey={currentKeyPath}
               key={respComp.key}
               languageCode={props.languageCode}
               compDef={respComp}

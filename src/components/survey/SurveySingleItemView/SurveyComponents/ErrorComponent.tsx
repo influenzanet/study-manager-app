@@ -1,7 +1,7 @@
 import React from 'react';
 import { ItemComponent } from 'survey-engine/lib/data_types';
-import { FormHelperText } from '@material-ui/core';
-import { getLocaleStringTextByCode } from '../utils';
+import { getClassName, getLocaleStringTextByCode } from '../utils';
+import clsx from 'clsx';
 
 interface ErrorComponentProps {
   compDef: ItemComponent;
@@ -10,10 +10,16 @@ interface ErrorComponentProps {
 
 const ErrorComponent: React.FC<ErrorComponentProps> = (props) => {
   return (
-    <FormHelperText
-      className="px-2 pb-2 font-weight-bold text-danger">
+    <p
+      className={
+        clsx(
+          "m-0 mt-2",
+          "fw-bold text-danger",
+          getClassName(props.compDef.style),
+        )
+      }>
       {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
-    </FormHelperText>
+    </p>
   );
 };
 

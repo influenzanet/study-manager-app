@@ -12,6 +12,7 @@ interface TextInputProps {
   languageCode: string;
   updateDelay?: number;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const TextInput: React.FC<TextInputProps> = (props) => {
@@ -62,13 +63,16 @@ const TextInput: React.FC<TextInputProps> = (props) => {
       <label htmlFor={fullKey} className="me-1">
         {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
       </label>
-      <TextField
+      <input
+        className="form-control border border-white"
         id={fullKey}
-        fullWidth
         placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
         value={inputValue}
-        margin="dense"
-        variant="filled"
+        maxLength={4000}
+        onChange={handleInputValueChange(props.compDef.key)}
+        disabled={props.compDef.disabled !== undefined || props.disabled === true}
+      />
+      <TextField
         inputProps={{
           style: {
             padding: "8px 16px",
@@ -81,8 +85,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
             borderRadius: 1000,
           }
         }}
-        onChange={handleInputValueChange(props.compDef.key)}
-        disabled={props.compDef.disabled !== undefined}
+
       ></TextField>
     </div>
   );

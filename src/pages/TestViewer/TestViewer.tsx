@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
@@ -47,7 +47,7 @@ const TestViewer: React.FC = () => {
     const survey = selectedSurvey.survey;
 
     const renderSurveyNameAndDescription = (survey: Survey) => (
-        <div className="p-3 bg-grey-1">
+        <div className="py-2a px-2 px-sm-3 bg-grey-1">
             <div className="mb-2">
                 <h5 className="d-inline fw-bold">
                     {getSurveyNameByLocaleCode(survey.props?.name, selectedLanguage)}
@@ -70,18 +70,23 @@ const TestViewer: React.FC = () => {
                     {languageSelector}
                     {survey ?
                         renderSurveyNameAndDescription(survey) : null}
-                    {survey ?
+                    <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2">
+                        <h2 className="m-0">Survey Preview: </h2>
+                    </div>
 
-                        <SurveyView
-                            survey={survey}
-                            languageCode={selectedLanguage}
-                            onSubmit={(resp) => {
-                                console.log(resp)
-                            }}
-                            submitBtnText={'submit'}
-                            nextBtnText={'next'}
-                            backBtnText={'previous'}
-                        /> : null}
+                    {survey ?
+                        <div className="border-bottom-2 border-primary">
+                            <SurveyView
+                                survey={survey}
+                                languageCode={selectedLanguage}
+                                onSubmit={(resp) => {
+                                    console.log(resp)
+                                }}
+                                submitBtnText={'submit'}
+                                nextBtnText={'next'}
+                                backBtnText={'previous'}
+                            />
+                        </div> : null}
 
                     <Box display="flex" alignItems="center" justifyContent="center">
 
