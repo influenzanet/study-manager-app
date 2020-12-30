@@ -492,6 +492,10 @@ const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 ["en", "Postcode:"],
                 ["nl", "Postcode"],
                 ["fr", "Code postal"],
+            ]),
+            description: new Map([
+                ["en", "the first 4 digits"],
+                ["nl", "de eerste vier cijfers"],
             ])
         },
         {

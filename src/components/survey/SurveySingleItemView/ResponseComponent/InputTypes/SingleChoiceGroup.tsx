@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ItemComponent, ItemGroupComponent } from 'survey-engine/lib/data_types/survey-item-component';
 import { ResponseItem } from 'survey-engine/lib/data_types/response';
-import { FormControlLabel, Radio } from '@material-ui/core';
 import { getLocaleStringTextByCode } from '../../utils';
 import DateInput from '../DateInput/DateInput';
 import TextInput from '../TextInput/TextInput';

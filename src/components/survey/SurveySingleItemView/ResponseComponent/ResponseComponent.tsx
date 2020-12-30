@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem, isItemGroupComponent, ItemGroupComponent } from 'survey-engine/lib/data_types';
-import SingleChoiceGroup from './SingleChoiceGroup/SingleChoiceGroup';
-import MultipleChoiceGroup from './MultipleChoiceGroup/MultipleChoiceGroup';
+import SingleChoiceGroup from './InputTypes/SingleChoiceGroup';
+import MultipleChoiceGroup from './InputTypes/MultipleChoiceGroup';
 import DropDownGroup from './DropDownGroup/DropDownGroup';
 import DateInput from './DateInput/DateInput';
 import TextInput from './TextInput/TextInput';

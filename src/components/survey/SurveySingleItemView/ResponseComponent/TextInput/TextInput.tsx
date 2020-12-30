@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
-import { TextField } from '@material-ui/core';
 import { getClassName, getLocaleStringTextByCode } from '../../utils';
 import clsx from 'clsx';
 
@@ -72,21 +71,6 @@ const TextInput: React.FC<TextInputProps> = (props) => {
         onChange={handleInputValueChange(props.compDef.key)}
         disabled={props.compDef.disabled !== undefined || props.disabled === true}
       />
-      <TextField
-        inputProps={{
-          style: {
-            padding: "8px 16px",
-          },
-          maxLength: 4000,
-        }}
-        InputProps={{
-          disableUnderline: true,
-          style: {
-            borderRadius: 1000,
-          }
-        }}
-
-      ></TextField>
     </div>
   );
 };
