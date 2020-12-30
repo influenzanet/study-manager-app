@@ -64,6 +64,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
       </label>
       <input
         className="form-control border border-white"
+        autoComplete="off"
         id={fullKey}
         placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
         value={inputValue}

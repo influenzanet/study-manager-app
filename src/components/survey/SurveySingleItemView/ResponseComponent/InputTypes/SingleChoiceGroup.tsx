@@ -192,7 +192,7 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
   return (
     <fieldset
       id={props.parentKey}
-      aria-label="options"
+      aria-label="single choice options"
     >
       {
         (props.compDef as ItemGroupComponent).items.map(

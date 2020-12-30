@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem, ItemGroupComponent } from 'survey-engine/lib/data_types';
-import { FormControl, FormGroup, FormControlLabel, Checkbox, Box, TextField, Tooltip } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { getLocaleStringTextByCode } from '../../utils';
-
+import TextInput from '../TextInput/TextInput';
 import clsx from 'clsx';
+
 
 interface MultipleChoiceGroupProps {
   compDef: ItemComponent;
@@ -18,8 +17,8 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
 
-  const [inputValues, setInputValues] = useState<ResponseItem[]>(
-    props.prefill && props.prefill.items ? props.prefill.items.slice() : []
+  const [subResponseCache, setSubResponseCache] = useState<Array<ResponseItem>>(
+    (props.prefill && props.prefill.items) ? [...props.prefill.items] : []
   );
 
   useEffect(() => {
@@ -33,23 +32,40 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
   }, [response]);
 
   const handleSelectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTouched(true);
     const key = event.target.value;
     const checked = event.target.checked;
+    setResponseForKey(key, checked);
+  }
+
+  const setResponseForKey = (key: string, checked: boolean, value?: string, dtype?: string) => {
+    setTouched(true);
     if (checked) {
       const newRI: ResponseItem = {
         key: key,
       }
+      if (value) {
+        newRI.value = value;
+      }
+      if (dtype) {
+        newRI.dtype = dtype;
+      }
       setResponse(prev => {
-        if (!prev) {
+        if (!prev || !prev.items) {
           return {
             key: props.compDef.key ? props.compDef.key : 'no key found',
             items: [newRI]
           }
         }
+        const ind = prev.items.findIndex(pr => pr.key === key);
+        if (ind < 0) {
+          prev.items.push(newRI);
+        }
+        else {
+          prev.items[ind] = newRI;
+        }
         return {
           ...prev,
-          items: prev.items ? [...prev.items, newRI] : [newRI]
+          items: [...prev.items]
         }
       });
     } else {
@@ -68,32 +84,25 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
     }
   }
 
-  const handleInputValueChange = (key: string | undefined) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!key) { return; }
-    setTouched(true);
-
-    const value = (event.target as HTMLInputElement).value;
-
-    setInputValues(prev => {
-      setResponse(prevResp => {
-        if (!prevResp) { return { key: 'no key found', items: [] } }
-        return {
-          ...prevResp,
-          items: [{
-            key,
-            value
-          }]
+  const updateSubResponseCache = (key: string | undefined, response: ResponseItem | undefined) => {
+    setSubResponseCache(prev => {
+      const ind = prev.findIndex(pr => pr.key === key);
+      if (!response) {
+        if (ind < 0) {
+          return prev;
         }
-      });
-      const ind = prev.findIndex(v => v.key === key);
-      if (ind > -1) {
-        prev[ind] = { key, value }
+        prev = prev.splice(ind, 1);
+      } else {
+        if (ind < 0) {
+          prev.push(response);
+        }
+        else {
+          prev[ind] = response;
+        }
       }
-      return [
-        ...prev
-      ]
+      return [...prev];
     })
-  };
+  }
 
   const isChecked = (key: string): boolean => {
     if (!response || !response.items || response.items.length < 1) {
@@ -124,29 +133,16 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
       return null;
     }
     const optionKey = props.parentKey + '.' + option.key;
+    let labelComponent = <p>{'loading...'}</p>;
+
     switch (option.role) {
       case 'option':
-        return (
-          <div className={clsx("form-check", {
-            'mb-2': !isLast
-          })}
-            key={option.key} >
-            <input
-              className="form-check-input cursor-pointer"
-              type="checkbox"
-              name={props.parentKey}
-              id={optionKey}
-              value={option.key}
-              checked={isChecked(option.key ? option.key : 'no key found')}
-              disabled={isDisabled(option)}
-              onChange={handleSelectionChange}
-            />
-            <label
-              className="form-check-label cursor-pointer w-100"
-              htmlFor={optionKey}>
-              {getLocaleStringTextByCode(option.content, props.languageCode)}
-            </label>
-          </div>)
+        labelComponent = <label
+          className="form-check-label cursor-pointer w-100"
+          htmlFor={optionKey}>
+          {getLocaleStringTextByCode(option.content, props.languageCode)}
+        </label>;
+        break;
       /*
       const description = getLocaleStringTextByCode(option.description, props.languageCode);
       if (description) {
@@ -156,68 +152,57 @@ const MultipleChoiceGroup: React.FC<MultipleChoiceGroupProps> = (props) => {
       }
       return renderedOption;*/
       case 'input':
-        let r = inputValues.find(v => v.key === option.key);
-        if (!r) {
-          r = { key: option.key ? option.key : 'errorkey', value: '' };
-          const nr = r;
-          setInputValues(prev => [
-            ...prev,
-            nr
-          ]);
-        }
+        const prefill = subResponseCache.find(r => r.key === option.key);
 
-        const label = <Box display="flex" height="100%" alignItems="center" width="100%">
-          {
-            option.content ?
-              <Box mr={1}>
-                {getLocaleStringTextByCode(option.content, props.languageCode)}
-              </Box> : null
-          }
-          <Box flexGrow={1}>
-            <TextField
-              fullWidth
-              value={r.value ? r.value : ''}
-              margin="dense"
-              variant="filled"
-              inputProps={{
-                style: {
-                  padding: "8px 16px",
-                }
-              }}
-              InputProps={{
-                disableUnderline: true,
-                style: {
-                  borderRadius: 1000,
-                }
-              }}
-              placeholder={getLocaleStringTextByCode(option.description, props.languageCode)}
-              onChange={handleInputValueChange(option.key)}
-              disabled={isDisabled(option)}
-            ></TextField>
-          </Box>
-        </Box >;
-
-        return <FormControlLabel
-          style={{ marginRight: 0 }}
-          key={option.key}
-          value={option.key}
-          control={
-            <Checkbox checked={isChecked(option.key ? option.key : 'no key found')}
-              onChange={handleSelectionChange}
-              value={option.key} />}
-          label={label}
-          disabled={isDisabled(option)}
-        />
+        labelComponent =
+          <TextInput
+            parentKey={props.parentKey}
+            key={option.key}
+            compDef={option}
+            prefill={(prefill && prefill.key === option.key) ? prefill : undefined}
+            languageCode={props.languageCode}
+            responseChanged={(response) => {
+              const value = response?.value;
+              const checkStatus = (value !== undefined && value.length > 0);
+              setResponseForKey(option.key ? option.key : 'unknown', checkStatus, value);
+              updateSubResponseCache(option.key, response);
+            }}
+            updateDelay={5}
+            disabled={isDisabled(option)}
+          />;
+        break;
       default:
-        return <p key={option.key}>role inside multiple choice group not implemented yet: {option.role}</p>
+        labelComponent = <p key={option.key}>role inside multiple choice group not implemented yet: {option.role}</p>
+        break;
     }
+
+    return (<div className={clsx(
+      "form-check d-flex align-items-center",
+      {
+        'mb-2': !isLast
+      })}
+      key={option.key} >
+      <div>
+        <input
+          className="form-check-input cursor-pointer"
+          type="checkbox"
+          name={props.parentKey}
+          id={optionKey}
+          value={option.key}
+          checked={isChecked(option.key ? option.key : 'no key found')}
+          disabled={isDisabled(option)}
+          onChange={handleSelectionChange}
+        />
+      </div>
+      {labelComponent}
+    </div>)
 
   }
 
   return (
     <fieldset
       id={props.parentKey}
-      aria-label="options"
+      aria-label="multiple choice options"
     >
       {
         (props.compDef as ItemGroupComponent).items.map((option, index) =>
