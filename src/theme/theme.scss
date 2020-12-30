@@ -69,6 +69,23 @@ $enable-negative-margins: true;
 $form-check-input-width: 1.5em !default;
 $form-check-input-border: 2px solid  map-get($theme-colors, "grey-7") !default;
 
+
+.btn-icon-primary {
+    background-color: transparent;
+    padding: 3px;
+    padding-top: 2px;
+    border-radius: 20%;
+    text-align: center;
+    border: none;
+    color: map-get($theme-colors, "primary");
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+.btn-icon-primary:hover {
+  background-color: rgba(map-get($theme-colors, "primary"), .2);
+}
+
+
 // ---------------------------------------------
 // Other:
 // ---------------------------------------------
