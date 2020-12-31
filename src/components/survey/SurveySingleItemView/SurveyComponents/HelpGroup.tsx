@@ -25,8 +25,8 @@ const HelpGroup: React.FC<HelpGroupProps> = (props) => {
       <div
         id={'info-dropdown'}
         aria-label={'Info Box'}
-        className="dropdown-menu dropdown-menu-end p-2 w-75"
-        style={{ maxWidth: 500 }}
+        className="dropdown-menu dropdown-menu-end shadow border-none p-2 w-75"
+        style={{ maxWidth: 500, border: 'none' }}
       >
         {
           props.componentGroup.items.map((item, index) => {
