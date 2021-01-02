@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem, ItemGroupComponent } from 'survey-engine/lib/data_types';
 import { getLocaleStringTextByCode, getItemComponentByRole } from '../../utils';
-import { makeStyles, Theme, createStyles, Tooltip, Radio, Checkbox } from '@material-ui/core';
 import clsx from 'clsx';
 import NumberInput from '../NumberInput/NumberInput';
-import DropDownGroup from '../InputTypes/DropDownGroup';
+import DropDownGroup from './DropDownGroup';
 import TextInput from '../TextInput/TextInput';
 
 interface MatrixProps {
@@ -15,47 +14,8 @@ interface MatrixProps {
   componentKey: string;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      overflowX: 'auto',
-      justifyContent: 'center',
-      textAlign: 'center',
-    },
-    table: {
-      margin: '0 auto',
-      borderCollapse: 'collapse',
-      overflow: 'hidden',
-      width: "100%",
-    },
-    cell: {
-      padding: theme.spacing(2),
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
-      minWidth: 33,
-    },
-    cellRadio: {
-      textAlign: 'center'
-    },
-    textfield: {
-      minWidth: 120,
-      width: "100%",
-    },
-    numberInput: {
-      //minWidth: 90,
-      //width: 95,
-    },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      width: "100%",
-    },
-  }),
-);
 
 const Matrix: React.FC<MatrixProps> = (props) => {
-  const classes = useStyles();
-
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
 
@@ -225,21 +185,33 @@ const Matrix: React.FC<MatrixProps> = (props) => {
   }
 
   const renderRadioRow = (compDef: ItemGroupComponent, index: number): React.ReactNode => {
+    const rowKey = [props.componentKey, compDef.key].join('.');
+
     const cells = (compDef as ItemGroupComponent).items.map((cell, cindex) => {
       let currentCellContent: React.ReactNode | null;
-
+      const cellKey = [rowKey, cell.key].join('.');
       switch (cell.role) {
         case 'label':
           currentCellContent = getLocaleStringTextByCode(cell.content, props.languageCode);
           break;
         case 'option':
-          currentCellContent = <Radio
+          currentCellContent = <input
+            className="form-check-input cursor-pointer"
+            type="radio"
+            id={cellKey}
+            value={cell.key}
+            aria-label={cell.key}
             checked={isResponseSet(compDef.key, cell.key)}
             onChange={radioSelectionChanged(compDef.key)}
-            value={cell.key}
             disabled={compDef.disabled !== undefined || cell.disabled !== undefined}
-            inputProps={{ 'aria-label': cell.key }}
-          />;
+          />
+          /*  <Radio
+              checked={isResponseSet(compDef.key, cell.key)}
+              onChange={radioSelectionChanged(compDef.key)}
+              value={cell.key}
+              disabled={compDef.disabled !== undefined || cell.disabled !== undefined}
+              inputProps={{ 'aria-label': cell.key }}
+            />;*/
           break;
         default:
           console.warn('cell role for matrix question unknown: ', cell.role);
@@ -249,9 +221,13 @@ const Matrix: React.FC<MatrixProps> = (props) => {
         key={cell.key ? cell.key : cindex.toString()}
         className={clsx(
           "border-bottom border-grey-2",
-          classes.cell, {
-          [classes.cellRadio]: cell.role === 'option',
-        })}
+          "px-2 py-1",
+          {
+            'text-center': cell.role === 'option',
+          })}
+        style={{
+          minWidth: 33,
+        }}
       >{currentCellContent}</td>
     }
 
@@ -273,18 +249,34 @@ const Matrix: React.FC<MatrixProps> = (props) => {
           currentCellContent = getLocaleStringTextByCode(cell.content, props.languageCode);
           break;
         case 'check':
-          currentCellContent = <Checkbox
+          currentCellContent = <input
+            className="form-check-input cursor-pointer"
+            type="checkbox"
+            id={cellKey}
+            value={cell.key}
+            aria-label={cell.key}
+            checked={isResponseSet(compDef.key, cell.key)}
+            onChange={checkboxSelectionChanged(compDef.key)}
+            disabled={compDef.disabled !== undefined || cell.disabled !== undefined}
+          />
+          /*
+          <Checkbox
             checked={isResponseSet(compDef.key, cell.key)}
             value={cell.key}
             onChange={checkboxSelectionChanged(compDef.key)}
             inputProps={{ 'aria-label': cell.key }}
             disabled={compDef.disabled !== undefined || cell.disabled !== undefined}
-          />;
+          />;*/
           break
         case 'input':
-          currentCellContent = <div className={classes.textfield}>
+          currentCellContent = <div
+            className="w-100"
+            style={{
+              minWidth: 120,
+            }}
+          >
             <TextInput
-              parentKey={'todo'}
+              parentKey={cellKey}
               compDef={cell}
               languageCode={props.languageCode}
               responseChanged={handleCellResponseChange(compDef.key, cell.key)}
@@ -293,14 +285,14 @@ const Matrix: React.FC<MatrixProps> = (props) => {
           </div>
           break
         case 'numberInput':
-          currentCellContent = <div className={classes.numberInput}>
+          currentCellContent =
             <NumberInput
               componentKey={cellKey}
               compDef={cell}
               languageCode={props.languageCode}
               responseChanged={handleCellResponseChange(compDef.key, cell.key)}
               prefill={getCellResponse(compDef.key, cell.key)}
-            /></div>
+            />
           break
         case 'dropDownGroup':
           currentCellContent = <DropDownGroup
@@ -319,7 +311,7 @@ const Matrix: React.FC<MatrixProps> = (props) => {
       return <td
         key={cell.key ? cell.key : cIndex.toString()}
         className={clsx(
-          classes.cell,
+          "px-2 py-1",
           {
             "border-bottom border-grey-2": !isLast
 
@@ -366,17 +358,11 @@ const Matrix: React.FC<MatrixProps> = (props) => {
           console.warn('cell role for matrix header unknown: ', cell.role);
           break;
       }
-      const description = getLocaleStringTextByCode(cell.description, props.languageCode);
       return <th
         key={cell.key ? cell.key : index.toString()}
-        className={classes.cell}
+        className={"px-2 py-1"}
       >
-        {description ?
-          <Tooltip title={description} arrow>
-            <span>{currentCellContent}</span>
-          </Tooltip> :
-          currentCellContent
-        }
+        {currentCellContent}
       </th>
     })
     return <tr
@@ -391,8 +377,17 @@ const Matrix: React.FC<MatrixProps> = (props) => {
   const headerRow = getItemComponentByRole(matrixDef.items, 'headerRow');
 
   return (
-    <div className={classes.root}>
-      <table className={classes.table}>
+    <div className="d-flex justify-content-center text-center"
+      style={{
+        overflowX: 'auto',
+      }}
+    >
+      <table className="w-100 my-0 mx-auto"
+        style={{
+          borderCollapse: 'collapse',
+          overflow: 'hidden',
+        }}
+      >
         <thead>
           {renderHeaderRow(headerRow as ItemGroupComponent)}
         </thead>

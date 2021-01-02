@@ -67,7 +67,6 @@ const MultilineTextInput: React.FC<MultilineTextInputProps> = (props) => {
         value={inputValue}
         maxLength={4000}
         rows={3}
-        // rowsMax={15}
         onChange={handleInputValueChange(props.compDef.key)}
         disabled={props.compDef.disabled !== undefined}
       />

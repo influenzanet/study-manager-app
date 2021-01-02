@@ -5,7 +5,7 @@ import MultipleChoiceGroup from './InputTypes/MultipleChoiceGroup';
 import DropDownGroup from './InputTypes/DropDownGroup';
 import DateInput from './DateInput/DateInput';
 import TextInput from './TextInput/TextInput';
-import MultilineTextInput from './MultilineTextInput/MultilineTextInput';
+import MultilineTextInput from './InputTypes/MultilineTextInput';
 import NumberInput from './NumberInput/NumberInput';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -18,7 +18,7 @@ import MomentUtils from '@date-io/moment';
 import SliderNumeric from './Sliders/SliderNumeric/SliderNumeric';
 import SliderNumericRange from './Sliders/SliderNumericRange/SliderNumericRange';
 import SliderCategorical from './Sliders/SliderCategorical/SliderCategorical';
-import Matrix from './Matrix/Matrix';
+import Matrix from './InputTypes/Matrix';
 import TextViewComponent from '../SurveyComponents/TextViewComponent';
 import moment from 'moment';
 import EQ5DHealthIndicatorInput from './EQ5DHealthIndicatorInput/EQ5DHealthIndicatorInput';
