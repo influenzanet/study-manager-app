@@ -4,7 +4,7 @@ import { getLocaleStringTextByCode } from '../../utils';
 import { TextField, Tooltip, Box, Typography } from '@material-ui/core';
 
 interface NumberInputProps {
-  parentKey: string;
+  componentKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;

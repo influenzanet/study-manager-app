@@ -143,7 +143,7 @@ const SingleChoiceGroup: React.FC<SingleChoiceGroupProps> = (props) => {
       case 'numberInput':
         labelComponent =
           <NumberInput
-            parentKey={props.parentKey}
+            componentKey={props.parentKey}
             key={option.key}
             compDef={option}
             prefill={(prefill && prefill.key === option.key) ? prefill : undefined}

@@ -4,7 +4,7 @@ import { getLocaleStringTextByCode, getItemComponentByRole } from '../../utils';
 import { makeStyles, Theme, createStyles, Tooltip, Radio, Checkbox } from '@material-ui/core';
 import clsx from 'clsx';
 import NumberInput from '../NumberInput/NumberInput';
-import DropDownGroup from '../DropDownGroup/DropDownGroup';
+import DropDownGroup from '../InputTypes/DropDownGroup';
 import TextInput from '../TextInput/TextInput';
 
 interface MatrixProps {
@@ -12,27 +12,21 @@ interface MatrixProps {
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
+  componentKey: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       overflowX: 'auto',
-      padding: theme.spacing(2),
-      paddingRight: theme.spacing(0),
-      paddingLeft: theme.spacing(0),
       justifyContent: 'center',
       textAlign: 'center',
     },
     table: {
       margin: '0 auto',
       borderCollapse: 'collapse',
-      borderRadius: 15,
       overflow: 'hidden',
       width: "100%",
-    },
-    headerRow: {
-      backgroundColor: 'white',
     },
     cell: {
       padding: theme.spacing(2),
@@ -42,12 +36,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     cellRadio: {
       textAlign: 'center'
-    },
-    rowBackground1: {
-      backgroundColor: '#f8f8f8',
-    },
-    rowBackground2: {
-      backgroundColor: 'white',
     },
     textfield: {
       minWidth: 120,
@@ -259,10 +247,10 @@ const Matrix: React.FC<MatrixProps> = (props) => {
       }
       return <td
         key={cell.key ? cell.key : cindex.toString()}
-        className={clsx(classes.cell, {
+        className={clsx(
+          "border-bottom border-grey-2",
+          classes.cell, {
           [classes.cellRadio]: cell.role === 'option',
-          [classes.rowBackground1]: index % 2 === 1,
-          [classes.rowBackground2]: index % 2 === 0,
         })}
       >{currentCellContent}</td>
     }
@@ -275,8 +263,11 @@ const Matrix: React.FC<MatrixProps> = (props) => {
   }
 
   const renderResponseRow = (compDef: ItemGroupComponent, index: number): React.ReactNode => {
+    const rowKey = [props.componentKey, compDef.key].join('.');
     const cells = (compDef as ItemGroupComponent).items.map((cell, cIndex) => {
+      const cellKey = [rowKey, cell.key].join('.');
       let currentCellContent: React.ReactNode | null;
+      const isLast = index === matrixDef.items.length - 1;
       switch (cell.role) {
         case 'label':
           currentCellContent = getLocaleStringTextByCode(cell.content, props.languageCode);
@@ -304,7 +295,7 @@ const Matrix: React.FC<MatrixProps> = (props) => {
         case 'numberInput':
           currentCellContent = <div className={classes.numberInput}>
             <NumberInput
-              parentKey={'todo'}
+              componentKey={cellKey}
               compDef={cell}
               languageCode={props.languageCode}
               responseChanged={handleCellResponseChange(compDef.key, cell.key)}
@@ -318,6 +309,7 @@ const Matrix: React.FC<MatrixProps> = (props) => {
             responseChanged={handleCellResponseChange(compDef.key, cell.key)}
             prefill={getCellResponse(compDef.key, cell.key)}
             fullWidth={true}
+            componentKey={cellKey}
           />
           break;
         default:
@@ -326,11 +318,12 @@ const Matrix: React.FC<MatrixProps> = (props) => {
       }
       return <td
         key={cell.key ? cell.key : cIndex.toString()}
-        className={clsx(classes.cell, {
-          // [classes.cellRadio]: cell.role === 'option',
-          [classes.rowBackground1]: index % 2 === 1,
-          [classes.rowBackground2]: index % 2 === 0,
-        })}
+        className={clsx(
+          classes.cell,
+          {
+            "border-bottom border-grey-2": !isLast
+
+          })}
       >{currentCellContent}</td>
     }
 
@@ -388,7 +381,7 @@ const Matrix: React.FC<MatrixProps> = (props) => {
     })
     return <tr
       key={header.key ? header.key : "header"}
-      className={classes.headerRow}
+      className="border-bottom border-grey-2"
     >
       {cells}
     </tr>

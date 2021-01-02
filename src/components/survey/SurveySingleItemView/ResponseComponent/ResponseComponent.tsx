@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem, isItemGroupComponent, ItemGroupComponent } from 'survey-engine/lib/data_types';
 import SingleChoiceGroup from './InputTypes/SingleChoiceGroup';
 import MultipleChoiceGroup from './InputTypes/MultipleChoiceGroup';
-import DropDownGroup from './DropDownGroup/DropDownGroup';
+import DropDownGroup from './InputTypes/DropDownGroup';
 import DateInput from './DateInput/DateInput';
 import TextInput from './TextInput/TextInput';
 import MultilineTextInput from './MultilineTextInput/MultilineTextInput';
@@ -127,6 +127,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
           case 'dropDownGroup':
             return <DropDownGroup
               key={respComp.key}
+              componentKey={currentKeyPath}
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}
@@ -151,7 +152,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
             />
           case 'numberInput':
             return <NumberInput
-              parentKey={currentKeyPath}
+              componentKey={currentKeyPath}
               key={respComp.key}
               languageCode={props.languageCode}
               compDef={respComp}
@@ -194,6 +195,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
           case 'matrix':
             return <Matrix
               key={respComp.key}
+              componentKey={currentKeyPath}
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}
