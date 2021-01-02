@@ -77,9 +77,13 @@ $enable-negative-margins: true;
 // ---------------------------------------------
 // Form Inputs:
 // ---------------------------------------------
+
+// Checkbox
 $form-check-input-width: 1.5em !default;
 $form-check-input-border: 2px solid  map-get($theme-colors, "grey-7") !default;
+$form-check-input-border-radius: 0 !default;
 
+// Icon button
 .btn-icon-primary {
     background-color: transparent;
     padding: 3px;
@@ -102,17 +106,17 @@ $form-check-input-border: 2px solid  map-get($theme-colors, "grey-7") !default;
     };
 }
 
+// Dropdown
 select {
   /* styling */
   background-color: white;
-  // border: thin solid blue;
   display: inline-block;
   font: inherit;
   line-height: 1.5em;
   padding: 0.5em 3.5em 0.5em 1em;
   border: none;
+  border-radius: 0;
   /* reset */
-
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

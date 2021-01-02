@@ -145,6 +145,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
           case 'multilineTextInput':
             return <MultilineTextInput
               key={respComp.key}
+              componentKey={currentKeyPath}
               languageCode={props.languageCode}
               compDef={respComp}
               prefill={getPrefillForItem(respComp)}

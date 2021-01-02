@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
-import { TextField } from '@material-ui/core';
-import { getLocaleStringTextByCode } from '../../utils';
+import { getClassName, getLocaleStringTextByCode } from '../../utils';
+import clsx from 'clsx';
 
 interface MultilineTextInputProps {
+  componentKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
@@ -29,11 +30,11 @@ const MultilineTextInput: React.FC<MultilineTextInputProps> = (props) => {
   }, [response]);
 
 
-  const handleInputValueChange = (key: string | undefined) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputValueChange = (key: string | undefined) => (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!key) { return; }
     setTouched(true);
 
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target as HTMLTextAreaElement).value;
 
     setInputValue(value);
     setResponse(prev => {
@@ -50,34 +51,27 @@ const MultilineTextInput: React.FC<MultilineTextInputProps> = (props) => {
     })
   };
 
-
+  const fullKey = [props.componentKey, props.compDef.key].join('.');
   return (
-    <TextField
-      fullWidth
-      placeholder={getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
-      value={inputValue}
-      margin="dense"
-      variant="filled"
-      inputProps={{
-        style: {
-          padding: "8px 16px",
-        },
-        maxLength: 4000,
-      }}
-      InputProps={{
-        disableUnderline: true,
-        style: {
-          borderRadius: 16,
-          padding: 0,
-        }
-      }}
-
-      rowsMax={15}
-      rows={3}
-      multiline
-      onChange={handleInputValueChange(props.compDef.key)}
-      disabled={props.compDef.disabled !== undefined}
-    ></TextField>
+    <div
+      className={clsx("d-flex align-items-start", getClassName(props.compDef.style))}
+    >
+      <label htmlFor={fullKey} className="me-1">
+        {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
+      </label>
+      <textarea
+        className="form-control border border-white"
+        autoComplete="off"
+        id={fullKey}
+        placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
+        value={inputValue}
+        maxLength={4000}
+        rows={3}
+        // rowsMax={15}
+        onChange={handleInputValueChange(props.compDef.key)}
+        disabled={props.compDef.disabled !== undefined}
+      />
+    </div>
   );
 };
 
