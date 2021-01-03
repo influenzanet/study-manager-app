@@ -8,13 +8,7 @@ import TextInput from './InputTypes/TextInput';
 import MultilineTextInput from './InputTypes/MultilineTextInput';
 import NumberInput from './InputTypes/NumberInput';
 
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import "moment/locale/de";
-import "moment/locale/fr";
-import "moment/locale/nl";
 
-// pick a date util library
-import MomentUtils from '@date-io/moment';
 import SliderNumeric from './Sliders/SliderNumeric/SliderNumeric';
 import SliderNumericRange from './Sliders/SliderNumericRange/SliderNumericRange';
 import SliderCategorical from './Sliders/SliderCategorical/SliderCategorical';
@@ -87,137 +81,135 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
       });
   };
 
-  return <MuiPickersUtilsProvider utils={MomentUtils} locale={props.languageCode}>
-    <div
-    // className="px-3 py-2a"
-    // color="#f2f2f2"
-    // style={{ padding: "8px 16px" }}
-    >
-      {(props.compDef as ItemGroupComponent).items.map((respComp, index) => {
+  return <div
+  // className="px-3 py-2a"
+  // color="#f2f2f2"
+  // style={{ padding: "8px 16px" }}
+  >
+    {(props.compDef as ItemGroupComponent).items.map((respComp, index) => {
 
-        if (respComp.displayCondition === false) {
-          return <div key={respComp.key ? respComp.key : 'p' + index.toString()} hidden></div>;
-        }
-        const currentKeyPath = [props.itemKey, props.compDef.key, respComp.key].join('.');
-        switch (respComp.role) {
-          case 'text':
-            return <TextViewComponent
-              key={respComp.key ? respComp.key : 'p' + index.toString()}
-              compDef={respComp}
-              languageCode={props.languageCode}
-            />
-          case 'singleChoiceGroup':
-            return <SingleChoiceGroup
-              key={respComp.key}
-              parentKey={currentKeyPath}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'multipleChoiceGroup':
-            return <MultipleChoiceGroup
-              key={respComp.key}
-              parentKey={currentKeyPath}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'dropDownGroup':
-            return <DropDownGroup
-              key={respComp.key}
-              componentKey={currentKeyPath}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'input':
-            return <TextInput
-              parentKey={currentKeyPath}
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'multilineTextInput':
-            return <MultilineTextInput
-              key={respComp.key}
-              componentKey={currentKeyPath}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'numberInput':
-            return <NumberInput
-              componentKey={currentKeyPath}
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'dateInput':
-            return <DateInput
-              parentKey={currentKeyPath}
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'sliderNumeric':
-            return <SliderNumeric
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'sliderNumericRange':
-            return <SliderNumericRange
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'sliderCategorical':
-            return <SliderCategorical
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'matrix':
-            return <Matrix
-              key={respComp.key}
-              componentKey={currentKeyPath}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          case 'eq5d-health-indicator':
-            return <EQ5DHealthIndicatorInput
-              key={respComp.key}
-              languageCode={props.languageCode}
-              compDef={respComp}
-              prefill={getPrefillForItem(respComp)}
-              isRequired={props.isRequired}
-              responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
-            />
-          default:
-            return <p key={respComp.key ? respComp.key : index.toString()}>{respComp.role}</p>
-        }
-      })
+      if (respComp.displayCondition === false) {
+        return <div key={respComp.key ? respComp.key : 'p' + index.toString()} hidden></div>;
       }
-    </div>
-  </MuiPickersUtilsProvider>
+      const currentKeyPath = [props.itemKey, props.compDef.key, respComp.key].join('.');
+      switch (respComp.role) {
+        case 'text':
+          return <TextViewComponent
+            key={respComp.key ? respComp.key : 'p' + index.toString()}
+            compDef={respComp}
+            languageCode={props.languageCode}
+          />
+        case 'singleChoiceGroup':
+          return <SingleChoiceGroup
+            key={respComp.key}
+            parentKey={currentKeyPath}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'multipleChoiceGroup':
+          return <MultipleChoiceGroup
+            key={respComp.key}
+            parentKey={currentKeyPath}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'dropDownGroup':
+          return <DropDownGroup
+            key={respComp.key}
+            componentKey={currentKeyPath}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'input':
+          return <TextInput
+            parentKey={currentKeyPath}
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'multilineTextInput':
+          return <MultilineTextInput
+            key={respComp.key}
+            componentKey={currentKeyPath}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'numberInput':
+          return <NumberInput
+            componentKey={currentKeyPath}
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'dateInput':
+          return <DateInput
+            componentKey={currentKeyPath}
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'sliderNumeric':
+          return <SliderNumeric
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'sliderNumericRange':
+          return <SliderNumericRange
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'sliderCategorical':
+          return <SliderCategorical
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'matrix':
+          return <Matrix
+            key={respComp.key}
+            componentKey={currentKeyPath}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'eq5d-health-indicator':
+          return <EQ5DHealthIndicatorInput
+            key={respComp.key}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
+            isRequired={props.isRequired}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        default:
+          return <p key={respComp.key ? respComp.key : index.toString()}>{respComp.role}</p>
+      }
+    })
+    }
+  </div>
 };
 
 export default ResponseComponent;

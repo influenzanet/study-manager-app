@@ -94,7 +94,7 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
         minWidth: 90,
         maxWidth: 300,
       }}
-      className="form-control border border-white"
+      className="form-control border-0"
       type="number"
       autoComplete="off"
       id={props.componentKey}

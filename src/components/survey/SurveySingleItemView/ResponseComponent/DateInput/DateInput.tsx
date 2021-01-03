@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
-import { DatePicker, DatePickerView } from '@material-ui/pickers';
-
-import moment from 'moment';
+import DatePicker, { registerLocale } from "react-datepicker";
+import CalendarIcon from '@material-ui/icons/CalendarToday';
 import { getLocaleStringTextByCode } from '../../utils';
-import { Box, Typography } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
+import { nl } from 'date-fns/locale'
+
+import "react-datepicker/dist/react-datepicker.css";
+import "./DateInput.scss";
+
+import { addYears, getUnixTime } from 'date-fns';
+
+import YearMonthSelector from './YearMonthSelector';
+
+registerLocale('nl', nl);
+
 
 interface DateInputProps {
-  parentKey: string;
+  componentKey: string;
   compDef: ItemComponent;
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
@@ -17,13 +25,12 @@ interface DateInputProps {
 }
 
 const DateInput: React.FC<DateInputProps> = (props) => {
-
-  const { t } = useTranslation(["common"]);
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
+  const [pickerOpen, setPickerOpen] = useState(false);
 
-  const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(
-    props.prefill && props.prefill.value ? moment.unix(parseInt(props.prefill.value)) : null,
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    props.prefill && props.prefill.value ? new Date(parseInt(props.prefill.value) * 1000) : undefined,
   );
 
   useEffect(() => {
@@ -36,22 +43,14 @@ const DateInput: React.FC<DateInputProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
 
-  const handleDateChange = (date: moment.Moment | null) => {
+  const handleDateChange = (date: Date | undefined) => {
     setTouched(true);
 
+    setPickerOpen(prev => !prev)
     setSelectedDate(date);
     if (!date) {
       setResponse(undefined);
       return;
-    }
-
-    switch (props.compDef.properties?.dateInputMode) {
-      case 'YM':
-        date = date.clone().utc().startOf('month');
-        break;
-      case 'Y':
-        date = date.clone().utc().startOf('year');
-        break;
     }
 
     setResponse(prev => {
@@ -60,76 +59,82 @@ const DateInput: React.FC<DateInputProps> = (props) => {
         return {
           key: props.compDef.key ? props.compDef.key : 'no key found',
           dtype: 'date',
-          value: date.unix().toString(),
+          value: getUnixTime(date).toString(),
         }
       }
-
       return {
         ...prev,
         dtype: 'date',
-        value: date.unix().toString(),
+        value: getUnixTime(date).toString(),
       }
     });
   }
 
-  let format: string;
-  let pickerView: string[];
+  const minDate = props.compDef.properties?.min ? new Date((props.compDef.properties?.min as number) * 1000) : new Date(1900, 1);
+  const maxDate = props.compDef.properties?.max ? new Date((props.compDef.properties?.max as number) * 1000) : addYears(new Date(), 100);
+
+
+  let datepicker = <p>{'...'}</p>;
   switch (props.compDef.properties?.dateInputMode) {
     case 'YM':
-      pickerView = ['year', 'month'];
-      format = 'MMMM, YYYY';
+      datepicker = <YearMonthSelector
+        currentDate={selectedDate}
+        minDate={minDate}
+        maxDate={maxDate}
+        onChange={handleDateChange}
+        languageCode={props.languageCode}
+      />
       break;
     case 'Y':
-      pickerView = ['year'];
-      format = 'YYYY';
+      datepicker = <YearMonthSelector
+        currentDate={selectedDate}
+        minDate={minDate}
+        maxDate={maxDate}
+        onlyYear={true}
+        onChange={handleDateChange}
+        languageCode={props.languageCode}
+      />
       break;
     default:
-      pickerView = ['year', 'month', 'date'];
-      format = 'L';
+      datepicker = <div className="input-group flex-grow-1">
+        <DatePicker
+          // open={pickerOpen}
+          id={props.componentKey}
+          className="form-control border-0"
+          selected={selectedDate}
+          locale={props.languageCode}
+          onChange={(date) => handleDateChange(date ? date as Date : undefined)}
+          dateFormat={'dd-MM-yyyy'}
+          placeholderText={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
+          minDate={props.compDef.properties?.min ? new Date((props.compDef.properties?.min as number) * 1000) : undefined}
+          maxDate={props.compDef.properties?.max ? new Date((props.compDef.properties?.max as number) * 1000) : undefined}
+          // onCalendarClose={() => setPickerOpen(false)}
+          // onCalendarOpen={() => setPickerOpen(true)}
+          // showYearPicker
+          // wrapperClassName="bg-grey-2 border-radius-0"
+          // calendarClassName="bg-grey-2"
+          disabled={props.compDef.disabled !== undefined || props.disabled === true}
+          popperPlacement="top"
+        />
+        <label
+          htmlFor={props.componentKey}
+          aria-label="Calendar"
+          className="d-none d-sm-inline input-group-text bg-primary text-white border-0">
+          <CalendarIcon />
+        </label>
+      </div >
       break;
   }
 
   return (
-    <Box display="flex"
-      alignItems="center"
-      my={1}
-    >
+    <div className="d-flex align-items-center">
       {props.compDef.content ?
-        <Box mr={1}>
-          <Typography variant="body1" >
-            {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
-          </Typography>
-        </Box> : null}
-      <Box>
-        <DatePicker
-          value={selectedDate}
-          onChange={handleDateChange}
-          views={pickerView as DatePickerView[]}
-          format={format}
-          maxDate={props.compDef.properties?.max ? moment.unix(props.compDef.properties?.max as number) : undefined}
-          minDate={props.compDef.properties?.min ? moment.unix(props.compDef.properties?.min as number) : undefined}
-          inputVariant="filled"
-          margin="dense"
-          inputProps={{
-            style: {
-              padding: "8px 16px",
-            }
-          }}
-          InputProps={{
-            disableUnderline: true,
-            style: {
-              borderRadius: 1000,
-            }
-          }}
-          placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
-          clearable
-          disabled={props.compDef.disabled !== undefined || props.disabled === true}
-          okLabel={t("common:datePicker.okLabel")}
-          clearLabel={t("common:datePicker.clearLabel")}
-          cancelLabel={t("common:datePicker.cancelLabel")}
-        />
-      </Box>
-    </Box>
+        <label className="me-1">
+          {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
+        </label>
+        : null}
+      {datepicker}
+    </div >
   );
 };
 

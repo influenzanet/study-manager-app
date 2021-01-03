@@ -401,7 +401,7 @@ const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.addExistingResponseComponent({
         key: 'feedback',
         role: 'text',
-        style: [{ key: 'variant', value: 'caption' }],
+        style: [{ key: 'className', value: 'fst-italic mt-1' }],
         displayCondition: expWithArgs('isDefined',
             expWithArgs('getResponseItem', editor.getItem().key, [responseGroupKey, '1'].join('.'))
         ),
