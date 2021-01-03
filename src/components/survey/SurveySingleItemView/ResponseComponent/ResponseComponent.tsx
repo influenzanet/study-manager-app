@@ -4,9 +4,9 @@ import SingleChoiceGroup from './InputTypes/SingleChoiceGroup';
 import MultipleChoiceGroup from './InputTypes/MultipleChoiceGroup';
 import DropDownGroup from './InputTypes/DropDownGroup';
 import DateInput from './DateInput/DateInput';
-import TextInput from './TextInput/TextInput';
+import TextInput from './InputTypes/TextInput';
 import MultilineTextInput from './InputTypes/MultilineTextInput';
-import NumberInput from './NumberInput/NumberInput';
+import NumberInput from './InputTypes/NumberInput';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import "moment/locale/de";

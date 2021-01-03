@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem, ItemGroupComponent } from 'survey-engine/lib/data_types';
 import { getLocaleStringTextByCode } from '../../utils';
-import TextInput from '../TextInput/TextInput';
+import TextInput from './TextInput';
 import clsx from 'clsx';
 
 

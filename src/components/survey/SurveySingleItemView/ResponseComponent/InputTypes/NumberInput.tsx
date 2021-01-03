@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
-import { getLocaleStringTextByCode } from '../../utils';
-import { TextField, Tooltip, Box, Typography } from '@material-ui/core';
+import { getClassName, getLocaleStringTextByCode } from '../../utils';
+import clsx from 'clsx';
 
 interface NumberInputProps {
   componentKey: string;
@@ -9,6 +9,7 @@ interface NumberInputProps {
   prefill?: ResponseItem;
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
+  disabled?: boolean;
 }
 
 const NumberInput: React.FC<NumberInputProps> = (props) => {
@@ -77,52 +78,38 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
     (event.currentTarget as HTMLInputElement).select();
   };
 
-  const renderedInput = <TextField
-    value={inputValue.toString()}
-    margin="dense"
-    variant="filled"
-    type="number"
-    style={{
-      minWidth: 90,
-      maxWidth: 300,
-      flexGrow: 1,
-    }}
-    inputProps={{
-      style: {
-        padding: "8px 16px",
-      },
-      min: props.compDef.properties?.min,
-      max: props.compDef.properties?.max,
-      step: props.compDef.properties?.stepSize,
-    }}
-    InputProps={{
-      disableUnderline: true,
-      style: {
-        borderRadius: 1000,
-      },
-    }}
-    onFocus={handleFocus}
-    onClick={(e) => (e.target as HTMLInputElement).select()}
-    onChange={handleInputValueChange(props.compDef.key)}
-    disabled={props.compDef.disabled !== undefined}
-  ></TextField>;
+  const minValue = props.compDef.properties?.min;
+  const maxValue = props.compDef.properties?.max;
+  const stepSize = props.compDef.properties?.stepSize;
 
-  const content = getLocaleStringTextByCode(props.compDef.content, props.languageCode);
-  const description = getLocaleStringTextByCode(props.compDef.description, props.languageCode);
-
-  return <Box display="flex" alignItems="center">
-    {content ?
-      <Box mr={1} flexShrink={1} >
-        <Typography variant="body1">
-          {content}
-        </Typography>
-      </Box>
-      : null}
-    {description ? <Tooltip title={description} arrow>
-      {renderedInput}
-    </Tooltip> : renderedInput}
-  </Box>
-
+  return <div
+    className={clsx("d-flex align-items-center",
+      getClassName(props.compDef.style))}
+  >
+    <label htmlFor={props.componentKey} className="me-1">
+      {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
+    </label>
+    <input
+      style={{
+        minWidth: 90,
+        maxWidth: 300,
+      }}
+      className="form-control border border-white"
+      type="number"
+      autoComplete="off"
+      id={props.componentKey}
+      placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
+      value={inputValue}
+      maxLength={4000}
+      onFocus={handleFocus}
+      onClick={(e) => (e.target as HTMLInputElement).select()}
+      onChange={handleInputValueChange(props.compDef.key)}
+      disabled={props.compDef.disabled !== undefined || props.disabled === true}
+      min={minValue ? minValue as number : undefined}
+      max={maxValue ? maxValue as number : undefined}
+      step={stepSize ? stepSize as number : undefined}
+    />
+  </div>
 };
 
 export default NumberInput;

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem, ItemGroupComponent } from 'survey-engine/lib/data_types';
 import { getLocaleStringTextByCode, getItemComponentByRole } from '../../utils';
 import clsx from 'clsx';
-import NumberInput from '../NumberInput/NumberInput';
+import NumberInput from './NumberInput';
 import DropDownGroup from './DropDownGroup';
-import TextInput from '../TextInput/TextInput';
+import TextInput from './TextInput';
 
 interface MatrixProps {
   compDef: ItemComponent;

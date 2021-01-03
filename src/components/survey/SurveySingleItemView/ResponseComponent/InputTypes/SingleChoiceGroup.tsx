@@ -3,8 +3,8 @@ import { ItemComponent, ItemGroupComponent } from 'survey-engine/lib/data_types/
 import { ResponseItem } from 'survey-engine/lib/data_types/response';
 import { getLocaleStringTextByCode } from '../../utils';
 import DateInput from '../DateInput/DateInput';
-import TextInput from '../TextInput/TextInput';
-import NumberInput from '../NumberInput/NumberInput';
+import TextInput from './TextInput';
+import NumberInput from './NumberInput';
 
 import clsx from 'clsx';
 
