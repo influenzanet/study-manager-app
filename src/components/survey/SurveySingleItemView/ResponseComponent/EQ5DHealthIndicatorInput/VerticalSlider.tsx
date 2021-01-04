@@ -66,7 +66,6 @@ const VerticalSlider: React.FC<VerticalSliderProps> = (props) => {
     const [isDragging, setIsDragging] = useState(false);
     const sliderRef = useRef<HTMLDivElement>(null);
 
-
     const renderTicks = () => {
         return (
             <React.Fragment>
@@ -130,15 +129,29 @@ const VerticalSlider: React.FC<VerticalSliderProps> = (props) => {
     }
 
     return (
-        <React.Fragment>
+        <div className="eq5d-scale">
             {props.maxValueText ?
-                <p className="m-0 fw-bold no-select">
+                <p className="m-0 fw-bold user-select-none">
                     {props.maxValueText}
                 </p>
                 : null
             }
+            <input
+                className="visually-hidden"
+                type="number"
+                value={props.value !== undefined ? props.value : 50}
+                min={0}
+                max={100}
+                onChange={({ target: { value } }) => {
+                    if (value === undefined || value === '') {
+                        return;
+                    }
+                    props.onChange(parseInt(value));
+                }}
+            />
 
-            <div className="py-2 position-relative no-select cursor-pointer"
+            <div
+                className="py-2 position-relative user-select-none cursor-pointer"
                 ref={sliderRef}
                 onClick={mouseHandler}
                 onMouseMove={(event) => {
@@ -164,21 +177,19 @@ const VerticalSlider: React.FC<VerticalSliderProps> = (props) => {
                         setIsDragging(true)
                     }
                 }}
-
-            // onMouseLeave={() => setIsDragging(false)}
             >
                 {renderTicks()}
                 {renderHandle()}
             </div>
 
             {props.minValueText ?
-                <p className="m-0 fw-bold no-select">
+                <p className="m-0 fw-bold user-select-none">
                     {props.minValueText}
                 </p>
                 : null
             }
 
-        </React.Fragment>
+        </div>
 
     );
 };

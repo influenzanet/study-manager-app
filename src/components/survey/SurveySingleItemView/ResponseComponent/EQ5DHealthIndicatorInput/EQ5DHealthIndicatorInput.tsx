@@ -78,18 +78,6 @@ const EQ5DHealthIndicatorInput: React.FC<EQ5DHealthIndicatorInputProps> = (props
                         onChange={(value) => {
                             setTouched(true);
                             setValue(value);
-                            /*setResponse(prev => {
-                                if (!prev) {
-                                    return {
-                                        key: props.compDef.key ? props.compDef.key : 'no key found',
-                                        value: value?.toFixed()
-                                    }
-                                }
-                                return {
-                                    ...prev,
-                                    value: value?.toFixed()
-                                }
-                            });*/
                         }}
                         maxValueText={getLocaleStringTextByCode(maxValueComp?.content, props.languageCode)}
                         minValueText={getLocaleStringTextByCode(minValueComp?.content, props.languageCode)}
