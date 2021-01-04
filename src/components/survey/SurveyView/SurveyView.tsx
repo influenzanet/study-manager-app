@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Survey, SurveySingleItem, SurveySingleItemResponse, SurveyContext } from 'survey-engine/lib/data_types';
 import { SurveyEngineCore } from 'survey-engine/lib/engine';
 import SurveyPageView from './SurveyPageView/SurveyPageView';
@@ -19,8 +19,12 @@ interface SurveyViewProps {
 }
 
 const SurveyView: React.FC<SurveyViewProps> = (props) => {
-  const [surveyEngine] = useState<SurveyEngineCore>(new SurveyEngineCore(props.survey, props.context, props.prefills));
+  const [surveyEngine, setSurveyEngine] = useState<SurveyEngineCore>(new SurveyEngineCore(props.survey, props.context, props.prefills));
   const surveyPages = surveyEngine.getSurveyPages();
+
+  useEffect(() => {
+    setSurveyEngine(new SurveyEngineCore(props.survey, props.context, props.prefills));
+  }, [props.survey, props.context, props.prefills]);
 
   const [responseCount, setResponseCount] = useState(0);
 

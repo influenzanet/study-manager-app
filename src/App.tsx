@@ -102,20 +102,13 @@ const App: React.FC = () => {
     },
   };
 
-
   return (
-    <div >
-
-      <h2 className="ps-4 bg-grey-1">test</h2>
-      <p>test</p>
-      <button className="btn btn-primary"> Test</button>
-      <button className="btn btn-grey-1"> Test</button>
-
+    <div>
       <Router>
         <Switch>
           <Route path="/test-editor" component={TestEditor} />
-          <Route path="/test-viewer" component={TestViewer} />
-          <Redirect to="/test-viewer"></Redirect>
+          <Route path="/preview/:instance/:surveyKey" component={TestViewer} />
+          <Redirect to="/preview/nl/intake"></Redirect>
         </Switch>
       </Router>
     </div>

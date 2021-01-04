@@ -1,7 +1,7 @@
 import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
-import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
-import { initEQ5DHealthIndicatorQuestion, initSingleChoiceGroup } from "../../../editor-engine/utils/question-type-generator";
-import { expWithArgs, generateLocStrings, generatePageBreak, generateTitleComponent } from "../../../editor-engine/utils/simple-generators";
+import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
+import { initEQ5DHealthIndicatorQuestion, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
+import { expWithArgs, generateLocStrings, generatePageBreak, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -472,7 +472,7 @@ const q_healthstatus_def = (parentKey: string, key: string): SurveyItem => {
         valueBoxText: new Map([
             ["en", "YOUR HEALTH TODAY ="],
         ]),
-         minHealthText: new Map([
+        minHealthText: new Map([
             ["en", "The worst health you can imagine"],
         ]),
         maxHealthText: new Map([

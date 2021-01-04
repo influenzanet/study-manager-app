@@ -2,9 +2,8 @@ import { Survey, SurveyGroupItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings } from "../../../editor-engine/utils/simple-generators";
-import getEQ5DGroup from "./eq5d-5l";
+import getEQ5DGroup from "../../common_question_pool/eq5d-5l";
 
-import getEq5dGroup from './eq5d-5l';
 
 export const generateIntake = (): Survey | undefined => {
     const surveyKey = 'intake';
@@ -38,8 +37,6 @@ export const generateIntake = (): Survey | undefined => {
     rootItemEditor.setSelectionMethod({ name: 'sequential' });
     survey.updateSurveyItem(rootItemEditor.getItem());
     const rootKey = rootItemEditor.getItem().key;
-
-
 
     const eq5d = getEQ5DGroup(rootKey, 'EQ5D');
     survey.addExistingSurveyItem(eq5d, rootKey);

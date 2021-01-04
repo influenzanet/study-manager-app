@@ -5,11 +5,19 @@ import getExampleWeekly from './nl/inf-weekly';
 import getEQ5D from './nl/covid-long-term/intake';
 
 const surveys = [
-    { name: "EX intake", survey: getExampleIntake() },
-    { name: "EX weekly", survey: getExampleWeekly() },
-    { name: "EQ5D", survey: getEQ5D() },
-    { name: "BEL intake", survey: getBelIntake() },
-    { name: "BEL weekly", survey: getBelWeekly() },
+    {
+        instance: 'nl', surveys: [
+            { name: "intake", survey: getExampleIntake() },
+            { name: "weekly", survey: getExampleWeekly() },
+            { name: "EQ5D", survey: getEQ5D() },
+        ]
+    },
+    {
+        instance: 'bel', surveys: [
+            { name: "intake", survey: getBelIntake() },
+            { name: "weekly", survey: getBelWeekly() },
+        ]
+    }
 ];
 
 export default surveys;
