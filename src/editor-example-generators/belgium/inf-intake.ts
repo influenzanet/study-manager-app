@@ -63,42 +63,19 @@ const intake = (): Survey | undefined => {
     const Q_people_met = DefaultIntake.peopleMet(rootKey, true);
     survey.addExistingSurveyItem(Q_people_met, rootKey);
 
-
-    /*
-
-    const Q_age_groups = get_intake_q_age_groups_def(rootKey, 'Q6');
+    const Q_age_groups = DefaultIntake.ageGroups(rootKey, true);
     survey.addExistingSurveyItem(Q_age_groups, rootKey);
 
-    // age groups  --------------------------------------
-    const q6 = survey.addNewSurveyItem({ itemKey: 'Q6' }, rootKey);
-    if (!q6) { return; }
-    survey.updateSurveyItem(q6_def(q6));
-    // -----------------------------------------
+    const Q_children_in_school = DefaultIntake.childrenInSchool(rootKey, Q_age_groups.key, true);
+    survey.addExistingSurveyItem(Q_children_in_school, rootKey);
 
-    // children/school/daycare  --------------------------------------
-    const q6b = survey.addNewSurveyItem({ itemKey: 'Q6b' }, rootKey);
-    if (!q6b) { return; }
-    survey.updateSurveyItem(q6b_def(q6b, q6.key));
-    // -----------------------------------------
+    const Q_means_of_transport = DefaultIntake.meansOfTransport(rootKey, true);
+    survey.addExistingSurveyItem(Q_means_of_transport, rootKey);
 
-    //survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);
+    const Q_pub_transport_duration = DefaultIntake.pubTransportDuration(rootKey, true);
+    survey.addExistingSurveyItem(Q_pub_transport_duration, rootKey);
 
-    // means of transport  --------------------------------------
-    const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
-    if (!q7) { return; }
-    survey.updateSurveyItem(q7_def(q7));
-    // -----------------------------------------
-
-    // public transport duration  --------------------------------------
-    const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, rootKey);
-    if (!q7b) { return; }
-    survey.updateSurveyItem(q7b_def(q7b));
-    // -----------------------------------------
-
-
-
-    //survey.addNewSurveyItem({ itemKey: 'pbMedBackground', type: 'pageBreak' }, rootKey);
-
+    /*
     // regular medication --------------------------------------
     const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
     if (!q11) { return; }

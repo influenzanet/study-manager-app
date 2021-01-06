@@ -1,9 +1,9 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../../editor-engine/survey-editor/component-editor";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
-import { initMultipleChoiceGroup, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
+import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
-import { multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 
 
 /**
@@ -704,6 +704,567 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     return editor.getItem();
 }
 
+/**
+ * AGE GROUPS: dropdown table about number of people in different age groups
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q6'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
+            ["nl", "INCLUSIEF JEZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in je huishouden?"],
+            ["fr", "VOUS Y COMPRIS, combien de personnes de chaque groupe d'âge suivants vivent dans votre maison?"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Members of larger households, or those with children, may more likely get infected than the others."],
+                    ["nl", "De samenstelling van het huishouden kan invloed hebben op het risico van infectie, dit willen we graag onderzoeken."],
+                    ["fr", "Les membres des ménages les plus grands, ou ceux possédant des enfants, peuvent être plus susceptibles d'attraper la grippe que les autres."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    // Dropdown options - used in each cell
+    const ddg: ResponseRowCell = {
+        key: 'col2', role: 'dropDownGroup',
+        items: [
+            {
+                key: '0', role: 'option', content: new Map([
+                    ["any", "0"],
+                ])
+            },
+            {
+                key: '1', role: 'option', content: new Map([
+                    ["any", "1"],
+                ]),
+            }, {
+                key: '2', role: 'option', content: new Map([
+                    ["any", "2"],
+                ]),
+            }, {
+                key: '3', role: 'option', content: new Map([
+                    ["any", "3"],
+                ]),
+            }, {
+                key: '4', role: 'option', content: new Map([
+                    ["any", "4"],
+                ]),
+            }, {
+                key: '5', role: 'option', content: new Map([
+                    ["any", "5"],
+                ]),
+            }, {
+                key: '6', role: 'option', content: new Map([
+                    ["any", "6"],
+                ]),
+            }, {
+                key: '7', role: 'option', content: new Map([
+                    ["any", "7"],
+                ]),
+            }, {
+                key: '8', role: 'option', content: new Map([
+                    ["any", "8"],
+                ]),
+            }, {
+                key: '9', role: 'option', content: new Map([
+                    ["any", "> 8"],
+                ]),
+            },
+
+        ]
+    };
+
+    const rg_inner = initMatrixQuestion(matrixKey, [
+        {
+            key: '1', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "0 - 4 years"],
+                        ["nl", "0 - 4 jaar"],
+                        ["fr", "0 - 4 ans"],
+                    ])
+                },
+                { ...ddg }
+            ],
+        },
+        {
+            key: '2', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "5 - 18 years"],
+                        ["nl", "5 - 18 jaar"],
+                        ["fr", "5 - 18 ans"],
+                    ])
+                },
+                { ...ddg }
+            ],
+        },
+        {
+            key: '3', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "19 - 44 years"],
+                        ["nl", "19 - 44 jaar"],
+                        ["fr", "19 - 44 ans"],
+                    ])
+                },
+                { ...ddg }
+            ]
+        },
+        {
+            key: '4', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "45 - 64 years"],
+                        ["nl", "45 - 64 jaar"],
+                        ["fr", "45 - 64 ans"],
+                    ])
+                },
+                { ...ddg }
+            ]
+        },
+        {
+            key: '5', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "65+"],
+                        ["nl", "65 of ouder"],
+                        ["fr", "plus de 65 ans"],
+                    ])
+                },
+                { ...ddg }
+            ]
+        }
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * CHILDREN IN SCHOOL: single choice with how many children going to school or daycare
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyOfAgeGroups full key of the question about age groups, if set, dependency is applied
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q6b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How many of the children in your household go to school or day-care? Assume a normal situation, without any covid measures"],
+            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
+            ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyOfAgeGroups) {
+        editor.setCondition(
+            expWithArgs('or',
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '1', 'col2'].join('.'), '0'),
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '2', 'col2'].join('.'), '0')
+            )
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Attending school or day-care may be a risk for acquiring certain virus based illnesses. We would like to check this."],
+                    ["nl", "Het bezoeken van een school of kinderdagverblijf kan het risico voor infecties verhogen. Of dit het geval is en in welke mate willen we graag onderzoeken."],
+                    ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "If the child is attending regular school or day-care (even this is just one day a week) then please count it. Attendance of clubs and activities does not count - even if regular."],
+                    ["nl", "Zelfs als het kind slechts 1 maal per week naar een kinderdagverblijf gaat, geef dit dan aan (clubs en verenigingen tellen niet mee)"],
+                    ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "None"],
+                ["nl", "Geen"],
+                ["fr", "Aucun"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["any", "1"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["any", "2"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["any", "3"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["any", "4"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["any", "5"],
+            ])
+        },
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["en", "More than 5"],
+                ["nl", "Meer dan 5"],
+                ["fr", "Plus de 5"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * MEANS OF TRANSPORT: single choice about main means of transport
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q7'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What is your main means of transport? Assume a normal situation, without any covid measures"],
+            ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
+            ["fr", "Quel est votre principal moyen de transport?"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "It has been suggested that using public transport may be a risk for infection. We would like to check this."],
+                    ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
+                    ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick the option that best represents your most normal mode of transport."],
+                    ["nl", "Ga uit van de normale situatie en je meest gangbare - dagelijkse - manier van verplaatsen."],
+                    ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Walking"],
+                ["nl", "Lopend"],
+                ["fr", "La marche"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Bike"],
+                ["nl", "Op de fiets"],
+                ["fr", "Le vélo"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Motorbike/scooter"],
+                ["nl", "Met de scooter of motor"],
+                ["fr", "Le scooter, la moto"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Car"],
+                ["nl", "Met de auto"],
+                ["fr", "La voiture"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Public transportation (bus, train, tube, etc)"],
+                ["nl", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
+                ["fr", "Transports publics (bus, train, métro, etc)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Other"],
+                ["nl", "Anders"],
+                ["fr", "Autre"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * DURATION IN PUBLIC TRANSPORT: single choice about duration spent on public transport
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q7b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.) Assume a normal situation, without any covid measures"],
+            ["nl", "Hoeveel tijd breng je op een gemiddelde dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
+            ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],
+                    ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
+                    ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
+                    ["nl", "Denk aan een typische dag. Als je verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
+                    ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No time at all"],
+                ["nl", "Ik ga normaal niet met het openbaar vervoer"],
+                ["fr", "Pas de temps du tout"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "0-30 minutes"],
+                ["nl", "0 tot 30 minuten"],
+                ["fr", "0-30 minutes"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "30 minutes - 1.5 hours"],
+                ["nl", "30 minuten tot 1,5 uur"],
+                ["fr", "30 minutes - 1.5 heures"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "1.5 hours - 4 hours"],
+                ["nl", "1,5 uur tot 4 uur"],
+                ["fr", "1.5 - 4 heures"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "Over 4 hours"],
+                ["nl", "Meer dan 4 uur"],
+                ["fr", "Plus de 4 heures"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
 export const IntakeQuestions = {
     gender: gender,
     dateOfBirth: date_of_birth,
@@ -711,4 +1272,8 @@ export const IntakeQuestions = {
     mainActivity: main_activity,
     highestEducation: highest_education,
     peopleMet: people_met,
+    ageGroups: age_groups,
+    childrenInSchool: children_in_school,
+    meansOfTransport: means_of_transport,
+    pubTransportDuration: pub_transport_duration,
 };
