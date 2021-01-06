@@ -2,54 +2,56 @@ import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { initEQ5DHealthIndicatorQuestion, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings, generatePageBreak, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
+import { responseGroupKey, singleChoiceKey } from "./key-definitions";
 
-const responseGroupKey = 'rg';
-const singleChoiceKey = 'scg';
 
-const getEQ5DGroup = (parentKey: string, itemKey: string): SurveyGroupItem => {
-    const key = [parentKey, itemKey].join('.');
+/**
+ * EQ5D-5L: group of questions containing the EQ5D 5L survey items
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to each question to check if they have a response.
+ * @param usePageBreaks if true add a page break behind survey items (one question per page)
+ * @param itemKeyOverride use this to override the default key (EQ5D-5L) for this item (only last part of the key, parent's key is not influenced).
+ */
+const getEQ5D5LGroup = (parentKey: string, isRequired?: boolean, usePageBreaks?: boolean, itemKeyOverride?: string): SurveyGroupItem => {
+    const defaultKey = 'EQ5D-5L';
+    const useCopyRight = true;
+
+    const key = [parentKey, itemKeyOverride ? itemKeyOverride : defaultKey].join('.');
     const groupEditor = new ItemEditor(undefined, {
         itemKey: key,
         isGroup: true
     });
-    groupEditor.setSelectionMethod({ name: 'sequential' })
+    groupEditor.setSelectionMethod({ name: 'sequential' });
 
+    // MOBILITY
+    groupEditor.addSurveyItem(q_mobility_def(key, isRequired, useCopyRight));
+    if (usePageBreaks) { groupEditor.addSurveyItem(generatePageBreak(key, '1')); }
 
-    groupEditor.addSurveyItem(
-        q_mobility_def(key, 'MOB')
-    );
-    groupEditor.addSurveyItem(generatePageBreak(key, '1'));
+    // SELFCARE
+    groupEditor.addSurveyItem(q_selfcare_def(key, isRequired, useCopyRight));
+    if (usePageBreaks) { groupEditor.addSurveyItem(generatePageBreak(key, '2')); }
 
-    groupEditor.addSurveyItem(
-        q_selfcare_def(key, 'SC')
-    );
-    groupEditor.addSurveyItem(generatePageBreak(key, '2'));
+    // USUAL ACTIVITIES
+    groupEditor.addSurveyItem(q_activities_def(key, isRequired, useCopyRight));
+    if (usePageBreaks) { groupEditor.addSurveyItem(generatePageBreak(key, '3')); }
 
-    groupEditor.addSurveyItem(
-        q_activities_def(key, 'ACT')
-    );
-    groupEditor.addSurveyItem(generatePageBreak(key, '3'));
+    // PAIN
+    groupEditor.addSurveyItem(q_pain_def(key, isRequired, useCopyRight));
+    if (usePageBreaks) { groupEditor.addSurveyItem(generatePageBreak(key, '4')); }
 
-    groupEditor.addSurveyItem(
-        q_pain_def(key, 'PAIN')
-    );
-    groupEditor.addSurveyItem(generatePageBreak(key, '4'));
+    // ANXIETY
+    groupEditor.addSurveyItem(q_anxiety_def(key, isRequired, useCopyRight));
+    if (usePageBreaks) { groupEditor.addSurveyItem(generatePageBreak(key, '5')); }
 
-    groupEditor.addSurveyItem(
-        q_anxiety_def(key, 'ANX')
-    );
-    groupEditor.addSurveyItem(generatePageBreak(key, '5'));
+    // HEALTH
+    groupEditor.addSurveyItem(q_healthstatus_instructions_def(key));
+    groupEditor.addSurveyItem(q_healthstatus_def(key, isRequired, useCopyRight));
 
-    groupEditor.addSurveyItem(
-        q_healthstatus_instructions_def(key, 'HEALTH_INST')
-    );
-    groupEditor.addSurveyItem(
-        q_healthstatus_def(key, 'HEALTH')
-    );
     return groupEditor.getItem() as SurveyGroupItem;
 }
 
-export default getEQ5DGroup;
+export default getEQ5D5LGroup;
 
 const eq5dCopyright = {
     role: 'footnote', content: generateLocStrings(new Map([
@@ -60,15 +62,18 @@ const eq5dCopyright = {
 };
 
 
-const q_mobility_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'MOB';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
+    // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "MOBILITY"],
         ]))
     );
+
 
     editor.addDisplayComponent(
         {
@@ -80,6 +85,7 @@ const q_mobility_def = (parentKey: string, key: string): SurveyItem => {
         }
     )
 
+    // RESPONSE
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
@@ -115,20 +121,24 @@ const q_mobility_def = (parentKey: string, key: string): SurveyItem => {
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-    });
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
-    editor.addDisplayComponent(eq5dCopyright);
+    if (useCopyRight) { editor.addDisplayComponent(eq5dCopyright); }
     return editor.getItem();
 }
 
-const q_selfcare_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'SC';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
+    // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "SELF-CARE"],
@@ -180,20 +190,24 @@ const q_selfcare_def = (parentKey: string, key: string): SurveyItem => {
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-    });
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
-    editor.addDisplayComponent(eq5dCopyright);
+    if (useCopyRight) { editor.addDisplayComponent(eq5dCopyright); }
     return editor.getItem();
 }
 
-const q_activities_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'ACT';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
+    // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(
             new Map([
@@ -250,20 +264,24 @@ const q_activities_def = (parentKey: string, key: string): SurveyItem => {
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-    });
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
-    editor.addDisplayComponent(eq5dCopyright);
+    if (useCopyRight) { editor.addDisplayComponent(eq5dCopyright); }
     return editor.getItem();
 }
 
-const q_pain_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'PAIN'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
+    // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "PAIN / DISCOMFORT"],
@@ -315,19 +333,24 @@ const q_pain_def = (parentKey: string, key: string): SurveyItem => {
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-    });
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
-    editor.addDisplayComponent(eq5dCopyright);
+    if (useCopyRight) { editor.addDisplayComponent(eq5dCopyright); }
     return editor.getItem();
 }
 
-const q_anxiety_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'ANX'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "ANXIETY / DEPRESSION"],
@@ -379,18 +402,21 @@ const q_anxiety_def = (parentKey: string, key: string): SurveyItem => {
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-    });
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
-    editor.addDisplayComponent(eq5dCopyright);
+    if (useCopyRight) { editor.addDisplayComponent(eq5dCopyright); }
     return editor.getItem();
 }
 
-const q_healthstatus_instructions_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'HEALTH_INS'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
     editor.addDisplayComponent(
         {
@@ -456,8 +482,9 @@ const q_healthstatus_instructions_def = (parentKey: string, key: string): Survey
     return editor.getItem();
 }
 
-const q_healthstatus_def = (parentKey: string, key: string): SurveyItem => {
-    const itemKey = parentKey + '.' + key;
+const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'HEALTH'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -481,12 +508,14 @@ const q_healthstatus_def = (parentKey: string, key: string): SurveyItem => {
     });
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-    });
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
-    editor.addDisplayComponent(eq5dCopyright);
+    if (useCopyRight) { editor.addDisplayComponent(eq5dCopyright); }
     return editor.getItem();
 }

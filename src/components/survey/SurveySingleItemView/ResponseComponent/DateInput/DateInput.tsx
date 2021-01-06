@@ -14,7 +14,6 @@ import YearMonthSelector from './YearMonthSelector';
 
 registerLocale('nl', nl);
 
-
 interface DateInputProps {
   componentKey: string;
   compDef: ItemComponent;

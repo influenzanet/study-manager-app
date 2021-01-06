@@ -14,7 +14,7 @@ import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from 
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q1'
+    const defaultKey = 'Q1';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
