@@ -71,6 +71,7 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "MOBILITY"],
+            ["nl", "MOBILITEIT"],
         ]))
     );
 
@@ -81,6 +82,7 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
+                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -92,30 +94,35 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I have no problems walking"],
+                ["nl", "Ik heb geen problemen met lopen"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I have slight problems walking"],
+                ["nl", "Ik heb een beetje problemen met lopen"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I have moderate problems walking"],
+                ["nl", "Ik heb matige problemen met lopen"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I have severe problems walking"],
+                ["nl", "Ik heb ernstige problemen met lopen"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I am unable to walk"],
+                ["nl", "Ik ben niet in staat om te lopen"],
             ])
         },
     ]);
@@ -142,6 +149,7 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "SELF-CARE"],
+            ["nl", "ZELFZORG"],
         ]))
     );
 
@@ -151,6 +159,7 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
+                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -161,30 +170,35 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I have no problems washing or dressing myself"],
+                ["nl", "Ik heb geen problemen met mijzelf wassen of aankleden"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I have slight problems washing or dressing myself"],
+                ["nl", "Ik heb een beetje problemen met mijzelf wassen of aankleden"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I have moderate problems washing or dressing myself"],
+                ["nl", "Ik heb matige problemen met mijzelf wassen of aankleden"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I have severe problems washing or dressing myself"],
+                ["nl", "Ik heb ernstige problemen met mijzelf wassen of aankleden"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I am unable to wash or dress myself"],
+                ["nl", "Ik ben niet in staat mijzelf te wassen of aan te kleden"],
             ])
         },
     ]);
@@ -212,9 +226,11 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
         generateTitleComponent(
             new Map([
                 ["en", "USUAL ACTIVITIES"],
+                ["nl", "DAGELIJKSE ACTIVITEITEN"],
             ]),
             new Map([
                 ["en", "(e.g. work, study, housework, family or leisure activities)"],
+                ["nl", "(bijv. werk, studie, huishouden, gezins- en vrijetijdsactiviteiten)"],
             ]),
         )
     );
@@ -225,6 +241,7 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
+                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -235,30 +252,35 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I have no problems doing my usual activities"],
+                ["nl", "Ik heb geen problemen met mijn dagelijkse activiteiten"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I have slight problems doing my usual activities"],
+                ["nl", "Ik heb een beetje problemen met mijn dagelijkse activiteiten"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I have moderate problems doing my usual activities"],
+                ["nl", "Ik heb matige problemen met mijn dagelijkse activiteiten"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I have severe problems doing my usual activities"],
+                ["nl", "Ik heb ernstige problemen met mijn dagelijkse activiteiten"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I am unable to do my usual activities"],
+                ["nl", "Ik ben niet in staat mijn dagelijkse activiteiten uit te voeren"],
             ])
         },
     ]);
@@ -285,6 +307,7 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "PAIN / DISCOMFORT"],
+            ["nl", "PIJN / ONGEMAK"],
         ]))
     );
 
@@ -294,6 +317,7 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
+                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -304,30 +328,35 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I have no pain or discomfort"],
+                ["nl", "Ik heb geen pijn of ongemak"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I have slight pain or discomfort"],
+                ["nl", "Ik heb een beetje pijn of ongemak"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I have moderate pain or discomfort"],
+                ["nl", "Ik heb matige pijn of ongemak"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I have severe pain or discomfort"],
+                ["nl", "Ik heb ernstige pijn of ongemak"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I have extreme pain or discomfort"],
+                ["nl", "Ik heb extreme pijn of ongemak"],
             ])
         },
     ]);
@@ -354,6 +383,7 @@ const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: b
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "ANXIETY / DEPRESSION"],
+            ["nl", "ANGST / SOMBERHEID"],
         ]))
     );
 
@@ -363,6 +393,7 @@ const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: b
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
+                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -373,30 +404,35 @@ const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: b
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I am not anxious or depressed"],
+                ["nl", "Ik ben niet angstig of somber"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I am slightly anxious or depressed"],
+                ["nl", "Ik ben een beetje angstig of somber"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I am moderately anxious or depressed"],
+                ["nl", "Ik ben matig angstig of somber"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I am severely anxious or depressed"],
+                ["nl", "Ik ben erg angstig of somber"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I am extremely anxious or depressed"],
+                ["nl", "Ik ben extreem angstig of somber"],
             ])
         },
     ]);
