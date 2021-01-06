@@ -42,7 +42,7 @@ export const generateIntake = (): Survey | undefined => {
     // Questions
     // *******************************
     // EQ5D group
-    const eq5d = getEQ5DGroup(rootKey, true, false);
+    const eq5d = getEQ5DGroup(rootKey, true, true);
     survey.addExistingSurveyItem(eq5d, rootKey);
 
     return survey.getSurvey();

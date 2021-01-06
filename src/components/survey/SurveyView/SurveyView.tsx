@@ -28,8 +28,8 @@ const SurveyView: React.FC<SurveyViewProps> = (props) => {
 
   const [responseCount, setResponseCount] = useState(0);
 
-  let { path: surveyPath } = useRouteMatch();
-  let pagesPath = `${surveyPath}/pages`;
+  let { url } = useRouteMatch();
+  let pagesPath = `${url}/pages`;
 
   let currentPage = (window.location.href.includes(pagesPath))
     ? parseInt(window.location.href.split("/").slice(-1)[0])
