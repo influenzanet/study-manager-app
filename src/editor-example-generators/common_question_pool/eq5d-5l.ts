@@ -56,6 +56,7 @@ export default getEQ5D5LGroup;
 const eq5dCopyright = {
     role: 'footnote', content: generateLocStrings(new Map([
         ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
+        ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (Dutch) v2.1"],
     ])), style: [
         { key: 'className', value: 'fs-small fst-italic text-center' }
     ]
@@ -460,12 +461,14 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                 {
                     role: 'text', content: generateLocStrings(new Map([
                         ["en", "We would like to know how good or bad your health is TODAY."],
+                        ["nl", "We willen weten hoe goed of slecht uw gezondheid VANDAAG is."],
                     ])),
                     style: [{ key: 'variant', value: 'li' }]
                 },
                 {
                     role: 'text', content: generateLocStrings(new Map([
                         ["en", "This scale is numbered from 0 to 100."],
+                        ["nl", "Deze meetschaal loopt van 0 tot 100."],
                     ])),
                     style: [{ key: 'variant', value: 'li' }]
                 },
@@ -476,17 +479,20 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "100 means the "],
+                                ["nl", "100 staat voor de "],
                             ]))
                         },
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "best"],
+                                ["nl", "beste"],
                             ])),
                             style: [{ key: 'className', value: 'text-decoration-underline' }]
                         },
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", " health you can imagine."],
+                                ["nl", " gezondheid die u zich kunt voorstellen."],
                             ]))
                         },
                     ],
@@ -497,17 +503,20 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "0 means the "],
+                                ["nl", "0 staat voor de "],
                             ]))
                         },
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "worst"],
+                                ["nl", "slechtste"],
                             ])),
                             style: [{ key: 'className', value: 'text-decoration-underline' }]
                         },
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", " health you can imagine."],
+                                ["en", " gezondheid die u zich kunt voorstellen."],
                             ]))
                         },
                     ],
@@ -531,15 +540,19 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
         role: 'eq5d-health-indicator',
         instructionText: new Map([
             ["en", "Please indicate on the scale how your health is TODAY."],
+            ["nl", "Geef aan op de meetschaal hoe uw gezondheid VANDAAG is."],
         ]),
         valueBoxText: new Map([
             ["en", "YOUR HEALTH TODAY ="],
+            ["nl", "UW GEZONDHEID VANDAAG ="],
         ]),
         minHealthText: new Map([
             ["en", "The worst health you can imagine"],
+            ["nl", "De slechste gezondheid die u zich kunt voorstellen"],
         ]),
         maxHealthText: new Map([
             ["en", "The best health you can imagine"],
+            ["nl", "De beste gezondheid die u zich kunt voorstellen"],
         ]),
     });
     editor.addExistingResponseComponent(rg_inner, rg?.key);
