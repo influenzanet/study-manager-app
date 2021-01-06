@@ -75,13 +75,29 @@ const intake = (): Survey | undefined => {
     const Q_pub_transport_duration = DefaultIntake.pubTransportDuration(rootKey, true);
     survey.addExistingSurveyItem(Q_pub_transport_duration, rootKey);
 
-    /*
-    // regular medication --------------------------------------
-    const q11 = survey.addNewSurveyItem({ itemKey: 'Q11' }, rootKey);
-    if (!q11) { return; }
-    survey.updateSurveyItem(q11_def(q11));
-    // -----------------------------------------
+    const Q_common_cold_frequ = DefaultIntake.commonColdFrequency(rootKey, true);
+    survey.addExistingSurveyItem(Q_common_cold_frequ, rootKey);
 
+    const Q_flu_vaccine_last_season = DefaultIntake.fluVaccineLastSeason(rootKey, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_last_season, rootKey);
+
+    const Q_flu_vaccine_this_season = DefaultIntake.fluVaccineThisSeason(rootKey, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season, rootKey);
+
+    const Q_flu_vaccine_this_season_when = DefaultIntake.fluVaccineThisSeasonWhen(rootKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_when, rootKey);
+
+    const Q_flu_vaccine_this_season_reasons_for = DefaultIntake.fluVaccineThisSeasonReasonFor(rootKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_for, rootKey);
+
+    const Q_flu_vaccine_this_season_reasons_against = DefaultIntake.fluVaccineThisSeasonReasonAgainst(rootKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, rootKey);
+
+    const Q_regular_medication = DefaultIntake.regularMedication(rootKey, true);
+    survey.addExistingSurveyItem(Q_regular_medication, rootKey);
+
+
+    /*
     // pregnant --------------------------------------
     const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
     if (!q12) { return; }
@@ -120,41 +136,7 @@ const intake = (): Survey | undefined => {
     survey.updateSurveyItem(q16_def(q16));
     // -----------------------------------------
 
-    // common cold how often  --------------------------------------
-    const q8 = survey.addNewSurveyItem({ itemKey: 'Q8' }, rootKey);
-    if (!q8) { return; }
-    survey.updateSurveyItem(q8_def(q8));
-    // -----------------------------------------
 
-    // flu vaccine last season --------------------------------------
-    const q9 = survey.addNewSurveyItem({ itemKey: 'Q9' }, rootKey);
-    if (!q9) { return; }
-    survey.updateSurveyItem(q9_def(q9));
-    // -----------------------------------------
-
-    // flue vaccine this season --------------------------------------
-    const q10 = survey.addNewSurveyItem({ itemKey: 'Q10' }, rootKey);
-    if (!q10) { return; }
-    survey.updateSurveyItem(q10_def(q10));
-    // -----------------------------------------
-
-    // flue vaccine this season when --------------------------------------
-    const q10b = survey.addNewSurveyItem({ itemKey: 'Q10b' }, rootKey);
-    if (!q10b) { return; }
-    survey.updateSurveyItem(q10b_def(q10b, q10.key));
-    // -----------------------------------------
-
-    // flue vaccine reason for --------------------------------------
-    const q10c = survey.addNewSurveyItem({ itemKey: 'Q10c' }, rootKey);
-    if (!q10c) { return; }
-    survey.updateSurveyItem(q10c_def(q10c, q10.key));
-    // -----------------------------------------
-
-    // flue vaccine reason against --------------------------------------
-    const q10d = survey.addNewSurveyItem({ itemKey: 'Q10d' }, rootKey);
-    if (!q10d) { return; }
-    survey.updateSurveyItem(q10d_def(q10d, q10.key));
-    // -----------------------------------------
     */
 
     return survey.getSurvey();

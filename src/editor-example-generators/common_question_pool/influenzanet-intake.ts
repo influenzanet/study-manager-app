@@ -1264,6 +1264,906 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
     return editor.getItem();
 }
 
+/**
+ * COMMON COLD: how often do you have common cold or flu (single choice)
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q8'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How often do you have common colds or flu-like diseases?"],
+            ["nl", "Hoe vaak heb je last van verkoudheid of griepachtige verschijnselen?"],
+            ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
+        ]))
+    );
+
+    // INFO POPUP
+    // none
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Never"],
+                ["nl", "Minder dan 1 keer per jaar"],
+                ["fr", "Jamais"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Once or twice a year"],
+                ["nl", "1 of 2 keer per jaar"],
+                ["fr", "1 ou 2 fois par an"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Between 3 and 5 times a year"],
+                ["nl", "Tussen 3 en 5 keer per jaar"],
+                ["fr", "De 3 à 5 fois par an"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Between 6 and 10 times a year"],
+                ["nl", "Tussen 6 en 10 keer per jaar"],
+                ["fr", "De 6 à 10 fois par an"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "More that 10 times a year"],
+                ["nl", "Meer dan 10 keer per jaar"],
+                ["fr", "Plus de 10 fois par an"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["nl", "Dat weet ik niet"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * FLU VACCINE LAST SEASON: single choice about last season's vaccine
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q9'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],
+            ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
+            ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "We would like to be able to work out how much protection the vaccine gives. We would also like to find out if there is some protection from vaccines received in previous years."],
+                    ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
+                    ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
+                    ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
+                    ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["nl", "Ja"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["nl", "Nee"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't know"],
+                ["nl", "Dat weet ik niet (meer)"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * FLU VACCINE THIS SEASON: single choice about this season's vaccine
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Are you planning to recieve a flu vaccine this autumn/winter season? (2020-2021)"],
+            ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
+            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
+                    ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
+                    ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
+                    ["nl", "Zeg ja wanneer je van plan bent om de griepprik te nemen. Normaal ontvang je een griepprik in het najaar"],
+                    ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "Yes, I'm planning to"],
+                ["nl", "Ja, dit ben ik van plan"],
+                ["fr", "Oui"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, I have got one"],
+                ["nl", "Ja, deze heb ik al gehaald"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["nl", "Nee"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I don't know (yet)"],
+                ["nl", "Dat weet ik (nog) niet"],
+                ["fr", "Je ne sais pas"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * WHEN RECIEVED FLU VACCINE THIS SEASON: single choice about this season's vaccine
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "When were you vaccinated against flu in the season 2020/2021?"],
+            ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyFluVaccineThisSeason) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Knowing when people are vaccinated tells us how well the vaccination programme is being carried out."],
+                    ["nl", "Het weten van de timing van vaccinatie is belangrijk om de effectiviteit te schatten."],
+                    ["fr", "Savoir quand les gens sont vaccinés nous permet d'évaluer le succès des campagnes de vaccination."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Please, try and answer as accurately as possible. If you don't know the precise date, please give your best estimate. For instance, you might remember the month, then try and remember if it was at the beginning or the end of the month. Were there any significant events (e.g. a holiday or a birthday) that might help jog your memory?"],
+                    ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was."],
+                    ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
+            },
+            description: new Map([
+                ["en", "Choose date"],
+                ["nl", "Kies datum"],
+                ["fr", "Sélectionner une date"],
+            ]),
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["nl", "Dat weet ik niet (meer)"],
+                ["fr", "Je ne sais pas, je ne m'en souviens plus"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ *  REASONS FOR FLU VACCINE THIS SEASON: multiple choice
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThisSeason?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10c'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What were your reasons for getting a seasonal influenza vaccination this year?"],
+            ["nl", "Wat zijn voor jou de belangrijkste redenen om dit jaar een griepprik te halen?"],
+            ["fr", "Quelles étaient vos motivations pour vous faire vacciner contre la grippe saisonnière cette année?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyFluVaccineThisSeason) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+        );
+    }
+
+    // INFO POPUP
+    // none
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "I belong to a risk group (e.g, pregnant, over 65, underlying health condition, etc)"],
+                ["nl", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziekte)"],
+                ["fr", "Je fais partie d'un groupe à risque (p. ex. femmes enceintes, plus de 65 ans, état de santé créant un prédisposition, etc.)"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Vaccination decreases my risk of getting influenza"],
+                ["nl", "Vaccinatie voorkomt dat ikzelf griep krijg"],
+                ["fr", "La vaccination diminue mon risque de contracter la grippe"],
+            ])
+        }, {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Vaccination decreases the risk of spreading influenza to others"],
+                ["nl", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen"],
+                ["fr", " La vaccination diminue le risque de propager la grippe à d'autres"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "My doctor recommended it"],
+                ["nl", "Mijn huisarts heeft me de griepprik aangeraden"],
+                ["fr", "Mon médecin me l'a recommandé"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "It was recommended in my workplace/school"],
+                ["nl", "De griepprik werd aangeboden op mijn werk/op school"],
+                ["fr", "Il a été recommandé sur mon lieu de travail / à l'école"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "The vaccine was readily available and vaccine administration was convenient"],
+                ["nl", "De griepprik is voor mij makkelijk beschikbaar"],
+                ["fr", "Le vaccin était disponible et l'administration du vaccin était pratique"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "The vaccine was free (no cost)"],
+                ["nl", "De griepprik was gratis"],
+                ["fr", "Le vaccin était gratuit"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "I don't want to miss work/school"],
+                ["nl", "Ik wil deze winter geen werk/school missen"],
+                ["fr", "Je ne veux pas manquer le travail / l'école"],
+            ])
+        }, {
+            key: '8', role: 'option',
+            content: new Map([
+                ["en", "I always get the vaccine"],
+                ["nl", "Ik haal de griepprik altijd"],
+                ["fr", "Je me fais systématiquement vacciner"],
+            ])
+        }, {
+            key: '10', role: 'option',
+            content: new Map([
+                ["en", "I try to protect myself against infections, because of the circulation of the pandemic coronavirus"],
+                ["nl", "Ik ben probeer mezelf te beschermen tegen infecties vanwege het pandemische coronavirus"],
+                ["fr", "Je me fais systématiquement vacciner"],
+            ])
+        }, {
+            key: '9', role: 'option',
+            content: new Map([
+                ["en", "Other reason(s)"],
+                ["nl", "Andere reden"],
+                ["fr", "Autres raisons"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ *  REASONS AGAINST FLU VACCINE THIS SEASON: multiple choice
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccineThisSeason?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10d'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination in seaseon 2020/2021?"],
+            ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
+            ["fr", "Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyFluVaccineThisSeason) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '2')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "We would like to know why some people get vaccinated and others do not."],
+                    ["nl", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet."],
+                    ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick all those reasons that were important in your decision."],
+                    ["nl", "Geef alle redenen aan die een rol speelden in de beslissing."],
+                    ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "I am planning to be vaccinated, but haven't been yet"],
+                ["de", "Ich habe vor, mich impfen zu lassen, es aber noch nicht getan."],
+                ["nl", "Ik ben van plan om me te laten vaccineren, maar heb het nog niet gedaan"],
+                ["fr", "Je prévois de me faire vacciner mais ne l'ai pas encore fait"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I haven't been offered the vaccine"],
+                ["de", "Mir wurde die Impfung nicht angeboten"],
+                ["nl", "Het griepvaccin is me niet aangeboden"],
+                ["fr", "La vaccination ne m'a pas été proposée"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I don't belong to a risk group"],
+                ["nl", "Ik behoor niet tot een risicogroep"],
+                ["fr", "Je ne fais pas partie d'un groupe à risque"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "It is better to build your own natural immunity against influenza"],
+                ["nl", "Het is beter om je eigen immuniteit op te bouwen tegen griep."],
+                ["fr", "Il est préférable de développer sa propre immunité naturelle contre la grippe"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "I doubt that the influenza vaccine is effective"],
+                ["nl", "Ik twijfel aan de effectiviteit van het griepvaccin"],
+                ["fr", "Je doute que le vaccin contre la grippe soit efficace"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Influenza is a minor illness"],
+                ["nl", "Griep is slechts een milde ziekte"],
+                ["fr", "La grippe est une maladie bénigne"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "I don't think I am likely to get influenza"],
+                ["nl", "Ik acht de kans klein dat ik griep krijg"],
+                ["fr", "Je ne pense pas être susceptible de contracter la grippe"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "I believe that influenza vaccine can cause influenza"],
+                ["nl", "Ik geloof dat het vaccin ook griep kan veroorzaken"],
+                ["fr", "Je crois que le vaccin antigrippal peut causer la grippe"],
+            ])
+        }, {
+            key: '8', role: 'option',
+            content: new Map([
+                ["en", "I am worried that the vaccine is not safe or will cause illness or other adverse events"],
+                ["nl", "Ik ben bang dat het vaccin niet veilig is en me juist ziek maakt of andere neveneffecten heeft"],
+                ["fr", "Je pense que le vaccin n'est pas sûr ou qu'il peut causer d'autres maladies ou effets indésirables"],
+            ])
+        }, {
+            key: '9', role: 'option',
+            content: new Map([
+                ["en", "I don't like having vaccinations"],
+                ["nl", "Ik hou niet van het krijgen van vaccinaties"],
+                ["fr", "Je n'aime pas me faire vacciner"],
+            ])
+        }, {
+            key: '10', role: 'option',
+            content: new Map([
+                ["en", "The vaccine is not readily available to me"],
+                ["nl", "Het is niet makkelijk om gevaccineerd te worden"],
+                ["fr", "Le vaccin n'est pas facilement disponible pour moi"],
+            ])
+        }, {
+            key: '11', role: 'option',
+            content: new Map([
+                ["en", "The vaccine is not free of charge"],
+                ["nl", "Ik moet betalen voor een griepvaccinatie, het is niet gratis"],
+                ["fr", "Le vaccin n'est pas gratuit"],
+            ])
+        }, {
+            key: '12', role: 'option',
+            content: new Map([
+                ["en", "No particular reason"],
+                ["nl", "Geen speciale reden"],
+                ["fr", "Aucune raison particulière"],
+            ])
+        }, {
+            key: '13', role: 'option',
+            content: new Map([
+                ["en", "Although my doctor recommend a vaccine, I do not get one"],
+                ["nl", "Hoewel mijn huisarts het griepvaccin adviseert, neem ik het niet"],
+                ["fr", " Bien que mon médecin me l'ait recommandé, je ne me suis pas fait vacciner"],
+            ])
+        }, {
+            key: '14', role: 'option',
+            content: new Map([
+                ["en", "Other reason(s)"],
+                ["nl", "Andere reden"],
+                ["fr", "Autre(s) raison(s)"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * REGULAR MEDICATION: multiple choice about medication
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q11'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Do you take regular medication for any of the following medical conditions?"],
+            ["nl", "Gebruik je (regelmatig) medicatie voor een of meer van de volgende aandoeningen?"],
+            ["fr", "Souffrez-vous de l'une des maladies suivantes?"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "This question allows us to find out whether you have other medical conditions that may increase your risk of having more severe illness if you are infected."],
+                    ["nl", "De vraag maakt het voor ons mogelijk om te onderzoeken welke aandoeningen gelinkt zijn aan een hoger risico voor infectie"],
+                    ["fr", "Cette question nous permet de savoir si vous avez des prédispositions qui pourraient augmenter votre risque d'avoir des complications si vous contractez la grippe."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden"],
+                    ["fr", "Comment dois-je répondre?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", 'Only answer "yes" if you take regular medication for your medical problem. If, for instance, you only occasionally take an asthma inhaler, then do not answer "yes" for asthma.'],
+                    ["nl", "Het gaat ons alleen om regelmatig gebruik van medicatie, niet om af en toe. Het af en toe gebruiken van een inhaler bij astma valt hier bijvoorbeeld buiten."],
+                    ["fr", "Répondez «oui» seulement si vous prenez <b>régulièrement</b> des médicaments pour votre problème médical. Si, par exemple, vous n'utilisez qu'occasionnellement un inhalateur pour l'asthme, alors ne répondez pas «oui» pour l'asthme ."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select all options that apply'],
+                ['nl', 'Meerdere antwoorden mogelijk'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["nl", "Nee, voor geen van de onderstaande aandoeningen"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Asthma"],
+                ["nl", "Ja, voor astma"],
+                ["fr", "Asthme"],
+            ])
+        }, {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Diabetes"],
+                ["nl", "Ja, voor diabetes"],
+                ["fr", "Diabètes"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Chronic lung disorder besides asthma e.g. COPD, emphysema, or other disorders that affect your breathing"],
+                ["nl", "Ja, voor chronische longziekten (COPD, emfyseem enz. geen astma)"],
+                ["fr", "Troubles pulmonaires chroniques à part l'asthme (p. ex. MPOC, emphysème, ou autres troubles affectant votre respiration)"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Heart disorder"],
+                ["nl", "Ja, voor hartaandoeningen"],
+                ["fr", "Troubles cardiaques"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Kidney disorder"],
+                ["nl", "Ja, voor nieraandoeningen"],
+                ["fr", "Troubles rénaux"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "An immunocompromising condition (e.g. splenectomy, organ transplant, acquired immune deficiency, cancer treatment)"],
+                ["nl", "Ja, voor een verzwakte afweer, of de medicatie draagt bij aan een verzwakte afweer (bijvoorbeeld door een auto-immuunziekte, kankerbehandeling of na een orgaantransplantatie)"],
+                ["fr", "Immunodéficience (p.ex splénectomie, greffe d'organe, immunodéficience acquise, traitement anti-cancéreux)"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "I would rather not answer"],
+                ["nl", "Dat wil ik niet aangeven"],
+                ["fr", "Je ne désire pas répondre"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
 
 export const IntakeQuestions = {
     gender: gender,
@@ -1276,4 +2176,11 @@ export const IntakeQuestions = {
     childrenInSchool: children_in_school,
     meansOfTransport: means_of_transport,
     pubTransportDuration: pub_transport_duration,
+    commonColdFrequency: common_cold_frequency,
+    fluVaccineLastSeason: flu_vaccine_last_season,
+    fluVaccineThisSeason: flu_vaccine_this_season,
+    fluVaccineThisSeasonWhen: flu_vaccine_this_season_when,
+    fluVaccineThisSeasonReasonFor: flu_vaccine_this_season_reason_for,
+    fluVaccineThisSeasonReasonAgainst: flu_vaccine_this_season_reason_against,
+    regularMedication: regular_medication,
 };
