@@ -16,6 +16,7 @@ import Matrix from './InputTypes/Matrix';
 import TextViewComponent from '../SurveyComponents/TextViewComponent';
 import moment from 'moment';
 import EQ5DHealthIndicatorInput from './EQ5DHealthIndicatorInput/EQ5DHealthIndicatorInput';
+import LikertScale from './InputTypes/LikertScale';
 
 interface ResponseComponentProps {
   itemKey: string;
@@ -202,6 +203,15 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
             compDef={respComp}
             prefill={getPrefillForItem(respComp)}
             isRequired={props.isRequired}
+            responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+          />
+        case 'likert':
+          return <LikertScale
+            key={respComp.key}
+            componentKey={currentKeyPath}
+            languageCode={props.languageCode}
+            compDef={respComp}
+            prefill={getPrefillForItem(respComp)}
             responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
           />
         default:

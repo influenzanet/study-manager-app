@@ -321,3 +321,48 @@ export const initEQ5DHealthIndicatorQuestion = (
 
     return groupEdit.getComponent() as ItemGroupComponent;
 }
+
+export const initLikertScaleItem = (
+    key: string,
+    options: Array<{
+        key: string;
+        className?: string;
+        content?: Map<string, string>;
+        disabled?: Expression;
+    }>,
+    stackOnSmallScreen?: boolean,
+    displayCondition?: Expression,
+): ItemGroupComponent => {
+    // init group
+    const groupEdit = new ComponentEditor(undefined, {
+        key: key,
+        isGroup: true,
+        role: 'likert',
+    });
+    groupEdit.setDisplayCondition(displayCondition);
+    if (stackOnSmallScreen) {
+        groupEdit.setStyles([
+            { key: 'responsive', value: 'stackOnSmallScreen' }
+        ])
+    }
+
+
+    options.forEach((option) => {
+        const optionComponent = new ComponentEditor(undefined, {
+            key: option.key,
+            role: 'option',
+        });
+        if (option.content) {
+            optionComponent.setContent(generateLocStrings(option.content));
+        }
+        if (option.className) {
+            optionComponent.setStyles([{
+                key: 'className', value: option.className
+            }]);
+        }
+        optionComponent.setDisabled(option.disabled);
+        groupEdit.addItemComponent(optionComponent.getComponent());
+    });
+
+    return groupEdit.getComponent() as ItemGroupComponent;
+}

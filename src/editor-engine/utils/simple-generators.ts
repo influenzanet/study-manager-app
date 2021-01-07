@@ -1,5 +1,6 @@
 import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent, SurveySingleItem } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
+import { generateRandomKey } from "./randomKeyGenerator";
 
 export const generateLocStrings = (translations: Map<string, string>): LocalizedString[] => {
     // console.log(translations);
@@ -78,7 +79,7 @@ export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression =>
 export const generatePageBreak = (parentKey: string, key?: string): SurveySingleItem => {
 
     return {
-        key: parentKey + '.' + (key ? key : Math.round(Math.random() * 10000).toFixed()),
+        key: parentKey + '.' + (key ? key : generateRandomKey(4)),
         version: 0,
         type: 'pageBreak'
     };

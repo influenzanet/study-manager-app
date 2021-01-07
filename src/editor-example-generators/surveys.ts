@@ -4,7 +4,14 @@ import getExampleIntake from './nl/inf-intake';
 import getExampleWeekly from './nl/inf-weekly';
 import getEQ5D from './nl/covid-long-term/intake';
 
+import likertScales from './examples/likert-scales';
+
 const surveys = [
+    {
+        instance: 'ex.', surveys: [
+            { name: 'likert', survey: likertScales() }
+        ]
+    },
     {
         instance: 'nl', surveys: [
             { name: "intake", survey: getExampleIntake() },

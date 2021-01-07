@@ -1,6 +1,7 @@
 import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem, ItemGroupComponent, ExpressionName, ResponseComponent, isItemGroupComponent } from "survey-engine/lib/data_types";
 import { NewItemProps, NewComponentProps } from "./data-types";
 import { ComponentEditor } from "./component-editor";
+import { generateRandomKey } from "../utils/randomKeyGenerator";
 
 
 interface ItemEditorInt {
@@ -316,8 +317,11 @@ export class ItemEditor implements ItemEditorInt {
             currentItem.components = { ...initialRootComp() }
         }
 
-        if (!parentKey) {
+        if (newComp.key === undefined) {
+            newComp.key = generateRandomKey(4);
+        }
 
+        if (!parentKey) {
             const ind = currentItem.components.items.findIndex(comp => comp.role === 'responseGroup');
             if (ind < 0) {
                 currentItem.components.items.push(newComp);
