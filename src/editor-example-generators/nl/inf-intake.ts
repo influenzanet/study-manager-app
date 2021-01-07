@@ -1660,7 +1660,7 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Are you planning to recieve a flu vaccine this autumn/winter season? (2020-2021)"],
+            ["en", "Are you planning to receive a flu vaccine this autumn/winter season? (2020-2021)"],
             ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
             ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
         ]))

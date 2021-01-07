@@ -96,48 +96,23 @@ const intake = (): Survey | undefined => {
     const Q_regular_medication = DefaultIntake.regularMedication(rootKey, true);
     survey.addExistingSurveyItem(Q_regular_medication, rootKey);
 
+    const Q_pregnancy = DefaultIntake.pregnancy(rootKey, Q_gender.key, Q_birthdate.key, true);
+    survey.addExistingSurveyItem(Q_pregnancy, rootKey);
 
-    /*
-    // pregnant --------------------------------------
-    const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
-    if (!q12) { return; }
-    survey.updateSurveyItem(q12_def(q12, q1.key));
-    // -----------------------------------------
+    const Q_pregnancy_trimester = DefaultIntake.pregnancyTrimester(rootKey, Q_pregnancy.key, true);
+    survey.addExistingSurveyItem(Q_pregnancy_trimester, rootKey);
 
-    // trimester --------------------------------------
-    const q12b = survey.addNewSurveyItem({ itemKey: 'Q12b' }, rootKey);
-    if (!q12b) { return; }
-    survey.updateSurveyItem(q12b_def(q12b, q12.key));
-    // -----------------------------------------
+    const Q_smoking = DefaultIntake.smoking(rootKey, true);
+    survey.addExistingSurveyItem(Q_smoking, rootKey);
 
-    // do you smoke --------------------------------------
-    const q13 = survey.addNewSurveyItem({ itemKey: 'Q13' }, rootKey);
-    if (!q13) { return; }
-    survey.updateSurveyItem(q13_def(q13));
-    // -----------------------------------------
+    const Q_allergies = DefaultIntake.allergies(rootKey, true);
+    survey.addExistingSurveyItem(Q_allergies, rootKey);
 
-    //survey.addNewSurveyItem({ itemKey: 'pbQ14', type: 'pageBreak' }, rootKey);
+    const Q_special_diet = DefaultIntake.specialDiet(rootKey, true);
+    survey.addExistingSurveyItem(Q_special_diet, rootKey);
 
-    // allergies --------------------------------------
-    const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, rootKey);
-    if (!q14) { return; }
-    survey.updateSurveyItem(q14_def(q14));
-    // -----------------------------------------
-
-    // special diet --------------------------------------
-    const q15 = survey.addNewSurveyItem({ itemKey: 'Q15' }, rootKey);
-    if (!q15) { return; }
-    survey.updateSurveyItem(q15_def(q15));
-    // -----------------------------------------
-
-    // pets --------------------------------------
-    const q16 = survey.addNewSurveyItem({ itemKey: 'Q16' }, rootKey);
-    if (!q16) { return; }
-    survey.updateSurveyItem(q16_def(q16));
-    // -----------------------------------------
-
-
-    */
+    const Q_pets = DefaultIntake.pets(rootKey, true);
+    survey.addExistingSurveyItem(Q_pets, rootKey);
 
     return survey.getSurvey();
 }

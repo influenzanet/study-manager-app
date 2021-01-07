@@ -2551,7 +2551,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["en", "Yes, I recieved the result of a throat/nose swap (PCR)"],
+                ["en", "Yes, I received the result of a throat/nose swap (PCR)"],
                 ["nl", "Ja, ik heb een testuitslag gehad voor een keel/neus slijmvliestest"],
             ])
         },
@@ -2559,7 +2559,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["en", "Yes, I recieved the result of a bloodtest (antibodytest)"],
+                ["en", "Yes, I received the result of a bloodtest (antibodytest)"],
                 ["nl", "Ja, ik heb een testuitslag gehad voor een bloedtest"],
             ])
         },
