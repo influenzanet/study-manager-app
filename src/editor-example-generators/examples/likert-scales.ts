@@ -63,18 +63,28 @@ const simpleExample1 = (parentKey: string, keyOverride?: string): SurveyItem => 
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "This is the question"],
+            ["en", "Three point likert scale"],
         ]))
     );
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initLikertScaleItem(likertScaleKey, [
-        { key: "1" },
-        { key: "2" },
-        { key: "3" },
-        { key: "4" },
-        { key: "5" },
+        {
+            key: "1", content: new Map([
+                ["en", "Disagree"]
+            ]),
+        },
+        {
+            key: "2", content: new Map([
+                ["en", "Neutral"]
+            ]),
+        },
+        {
+            key: "3", content: new Map([
+                ["en", "Agree"]
+            ]),
+        },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -93,18 +103,38 @@ const labelExample1 = (parentKey: string, keyOverride?: string): SurveyItem => {
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "5 options"],
+            ["en", "Five point Likert Scale"],
         ]))
     );
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initLikertScaleItem(likertScaleKey, [
-        { key: "1" },
-        { key: "2" },
-        { key: "3" },
-        { key: "4" },
-        { key: "5" },
+        {
+            key: "1", content: new Map([
+                ["en", "Strongly Disagree"]
+            ]),
+        },
+        {
+            key: "2", content: new Map([
+                ["en", "Disagree"]
+            ]),
+        },
+        {
+            key: "3", content: new Map([
+                ["en", "Neutral"]
+            ]),
+        },
+        {
+            key: "4", content: new Map([
+                ["en", "Agree"]
+            ]),
+        },
+        {
+            key: "5", content: new Map([
+                ["en", "Strongly Agree"]
+            ]),
+        },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
