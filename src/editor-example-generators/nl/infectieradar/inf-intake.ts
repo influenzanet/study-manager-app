@@ -1,10 +1,10 @@
-import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor"
-import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../../editor-engine/utils/simple-generators";
-import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
+import { SurveyEditor } from "../../../editor-engine/survey-editor/survey-editor"
+import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../../../editor-engine/utils/simple-generators";
+import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
-import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
-import { ComponentEditor } from "../../editor-engine/survey-editor/component-editor";
-
+import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
+import { IntakeQuestions as DefaultIntake } from "../../common_question_pool/influenzanet-intake";
+import { CustomNLQuestions } from "./customQuestions";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -53,29 +53,21 @@ export const generateNLIntake = (): Survey | undefined => {
     const rootKey = rootItemEditor.getItem().key;
 
     // gender --------------------------------------
-    const q1 = survey.addNewSurveyItem({ itemKey: 'Q1' }, rootKey);
-    if (!q1) { return; }
-    survey.updateSurveyItem(q1_def(q1));
-    // -----------------------------------------
+    const Q_gender = DefaultIntake.gender(rootKey, true);
+    survey.addExistingSurveyItem(Q_gender, rootKey);
 
     // birthday --------------------------------------
-    const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, rootKey);
-    if (!q2) { return; }
-    survey.updateSurveyItem(q2_def(q2));
-    // -----------------------------------------
+    const Q_birthdate = DefaultIntake.dateOfBirth(rootKey, true);
+    survey.addExistingSurveyItem(Q_birthdate, rootKey);
 
     // postcode --------------------------------------
-    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, rootKey);
-    if (!q3) { return; }
-    survey.updateSurveyItem(q3_def(q3));
-    // -----------------------------------------
-
-    //survey.addNewSurveyItem({ itemKey: 'pbQ5', type: 'pageBreak' }, rootKey);
+    const Q_postal = DefaultIntake.postalCode(rootKey, true);
+    survey.addExistingSurveyItem(Q_postal, rootKey);
 
     // main activity --------------------------------------
-    const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, rootKey);
-    if (!q4) { return; }
-    survey.updateSurveyItem(q4_def(q4));
+    const Q_main_activity = DefaultIntake.mainActivity(rootKey, true);
+    survey.addExistingSurveyItem(Q_main_activity, rootKey);
+
     // -----------------------------------------
 
     // school/work postal code  --------------------------------------
@@ -87,7 +79,7 @@ export const generateNLIntake = (): Survey | undefined => {
     // job category NL --------------------------------------
     const q4cNL = survey.addNewSurveyItem({ itemKey: 'Q4cNL' }, rootKey);
     if (!q4cNL) { return; }
-    survey.updateSurveyItem(q4cNL_def(q4cNL, q4.key));
+    survey.updateSurveyItem(q4cNL_def(q4cNL, Q_main_activity.key));
     // -------------------------------------------------------
 
     // job sub-category education NL --------------------------------------
@@ -169,7 +161,7 @@ export const generateNLIntake = (): Survey | undefined => {
     // pregnant --------------------------------------
     const q12 = survey.addNewSurveyItem({ itemKey: 'Q12' }, rootKey);
     if (!q12) { return; }
-    survey.updateSurveyItem(q12_def(q12, q1.key));
+    survey.updateSurveyItem(q12_def(q12, Q_gender.key));
     // -----------------------------------------
 
     // trimester --------------------------------------
@@ -241,18 +233,12 @@ export const generateNLIntake = (): Survey | undefined => {
     // -----------------------------------------
 
     // corona vaccine --------------------------------------
-    const q10NL = survey.addNewSurveyItem({ itemKey: 'Q10NL' }, rootKey);
-    if (!q10NL) { return; }
-    survey.updateSurveyItem(q10NL_def(q10NL));
-    // -----------------------------------------
+    const Q_coronavaccine = CustomNLQuestions.coronavaccine(rootKey, true);
+    survey.addExistingSurveyItem(Q_coronavaccine, rootKey);
 
     // corona vaccine reason against -----------------------------
-    const q10NLc = survey.addNewSurveyItem({ itemKey: 'Q10NLc' }, rootKey);
-    if (!q10NLc) { return; }
-    survey.updateSurveyItem(q10NLc_def(q10NLc, q10NL.key));
-    // -----------------------------------------
-
-    //survey.addNewSurveyItem({ itemKey: 'pbMedications', type: 'pageBreak' }, rootKey);
+    const Q_coronavaccineReasonAgainst = CustomNLQuestions.coronavaccineReasonAgainst(rootKey, Q_coronavaccine.key, true);
+    survey.addExistingSurveyItem(Q_coronavaccineReasonAgainst, rootKey);
 
 
     // how did you find us --------------------------------------
@@ -286,390 +272,6 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q1_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What is your gender?"],
-            ["nl", "Wat is je geslacht?"],
-            ["fr", " Quel est votre sexe?"],
-        ]))
-    );
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "To find out whether the chance of getting flu is different between genders."],
-                    ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
-                    ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }, { key: 'className', value: 'm-0' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "male"],
-                ["nl", "Man"],
-                ["fr", "Homme"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "female"],
-                ["nl", "Vrouw"],
-                ["fr", "Femme"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "other"],
-                ["nl", "Anders"],
-            ])
-        },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
-
-const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What is your date of birth (month and year)?"],
-            ["nl", "Wanneer ben je geboren (maand en jaar)?"],
-            ["fr", "Quelle est votre date de naissance (mois et année)"],
-        ]))
-    );
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "The chance of getting COVID-19 and the risk of more serious complications vary by age."],
-                    ["nl", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
-                    ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const dateInputEditor = new ComponentEditor(undefined, {
-        key: '1',
-        role: 'dateInput'
-    });
-    dateInputEditor.setProperties({
-        dateInputMode: { str: 'YM' },
-        min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -3311280000) },
-        max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
-    })
-    editor.addExistingResponseComponent(dateInputEditor.getComponent(), rg?.key);
-    editor.addExistingResponseComponent({
-        key: 'feedback',
-        role: 'text',
-        style: [{ key: 'className', value: 'fst-italic mt-1' }],
-        displayCondition: expWithArgs('isDefined',
-            expWithArgs('getResponseItem', editor.getItem().key, [responseGroupKey, '1'].join('.'))
-        ),
-        content: [
-            {
-                code: 'en', parts: [
-                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' years old' }
-                ]
-            },
-            {
-                code: 'nl', parts: [
-                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' jaren oud' }
-                ]
-            },
-            {
-                code: 'fr', parts: [
-                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' ??' }
-                ]
-            }
-        ]
-    }, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
-
-const q3_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What are the first four digits of your home postcode (the part before the space)?"],
-            ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
-            ["fr", "Quelle est le code postal de votre domicile?"],
-        ]))
-    );
-
-
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "To check how representative our sample is, and to see whether the chance of getting flu varies across the country."],
-                    ["nl", "We doen onderzoek naar de regionale verspreiding van infecties."],
-                    ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Please choose the first part of the post-code (the part before the space)."],
-                    ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'input',
-            // style: [{ key: 'className', value: 'w-100' }],
-            content: new Map([
-                ["en", "Postcode:"],
-                ["nl", "Postcode"],
-                ["fr", "Code postal"],
-            ]),
-            description: new Map([
-                ["en", "the first 4 digits"],
-                ["nl", "de eerste vier cijfers"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I don't know/can't remember"],
-                ["nl", "Dit wil ik niet aangeven"],
-                ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
-            ])
-        },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-    editor.addValidation({
-        key: 'r2',
-        type: 'hard',
-        rule: expWithArgs('or',
-            expWithArgs('not', expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemSkeleton.key, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
-            expWithArgs('responseHasKeysAny', itemSkeleton.key, [responseGroupKey, singleChoiceKey].join('.'), '1')
-        )
-    });
-
-    editor.addDisplayComponent(
-        {
-            role: 'error',
-            content: generateLocStrings(new Map([
-                ["en", "Please enter the first four digits of your postcode"],
-                ["nl", "Voer de eerste vier cijfers van je postcode in"],
-            ])),
-            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
-        }
-    );
-
-    return editor.getItem();
-}
-
-const q4_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What is your main activity? Assume a normal situation, without any covid measures."],
-            ["nl", "Welke situatie is het meest van toepassing? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
-            ["fr", "Quelle est votre activité principale?"],
-        ]))
-    );
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "To check how representative our sample is compared to the population as a whole, and to find out whether the chance of getting flu is different for people in different types of occupation."],
-                    ["nl", "Met deze informatie kunnen we zien of de mensen die meedoen representatief zijn voor de bevolking."],
-                    ["fr", "Afin de vérifier la représentativité de notre échantillon comparée à la population dans son ensemble, et savoir si le risque de contracter la grippe est différent pour les personnes ayant différents types d'occupation."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", 'Please, tick the box that most closely resembles your main occupation. For pre-school children who don\'t go to daycare tick the "other" box.'],
-                    ["nl", 'Selecteer wat van toepassing is. Voor kinderen die te jong zijn - selecteer "anders".'],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "Paid employment, full time"],
-                ["nl", "Ik werk fulltime in loondienst"],
-                ["fr", "Employé à plein temps"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "Paid employment, part time"],
-                ["nl", "Ik werk parttime in loondienst"],
-                ["fr", "Employé à temps partiel"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "Self-employed (businessman, farmer, tradesman, etc.)"],
-                ["nl", "Ik werk als zelfstandige/ondernemer"],
-                ["fr", "Indépendant (homme d'affaires , agriculteur , commerçant, etc.)"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "Attending daycare/school/college/university"],
-                ["nl", "Ik ben een scholier of student"],
-                ["fr", "Ecolier, étudiant (garderie / école / université)"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "Home-maker (e.g. housewife)"],
-                ["nl", "Ik ben huisman/huisvrouw"],
-                ["fr", "Femme/homme au foyer"],
-            ])
-        },
-        {
-            key: '5', role: 'option',
-            content: new Map([
-                ["en", "Unemployed"],
-                ["nl", "Ik ben werkloos"],
-                ["fr", "Sans-emploi"],
-            ])
-        },
-        {
-            key: '6', role: 'option',
-            content: new Map([
-                ["en", "Long-term sick-leave or parental leave"],
-                ["nl", "Ik ben thuis vanwege langdurige ziekte of zwangerschapsverlof"],
-                ["fr", "En congé maladie à long terme, en congé maternité"],
-            ])
-        },
-        {
-            key: '7', role: 'option',
-            content: new Map([
-                ["en", "Retired"],
-                ["nl", "Ik ben met pensioen"],
-                ["fr", "Retraité"],
-            ])
-        },
-        {
-            key: '8', role: 'option',
-            content: new Map([
-                ["en", "Other"],
-                ["nl", "Anders"],
-                ["fr", "Autre"],
-            ])
-        },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
 
 const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -3586,239 +3188,4 @@ const q20NLc_def = (itemSkeleton: SurveyItem, q20NLKey: string): SurveyItem => {
     return editor.getItem();
 }
 
-const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "If there is a vaccine available against coronavirus, would you get yourself vaccinated?"],
-            ["nl", "Als er straks een vaccin is tegen het coronavirus, wil je jezelf dan laten vaccineren?"],
-            ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
-        ]))
-    );
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
-                    ["nl", "We willen de mogelijke opname van het coronavaccin onderzoeken."],
-                    ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Report yes, if you received the vaccine this season, usually in the autumn. If you get vaccinated after filling in this questionnaire, please return to this and update your answer."],
-                    ["nl", "Zeg ja wanneer je van plan bent om het coronavaccin te nemen."],
-                    ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "Yes, I will certainly get a vaccination"],
-                ["nl", "Ja, dit ben ik zeker van plan"],
-                ["fr", "Oui"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "Yes, I will likely get a vaccination"],
-                ["nl", "Ja, dit ben ik waarschijnlijk van plan"],
-                ["fr", "Non"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I don't know (yet)"],
-                ["nl", "Dat weet ik (nog) niet"],
-                ["fr", "Non"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "No, I will most likely not get a vaccination"],
-                ["nl", "Nee, dit ben ik waarschijnlijk niet van plan"],
-                ["fr", "Je ne sais pas"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "No, I will certainly not get a vaccination"],
-                ["nl", "Nee, dit ben ik zeker niet van plan"],
-                ["fr", "Je ne sais pas"],
-            ])
-        },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
-
-const q10NLc_def = (itemSkeleton: SurveyItem, q10NLKey: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "What were your reasons for NOT getting a coronavirus vaccination?"],
-            ["nl", "Wat zijn voor jouw de belangrijkste redenen om geen vaccin tegen het coronavirus te halen?"],
-            ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
-        ]))
-    );
-
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', q10NLKey, [responseGroupKey, singleChoiceKey].join('.'), '3', '4')
-    );
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "We would like to know why some people get vaccinated and others do not."],
-                    ["nl", "We willen graag onderzoeken waarom sommige mensen zich wel laten vaccineren en anderen niet."],
-                    ["fr", "Nous aimerions savoir pourquoi certaines personnes se font vacciner et d'autres pas."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["nl", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Tick all those reasons that were important in your decision."],
-                    ["nl", "Geef alle redenen aan die een rol spelen in de beslissing."],
-                    ["fr", "Cochez toutes les raisons qui ont influencé votre décision."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    editor.addExistingResponseComponent({
-        role: 'text',
-        style: [{ key: 'className', value: 'mb-2' }],
-        content: generateLocStrings(
-            new Map([
-                ['en', 'Select all options that apply'],
-                ['nl', 'Meerdere antwoorden mogelijk'],
-                ["fr", "sélectionnez toutes les options applicables"],
-            ])),
-    }, rg?.key);
-
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I have already had corona"],
-                ["nl", "Ik heb al corona gehad"],
-                ["fr", "Je prévois de me faire vacciner mais ne l'ai pas encore fait"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I don't belong to a risk group"],
-                ["nl", "Ik behoor niet tot een risicogroep"],
-                ["fr", "La vaccination ne m'a pas été proposée"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I believe the vaccine is too new"],
-                ["nl", "Ik vind het vaccin te nieuw"],
-                ["fr", "Je ne fais pas partie d'un groupe à risque"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "I am afraid of possible side-effects"],
-                ["nl", "Ik ben bang voor mogelijke bijwerkingen (op lange of korte termijn)"],
-                ["fr", "Il est préférable de développer sa propre immunité naturelle contre la grippe"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "I don't like vaccinations"],
-                ["nl", "Ik hou niet van het krijgen van vaccinaties"],
-                ["fr", "Je doute que le vaccin contre la grippe soit efficace"],
-            ])
-        },
-        {
-            key: '5', role: 'option',
-            content: new Map([
-                ["en", "I doubt the effectiveness of the coronavaccine"],
-                ["nl", "Ik twijfel aan de werking van het coronavaccin"],
-                ["fr", " La grippe est une maladie bénigne"],
-            ])
-        },
-        {
-            key: '6', role: 'option',
-            content: new Map([
-                ["en", "Other reason(s)"],
-                ["nl", "Andere reden"],
-                ["fr", "Autre(s) raison(s)"],
-            ])
-        },
-    ]);
-
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
 

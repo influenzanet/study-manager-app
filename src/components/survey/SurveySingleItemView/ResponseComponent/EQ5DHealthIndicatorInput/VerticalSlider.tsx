@@ -168,7 +168,6 @@ const VerticalSlider: React.FC<VerticalSliderProps> = (props) => {
                 onTouchEnd={() => setIsDragging(false)}
                 onMouseUp={() => setIsDragging(false)}
                 onTouchMove={(event) => {
-                    event.preventDefault();
                     if (!isDragging) { return }
                     const value = computeNewValue(event.touches[0].clientY);
                     if (value === undefined) { return; }
