@@ -1,7 +1,7 @@
 import getBelIntake from './belgium/inf-intake';
 import getBelWeekly from './belgium/inf-weekly';
 import getExampleIntake from './nl/infectieradar/inf-intake';
-import getExampleWeekly from './nl/inf-weekly';
+import getExampleWeekly from './nl/infectieradar/inf-weekly';
 import getEQ5D from './nl/covid-long-term/intake';
 
 import likertScales from './examples/likert-scales';
