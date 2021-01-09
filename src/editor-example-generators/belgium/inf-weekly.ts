@@ -48,8 +48,22 @@ const weekly = (): Survey | undefined => {
     survey.updateSurveyItem(rootItemEditor.getItem());
     const rootKey = rootItemEditor.getItem().key;
 
-    // const Q_gender = DefaultIntake.gender(rootKey, true);
-    // survey.addExistingSurveyItem(Q_gender, rootKey);
+    // Symptoms
+    const Q_symptoms = InfluenzanetWeekly.symptomps(rootKey, true);
+    survey.addExistingSurveyItem(Q_symptoms, rootKey);
+
+    // -------> HAS SYMPTOMS GROUP
+    const hasSymptomGroup = InfluenzanetWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key);
+    survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
+    const hasSymptomGroupKey = hasSymptomGroup.key;
+
+    // Q2 same illnes --------------------------------------
+    const Q_same_illnes = InfluenzanetWeekly.sameIllnes(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_same_illnes, hasSymptomGroupKey);
+
+    //  symptom start --------------------------------------
+    const Q_symptom_start = InfluenzanetWeekly.symptomStart(hasSymptomGroupKey, Q_same_illnes.key, true);
+    survey.addExistingSurveyItem(Q_symptom_start, hasSymptomGroupKey);
 
 
     return survey.getSurvey();

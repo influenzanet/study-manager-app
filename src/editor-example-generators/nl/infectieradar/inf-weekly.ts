@@ -5,6 +5,7 @@ import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../../../editor-engine/survey-editor/component-editor";
 import { CoronaVaccineQuestions } from "../questions/coronaVaccine";
+import { WeeklyQuestions as DefaultWeekly } from "../../common_question_pool/influenzanet-weekly";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -126,46 +127,31 @@ const generateNLWeekly = (): Survey | undefined => {
     if (!q1_title) { return; }
     survey.updateSurveyItem(q1_title_def(q1_title));
 
-    // general --------------------------------------
-    const q1_1 = survey.addNewSurveyItem({ itemKey: '1' }, q1Key);
-    if (!q1_1) { return; }
-    survey.updateSurveyItem(q1_1_def(q1_1));
-    // -----------------------------------------
+    // symptoms --------------------------------------
+    const Q_symptoms = DefaultWeekly.symptomps(q1Key, true, '1');
+    survey.addExistingSurveyItem(Q_symptoms, q1Key);
 
-    const anySymptomSelected = expWithArgs('responseHasOnlyKeysOtherThan', [q1Key, '1'].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '0');
-
-
-
-
-    //survey.addNewSurveyItem({ itemKey: 'pb1', type: 'pageBreak' }, rootKey);
+    // const anySymptomSelected = expWithArgs('responseHasOnlyKeysOtherThan', Q_symptoms.key, [responseGroupKey, multipleChoiceKey].join('.'), '0');
 
     // -------> HAS SYMPTOMS GROUP
-    const hasSymptomGroup = survey.addNewSurveyItem({ itemKey: 'HS', isGroup: true }, rootKey);
-    const hasSymptomGroupEditor = new ItemEditor(hasSymptomGroup as SurveyGroupItem);
-    hasSymptomGroupEditor.setSelectionMethod({ name: 'sequential' });
-    hasSymptomGroupEditor.setCondition(anySymptomSelected)
-    survey.updateSurveyItem(hasSymptomGroupEditor.getItem());
-
-    const hasSymptomGroupKey = hasSymptomGroupEditor.getItem().key;
+    const hasSymptomGroup = DefaultWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key, 'HS');
+    survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
+    const hasSymptomGroupKey = hasSymptomGroup.key;
 
     //survey.addNewSurveyItem({ itemKey: 'pbQ3', type: 'pageBreak' }, hasSymptomGroupKey);
 
     // Q2 same illnes --------------------------------------
-    const q2 = survey.addNewSurveyItem({ itemKey: 'Q2' }, hasSymptomGroupKey);
-    if (!q2) { return; }
-    survey.updateSurveyItem(q2_def(q2));
-    // -----------------------------------------
+    const Q_same_illnes = DefaultWeekly.sameIllnes(hasSymptomGroupKey, true, 'Q2');
+    survey.addExistingSurveyItem(Q_same_illnes, hasSymptomGroupKey);
 
     // Q3 when first symptoms --------------------------------------
-    const q3 = survey.addNewSurveyItem({ itemKey: 'Q3' }, hasSymptomGroupKey);
-    if (!q3) { return; }
-    survey.updateSurveyItem(q3_def(q3, q2.key));
-    // -----------------------------------------
+    const Q_symptomStart = DefaultWeekly.symptomStart(hasSymptomGroupKey, Q_same_illnes.key, true, 'Q3');
+    survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
     // Q4 when symptoms end --------------------------------------
     const q4 = survey.addNewSurveyItem({ itemKey: 'Q4' }, hasSymptomGroupKey);
     if (!q4) { return; }
-    survey.updateSurveyItem(q4_def(q4, q3.key));
+    survey.updateSurveyItem(q4_def(q4, Q_symptomStart.key));
     // -----------------------------------------
 
     // Q5 symptoms developed suddenly --------------------------------------
@@ -443,389 +429,6 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-const q1_1_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "Did you have any general symptoms such as"],
-            ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten? (chronische klachten hoeven hier niet gemeld te worden)"],
-        ]))
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
-        {
-            key: '0', role: 'option', content: new Map([
-                ["en", "No symptoms"],
-                ["nl", "Nee, geen van deze klachten"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Fever"],
-                ["nl", "Koorts"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Chills"],
-                ["nl", "Koude rillingen"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Runny or blocked nose"],
-                ["nl", "Loopneus of verstopte neus"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Sneezing"],
-                ['nl', "Niezen"],
-            ])
-        },
-        {
-            key: '5', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Sore throat"],
-                ["nl", "Zere keel"],
-            ])
-        },
-        {
-            key: '6', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Cough"],
-                ["nl", "Hoesten"],
-            ])
-        },
-        {
-            key: '7', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Shortness of breath"],
-                ["nl", "Kortademig (snel buiten adem)"],
-            ])
-        },
-        {
-            key: '8', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Headache"],
-                ["nl", "Hoofdpijn"],
-            ])
-        },
-        {
-            key: '9', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Muscle/joint pain"],
-                ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
-            ])
-        },
-        {
-            key: '10', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Chest pain"],
-                ["nl", "Pijn op de borst"],
-            ])
-        },
-        {
-            key: '11', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Feeling tired or exhausted (malaise)"],
-                ["nl", "Vermoeid en lamlendig (algehele malaise)"],
-            ])
-        },
-        {
-            key: '12', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Loss of appetite"],
-                ["nl", "Verminderde eetlust"],
-            ])
-        },
-        {
-            key: '13', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Coloured sputum/phlegm"],
-                ["nl", "Verkleurd slijm"],
-            ])
-        },
-        {
-            key: '14', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Watery, bloodshot eyes"],
-                ["nl", "Waterige of bloeddoorlopen ogen"],
-            ])
-        },
-        {
-            key: '15', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Nausea"],
-                ["nl", "Misselijkheid"],
-            ])
-        },
-        {
-            key: '16', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Vomiting"],
-                ["nl", "Overgeven"],
-            ])
-        },
-        {
-            key: '17', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Diarrhoea (at least three times a day)"],
-                ["nl", "Diarree (minstens 3 keer per dag)"],
-            ])
-        },
-        {
-            key: '18', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Stomach ache"],
-                ["nl", "Buikpijn"],
-            ])
-        },
-        {
-            key: '19', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Loss of smell"],
-                ["nl", "Geen reuk"],
-            ])
-        },
-        {
-            key: '20', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Loss of taste"],
-                ["nl", "Geen smaak"],
-            ])
-        },
-        {
-            key: '21', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Nose bleed"],
-                ["nl", "Bloedneus"],
-            ])
-        },
-        {
-            key: '22', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
-            content: new Map([
-                ["en", "Rash"],
-                ["nl", "Huiduitslag"],
-            ])
-        },
-
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
-
-const q2_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
-            ["nl", "In je laatste vragenlijst gaf je aan nog steeds klachten te hebben. Behoren de klachten die je nu meldt tot dezelfde klachtenperiode als de klachten die je de vorige keer al gemeld had?"],
-            ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
-        ]))
-    );
-
-    const hadOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "1");
-    editor.setCondition(hadOngoingSymptomsLastWeek);
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "To make filling out the rest of the survey quicker for you."],
-                    ["nl", "Om te bepalen of je klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
-                    ["fr", "Afin que vous puissiez remplir le reste de l'enquête plus rapidement."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["fr", "Comment devez-vous répondre?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."],
-                    ["nl", "Als je denkt dat de klachten die je vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'"],
-                    ["fr", "Si vous pensez que les symptômes que vous avez déclarés aujourd'hui sont causés par le même épisode de maladie que vos symptômes précédents, s'il vous plaît cochez «oui» . Pour gagner du temps, nous avons rempli les informations que vous nous avez déjà fournies sur votre maladie.  S'il vous plaît, vérifiez qu'elles sont toujours correctes ou faites les modifications nécessaires si, par exemple, vous avez consulté un médecin ou pris plus de temps hors travail depuis la dernière fois que vous avez répondu au questionnaire."],
-                ]),
-            },
-        ])
-    );
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "Yes"],
-                ["nl", "Ja"],
-                ["fr", "Oui"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "No"],
-                ["nl", "Nee"],
-                ["fr", "Non"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I don't know/can't remember"],
-                ["nl", "Ik weet het niet (meer)."],
-                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
-            ])
-        },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
-
-const q3_def = (itemSkeleton: SurveyItem, q2Key: string): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["en", "When did the first symptoms appear?"],
-            ["nl", "Op welke dag kwamen de eerste klachten opzetten? Als je de datum niet precies meer weet, kies dan een geschatte datum"],
-            ["fr", " Quand les premiers symptômes sont-ils apparus?"],
-        ]))
-    );
-
-
-    // const hadNOOngoingSymptomsLastWeek = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "0");
-    editor.setCondition(expWithArgs('not', expWithArgs('responseHasKeysAny', [q2Key].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '0')));
-
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["en", "Why are we asking this?"],
-                    ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "To help us work out the number of cases that arise each day."],
-                    ["nl", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag."],
-                    ["fr", "Pour nous aider à travailler sur le nombre de cas de grippe qui se déclarent chaque jour."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["en", "How should I answer it?"],
-                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["en", "Please give as accurate an estimate as possible."],
-                    ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
-                    ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
-                ]),
-            },
-        ])
-    );
-    // editor.setCondition(anySymptomSelected);
-
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'dateInput',
-            optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
-                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
-            },
-            content: new Map([
-                ["en", "Choose date"],
-                ["nl", "Kies de dag"],
-                ["fr", "Sélectionner la date"],
-            ])
-        },
-        //{
-        //    key: '1', role: 'option',
-        //    content: new Map([
-        //        ["en", "I don't know/can't remember"],
-        //        ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
-        //       ["nl", "Ik weet het niet (meer)."],
-        //        ["fr", "Je ne sais pas / je ne m'en souviens plus"],
-        //    ])
-        //},
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    editor.addValidation({
-        key: 'r1',
-        type: 'hard',
-        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
-    });
-
-    return editor.getItem();
-}
 
 const q4_def = (itemSkeleton: SurveyItem, q3Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
