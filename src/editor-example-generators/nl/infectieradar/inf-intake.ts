@@ -4,7 +4,6 @@ import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { IntakeQuestions as DefaultIntake } from "../../common_question_pool/influenzanet-intake";
-import { CustomNLQuestions } from "./customQuestions";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -13,8 +12,6 @@ const dropDownKey = 'ddg'
 const sliderCategoricalKey = "scc"
 const inputKey = "ic"
 const matrixKey = "mat"
-
-
 
 export const generateNLIntake = (): Survey | undefined => {
     const surveyKey = 'intake';
@@ -231,15 +228,6 @@ export const generateNLIntake = (): Survey | undefined => {
     if (!q10d) { return; }
     survey.updateSurveyItem(q10d_def(q10d, q10.key));
     // -----------------------------------------
-
-    // corona vaccine --------------------------------------
-    const Q_coronavaccine = CustomNLQuestions.coronavaccine(rootKey, true);
-    survey.addExistingSurveyItem(Q_coronavaccine, rootKey);
-
-    // corona vaccine reason against -----------------------------
-    const Q_coronavaccineReasonAgainst = CustomNLQuestions.coronavaccineReasonAgainst(rootKey, Q_coronavaccine.key, true);
-    survey.addExistingSurveyItem(Q_coronavaccineReasonAgainst, rootKey);
-
 
     // how did you find us --------------------------------------
     //const q17 = survey.addNewSurveyItem({ itemKey: 'Q17' }, rootKey);
