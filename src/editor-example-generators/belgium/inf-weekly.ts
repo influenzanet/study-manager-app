@@ -60,11 +60,21 @@ const weekly = (): Survey | undefined => {
     // Q2 same illnes --------------------------------------
     const Q_same_illnes = InfluenzanetWeekly.sameIllnes(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_same_illnes, hasSymptomGroupKey);
+    // Q3 when first symptoms --------------------------------------
+    const Q_symptomStart = InfluenzanetWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
+    survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
-    //  symptom start --------------------------------------
-    const Q_symptom_start = InfluenzanetWeekly.symptomStart(hasSymptomGroupKey, Q_same_illnes.key, true);
-    survey.addExistingSurveyItem(Q_symptom_start, hasSymptomGroupKey);
+    // Q4 when symptoms end --------------------------------------
+    const Q_symptomsEnd = InfluenzanetWeekly.symptomsEnd(hasSymptomGroupKey, Q_symptomStart.key, true);
+    survey.addExistingSurveyItem(Q_symptomsEnd, hasSymptomGroupKey);
 
+    // Q5 symptoms developed suddenly --------------------------------------
+    const Q_symptomsSuddenlyDeveloped = InfluenzanetWeekly.symptomsSuddenlyDeveloped(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_symptomsSuddenlyDeveloped, hasSymptomGroupKey);
+
+    // ----> fever group  - 4 questions
+    const feverGroup = InfluenzanetWeekly.feverGroup.all(hasSymptomGroupKey, Q_symptoms.key, true);
+    survey.addExistingSurveyItem(feverGroup, hasSymptomGroupKey);
 
     return survey.getSurvey();
 }
