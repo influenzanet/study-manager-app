@@ -76,6 +76,30 @@ const weekly = (): Survey | undefined => {
     const feverGroup = InfluenzanetWeekly.feverGroup.all(hasSymptomGroupKey, Q_symptoms.key, true);
     survey.addExistingSurveyItem(feverGroup, hasSymptomGroupKey);
 
+    // Q7 visited medical service --------------------------------------
+    const Q_visitedMedicalService = InfluenzanetWeekly.visitedMedicalService(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_visitedMedicalService, hasSymptomGroupKey);
+
+    // Q7a visited GP practice --------------------------------------
+    const Q_visitedGPPractice = InfluenzanetWeekly.visitedGP(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
+    survey.addExistingSurveyItem(Q_visitedGPPractice, hasSymptomGroupKey);
+
+    // Q7b how soon visited medical service --------------------------------------
+    const Q_visitedMedicalServiceWhen = InfluenzanetWeekly.visitedMedicalServiceWhen(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
+    survey.addExistingSurveyItem(Q_visitedMedicalServiceWhen, hasSymptomGroupKey);
+
+    // Q9 took medication --------------------------------------
+    const Q_tookMedication = InfluenzanetWeekly.tookMedication(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);
+
+    // Q9b how soon after symptoms taking antivirals --------------------------------------
+    const Q_whenAntivirals = InfluenzanetWeekly.whenAntivirals(hasSymptomGroupKey, Q_tookMedication.key, true);
+    survey.addExistingSurveyItem(Q_whenAntivirals, hasSymptomGroupKey);
+
+    // Q11 think cause of symptoms --------------------------------------
+    const Q_causeOfSymptoms = InfluenzanetWeekly.causeOfSymptoms(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_causeOfSymptoms, hasSymptomGroupKey);
+
     return survey.getSurvey();
 }
 

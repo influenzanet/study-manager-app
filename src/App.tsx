@@ -3,11 +3,9 @@ import {
   BrowserRouter as Router, Route, Redirect, Switch,
 } from "react-router-dom";
 
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import {
   createMuiTheme,
-  StylesProvider,
-  MuiThemeProvider,
   responsiveFontSizes,
 } from '@material-ui/core';
 
