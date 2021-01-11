@@ -17,6 +17,7 @@ const intake = (): Survey | undefined => {
     survey.setSurveyName(generateLocStrings(
         new Map([
             ["en", "About You"],
+            ["be-nl", "Intake vragenlijst"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
