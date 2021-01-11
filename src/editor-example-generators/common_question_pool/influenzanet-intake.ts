@@ -23,6 +23,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
         generateTitleComponent(new Map([
             ["en", "What is your gender?"],
             ["nl", "Wat is je geslacht?"],
+            ["nl-be", "Wat is uw geslacht?"],
             ["fr", "Quel est votre sexe?"],
         ]))
     );
@@ -34,6 +35,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -42,6 +44,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 content: new Map([
                     ["en", "To find out whether the chance of getting flu is different between genders."],
                     ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
+                    ["nl-be", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }, { key: 'className', value: 'm-0' }],
@@ -57,6 +60,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             content: new Map([
                 ["en", "male"],
                 ["nl", "Man"],
+                ["nl-be", "Man"],
                 ["fr", "Homme"],
             ])
         },
@@ -65,6 +69,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             content: new Map([
                 ["en", "female"],
                 ["nl", "Vrouw"],
+                ["nl-be", "Vrouw"],
                 ["fr", "Femme"],
             ])
         },
@@ -73,6 +78,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             content: new Map([
                 ["en", "other"],
                 ["nl", "Anders"],
+                ["nl-be", "Anders"],
             ])
         },
     ]);
@@ -108,6 +114,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
             ["nl", "Wanneer ben je geboren (maand en jaar)?"],
+            ["nl-be", "Wanneer bent u geboren (maand en jaar)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
         ]))
     );
@@ -127,6 +134,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 content: new Map([
                     ["en", "The chance of getting COVID-19 and the risk of more serious complications vary by age."],
                     ["nl", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
+                    ["nl-be", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -162,6 +170,12 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 code: 'nl', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' jaren oud' }
+                ]
+            },
+            {
+                code: 'nl-be', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
                     { str: ' jaren oud' }
                 ]
@@ -204,6 +218,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         generateTitleComponent(new Map([
             ["en", "What are the first four digits of your home postcode (the part before the space)?"],
             ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
+            ["nl-be", "Wat is de postcode van je woonplaats?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
         ]))
     );
@@ -223,6 +238,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 content: new Map([
                     ["en", "To check how representative our sample is, and to see whether the chance of getting flu varies across the country."],
                     ["nl", "We doen onderzoek naar de regionale verspreiding van infecties."],
+                    ["nl-be", "Om te controleren hoe representatief onze cohort is, en om te kijken naar geografische verschillen in de verspreiding van COVID-19 en griep."],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -253,6 +269,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             content: new Map([
                 ["en", "Postcode:"],
                 ["nl", "Postcode"],
+                ["nl-be", "Postcode"],
                 ["fr", "Code postal"],
             ]),
             description: new Map([
@@ -265,6 +282,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             content: new Map([
                 ["en", "I don't know/can't remember"],
                 ["nl", "Dit wil ik niet aangeven"],
+                ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
             ])
         },
@@ -295,6 +313,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             content: generateLocStrings(new Map([
                 ["en", "Please enter the first four digits of your postcode"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
+                ["nl-be", "Voer de vier cijfers van je postcode in"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }

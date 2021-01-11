@@ -1,0 +1,16 @@
+Q1: ok
+Q2: ok
+
+Q3:
+    - "How should I answer it" --> not needed for Belgium questionnaire
+    - Can we check where the postal code is a true postal code, 
+        by looking whether it present in the list of all postal code of Belgium?
+
+Q4:
+    - Generated Q4 specific for Belgium
+    - @Lisa: Is this truely a multiple choice question for Belgium? If so, we need to change 'how to answer it'.
+
+Q4b:
+    - Generated Q4b specific for Belgium
+    - Please check the validations, as option 2 is now not present
+    - This question should only pop-up when Q4 in (0,1,2,3). Is the condition correctly implemented?
