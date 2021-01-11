@@ -16,18 +16,26 @@ const intake = (): Survey | undefined => {
     // *******************************
     survey.setSurveyName(generateLocStrings(
         new Map([
-            ["en", "About You"],
-            ["be-nl", "Intake vragenlijst"],
+            ["nl-be", "Achtergrondvragenlijst"],
+            ["en-be", "Intake questionnaire"],
+            ["fr-be", "Questionnaire préliminaire"],
+            ["de-be", "Hintergrundfrageboge"]
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["en", "The intake survey focues on some background and demographic information."],
+            ["nl-be", "Het doel van de eerste vragenlijst is om elke gebruiker wat beter te leren kennen."],
+            ["en-be", "The intake survey focues on some background and demographic information."],
+            ["fr-be", "Le questionnaire préliminaire a pour but de connaître un peu mieux chaque utilisateur."],
+            ["de-be", "Der Zweck des Hintergrundfragebogens ist es, jeden Benutzer ein wenig besser kennen zu lernen."]
         ])
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["en", "This will take 15 minutes."],
+            ["nl-be", "Dit zal ongeveer 5-10 minuten tijd in beslag nemen."],
+            ["en-be", "This will take 5-10 minutes."],
+            ["fr-be", "Comptez environ 5-10 minutes pour compléter le questionnaire préliminaire."],
+            ["de-be", "Es dauert etwa 5-10 Minuten, um diesen Fragebogen auszufüllen."]
         ])
     ));
 
