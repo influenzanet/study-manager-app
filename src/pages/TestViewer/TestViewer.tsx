@@ -69,7 +69,7 @@ const TestViewer: React.FC = () => {
     const surveySelector = (
         <div className="py-2a px-2 px-sm-3 bg-grey-1 mb-2">
             <div className="row">
-                <div className="col-12 col-sm-4 mb-2 mb-sm-0">
+                <div className="col-12 mb-2">
                     {/* instance selector */}
                     <div className="mb-1">Instance:</div>
                     <div className="btn-group w-100">
@@ -94,7 +94,7 @@ const TestViewer: React.FC = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="col-12 col-sm-4 mb-2 mb-sm-0">
+                <div className="col-12 mb-2">
                     {/* survey key selector */}
                     <div className="mb-1">Survey:</div>
                     <div className="btn-group w-100">
@@ -121,7 +121,7 @@ const TestViewer: React.FC = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="col-12 col-sm-4">
+                <div className="col-12">
                     {/* language selector */}
                     <div className="mb-1">Language:</div>
                     <div className="btn-group w-100">
@@ -151,9 +151,11 @@ const TestViewer: React.FC = () => {
 
 
     return (
-        <div className="container">
+        <div className="container-fluid">
+
+
             <div className="row mt-3">
-                <div className="col-12 col-lg-8 offset-lg-2">
+                <div className="col-12 col-lg-4">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
                         <h2 className="m-0">Survey Selector: </h2>
                     </div>
@@ -161,10 +163,7 @@ const TestViewer: React.FC = () => {
                     {survey ? <div>{renderSurveyNameAndDescription(survey)}</div> : null}
 
                 </div>
-            </div>
-
-            <div className="row mt-3">
-                <div className="col-12 col-lg-8 offset-lg-2">
+                <div className="col-12 col-lg-8">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
                         <h2 className="m-0">Survey Preview: </h2>
                     </div>
@@ -178,9 +177,9 @@ const TestViewer: React.FC = () => {
                                     console.log(resp)
                                 }}
 
-                                submitBtnText={'Submit'}
-                                nextBtnText={'Next Page'}
-                                backBtnText={'Back'}
+                                submitBtnText={'Verzenden'}
+                                nextBtnText={'Volgende'}
+                                backBtnText={'Terug'}
                                 invalidResponseText={'Please select a valid response.'}
                             />
                         </div> : null}
