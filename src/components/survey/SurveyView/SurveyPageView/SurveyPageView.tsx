@@ -28,6 +28,7 @@ interface SurveyPageViewProps {
   isLastPage: boolean;
   localisedTexts: SurveyPageLocalisedTexts;
   surveyEndItem?: SurveySingleItem;
+  ignoreValidation?: boolean;
 }
 
 const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
@@ -84,19 +85,52 @@ const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
 
   const valid = checkSurveyItemsValidity(props.surveyItems);
 
+  const handleClickWithValidation = (handler: () => void) => {
+    if (props.ignoreValidation) {
+      handler();
+      return;
+    }
+    if (!valid.hard) {
+      setShowValidationErrors(true);
+      // console.log(elRefs)
+
+      // Scroll to first invalid item
+      if (elRefs.current) {
+        elRefs.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+      return;
+    }
+    setShowValidationErrors(false);
+    handler();
+  };
+
   const surveyEnd = () => {
     const titleComp = getItemComponentByRole(props.surveyEndItem?.components?.items, 'title');
-    return <div>
-      {titleComp ? getLocaleStringTextByCode(titleComp.content, props.selectedLanguage) : null}
+    return <div
+      className="bg-grey-1 px-2 px-sm-3 py-2 mt-2a"
+    >
+      {titleComp ? <h5 className="text-primary fw-bold">{getLocaleStringTextByCode(titleComp.content, props.selectedLanguage)}</h5> : null}
       {props.showBackButton ?
         <button
+          className="btn btn-outline-primary fs-btn"
           onClick={props.onPreviousPage}
+          disabled={props.loading}
         >
           {props.localisedTexts.backBtn}
         </button>
         : null}
       <button
-        onClick={props.onSubmit}
+        className={clsx(
+          "btn btn-primary fw-bold fs-btn",
+          {
+            "ms-2": props.showBackButton
+          }
+        )}
+        onClick={() => handleClickWithValidation(props.onSubmit)}
+        disabled={props.loading}
       >
         {props.localisedTexts.submitBtn}
       </button>
@@ -111,64 +145,20 @@ const SurveyPageView: React.FC<SurveyPageViewProps> = (props) => {
         <button
           className="btn btn-outline-primary fs-btn"
           onClick={props.onPreviousPage}
+          disabled={props.loading}
         >
           {props.localisedTexts.backBtn}
         </button>
         : null}
       <button
         className="btn btn-primary ms-2 fw-bold fs-btn"
-        onClick={props.onNextPage}
+        onClick={() => handleClickWithValidation(props.onNextPage)}
+        disabled={props.loading}
       >
         {props.localisedTexts.nextBtn}
       </button>
     </div>
   );
-  /*
-  const actionButton = (
-    <Box textAlign="center" m={1}>
-      {!showValidationErrors ? null : <p>{props.valididityWarningLabel}</p>}
-
-      <Button
-        onClick={() => {
-          if (!valid.hard) {
-            setShowValidationErrors(true);
-            console.log(elRefs)
-            // Scroll to first invalid item
-            if (elRefs.current) {
-              elRefs.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-              });
-            }
-            return;
-          }
-          setShowValidationErrors(false);
-          props.action();
-        }}
-        disabled={props.loading}
-      //disabled={showValidationErrors && !valid.hard}
-      >
-        {props.actionLabel}
-      </Button>
-    </Box >
-  )*/
-
-  // <-- already merged
-  // --> from study manager app
-
-  /*
-  const actionButton = (
-    <div className="text-center">
-      {checkSurveyItemsValidity(props.surveyItems).hard ? 'valid' : 'invalid'}
-      <RoundedButton
-        className="m-3"
-        color="primary"
-        onClick={props.action}
-      >
-        {props.actionLabel}
-      </RoundedButton>
-    </div>
-  )*/
 
   return (
     <div >

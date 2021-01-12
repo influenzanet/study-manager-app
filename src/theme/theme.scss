@@ -22,6 +22,7 @@ $custom-colors: (
     "grey-5": #6E7D93,
     "grey-7": #4F5A6B,
     "lightest": #fff,
+    "danger-light": #FCCFD9,
 );
 
 // Merge the maps
@@ -46,11 +47,11 @@ p, ul {
 }
 
 .fs-btn {
-    font-size: 1.125rem;
+  font-size: 1.125rem !important;
 }
 
 .fs-small {
-    font-size: 0.875rem;
+  font-size: 0.875rem !important;
 }
 
 // ---------------------------------------------
