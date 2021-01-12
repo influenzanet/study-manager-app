@@ -2834,6 +2834,23 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     return editor.getItem();
 }
 
+const surveyEnd = (parentKey: string): SurveyItem => {
+    const defaultKey = 'surveyEnd'
+    const itemKey = [parentKey, defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, type: 'surveyEnd', isGroup: false });
+
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
+            ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
+        ]))
+    );
+
+    // CONDITION
+    // None
+
+    return editor.getItem();
+}
 
 export const IntakeQuestions = {
     gender: gender,
@@ -2859,4 +2876,5 @@ export const IntakeQuestions = {
     allergies: allergies,
     specialDiet: special_diet,
     pets: pets,
+    surveyEnd,
 };
