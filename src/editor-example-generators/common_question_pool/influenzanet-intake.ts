@@ -58,7 +58,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "male"],
+                ["en", "Male"],
                 ["nl", "Man"],
                 ["nl-be", "Man"],
                 ["fr", "Homme"],
@@ -67,7 +67,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "female"],
+                ["en", "Female"],
                 ["nl", "Vrouw"],
                 ["nl-be", "Vrouw"],
                 ["fr", "Femme"],
@@ -76,7 +76,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "other"],
+                ["en", "Other"],
                 ["nl", "Anders"],
                 ["nl-be", "Anders"],
             ])
@@ -218,7 +218,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         generateTitleComponent(new Map([
             ["en", "What are the first four digits of your home postcode (the part before the space)?"],
             ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
-            ["nl-be", "Wat is de postcode van je woonplaats?"],
+            ["nl-be", "Wat is de postcode van uw woonplaats?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
         ]))
     );
@@ -238,7 +238,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 content: new Map([
                     ["en", "To check how representative our sample is, and to see whether the chance of getting flu varies across the country."],
                     ["nl", "We doen onderzoek naar de regionale verspreiding van infecties."],
-                    ["nl-be", "Om te controleren hoe representatief onze cohort is, en om te kijken naar geografische verschillen in de verspreiding van COVID-19 en griep."],
+                    ["nl-be", "Om te controleren hoe representatief onze cohort (groep deelnemers aan deze studie) is, en om te kijken naar geografische verschillen in de verspreiding van COVID-19 en griep."],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -277,6 +277,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             description: new Map([
                 ["en", "the first 4 digits"],
                 ["nl", "de eerste vier cijfers"],
+                ["nl-be", ""],
             ])
         },
         {

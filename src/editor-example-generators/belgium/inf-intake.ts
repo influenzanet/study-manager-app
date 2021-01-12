@@ -1,4 +1,4 @@
-import { Survey, SurveyGroupItem } from "survey-engine/lib/data_types";
+import { Survey, SurveyItem, SurveyGroupItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings } from "../../editor-engine/utils/simple-generators";
@@ -164,7 +164,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 content: new Map([
-                    ["nl-be", "Om na te gaan hoe representatief onze cohort is in vergelijking met de bevolking, en om erachter te komen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen in verschillende beroepen."],
+                    ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking, en om erachter te komen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen in verschillende beroepen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -176,7 +176,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 content: new Map([
-                    ["nl-be", 'Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor kleuters die nog niet naar school gaan, vinkt u het vakje "anders" aan.'],
+                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die nog niet naar school gaan, vinkt u het vakje 'anders' aan."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -285,7 +285,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
     // CONDITION
     if (keyMainActivity) {
         editor.setCondition(
-               expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
+               expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, multipleChoiceKey].join('.'), '0', '1', '2', '3')
         );
     }
 
@@ -359,5 +359,115 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
     );
+    return editor.getItem();
+}
+
+/**
+ * WORK TYPE: single choice question about main type of work
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q4c'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Welk soort werk doet u?"],
+        ]))
+    );
+
+        // CONDITION
+        if (keyMainActivity) {
+            editor.setCondition(
+                   expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, multipleChoiceKey].join('.'), '0', '1', '2')
+            );
+        }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking, en om te bepalen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen met verschillende beroepen."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist, etc.)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe technisch werk (uitvoerend in techniek/bouw/productie)"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe ander uitvoerend werk"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik ben arts of verpleegkundige"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl-be", "Anders, valt niet in bovengenoemde opties"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
     return editor.getItem();
 }
