@@ -8,8 +8,12 @@ import likertScales from './examples/likert-scales';
 
 const surveys = [
     {
-        instance: 'ex.', surveys: [
+        instance: 'ex.',
+        surveys: [
             { name: 'likert', survey: likertScales() }
+        ],
+        languageCodes: [
+            'en',
         ]
     },
     {
@@ -17,12 +21,23 @@ const surveys = [
             { name: "intake", survey: getExampleIntake() },
             { name: "weekly", survey: getExampleWeekly() },
             { name: "EQ5D", survey: getEQ5D() },
+        ],
+        languageCodes: [
+            'nl',
+            'en',
         ]
     },
     {
-        instance: 'bel', surveys: [
+        instance: 'bel',
+        surveys: [
             { name: "intake", survey: getBelIntake() },
             { name: "weekly", survey: getBelWeekly() },
+        ],
+        languageCodes: [
+            'nl-be',
+            'en',
+            'fr-be',
+            'de-be',
         ]
     }
 ];

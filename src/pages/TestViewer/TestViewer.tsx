@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import SurveyView from '../../components/survey/SurveyView/SurveyView';
-import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 import { Box, Button, TextField } from '@material-ui/core';
 import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data_types';
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
 
-const availableLanguages = [
-    { code: 'en', label: '🇬🇧 English' },
-    { code: 'nl', label: '🇳🇱 Nederlands' },
-    { code: 'de', label: '🇩🇪 Deutsch' },
-    { code: 'fr', label: '🇫🇷 Français' },
-];
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
     return `/preview/${instance}/${surveyKey}`;
@@ -24,6 +17,8 @@ const TestViewer: React.FC = () => {
     let { instance, surveyKey } = useParams<{ instance: string; surveyKey: string; }>();
     const history = useHistory();
 
+    // Language settings
+    const [selectedLanguage, setSelectedLanguage] = useState('en');
     const [selectedSurvey, setSelectedSurvey] = useState<Survey | undefined>();
 
     const instances = availableSurveys.map(obj => obj.instance);
@@ -34,15 +29,14 @@ const TestViewer: React.FC = () => {
         if (!selected) {
             return;
         }
+        if (selectedInstanceObj && selectedInstanceObj.languageCodes.length > 0) {
+            setSelectedLanguage(selectedInstanceObj.languageCodes[0]);
+        }
         setSelectedSurvey(selected.survey);
     }, [instance, surveyKey]);
 
-
-
     console.log(selectedSurvey);
 
-    // Language settings
-    const [selectedLanguage, setSelectedLanguage] = useState('en');
 
     const getSurveyNameByLocaleCode = (translations: LocalizedObject[] | undefined, code: string): string | undefined => {
         if (!translations) { return; }
@@ -77,14 +71,19 @@ const TestViewer: React.FC = () => {
             <div className="row">
                 <div className="col-12 col-sm-4 mb-2 mb-sm-0">
                     {/* instance selector */}
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-lightest" aria-expanded="false">
-                            {'Instance: ' + instance}
+                    <div className="mb-1">Instance:</div>
+                    <div className="btn-group w-100">
+                        <button type="button"
+                            className="btn btn-lightest text-start"
+                            aria-expanded="false">
+                            {instance}
                         </button>
-                        <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                        <button
+                            style={{ maxWidth: 35 }}
+                            type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
                             <span className="visually-hidden">Toggle Dropdown</span>
                         </button>
-                        <ul className="dropdown-menu">
+                        <ul className="dropdown-menu w-100">
                             {instances.map(i => <li
                                 key={i}
                                 className="dropdown-item cursor-pointer"
@@ -97,14 +96,17 @@ const TestViewer: React.FC = () => {
                 </div>
                 <div className="col-12 col-sm-4 mb-2 mb-sm-0">
                     {/* survey key selector */}
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-lightest" aria-expanded="false">
-                            {'Survey: ' + surveyKey}
+                    <div className="mb-1">Survey:</div>
+                    <div className="btn-group w-100">
+                        <button type="button" className="btn btn-lightest text-start" aria-expanded="false">
+                            {surveyKey}
                         </button>
-                        <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                        <button type="button"
+                            style={{ maxWidth: 35 }}
+                            className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
                             <span className="visually-hidden">Toggle Dropdown</span>
                         </button>
-                        <ul className="dropdown-menu">
+                        <ul className="dropdown-menu w-100">
                             {
                                 selectedInstanceObj?.surveys.map(
                                     survey => <li
@@ -121,20 +123,24 @@ const TestViewer: React.FC = () => {
                 </div>
                 <div className="col-12 col-sm-4">
                     {/* language selector */}
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-lightest" aria-expanded="false">
-                            {availableLanguages.find(l => l.code === selectedLanguage)?.label}
+                    <div className="mb-1">Language:</div>
+                    <div className="btn-group w-100">
+                        <button type="button"
+                            className="btn btn-lightest text-start" aria-expanded="false">
+                            {selectedInstanceObj?.languageCodes.find(l => l === selectedLanguage)}
                         </button>
-                        <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                        <button type="button"
+                            style={{ maxWidth: 35 }}
+                            className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
                             <span className="visually-hidden">Toggle Dropdown</span>
                         </button>
-                        <ul className="dropdown-menu">
-                            {availableLanguages.map(l => <li
-                                key={l.code}
+                        <ul className="dropdown-menu w-100">
+                            {selectedInstanceObj?.languageCodes.map(l => <li
+                                key={l}
                                 className="dropdown-item cursor-pointer"
-                                onClick={() => setSelectedLanguage(l.code)}
+                                onClick={() => setSelectedLanguage(l)}
                             >
-                                {l.label}
+                                {l}
                             </li>)}
                         </ul>
                     </div>
