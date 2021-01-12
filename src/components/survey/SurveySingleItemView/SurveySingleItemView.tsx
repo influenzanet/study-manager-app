@@ -129,7 +129,7 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
             'py-2a',
             'bg-grey-2',
             {
-              'custom-error-bg': props.showInvalid
+              'bg-danger-light': props.showInvalid
             }
           )}
       >
@@ -193,7 +193,8 @@ const SurveySingleItemView: React.FC<SurveySingleItemViewProps> = (props) => {
           <p className={clsx(
             horizontalPadding,
             'fw-bold',
-            'custom-error-bg m-0 text-danger'
+            'py-2',
+            'bg-danger-light  m-0 text-danger'
           )}
             style={{ fontSize: '1.1875rem' }}
           >

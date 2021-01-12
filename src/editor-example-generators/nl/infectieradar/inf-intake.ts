@@ -237,28 +237,15 @@ export const generateNLIntake = (): Survey | undefined => {
 
 
     //survey.addNewSurveyItem({ itemKey: 'pblast', type: 'pageBreak' }, rootKey);
-
-    const final_text = survey.addNewSurveyItem({ itemKey: 'finalText' }, rootKey);
-    if (!final_text) { return; }
-    survey.updateSurveyItem(qfinaltext_def(final_text));
+    const surveyEndText = DefaultIntake.surveyEnd(rootKey);
+    survey.addExistingSurveyItem(surveyEndText, rootKey);
 
     return survey.getSurvey();
 }
 
 export default generateNLIntake;
 
-const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
-    const editor = new ItemEditor(itemSkeleton);
-    editor.addDisplayComponent(
-        {
-            role: 'text', content: generateLocStrings(new Map([
-                ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
-                ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
-            ]))
-        }
-    )
-    return editor.getItem();
-}
+
 
 
 const q4b_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {

@@ -164,16 +164,18 @@ const TestViewer: React.FC = () => {
                     </div>
 
                     {survey ?
-                        <div className="border-bottom-2 border-primary">
+                        <div className="border-bottom-2 border-primary pb-2">
                             <SurveyView
                                 survey={survey}
                                 languageCode={selectedLanguage}
                                 onSubmit={(resp) => {
                                     console.log(resp)
                                 }}
-                                submitBtnText={'submit'}
-                                nextBtnText={'next'}
-                                backBtnText={'previous'}
+
+                                submitBtnText={'Submit'}
+                                nextBtnText={'Next Page'}
+                                backBtnText={'Back'}
+                                invalidResponseText={'Please select a valid response.'}
                             />
                         </div> : null}
 

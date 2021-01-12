@@ -301,7 +301,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
     // CONDITION
     if (keyMainActivity) {
         editor.setCondition(
-               expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
         );
     }
 
@@ -402,7 +402,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
     // CONDITION
     if (keyMainActivity) {
         editor.setCondition(
-                expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
         );
     }
 
