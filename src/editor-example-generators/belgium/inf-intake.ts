@@ -1,7 +1,6 @@
 import { Survey, SurveyItem, SurveyGroupItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
-import { generateLocStrings } from "../../editor-engine/utils/simple-generators";
 import { IntakeQuestions as DefaultIntake } from "../common_question_pool/influenzanet-intake";
 import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
@@ -285,7 +284,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
     // CONDITION
     if (keyMainActivity) {
         editor.setCondition(
-               expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
         );
     }
 
@@ -381,12 +380,12 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
         ]))
     );
 
-        // CONDITION
-        if (keyMainActivity) {
-            editor.setCondition(
-                   expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, multipleChoiceKey].join('.'), '0', '1', '2')
-            );
-        }
+    // CONDITION
+    if (keyMainActivity) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, multipleChoiceKey].join('.'), '0', '1', '2')
+        );
+    }
 
     // INFO POPUP
     editor.setHelpGroupComponent(
