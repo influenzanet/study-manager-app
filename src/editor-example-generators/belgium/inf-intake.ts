@@ -149,7 +149,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat is uw voornaamste bezigheid overdag? (Meerdere antwoorden mogelijk)."],
+            ["nl-be", "Wat is uw voornaamste bezigheid overdag?"],
         ]))
     );
 
@@ -185,7 +185,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '0', role: 'option',
             content: new Map([
@@ -285,7 +285,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
     // CONDITION
     if (keyMainActivity) {
         editor.setCondition(
-               expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, multipleChoiceKey].join('.'), '0', '1', '2', '3')
+               expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
         );
     }
 

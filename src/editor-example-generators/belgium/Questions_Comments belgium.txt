@@ -6,7 +6,6 @@ Q3:
 
 Q4:
     - Generated Q4 specific for Belgium
-    - @Lisa: Is this truely a multiple choice question for Belgium? If so, we need to change 'how to answer it'.
 
 Q4b:
     - Generated Q4b specific for Belgium
