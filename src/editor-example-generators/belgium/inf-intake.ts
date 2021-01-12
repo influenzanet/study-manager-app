@@ -3,6 +3,9 @@ import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings } from "../../editor-engine/utils/simple-generators";
 import { IntakeQuestions as DefaultIntake } from "../common_question_pool/influenzanet-intake";
+import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
+import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
 
 const intake = (): Survey | undefined => {
@@ -17,7 +20,7 @@ const intake = (): Survey | undefined => {
     survey.setSurveyName(generateLocStrings(
         new Map([
             ["nl-be", "Achtergrondvragenlijst"],
-            ["en-be", "Intake questionnaire"],
+            ["en", "Intake questionnaire"],
             ["fr-be", "Questionnaire préliminaire"],
             ["de-be", "Hintergrundfrageboge"],
         ])
@@ -25,7 +28,7 @@ const intake = (): Survey | undefined => {
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["nl-be", "Het doel van de eerste vragenlijst is om elke gebruiker wat beter te leren kennen."],
-            ["en-be", "The intake survey focues on some background and demographic information."],
+            ["en", "The intake survey focues on some background and demographic information."],
             ["fr-be", "Le questionnaire préliminaire a pour but de connaître un peu mieux chaque utilisateur."],
             ["de-be", "Der Zweck des Hintergrundfragebogens ist es, jeden Benutzer ein wenig besser kennen zu lernen."],
         ])
@@ -33,7 +36,7 @@ const intake = (): Survey | undefined => {
     survey.setSurveyDuration(generateLocStrings(
         new Map([
             ["nl-be", "Dit zal ongeveer 5-10 minuten tijd in beslag nemen."],
-            ["en-be", "This will take 5-10 minutes."],
+            ["en", "This will take 5-10 minutes."],
             ["fr-be", "Comptez environ 5-10 minutes pour compléter le questionnaire préliminaire."],
             ["de-be", "Es dauert etwa 5-10 Minuten, um diesen Fragebogen auszufüllen."],
         ])
@@ -299,7 +302,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
                 content: new Map([
                     ["nl-be", "Om te bepalen hoe ver u zich op regelematige basis verplaatst."],
                 ]),
-                style: [{ key: 'variant', value: 'p' }],
+                // style: [{ key: 'variant', value: 'p' }],
             },
         ])
     );
@@ -343,7 +346,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
             expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
-            expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
+            expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
         )
     });
 

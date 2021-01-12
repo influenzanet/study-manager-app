@@ -247,6 +247,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", ""],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -254,6 +255,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 content: new Map([
                     ["en", "Please choose the first part of the post-code (the part before the space)."],
                     ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
+                    ["nl-be", ""],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
