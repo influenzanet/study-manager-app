@@ -34,10 +34,10 @@ const intake = (): Survey | undefined => {
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["nl-be", "Dit zal ongeveer 5-10 minuten tijd in beslag nemen."],
-            ["en", "This will take 5-10 minutes."],
-            ["fr-be", "Comptez environ 5-10 minutes pour compléter le questionnaire préliminaire."],
-            ["de-be", "Es dauert etwa 5-10 Minuten, um diesen Fragebogen auszufüllen."],
+            ["nl-be", "Dit zal ongeveer 5-15 minuten tijd in beslag nemen."],
+            ["en", "This will take 5-15 minutes."],
+            ["fr-be", "Comptez environ 5-15 minutes pour compléter le questionnaire préliminaire."],
+            ["de-be", "Es dauert etwa 5-15 Minuten, um diesen Fragebogen auszufüllen."],
         ])
     ));
 
@@ -389,8 +389,6 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
 
 /**
  * WORK TYPE: single choice question about main type of work
- * TO DO: please check condition: should be asked when Q4 in (0,1,2)
- * TO DO: please check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -503,7 +501,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
  * WORK SECTOR: single choice question about main sector of work
  * TO DO: please check condition: should be asked when Q4 in (0,1,2)
  * TO DO: please check validation
- * TO DO: possible to add free text field if option 19 is chosen (to be discussed?)
+ * TO DO: possible to add free text field if option 19 is chosen (to be discussed if really want this?)
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -520,6 +518,13 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             ["nl-be", "Tot welke sector behoort het bedrijf of organisatie waarin u werkt?"],
         ]))
     );
+
+    // CONDITION
+    if (keyMainActivity) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
+        );
+    }
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -699,7 +704,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const work_school = (parentKey: string, keyMainActivity?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const work_school = (parentKey: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q4c3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -710,6 +715,13 @@ const work_school = (parentKey: string, keyMainActivity?: string, isRequired?: b
             ["nl-be", "Waar werkt u in het onderwijs of kinderopvang? (Meerdere antwoorden mogelijk)"],
         ]))
     );
+
+    // CONDITION
+    if (keywork_sector) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keywork_sector, [responseGroupKey, singleChoiceKey].join('.'), '10')
+        );
+    }
 
     // INFO POPUP
     editor.setHelpGroupComponent(

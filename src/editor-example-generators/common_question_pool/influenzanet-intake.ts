@@ -129,6 +129,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -234,6 +235,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
