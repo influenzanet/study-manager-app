@@ -1349,7 +1349,28 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
     );
 
     // INFO POPUP
-    // none
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", ""],
+                    ["nl", ""],
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr", ""],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", ""],
+                    ["nl", ""],
+                    ["nl-be", "We onderzoeken of sommige mensen een verhoogd risico op infecties hebben."],
+                    ["fr", ""],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });

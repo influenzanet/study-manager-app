@@ -104,9 +104,6 @@ const intake = (): Survey | undefined => {
 
     const Q_common_cold_frequ = DefaultIntake.commonColdFrequency(rootKey, true);
     survey.addExistingSurveyItem(Q_common_cold_frequ, rootKey);
-    // TO DO: For BE we should have info pop-up: 
-    //      "Waarom vragen we dit?"
-    //      "We onderzoeken of sommige mensen een verhoogd risico op infecties hebben."
 
     const Q_flu_vaccine_this_season = DefaultIntake.fluVaccineThisSeason(rootKey, true);
     survey.addExistingSurveyItem(Q_flu_vaccine_this_season, rootKey);
