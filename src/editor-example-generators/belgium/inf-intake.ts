@@ -1465,7 +1465,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ikzelf griep krijg"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             content: new Map([
@@ -1501,13 +1501,13 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Ik wil deze winter geen werk/school missen"],
             ])
-        }, 
+        },
         {
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Ik haal het griepvaccin altijd"],
             ])
-        },  
+        },
         {
             key: '9', role: 'option',
             content: new Map([
@@ -1802,7 +1802,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor astma"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
@@ -1928,25 +1928,25 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Ik heb nooit gerookt"],
             ])
-        }, 
+        },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Af en toe"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Dagelijks, minder dan 10 keer per dag"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Dagelijks, 10 keer of vaker per dag"],
             ])
-        }, 
+        },
         {
             key: '5', role: 'option',
             content: new Map([
@@ -1964,7 +1964,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Ik ben een ex-roker (meer dan 5 jaar gerookt)"],
             ])
-        }, 
+        },
         {
             key: '4', role: 'option',
             content: new Map([
@@ -2054,21 +2054,21 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Nee, ik volg geen specifiek dieet"],
             ])
-        }, 
+        },
         {
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ik eet vegetarisch"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ik eet veganistisch"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
@@ -2082,7 +2082,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Ik volg een dieet als gevolg van een allergie en/of voedselintolerantie"],
             ])
-        }, 
+        },
         {
             key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
@@ -2170,37 +2170,37 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "In de krant of magazine"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Via internet (website, nieuwswebsite, zoekmachine) behalve sociale media"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Via sociale media (facebook, twitter, instagram, etc.)"],
             ])
-        }, 
+        },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Via vrienden en familie"],
             ])
-        }, 
+        },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Via school of werk"],
             ])
-        }, 
+        },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Andere"],
             ])
-        }, 
+        },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -2231,7 +2231,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus (COVID-19)?"],
+            ["nl-be", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus (COVID-19)?"],
         ]))
     );
 
@@ -2289,7 +2289,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl-be", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en één of meer van die mensen zijn positief getest op het coronavirus"],
+                ["nl-be", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en één of meer van die mensen zijn positief getest op het coronavirus"],
             ])
         },
         {
