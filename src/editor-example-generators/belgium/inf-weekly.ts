@@ -17,6 +17,7 @@ const weekly = (): Survey | undefined => {
         new Map([
             ["en", "How do you feel today?"],
             ["nl", "Wekelijkse vragenlijst"],
+            ["nl-be", "Wekelijkse vragenlijst"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
