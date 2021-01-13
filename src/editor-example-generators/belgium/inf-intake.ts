@@ -115,8 +115,8 @@ const intake = (): Survey | undefined => {
     const Q_flu_vaccine_this_season_reasons_for = flu_vaccine_this_season_reason_for(rootKey, Q_flu_vaccine_this_season.key, true);
     survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_for, rootKey);
 
-    // const Q_flu_vaccine_this_season_reasons_against = DefaultIntake.fluVaccineThisSeasonReasonAgainst(rootKey, Q_flu_vaccine_this_season.key, true);
-    // survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, rootKey);
+    const Q_flu_vaccine_this_season_reasons_against = flu_vaccine_this_season_reason_against(rootKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, rootKey);
 
     // const Q_flu_vaccine_last_season = DefaultIntake.fluVaccineLastSeason(rootKey, true);
     // survey.addExistingSurveyItem(Q_flu_vaccine_last_season, rootKey);
@@ -491,7 +491,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
  * WORK SECTOR: single choice question about main sector of work
  * TO DO: please check condition: should be asked when Q4 in (0,1,2)
  * TO DO: please check validation
- * TO DO: possible to add free text field op option 19 is chosen ?
+ * TO DO: possible to add free text field if option 19 is chosen (to be discussed?)
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -1482,6 +1482,205 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '9', role: 'option',
             content: new Map([
                 ["nl-be", "Andere reden"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ *  REASONS AGAINST FLU VACCINE THIS SEASON: multiple choice
+ * TO DO: check condition
+ * TO DO: add optional free text field is 23 is chosen (to be discussed?)
+ * TO DO: check validation
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccineThisSeason?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10d'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2020/2021)? (Meerdere antwoorden zijn mogelijk)"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyFluVaccineThisSeason) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '2')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen graag weten waarom sommige mensen niet worden gevaccineerd."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Vink alle redenen aan die belangrijk waren bij uw beslissing."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik ben van plan om mezelf nog te laten vaccineren"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Het griepvaccin werd me niet aangeboden"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik behoorde niet tot een risicogroep"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Het is beter om je eigen immuniteit op te bouwen tegen griep"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik twijfelde aan de effectiviteit van het griepvaccin"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Griep is slechts een milde ziekte"],
+            ])
+        },
+        {
+            key: '21', role: 'option',
+            content: new Map([
+                ["nl-be", "Door de COVID-19 pandemie vermijd ik naar de dokter of apotheek te gaan"],
+            ])
+        },
+        {
+            key: '22', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik ben bang dat het griepvaccin mijn risico op COVID-19 verhoogt"],
+            ])
+        },
+        {
+            key: '23', role: 'option',
+            content: new Map([
+                ["nl-be", "Een andere reden gerelateerd aan COVID-19"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik achtte de kans klein dat ik griep krijg"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik was van mening dat het vaccin ook griep kan veroorzaken"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik was bang dat het vaccin niet veilig is, en me juist ziek maakt of andere neveneffecten heeft"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik hou niet van het krijgen van vaccinaties"],
+            ])
+        },
+        {
+            key: '10', role: 'option',
+            content: new Map([
+                ["nl-be", "Het is niet gemakkelijk om gevaccineerd te worden"],
+            ])
+        },
+        {
+            key: '11', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik moest betalen voor een griepvaccinatie, het is niet gratis"],
+            ])
+        },
+        {
+            key: '24', role: 'option',
+            content: new Map([
+                ["nl-be", "Het verkrijgen van een griepvaccin vergt te veel tijd en moeite ten opzichte van de mogelijke voordelen ervan"],
+            ])
+        },
+        {
+            key: '25', role: 'option',
+            content: new Map([
+                ["nl-be", "Het vaccin was niet beschikbaar voor mij"],
+            ])
+        },
+        {
+            key: '12', role: 'option',
+            content: new Map([
+                ["nl-be", "Geen speciale reden"],
+            ])
+        },
+        {
+            key: '13', role: 'option',
+            content: new Map([
+                ["nl-be", "Ondanks dat mijn huisarts het griepvaccin adviseerde, heb ik het niet genomen"],
+            ])
+        },
+        {
+            key: '14', role: 'option',
+            content: new Map([
+                ["nl-be", "Andere reden"],
             ])
         },
     ]);
