@@ -698,7 +698,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
  * WORK SCHOOL: multiple choice question for people working in schools
  * TO DO: please check condition: should be asked when Q4c2=10
  * TO DO: please check validation
- * TO DO: Turn to multiplechoice question
+ * TO DO: Check if multiplechoice works ok
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -755,7 +755,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
             content: new Map([
@@ -805,7 +805,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
  * WORK MEDICAL: multiple choice question for people working in medical sector
  * TO DO: please check condition: should be asked when Q4c=5
  * TO DO: please check validation
- * TO DO: Turn to multiplechoice question
+ * TO DO: Check if multiplechoice works ok
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -822,6 +822,13 @@ const work_medical = (parentKey: string, keyMainActivity?: string, isRequired?: 
             ["nl-be", "Waar werkt u in de gezondheidszorg? (Meerdere antwoorden mogelijk)"],
         ]))
     );
+
+    // CONDITION
+    if (keywork_sector) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keywork_sector, [responseGroupKey, singleChoiceKey].join('.'), '5')
+        );
+    }
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -855,7 +862,7 @@ const work_medical = (parentKey: string, keyMainActivity?: string, isRequired?: 
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
             content: new Map([
@@ -1030,7 +1037,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
 
 /**
  * PEOPLE MET: multiple choice for person groups you met
- * TO DO: Check if multiple choice has been correctly implemented.
+ * TO DO: Check if multiple choice has been correctly implemented with correct disable arguments
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -1091,56 +1098,55 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '10', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen onder de 3 jaar"],
             ])
         },
         {
             key: '11', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 3 en 12 jaar"],
             ])
         },
         {
             key: '12', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 12 en 18 jaar"],
             ])
         },
         {
             key: '13', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 jongvolwassenen tussen de 18 en 30 jaar"],
             ])
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 mensen van 65 jaar en ouder"],
             ])
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Patiënten"],
             ])
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Groepen mensen (behalve kinderen en personen ouder dan 65) groter dan 10 personen"],
             ])
         },
         {
             key: '5', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Geen van de bovenstaande antwoorden is van toepassing"],
             ])
