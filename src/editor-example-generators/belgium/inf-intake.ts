@@ -130,17 +130,17 @@ const intake = (): Survey | undefined => {
     const Q_pregnancy_trimester = DefaultIntake.pregnancyTrimester(rootKey, Q_pregnancy.key, true);
     survey.addExistingSurveyItem(Q_pregnancy_trimester, rootKey);
 
-    // const Q_smoking = DefaultIntake.smoking(rootKey, true);
-    // survey.addExistingSurveyItem(Q_smoking, rootKey);
+    const Q_smoking = smoking(rootKey, true);
+    survey.addExistingSurveyItem(Q_smoking, rootKey);
 
-    // const Q_allergies = DefaultIntake.allergies(rootKey, true);
-    // survey.addExistingSurveyItem(Q_allergies, rootKey);
+    const Q_allergies = DefaultIntake.allergies(rootKey, true);
+    survey.addExistingSurveyItem(Q_allergies, rootKey);
 
-    // const Q_special_diet = DefaultIntake.specialDiet(rootKey, true);
-    // survey.addExistingSurveyItem(Q_special_diet, rootKey);
+    const Q_special_diet = special_diet(rootKey, true);
+    survey.addExistingSurveyItem(Q_special_diet, rootKey);
 
-    // const Q_pets = DefaultIntake.pets(rootKey, true);
-    // survey.addExistingSurveyItem(Q_pets, rootKey);
+    const Q_pets = DefaultIntake.pets(rootKey, true);
+    survey.addExistingSurveyItem(Q_pets, rootKey);
 
     return survey.getSurvey();
 }
@@ -1820,6 +1820,246 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Dat wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * SMOKING: single choice question about smoking
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q13'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Rookt u of heeft u gerookt?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Roken is een risico-factor voor ernstige klachten in de luchtwegen, dit willen we graag onderzoeken."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Antwoord zo precies mogelijk."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '10', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik heb nooit gerookt"],
+            ])
+        }, 
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Af en toe"],
+            ])
+        }, 
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Dagelijks, minder dan 10 keer per dag"],
+            ])
+        }, 
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Dagelijks, 10 keer of vaker per dag"],
+            ])
+        }, 
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, alleen e-sigaretten"],
+            ])
+        },
+        {
+            key: '11', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik ben een ex-roker (5 jaar of minder gerookt)"],
+            ])
+        },
+        {
+            key: '12', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik ben een ex-roker (meer dan 5 jaar gerookt)"],
+            ])
+        }, 
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Dit wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * SPACIAL DIET: multiple choice question about special diet
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q15'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Volgt u een specifiek dieet?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We onderzoeken of een dieet een link kan hebben met het risico op infecties hebben."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
+                ]),
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik volg geen specifiek dieet"],
+            ])
+        }, 
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", "Ik eet vegetarisch"],
+            ])
+        }, 
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", "Ik eet veganistisch"],
+            ])
+        }, 
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", "Ik eet caloriearm"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", "Ik volg een dieet als gevolg van een allergie en/of voedselintolerantie"],
+            ])
+        }, 
+        {
+            key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Other"],
+                ["nl", "Ik volg een ander dieet"],
+                ["fr", "Autre"],
             ])
         },
     ]);

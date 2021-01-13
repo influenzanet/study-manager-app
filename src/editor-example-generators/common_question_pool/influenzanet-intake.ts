@@ -2640,6 +2640,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
             ["nl", "Heb je één of meer van de volgende allergieën?"],
+            ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
         ]))
     );
@@ -2654,6 +2655,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2662,6 +2664,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 content: new Map([
                     ["en", "Some allergic reactions can have similar symptoms to respiratory infections."],
                     ["nl", "Sommige allergieën geven dezelfde klachten als luchtweginfecties"],
+                    ["nl-be", "Sommige allergieën geven dezelfde klachten als luchtweginfecties."],
                     ["fr", "Certaines réactions allergiques peuvent avoir des symptômes similaires ceux d'une infection respiratoire."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -2670,6 +2673,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2678,6 +2682,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 content: new Map([
                     ["en", "Tick all the options that apply. We are only interested in those allergies that cause respiratory symptoms (i.e. sneezing, sunny nose, runny eyes)."],
                     ["nl", "Meerdere antwoorden mogelijk, klik alle opties die relevant zijn."],
+                    ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
                 ]),
             },
@@ -2693,6 +2698,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             new Map([
                 ['en', 'Select all options that apply'],
                 ['nl', 'Meerdere antwoorden mogelijk'],
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -2703,6 +2709,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["en", "Hay fever"],
                 ["nl", "Hooikoorts"],
+                ["nl-be", "Hooikoorts"],
                 ["fr", "Rhume des foins"],
             ])
         }, {
@@ -2711,6 +2718,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["en", "Allergy against house dust mite"],
                 ["nl", "Allergie voor huisstofmijt"],
+                ["nl-be", "Allergie voor huisstofmijt"],
                 ["fr", "Allergie aux acariens"],
             ])
         }, {
@@ -2719,6 +2727,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["en", "Allergy against domestic animals or pets"],
                 ["nl", "Allergie voor (huis)dieren"],
+                ["nl-be", "Allergie voor (huis)dieren"],
                 ["fr", "Allergie à des animaux domestiques"],
             ])
         }, {
@@ -2727,6 +2736,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["en", "Other allergies that cause respiratory symptoms (e.g. sneezing, runny eyes)"],
                 ["nl", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
+                ["nl-be", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["fr", "Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
             ])
         }, {
@@ -2734,6 +2744,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["en", "I do not have an allergy that causes respiratory symptoms"],
                 ["nl", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
+                ["nl-be", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
                 ["fr", "Je n'ai pas d'allergie causant des symptômes respiratoires"],
             ])
         },
@@ -2778,7 +2789,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
     // none
 
     // INFO POPUP
-    // None
+    // none
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -2866,6 +2877,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
         generateTitleComponent(new Map([
             ["en", "Do you have pets at home?"],
             ["nl", "Heb je huisdieren?"],
+            ["nl-be", "Heeft u huisdieren?"],
             ["fr", "Avez-vous un animal domestique?"],
         ]))
     );
@@ -2874,7 +2886,28 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     // none
 
     // INFO POPUP
-    // None
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", ""],
+                    ["nl", ""],
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr", ""],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", ""],
+                    ["nl", ""],
+                    ["nl-be", "We onderzoeken of het hebben van huisdieren een link kan hebben met het risico op infecties."],
+                    ["fr", ""],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -2885,6 +2918,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             new Map([
                 ['en', 'Select all options that apply'],
                 ['nl', 'Meerdere antwoorden mogelijk'],
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
     }, rg?.key);
@@ -2894,6 +2928,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             content: new Map([
                 ["en", "No"],
                 ["nl", "Nee"],
+                ["nl-be", "Nee"],
                 ["fr", "Non"],
             ])
         },
@@ -2903,6 +2938,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             content: new Map([
                 ["en", "Yes, one or more dogs"],
                 ["nl", "Ja, één of meerdere honden"],
+                ["nl-be", "Ja, één of meerdere honden"],
                 ["fr", "Oui, un ou plusieurs chien(s)"],
             ])
         },
@@ -2912,6 +2948,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             content: new Map([
                 ["en", "Yes, one or more cats"],
                 ["nl", "Ja, één of meerdere katten"],
+                ["nl-be", "Ja, één of meerdere katten"],
                 ["fr", "Oui, un ou plusieurs chat(s)"],
             ])
         },
@@ -2921,6 +2958,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             content: new Map([
                 ["en", "Yes, one or more birds"],
                 ["nl", "Ja, één of meerdere vogels"],
+                ["nl-be", "Ja, één of meerdere vogels"],
                 ["fr", "Oui, un ou plusieurs oiseau(x)"],
             ])
         },
@@ -2930,6 +2968,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             content: new Map([
                 ["en", "Yes, one ore more other animals"],
                 ["nl", "Ja, één of meer andere dieren"],
+                ["nl-be", "Ja, één of meer andere dieren"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
             ])
         },
@@ -2957,6 +2996,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
         generateTitleComponent(new Map([
             ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
+            ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
         ]))
     );
 
