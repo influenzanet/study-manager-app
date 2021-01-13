@@ -1463,6 +1463,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
         generateTitleComponent(new Map([
             ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
+            ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
         ]))
     );
@@ -1474,6 +1475,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1482,6 +1484,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["en", "We would like to be able to work out how much protection the vaccine gives. We would also like to find out if there is some protection from vaccines received in previous years."],
                     ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
+                    ["nl-be", "We willen graag onderzoeken hoeveel bescherming het vaccin geeft. We willen ook graag weten of er enige bescherming is dankzij vaccins die in voorgaande jaren zijn ontvangen."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -1490,6 +1493,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1498,6 +1502,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
                     ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -1513,6 +1518,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             content: new Map([
                 ["en", "Yes"],
                 ["nl", "Ja"],
+                ["nl-be", "Ja"],
                 ["fr", "Oui"],
             ])
         },
@@ -1521,6 +1527,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             content: new Map([
                 ["en", "No"],
                 ["nl", "Nee"],
+                ["nl-be", "Nee"],
                 ["fr", "Non"],
             ])
         },
@@ -1529,6 +1536,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             content: new Map([
                 ["en", "I don't know"],
                 ["nl", "Dat weet ik niet (meer)"],
+                ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
             ])
         },
