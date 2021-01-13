@@ -142,6 +142,18 @@ const intake = (): Survey | undefined => {
     const Q_pets = DefaultIntake.pets(rootKey, true);
     survey.addExistingSurveyItem(Q_pets, rootKey);
 
+    const Q_find_infectieradar = find_infectieradar(rootKey, true);
+    survey.addExistingSurveyItem(Q_find_infectieradar, rootKey);
+
+    const Q_previous_covid19_episode = previous_covid19_episode(rootKey, true);
+    survey.addExistingSurveyItem(Q_previous_covid19_episode, rootKey);
+
+    const Q_previous_covid19_episode_symptoms = previous_covid19_episode_symptoms(rootKey, true);
+    survey.addExistingSurveyItem(Q_previous_covid19_episode_symptoms, rootKey);
+
+    const Q_additional_covid19_questions = additional_covid19_questions(rootKey, true);
+    survey.addExistingSurveyItem(Q_additional_covid19_questions, rootKey);
+
     return survey.getSurvey();
 }
 
@@ -2060,6 +2072,486 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["en", "Other"],
                 ["nl", "Ik volg een ander dieet"],
                 ["fr", "Autre"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * FIND INFECTIERADAR: multiple choice question about where the participant found infectieradar
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q17BE'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Waar heeft u van Infectieradar.be gehoord?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten hoe u infectieradar.be gevonden heeft."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Op radio of televisie"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "In de krant of magazine"],
+            ])
+        }, 
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Via internet (website, nieuwswebsite, zoekmachine) behalve sociale media"],
+            ])
+        }, 
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Via sociale media (facebook, twitter, instagram, etc.)"],
+            ])
+        }, 
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Via vrienden en familie"],
+            ])
+        }, 
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Via school of werk"],
+            ])
+        }, 
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl-be", "Andere"],
+            ])
+        }, 
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * PREVIOUS COVID-19 EPISODE: single choice question about previous covid-19 episode
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q21BE'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus (COVID-19)?"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen achtergrond informatie hebben in verband met vorige COVID-19 infecties."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Antwoord zo precies mogelijk."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik denk niet dat ik het nieuwe coronavirus al heb gehad"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, misschien wel, ik had/heb klachten die erop lijken"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, ik denk het wel, ik had/heb klachten die erop lijken, en mensen om me heen ook"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en één of meer van die mensen zijn positief getest op het coronavirus"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, maar ik heb geen klachten gehad"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * PREVIOUS COVID-19 EPISODE SYMPTOMS: multiple choice question about previous covid-19 episode symptoms
+ * TO DO: Add condition: should be asked when Q21BE=2, 3, 4, 5
+ * TO DO: Check if multiple choice was correctly implemented ?
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const previous_covid19_episode_symptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q21aBE'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Met welke symptomen ging uw COVID-19 infectie gepaard?"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten welke de meeste voorkomende klachten zijn bij COVID-19."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Meerdere antwoorden zijn mogelijk."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Koorts"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Koude rillingen"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Loopneus of verstopte neus"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Niezen"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Keelpijn"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl-be", "Hoesten"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["nl-be", "Kortademig (snel buiten adem)"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            content: new Map([
+                ["nl-be", "Hoofdpijn"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            content: new Map([
+                ["nl-be", "Spierpijn/Gewrichtspijn (niet sport gerelateerd)"],
+            ])
+        },
+        {
+            key: '10', role: 'option',
+            content: new Map([
+                ["nl-be", "Pijn op de borst"],
+            ])
+        },
+        {
+            key: '11', role: 'option',
+            content: new Map([
+                ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
+            ])
+        },
+        {
+            key: '12', role: 'option',
+            content: new Map([
+                ["nl-be", "Verminderde eetlust"],
+            ])
+        },
+        {
+            key: '13', role: 'option',
+            content: new Map([
+                ["nl-be", "Verkleurd slijm ophoesten"],
+            ])
+        },
+        {
+            key: '14', role: 'option',
+            content: new Map([
+                ["nl-be", "Waterige, of bloeddoorlopen ogen"],
+            ])
+        },
+        {
+            key: '15', role: 'option',
+            content: new Map([
+                ["nl-be", "Misselijkheid"],
+            ])
+        },
+        {
+            key: '16', role: 'option',
+            content: new Map([
+                ["nl-be", "Overgeven / braken"],
+            ])
+        },
+        {
+            key: '17', role: 'option',
+            content: new Map([
+                ["nl-be", "Diarree"],
+            ])
+        },
+        {
+            key: '18', role: 'option',
+            content: new Map([
+                ["nl-be", "Buikpijn"],
+            ])
+        },
+        {
+            key: '19', role: 'option',
+            content: new Map([
+                ["nl-be", "Verlies van smaak"],
+            ])
+        },
+        {
+            key: '20', role: 'option',
+            content: new Map([
+                ["nl-be", "Bloedneus"],
+            ])
+        },
+        {
+            key: '21', role: 'option',
+            content: new Map([
+                ["nl-be", "Verlies van geur"],
+            ])
+        },
+        {
+            key: '22', role: 'option',
+            content: new Map([
+                ["nl-be", "Verwardheid"],
+            ])
+        },
+        {
+            key: '23', role: 'option',
+            content: new Map([
+                ["nl-be", "Andere"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * ADDITIONAL COVID-19 QUESTIONS: single choice question about whether additional questions can be asked
+ * TO DO: Add condition: should be asked when Q21BE=2, 3, 4, 5
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const additional_covid19_questions = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q22BE'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "U gaf aan klachten te hebben van een mogelijke of bevestigde COVID-19 infectie. We willen u enkele bijkomende vragen stellen over deze COVID-19 infectie. Wil u deze extra vragen invullen (dit zal ongeveer 2-5 minuten in beslag nemen)"],
+        ]))
+    );
+
+    // INFO POPUP
+    // none
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
             ])
         },
     ]);
