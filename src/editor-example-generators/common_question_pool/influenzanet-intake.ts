@@ -2304,6 +2304,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
         generateTitleComponent(new Map([
             ["en", "Are you currently pregnant?"],
             ["nl", "Ben je op dit moment zwanger?"],
+            ["nl-be", "Bent u op dit moment zwanger?"],
             ["fr", "Êtes-vous actuellement enceinte?"],
         ]))
     );
@@ -2330,6 +2331,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2338,6 +2340,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 content: new Map([
                     ["en", "Infections during pregnancy can be different."],
                     ["nl", "Infecties kunnen soms anders verlopen bij zwangeren."],
+                    ["nl-be", "Zwangerschap is een mogelijke risico-factor voor ernstige klachten bij infecties."],
                     ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -2353,6 +2356,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             content: new Map([
                 ["en", "Yes"],
                 ["nl", "Ja"],
+                ["nl-be", "Ja"],
                 ["fr", "Oui"],
             ])
         }, {
@@ -2360,6 +2364,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             content: new Map([
                 ["en", "No"],
                 ["nl", "Nee"],
+                ["nl-be", "Nee"],
                 ["fr", "Non"],
             ])
         }, {
@@ -2367,6 +2372,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
                 ["nl", "Dit weet ik niet/wil ik liever niet aangeven"],
+                ["nl-be", "Dit weet ik niet/wil ik liever niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
             ])
         },
@@ -2405,6 +2411,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
         generateTitleComponent(new Map([
             ["en", "Which trimester of the pregnancy are you in?"],
             ["nl", "In welk trimester ben je van je zwangerschap?"],
+            ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
             ["fr", "A quel stade de grossesse êtes-vous?"],
         ]))
     );
@@ -2421,6 +2428,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2429,6 +2437,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 content: new Map([
                     ["en", "The stage of pregnancy might alter your infection, although this is not very clear."],
                     ["nl", "Infecties kunnen soms anders verlopen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
+                    ["nl-be", "Het risico op ernstige klachten van een infectie kan verschillen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -2444,6 +2453,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             content: new Map([
                 ["en", "First trimester (week 1-12)"],
                 ["nl", "Eerste trimester (week 1-12)"],
+                ["nl-be", "Eerste trimester (week 1-12)"],
                 ["fr", "Premier trimestre (semaine 1-12)"],
             ])
         }, {
@@ -2451,6 +2461,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             content: new Map([
                 ["en", "Second trimester (week 13-28)"],
                 ["nl", "Tweede trimester (week 13-28)"],
+                ["nl-be", "Tweede trimester (week 13-28)"],
                 ["fr", "Deuxième trimestre (semaine 13-28)"],
             ])
         }, {
@@ -2458,6 +2469,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             content: new Map([
                 ["en", "Third trimester (week 29-delivery)"],
                 ["nl", "Derde trimester (week 29 tot bevalling)"],
+                ["nl-be", "Derde trimester (week 29 tot bevalling)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
             ])
         }, {
@@ -2465,6 +2477,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
                 ["nl", "Dit weet ik niet / wil ik niet aangeven"],
+                ["nl-be", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
             ])
         },

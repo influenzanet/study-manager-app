@@ -124,11 +124,11 @@ const intake = (): Survey | undefined => {
     const Q_regular_medication = regular_medication(rootKey, true);
     survey.addExistingSurveyItem(Q_regular_medication, rootKey);
 
-    // const Q_pregnancy = DefaultIntake.pregnancy(rootKey, Q_gender.key, Q_birthdate.key, true);
-    // survey.addExistingSurveyItem(Q_pregnancy, rootKey);
+    const Q_pregnancy = DefaultIntake.pregnancy(rootKey, Q_gender.key, Q_birthdate.key, true);
+    survey.addExistingSurveyItem(Q_pregnancy, rootKey);
 
-    // const Q_pregnancy_trimester = DefaultIntake.pregnancyTrimester(rootKey, Q_pregnancy.key, true);
-    // survey.addExistingSurveyItem(Q_pregnancy_trimester, rootKey);
+    const Q_pregnancy_trimester = DefaultIntake.pregnancyTrimester(rootKey, Q_pregnancy.key, true);
+    survey.addExistingSurveyItem(Q_pregnancy_trimester, rootKey);
 
     // const Q_smoking = DefaultIntake.smoking(rootKey, true);
     // survey.addExistingSurveyItem(Q_smoking, rootKey);
