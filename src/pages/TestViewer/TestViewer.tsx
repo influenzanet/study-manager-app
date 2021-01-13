@@ -177,9 +177,9 @@ const TestViewer: React.FC = () => {
                                     console.log(resp)
                                 }}
 
-                                submitBtnText={'Verzenden'}
-                                nextBtnText={'Volgende'}
-                                backBtnText={'Terug'}
+                                submitBtnText={'Submit'}
+                                nextBtnText={'Next Page'}
+                                backBtnText={'Back'}
                                 invalidResponseText={'Please select a valid response.'}
                             />
                         </div> : null}
