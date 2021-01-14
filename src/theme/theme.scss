@@ -31,10 +31,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // ---------------------------------------------
 // Typography:
 // ---------------------------------------------
-$font-family-base:
-  "Open Sans",
-  // Emoji fonts
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-base: "Open Sans" !default;
 
 $headings-margin-bottom: 0.625rem !default;
 $paragraph-margin-bottom: 0.625rem !default;
