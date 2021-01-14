@@ -56,7 +56,7 @@ export default getEQ5D5LGroup;
 const eq5dCopyright = {
     role: 'footnote', content: generateLocStrings(new Map([
         ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
-        ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (Dutch) v2.1"],
+        ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation."],
     ])), style: [
         { key: 'className', value: 'fs-small fst-italic text-center' }
     ]
@@ -83,7 +83,7 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
+                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -160,7 +160,7 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
+                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -242,7 +242,7 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
+                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -318,7 +318,7 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
+                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -394,7 +394,7 @@ const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: b
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Selecteer het hokje dat het best past bij uw gezondheid VANDAAG."],
+                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
         }
     )
@@ -540,7 +540,7 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
         role: 'eq5d-health-indicator',
         instructionText: new Map([
             ["en", "Please indicate on the scale how your health is TODAY."],
-            ["nl", "Geef aan op de meetschaal hoe uw gezondheid VANDAAG is."],
+            ["nl", "Klik op de meetschaal om aan te geven hoe uw gezondheid VANDAAG is."],
         ]),
         valueBoxText: new Map([
             ["en", "YOUR HEALTH TODAY ="],

@@ -51,6 +51,7 @@ const generateNLWeekly = (): Survey | undefined => {
     // COVID vaccination yes/no
     const Q_coronavaccine = CoronaVaccineQuestions.coronavaccine(rootKey, "Q2NL", true);
     survey.addExistingSurveyItem(Q_coronavaccine, rootKey);
+    
 
     // COVID vaccination date
     const Q_coronavaccineWhen = CoronaVaccineQuestions.coronavaccineWhen(rootKey, "Q2aNL", Q_coronavaccine.key, true);
