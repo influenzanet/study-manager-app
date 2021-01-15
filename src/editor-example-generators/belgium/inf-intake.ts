@@ -2451,8 +2451,6 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
 
 /**
  * PREVIOUS COVID-19 EPISODE SYMPTOMS: multiple choice question about previous covid-19 episode symptoms
- * TO DO: Add condition: should be asked when Q21BE=2, 3, 4, 5
- * TO DO: Check if multiple choice was correctly implemented ?
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2673,7 +2671,6 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
 
 /**
  * ADDITIONAL COVID-19 QUESTION: single choice question about whether additional questions can be asked
- * TO DO: Add condition: should be asked when Q21BE=2, 3, 4, 5
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2733,8 +2730,6 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
 
 /**
  * ADDITIONAL COVID-19 QUESTIONS MEDICAL AID: single choice question about whether medical aid was searched (optional)
- * TO DO: check condition: should be asked when Q22BE=0
- * TO DO: check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2821,8 +2816,6 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
 
 /**
  * ADDITIONAL COVID-19 QUESTIONS HOSPITALIZED: single choice question about whether patient was hospitalized (optional)
- * TO DO: check condition: should be asked when Q22BE=0
- * TO DO: check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2903,9 +2896,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
 
 /**
  * ADDITIONAL COVID-19 QUESTION HOSPITAL LENGTH: dropdown menu on hospital length (optional)
- * TO DO: Add condition: should be asked when Q22bBE=0, 1
- * TO DO: check validation
- * TO DO: Add a drop down menu
+ * TO DO: Add a drop down menu with 0, 1, 2, ..., 30, 31-40, 41-50, 51-60, meer dan 60 dagen
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2974,8 +2965,6 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
 
 /**
  * ADDITIONAL COVID-19 QUESTION ICU: single choice question about hospital ICU (optional)
- * TO DO: Add condition: should be asked when Q22bBE=0, 1
- * TO DO: Check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -3056,8 +3045,6 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
 
 /**
  * ADDITIONAL COVID-19 QUESTION Coma: single choice question about hospital coma (optional)
- * TO DO: Add condition: should be asked when Q22bBE=0, 1
- * TO DO: Check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -3132,8 +3119,6 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
 
 /**
  * ADDITIONAL COVID-19 QUESTIONS RETURNED TO HEALTH: single choice question about whether patient returned to usual health (optional)
- * TO DO: check condition: should be asked when Q22BE=0
- * TO DO: check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -3147,7 +3132,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Bent u terug helemaal dezelfde als voor uw COVID-19 episode?"],
+            ["nl-be", "Is uw gezondheid terug helemaal dezelfde als voor uw COVID-19 infectie?"],
         ]))
     );
 
@@ -3169,7 +3154,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
             },
             {
                 content: new Map([
-                    ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["nl-be", "Om meer informatie te verkrijgen over de medische impact van uw COVID-19 infectie."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3208,8 +3193,6 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
 
 /**
  * ADDITIONAL COVID-19 QUESTION ONGOING SYMPTOMS: multiple choice question about still ongoing symptoms (optional)
- * TO DO: Add condition: should be asked when Q22fBE=1
- * TO DO: Check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -3245,7 +3228,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             },
             {
                 content: new Map([
-                    ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["nl-be", "Om meer informatie te verkrijgen over de medische impact van uw COVID-19 infectie."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3263,12 +3246,6 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["nl-be", "Geen van deze symptomen/klachten"],
-            ])
-        },
         {
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
@@ -3428,6 +3405,12 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Andere"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Geen van deze symptomen/klachten"],
             ])
         },
     ]);
