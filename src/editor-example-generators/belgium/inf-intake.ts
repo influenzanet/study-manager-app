@@ -1502,7 +1502,6 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
 
 /**
  *  REASONS FOR FLU VACCINE THIS SEASON: multiple choice
- * TO DO: Check if condition is correct.
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
@@ -1517,7 +1516,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2020/2021) een griepvaccin te halen? (meerdere antwoorden zijn mogelijk)"],
+            ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2020/2021) een griepvaccin te halen?"],
         ]))
     );
 
@@ -1560,6 +1559,14 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
@@ -1650,9 +1657,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
 
 /**
  *  REASONS AGAINST FLU VACCINE THIS SEASON: multiple choice
- * TO DO: check condition
  * TO DO: add optional free text field if 23 is chosen (to be discussed?)
- * TO DO: check validation
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
@@ -1668,7 +1673,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2020/2021)? (Meerdere antwoorden zijn mogelijk)"],
+            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2020/2021)?"],
         ]))
     );
 
@@ -1711,6 +1716,14 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
@@ -1891,7 +1904,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             },
             {
                 content: new Map([
-                    ["nl-be", "Antwoord alleen met 'ja' als u reguliere medicatie gebruikt voor uw medische probleem. Als u bijvoorbeeld slechts af en toe een astma-inhalator gebruikt, antwoord dan niet met 'ja' bij astma."],
+                    ["nl-be", "Antwoord alleen met 'ja' als u reguliere medicatie gebruikt voor uw medisch probleem. Als u bijvoorbeeld slechts af en toe een astma-inhalator gebruikt, antwoord dan niet met 'ja' bij astma."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2206,9 +2219,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["en", "Other"],
-                ["nl", "Ik volg een ander dieet"],
-                ["fr", "Autre"],
+                ["nl-be", "Ik volg een ander dieet"],
             ])
         },
     ]);
