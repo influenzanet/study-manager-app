@@ -520,8 +520,6 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
 
 /**
  * WORK SECTOR: single choice question about main sector of work
- * TO DO: please check condition: should be asked when Q4 in (0,1,2)
- * TO DO: please check validation
  * TO DO: possible to add free text field if option 19 is chosen (to be discussed if really want this?)
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -717,9 +715,6 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
 
 /**
  * WORK SCHOOL: multiple choice question for people working in schools
- * TO DO: please check condition: should be asked when Q4c2=10
- * TO DO: please check validation
- * TO DO: Check if multiplechoice works ok
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -733,7 +728,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Waar werkt u in het onderwijs of kinderopvang? (Meerdere antwoorden mogelijk)"],
+            ["nl-be", "Waar werkt u in het onderwijs of kinderopvang?"],
         ]))
     );
 
@@ -776,6 +771,14 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
@@ -824,9 +827,6 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
 
 /**
  * WORK MEDICAL: multiple choice question for people working in medical sector
- * TO DO: please check condition: should be asked when Q4c=5
- * TO DO: please check validation
- * TO DO: Check if multiplechoice works ok
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -840,7 +840,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Waar werkt u in de gezondheidszorg? (Meerdere antwoorden mogelijk)"],
+            ["nl-be", "Waar werkt u in de gezondheidszorg?"],
         ]))
     );
 
@@ -883,6 +883,14 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
@@ -1058,7 +1066,6 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
 
 /**
  * PEOPLE MET: multiple choice for person groups you met
- * TO DO: Check if multiple choice has been correctly implemented with correct disable arguments
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -1128,14 +1135,14 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             key: '11', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
-                ["nl-be", "Meer dan 10 kinderen tussen de 3 en 12 jaar"],
+                ["nl-be", "Meer dan 10 kinderen tussen de 3 en 11 jaar"],
             ])
         },
         {
             key: '12', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
-                ["nl-be", "Meer dan 10 kinderen tussen de 12 en 18 jaar"],
+                ["nl-be", "Meer dan 10 kinderen tussen de 12 en 17 jaar"],
             ])
         },
         {
@@ -1239,6 +1246,14 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden'],
+            ])),
+    }, rg?.key);
 
     // Dropdown options - used in each cell
     const ddg: ResponseRowCell = {
