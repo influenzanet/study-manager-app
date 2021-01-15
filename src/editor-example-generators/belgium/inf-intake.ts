@@ -216,7 +216,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -451,7 +451,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -564,7 +564,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -761,7 +761,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -868,7 +868,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1787,7 +1787,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1928,7 +1928,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2273,7 +2273,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2378,7 +2378,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, isRequired?: boole
             },
             {
                 content: new Map([
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },

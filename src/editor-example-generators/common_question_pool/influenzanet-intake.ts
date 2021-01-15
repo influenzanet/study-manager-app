@@ -978,7 +978,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1110,7 +1110,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1247,7 +1247,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1495,7 +1495,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1606,7 +1606,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1732,7 +1732,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["nl-be", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
