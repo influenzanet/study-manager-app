@@ -94,7 +94,6 @@ const intake = (): Survey | undefined => {
 
     const Q_children_in_school = DefaultIntake.childrenInSchool(rootKey, Q_age_groups.key, true);
     survey.addExistingSurveyItem(Q_children_in_school, rootKey);
-    // TO DO: check if the condition can be applied on the answer keys 2a-2d in Belgium ?
 
     const Q_means_of_transport = DefaultIntake.meansOfTransport(rootKey, true);
     survey.addExistingSurveyItem(Q_means_of_transport, rootKey);
