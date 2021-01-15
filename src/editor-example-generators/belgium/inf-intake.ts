@@ -1194,6 +1194,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
 /**
  * AGE GROUPS: dropdown table about number of people in different age groups
+ * TO DO: change to Likert-type of question
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
