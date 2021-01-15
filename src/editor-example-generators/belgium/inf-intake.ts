@@ -80,7 +80,7 @@ const intake = (): Survey | undefined => {
     const Q_work_school = work_school(rootKey, Q_work_sector.key, true);
     survey.addExistingSurveyItem(Q_work_school, rootKey);
 
-    const Q_work_medical = work_medical(rootKey, Q_work_type.key, true);
+    const Q_work_medical = work_medical(rootKey, Q_work_sector.key, true);
     survey.addExistingSurveyItem(Q_work_medical, rootKey);
 
     const Q_highest_education = highest_education(rootKey, true);
