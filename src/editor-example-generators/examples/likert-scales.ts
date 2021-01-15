@@ -50,6 +50,8 @@ export const generateSurvey = (): Survey | undefined => {
 
     survey.addExistingSurveyItem(simpleExample2(rootKey), rootKey);
 
+    survey.addExistingSurveyItem(ageGroupExample(rootKey), rootKey);
+
     return survey.getSurvey();
 }
 
@@ -356,6 +358,113 @@ const simpleExample2 = (parentKey: string, keyOverride?: string): SurveyItem => 
     ],
         true
     ), rg?.key);
+
+    // VALIDATIONs
+    // None
+
+    return editor.getItem();
+}
+
+
+const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'AGEGROUPS'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
+        ]))
+    );
+
+    // RESPONSE PART
+    const likertOptions = [
+        {
+            key: "1", content: new Map([
+                ["en", "1"]
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["en", "2"]
+            ])
+        },
+        {
+            key: "3", content: new Map([
+                ["en", "3"]
+            ])
+        },
+        {
+            key: "4", content: new Map([
+                ["en", "4"]
+            ])
+        },
+        {
+            key: "5", content: new Map([
+                ["en", "5"]
+            ])
+        },
+        {
+            key: "6", content: new Map([
+                ["en", "6"]
+            ])
+        },
+        {
+            key: "7", content: new Map([
+                ["en", "7"]
+            ])
+        },
+        {
+            key: "8", content: new Map([
+                ["en", "8"]
+            ])
+        },
+        {
+            key: "9", content: new Map([
+                ["en", "9"]
+            ])
+        },
+        {
+            key: "9+", content: new Map([
+                ["en", "More"]
+            ])
+        },
+    ];
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '0 - 4 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '5 - 10 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '11 - 16 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
+
+
 
     // VALIDATIONs
     // None
