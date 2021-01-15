@@ -3,7 +3,7 @@ import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
 import DatePicker, { registerLocale } from "react-datepicker";
 import CalendarIcon from '@material-ui/icons/CalendarToday';
 import { getLocaleStringTextByCode } from '../../utils';
-import { nl } from 'date-fns/locale'
+import { nl, nlBE } from 'date-fns/locale';
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./DateInput.scss";
@@ -12,7 +12,15 @@ import { addYears, getUnixTime } from 'date-fns';
 
 import YearMonthSelector from './YearMonthSelector';
 
-registerLocale('nl', nl);
+export const dateLocales = [
+  { code: 'nl', locale: nl, format: 'dd.MM.yyyy' },
+  { code: 'nl-be', locale: nlBE, format: 'dd.MM.yyyy' },
+];
+
+dateLocales.forEach(loc => {
+  registerLocale(loc.code, loc.locale);
+});
+
 
 interface DateInputProps {
   componentKey: string;
@@ -103,7 +111,7 @@ const DateInput: React.FC<DateInputProps> = (props) => {
           selected={selectedDate}
           locale={props.languageCode}
           onChange={(date) => handleDateChange(date ? date as Date : undefined)}
-          dateFormat={'dd-MM-yyyy'}
+          dateFormat={dateLocales.find(loc => loc.code === props.languageCode)?.format}
           placeholderText={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
           minDate={props.compDef.properties?.min ? new Date((props.compDef.properties?.min as number) * 1000) : undefined}
           maxDate={props.compDef.properties?.max ? new Date((props.compDef.properties?.max as number) * 1000) : undefined}
