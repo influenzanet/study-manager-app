@@ -2217,10 +2217,14 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ])
         },
         {
-            key: '4', role: 'option',
+            key: '4', role: 'input',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Ik volg een ander dieet"],
+            ]),
+            description: new Map([
+                ["nl-be", "dieet"],
             ])
         },
     ]);
