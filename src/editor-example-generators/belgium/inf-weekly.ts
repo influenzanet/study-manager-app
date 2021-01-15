@@ -69,21 +69,31 @@ const weekly = (): Survey | undefined => {
     const Q_dateTest= dateTest(rootKey, Q_covidTest.key, true);
     survey.addExistingSurveyItem(Q_dateTest, rootKey);
 
-    //Qcov16d_BE duration test result
+    //Qcov16e_BE duration untill test
     const Q_durationTest= durationTest(rootKey,Q_reasonTest.key,true)
     survey.addExistingSurveyItem(Q_durationTest, rootKey);
 
+    //Qcov16b test result
+    const Q_resultTest= resultTest(rootKey,Q_covidTest.key,true)
+    survey.addExistingSurveyItem(Q_resultTest, rootKey);
+
+    //Qcov16d_BE duration untill test result
+    const Q_durationTestResult= durationTestResult(rootKey,Q_resultTest.key,true)
+    survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
+
     // // -------> HAS SYMPTOMS GROUP
-    // const hasSymptomGroup = InfluenzanetWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key);
-    // survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
-    // const hasSymptomGroupKey = hasSymptomGroup.key;
+    const hasSymptomGroup = InfluenzanetWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key);
+    survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
+    const hasSymptomGroupKey = hasSymptomGroup.key;
 
     // // Q2 same illnes --------------------------------------
-    // const Q_same_illnes = InfluenzanetWeekly.sameIllnes(hasSymptomGroupKey, true);
-    // survey.addExistingSurveyItem(Q_same_illnes, hasSymptomGroupKey);
+    const Q_same_illnes = InfluenzanetWeekly.sameIllnes(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_same_illnes, hasSymptomGroupKey);
+    
     // // Q3 when first symptoms --------------------------------------
-    // const Q_symptomStart = InfluenzanetWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
-    // survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
+    // TO DO: add option 'Ik weet het niet (meer)' (Key:1)
+    const Q_symptomStart = InfluenzanetWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
+    survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
     // // Q4 when symptoms end --------------------------------------
     // const Q_symptomsEnd = InfluenzanetWeekly.symptomsEnd(hasSymptomGroupKey, Q_symptomStart.key, true);
@@ -625,8 +635,9 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
 }
 
 /**
- * DURATION COVID-19 test: duration untill COVID-19 test result
+ * DURATION COVID-19 TEST: duration untill COVID-19 test
  * TO DO: Option 1 program as dropdown 'number of days'
+ * TO DO: Check multipleChoiceKey available for 0, 1, 2?
  * 
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -648,7 +659,7 @@ const durationTest = (parentKey: string, keyreasonTest?: string, isRequired?: bo
     // CONDITION
     if (keyreasonTest) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0','1','2')
         );
     }
 
@@ -699,6 +710,189 @@ const durationTest = (parentKey: string, keyreasonTest?: string, isRequired?: bo
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * RESULT COVID-19 TEST: result COVID-19 test
+ * 
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const resultTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov16b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Heeft u de COVID-19 testresulaten reeds ontvangen?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keycovidTest) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten hoe COVID-19 zich verspreidt in de bevolking."],
+                ]),
+                //style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, positief voor COVID-19"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, negatief voor COVID-19"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, niet-interpreteerbaar resultaat"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik heb nog geen testresultaat"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Dat wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * DURATION COVID-19 TEST RESULT: duration untill COVID-19 test result
+ * TO DO: Check multipleChoiceKey available for 1, 2, 3?
+ * TO DO: Add dropdown menu for 1 day or more
+ * 
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const durationTestResult = (parentKey: string, keyresultTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov16d_BE'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Hoe snel na de start van uw symptomen/klachten heeft u een COVID-19 test kunnen laten uitvoeren?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyresultTest) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyresultTest, [responseGroupKey, multipleChoiceKey].join('.'), '1','2','3')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen onderzoeken hoeveel tijd er gaat tussen het afnemen van een COVID-19 test en het ontvangen van het testresultaat."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Maak een zo goed mogelijke inschatting."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Op dezelfde dag"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Dropdown menu"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
 
     // VALIDATIONs
     if (isRequired) {
