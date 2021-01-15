@@ -2683,9 +2683,14 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
 
     // QUESTION TEXT
     editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl-be", "U gaf aan klachten te hebben van een mogelijke of bevestigde COVID-19 infectie. We willen u enkele bijkomende vragen stellen over deze COVID-19 infectie. Wil u deze extra vragen invullen (dit zal ongeveer 2-5 minuten in beslag nemen)"],
-        ]))
+        generateTitleComponent(
+            new Map([
+                ["nl-be", "U gaf aan klachten te hebben van een mogelijke of bevestigde COVID-19 infectie. We willen u enkele bijkomende vragen stellen over deze COVID-19 infectie. Wil u deze extra vragen invullen"],
+            ]),
+            new Map([
+                ["nl-be", "(dit zal ongeveer 2-5 minuten in beslag nemen)"],
+            ]),
+        )
     );
 
     // INFO POPUP
