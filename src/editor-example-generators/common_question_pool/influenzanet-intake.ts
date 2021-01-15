@@ -115,7 +115,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
             ["nl", "Wanneer ben je geboren (maand en jaar)?"],
-            ["nl-be", "Wanneer bent u geboren (maand en jaar)?"],
+            ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
         ]))
     );
