@@ -5,7 +5,8 @@ import { IntakeQuestions as DefaultIntake } from "../common_question_pool/influe
 import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
 import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
-
+import { initLikertScaleItem } from "../../editor-engine/utils/question-type-generator";
+import { likertScaleKey } from "../common_question_pool/key-definitions";
 
 const intake = (): Survey | undefined => {
     const surveyKey = 'intake';
@@ -89,10 +90,13 @@ const intake = (): Survey | undefined => {
     const Q_people_met = people_met(rootKey, true);
     survey.addExistingSurveyItem(Q_people_met, rootKey);
 
-    const Q_age_groups = age_groups(rootKey, true);
-    survey.addExistingSurveyItem(Q_age_groups, rootKey);
+    //const Q_age_groups = age_groups(rootKey, true);
+    //survey.addExistingSurveyItem(Q_age_groups, rootKey);
 
-    const Q_children_in_school = DefaultIntake.childrenInSchool(rootKey, Q_age_groups.key, true);
+    const Q_age_groups_likert = ageGroupExample(rootKey);
+    survey.addExistingSurveyItem(Q_age_groups_likert, rootKey);
+
+    const Q_children_in_school = DefaultIntake.childrenInSchool(rootKey, Q_age_groups_likert.key, true);
     survey.addExistingSurveyItem(Q_children_in_school, rootKey);
 
     const Q_means_of_transport = DefaultIntake.meansOfTransport(rootKey, true);
@@ -3434,6 +3438,128 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
+
+    return editor.getItem();
+}
+
+
+const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q6'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
+            ["nl-be", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"]
+        ]))
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "De samenstelling van het huishouden kan invloed hebben op het risico van infectie, dit willen we graag onderzoeken."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Een huishouden wordt gedefinieerd als een groep mensen (niet noodzakelijkerwijs verwant) die op hetzelfde adres wonen die een kookgelegenheid, woonkamer, zitkamer of eetkamer delen."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const likertOptions = [
+        {
+            key: "0", content: new Map([
+                ["nl-be", "0"]
+            ])
+        },
+        {
+            key: "1", content: new Map([
+                ["nl-be", "1"]
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["nl-be", "2"]
+            ])
+        },
+        {
+            key: "3", content: new Map([
+                ["nl-be", "3"]
+            ])
+        },
+        {
+            key: "4", content: new Map([
+                ["nl-be", "4"]
+            ])
+        },
+        {
+            key: "5", content: new Map([
+                ["nl-be", "5+"]
+            ])
+        }
+    ];
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '0 - 4 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '5 - 10 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '11 - 16 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
+
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+    });
+
+    // VALIDATIONs
+    // None
 
     return editor.getItem();
 }
