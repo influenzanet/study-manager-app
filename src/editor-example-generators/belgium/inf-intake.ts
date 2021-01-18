@@ -2228,7 +2228,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl-be", "Ik volg een ander dieet"],
             ]),
             description: new Map([
-                ["nl-be", "dieet"],
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
             ])
         },
     ]);
