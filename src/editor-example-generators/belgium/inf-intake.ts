@@ -2947,10 +2947,12 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
     editor.setTitleComponent(
         generateTitleComponent(
             new Map([
-                ["nl-be", "U gaf aan klachten te hebben van een mogelijke of bevestigde COVID-19 infectie. We willen u enkele bijkomende vragen stellen over deze COVID-19 infectie. Wil u deze extra vragen invullen"],
+                ["nl-be", "U gaf aan klachten te hebben van een mogelijke of bevestigde COVID-19 infectie. We willen u enkele bijkomende vragen stellen over deze COVID-19 infectie. Wil u deze extra vragen invullen?"],
+                ["fr-be", "Vous avez indiqué des symptômes qui correspondent à une infection potentielle ou confirmée par le coronavirus. Nous souhaitons vous poser quelques questions supplémentaires à ce sujet. Souhaitez-vous répondre à ces questions supplémentaires?"],
             ]),
             new Map([
                 ["nl-be", "(dit zal ongeveer 2-5 minuten in beslag nemen)"],
+                ["fr-be", "(cela prendra environ 2 à 5 minutes de votre temps)"],
             ]),
         )
     );
@@ -2972,12 +2974,14 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
     ]);
@@ -3011,6 +3015,7 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft een arts uw COVID-19 klachten behandeld?"],
+            ["fr-be", "Un médecin a-t-il traité vos plaintes liées au coronavirus?"],
         ]))
     );
 
@@ -3027,12 +3032,14 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["fr-be", "Dans le but d’obtenir de plus amples informations relatives aux soins médicaux dont vous avez eu besoin dans le cadre de votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3046,24 +3053,28 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, en de arts heeft me gezegd dat ik zeker COVID-19 had"],
+                ["fr-be", "Oui, et le médecin m'a dit que j’avais certainement contracté le coronavirus"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, en de arts heeft me gezegd dat ik misschien COVID-19 had"],
+                ["fr-be", "Oui, et le médecin m'a dit que je pourrais avoir contracté le coronavirus"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, maar de arts heeft mij gezegd dat ik zeker geen COVID-19 had"],
+                ["fr-be", "Oui, et le médecin m'a dit que je n’avais certainement pas contracté le coronavirus"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
     ]);
@@ -3097,6 +3108,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u gehospitaliseerd geweest voor deze COVID-19 klachten?"],
+            ["fr-be", "Avez-vous été hospitalisé(e) dans le cadre de ces symptômes relatifs au coronavirus?"],
         ]))
     );
 
@@ -3113,12 +3125,14 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["fr-be", "Dans le but d’obtenir de plus amples informations relatives aux soins médicaux dont vous avez eu besoin dans le cadre de votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3132,18 +3146,21 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, één keer"],
+                ["fr-be", "Oui, une fois"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, meerdere keren"],
+                ["fr-be", "Oui, plusieurs fois"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
     ]);
@@ -3163,7 +3180,6 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
 
 /**
  * ADDITIONAL COVID-19 QUESTION HOSPITAL LENGTH: dropdown menu on hospital length (optional)
- * TO DO: Add a drop down menu with 0, 1, 2, ..., 30, 31-40, 41-50, 51-60, meer dan 60 dagen
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -3178,6 +3194,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Hoe lang bent u gehospitaliseerd geweest? Indien u meerdere keren bent gehospitaliseerd, mag u de duur van elke hospitalisatie samentellen."],
+            ["fr-be", "Combien de temps avez-vous été hospitalisé(e)? Si vous avez été hospitalisé(e) plusieurs fois, vous pouvez cumuler la durée de chaque hospitalisation."],
         ]))
     );
 
@@ -3194,12 +3211,14 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["fr-be", "Nous souhaitons obtenir de plus amples informations relatives aux soins médicaux dont vous avez eu besoin dans le cadre de votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3209,172 +3228,206 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
     const ddOptions = initDropdownGroup('ddg', [
         {
             key: '0', role: 'option', content: new Map([
-                ["be-nl", "1 dag"],
+                ["nl-be", "1 dag"],
+                ["fr-be", "1 jour"],
             ]),
         },
         {
             key: '1', role: 'option', content: new Map([
-                ["be-nl", "2 dagen"],
+                ["nl-be", "2 dagen"],
+                ["fr-be", "2 jours"],
             ]),
         },
         {
             key: '2', role: 'option', content: new Map([
-                ["be-nl", "3 dagen"],
+                ["nl-be", "3 dagen"],
+                ["fr-be", "3 jours"],
             ]),
         },
         {
             key: '3', role: 'option', content: new Map([
-                ["be-nl", "4 dagen"],
+                ["nl-be", "4 dagen"],
+                ["fr-be", "4 jours"],
             ]),
         },
         {
             key: '4', role: 'option', content: new Map([
-                ["be-nl", "5 dagen"],
+                ["nl-be", "5 dagen"],
+                ["fr-be", "5 jours"],
             ]),
         },
         {
             key: '5', role: 'option', content: new Map([
-                ["be-nl", "6 dagen"],
+                ["nl-be", "6 dagen"],
+                ["fr-be", "6 jours"],
             ]),
         },
         {
             key: '6', role: 'option', content: new Map([
-                ["be-nl", "7 dagen"],
+                ["nl-be", "7 dagen"],
+                ["fr-be", "7 jours"],
             ]),
         },
         {
             key: '7', role: 'option', content: new Map([
-                ["be-nl", "8 dagen"],
+                ["nl-be", "8 dagen"],
+                ["fr-be", "8 jours"],
             ]),
         },
         {
             key: '8', role: 'option', content: new Map([
-                ["be-nl", "9 dagen"],
+                ["nl-be", "9 dagen"],
+                ["fr-be", "9 jours"],
             ]),
         },
         {
             key: '9', role: 'option', content: new Map([
-                ["be-nl", "10 dagen"],
+                ["nl-be", "10 dagen"],
+                ["fr-be", "10 jours"],
             ]),
         },
         {
             key: '10', role: 'option', content: new Map([
-                ["be-nl", "11 dagen"],
+                ["nl-be", "11 dagen"],
+                ["fr-be", "11 jours"],
             ]),
         },
         {
             key: '11', role: 'option', content: new Map([
-                ["be-nl", "12 dagen"],
+                ["nl-be", "12 dagen"],
+                ["fr-be", "12 jours"],
             ]),
         },
         {
             key: '12', role: 'option', content: new Map([
-               ["be-nl", "13 dagen" ],
+               ["nl-be", "13 dagen" ],
+               ["fr-be", "13 jours"],
             ]),
         },
         {
             key: '13', role: 'option', content: new Map([
-                ["be-nl", "14 dagen"],
+                ["nl-be", "14 dagen"],
+                ["fr-be", "14 jours"],
             ]),
         },
         {
             key: '14', role: 'option', content: new Map([
-                ["be-nl", "15 dagen"],
+                ["nl-be", "15 dagen"],
+                ["fr-be", "15 jours"],
             ]),
         },
         {
             key: '15', role: 'option', content: new Map([
-                ["be-nl", "16 dagen"],
+                ["nl-be", "16 dagen"],
+                ["fr-be", "16 jours"],
             ]),
         },
         {
             key: '16', role: 'option', content: new Map([
-                ["be-nl", "17 dagen"],
+                ["nl-be", "17 dagen"],
+                ["fr-be", "17 jours"],
             ]),
         },
         {
             key: '17', role: 'option', content: new Map([
-                ["be-nl", "18 dagen"],
+                ["nl-be", "18 dagen"],
+                ["fr-be", "18 jours"],
             ]),
         },
         {
             key: '18', role: 'option', content: new Map([
-                ["be-nl", "19 dagen"],
+                ["nl-be", "19 dagen"],
+                ["fr-be", "19 jours"],
             ]),
         },
         {
             key: '19', role: 'option', content: new Map([
-                ["be-nl", "20 dagen"],
+                ["nl-be", "20 dagen"],
+                ["fr-be", "20 jours"],
             ]),
         },
         {
             key: '20', role: 'option', content: new Map([
-                ["be-nl", "21 dagen"],
+                ["nl-be", "21 dagen"],
+                ["fr-be", "21 jours"],
             ]),
         },
         {
             key: '21', role: 'option', content: new Map([
-                ["be-nl", "22 dagen"],
+                ["nl-be", "22 dagen"],
+                ["fr-be", "22 jours"],
             ]),
         },
         {
             key: '22', role: 'option', content: new Map([
-                ["be-nl", "23 dagen"],
+                ["nl-be", "23 dagen"],
+                ["fr-be", "23 jours"],
             ]),
         },
         {
             key: '23', role: 'option', content: new Map([
-                ["be-nl", "24 dagen"],
+                ["nl-be", "24 dagen"],
+                ["fr-be", "24 jours"],
             ]),
         },
         {
             key: '24', role: 'option', content: new Map([
-                ["be-nl", "25 dagen"],
+                ["nl-be", "25 dagen"],
+                ["fr-be", "25 jours"],
             ]),
         },
         {
             key: '25', role: 'option', content: new Map([
-                ["be-nl", "26 dagen"],
+                ["nl-be", "26 dagen"],
+                ["fr-be", "26 jours"],
             ]),
         },
         {
             key: '26', role: 'option', content: new Map([
-                ["be-nl", "27 dagen"],
+                ["nl-be", "27 dagen"],
+                ["fr-be", "27 jours"],
             ]),
         },
         {
             key: '27', role: 'option', content: new Map([
-                ["be-nl", "28 dagen"],
+                ["nl-be", "28 dagen"],
+                ["fr-be", "28 jours"],
             ]),
         },
         {
             key: '28', role: 'option', content: new Map([
-                ["be-nl", "29 dagen"],
+                ["nl-be", "29 dagen"],
+                ["fr-be", "29 jours"],
             ]),
         },
         {
             key: '29', role: 'option', content: new Map([
-                ["be-nl", "30 dagen"],
+                ["nl-be", "30 dagen"],
+                ["fr-be", "30 jours"],
             ]),
         },
         {
             key: '30', role: 'option', content: new Map([
-                ["be-nl", "31-40 dagen"],
+                ["nl-be", "31-40 dagen"],
+                ["fr-be", "31-40 jours"],
             ]),
         },
         {
             key: '31', role: 'option', content: new Map([
-                ["be-nl", "41-50 dagen"],
+                ["nl-be", "41-50 dagen"],
+                ["fr-be", "41-50 jours"],
             ]),
         },
         {
             key: '32', role: 'option', content: new Map([
-                ["be-nl", "51-60 dagen"],
+                ["nl-be", "51-60 dagen"],
+                ["fr-be", "51-60 jours"],
             ]),
         },
         {
             key: '33', role: 'option', content: new Map([
-                ["be-nl", "meer dan 60 dagen"],
+                ["nl-be", "meer dan 60 dagen"],
+                ["fr-be", "plus de 60 jours"],
             ]),
         },
 
@@ -3411,6 +3464,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u in ICU (afdeling intensieve zorgen) opgenomen?"],
+            ["fr-be", "Avez-vous été admis(e) aux soins intensifs (ICU)?"],
         ]))
     );
 
@@ -3427,12 +3481,14 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["fr-be", "Nous souhaitons obtenir de plus amples informations relatives aux soins médicaux dont vous avez eu besoin dans le cadre de votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3446,18 +3502,21 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, één keer"],
+                ["fr-be", "Oui, une fois"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, meerdere keren"],
+                ["fr-be", "oui, plusieurs fois"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
     ]);
@@ -3491,6 +3550,7 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u in coma geweest?"],
+            ["fr-be", "Avez-vous été dans le coma ?"],
         ]))
     );
 
@@ -3507,12 +3567,14 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische hulp die u nodig had voor uw COVID-19 infectie."],
+                    ["fr-be", "Nous souhaitons obtenir de plus amples informations relatives aux soins médicaux dont vous avez eu besoin dans le cadre de votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3525,13 +3587,15 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
         {
             key: '0', role: 'option',
             content: new Map([
-                ["nl-be", "ja, één keer"],
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
     ]);
@@ -3565,6 +3629,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Is uw gezondheid terug helemaal dezelfde als voor uw COVID-19 infectie?"],
+            ["fr-be", "Vous sentez-vous à nouveau comme vous l’étiez avant d’avoir contracté le coronavirus?"],
         ]))
     );
 
@@ -3581,12 +3646,14 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische impact van uw COVID-19 infectie."],
+                    ["fr-be", "Nous souhaitons obtenir de plus amples informations relatives à l’impact médical dans le cadre de votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3600,12 +3667,14 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
     ]);
@@ -3639,6 +3708,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Welke klachten heeft u nu nog?"],
+            ["fr-be", "Quel type de symptômes ressentez-vous encore?"],
         ]))
     );
 
@@ -3655,12 +3725,14 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om meer informatie te verkrijgen over de medische impact van uw COVID-19 infectie."],
+                    ["fr-be", "Nous souhaitons obtenir de plus amples informations relatives à l’impact médical avant votre infection par le coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3675,174 +3747,176 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Koorts"],
+                ["fr-be", "De la fièvre"],
             ])
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Koude rillingen"],
+                ["fr-be", "Des frissons"],
             ])
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Loopneus of verstopte neus"],
+                ["fr-be", "Un nez qui coule ou un nez bouché"],
             ])
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Niezen"],
+                ["fr-be", "Des éternuements"],
             ])
         },
         {
             key: '5', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Keelpijn"],
+                ["fr-be", "Un mal de gorge"],
             ])
         },
         {
             key: '6', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Hoesten"],
+                ["fr-be", "De la toux"],
             ])
         },
         {
             key: '7', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Kortademig (snel buiten adem)"],
+                ["fr-be", "Des difficultés respiratoires (rapidement à court de souffle)"],
             ])
         },
         {
             key: '8', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Hoofdpijn"],
+                ["fr-be", "Un mal de tête"],
             ])
         },
         {
             key: '9', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Spierpijn/Gewrichtspijn (niet sport gerelateerd)"],
+                ["fr-be", "Des douleurs musculaires/articulaires (non liées au sport)"],
             ])
         },
         {
             key: '10', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Pijn op de borst"],
+                ["fr-be", "Des douleurs thoraciques"],
             ])
         },
         {
             key: '11', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
+                ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
             ])
         },
         {
             key: '12', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verminderde eetlust"],
+                ["fr-be", "Une perte d'appétit"],
             ])
         },
         {
             key: '13', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verkleurd slijm ophoesten"],
+                ["fr-be", "L’expectoration de mucus coloré"],
             ])
         },
         {
             key: '14', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Waterige, of bloeddoorlopen ogen"],
+                ["fr-be", "Des yeux larmoyants ou rouges"],
             ])
         },
         {
             key: '15', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Misselijkheid"],
+                ["fr-be", "Des nausées"],
             ])
         },
         {
             key: '16', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Overgeven / braken"],
+                ["fr-be", "Des envies de vomir / des vomissements"],
             ])
         },
         {
             key: '17', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Diarree"],
+                ["fr-be", "De la diarrhée"],
             ])
         },
         {
             key: '18', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Buikpijn"],
+                ["fr-be", "Des douleurs abdominales"],
             ])
         },
         {
             key: '19', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verlies van smaak"],
+                ["fr-be", "Une perte du goût"],
             ])
         },
         {
             key: '20', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Bloedneus"],
+                ["fr-be", "Un saignement de nez"],
             ])
         },
         {
             key: '21', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verlies van geur"],
+                ["fr-be", "Une perte de l’odorat"],
             ])
         },
         {
             key: '22', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verwardheid"],
+                ["fr-be", "Une sensation de confusion"],
             ])
         },
         {
             key: '23', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Andere"],
+                ["fr-be", "Autre(s)"],
             ])
         },
         {
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Geen van deze symptomen/klachten"],
+                ["fr-be", "Aucun de ces symptômes / de ces troubles médicaux"],
             ])
         },
     ]);
