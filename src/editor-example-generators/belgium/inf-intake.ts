@@ -2584,6 +2584,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus (COVID-19)?"],
+            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le nouveau coronavirus? (COVID-19)"],
         ]))
     );
 
@@ -2593,24 +2594,28 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We willen achtergrond informatie hebben in verband met vorige COVID-19 infecties."],
+                    ["fr-be", "Nous avons besoin d'informations contextuelles relatives aux précédentes infections par le coronavirus."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Antwoord zo precies mogelijk."],
+                    ["fr-be", "Veuillez répondre de la manière la plus précise possible."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2624,36 +2629,42 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Nee, ik denk niet dat ik het nieuwe coronavirus al heb gehad"],
+                ["fr-be", "Non, je ne pense pas avoir été déjà infecté(e) par le nouveau coronavirus"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, misschien wel, ik had/heb klachten die erop lijken"],
+                ["fr-be", "Oui, peut-être. J'ai eu/j'ai des symptômes qui ressemblent à ceux du coronavirus"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, ik denk het wel, ik had/heb klachten die erop lijken, en mensen om me heen ook"],
+                ["fr-be", "Oui, je suppose. J'ai eu/j'ai eu des symptômes qui ressemblent à ceux du coronavirus, et les personnes autour de moi également"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en één of meer van die mensen zijn positief getest op het coronavirus"],
+                ["fr-be", "Oui, j'en suis quasi certain(e), parce que moi et les personnes autour de moi avons eu ou avons les symptômes du coronavirus, et une ou plusieurs de ces personnes ont été testées positives pour le coronavirus"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken"],
+                ["fr-be", "Oui, j'en suis certain(e), parce que j'ai été testé(e) positif (positive) pour le coronavirus, et j'ai eu/j'ai des symptômes qui ressemblent à ceux du coronavirus"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, maar ik heb geen klachten gehad"],
+                ["fr-be", "Oui, j'en suis certain(e), car j'ai été testé(e) positif (positive) pour le coronavirus, mais je n'ai eu aucun symptôme"],
             ])
         },
     ]);
@@ -2687,6 +2698,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Met welke symptomen ging uw COVID-19 infectie gepaard?"],
+            ["fr-be", "Quels symptômes avez-vous ressentis lorsque vous avez été infecté(e) par le coronavirus?"],
         ]))
     );
 
@@ -2703,24 +2715,28 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We willen weten welke de meeste voorkomende klachten zijn bij COVID-19."],
+                    ["fr-be", "Nous voulons savoir quels sont les symptômes les plus fréquents dans le cas d'une infection par le coronavirus."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden zijn mogelijk."],
+                    ["fr-be", "Plusieurs réponses sont possibles."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2735,6 +2751,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2742,138 +2759,161 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Koorts"],
+                ["fr-be", "De la fièvre"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Koude rillingen"],
+                ["fr-be", "Des frissons"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Loopneus of verstopte neus"],
+                ["fr-be", "Un nez qui coule ou un nez bouché"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Niezen"],
+                ["fr-be", "Des éternuements"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Keelpijn"],
+                ["fr-be", "Un mal de gorge"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Hoesten"],
+                ["fr-be", "De la toux"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Kortademig (snel buiten adem)"],
+                ["fr-be", "Des difficultés respiratoires (rapidement à court de souffle)"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Hoofdpijn"],
+                ["fr-be", "Un mal de tête"],
             ])
         },
         {
             key: '9', role: 'option',
             content: new Map([
                 ["nl-be", "Spierpijn/Gewrichtspijn (niet sport gerelateerd)"],
+                ["fr-be", "Des douleurs musculaires/articulaires (non liées au sport)"],
             ])
         },
         {
             key: '10', role: 'option',
             content: new Map([
                 ["nl-be", "Pijn op de borst"],
+                ["fr-be", "Des douleurs thoraciques"],
             ])
         },
         {
             key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
+                ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
             ])
         },
         {
             key: '12', role: 'option',
             content: new Map([
                 ["nl-be", "Verminderde eetlust"],
+                ["fr-be", "Une perte d'appétit"],
             ])
         },
         {
             key: '13', role: 'option',
             content: new Map([
                 ["nl-be", "Verkleurd slijm ophoesten"],
+                ["fr-be", "L’expectoration de mucus coloré"],
             ])
         },
         {
             key: '14', role: 'option',
             content: new Map([
                 ["nl-be", "Waterige, of bloeddoorlopen ogen"],
+                ["fr-be", "Des yeux larmoyants ou rouges"],
             ])
         },
         {
             key: '15', role: 'option',
             content: new Map([
                 ["nl-be", "Misselijkheid"],
+                ["fr-be", "Des nausées"],
             ])
         },
         {
             key: '16', role: 'option',
             content: new Map([
                 ["nl-be", "Overgeven / braken"],
+                ["fr-be", "Des envies de vomir / des vomissements"],
             ])
         },
         {
             key: '17', role: 'option',
             content: new Map([
                 ["nl-be", "Diarree"],
+                ["fr-be", "De la diarrhée"],
             ])
         },
         {
             key: '18', role: 'option',
             content: new Map([
                 ["nl-be", "Buikpijn"],
+                ["fr-be", "Des douleurs abdominales"],
             ])
         },
         {
             key: '19', role: 'option',
             content: new Map([
                 ["nl-be", "Verlies van smaak"],
+                ["fr-be", "Une perte du goût"],
             ])
         },
         {
             key: '20', role: 'option',
             content: new Map([
                 ["nl-be", "Bloedneus"],
+                ["fr-be", "Un saignement de nez"],
             ])
         },
         {
             key: '21', role: 'option',
             content: new Map([
                 ["nl-be", "Verlies van geur"],
+                ["fr-be", "Une perte de l’odorat"],
             ])
         },
         {
             key: '22', role: 'option',
             content: new Map([
                 ["nl-be", "Verwardheid"],
+                ["fr-be", "Une sensation de confusion"],
             ])
         },
         {
             key: '23', role: 'option',
             content: new Map([
                 ["nl-be", "Andere"],
+                ["fr-be", "Autre(s)"],
             ])
         },
     ]);
