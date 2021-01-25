@@ -1265,6 +1265,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             ["nl", "Hoeveel tijd breng je op een gemiddelde dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["nl-be", "Hoeveel tijd brengt u op een doordeweekse dag door in het openbaar vervoer?"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
+            ["fr-be", "Combien de temps passez-vous dans les transports en commun lors d'un jour de semaine?"],
         ]))
     );
 
@@ -1277,15 +1278,17 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
-            },
+            }, 
             {
                 content: new Map([
                     ["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],
                     ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
+                    ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1295,6 +1298,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1304,6 +1308,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl", "Denk aan een typische dag. Als je verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
                     ["nl-be", "Denk aan een typische dag. Als u elke dag verschillende vormen van openbaar vervoer gebruikt op één dag, vergeet dan niet om alle ritten mee te nemen. Exclusief taxi's of andere vormen van privévervoer."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
+                    ["fr-be", "Pensez à une journée typique. Si vous utilisez chaque jour différents modes de transport en commun au cours d'une même journée, n'oubliez pas d'inclure tous les trajets. À l’exclusion des taxis ou d’autres formes de transport privé."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1320,6 +1325,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl", "Ik ga normaal niet met het openbaar vervoer"],
                 ["nl-be", "Ik ga normaal niet met het openbaar vervoer"],
                 ["fr", "Pas de temps du tout"],
+                ["fr-be", "Je ne prends pas les transports en commun en temps normal"],
             ])
         },
         {
@@ -1329,6 +1335,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl", "0 tot 30 minuten"],
                 ["nl-be", "0 tot 30 minuten"],
                 ["fr", "0-30 minutes"],
+                ["fr-be", "De 0 à 30 minutes"],
             ])
         },
         {
@@ -1338,6 +1345,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl", "30 minuten tot 1,5 uur"],
                 ["nl-be", "30 minuten tot 1,5 uur"],
                 ["fr", "30 minutes - 1.5 heures"],
+                ["fr-be", "De 30 minutes à 1,5 heure"],
             ])
         },
         {
@@ -1347,6 +1355,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl", "1,5 uur tot 4 uur"],
                 ["nl-be", "1,5 uur tot 4 uur"],
                 ["fr", "1.5 - 4 heures"],
+                ["fr-be", "De 1,5 à 4 heures"],
             ])
         },
         {
@@ -1356,6 +1365,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl", "Meer dan 4 uur"],
                 ["nl-be", "Meer dan 4 uur"],
                 ["fr", "Plus de 4 heures"],
+                ["fr-be", "Plus de 4 heures"],
             ])
         },
     ]);
