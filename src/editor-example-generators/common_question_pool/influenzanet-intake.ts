@@ -25,6 +25,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             ["nl", "Wat is je geslacht?"],
             ["nl-be", "Wat is uw geslacht?"],
             ["fr", "Quel est votre sexe?"],
+            ["fr-be", "Quel est votre sexe?"],
         ]))
     );
 
@@ -37,6 +38,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -46,6 +48,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["nl-be", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
+                    ["fr", "Afin d’examiner les différences entre les hommes et les femmes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }, { key: 'className', value: 'm-0' }],
             },
@@ -62,6 +65,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["nl", "Man"],
                 ["nl-be", "Man"],
                 ["fr", "Homme"],
+                ["fr-be", "Un homme"],
             ])
         },
         {
@@ -71,6 +75,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["nl", "Vrouw"],
                 ["nl-be", "Vrouw"],
                 ["fr", "Femme"],
+                ["fr-be", "Une femme"],
             ])
         },
         {
@@ -79,6 +84,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["en", "Other"],
                 ["nl", "Anders"],
                 ["nl-be", "Anders"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);
