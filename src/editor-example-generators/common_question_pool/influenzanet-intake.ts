@@ -198,7 +198,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
                     { str: ' ??' }
                 ]
-            }
+            },
             {
                 code: 'fr-be', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
@@ -964,6 +964,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een kinderdagverblijf?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
+            ["fr-be", "Combien d'enfants de votre ménage sont scolarisés ou vont à la crèche?"],
         ]))
     );
 
@@ -990,6 +991,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -999,6 +1001,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl", "Het bezoeken van een school of kinderdagverblijf kan het risico voor infecties verhogen. Of dit het geval is en in welke mate willen we graag onderzoeken."],
                     ["nl-be", "Naar school of kinderopvang gaan, kan een verhoogd risico zijn voor het krijgen van COVID-19 of griep en soortgelijke ziekten. We willen dit graag onderzoeken."],
                     ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
+                    ["fr-be", "Le fait de fréquenter l'école, la garderie ou la crèche peut augmenter le risque de contracter le coronavirus ou la grippe, ainsi que d'autres maladies similaires. Nous souhaiterions étudier ce point."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1008,6 +1011,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1017,6 +1021,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl", "Zelfs als het kind slechts 1 maal per week naar een kinderdagverblijf gaat, geef dit dan aan (clubs en verenigingen tellen niet mee)"],
                     ["nl-be", "Als uw kind naar school of kinderopvang gaat (ook al is dit maar één dag in de week) antwoord dan met ja. Lidmaatschap bij (sport)verenigingen of andere buitenschoolse activiteiten tellen niet mee."],
                     ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
+                    ["fr-be", "Si votre enfant fréquente l'école, la garderie ou la crèche (même si ce n'est qu'un jour par semaine), veuillez répondre oui. Une affiliation auprès d’associations (sportives) ou une inscription à d’autres activités extrascolaires ne compte pas."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1033,6 +1038,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                 ["nl", "Geen"],
                 ["nl-be", "Geen"],
                 ["fr", "Aucun"],
+                ["fr-be", "Aucun"],
             ])
         },
         {
@@ -1072,6 +1078,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                 ["nl", "Meer dan 5"],
                 ["nl-be", "Meer dan 5"],
                 ["fr", "Plus de 5"],
+                ["fr-be", "Plus de 5"],
             ])
         },
     ]);
@@ -1110,6 +1117,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["nl-be", "Hoe verplaatst u zich doorgaans voor uw dagelijkse activiteiten? Gelieve de vervoerswijze te selecteren waar u het meest gebruik van maakt."],
             ["fr", "Quel est votre principal moyen de transport?"],
+            ["fr-be", "Comment vous déplacez-vous habituellement dans le cadre de vos activités quotidiennes ? Veuillez sélectionner le mode de transport que vous utilisez le plus."],
         ]))
     );
 
@@ -1122,6 +1130,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1131,6 +1140,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
+                    ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1140,6 +1150,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1149,6 +1160,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl", "Ga uit van de normale situatie en je meest gangbare - dagelijkse - manier van verplaatsen."],
                     ["nl-be", "Vink de optie aan die het beste overeenkomt met uw meest gebruikte vervoermiddel."],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
+                    ["fr-be", "Cochez l'option qui correspond le mieux à votre moyen de transport le plus fréquemment utilisé."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1165,6 +1177,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl", "Lopend"],
                 ["nl-be", "Te voet"],
                 ["fr", "La marche"],
+                ["fr-be", "À pied"],
             ])
         },
         {
@@ -1174,6 +1187,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl", "Op de fiets"],
                 ["nl-be", "Op de fiets"],
                 ["fr", "Le vélo"],
+                ["fr-be", "À vélo"],
             ])
         },
         {
@@ -1183,6 +1197,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl", "Met de scooter of motor"],
                 ["nl-be", "Met de scooter of motor"],
                 ["fr", "Le scooter, la moto"],
+                ["fr-be", "À mobylette ou à moto"],
             ])
         },
         {
@@ -1192,6 +1207,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl", "Met de auto"],
                 ["nl-be", "Met de auto"],
                 ["fr", "La voiture"],
+                ["fr-be", "En voiture"],
             ])
         },
         {
@@ -1201,6 +1217,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["nl-be", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
+                ["fr-be", "Par les transports en commun (bus, train, métro, tram, etc.)"],
             ])
         },
         {
@@ -1210,6 +1227,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl", "Anders"],
                 ["nl-be", "Andere"],
                 ["fr", "Autre"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);

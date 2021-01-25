@@ -3725,8 +3725,8 @@ const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem =>
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
-            ["nl-be", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"]
+            ["nl-be", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"],
+            ["fr-be", "Y COMPRIS VOUS-MÊME : combien de personnes des différentes tranches d'âge vivent-elles au sein de votre ménage?"],
         ]))
     );
 
@@ -3735,24 +3735,28 @@ const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem =>
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "De samenstelling van het huishouden kan invloed hebben op het risico van infectie, dit willen we graag onderzoeken."],
+                    ["fr-be", "La composition du ménage peut influencer le risque d'infection, ce que nous souhaitons étudier."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Een huishouden wordt gedefinieerd als een groep mensen (niet noodzakelijkerwijs verwant) die op hetzelfde adres wonen die een kookgelegenheid, woonkamer, zitkamer of eetkamer delen."],
+                    ["fr-be", "Un ménage est défini comme un groupe de personnes (pas nécessairement apparentées) vivant à la même adresse, et partageant une cuisine, un salon, une salle de séjour ou une salle à manger."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3763,32 +3767,38 @@ const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem =>
     const likertOptions = [
         {
             key: "0", content: new Map([
-                ["nl-be", "0"]
+                ["nl-be", "0"],
+                ["fr-be", "0"]
             ])
         },
         {
             key: "1", content: new Map([
-                ["nl-be", "1"]
+                ["nl-be", "1"],
+                ["fr-be", "1"]
             ])
         },
         {
             key: "2", content: new Map([
-                ["nl-be", "2"]
+                ["nl-be", "2"],
+                ["fr-be", "2"]
             ])
         },
         {
             key: "3", content: new Map([
-                ["nl-be", "3"]
+                ["nl-be", "3"],
+                ["fr-be", "3"]
             ])
         },
         {
             key: "4", content: new Map([
-                ["nl-be", "4"]
+                ["nl-be", "4"],
+                ["fr-be", "4"]
             ])
         },
         {
             key: "5", content: new Map([
-                ["nl-be", "5+"]
+                ["nl-be", "5+"],
+                ["fr-be", "5+"]
             ])
         }
     ];
@@ -3800,7 +3810,8 @@ const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem =>
         style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
-                ['en', '0 - 4 years'],
+                ['nl-be', '0 - 4 jaar'],
+                ['fr-be', '0 - 4 ans'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
@@ -3810,7 +3821,8 @@ const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem =>
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
-                ['en', '5 - 10 years'],
+                ['nl-be', '5 - 10 jaar'],
+                ['fr-be', '5 - 10 ans'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
@@ -3820,7 +3832,8 @@ const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem =>
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
-                ['en', '11 - 16 years'],
+                ['nl-be', '11 - 16 jaar'],
+                ['fr-be', '11 - 16 ans'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
