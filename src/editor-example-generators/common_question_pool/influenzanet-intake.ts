@@ -2737,6 +2737,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             ["nl", "Heb je één of meer van de volgende allergieën?"],
             ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
+            ["fr-be", "Souffrez-vous d’une ou de plusieurs des allergies suivantes?"],
         ]))
     );
 
@@ -2752,6 +2753,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2761,6 +2763,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl", "Sommige allergieën geven dezelfde klachten als luchtweginfecties"],
                     ["nl-be", "Sommige allergieën geven dezelfde klachten als luchtweginfecties."],
                     ["fr", "Certaines réactions allergiques peuvent avoir des symptômes similaires ceux d'une infection respiratoire."],
+                    ["fr-be", "Certaines allergies provoquent les mêmes symptômes que les infections des voies respiratoires."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2770,6 +2773,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2779,6 +2783,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl", "Meerdere antwoorden mogelijk, klik alle opties die relevant zijn."],
                     ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
+                    ["fr-be", "Plusieurs réponses sont possibles, cochez toutes les options pertinentes."],
                 ]),
             },
         ])
@@ -2795,6 +2800,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ['nl', 'Meerdere antwoorden mogelijk'],
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2806,8 +2812,10 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl", "Hooikoorts"],
                 ["nl-be", "Hooikoorts"],
                 ["fr", "Rhume des foins"],
+                ["fr-be", "Le rhume des foins"],
             ])
-        }, {
+        }, 
+        {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
@@ -2815,17 +2823,21 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl", "Allergie voor huisstofmijt"],
                 ["nl-be", "Allergie voor huisstofmijt"],
                 ["fr", "Allergie aux acariens"],
+                ["fr-be", "Une allergie aux acariens"],
             ])
-        }, {
+        }, 
+        {
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Allergy against domestic animals or pets"],
                 ["nl", "Allergie voor (huis)dieren"],
                 ["nl-be", "Allergie voor (huis)dieren"],
-                ["fr", "Allergie à des animaux domestiques"],
+                ["fr", "Allergie à des animaux domestiques"],["fr-be", ""],
+                ["fr-be", "Une allergie aux animaux (domestiques)"]
             ])
-        }, {
+        }, 
+        {
             key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
@@ -2833,14 +2845,17 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["nl-be", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["fr", "Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
+                ["fr-be", "Une autre allergie qui provoque chez moi les symptômes du rhume (un nez qui coule, des yeux larmoyants)"],
             ])
-        }, {
+        }, 
+        {
             key: '5', role: 'option',
             content: new Map([
                 ["en", "I do not have an allergy that causes respiratory symptoms"],
                 ["nl", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
                 ["nl-be", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
                 ["fr", "Je n'ai pas d'allergie causant des symptômes respiratoires"],
+                ["fr-be", "Non, je n'ai pas d'allergie qui provoque chez moi les symptômes du rhume"],
             ])
         },
     ]);
