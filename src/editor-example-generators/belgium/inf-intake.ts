@@ -198,6 +198,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat is uw voornaamste bezigheid overdag?"],
+            ["fr-be", "Quelle est votre activité principale pendant la journée?"], 
         ]))
     );
 
@@ -207,24 +208,28 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking, en om erachter te komen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen in verschillende beroepen."],
+                    ["fr-be", "Afin d’examiner dans quelle mesure notre cohorte (le groupe de participants à cette étude) est représentative de la population, et afin d’examiner si le risque de contracter le coronavirus ou la grippe varie selon les personnes exerçant des professions différentes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die nog niet naar school gaan, vinkt u het vakje 'anders' aan."],
+                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas encore à l'école, cochez la case 'autre'."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -238,60 +243,70 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk fulltime in loondienst"],
+                ["fr-be", "Je travaille à plein temps en tant qu’employé(e)"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk parttime in loondienst"],
+                ["fr-be", "Je travaille à temps partiel en tant qu'employé(e)"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk als zelfstandige/ondernemer"],
+                ["fr-be", "Je travaille en tant que travailleur indépendant/entrepreneur"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben een scholier of student"],
+                ["fr-be", "Je suis écolier (écolière) ou étudiant(e)"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben huisman/huisvrouw"],
+                ["fr-be", "Je suis un homme / une femme au foyer"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben werkzoekend"],
+                ["fr-be", "Je suis à la recherche d'un emploi"],
             ])
         },
         {
             key: '9', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben (technisch) werkloos omwille van de coronasituatie"],
+                ["fr-be", "Je suis au chômage (technique) à cause de la situation liée au coronavirus"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben thuis vanwege langdurige ziekte of zwangerschapsverlof"],
+                ["fr-be", "Je suis à la maison en raison d'une longue maladie ou d'un congé de maternité"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben met pensioen"],
+                ["fr-be", "Je suis à la retraite"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Anders"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);
@@ -327,6 +342,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat is de postcode van de plek waar u het meeste van uw (werk)tijd doorbrengt (voorbeeld: werkplek/school/universiteit)?"],
+            ["fr-be", "Quel est le code postal du lieu où vous passez la plupart de votre temps (de travail) (exemple : le lieu de travail/l’école/l’université)"],
         ]))
     );
 
@@ -343,12 +359,14 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om te bepalen hoe ver u zich op regelematige basis verplaatst."],
+                    ["fr-be", "En vue de pouvoir déterminer la distance que vous parcourez régulièrement lors de vos déplacements."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -363,18 +381,21 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             // style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Postcode"],
+                ["fr-be", "Code postal"],
             ]),
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Dit wil ik niet aangeven"],
+                ["fr-be", "Je préfère ne pas répondre à cette question"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Niet van toepassing/ik heb geen vaste werkplek"],
+                ["fr-be", "Non applicable/je n'ai pas de lieu de travail fixe"],
             ])
         },
     ]);
@@ -403,6 +424,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             role: 'error',
             content: generateLocStrings(new Map([
                 ["nl-be", "Voer de vier cijfers van de postcode in"],
+                ["fr-be", "xxx"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
@@ -426,6 +448,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Welk soort werk doet u?"],
+            ["fr-be", "Quel type de travail effectuez-vous?"],
         ]))
     );
 
@@ -442,24 +465,28 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking, en om te bepalen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen met verschillende beroepen."],
+                    ["fr-be", "Afin d’examiner dans quelle mesure notre cohorte (le groupe de participants à cette étude) est représentative de la population, et afin de déterminer si le risque de contracter le coronavirus ou la grippe est différent pour les personnes exerçant des professions différentes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep."],
+                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -473,36 +500,42 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
+                ["fr-be", "J’effectue un autre type de travail intellectuel (responsable, chercheur, comptable)"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist, etc.)"],
+                ["fr-be", "J’effectue un travail administratif (administration, assistant financier, réceptionniste, etc.)"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Ik doe technisch werk (uitvoerend in techniek/bouw/productie)"],
+                ["fr-be", "J’effectue un travail technique (dans le domaine de l'ingénierie, de la construction et de la production)"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Ik doe ander uitvoerend werk"],
+                ["fr-be", "Je fais d'autres travaux d’exécution"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben arts of verpleegkundige"],
+                ["fr-be", "Je travaille en tant que médecin ou infirmier"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Anders, valt niet in bovengenoemde opties"],
+                ["fr-be", "Un autre type de travail, mon travail ne fait pas partie des options susmentionnées"],
             ])
         },
     ]);
@@ -537,6 +570,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Tot welke sector behoort het bedrijf of organisatie waarin u werkt?"],
+            ["fr-be", "À quel secteur appartient l'entreprise ou l'organisation au sein de laquelle vous travaillez?"],
         ]))
     );
 
@@ -553,24 +587,28 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking, en om te bepalen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen met verschillende beroepen."],
+                    ["fr-be", "Afin d’examiner dans quelle mesure notre cohorte (le groupe de participants à cette étude) est représentative de la population, et afin de déterminer si le risque de contracter le coronavirus ou la grippe est différent pour les personnes exerçant des professions différentes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep."],
+                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -584,120 +622,140 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Bouwnijverheid "],
+                ["fr-be", "La construction / l’industrie du bâtiment"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Diensten aan bedrijven "],
+                ["fr-be", "Les services aux entreprises"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Extraterritoriale organisaties en lichamen"],
+                ["fr-be", "Les organisations et les organismes extraterritoriaux"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Financiële instellingen"],
+                ["fr-be", "Les institutions financières"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Gemeenschapsvoorzieningen"],
+                ["fr-be", "Les équipements collectifs"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Gezondheidszorg en maatschappelijke dienstverlening"],
+                ["fr-be", "Les soins de santé et les services sociaux"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Groothandel, kleinhandel"],
+                ["fr-be", "Le commerce de gros, le commerce de détail"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Hotels en restaurants"],
+                ["fr-be", "Le secteur des hôtels et des restaurants"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Industrie"],
+                ["fr-be", "L’industrie"],
             ])
         },
         {
             key: '9', role: 'option',
             content: new Map([
                 ["nl-be", "Landbouw, jacht en bosbouw"],
+                ["fr-be", "L’agriculture, la chasse et la sylviculture"],
             ])
         },
         {
             key: '10', role: 'option',
             content: new Map([
                 ["nl-be", "Onderwijs of kinderdagverblijf"],
+                ["fr-be", "L’éducation ou le secteur de la garde d’enfants"],
             ])
         },
         {
             key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Onroerende goederen, verhuur "],
+                ["fr-be", "L’immobilier, la location"],
             ])
         },
         {
             key: '12', role: 'option',
             content: new Map([
                 ["nl-be", "Openbaar bestuur"],
+                ["fr-be", "L’administration publique"],
             ])
         },
         {
             key: '13', role: 'option',
             content: new Map([
                 ["nl-be", "Productie en distributie elektriciteit, water en gas"],
+                ["fr-be", "La production et la distribution d'électricité, d'eau et de gaz"],
             ])
         },
         {
             key: '14', role: 'option',
             content: new Map([
                 ["nl-be", "Reparatie van auto’s en huishoudelijke artikelen"],
+                ["fr-be", "La réparation de véhicules automobiles et d’articles ménagers"],
             ])
         },
         {
             key: '15', role: 'option',
             content: new Map([
                 ["nl-be", "Sociaal-culturele en persoonlijke diensten"],
+                ["fr-be", "Les services socioculturels et personnels"],
             ])
         },
         {
             key: '16', role: 'option',
             content: new Map([
                 ["nl-be", "Vervoer en opslag "],
+                ["fr-be", "Le transport et l’entreposage "],
             ])
         },
         {
             key: '17', role: 'option',
             content: new Map([
                 ["nl-be", "Visserij "],
+                ["fr-be", "La pêche"],
             ])
         },
         {
             key: '18', role: 'option',
             content: new Map([
                 ["nl-be", "Winning van delfstoffen"],
+                ["fr-be", "L’industrie extractive"],
             ])
         },
         {
             key: '19', role: 'option',
             content: new Map([
                 ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);
@@ -731,6 +789,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Waar werkt u in het onderwijs of kinderopvang?"],
+            ["fr-be", "Où travaillez-vous dans le domaine de l'éducation ou de la garde d'enfants?"],
         ]))
     );
 
@@ -747,24 +806,28 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om een beter zicht te krijgen op de deelnemers die regelmatig contact hebben met kinderen/jongeren."],
+                    ["fr-be", "Afin de mieux pouvoir cerner les participants qui ont des contacts réguliers avec des enfants/adolescents."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden zijn mogelijk."],
+                    ["fr-be", "Plusieurs réponses sont possibles"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -779,6 +842,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -786,30 +850,35 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een kinderdagverblijf / kleuter onderwijs"],
+                ["fr-be", "Je travaille dans une crèche / dans une école maternelle"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in het basisonderwijs"],
+                ["fr-be", "Je travaille dans l'enseignement primaire"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in het secundair onderwijs"],
+                ["fr-be", "Je travaille dans l'enseignement secondaire"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in het post-secundair onderwijs (voorbeeld: hogeschool, universiteit)"],
+                ["fr-be", "Je travaille dans l'enseignement supérieur (exemple : une haute école, une université)"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);
@@ -843,6 +912,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Waar werkt u in de gezondheidszorg?"],
+            ["fr-be", "Où travaillez-vous dans le secteur de la santé?"],
         ]))
     );
 
@@ -859,24 +929,28 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om een beter zicht te krijgen op de deelnemers die werken in de gezondheidszorg."],
+                    ["fr-be", "Afin de mieux pouvoir cerner les participants qui travaillent dans le secteur des soins de santé."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden zijn mogelijk."],
+                    ["fr-be", "Plusieurs réponses sont possibles"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -891,6 +965,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', "Plusieurs réponses sont possibles"],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -898,48 +973,56 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een ziekenhuis"],
+                ["fr-be", "Je travaille dans un hôpital"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een revalidatiecentrum"],
+                ["fr-be", "Je travaille dans un centre de revalidation"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een woonzorgcentrum"],
+                ["fr-be", "Je travaille dans une maison de repos et de soins"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in de geestelijke gezondheidszorg/zorgverlening"],
+                ["fr-be", "Je travaille dans le domaine de la santé mentale et des soins de santé mentale"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een huisartsenpraktijk"],
+                ["fr-be", "Je travaille dans un cabinet médical"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een andere eerstelijnszorg (bijvoorbeeld: fysiotherapie of revalidatie)"],
+                ["fr-be", "Je travaille dans un autre service de soins de première ligne (par exemple : physiothérapie ou réadaptation)"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een arts-specialistenpraktijk"],
+                ["fr-be", "Je travaille dans un cabinet de médecins-spécialistes"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Overig"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);
