@@ -2377,7 +2377,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
-                ['fr-be', 'Plusieurs réponses sont possibles']
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2465,6 +2465,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Waar heeft u van Infectieradar.be gehoord?"],
+            ["fr-be", "Où avez-vous entendu parler d'Infectieradar.be?"],
         ]))
     );
 
@@ -2477,12 +2478,14 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We willen weten hoe u infectieradar.be gevonden heeft."],
+                    ["fr-be", "Nous voulons savoir comment vous avez connu notre site Internet infectieradar.be."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2497,6 +2500,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2504,42 +2508,49 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Op radio of televisie"],
+                ["fr-be", "À la radio ou à la télévision"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "In de krant of magazine"],
+                ["fr-be", "Dans un journal ou un magazine"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Via internet (website, nieuwswebsite, zoekmachine) behalve sociale media"],
+                ["fr-be", "Par le biais d’Internet (un site Internet, un site Internet d'information, un moteur de recherche) à l’exception des médias sociaux"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Via sociale media (facebook, twitter, instagram, etc.)"],
+                ["fr-be", "Par le biais des médias sociaux (Facebook, Twitter, Instagram, etc.)"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Via vrienden en familie"],
+                ["fr-be", "Par l'intermédiaire des amis et de la famille"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Via school of werk"],
+                ["fr-be", "Par le biais de l'école ou du travail"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
             ])
         },
     ]);
