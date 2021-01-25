@@ -2044,6 +2044,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Gebruikt u regelmatig medicatie voor één of meer van de volgende aandoeningen?"],
+            ["fr-be", "Prenez-vous régulièrement des médicaments pour une ou plusieurs des affections suivantes?"],
         ]))
     );
 
@@ -2053,24 +2054,28 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "De vraag maakt het voor ons mogelijk om te onderzoeken welke aandoeningen gelinkt zijn aan een hoger risico voor infectie."],
+                    ["fr-be", "Cette question nous permet d'étudier les affections qui sont liées à un risque accru d'infection."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Antwoord alleen met 'ja' als u reguliere medicatie gebruikt voor uw medisch probleem. Als u bijvoorbeeld slechts af en toe een astma-inhalator gebruikt, antwoord dan niet met 'ja' bij astma."],
+                    ["fr-be", "Ne répondez 'oui' que si vous prenez régulièrement des médicaments pour traiter votre problème médical. Par exemple, si vous n'utilisez un inhalateur pour traiter l'asthme que de manière occasionnelle, ne répondez pas 'oui' concernant l'asthme."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2085,6 +2090,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         content: generateLocStrings(
             new Map([
                 ["nl-be", "Meerdere antwoorden mogelijk"],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2092,6 +2098,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
         {
@@ -2099,6 +2106,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor astma"],
+                ["fr-be", "Oui, pour l'asthme"],
             ])
         },
         {
@@ -2106,6 +2114,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor diabetes"],
+                ["fr-be", "Oui, pour le diabète"],
             ])
         },
         {
@@ -2113,6 +2122,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor chronische longziekten (COPD, emfyseem, enz.)"],
+                ["fr-be", "Oui, pour des maladies pulmonaires chroniques (BPCO, l’emphysème, etc.)"]
             ])
         },
         {
@@ -2120,6 +2130,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor hartaandoeningen"],
+                ["fr-be", "Oui, pour les maladies cardiaques"],
             ])
         },
         {
@@ -2127,6 +2138,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor nieraandoeningen"],
+                ["fr-be", "Oui, pour les maladies rénales"],
             ])
         },
         {
@@ -2134,6 +2146,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor een verzwakte afweer (bijvoorbeeld door een auto-immuunziekte, kankerbehandeling of na een orgaantransplantatie)"],
+                ["fr-be", "Oui, pour un système immunitaire affaibli (par exemple : en raison d'une maladie auto-immune, d’un traitement contre le cancer ou à la suite d’une transplantation d'organe)"],
             ])
         },
         {
@@ -2141,6 +2154,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor andere redenen"],
+                ["fr-be", "Oui, pour d'autres raisons"],
             ])
         },
         {
@@ -2148,6 +2162,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Dat wil ik niet aangeven"],
+                ["fr-be", "Je préfère ne pas répondre à cette question"],
             ])
         },
     ]);
