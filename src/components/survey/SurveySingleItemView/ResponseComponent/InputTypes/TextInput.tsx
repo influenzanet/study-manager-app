@@ -70,7 +70,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
         value={inputValue}
         maxLength={4000}
         onChange={handleInputValueChange(props.compDef.key)}
-        disabled={props.compDef.disabled !== undefined || props.disabled === true}
+        disabled={props.compDef.disabled === true || props.disabled === true}
       />
     </div>
   );

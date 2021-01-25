@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getYear, format, max, min, eachMonthOfInterval, startOfYear, getMonth, endOfYear } from 'date-fns';
-import { nl, de } from 'date-fns/locale';
+import { dateLocales } from './DateInput';
+
 
 interface YearMonthSelectorProps {
     currentDate?: Date;
@@ -11,10 +12,6 @@ interface YearMonthSelectorProps {
     languageCode: string;
 }
 
-const locales = [
-    { code: 'nl', locale: nl },
-    { code: 'de', locale: de },
-];
 
 const YearMonthSelector: React.FC<YearMonthSelectorProps> = (props) => {
     const [selectedYear, setSelectedYear] = useState<number | undefined>(props.currentDate ? getYear(props.currentDate) : undefined);
@@ -56,7 +53,7 @@ const YearMonthSelector: React.FC<YearMonthSelectorProps> = (props) => {
         end: min([props.maxDate, endOfYear(new Date(referenceYear, 0, 2))]),
     }).map(m => {
         return {
-            label: format(m, 'MMMM', { locale: locales.find(l => l.code === props.languageCode)?.locale }),
+            label: format(m, 'MMMM', { locale: dateLocales.find(l => l.code === props.languageCode)?.locale }),
             value: getMonth(m)
         }
     });

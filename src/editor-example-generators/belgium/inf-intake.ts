@@ -2,10 +2,11 @@ import { Survey, SurveyItem, SurveyGroupItem } from "survey-engine/lib/data_type
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
 import { IntakeQuestions as DefaultIntake } from "../common_question_pool/influenzanet-intake";
-import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, initDropdownGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
 import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
-
+import { initLikertScaleItem } from "../../editor-engine/utils/question-type-generator";
+import { likertScaleKey } from "../common_question_pool/key-definitions";
 
 const intake = (): Survey | undefined => {
     const surveyKey = 'intake';
@@ -89,10 +90,13 @@ const intake = (): Survey | undefined => {
     const Q_people_met = people_met(rootKey, true);
     survey.addExistingSurveyItem(Q_people_met, rootKey);
 
-    const Q_age_groups = age_groups(rootKey, true);
-    survey.addExistingSurveyItem(Q_age_groups, rootKey);
+    //const Q_age_groups = age_groups(rootKey, true);
+    //survey.addExistingSurveyItem(Q_age_groups, rootKey);
 
-    const Q_children_in_school = DefaultIntake.childrenInSchool(rootKey, Q_age_groups.key, true);
+    const Q_age_groups_likert = ageGroupExample(rootKey);
+    survey.addExistingSurveyItem(Q_age_groups_likert, rootKey);
+
+    const Q_children_in_school = DefaultIntake.childrenInSchool(rootKey, Q_age_groups_likert.key, true);
     survey.addExistingSurveyItem(Q_children_in_school, rootKey);
 
     const Q_means_of_transport = DefaultIntake.meansOfTransport(rootKey, true);
@@ -2217,10 +2221,14 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ])
         },
         {
-            key: '4', role: 'option',
+            key: '4', role: 'input',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Ik volg een ander dieet"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
             ])
         },
     ]);
@@ -2945,18 +2953,183 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
         ])
     );
 
-    // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const ddOptions = initDropdownGroup('ddg', [
         {
-            key: '0', role: 'option',
-            content: new Map([
-                ["nl-be", "xxx dagen"],
-            ])
+            key: '0', role: 'option', content: new Map([
+                ["be-nl", "1 dag"],
+            ]),
         },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
+        {
+            key: '1', role: 'option', content: new Map([
+                ["be-nl", "2 dagen"],
+            ]),
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["be-nl", "3 dagen"],
+            ]),
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["be-nl", "4 dagen"],
+            ]),
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["be-nl", "5 dagen"],
+            ]),
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["be-nl", "6 dagen"],
+            ]),
+        },
+        {
+            key: '6', role: 'option', content: new Map([
+                ["be-nl", "7 dagen"],
+            ]),
+        },
+        {
+            key: '7', role: 'option', content: new Map([
+                ["be-nl", "8 dagen"],
+            ]),
+        },
+        {
+            key: '8', role: 'option', content: new Map([
+                ["be-nl", "9 dagen"],
+            ]),
+        },
+        {
+            key: '9', role: 'option', content: new Map([
+                ["be-nl", "10 dagen"],
+            ]),
+        },
+        {
+            key: '10', role: 'option', content: new Map([
+                ["be-nl", "11 dagen"],
+            ]),
+        },
+        {
+            key: '11', role: 'option', content: new Map([
+                ["be-nl", "12 dagen"],
+            ]),
+        },
+        {
+            key: '12', role: 'option', content: new Map([
+               ["be-nl", "13 dagen" ],
+            ]),
+        },
+        {
+            key: '13', role: 'option', content: new Map([
+                ["be-nl", "14 dagen"],
+            ]),
+        },
+        {
+            key: '14', role: 'option', content: new Map([
+                ["be-nl", "15 dagen"],
+            ]),
+        },
+        {
+            key: '15', role: 'option', content: new Map([
+                ["be-nl", "16 dagen"],
+            ]),
+        },
+        {
+            key: '16', role: 'option', content: new Map([
+                ["be-nl", "17 dagen"],
+            ]),
+        },
+        {
+            key: '17', role: 'option', content: new Map([
+                ["be-nl", "18 dagen"],
+            ]),
+        },
+        {
+            key: '18', role: 'option', content: new Map([
+                ["be-nl", "19 dagen"],
+            ]),
+        },
+        {
+            key: '19', role: 'option', content: new Map([
+                ["be-nl", "20 dagen"],
+            ]),
+        },
+        {
+            key: '20', role: 'option', content: new Map([
+                ["be-nl", "21 dagen"],
+            ]),
+        },
+        {
+            key: '21', role: 'option', content: new Map([
+                ["be-nl", "22 dagen"],
+            ]),
+        },
+        {
+            key: '22', role: 'option', content: new Map([
+                ["be-nl", "23 dagen"],
+            ]),
+        },
+        {
+            key: '23', role: 'option', content: new Map([
+                ["be-nl", "24 dagen"],
+            ]),
+        },
+        {
+            key: '24', role: 'option', content: new Map([
+                ["be-nl", "25 dagen"],
+            ]),
+        },
+        {
+            key: '25', role: 'option', content: new Map([
+                ["be-nl", "26 dagen"],
+            ]),
+        },
+        {
+            key: '26', role: 'option', content: new Map([
+                ["be-nl", "27 dagen"],
+            ]),
+        },
+        {
+            key: '27', role: 'option', content: new Map([
+                ["be-nl", "28 dagen"],
+            ]),
+        },
+        {
+            key: '28', role: 'option', content: new Map([
+                ["be-nl", "29 dagen"],
+            ]),
+        },
+        {
+            key: '29', role: 'option', content: new Map([
+                ["be-nl", "30 dagen"],
+            ]),
+        },
+        {
+            key: '30', role: 'option', content: new Map([
+                ["be-nl", "31-40 dagen"],
+            ]),
+        },
+        {
+            key: '31', role: 'option', content: new Map([
+                ["be-nl", "41-50 dagen"],
+            ]),
+        },
+        {
+            key: '32', role: 'option', content: new Map([
+                ["be-nl", "51-60 dagen"],
+            ]),
+        },
+        {
+            key: '33', role: 'option', content: new Map([
+                ["be-nl", "meer dan 60 dagen"],
+            ]),
+        },
 
+    ]);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
+    
     // VALIDATIONs
     if (isRequired) {
         editor.addValidation({
@@ -3430,6 +3603,128 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
+
+    return editor.getItem();
+}
+
+
+const ageGroupExample = (parentKey: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q6'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
+            ["nl-be", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"]
+        ]))
+    );
+
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "De samenstelling van het huishouden kan invloed hebben op het risico van infectie, dit willen we graag onderzoeken."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Een huishouden wordt gedefinieerd als een groep mensen (niet noodzakelijkerwijs verwant) die op hetzelfde adres wonen die een kookgelegenheid, woonkamer, zitkamer of eetkamer delen."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const likertOptions = [
+        {
+            key: "0", content: new Map([
+                ["nl-be", "0"]
+            ])
+        },
+        {
+            key: "1", content: new Map([
+                ["nl-be", "1"]
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["nl-be", "2"]
+            ])
+        },
+        {
+            key: "3", content: new Map([
+                ["nl-be", "3"]
+            ])
+        },
+        {
+            key: "4", content: new Map([
+                ["nl-be", "4"]
+            ])
+        },
+        {
+            key: "5", content: new Map([
+                ["nl-be", "5+"]
+            ])
+        }
+    ];
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '0 - 4 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '5 - 10 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', '11 - 16 years'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
+
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+    });
+
+    // VALIDATIONs
+    // None
 
     return editor.getItem();
 }

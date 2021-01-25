@@ -272,6 +272,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
             ["nl", "In je laatste vragenlijst gaf je aan nog steeds klachten te hebben. Behoren de klachten die je nu meldt tot dezelfde klachtenperiode als de klachten die je de vorige keer al gemeld had?"],
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
+            ["nl-be", "In uw laatste vragenlijst gaf u aan nog steeds ziek te zijn. Behoren de symptomen die u nu meldt tot dezelfde klachtenperiode als de symptomen die u de vorige keer al gemeld heeft?"],
         ]))
     );
 
@@ -295,6 +296,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["en", "To make filling out the rest of the survey quicker for you."],
                     ["nl", "Om te bepalen of je klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
                     ["fr", "Afin que vous puissiez remplir le reste de l'enquête plus rapidement."],
+                    ["nl-be","Om het invullen van de rest van de vragenlijst te versnellen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -303,6 +305,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -311,6 +314,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."],
                     ["nl", "Als je denkt dat de klachten die je vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'"],
                     ["fr", "Si vous pensez que les symptômes que vous avez déclarés aujourd'hui sont causés par le même épisode de maladie que vos symptômes précédents, s'il vous plaît cochez «oui» . Pour gagner du temps, nous avons rempli les informations que vous nous avez déjà fournies sur votre maladie.  S'il vous plaît, vérifiez qu'elles sont toujours correctes ou faites les modifications nécessaires si, par exemple, vous avez consulté un médecin ou pris plus de temps hors travail depuis la dernière fois que vous avez répondu au questionnaire."],
+                    ["nl-be","Als u denkt dat de klachten die u vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'. Sommige antwoorden zijn dan alvast ingevuld op basis van de antwoorden van vorige keer. Kunt u controleren of deze nog steeds kloppen? Bijvoorbeeld of u nu wel naar de huisarts bent geweest of niet naar het werk bent geweest."],
                 ]),
             },
         ])
@@ -325,6 +329,8 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["en", "Yes"],
                 ["nl", "Ja"],
                 ["fr", "Oui"],
+                ["nl-be", "Ja"],
+                
             ])
         },
         {
@@ -333,6 +339,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["en", "No"],
                 ["nl", "Nee"],
                 ["fr", "Non"],
+                ["nl-be", "Nee"],
             ])
         },
         {
@@ -341,6 +348,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["en", "I don't know/can't remember"],
                 ["nl", "Ik weet het niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+                ["nl-be", "Ik weet het niet (meer)."],
             ])
         },
     ]);
@@ -379,6 +387,8 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             ["en", "When did the first symptoms appear?"],
             ["nl", "Op welke dag kwamen de eerste klachten opzetten? Als je de datum niet precies meer weet, kies dan een geschatte datum"],
             ["fr", "Quand les premiers symptômes sont-ils apparus?"],
+            ["nl-be", "Op welke dag verschenen de eerste symptomen? Als u de exacte datum niet meer weet, selecteer dan een geschatte datum."],
+
         ]))
     );
 
@@ -396,6 +406,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["nl-be", "Waarom vragen we dit?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -404,6 +415,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["en", "To help us work out the number of cases that arise each day."],
                     ["nl", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag."],
                     ["fr", "Pour nous aider à travailler sur le nombre de cas de grippe qui se déclarent chaque jour."],
+                    ["nl-be", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag/week."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -412,6 +424,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -420,6 +433,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["en", "Please give as accurate an estimate as possible."],
                     ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
+                    ["nl-be", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                 ]),
             },
         ])
@@ -437,6 +451,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             ["en", "Choose date"],
             ["nl", "Kies de dag"],
             ["fr", "Sélectionner la date"],
+            ["nl-be", "Kies datum"],
         ]))
     }, rg?.key);
 
