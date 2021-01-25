@@ -2197,6 +2197,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Rookt u of heeft u gerookt?"],
+            ["fr-be", "Fumez-vous ou avez-vous fumé ?"],
         ]))
     );
 
@@ -2209,24 +2210,28 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Roken is een risico-factor voor ernstige klachten in de luchtwegen, dit willen we graag onderzoeken."],
+                    ["fr-be", "Le tabagisme constitue un facteur de risque pour les affections respiratoires graves. Nous aimerions effectuer des recherches à ce sujet."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Antwoord zo precies mogelijk."],
+                    ["fr-be", "Veuillez répondre de la manière aussi précise que possible."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2240,48 +2245,56 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             key: '10', role: 'option',
             content: new Map([
                 ["nl-be", "Ik heb nooit gerookt"],
+                ["fr-be", "Je n'ai jamais fumé"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Af en toe"],
+                ["fr-be", "De temps en temps"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Dagelijks, minder dan 10 keer per dag"],
+                ["fr-be", "Tous les jours, moins de 10 fois par jour"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Dagelijks, 10 keer of vaker per dag"],
+                ["fr-be", "Tous les jours, plus de 10 fois par jour"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, alleen e-sigaretten"],
+                ["fr-be", "Des cigarettes électroniques uniquement"],
             ])
         },
         {
             key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben een ex-roker (5 jaar of minder gerookt)"],
+                ["fr-be", "Je suis un ancien fumeur (j’ai fumé pendant 5 ans ou moins)"],
             ])
         },
         {
             key: '12', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben een ex-roker (meer dan 5 jaar gerookt)"],
+                ["fr-be", "Je suis un ancien fumeur (j'ai fumé pendant plus de 5 ans)"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Dit wil ik niet aangeven"],
+                ["fr-be", "Je préfère ne pas répondre à cette question"],
             ])
         },
     ]);
