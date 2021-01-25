@@ -123,6 +123,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl", "Wanneer ben je geboren (maand en jaar)?"],
             ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
+            ["fr-be", "Quelle est votre date de naissance (le mois et l’année)?"],
         ]))
     );
 
@@ -137,6 +138,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -146,6 +148,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     ["nl", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["nl-be", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
+                    ["fr-be", "Afin d’examiner les différences entre les tranches d’âge."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -194,6 +197,12 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 code: 'fr', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
                     { str: ' ??' }
+                ]
+            }
+            {
+                code: 'fr-be', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' ans' }
                 ]
             }
         ]
