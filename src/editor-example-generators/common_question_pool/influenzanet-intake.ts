@@ -1532,6 +1532,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
+            ["fr-be", "Lors de la précédente saison de la grippe (l’hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe?"],
         ]))
     );
 
@@ -1544,6 +1545,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1553,6 +1555,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
                     ["nl-be", "We willen graag onderzoeken hoeveel bescherming het vaccin geeft. We willen ook graag weten of er enige bescherming is dankzij vaccins die in voorgaande jaren zijn ontvangen."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
+                    ["fr-be", "Nous aimerions étudier le degré de protection offert par le vaccin. Nous aimerions également savoir s'il existe un certain degré de protection grâce aux vaccins reçus au cours des années précédentes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1562,6 +1565,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1571,6 +1575,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
+                    ["fr-be", "Veuillez répondre oui si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1587,6 +1592,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl", "Ja"],
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
+                ["fr-be", "Oui"],
             ])
         },
         {
@@ -1596,6 +1602,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl", "Nee"],
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
+                ["fr-be", "Non"],
             ])
         },
         {
@@ -1605,6 +1612,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl", "Dat weet ik niet (meer)"],
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
+                ["fr-be", "Je ne sais pas (plus)"],
             ])
         },
     ]);
@@ -1762,6 +1770,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["nl-be", "nneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
+            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021?"],
         ]))
     );
 
@@ -1781,6 +1790,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1790,6 +1800,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl", "Het weten van de timing van vaccinatie is belangrijk om de effectiviteit te schatten."],
                     ["nl-be", "Weten wanneer mensen worden gevaccineerd, vertelt ons hoe goed het vaccinatieprogramma wordt gevolgd en hoe effectief het vaccin is."],
                     ["fr", "Savoir quand les gens sont vaccinés nous permet d'évaluer le succès des campagnes de vaccination."],
+                    ["fr-be", "Le fait de savoir quand les gens se font vacciner nous indique la mesure dans laquelle le programme de vaccination est suivi, ainsi que le degré d'efficacité du vaccin."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1799,6 +1810,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1808,6 +1820,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was."],
                     ["nl-be", "Probeer zo nauwkeurig mogelijk te antwoorden. Als u de precieze datum niet weet, geef dan uw beste schatting. U kunt zich bijvoorbeeld de maand herinneren en vervolgens proberen te herinneren of het aan het begin of het einde van de maand was. Waren er belangrijke gebeurtenissen (bijv. een vakantie of een verjaardag) die u zouden kunnen helpen om uw geheugen op te frissen?"],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
+                    ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date exacte, veuillez fournir une estimation la plus précise possible. Par exemple, vous pouvez vous souvenir du mois, et ensuite essayer de vous souvenir si c’était plutôt au début ou à la fin du mois. Des événements importants (par exemple, des vacances ou un anniversaire) ont-ils eu lieu, lesquels pourraient vous aider à vous rafraîchir la mémoire?"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1828,6 +1841,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                 ["nl", "Kies datum"],
                 ["nl-be", "Kies datum"],
                 ["fr", "Sélectionner une date"],
+                ["fr-be", "Sélectionner une date"],
             ]),
         },
         {
@@ -1837,6 +1851,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                 ["nl", "Dat weet ik niet (meer)"],
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas, je ne m'en souviens plus"],
+                ["fr-be", "Je ne m'en souviens plus"],
             ])
         },
     ]);

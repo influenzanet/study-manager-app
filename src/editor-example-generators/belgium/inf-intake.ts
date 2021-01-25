@@ -1545,6 +1545,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u in het huidige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
+            ["fr-be", "Lors de la saison de la grippe de l’hiver 2020/2021, vous êtes-vous fait vacciner contre la grippe ?"],
         ]))
     );
 
@@ -1554,24 +1555,28 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We willen de beschermende werking van het vaccin onderzoeken."],
+                    ["fr-be", "Nous voulons étudier l'effet protecteur du vaccin."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Rapporteer 'ja', als u het vaccin dit seizoen heeft gekregen, meestal in de herfst. Als u zich na het invullen van deze vragenlijst laat vaccineren, rapporteer 'nee' en kies in een volgende vraag voor de optie 'Ik ben van plan om mezelf nog te laten vaccineren'."],
+                    ["fr-be", "Indiquez 'oui' si vous vous êtes fait vacciner cette saison, généralement au cours de l'automne. Si vous vous faites vacciner après avoir complété ce questionnaire, indiquez 'non' et choisissez l'option 'Je suis d’avis de me faire vacciner' au niveau d'une question ultérieure."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1585,18 +1590,21 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
+                ["fr-be", "Non"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Dat weet ik niet (meer)"],
+                ["fr-be", "Je ne sais pas (plus)"],
             ])
         },
     ]);
@@ -1631,6 +1639,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2020/2021) een griepvaccin te halen?"],
+            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2020/2021)?"],
         ]))
     );
 
@@ -1647,24 +1656,28 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We willen graag weten waarom mensen zich laten vaccineren."],
+                    ["fr-be", "Nous aimerions connaître les raisons pour lesquelles la population se fait vacciner."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Vink alle redenen aan die belangrijk waren bij uw beslissing."],
+                    ["fr-be", "Veuillez cocher toutes les raisons qui ont été importantes dans le cadre de votre décision."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1679,6 +1692,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1686,72 +1700,84 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziek)"],
+                ["fr-be", "Je fais partie d’un groupe à risque (grossesse, personne âgée de 60 ans ou plus, maladie chronique)"],
             ])
         },
         {
             key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Andere personen in mijn huishouden behoren tot een risicogroep"],
+                ["fr-be", "Les autres personnes de mon ménage font partie d’un groupe à risque."],
             ])
         },
         {
             key: '12', role: 'option',
             content: new Map([
                 ["nl-be", "De COVID-19 pandemie moedigde me aan om mezelf te laten vaccineren dit jaar."],
+                ["fr-be", "La pandémie relative au coronavirus m'a encouragé à me faire vacciner cette année."],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ikzelf griep krijg"],
+                ["fr-be", "La vaccination m'évite de contracter personnellement la grippe."],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen"],
+                ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes."],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Mijn huisarts heeft me de griepvaccin aangeraden"],
+                ["fr-be", "Mon médecin m'a recommandé le vaccin contre la grippe."],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin werd aangeboden op mijn werk/op school"],
+                ["fr-be", "Le vaccin contre la grippe a été proposé au travail/à l'école."],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin is voor mij gemakkelijk beschikbaar"],
+                ["fr-be", "Le vaccin contre la grippe est facilement accessible pour moi."],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin was gratis"],
+                ["fr-be", "Le vaccin contre la grippe était gratuit."],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Ik wil deze winter geen werk/school missen"],
+                ["fr-be", "Je ne veux pas m’absenter du travail / des cours durant cet hiver."],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Ik haal het griepvaccin altijd"],
+                ["fr-be", "Je me fais toujours vacciner contre la grippe."],
             ])
         },
         {
             key: '9', role: 'option',
             content: new Map([
                 ["nl-be", "Andere reden"],
+                ["fr-be", "Une autre raison"],
             ])
         },
     ]);
@@ -1788,6 +1814,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2020/2021)?"],
+            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2020/2021)?"]
         ]))
     );
 
@@ -1804,24 +1831,28 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We willen graag weten waarom sommige mensen niet worden gevaccineerd."],
+                    ["fr-be", "Nous aimerions connaître les raisons pour lesquelles la population ne se fait pas vacciner."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Vink alle redenen aan die belangrijk waren bij uw beslissing."],
+                    ["fr-be", "Veuillez cocher toutes les raisons qui ont été importantes dans le cadre de votre décision."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1836,6 +1867,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1843,120 +1875,140 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben van plan om mezelf nog te laten vaccineren"],
+                ["fr-be", "J'ai l'intention de me faire vacciner"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin werd me niet aangeboden"],
+                ["fr-be", "Le vaccin contre la grippe ne m'a pas été proposé"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Ik behoorde niet tot een risicogroep"],
+                ["fr-be", "Je ne faisais pas partie d’un groupe à risque"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Het is beter om je eigen immuniteit op te bouwen tegen griep"],
+                ["fr-be", "Il est préférable de se constituer une immunité contre la grippe"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Ik twijfelde aan de effectiviteit van het griepvaccin"],
+                ["fr-be", "Je doutais de l'efficacité du vaccin contre la grippe"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Griep is slechts een milde ziekte"],
+                ["fr-be", "La grippe n'est qu'une maladie bénigne"],
             ])
         },
         {
             key: '21', role: 'option',
             content: new Map([
                 ["nl-be", "Door de COVID-19 pandemie vermijd ik naar de dokter of apotheek te gaan"],
+                ["fr-be", "En raison de la pandémie liée au coronavirus, j'évite de me rendre chez le médecin ou à la pharmacie"],
             ])
         },
         {
             key: '22', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben bang dat het griepvaccin mijn risico op COVID-19 verhoogt"],
+                ["fr-be", "J'ai peur que le vaccin contre la grippe n'augmente mon risque d’attraper le coronavirus"],
             ])
         },
         {
             key: '23', role: 'option',
             content: new Map([
                 ["nl-be", "Een andere reden gerelateerd aan COVID-19"],
+                ["fr-be", "Une autre raison liée au coronavirus"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Ik achtte de kans klein dat ik griep krijg"],
+                ["fr-be", "Selon moi, il était peu probable que je contracte la grippe"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Ik was van mening dat het vaccin ook griep kan veroorzaken"],
+                ["fr-be", "J’estimais que le vaccin pouvait aussi causer la grippe"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Ik was bang dat het vaccin niet veilig is, en me juist ziek maakt of andere neveneffecten heeft"],
+                ["fr-be", "J'avais peur que le vaccin ne soit pas sûr, qu'il me rende malade ou qu'il entraîne d'autres effets secondaires"],
             ])
         },
         {
             key: '9', role: 'option',
             content: new Map([
                 ["nl-be", "Ik hou niet van het krijgen van vaccinaties"],
+                ["fr-be", "Je n'aime pas me faire vacciner"],
             ])
         },
         {
             key: '10', role: 'option',
             content: new Map([
                 ["nl-be", "Het is niet gemakkelijk om gevaccineerd te worden"],
+                ["fr-be", "Il n’est pas facile de se faire vacciner"],
             ])
         },
         {
             key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Ik moest betalen voor een griepvaccinatie, het is niet gratis"],
+                ["fr-be", "J'ai dû payer pour obtenir un vaccin contre la grippe, ce dernier n'est pas gratuit"],
             ])
         },
         {
             key: '24', role: 'option',
             content: new Map([
                 ["nl-be", "Het verkrijgen van een griepvaccin vergt te veel tijd en moeite ten opzichte van de mogelijke voordelen ervan"],
+                ["fr-be", "L'obtention d'un vaccin contre la grippe exige trop de temps et d'efforts par rapport à ses avantages potentiels"],
             ])
         },
         {
             key: '25', role: 'option',
             content: new Map([
                 ["nl-be", "Het vaccin was niet beschikbaar voor mij"],
+                ["fr-be", "Le vaccin n'était pas disponible pour moi"],
             ])
         },
         {
             key: '12', role: 'option',
             content: new Map([
                 ["nl-be", "Geen speciale reden"],
+                ["fr-be", "Aucune raison particulière"],
             ])
         },
         {
             key: '13', role: 'option',
             content: new Map([
                 ["nl-be", "Ondanks dat mijn huisarts het griepvaccin adviseerde, heb ik het niet genomen"],
+                ["fr-be", "Bien que mon médecin m'ait recommandé le vaccin contre la grippe, je ne me suis pas fait vacciner"],
             ])
         },
         {
             key: '14', role: 'option',
             content: new Map([
                 ["nl-be", "Andere reden"],
+                ["fr-be", "Une autre raison"],
             ])
         },
     ]);
