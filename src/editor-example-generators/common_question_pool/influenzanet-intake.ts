@@ -2388,6 +2388,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             ["nl", "Ben je op dit moment zwanger?"],
             ["nl-be", "Bent u op dit moment zwanger?"],
             ["fr", "Êtes-vous actuellement enceinte?"],
+            ["fr-be", "Êtes-vous actuellement enceinte?"],
         ]))
     );
 
@@ -2415,6 +2416,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2424,6 +2426,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                     ["nl", "Infecties kunnen soms anders verlopen bij zwangeren."],
                     ["nl-be", "Zwangerschap is een mogelijke risico-factor voor ernstige klachten bij infecties."],
                     ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
+                    ["fr-be", "La grossesse est un potentiel facteur de risque pour les symptômes sévères en cas d'infections."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2440,6 +2443,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 ["nl", "Ja"],
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
+                ["fr-be", "Oui"],
             ])
         }, {
             key: '1', role: 'option',
@@ -2448,6 +2452,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 ["nl", "Nee"],
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
+                ["fr-be", "Non"],
             ])
         }, {
             key: '2', role: 'option',
@@ -2456,6 +2461,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 ["nl", "Dit weet ik niet/wil ik liever niet aangeven"],
                 ["nl-be", "Dit weet ik niet/wil ik liever niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
+                ["fr-be", "Je ne veux pas / je préfère ne pas répondre à cette question"],
             ])
         },
     ]);
@@ -2495,6 +2501,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             ["nl", "In welk trimester ben je van je zwangerschap?"],
             ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
             ["fr", "A quel stade de grossesse êtes-vous?"],
+            ["fr-be", "Dans quel trimestre de votre grossesse vous situez-vous?"],
         ]))
     );
 
@@ -2512,6 +2519,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2521,6 +2529,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                     ["nl", "Infecties kunnen soms anders verlopen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["nl-be", "Het risico op ernstige klachten van een infectie kan verschillen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
+                    ["fr-be", "Le risque de symptômes sévères d'une infection peut varier selon le trimestre de la grossesse, mais ce lien n'est pas encore clairement établi."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2537,6 +2546,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl", "Eerste trimester (week 1-12)"],
                 ["nl-be", "Eerste trimester (week 1-12)"],
                 ["fr", "Premier trimestre (semaine 1-12)"],
+                ["fr-be", "Premier trimestre (semaines 1-12)"],
             ])
         }, {
             key: '1', role: 'option',
@@ -2545,6 +2555,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl", "Tweede trimester (week 13-28)"],
                 ["nl-be", "Tweede trimester (week 13-28)"],
                 ["fr", "Deuxième trimestre (semaine 13-28)"],
+                ["fr-be", "Deuxième trimestre (semaines 13-28)"],
             ])
         }, {
             key: '2', role: 'option',
@@ -2553,6 +2564,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl", "Derde trimester (week 29 tot bevalling)"],
                 ["nl-be", "Derde trimester (week 29 tot bevalling)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
+                ["fr-be", "Troisième trimestre (semaine 29 jusqu'à l'accouchement)"],
             ])
         }, {
             key: '3', role: 'option',
@@ -2561,6 +2573,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl", "Dit weet ik niet / wil ik niet aangeven"],
                 ["nl-be", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
+                ["fr-be", "Je ne veux pas / je préfère ne pas répondre à cette question"],
             ])
         },
     ]);
