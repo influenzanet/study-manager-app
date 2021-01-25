@@ -2989,6 +2989,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             ["nl", "Heb je huisdieren?"],
             ["nl-be", "Heeft u huisdieren?"],
             ["fr", "Avez-vous un animal domestique?"],
+            ["fr-be", "Avez-vous des animaux de compagnie?"],
         ]))
     );
 
@@ -3004,6 +3005,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                     ["nl", ""],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3013,6 +3015,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                     ["nl", ""],
                     ["nl-be", "We onderzoeken of het hebben van huisdieren een link kan hebben met het risico op infecties."],
                     ["fr", ""],
+                    ["fr-be", "Nous cherchons à savoir si le fait d’avoir un animal de compagnie peut avoir un lien avec le risque d'infections."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3030,6 +3033,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ['nl', 'Meerdere antwoorden mogelijk'],
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
+                ["fr-be", "Plusieurs réponses sont possibles"],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -3040,6 +3044,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl", "Nee"],
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
+                ["fr-be", "Non"],
             ])
         },
         {
@@ -3050,6 +3055,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl", "Ja, één of meerdere honden"],
                 ["nl-be", "Ja, één of meerdere honden"],
                 ["fr", "Oui, un ou plusieurs chien(s)"],
+                ["fr-be", "Oui, un ou plusieurs chien(s)"],
             ])
         },
         {
@@ -3060,6 +3066,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl", "Ja, één of meerdere katten"],
                 ["nl-be", "Ja, één of meerdere katten"],
                 ["fr", "Oui, un ou plusieurs chat(s)"],
+                ["fr-be", "Oui, un ou plusieurs chat(s)"],
             ])
         },
         {
@@ -3070,6 +3077,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl", "Ja, één of meerdere vogels"],
                 ["nl-be", "Ja, één of meerdere vogels"],
                 ["fr", "Oui, un ou plusieurs oiseau(x)"],
+                ["fr-be", "Oui, un ou plusieurs oiseau(x)"],
             ])
         },
         {
@@ -3080,6 +3088,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl", "Ja, één of meer andere dieren"],
                 ["nl-be", "Ja, één of meer andere dieren"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
+                ["fr-be", "Oui, un ou plusieurs autre(s) animal (animaux)"],
             ])
         },
     ]);
@@ -3107,6 +3116,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
             ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
+            ["fr-be", "Merci"],
         ]))
     );
 
