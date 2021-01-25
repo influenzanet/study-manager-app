@@ -1177,6 +1177,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u tijdens een normale dag contact met:"],
+            ["fr-be", "Lors d'une journée normale, avez-vous des contacts avec :"],
         ]))
     );
 
@@ -1186,24 +1187,28 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Om te achterhalen of u mogelijks meer wordt blootgesteld aan virussen dan de gemiddelde persoon (bijv. werken met kinderen of patiënten)."],
+                    ["fr-be", "Afin de déterminer si vous pouvez être davantage exposé(e) aux virus que la moyenne des personnes (par exemple, en travaillant avec des enfants ou des patients)."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Groepen mensen kunnen elke situatie omvatten waar u in contact komt met grote aantallen mensen (bijv. een leraar die op een dag veel kinderen kan bereiken)."],
+                    ["fr-be", "Des groupes de personnes peuvent inclure toute situation au niveau de laquelle vous êtes en contact avec un grand nombre de personnes (par exemple, un enseignant qui peut être en contact avec de nombreux enfants au cours d'une journée)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1218,6 +1223,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Selecteer alle opties die relevant zijn (laat contacten in het openbaar vervoer buiten beschouwing).'],
+                ['fr-be', 'Plusieurs réponses sont possibles (et veuillez exclure les transports en commun)'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1226,6 +1232,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen onder de 3 jaar"],
+                ["fr-be", "Plus de 10 enfants de moins de 3 ans"],
             ])
         },
         {
@@ -1233,6 +1240,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 3 en 11 jaar"],
+                ["fr-be", "Plus de 10 enfants âgés entre 3 et 11 ans"],
             ])
         },
         {
@@ -1240,6 +1248,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 12 en 17 jaar"],
+                ["fr-be", "Plus de 10 enfants âgés entre 12 et 17 ans"],
             ])
         },
         {
@@ -1247,6 +1256,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 jongvolwassenen tussen de 18 en 30 jaar"],
+                ["fr-be", "Plus de 10 jeunes adultes âgés entre 18 et 30 ans"],
             ])
         },
         {
@@ -1254,6 +1264,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 mensen van 65 jaar en ouder"],
+                ["fr-be", "Plus de 10 personnes âgées de 65 ans et plus"],
             ])
         },
         {
@@ -1261,6 +1272,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Patiënten"],
+                ["fr-be", "Des patients"],
             ])
         },
         {
@@ -1268,12 +1280,14 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Groepen mensen (behalve kinderen en personen ouder dan 65) groter dan 10 personen"],
+                ["fr-be", "Des groupes de personnes (à l'exception des enfants et des personnes de plus de 65 ans) de plus de 10 personnes"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Geen van de bovenstaande antwoorden is van toepassing"],
+                ["fr-be", "Aucune des réponses susmentionnées ne s'applique"],
             ])
         },
     ]);
