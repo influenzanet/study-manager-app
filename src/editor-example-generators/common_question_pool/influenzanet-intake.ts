@@ -240,6 +240,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
             ["nl-be", "Wat is de postcode van uw woonplaats?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
+            ["fr-be", "Quel est le code postal de votre localité?"],
         ]))
     );
 
@@ -252,6 +253,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -261,6 +263,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["nl", "We doen onderzoek naar de regionale verspreiding van infecties."],
                     ["nl-be", "Om te controleren hoe representatief onze cohort (groep deelnemers aan deze studie) is, en om te kijken naar geografische verschillen in de verspreiding van COVID-19 en griep."],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
+                    ["fr-be", "Afin de vérifier la représentativité de notre cohorte (le groupe de participants à cette étude), et d'examiner les différences géographiques au niveau de la propagation du coronavirus et de la grippe."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -269,6 +272,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", ""],
+                    ["fr-be", ""],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -277,6 +281,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["en", "Please choose the first part of the post-code (the part before the space)."],
                     ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
                     ["nl-be", ""],
+                    ["fr-be", ""],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -294,11 +299,13 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["nl", "Postcode"],
                 ["nl-be", "Postcode"],
                 ["fr", "Code postal"],
+                ["fr-be", "Code postal"],
             ]),
             description: new Map([
                 ["en", "the first 4 digits"],
                 ["nl", "de eerste vier cijfers"],
                 ["nl-be", ""],
+                ["fr-be", ""],
             ])
         },
         {
@@ -308,6 +315,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["nl", "Dit wil ik niet aangeven"],
                 ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
+                ["fr-be", "Je préfère ne pas répondre à cette question"],
             ])
         },
     ]);
@@ -338,6 +346,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["en", "Please enter the first four digits of your postcode"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
                 ["nl-be", "Voer de vier cijfers van je postcode in"],
+                ["fr-be", "xxx"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
