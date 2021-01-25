@@ -2329,6 +2329,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Volgt u een specifiek dieet?"],
+            ["fr-be", "Suivez-vous un régime alimentaire particulier?"],
         ]))
     );
 
@@ -2341,24 +2342,28 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "We onderzoeken of een dieet een link kan hebben met het risico op infecties hebben."],
+                    ["fr-be", "Nous cherchons à savoir si un régime alimentaire peut avoir un lien avec le risque d'infections."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
+                    ["fr-be", "Plusieurs réponses sont possibles, cochez toutes les options pertinentes."],
                 ]),
             },
         ])
@@ -2372,6 +2377,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles']
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2379,6 +2385,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Nee, ik volg geen specifiek dieet"],
+                ["fr-be", "Non, je ne suis pas de régime alimentaire spécifique"],
             ])
         },
         {
@@ -2386,6 +2393,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ik eet vegetarisch"],
+                ["fr-be", "Je suis un régime alimentaire végétarien"],
             ])
         },
         {
@@ -2393,6 +2401,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ik eet veganistisch"],
+                ["fr-be", "Je suis un régime alimentaire végétalien"],
             ])
         },
         {
@@ -2400,6 +2409,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ik eet caloriearm"],
+                ["fr-be", "Je suis un régime alimentaire faible en calories"],
             ])
         },
         {
@@ -2407,6 +2417,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ik volg een dieet als gevolg van een allergie en/of voedselintolerantie"],
+                ["fr-be", "Je suis un régime alimentaire en raison d'une allergie et/ou d'une intolérance alimentaire"],
             ])
         },
         {
@@ -2415,9 +2426,11 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Ik volg een ander dieet"],
+                ["fr-be", "Je suis un autre type de régime alimentaire"],
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Décris (facultatif)"],
             ])
         },
     ]);
