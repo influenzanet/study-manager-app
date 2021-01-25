@@ -827,7 +827,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
             {
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden zijn mogelijk."],
-                    ["fr-be", "Plusieurs réponses sont possibles"],
+                    ["fr-be", "Plusieurs réponses sont possibles."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -950,7 +950,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
             {
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden zijn mogelijk."],
-                    ["fr-be", "Plusieurs réponses sont possibles"],
+                    ["fr-be", "Plusieurs réponses sont possibles."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3509,7 +3509,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, meerdere keren"],
-                ["fr-be", "oui, plusieurs fois"],
+                ["fr-be", "Oui, plusieurs fois"],
             ])
         },
         {
@@ -3753,6 +3753,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Koorts"],
                 ["fr-be", "De la fièvre"],
@@ -3760,6 +3761,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Koude rillingen"],
                 ["fr-be", "Des frissons"],
@@ -3767,6 +3769,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Loopneus of verstopte neus"],
                 ["fr-be", "Un nez qui coule ou un nez bouché"],
@@ -3774,6 +3777,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Niezen"],
                 ["fr-be", "Des éternuements"],
@@ -3781,6 +3785,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Keelpijn"],
                 ["fr-be", "Un mal de gorge"],
@@ -3788,6 +3793,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '6', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Hoesten"],
                 ["fr-be", "De la toux"],
@@ -3795,6 +3801,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '7', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Kortademig (snel buiten adem)"],
                 ["fr-be", "Des difficultés respiratoires (rapidement à court de souffle)"],
@@ -3802,6 +3809,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '8', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Hoofdpijn"],
                 ["fr-be", "Un mal de tête"],
@@ -3809,6 +3817,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '9', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Spierpijn/Gewrichtspijn (niet sport gerelateerd)"],
                 ["fr-be", "Des douleurs musculaires/articulaires (non liées au sport)"],
@@ -3816,6 +3825,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '10', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Pijn op de borst"],
                 ["fr-be", "Des douleurs thoraciques"],
@@ -3823,6 +3833,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '11', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
                 ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
@@ -3830,6 +3841,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '12', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verminderde eetlust"],
                 ["fr-be", "Une perte d'appétit"],
@@ -3837,6 +3849,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '13', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verkleurd slijm ophoesten"],
                 ["fr-be", "L’expectoration de mucus coloré"],
@@ -3844,6 +3857,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '14', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Waterige, of bloeddoorlopen ogen"],
                 ["fr-be", "Des yeux larmoyants ou rouges"],
@@ -3851,6 +3865,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '15', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Misselijkheid"],
                 ["fr-be", "Des nausées"],
@@ -3858,6 +3873,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '16', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Overgeven / braken"],
                 ["fr-be", "Des envies de vomir / des vomissements"],
@@ -3865,6 +3881,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '17', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Diarree"],
                 ["fr-be", "De la diarrhée"],
@@ -3872,6 +3889,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '18', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Buikpijn"],
                 ["fr-be", "Des douleurs abdominales"],
@@ -3879,6 +3897,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '19', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verlies van smaak"],
                 ["fr-be", "Une perte du goût"],
@@ -3886,6 +3905,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '20', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Bloedneus"],
                 ["fr-be", "Un saignement de nez"],
@@ -3893,6 +3913,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '21', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verlies van geur"],
                 ["fr-be", "Une perte de l’odorat"],
@@ -3900,6 +3921,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '22', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Verwardheid"],
                 ["fr-be", "Une sensation de confusion"],
@@ -3907,6 +3929,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
         },
         {
             key: '23', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Andere"],
                 ["fr-be", "Autre(s)"],

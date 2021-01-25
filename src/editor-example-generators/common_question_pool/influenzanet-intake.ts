@@ -48,7 +48,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["nl-be", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
-                    ["fr", "Afin d’examiner les différences entre les hommes et les femmes."],
+                    ["fr-be", "Afin d’examiner les différences entre les hommes et les femmes."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }, { key: 'className', value: 'm-0' }],
             },
