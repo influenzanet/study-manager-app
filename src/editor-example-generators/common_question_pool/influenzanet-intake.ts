@@ -2466,6 +2466,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             ["nl-be", "Bent u op dit moment zwanger?"],
             ["fr", "Êtes-vous actuellement enceinte?"],
             ["fr-be", "Êtes-vous actuellement enceinte?"],
+            ["de-be", "Sind Sie in diesem Moment schwanger?"],
         ]))
     );
 
@@ -2494,6 +2495,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2504,6 +2506,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                     ["nl-be", "Zwangerschap is een mogelijke risico-factor voor ernstige klachten bij infecties."],
                     ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
                     ["fr-be", "La grossesse est un potentiel facteur de risque pour les symptômes sévères en cas d'infections."],
+                    ["de-be", "Schwangerschaft ist ein möglicher Risikofaktor für ernste Beschwerden bei Infektionen."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2521,6 +2524,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
                 ["fr-be", "Oui"],
+                ["de-be", "Ja"],
             ])
         }, {
             key: '1', role: 'option',
@@ -2530,6 +2534,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
                 ["fr-be", "Non"],
+                ["de-be", "Nein"],
             ])
         }, {
             key: '2', role: 'option',
@@ -2539,6 +2544,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                 ["nl-be", "Dit weet ik niet/wil ik liever niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
                 ["fr-be", "Je ne veux pas / je préfère ne pas répondre à cette question"],
+                ["de-be", "Das weiß ich nicht/möchte ich lieber nicht angeben"],
             ])
         },
     ]);
@@ -2579,6 +2585,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
             ["fr", "A quel stade de grossesse êtes-vous?"],
             ["fr-be", "Dans quel trimestre de votre grossesse vous situez-vous?"],
+            ["de-be", "In welchem Quartal Ihrer Schwangerschaft sind Sie?"],
         ]))
     );
 
@@ -2597,6 +2604,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2607,6 +2615,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                     ["nl-be", "Het risico op ernstige klachten van een infectie kan verschillen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
                     ["fr-be", "Le risque de symptômes sévères d'une infection peut varier selon le trimestre de la grossesse, mais ce lien n'est pas encore clairement établi."],
+                    ["de-be", "Das Risiko ernster Beschwerden durch eine Infektion kann sich je nach Quartal einer Schwangerschaft unterscheiden, aber ganz klar ist das noch nicht."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2624,8 +2633,10 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl-be", "Eerste trimester (week 1-12)"],
                 ["fr", "Premier trimestre (semaine 1-12)"],
                 ["fr-be", "Premier trimestre (semaines 1-12)"],
+                ["de-be", "Erstes Quartal (Woche 1-12)"],
             ])
-        }, {
+        },
+        {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Second trimester (week 13-28)"],
@@ -2633,8 +2644,10 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl-be", "Tweede trimester (week 13-28)"],
                 ["fr", "Deuxième trimestre (semaine 13-28)"],
                 ["fr-be", "Deuxième trimestre (semaines 13-28)"],
+                ["de-be", "Zweites Quartal (Woche 13-28)"],
             ])
-        }, {
+        }, 
+        {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Third trimester (week 29-delivery)"],
@@ -2642,8 +2655,10 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl-be", "Derde trimester (week 29 tot bevalling)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
                 ["fr-be", "Troisième trimestre (semaine 29 jusqu'à l'accouchement)"],
+                ["de-be", "Drittes Quartal (Woche 29 bis zur Entbindung/Geburt)"],
             ])
-        }, {
+        }, 
+        {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
@@ -2651,6 +2666,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl-be", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
                 ["fr-be", "Je ne veux pas / je préfère ne pas répondre à cette question"],
+                ["de-be", "Das weiß ich nicht / möchte ich nicht angeben"],
             ])
         },
     ]);
@@ -2815,6 +2831,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
             ["fr-be", "Souffrez-vous d’une ou de plusieurs des allergies suivantes?"],
+            ["de-be", "Haben Sie eine oder mehrere der folgenden Allergien?"],
         ]))
     );
 
@@ -2831,6 +2848,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2841,6 +2859,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl-be", "Sommige allergieën geven dezelfde klachten als luchtweginfecties."],
                     ["fr", "Certaines réactions allergiques peuvent avoir des symptômes similaires ceux d'une infection respiratoire."],
                     ["fr-be", "Certaines allergies provoquent les mêmes symptômes que les infections des voies respiratoires."],
+                    ["de-be", "Manche Allergien ergeben dieselben Beschwerden wie Atemwegsinfektionen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2851,6 +2870,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich das beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2861,6 +2881,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
                     ["fr-be", "Plusieurs réponses sont possibles, cochez toutes les options pertinentes."],
+                    ["de-be", "Mehrere Antworten sind möglich; kreuzen Sie daher alle Alternativen an, die relevant sind."],
                 ]),
             },
         ])
@@ -2878,6 +2899,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'Mehrere Antworten möglich'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2890,6 +2912,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Hooikoorts"],
                 ["fr", "Rhume des foins"],
                 ["fr-be", "Le rhume des foins"],
+                ["de-be", "Heuschnupfen"],
             ])
         }, 
         {
@@ -2901,6 +2924,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Allergie voor huisstofmijt"],
                 ["fr", "Allergie aux acariens"],
                 ["fr-be", "Une allergie aux acariens"],
+                ["de-be", "Allergie gegen Hausstaubmilben"],
             ])
         }, 
         {
@@ -2911,7 +2935,8 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl", "Allergie voor (huis)dieren"],
                 ["nl-be", "Allergie voor (huis)dieren"],
                 ["fr", "Allergie à des animaux domestiques"],["fr-be", ""],
-                ["fr-be", "Une allergie aux animaux (domestiques)"]
+                ["fr-be", "Une allergie aux animaux (domestiques)"],
+                ["de-be", "Allergie gegen (Haus-)Tiere"],
             ])
         }, 
         {
@@ -2923,6 +2948,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["fr", "Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
                 ["fr-be", "Une autre allergie qui provoque chez moi les symptômes du rhume (un nez qui coule, des yeux larmoyants)"],
+                ["de-be", "Eine andere Allergie, von der ich Erkältungsbeschwerden (laufende Nase, tränende Augen) bekomme"],
             ])
         }, 
         {
@@ -2933,6 +2959,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
                 ["fr", "Je n'ai pas d'allergie causant des symptômes respiratoires"],
                 ["fr-be", "Non, je n'ai pas d'allergie qui provoque chez moi les symptômes du rhume"],
+                ["de-be", "Nein, ich habe keine Allergie, von der ich Erkältungsbeschwerden bekomme"],
             ])
         },
     ]);
