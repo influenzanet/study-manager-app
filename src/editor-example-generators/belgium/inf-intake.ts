@@ -1322,6 +1322,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"],
+            ["fr-be", "Y COMPRIS VOUS-MÊME : combien de personnes des différentes tranches d'âge vivent-elles au sein de votre ménage?"],
         ]))
     );
 
@@ -1331,24 +1332,28 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "De samenstelling van het huishouden kan invloed hebben op het risico van infectie, dit willen we graag onderzoeken."],
+                    ["fr-be", "La composition du ménage peut influencer le risque d'infection, ce que nous souhaitons étudier."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["nl-be", "Een huishouden wordt gedefinieerd als een groep mensen (niet noodzakelijkerwijs verwant) die op hetzelfde adres wonen die een kookgelegenheid, woonkamer, zitkamer of eetkamer delen."],
+                    ["fr-be", "Un ménage est défini comme un groupe de personnes (pas nécessairement apparentées) vivant à la même adresse, et partageant une cuisine, un salon, une salle de séjour ou une salle à manger."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1363,6 +1368,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden'],
+                ['fr-be', "Veuillez indiquer pour chaque catégorie d'âge combien de personnes vivent dans votre ménage"],
             ])),
     }, rg?.key);
 
@@ -1373,46 +1379,35 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 key: '0', role: 'option', content: new Map([
                     ["nl-be", "0 personen"],
+                    ["fr-be", "0 personnes"],
                 ])
             },
             {
                 key: '1', role: 'option', content: new Map([
                     ["nl-be", "1 persoon"],
+                    ["fr-be", "1 personne"],
                 ]),
             }, {
                 key: '2', role: 'option', content: new Map([
                     ["nl-be", "2 personen"],
+                    ["fr-be", "2 personnes"],
                 ]),
             }, {
                 key: '3', role: 'option', content: new Map([
                     ["nl-be", "3 personen"],
+                    ["fr-be", "3 personnes"],
                 ]),
             }, {
                 key: '4', role: 'option', content: new Map([
                     ["nl-be", "4 personen"],
+                    ["fr-be", "4 personnes"],
                 ]),
             }, {
                 key: '5', role: 'option', content: new Map([
-                    ["nl-be", "5 personen"],
-                ]),
-            }, {
-                key: '6', role: 'option', content: new Map([
-                    ["nl-be", "6 personen"],
-                ]),
-            }, {
-                key: '7', role: 'option', content: new Map([
-                    ["nl-be", "7 personen"],
-                ]),
-            }, {
-                key: '8', role: 'option', content: new Map([
-                    ["nl-be", "8 personen"],
-                ]),
-            }, {
-                key: '9', role: 'option', content: new Map([
-                    ["nl-be", "9 of meer personen"],
+                    ["nl-be", "5 personen of meer"],
+                    ["fr-be", "5 personnes ou plus"],
                 ]),
             },
-
         ]
     };
 
@@ -1424,6 +1419,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "0 - 4 jaar"],
+                        ["fr-be", "0 - 4 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1436,6 +1432,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "5 - 6 jaar"],
+                        ["fr-be", "5 - 6 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1448,6 +1445,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "7 - 12 jaar"],
+                        ["fr-be", "7 - 12 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1460,6 +1458,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "13 - 14 jaar"],
+                        ["fr-be", "13 - 14 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1472,6 +1471,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "15 - 18 jaar"],
+                        ["fr-be", "15 - 18 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1484,6 +1484,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "19 - 44 jaar"],
+                        ["fr-be", "19 - 44 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1496,6 +1497,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "45 - 64 jaar"],
+                        ["fr-be", "45 - 64 ans"],
                     ])
                 },
                 { ...ddg }
@@ -1508,6 +1510,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     key: 'l', role: 'label',
                     content: new Map([
                         ["nl-be", "65 of ouder"],
+                        ["fr-be", "Plus de 65 ans"],
                     ])
                 },
                 { ...ddg }
@@ -4090,6 +4093,3 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
 
     return editor.getItem();
 }
-
-
-
