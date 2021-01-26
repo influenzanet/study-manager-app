@@ -1811,6 +1811,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u in het huidige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
             ["fr-be", "Lors de la saison de la grippe de l’hiver 2020/2021, vous êtes-vous fait vacciner contre la grippe ?"],
+            ["de-be", "Haben Sie sich in der heutigen Grippesaison (2020/2021) einen Grippeimpfstoff verabreichen lassen?"],
         ]))
     );
 
@@ -1821,6 +1822,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1828,6 +1830,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["nl-be", "We willen de beschermende werking van het vaccin onderzoeken."],
                     ["fr-be", "Nous voulons étudier l'effet protecteur du vaccin."],
+                    ["de-be", "Wir möchten die Schutzwirkung des Impfstoffes (Vakzins) untersuchen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1835,6 +1838,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1842,6 +1846,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["nl-be", "Rapporteer 'ja', als u het vaccin dit seizoen heeft gekregen, meestal in de herfst. Als u zich na het invullen van deze vragenlijst laat vaccineren, rapporteer 'nee' en kies in een volgende vraag voor de optie 'Ik ben van plan om mezelf nog te laten vaccineren'."],
                     ["fr-be", "Indiquez 'oui' si vous vous êtes fait vacciner cette saison, généralement au cours de l'automne. Si vous vous faites vacciner après avoir complété ce questionnaire, indiquez 'non' et choisissez l'option 'Je suis d’avis de me faire vacciner' au niveau d'une question ultérieure."],
+                    ["de-be", "Schreiben Sie 'ja', wenn Sie den Impfstoff in dieser Impfsaison erhalten haben, meistens im Herbst. Wenn Sie sich nach dem Ausfüllen dieser Fragenliste impfen lassen, schreiben Sie bitte 'nein' und wählen Sie in einer folgenden Frage die Alternative 'Ich plane, mich noch impfen zu lassen'."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1856,6 +1861,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             content: new Map([
                 ["nl-be", "Ja"],
                 ["fr-be", "Oui"],
+                ["de-be", "Ja"],
             ])
         },
         {
@@ -1863,6 +1869,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             content: new Map([
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
+                ["de-be", "Nein"],
             ])
         },
         {
@@ -1870,6 +1877,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             content: new Map([
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
+                ["de-be", "Das weiß ich nicht (mehr)"],
             ])
         },
     ]);
@@ -1905,6 +1913,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
         generateTitleComponent(new Map([
             ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2020/2021) een griepvaccin te halen?"],
             ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2020/2021)?"],
+            ["de-be", "Was waren für Sie die wichtigsten Gründe, um in dieser Grippesaison (2020/2021) einen Grippeimpfstoff zu verwenden?"],
         ]))
     );
 
@@ -1922,6 +1931,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1929,6 +1939,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 content: new Map([
                     ["nl-be", "We willen graag weten waarom mensen zich laten vaccineren."],
                     ["fr-be", "Nous aimerions connaître les raisons pour lesquelles la population se fait vacciner."],
+                    ["de-be", "Wir möchten gerne wissen, warum Menschen sich impfen lassen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1936,6 +1947,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1943,6 +1955,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 content: new Map([
                     ["nl-be", "Vink alle redenen aan die belangrijk waren bij uw beslissing."],
                     ["fr-be", "Veuillez cocher toutes les raisons qui ont été importantes dans le cadre de votre décision."],
+                    ["de-be", "Kreuzen Sie alle Gründe an, die bei Ihrer Entscheidung wichtig waren."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1958,6 +1971,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'mehrere Antworten sind möglich'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1966,6 +1980,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziek)"],
                 ["fr-be", "Je fais partie d’un groupe à risque (grossesse, personne âgée de 60 ans ou plus, maladie chronique)"],
+                ["de-be", "Ich gehöre zu einer Risikogruppe (schwanger, 60 Jahre oder älter, chronisch krank)"],
             ])
         },
         {
@@ -1973,6 +1988,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Andere personen in mijn huishouden behoren tot een risicogroep"],
                 ["fr-be", "Les autres personnes de mon ménage font partie d’un groupe à risque."],
+                ["de-be", "Andere Personen in meinem Haushalt gehören zu einer Risikogruppe"],
             ])
         },
         {
@@ -1980,6 +1996,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "De COVID-19 pandemie moedigde me aan om mezelf te laten vaccineren dit jaar."],
                 ["fr-be", "La pandémie relative au coronavirus m'a encouragé à me faire vacciner cette année."],
+                ["de-be", "Die COVID-19-Pandemie ermutigte mich, mich selbst dieses Jahr impfen zu lassen"],
             ])
         },
         {
@@ -1987,6 +2004,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ikzelf griep krijg"],
                 ["fr-be", "La vaccination m'évite de contracter personnellement la grippe."],
+                ["de-be", "Impfung verhindert, dass ich selbst Grippe bekomme"],
             ])
         },
         {
@@ -1994,6 +2012,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen"],
                 ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes."],
+                ["de-be", "Impfung verhindert, dass ich kein Grippevirus auf andere Menschen übertrage"],
             ])
         },
         {
@@ -2001,6 +2020,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Mijn huisarts heeft me de griepvaccin aangeraden"],
                 ["fr-be", "Mon médecin m'a recommandé le vaccin contre la grippe."],
+                ["de-be", "Mein Hausarzt hat mir die Grippeimpfung empfohlen"],
             ])
         },
         {
@@ -2008,6 +2028,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Het griepvaccin werd aangeboden op mijn werk/op school"],
                 ["fr-be", "Le vaccin contre la grippe a été proposé au travail/à l'école."],
+                ["de-be", "Der Grippeimpfstoff wurde an meinem Arbeitsplatz/in der Schule angeboten"],
             ])
         },
         {
@@ -2015,6 +2036,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Het griepvaccin is voor mij gemakkelijk beschikbaar"],
                 ["fr-be", "Le vaccin contre la grippe est facilement accessible pour moi."],
+                ["de-be", "Der Grippeimpfstoff ist für mich einfach verfügbar"],
             ])
         },
         {
@@ -2022,6 +2044,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Het griepvaccin was gratis"],
                 ["fr-be", "Le vaccin contre la grippe était gratuit."],
+                ["de-be", "Der Grippeimpfstoff war gratis"],
             ])
         },
         {
@@ -2029,6 +2052,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Ik wil deze winter geen werk/school missen"],
                 ["fr-be", "Je ne veux pas m’absenter du travail / des cours durant cet hiver."],
+                ["de-be", "Ich möchte in diesem Winter keine Arbeitstunde/keinen Schulunterricht verpassen"],
             ])
         },
         {
@@ -2036,6 +2060,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Ik haal het griepvaccin altijd"],
                 ["fr-be", "Je me fais toujours vacciner contre la grippe."],
+                ["de-be", "Ich nehme den Grippeimpfstoff immer"],
             ])
         },
         {
@@ -2043,6 +2068,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Andere reden"],
                 ["fr-be", "Une autre raison"],
+                ["de-be", "Andere Gründe"],
             ])
         },
     ]);
@@ -2079,7 +2105,8 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2020/2021)?"],
-            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2020/2021)?"]
+            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2020/2021)?"],
+            ["de-be", "Was waren die Gründe dafür, dass Sie sich in dieser Grippesaison (2020/2021) nicht mehr impfen ließen?"],
         ]))
     );
 
@@ -2097,6 +2124,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2104,6 +2132,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 content: new Map([
                     ["nl-be", "We willen graag weten waarom sommige mensen niet worden gevaccineerd."],
                     ["fr-be", "Nous aimerions connaître les raisons pour lesquelles la population ne se fait pas vacciner."],
+                    ["de-be", "Wir möchten gerne wissen, warum manche Menschen nicht geimpft werden."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2111,6 +2140,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2118,6 +2148,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 content: new Map([
                     ["nl-be", "Vink alle redenen aan die belangrijk waren bij uw beslissing."],
                     ["fr-be", "Veuillez cocher toutes les raisons qui ont été importantes dans le cadre de votre décision."],
+                    ["de-be", "Kreuzen Sie alle Gründe an, die bei Ihrer Entscheidung wichtig waren."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2133,6 +2164,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'mehrere Antworten sind möglich'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2141,6 +2173,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik ben van plan om mezelf nog te laten vaccineren"],
                 ["fr-be", "J'ai l'intention de me faire vacciner"],
+                ["de-be", "Ich plane, mich selbst noch impfen zu lassen. "],
             ])
         },
         {
@@ -2148,6 +2181,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Het griepvaccin werd me niet aangeboden"],
                 ["fr-be", "Le vaccin contre la grippe ne m'a pas été proposé"],
+                ["de-be", "Der Grippeimpfstoff wurde mir nicht angeboten"],
             ])
         },
         {
@@ -2155,6 +2189,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik behoorde niet tot een risicogroep"],
                 ["fr-be", "Je ne faisais pas partie d’un groupe à risque"],
+                ["de-be", "Ich gehörte nicht zu einer Risikogruppe"],
             ])
         },
         {
@@ -2162,6 +2197,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Het is beter om je eigen immuniteit op te bouwen tegen griep"],
                 ["fr-be", "Il est préférable de se constituer une immunité contre la grippe"],
+                ["de-be", "Es ist besser, seine eigene Immunität gegen Grippe aufzubauen"],
             ])
         },
         {
@@ -2169,6 +2205,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik twijfelde aan de effectiviteit van het griepvaccin"],
                 ["fr-be", "Je doutais de l'efficacité du vaccin contre la grippe"],
+                ["de-be", "Ich zweifelte an der Wirksamkeit des Grippeimpfstoffs"],
             ])
         },
         {
@@ -2176,6 +2213,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Griep is slechts een milde ziekte"],
                 ["fr-be", "La grippe n'est qu'une maladie bénigne"],
+                ["de-be", "Grippe ist nur eine milde Krankheit"],
             ])
         },
         {
@@ -2183,6 +2221,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Door de COVID-19 pandemie vermijd ik naar de dokter of apotheek te gaan"],
                 ["fr-be", "En raison de la pandémie liée au coronavirus, j'évite de me rendre chez le médecin ou à la pharmacie"],
+                ["de-be", "Durch die COVID-19-Pandemie vermeide ich, zum Arzt oder zur Apotheke zu gehen"],
             ])
         },
         {
@@ -2190,6 +2229,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik ben bang dat het griepvaccin mijn risico op COVID-19 verhoogt"],
                 ["fr-be", "J'ai peur que le vaccin contre la grippe n'augmente mon risque d’attraper le coronavirus"],
+                ["de-be", "Ich habe Angst davor, dass der Grippeimpfstoff mein Risiko auf COVID-19 erhöht"],
             ])
         },
         {
@@ -2197,6 +2237,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Een andere reden gerelateerd aan COVID-19"],
                 ["fr-be", "Une autre raison liée au coronavirus"],
+                ["de-be", "Ein anderer Grund hängt mit COVID-19 zusammen"],
             ])
         },
         {
@@ -2204,6 +2245,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik achtte de kans klein dat ik griep krijg"],
                 ["fr-be", "Selon moi, il était peu probable que je contracte la grippe"],
+                ["de-be", "Ich halte die Möglichkeit für klein, dass ich Grippe bekomme"],
             ])
         },
         {
@@ -2211,6 +2253,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik was van mening dat het vaccin ook griep kan veroorzaken"],
                 ["fr-be", "J’estimais que le vaccin pouvait aussi causer la grippe"],
+                ["de-be", "Ich war der Meinung, dass der Impfstoff auch Grippe verursachen kann"],
             ])
         },
         {
@@ -2218,6 +2261,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik was bang dat het vaccin niet veilig is, en me juist ziek maakt of andere neveneffecten heeft"],
                 ["fr-be", "J'avais peur que le vaccin ne soit pas sûr, qu'il me rende malade ou qu'il entraîne d'autres effets secondaires"],
+                ["de-be", "Ich hatte Angst davor, dass der Impfstoff nicht sicher sei und mich erst recht krank machen könnte oder andere Nebenwirkungen hätte."],
             ])
         },
         {
@@ -2225,6 +2269,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik hou niet van het krijgen van vaccinaties"],
                 ["fr-be", "Je n'aime pas me faire vacciner"],
+                ["de-be", "Ich halte nichts von Impfungen"],
             ])
         },
         {
@@ -2232,6 +2277,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Het is niet gemakkelijk om gevaccineerd te worden"],
                 ["fr-be", "Il n’est pas facile de se faire vacciner"],
+                ["de-be", "Es ist nicht einfach, geimpft zu werden"],
             ])
         },
         {
@@ -2239,6 +2285,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik moest betalen voor een griepvaccinatie, het is niet gratis"],
                 ["fr-be", "J'ai dû payer pour obtenir un vaccin contre la grippe, ce dernier n'est pas gratuit"],
+                ["de-be", "Ich musste für eine Grippeimpfung bezahlen, sie ist nicht gratis"],
             ])
         },
         {
@@ -2246,6 +2293,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Het verkrijgen van een griepvaccin vergt te veel tijd en moeite ten opzichte van de mogelijke voordelen ervan"],
                 ["fr-be", "L'obtention d'un vaccin contre la grippe exige trop de temps et d'efforts par rapport à ses avantages potentiels"],
+                ["de-be", "Die Grippeimpfung erfordert viel Zeit und Mühe in Bezug auf ihre möglichen Vorteile"],
             ])
         },
         {
@@ -2253,6 +2301,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Het vaccin was niet beschikbaar voor mij"],
                 ["fr-be", "Le vaccin n'était pas disponible pour moi"],
+                ["de-be", "Der Impfstoff war für mich nicht verfügbar"],
             ])
         },
         {
@@ -2260,6 +2309,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Geen speciale reden"],
                 ["fr-be", "Aucune raison particulière"],
+                ["de-be", "Kein besonderer Grund"],
             ])
         },
         {
@@ -2267,6 +2317,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ondanks dat mijn huisarts het griepvaccin adviseerde, heb ik het niet genomen"],
                 ["fr-be", "Bien que mon médecin m'ait recommandé le vaccin contre la grippe, je ne me suis pas fait vacciner"],
+                ["de-be", "Obwohl mein Hausarzt den Grippeimpfstoff empfahl, habe ich ihn nicht genommen"],
             ])
         },
         {
@@ -2274,6 +2325,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Andere reden"],
                 ["fr-be", "Une autre raison"],
+                ["de-be", "Anderer Grund"],
             ])
         },
     ]);

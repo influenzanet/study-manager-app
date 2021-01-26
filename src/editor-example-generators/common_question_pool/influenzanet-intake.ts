@@ -1832,6 +1832,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["nl-be", "nneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
             ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021?"],
+            ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],
         ]))
     );
 
@@ -1852,6 +1853,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1862,6 +1864,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl-be", "Weten wanneer mensen worden gevaccineerd, vertelt ons hoe goed het vaccinatieprogramma wordt gevolgd en hoe effectief het vaccin is."],
                     ["fr", "Savoir quand les gens sont vaccinés nous permet d'évaluer le succès des campagnes de vaccination."],
                     ["fr-be", "Le fait de savoir quand les gens se font vacciner nous indique la mesure dans laquelle le programme de vaccination est suivi, ainsi que le degré d'efficacité du vaccin."],
+                    ["de-be", "Wissen, wann Menschen geimpft werden, sagt uns, wie gut das Impfprogramm befolgt wird und wie wirksam der Impfstoff ist."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1872,6 +1875,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1882,6 +1886,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl-be", "Probeer zo nauwkeurig mogelijk te antwoorden. Als u de precieze datum niet weet, geef dan uw beste schatting. U kunt zich bijvoorbeeld de maand herinneren en vervolgens proberen te herinneren of het aan het begin of het einde van de maand was. Waren er belangrijke gebeurtenissen (bijv. een vakantie of een verjaardag) die u zouden kunnen helpen om uw geheugen op te frissen?"],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
                     ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date exacte, veuillez fournir une estimation la plus précise possible. Par exemple, vous pouvez vous souvenir du mois, et ensuite essayer de vous souvenir si c’était plutôt au début ou à la fin du mois. Des événements importants (par exemple, des vacances ou un anniversaire) ont-ils eu lieu, lesquels pourraient vous aider à vous rafraîchir la mémoire?"],
+                    ["de-be", "Versuchen Sie, so genau wie möglich zu antworten. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung an. Sie können sich zum Beispiel den Monat an den Monat und danach versuchen, sich zu erinnern, ob es am Beginn oder am Ende des Monats war. Gab es wichtige Ereignisse (zum Beispiel ein Urlaub oder ein Jahrestag), die Ihnen helfen könnten, Ihr Gedächtnis aufzufrischen?"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1903,6 +1908,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                 ["nl-be", "Kies datum"],
                 ["fr", "Sélectionner une date"],
                 ["fr-be", "Sélectionner une date"],
+                ["de-be", "Datum"],
             ]),
         },
         {
@@ -1913,6 +1919,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas, je ne m'en souviens plus"],
                 ["fr-be", "Je ne m'en souviens plus"],
+                ["de-be", "Das weiß ich nicht mehr"],
             ])
         },
     ]);
