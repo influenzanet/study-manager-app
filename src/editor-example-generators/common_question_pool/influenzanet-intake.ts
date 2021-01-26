@@ -26,6 +26,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             ["nl-be", "Wat is uw geslacht?"],
             ["fr", "Quel est votre sexe?"],
             ["fr-be", "Quel est votre sexe?"],
+            ["de-be", "Was ist Ihr Geschlecht?"],
         ]))
     );
 
@@ -39,6 +40,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -49,6 +51,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl-be", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
                     ["fr-be", "Afin d’examiner les différences entre les hommes et les femmes."],
+                    ["de-be", "Um nach Unterschieden zwischen Männern und Frauen zu suchen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }, { key: 'className', value: 'm-0' }],
             },
@@ -66,6 +69,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["nl-be", "Man"],
                 ["fr", "Homme"],
                 ["fr-be", "Un homme"],
+                ["de-be", "Mann"],
             ])
         },
         {
@@ -76,6 +80,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["nl-be", "Vrouw"],
                 ["fr", "Femme"],
                 ["fr-be", "Une femme"],
+                ["de-be", "Frau"],
             ])
         },
         {
@@ -85,6 +90,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["nl", "Anders"],
                 ["nl-be", "Anders"],
                 ["fr-be", "Autre"],
+                ["de-be", "anderes"],
             ])
         },
     ]);
@@ -124,6 +130,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
             ["fr-be", "Quelle est votre date de naissance (le mois et l’année)?"],
+            ["de-be", "Wann sind Sie geboren (Monat und Jahr)?"],
         ]))
     );
 
@@ -139,6 +146,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -149,6 +157,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     ["nl-be", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
                     ["fr-be", "Afin d’examiner les différences entre les tranches d’âge."],
+                    ["de-be", "Um nach Unterschieden zwischen Altersgruppen zu suchen."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -205,6 +214,12 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     { str: ' ans' }
                 ]
             }
+            {
+                code: 'de-be', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' Jahr' }
+                ]
+            }
         ]
     }, rg?.key);
 
@@ -241,6 +256,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             ["nl-be", "Wat is de postcode van uw woonplaats?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
             ["fr-be", "Quel est le code postal de votre localité?"],
+            ["de-be", "Welche Postleitzahl hat Ihr Wohnsitz?"],
         ]))
     );
 
@@ -254,6 +270,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -264,6 +281,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["nl-be", "Om te controleren hoe representatief onze cohort (groep deelnemers aan deze studie) is, en om te kijken naar geografische verschillen in de verspreiding van COVID-19 en griep."],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
                     ["fr-be", "Afin de vérifier la représentativité de notre cohorte (le groupe de participants à cette étude), et d'examiner les différences géographiques au niveau de la propagation du coronavirus et de la grippe."],
+                    ["de-be", "Um zu kontrollieren, wie repräsentativ unsere Kohorte (Teilnehmer-Gruppe an dieser Studie) ist, und um nach geografischen Unterschieden in der Verteilung von COVID-19 und Grippe zu suchen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -273,6 +291,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", ""],
                     ["fr-be", ""],
+                    ["de-be", ""],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -282,6 +301,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
                     ["nl-be", ""],
                     ["fr-be", ""],
+                    ["de-be", ""],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -300,12 +320,14 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["nl-be", "Postcode"],
                 ["fr", "Code postal"],
                 ["fr-be", "Code postal"],
+                ["de-be", "Postleitzahl"],
             ]),
             description: new Map([
                 ["en", "the first 4 digits"],
                 ["nl", "de eerste vier cijfers"],
                 ["nl-be", ""],
                 ["fr-be", ""],
+                ["de-be", ""],
             ])
         },
         {
@@ -316,6 +338,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
                 ["fr-be", "Je préfère ne pas répondre à cette question"],
+                ["de-be", "Das möchte ich nicht angeben"],
             ])
         },
     ]);
@@ -346,7 +369,8 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["en", "Please enter the first four digits of your postcode"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
                 ["nl-be", "Voer de vier cijfers van je postcode in"],
-                ["fr-be", "xxx"],
+                ["fr-be", "4 chiffres"],
+                ["de-be", "4 Ziffern"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }

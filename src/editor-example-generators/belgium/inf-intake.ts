@@ -28,7 +28,7 @@ const intake = (): Survey | undefined => {
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["nl-be", "Het doel van de eerste vragenlijst is om elke gebruiker wat beter te leren kennen."],
-            ["en", "The intake survey focues on some background and demographic information."],
+            ["en", "The intake survey focuses on some background and demographic information."],
             ["fr-be", "Le questionnaire préliminaire a pour but de connaître un peu mieux chaque utilisateur."],
             ["de-be", "Der Zweck des Hintergrundfragebogens ist es, jeden Benutzer ein wenig besser kennen zu lernen."],
         ])
