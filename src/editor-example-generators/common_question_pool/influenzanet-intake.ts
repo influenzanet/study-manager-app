@@ -1594,6 +1594,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
             ["fr-be", "Lors de la précédente saison de la grippe (l’hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe?"],
+            ["de-be", "Haben Sie sich in der vorigen Grippesaison (2019/2020) eine Grippeimpfung verabreichen lassen?"],
         ]))
     );
 
@@ -1607,9 +1608,11 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen we das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
+
             {
                 content: new Map([
                     ["en", "We would like to be able to work out how much protection the vaccine gives. We would also like to find out if there is some protection from vaccines received in previous years."],
@@ -1617,6 +1620,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "We willen graag onderzoeken hoeveel bescherming het vaccin geeft. We willen ook graag weten of er enige bescherming is dankzij vaccins die in voorgaande jaren zijn ontvangen."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
                     ["fr-be", "Nous aimerions étudier le degré de protection offert par le vaccin. Nous aimerions également savoir s'il existe un certain degré de protection grâce aux vaccins reçus au cours des années précédentes."],
+                    ["de-be", "Wir möchten gerne untersuchen, wieviel Schutz der Impfstoff verleiht. Wir möchten auch gerne wissen, ob es dank der Impfstoffe einen Schutz gibt, die in früheren Jahren erhalten wurden."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1627,6 +1631,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1637,6 +1642,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                     ["fr-be", "Veuillez répondre oui si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im vorigen Jahr (im Herbst/Winter von 2019-2020)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1654,6 +1660,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
                 ["fr-be", "Oui"],
+                ["de-be", "Ja"],
             ])
         },
         {
@@ -1664,6 +1671,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
                 ["fr-be", "Non"],
+                ["de-be", "Nein"],
             ])
         },
         {
@@ -1674,6 +1682,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
                 ["fr-be", "Je ne sais pas (plus)"],
+                ["de-be", "Das weiß ich nicht (mehr)"],
             ])
         },
     ]);
