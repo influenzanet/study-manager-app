@@ -989,6 +989,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een kinderdagverblijf?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
             ["fr-be", "Combien d'enfants de votre ménage sont scolarisés ou vont à la crèche?"],
+            ["de-be", "Wie viele Kinder in Ihrem Haushalt sitzen in der Schule oder einer Kita?"],
         ]))
     );
 
@@ -1016,6 +1017,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1026,6 +1028,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl-be", "Naar school of kinderopvang gaan, kan een verhoogd risico zijn voor het krijgen van COVID-19 of griep en soortgelijke ziekten. We willen dit graag onderzoeken."],
                     ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
                     ["fr-be", "Le fait de fréquenter l'école, la garderie ou la crèche peut augmenter le risque de contracter le coronavirus ou la grippe, ainsi que d'autres maladies similaires. Nous souhaiterions étudier ce point."],
+                    ["de-be", "Zur Schule oder Kita zu gehen kann ein erhöhtes Risiko für die Ansteckung mit COVID-19 oder Grippe bzw. anderen artähnlichen Krankheiten mit sich bringen. Wir möchten das gerne untersuchen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1036,6 +1039,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1046,6 +1050,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl-be", "Als uw kind naar school of kinderopvang gaat (ook al is dit maar één dag in de week) antwoord dan met ja. Lidmaatschap bij (sport)verenigingen of andere buitenschoolse activiteiten tellen niet mee."],
                     ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
                     ["fr-be", "Si votre enfant fréquente l'école, la garderie ou la crèche (même si ce n'est qu'un jour par semaine), veuillez répondre oui. Une affiliation auprès d’associations (sportives) ou une inscription à d’autres activités extrascolaires ne compte pas."],
+                    ["de-be", "Wenn Ihr Kind zur Schule oder zur Kita (Kindertagesstätte, Kindergarten) geht (auch wenn es nur an einem Tag in der Woche ist), so antworten Sie bitte mit ja. Mitgliedschaft in (Sport-)Vereinen oder andere außerschulische Aktivitäten zählen nicht."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1063,6 +1068,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                 ["nl-be", "Geen"],
                 ["fr", "Aucun"],
                 ["fr-be", "Aucun"],
+                ["de-be", "Keines"],
             ])
         },
         {
@@ -1103,6 +1109,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                 ["nl-be", "Meer dan 5"],
                 ["fr", "Plus de 5"],
                 ["fr-be", "Plus de 5"],
+                ["de-be", "mehr als 5"],
             ])
         },
     ]);
