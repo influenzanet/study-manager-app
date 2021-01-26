@@ -213,7 +213,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
                     { str: ' ans' }
                 ]
-            }
+            },
             {
                 code: 'de-be', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
@@ -1149,6 +1149,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             ["nl-be", "Hoe verplaatst u zich doorgaans voor uw dagelijkse activiteiten? Gelieve de vervoerswijze te selecteren waar u het meest gebruik van maakt."],
             ["fr", "Quel est votre principal moyen de transport?"],
             ["fr-be", "Comment vous déplacez-vous habituellement dans le cadre de vos activités quotidiennes ? Veuillez sélectionner le mode de transport que vous utilisez le plus."],
+            ["de-be", "Wie bewegen Sie sich in der Regel für Ihre täglichen Aktivitäten? Bitte wählen Sie die Transportweise, von der Sie meistens Gebrauch machen."],
         ]))
     );
 
@@ -1162,6 +1163,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1172,6 +1174,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                     ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
+                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem Öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1182,6 +1185,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1192,6 +1196,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl-be", "Vink de optie aan die het beste overeenkomt met uw meest gebruikte vervoermiddel."],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
                     ["fr-be", "Cochez l'option qui correspond le mieux à votre moyen de transport le plus fréquemment utilisé."],
+                    ["de-be", "Bitte kreuzen Sie diejenige Alternative an, die am besten mit Ihrem am meisten gewählten Verkehrsmittel übereinstimmt."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1209,6 +1214,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Te voet"],
                 ["fr", "La marche"],
                 ["fr-be", "À pied"],
+                ["de-be", "Zu Fuß"],
             ])
         },
         {
@@ -1219,6 +1225,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Op de fiets"],
                 ["fr", "Le vélo"],
                 ["fr-be", "À vélo"],
+                ["de-be", "Mit dem Rad"],
             ])
         },
         {
@@ -1229,6 +1236,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met de scooter of motor"],
                 ["fr", "Le scooter, la moto"],
                 ["fr-be", "À mobylette ou à moto"],
+                ["de-be", "Mit dem Motorroller oder Motorrad"],
             ])
         },
         {
@@ -1239,6 +1247,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met de auto"],
                 ["fr", "La voiture"],
                 ["fr-be", "En voiture"],
+                ["de-be", "Mit dem Auto"],
             ])
         },
         {
@@ -1249,6 +1258,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
                 ["fr-be", "Par les transports en commun (bus, train, métro, tram, etc.)"],
+                ["de-be", "Mit dem Öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
             ])
         },
         {
@@ -1259,6 +1269,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Andere"],
                 ["fr", "Autre"],
                 ["fr-be", "Autre"],
+                ["de-be", "Anders"],
             ])
         },
     ]);
@@ -1297,6 +1308,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             ["nl-be", "Hoeveel tijd brengt u op een doordeweekse dag door in het openbaar vervoer?"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
             ["fr-be", "Combien de temps passez-vous dans les transports en commun lors d'un jour de semaine?"],
+            ["de-be", "Wieviel Zeit verbringen Sie an einem Wochentag im Öffentlichen Verkehr?"],
         ]))
     );
 
@@ -1310,6 +1322,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             }, 
@@ -1320,6 +1333,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                     ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
+                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem Öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1330,6 +1344,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1340,6 +1355,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl-be", "Denk aan een typische dag. Als u elke dag verschillende vormen van openbaar vervoer gebruikt op één dag, vergeet dan niet om alle ritten mee te nemen. Exclusief taxi's of andere vormen van privévervoer."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
                     ["fr-be", "Pensez à une journée typique. Si vous utilisez chaque jour différents modes de transport en commun au cours d'une même journée, n'oubliez pas d'inclure tous les trajets. À l’exclusion des taxis ou d’autres formes de transport privé."],
+                    ["de-be", "Bitte kreuzen Sie diejenige Alternative an, die am besten mit Ihrem am meisten gewählten Verkehrsmittel übereinstimmt."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1357,6 +1373,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "Ik ga normaal niet met het openbaar vervoer"],
                 ["fr", "Pas de temps du tout"],
                 ["fr-be", "Je ne prends pas les transports en commun en temps normal"],
+                ["de-be", "Ich fahre normalerweise nicht mit dem ÖPNV"],
             ])
         },
         {
@@ -1367,6 +1384,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "0 tot 30 minuten"],
                 ["fr", "0-30 minutes"],
                 ["fr-be", "De 0 à 30 minutes"],
+                ["de-be", "0 bis 30 Minuten"],
             ])
         },
         {
@@ -1377,6 +1395,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "30 minuten tot 1,5 uur"],
                 ["fr", "30 minutes - 1.5 heures"],
                 ["fr-be", "De 30 minutes à 1,5 heure"],
+                ["de-be", "30 Minuten bis 1,5 Stunden"],
             ])
         },
         {
@@ -1387,6 +1406,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "1,5 uur tot 4 uur"],
                 ["fr", "1.5 - 4 heures"],
                 ["fr-be", "De 1,5 à 4 heures"],
+                ["de-be", "1,5 Stunden bis 4 Stunden"],
             ])
         },
         {
@@ -1397,6 +1417,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "Meer dan 4 uur"],
                 ["fr", "Plus de 4 heures"],
                 ["fr-be", "Plus de 4 heures"],
+                ["de-be", "Mehr als 4 Stunden"],
             ])
         },
     ]);
