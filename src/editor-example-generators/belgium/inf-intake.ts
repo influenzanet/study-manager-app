@@ -2362,6 +2362,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         generateTitleComponent(new Map([
             ["nl-be", "Gebruikt u regelmatig medicatie voor één of meer van de volgende aandoeningen?"],
             ["fr-be", "Prenez-vous régulièrement des médicaments pour une ou plusieurs des affections suivantes?"],
+            ["de-be", "Verwenden Sie regelmäßig Medikation gegen eine oder mehrere der folgenden Krankheiten?"],
         ]))
     );
 
@@ -2372,6 +2373,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2379,6 +2381,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["nl-be", "De vraag maakt het voor ons mogelijk om te onderzoeken welke aandoeningen gelinkt zijn aan een hoger risico voor infectie."],
                     ["fr-be", "Cette question nous permet d'étudier les affections qui sont liées à un risque accru d'infection."],
+                    ["de-be", "Die Frage ermöglicht es uns, zu untersuchen, welche Erkrankungen mit einem höheren Infektionsrisiko verbunden sind."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2386,6 +2389,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2393,6 +2397,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["nl-be", "Antwoord alleen met 'ja' als u reguliere medicatie gebruikt voor uw medisch probleem. Als u bijvoorbeeld slechts af en toe een astma-inhalator gebruikt, antwoord dan niet met 'ja' bij astma."],
                     ["fr-be", "Ne répondez 'oui' que si vous prenez régulièrement des médicaments pour traiter votre problème médical. Par exemple, si vous n'utilisez un inhalateur pour traiter l'asthme que de manière occasionnelle, ne répondez pas 'oui' concernant l'asthme."],
+                    ["de-be", "Antworten Sie nur mit 'ja', wenn Sie reguläre Medikation für Ihr medizinisches Problem verwenden. Wenn Sie zum Beispiel nur ab und zu einen Asthma-Inhalatoren verwenden, dann antworten Sie bitte nicht mit 'ja' bei Asthma."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2408,6 +2413,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             new Map([
                 ["nl-be", "Meerdere antwoorden mogelijk"],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'Mehrere Antworten sind möglich'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2416,6 +2422,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
+                ["de-be", "Nein"],
             ])
         },
         {
@@ -2424,6 +2431,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor astma"],
                 ["fr-be", "Oui, pour l'asthme"],
+                ["de-be", "Ja, gegen Asthma"],
             ])
         },
         {
@@ -2432,6 +2440,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor diabetes"],
                 ["fr-be", "Oui, pour le diabète"],
+                ["de-be", "Ja, gegen Diabetes"],
             ])
         },
         {
@@ -2439,7 +2448,8 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor chronische longziekten (COPD, emfyseem, enz.)"],
-                ["fr-be", "Oui, pour des maladies pulmonaires chroniques (BPCO, l’emphysème, etc.)"]
+                ["fr-be", "Oui, pour des maladies pulmonaires chroniques (BPCO, l’emphysème, etc.)"],
+                ["de-be", "Ja, gegen chronische Lungenkrankheiten (COPD, Emphysem usw.)"],
             ])
         },
         {
@@ -2448,6 +2458,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor hartaandoeningen"],
                 ["fr-be", "Oui, pour les maladies cardiaques"],
+                ["de-be", "Ja, gegen Herzkrankheiten"],
             ])
         },
         {
@@ -2456,6 +2467,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor nieraandoeningen"],
                 ["fr-be", "Oui, pour les maladies rénales"],
+                ["de-be", "Ja, gegen Nierenkrankheiten"],
             ])
         },
         {
@@ -2464,6 +2476,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor een verzwakte afweer (bijvoorbeeld door een auto-immuunziekte, kankerbehandeling of na een orgaantransplantatie)"],
                 ["fr-be", "Oui, pour un système immunitaire affaibli (par exemple : en raison d'une maladie auto-immune, d’un traitement contre le cancer ou à la suite d’une transplantation d'organe)"],
+                ["de-be", "Ja, aufgrund einer geschwächten Abwehr (zum Beispiel durch eine Autoimmunkrankheit, Krebsbehandlung oder nach einer Organtransplantation)"],
             ])
         },
         {
@@ -2472,6 +2485,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Ja, voor andere redenen"],
                 ["fr-be", "Oui, pour d'autres raisons"],
+                ["de-be", "Ja, aus anderen Gründen"],
             ])
         },
         {
@@ -2480,6 +2494,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Dat wil ik niet aangeven"],
                 ["fr-be", "Je préfère ne pas répondre à cette question"],
+                ["de-be", "Das möchte ich nicht angeben"],
             ])
         },
     ]);
@@ -2514,7 +2529,8 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Rookt u of heeft u gerookt?"],
-            ["fr-be", "Fumez-vous ou avez-vous fumé ?"],
+            ["fr-be", "Fumez-vous ou avez-vous fumé?"],
+            ["de-be", "Rauchen Sie oder haben Sie geraucht?"],
         ]))
     );
 
@@ -2528,6 +2544,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2535,6 +2552,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 content: new Map([
                     ["nl-be", "Roken is een risico-factor voor ernstige klachten in de luchtwegen, dit willen we graag onderzoeken."],
                     ["fr-be", "Le tabagisme constitue un facteur de risque pour les affections respiratoires graves. Nous aimerions effectuer des recherches à ce sujet."],
+                    ["de-be", "Rauchen ist ein Risikofaktor für ernste Beschwerden der Atemwege, und das möchten wir gerne untersuchen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2542,6 +2560,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2549,6 +2568,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 content: new Map([
                     ["nl-be", "Antwoord zo precies mogelijk."],
                     ["fr-be", "Veuillez répondre de la manière aussi précise que possible."],
+                    ["de-be", "Bitte antworten Sie so genau wie möglich."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2563,6 +2583,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Ik heb nooit gerookt"],
                 ["fr-be", "Je n'ai jamais fumé"],
+                ["de-be", "Ich habe nie geraucht"],
             ])
         },
         {
@@ -2570,6 +2591,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Af en toe"],
                 ["fr-be", "De temps en temps"],
+                ["de-be", "Ab und zu"],
             ])
         },
         {
@@ -2577,6 +2599,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Dagelijks, minder dan 10 keer per dag"],
                 ["fr-be", "Tous les jours, moins de 10 fois par jour"],
+                ["de-be", "Täglich, weniger als 10 Mal pro Tag"],
             ])
         },
         {
@@ -2584,6 +2607,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Dagelijks, 10 keer of vaker per dag"],
                 ["fr-be", "Tous les jours, plus de 10 fois par jour"],
+                ["de-be", "Täglich, 10 Mal oder öfter pro Tag"],
             ])
         },
         {
@@ -2591,6 +2615,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Ja, alleen e-sigaretten"],
                 ["fr-be", "Des cigarettes électroniques uniquement"],
+                ["de-be", "Nur E-Zigaretten"],
             ])
         },
         {
@@ -2598,6 +2623,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Ik ben een ex-roker (5 jaar of minder gerookt)"],
                 ["fr-be", "Je suis un ancien fumeur (j’ai fumé pendant 5 ans ou moins)"],
+                ["de-be", "Ich war früher Raucher (5 Jahre oder weniger geraucht)"],
             ])
         },
         {
@@ -2605,6 +2631,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Ik ben een ex-roker (meer dan 5 jaar gerookt)"],
                 ["fr-be", "Je suis un ancien fumeur (j'ai fumé pendant plus de 5 ans)"],
+                ["de-be", "Ich war früher Raucher (mehr als 5 Jahre geraucht)"],
             ])
         },
         {
@@ -2612,6 +2639,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             content: new Map([
                 ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr-be", "Je préfère ne pas répondre à cette question"],
+                ["de-be", "Das möchte ich nicht angeben"],
             ])
         },
     ]);
