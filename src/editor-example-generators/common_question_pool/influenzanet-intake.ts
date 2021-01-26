@@ -1456,6 +1456,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             ["nl-be", "Hoe vaak heeft u last van verkoudheid of griepachtige verschijnselen (voorbeeld: loopneus, hoest)?"],
             ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
             ["fr-be", "À quelle fréquence souffrez-vous d'un rhume ou de symptômes ressemblant à ceux de la grippe (par exemple, un nez qui coule, une toux)?"],
+            ["de-be", "Wie oft haben Sie Beschwerden durch Erkältung oder grippeartige Symptome (Beispiel: laufende Nase, Husten)?"],
         ]))
     );
 
@@ -1469,6 +1470,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1479,6 +1481,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                     ["nl-be", "We onderzoeken of sommige mensen een verhoogd risico op infecties hebben."],
                     ["fr", ""],
                     ["fr-be", "Nous voulons savoir si certaines personnes présentent un risque accru d'infection."],
+                    ["de-be", "Wir untersuchen, ob manche Menschen ein erhöhtes Infektionsrisiko haben."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1496,6 +1499,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Nooit"],
                 ["fr", "Jamais"],
                 ["fr-be", "Jamais"],
+                ["de-be", "Niemals"],
             ])
         },
         {
@@ -1506,6 +1510,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "1 of 2 keer per jaar"],
                 ["fr", "1 ou 2 fois par an"],
                 ["fr-be", "1 à 2 fois par an"],
+                ["de-be", "1 oder 2 Mal pro Jahr"],
             ])
         },
         {
@@ -1516,6 +1521,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Tussen 3 en 5 keer per jaar"],
                 ["fr", "De 3 à 5 fois par an"],
                 ["fr-be", "Entre 3 et 5 fois par an"],
+                ["de-be", "Zwischen 3 und 5 Mal pro Jahr"],
             ])
         },
         {
@@ -1526,6 +1532,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Tussen 6 en 10 keer per jaar"],
                 ["fr", "De 6 à 10 fois par an"],
                 ["fr-be", "Entre 6 et 10 fois par an"],
+                ["de-be", "Zwischen 6 und 10 Mal pro Jahr"],
             ])
         },
         {
@@ -1536,6 +1543,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Meer dan 10 keer per jaar"],
                 ["fr", "Plus de 10 fois par an"],
                 ["fr-be", "Plus de 10 fois par an"],
+                ["de-be", "Mehr als 10 Mal pro Jahr"],
             ])
         },
         {
@@ -1546,6 +1554,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Dat weet ik niet"],
                 ["fr", "Je ne sais pas"],
                 ["fr-be", "Aucune idée"],
+                ["de-be", "Das weiß ich nicht"],
             ])
         },
     ]);
