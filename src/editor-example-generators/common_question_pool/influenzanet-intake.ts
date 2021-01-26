@@ -90,7 +90,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ["nl", "Anders"],
                 ["nl-be", "Anders"],
                 ["fr-be", "Autre"],
-                ["de-be", "anderes"],
+                ["de-be", "Anderes"],
             ])
         },
     ]);
