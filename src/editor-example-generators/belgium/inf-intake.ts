@@ -1140,6 +1140,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         generateTitleComponent(new Map([
             ["nl-be", "Wat is uw hoogst voltooide opleiding?"],
             ["fr-be", "Quel est votre diplôme le plus élevé?"],
+            ["de-be", "Was ist Ihre höchste erreichte Ausbildung?"],
         ]))
     );
 
@@ -1150,6 +1151,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1157,6 +1159,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking."],
                     ["fr-be", "Dans le but de pouvoir examiner la représentativité de notre cohorte (le groupe de participants à cette étude) par rapport à la population."],
+                    ["de-be", "Um zu überprüfen, wie repräsentativ unsere Kohorte (Gruppe von Teilnehmern an dieser Studie) im Vergleich mit der Bevölkerung ist."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1164,6 +1167,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1171,6 +1175,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["nl-be", "Kies het vakje dat uw hoogst voltooide opleidingsniveau vertegenwoordigt."],
                     ["fr-be", "Sélectionnez la case qui correspond à votre niveau d'éducation le plus élevé, achevé avec succès."],
+                    ["de-be", "Wählen Sie das Kästchen, das Ihr höchstes ERREICHTES Ausbildungsniveau vertritt."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1185,6 +1190,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Ik heb geen officiële diploma's"],
                 ["fr-be", "Je ne possède pas de diplôme(s) officiel(s)"],
+                ["de-be", "Ich habe keine offiziellen Diplome/Zeugnisse"],
             ])
         },
         {
@@ -1192,6 +1198,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Diploma lager onderwijs"],
                 ["fr-be", "Le diplôme de l’enseignement primaire"],
+                ["de-be", "Zeugnis der Grundschulausbildung"],
             ])
         },
         {
@@ -1199,6 +1206,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Getuigschrift tweede graad secundair onderwijs"],
                 ["fr-be", "Le certificat d'enseignement secondaire du deuxième degré"],
+                ["de-be", "Zeugnis des zweiten Grades der Sekundarschule"],
             ])
         },
         {
@@ -1206,6 +1214,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Diploma secundair onderwijs"],
                 ["fr-be", "Le diplôme de l’enseignement secondaire"],
+                ["de-be", "Abschlusszeugnis der Sekundarschule"],
             ])
         },
         {
@@ -1213,6 +1222,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Professionele of Academische Bachelor opleiding"],
                 ["fr-be", "Un bachelier professionnel ou académique"],
+                ["de-be", "Professionelle oder Akademische Bachelor-Ausbilung"],
             ])
         },
         {
@@ -1220,6 +1230,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Master opleiding of PhD (doctor)"],
                 ["fr-be", "Une maîtrise ou un doctorat (docteur)"],
+                ["de-be", "Master-Ausbildung oder PhD (Dr.)"],
             ])
         },
         {
@@ -1227,6 +1238,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             content: new Map([
                 ["nl-be", "Dat wil ik niet aangeven"],
                 ["fr-be", "Je préfère ne pas répondre à cette question"],
+                ["de-be", "Das möchte ich nicht angeben"],
             ])
         },
     ]);
