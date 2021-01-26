@@ -2675,6 +2675,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
         generateTitleComponent(new Map([
             ["nl-be", "Volgt u een specifiek dieet?"],
             ["fr-be", "Suivez-vous un régime alimentaire particulier?"],
+            ["de-be", "Befolgen Sie eine spezielle Diät?"],
         ]))
     );
 
@@ -2688,6 +2689,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2695,6 +2697,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 content: new Map([
                     ["nl-be", "We onderzoeken of een dieet een link kan hebben met het risico op infecties hebben."],
                     ["fr-be", "Nous cherchons à savoir si un régime alimentaire peut avoir un lien avec le risque d'infections."],
+                    ["de-be", "Wir untersuchen, ob eine Diät eine Verbindung mit dem Infektionsrisiko haben kann."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2702,6 +2705,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich das beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2709,6 +2713,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 content: new Map([
                     ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
                     ["fr-be", "Plusieurs réponses sont possibles, cochez toutes les options pertinentes."],
+                    ["de-be", "Mehrere Antworten sind möglich; kreuzen Sie daher alle Alternativen an, die relevant sind."],
                 ]),
             },
         ])
@@ -2723,6 +2728,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'Mehrere Antworten möglich'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2731,6 +2737,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Nee, ik volg geen specifiek dieet"],
                 ["fr-be", "Non, je ne suis pas de régime alimentaire spécifique"],
+                ["de-be", "Nein, ich befolge keine spezifische Diät"],
             ])
         },
         {
@@ -2739,6 +2746,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Ik eet vegetarisch"],
                 ["fr-be", "Je suis un régime alimentaire végétarien"],
+                ["de-be", "Ich esse vegetarisch"],
             ])
         },
         {
@@ -2747,6 +2755,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Ik eet veganistisch"],
                 ["fr-be", "Je suis un régime alimentaire végétalien"],
+                ["de-be", "Ich esse vegan"],
             ])
         },
         {
@@ -2755,6 +2764,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Ik eet caloriearm"],
                 ["fr-be", "Je suis un régime alimentaire faible en calories"],
+                ["de-be", "Ich esse kalorienarm"],
             ])
         },
         {
@@ -2763,6 +2773,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Ik volg een dieet als gevolg van een allergie en/of voedselintolerantie"],
                 ["fr-be", "Je suis un régime alimentaire en raison d'une allergie et/ou d'une intolérance alimentaire"],
+                ["de-be", "Ich befolge keine Diät als Folge einer Allergie und/oder Nahrungsintoleranz"],
             ])
         },
         {
@@ -2772,10 +2783,12 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             content: new Map([
                 ["nl-be", "Ik volg een ander dieet"],
                 ["fr-be", "Je suis un autre type de régime alimentaire"],
+                ["de-be", "Ich befolge eine andere Diät"],
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
                 ["fr-be", "Décris (facultatif)"],
+                ["de-be", "hier beschreiben (Optional)"],
             ])
         },
     ]);
@@ -2811,6 +2824,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
         generateTitleComponent(new Map([
             ["nl-be", "Waar heeft u van Infectieradar.be gehoord?"],
             ["fr-be", "Où avez-vous entendu parler d'Infectieradar.be?"],
+            ["de-be", "Wo haben Sie von infectieradar.be gehört?"],
         ]))
     );
 
@@ -2824,6 +2838,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2831,6 +2846,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["nl-be", "We willen weten hoe u infectieradar.be gevonden heeft."],
                     ["fr-be", "Nous voulons savoir comment vous avez connu notre site Internet infectieradar.be."],
+                    ["de-be", "Wir möchten wissen, wie Sie infectieradar.be gefunden haben."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2846,6 +2862,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'Mehrere Antworten möglich'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2854,6 +2871,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Op radio of televisie"],
                 ["fr-be", "À la radio ou à la télévision"],
+                ["de-be", "Im Rundfunk oder Fernsehen"],
             ])
         },
         {
@@ -2861,6 +2879,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "In de krant of magazine"],
                 ["fr-be", "Dans un journal ou un magazine"],
+                ["de-be", "In der Zeitung oder Zeitschrift"],
             ])
         },
         {
@@ -2868,6 +2887,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Via internet (website, nieuwswebsite, zoekmachine) behalve sociale media"],
                 ["fr-be", "Par le biais d’Internet (un site Internet, un site Internet d'information, un moteur de recherche) à l’exception des médias sociaux"],
+                ["de-be", "Über das Internet (Website, News-Website, Suchmaschine) außer soziale Medien"],
             ])
         },
         {
@@ -2875,6 +2895,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Via sociale media (facebook, twitter, instagram, etc.)"],
                 ["fr-be", "Par le biais des médias sociaux (Facebook, Twitter, Instagram, etc.)"],
+                ["de-be", "Über soziale Medien (Facebook, Twitter, Instagram usw.)"],
             ])
         },
         {
@@ -2882,6 +2903,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Via vrienden en familie"],
                 ["fr-be", "Par l'intermédiaire des amis et de la famille"],
+                ["de-be", "Über Freunde und Familie"],
             ])
         },
         {
@@ -2889,6 +2911,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Via school of werk"],
                 ["fr-be", "Par le biais de l'école ou du travail"],
+                ["de-be", "Über die Schule oder die Arbeit"],
             ])
         },
         {
@@ -2896,6 +2919,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             content: new Map([
                 ["nl-be", "Andere"],
                 ["fr-be", "Autre"],
+                ["de-be", "Andere"],
             ])
         },
     ]);

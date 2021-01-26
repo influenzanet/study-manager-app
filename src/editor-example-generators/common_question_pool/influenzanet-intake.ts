@@ -3094,6 +3094,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             ["nl-be", "Heeft u huisdieren?"],
             ["fr", "Avez-vous un animal domestique?"],
             ["fr-be", "Avez-vous des animaux de compagnie?"],
+            ["de-be", "Haben Sie Haustiere?"],
         ]))
     );
 
@@ -3110,6 +3111,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3120,6 +3122,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                     ["nl-be", "We onderzoeken of het hebben van huisdieren een link kan hebben met het risico op infecties."],
                     ["fr", ""],
                     ["fr-be", "Nous cherchons à savoir si le fait d’avoir un animal de compagnie peut avoir un lien avec le risque d'infections."],
+                    ["de-be", "Wir untersuchen, ob die Haltung von Haustieren eine Verbindung zum Infektionsrisiko haben kann."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3138,6 +3141,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
                 ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -3149,6 +3153,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
                 ["fr-be", "Non"],
+                ["de-be", "Nein"],
             ])
         },
         {
@@ -3160,6 +3165,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere honden"],
                 ["fr", "Oui, un ou plusieurs chien(s)"],
                 ["fr-be", "Oui, un ou plusieurs chien(s)"],
+                ["de-be", "Ja, einen oder mehrere Hunde"],
             ])
         },
         {
@@ -3171,6 +3177,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere katten"],
                 ["fr", "Oui, un ou plusieurs chat(s)"],
                 ["fr-be", "Oui, un ou plusieurs chat(s)"],
+                ["de-be", "Ja, eine oder mehrere Katzen"],
             ])
         },
         {
@@ -3182,6 +3189,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere vogels"],
                 ["fr", "Oui, un ou plusieurs oiseau(x)"],
                 ["fr-be", "Oui, un ou plusieurs oiseau(x)"],
+                ["de-be", "Ja, einen Vogel oder mehrere Vögel"],
             ])
         },
         {
@@ -3193,6 +3201,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meer andere dieren"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
                 ["fr-be", "Oui, un ou plusieurs autre(s) animal (animaux)"],
+                ["de-be", "Ja, eines oder mehrere andere Tiere"],
             ])
         },
     ]);
