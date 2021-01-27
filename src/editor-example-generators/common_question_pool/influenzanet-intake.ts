@@ -997,12 +997,12 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
     if (keyOfAgeGroups) {
         editor.setCondition(
             expWithArgs('or',
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '0', 'col2'].join('.'), '0'),
                 expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '1', 'col2'].join('.'), '0'),
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '2', 'col2'].join('.'), '0'),
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '2a', 'col2'].join('.'), '0'), // needed for BE
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '2b', 'col2'].join('.'), '0'), // needed for BE
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '2c', 'col2'].join('.'), '0'), // needed for BE
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '2d', 'col2'].join('.'), '0')  // needed for BE
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '11', 'col2'].join('.'), '0'), // needed for BE
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '12', 'col2'].join('.'), '0'), // needed for BE
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '13', 'col2'].join('.'), '0'), // needed for BE
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '14', 'col2'].join('.'), '0')  // needed for BE
             )
         );
     }

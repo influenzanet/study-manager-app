@@ -524,7 +524,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '1', role: 'option',
+            key: '10', role: 'option',
             content: new Map([
                 ["nl-be", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
                 ["fr-be", "J’effectue un autre type de travail intellectuel (responsable, chercheur, comptable)"],
@@ -532,7 +532,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             ])
         },
         {
-            key: '2', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist, etc.)"],
                 ["fr-be", "J’effectue un travail administratif (administration, assistant financier, réceptionniste, etc.)"],
@@ -556,7 +556,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             ])
         },
         {
-            key: '5', role: 'option',
+            key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Ik ben arts of verpleegkundige"],
                 ["fr-be", "Je travaille en tant que médecin ou infirmier"],
@@ -564,7 +564,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             ])
         },
         {
-            key: '6', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Anders, valt niet in bovengenoemde opties"],
                 ["fr-be", "Un autre type de travail, mon travail ne fait pas partie des options susmentionnées"],
@@ -595,7 +595,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q4c2'
+    const defaultKey = 'Q4_BE_c2'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -839,7 +839,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const work_school = (parentKey: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q4c3'
+    const defaultKey = 'Q4_BE_c3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -973,7 +973,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q4c4'
+    const defaultKey = 'Q4_BE_c4'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -1093,7 +1093,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
             ])
         },
         {
-            key: '7', role: 'option',
+            key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Ik werk in een arts-specialistenpraktijk"],
                 ["fr-be", "Je travaille dans un cabinet de médecins-spécialistes"],
@@ -1101,7 +1101,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
             ])
         },
         {
-            key: '6', role: 'option',
+            key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Overig"],
                 ["fr-be", "Autre"],
@@ -1365,7 +1365,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ])
         },
         {
-            key: '2', role: 'option',
+            key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Meer dan 10 mensen van 65 jaar en ouder"],
@@ -1374,7 +1374,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Patiënten"],
@@ -1383,7 +1383,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ])
         },
         {
-            key: '4', role: 'option',
+            key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["nl-be", "Groepen mensen (behalve kinderen en personen ouder dan 65) groter dan 10 personen"],
@@ -1392,7 +1392,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ])
         },
         {
-            key: '5', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Geen van de bovenstaande antwoorden is van toepassing"],
                 ["fr-be", "Aucune des réponses susmentionnées ne s'applique"],
@@ -1533,7 +1533,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '1', role: 'responseRow',
+            key: '0', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1547,7 +1547,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2a', role: 'responseRow',
+            key: '11', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1561,7 +1561,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2b', role: 'responseRow',
+            key: '12', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1575,7 +1575,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2c', role: 'responseRow',
+            key: '13', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1589,7 +1589,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2d', role: 'responseRow',
+            key: '14', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1603,7 +1603,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '3', role: 'responseRow',
+            key: '2', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1617,7 +1617,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '4', role: 'responseRow',
+            key: '3', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1631,7 +1631,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '5', role: 'responseRow',
+            key: '4', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
