@@ -2814,7 +2814,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q17BE'
+    const defaultKey = 'Q_BE_17'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
     editor.setVersion(1);
@@ -2945,7 +2945,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q21BE'
+    const defaultKey = 'Q_BE_21'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -3070,7 +3070,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid19_episode?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q21aBE'
+    const defaultKey = 'Q_BE_21a'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -3348,7 +3348,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions = (parentKey: string, keyprevious_covid19_episode?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22BE'
+    const defaultKey = 'Q_BE_22'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -3420,7 +3420,7 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_medical_aid = (parentKey: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22aBE'
+    const defaultKey = 'Q_BE_22a'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -3520,7 +3520,7 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_hospital = (parentKey: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22bBE'
+    const defaultKey = 'Q_BE_22b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -3612,7 +3612,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_hospital_length = (parentKey: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22cBE'
+    const defaultKey = 'Q_BE_22c'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -3919,7 +3919,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22dBE'
+    const defaultKey = 'Q_BE_22d'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -4011,7 +4011,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_coma = (parentKey: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22eBE'
+    const defaultKey = 'Q_BE_22e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -4095,7 +4095,7 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_returned_health = (parentKey: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22fBE'
+    const defaultKey = 'Q_BE_22f'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
@@ -4179,7 +4179,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadditional_covid19_questions_returned_health?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q22gBE'
+    const defaultKey = 'Q_BE_22g'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
