@@ -1838,7 +1838,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
         generateTitleComponent(new Map([
             ["en", "When were you vaccinated against flu in the season 2020/2021?"],
             ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
-            ["nl-be", "nneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
+            ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
             ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021?"],
             ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],

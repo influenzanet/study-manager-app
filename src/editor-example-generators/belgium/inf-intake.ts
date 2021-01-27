@@ -319,7 +319,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
         {
             key: '8', role: 'option',
             content: new Map([
-                ["nl-be", "Anders"],
+                ["nl-be", "Andere"],
                 ["fr-be", "Autre"],
                 ["de-be", "Anderes"],
             ])
@@ -566,7 +566,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl-be", "Anders, valt niet in bovengenoemde opties"],
+                ["nl-be", "Andere, valt niet in bovengenoemde opties"],
                 ["fr-be", "Un autre type de travail, mon travail ne fait pas partie des options susmentionnées"],
                 ["de-be", "Andere, fällt nicht unter die oben genannten Alternativen"],
             ])
