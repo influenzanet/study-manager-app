@@ -232,9 +232,9 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 content: new Map([
-                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die nog niet naar school gaan, vinkt u het vakje 'anders' aan."],
-                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas encore à l'école, cochez la case 'autre'."],
-                    ["de-be", "Kreuzen Sie das Kästchen an, das am meisten mit Ihrem Beruf übereinstimmt.Für Babys und Kleinkinder, die noch nicht zur Schule gehen, kreuzen Sie das Kästchen 'andere' an."],
+                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die niet naar kinderdagverblijf of school gaan, vinkt u het vakje 'anders' aan."],
+                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas à la garderie ou l'école, cochez la case 'autre'."],
+                    ["de-be", "Kreuzen Sie das Kästchen an, das am meisten mit Ihrem Beruf übereinstimmt. Für Babys und Kleinkinder, die nicht zur Kita oder Schule gehen, kreuzen Sie das Kästchen 'andere' an."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -271,9 +271,9 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl-be", "Ik ben een scholier of student"],
-                ["fr-be", "Je suis écolier (écolière) ou étudiant(e)"],
-                ["de-be", "Ich bin Schüler oder Student"],
+                ["nl-be", "Ik ga naar een kinderdagverblijf, school of universiteit"],
+                ["fr-be", "Garderie, Ecolier, étudiant (école / université)"],
+                ["de-be", "Ich gehe in eine Kindertagesstätte/Kita, Schule oder Universität"],
             ])
         },
         {
