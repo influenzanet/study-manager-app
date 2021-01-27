@@ -1865,7 +1865,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             ])
         },
         {
-            key: '2', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
@@ -1873,7 +1873,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
@@ -2273,11 +2273,19 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ])
         },
         {
-            key: '10', role: 'option',
+            key: '26', role: 'option',
             content: new Map([
                 ["nl-be", "Het is niet gemakkelijk om gevaccineerd te worden"],
                 ["fr-be", "Il n’est pas facile de se faire vacciner"],
                 ["de-be", "Es ist nicht einfach, geimpft zu werden"],
+            ])
+        },
+        {
+            key: '25', role: 'option',
+            content: new Map([
+                ["nl-be", "Het vaccin was niet beschikbaar voor mij"],
+                ["fr-be", "Le vaccin n'était pas disponible pour moi"],
+                ["de-be", "Der Impfstoff war für mich nicht verfügbar"],
             ])
         },
         {
@@ -2294,14 +2302,6 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 ["nl-be", "Het verkrijgen van een griepvaccin vergt te veel tijd en moeite ten opzichte van de mogelijke voordelen ervan"],
                 ["fr-be", "L'obtention d'un vaccin contre la grippe exige trop de temps et d'efforts par rapport à ses avantages potentiels"],
                 ["de-be", "Die Grippeimpfung erfordert viel Zeit und Mühe in Bezug auf ihre möglichen Vorteile"],
-            ])
-        },
-        {
-            key: '25', role: 'option',
-            content: new Map([
-                ["nl-be", "Het vaccin was niet beschikbaar voor mij"],
-                ["fr-be", "Le vaccin n'était pas disponible pour moi"],
-                ["de-be", "Der Impfstoff war für mich nicht verfügbar"],
             ])
         },
         {
@@ -2480,7 +2480,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             ])
         },
         {
-            key: '8', role: 'option',
+            key: '7', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, voor andere redenen"],
@@ -2489,7 +2489,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             ])
         },
         {
-            key: '7', role: 'option',
+            key: '99', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Dat wil ik niet aangeven"],
