@@ -1770,7 +1770,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '0', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 ["en", "Yes, I'm planning to"],
                 ["nl", "Ja, dit ben ik van plan"],
@@ -1779,7 +1779,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             ])
         },
         {
-            key: '1', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes, I have got one"],
                 ["nl", "Ja, deze heb ik al gehaald"],
@@ -1787,7 +1787,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             ])
         },
         {
-            key: '2', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
                 ["nl", "Nee"],
@@ -1796,7 +1796,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know (yet)"],
                 ["nl", "Dat weet ik (nog) niet"],
@@ -1848,7 +1848,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
     // CONDITION
     if (keyFluVaccineThisSeason) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '1')
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '0')
         );
     }
 
