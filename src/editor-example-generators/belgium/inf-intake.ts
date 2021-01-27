@@ -2918,7 +2918,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Via sociale media (facebook, twitter, instagram, etc.)"],
                 ["fr-be", "Par le biais des médias sociaux (Facebook, Twitter, Instagram, etc.)"],
@@ -2942,7 +2942,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             ])
         },
         {
-            key: '6', role: 'option',
+            key: '99', role: 'option',
             content: new Map([
                 ["nl-be", "Andere"],
                 ["fr-be", "Autre"],
