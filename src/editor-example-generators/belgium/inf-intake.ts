@@ -1925,7 +1925,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     // CONDITION
     if (keyFluVaccineThisSeason) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '0')
         );
     }
 
@@ -2123,7 +2123,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // CONDITION
     if (keyFluVaccineThisSeason) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '2')
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '1')
         );
     }
 
