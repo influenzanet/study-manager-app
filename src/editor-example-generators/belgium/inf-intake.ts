@@ -588,7 +588,6 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
 
 /**
  * WORK SECTOR: single choice question about main sector of work
- * TO DO: possible to add free text field if option 19 is chosen (to be discussed if really want this?)
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -809,11 +808,17 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             ])
         },
         {
-            key: '19', role: 'option',
+            key: '19', role: 'input',
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Andere"],
                 ["fr-be", "Autre"],
                 ["de-be", "Andere"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Décris (facultatif)"],
+                ["de-be", "hier beschreiben (Optional)"],
             ])
         },
     ]);
@@ -2064,11 +2069,17 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             ])
         },
         {
-            key: '9', role: 'option',
+            key: '9', role: 'input',
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Andere reden"],
                 ["fr-be", "Une autre raison"],
                 ["de-be", "Andere Gründe"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Décris (facultatif)"],
+                ["de-be", "hier beschreiben (Optional)"],
             ])
         },
     ]);
@@ -2088,7 +2099,6 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
 
 /**
  *  REASONS AGAINST FLU VACCINE THIS SEASON: multiple choice
- * TO DO: add optional free text field if 23 is chosen (to be discussed?)
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param keyFluVaccineThisSeason full key of the question about if you received flu vaccine this year, if set, dependency is applied
@@ -2233,11 +2243,17 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ])
         },
         {
-            key: '23', role: 'option',
+            key: '23', role: 'input',
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Een andere reden gerelateerd aan COVID-19"],
                 ["fr-be", "Une autre raison liée au coronavirus"],
                 ["de-be", "Ein anderer Grund hängt mit COVID-19 zusammen"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Décris (facultatif)"],
+                ["de-be", "hier beschreiben (Optional)"],
             ])
         },
         {
@@ -2321,11 +2337,17 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ])
         },
         {
-            key: '14', role: 'option',
+            key: '14', role: 'input',
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Andere reden"],
                 ["fr-be", "Une autre raison"],
                 ["de-be", "Anderer Grund"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Décris (facultatif)"],
+                ["de-be", "hier beschreiben (Optional)"],
             ])
         },
     ]);
@@ -2345,7 +2367,6 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
 
 /**
  * REGULAR MEDICATION: multiple choice about medication
- * TO DO: add optional free text field if 8 is chosen (to be discussed?)
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2480,12 +2501,18 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             ])
         },
         {
-            key: '7', role: 'option',
+            key: '7', role: 'input',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Ja, voor andere redenen"],
                 ["fr-be", "Oui, pour d'autres raisons"],
                 ["de-be", "Ja, aus anderen Gründen"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Décris (facultatif)"],
+                ["de-be", "hier beschreiben (Optional)"],
             ])
         },
         {
