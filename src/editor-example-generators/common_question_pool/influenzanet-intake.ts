@@ -22,6 +22,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your gender?"],
+            ["en-be", "What is your gender?"],
             ["nl", "Wat is je geslacht?"],
             ["nl-be", "Wat is uw geslacht?"],
             ["fr", "Quel est votre sexe?"],
@@ -36,6 +37,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -47,6 +49,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             {
                 content: new Map([
                     ["en", "To find out whether the chance of getting flu is different between genders."],
+                    ["en-be", "In order to examine the differences between men and women."],
                     ["nl", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["nl-be", "Om te kijken naar verschillen tussen mannen en vrouwen."],
                     ["fr", "Pour savoir si le risque de contracter la grippe est différent entre hommes et femmes."],
@@ -65,6 +68,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Male"],
+                ["en-be", "Male"],
                 ["nl", "Man"],
                 ["nl-be", "Man"],
                 ["fr", "Homme"],
@@ -76,6 +80,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Female"],
+                ["en-be", "Female"],
                 ["nl", "Vrouw"],
                 ["nl-be", "Vrouw"],
                 ["fr", "Femme"],
@@ -87,6 +92,7 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Other"],
+                ["en-be", "Other"],
                 ["nl", "Anders"],
                 ["nl-be", "Anders"],
                 ["fr-be", "Autre"],
@@ -126,6 +132,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
+            ["en-be", "What is your date of birth (month and year)?"],
             ["nl", "Wanneer ben je geboren (maand en jaar)?"],
             ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
@@ -142,6 +149,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -153,6 +161,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 content: new Map([
                     ["en", "The chance of getting COVID-19 and the risk of more serious complications vary by age."],
+                    ["en-be", "In order to examine the differences between age groups."],
                     ["nl", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["nl-be", "Om te kijken naar verschillen tussen leeftijdsgroepen."],
                     ["fr", "Les chances de contracter la grippe et les risques de complications varient selon l'âge."],
@@ -186,6 +195,12 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
         content: [
             {
                 code: 'en', parts: [
+                    { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
+                    { str: ' years old' }
+                ]
+            },
+            {
+                code: 'en-be', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
                     { str: ' years old' }
                 ]
@@ -252,6 +267,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What are the first four digits of your home postcode (the part before the space)?"],
+            ["en-be", "What is your home postal code?"],
             ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
             ["nl-be", "Wat is de postcode van uw woonplaats?"],
             ["fr", "Quelle est le code postal de votre domicile?"],
@@ -266,6 +282,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -277,6 +294,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             {
                 content: new Map([
                     ["en", "To check how representative our sample is, and to see whether the chance of getting flu varies across the country."],
+                    ["en-be", "In order to verify the representativeness of our cohort (the group of participants in this study), and to examine the geographical differences in the spread of the coronavirus and influenza."],
                     ["nl", "We doen onderzoek naar de regionale verspreiding van infecties."],
                     ["nl-be", "Om te controleren hoe representatief onze cohort (groep deelnemers aan deze studie) is, en om te kijken naar geografische verschillen in de verspreiding van COVID-19 en griep."],
                     ["fr", "Pour vérifier la représentativité de notre échantillon et pour voir si le risque de contracter la grippe varie à travers le pays."],
@@ -288,6 +306,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", ""],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", ""],
                     ["fr-be", ""],
@@ -298,6 +317,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             {
                 content: new Map([
                     ["en", "Please choose the first part of the post-code (the part before the space)."],
+                    ["en-be", ""],
                     ["nl", "Het gaat alleen om de eerste 4 cijfers van je postcode (dus niet de letters)."],
                     ["nl-be", ""],
                     ["fr-be", ""],
@@ -316,6 +336,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             // style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["en", "Postcode:"],
+                ["en-be", "Postal code:"],
                 ["nl", "Postcode"],
                 ["nl-be", "Postcode"],
                 ["fr", "Code postal"],
@@ -324,6 +345,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             ]),
             description: new Map([
                 ["en", "the first 4 digits"],
+                ["en-be", ""],
                 ["nl", "de eerste vier cijfers"],
                 ["nl-be", ""],
                 ["fr-be", ""],
@@ -334,6 +356,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["en-be", "I prefer not to answer this question"],
                 ["nl", "Dit wil ik niet aangeven"],
                 ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr", "Je ne sais pas / Je ne m'en souviens plus"],
@@ -367,6 +390,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             role: 'error',
             content: generateLocStrings(new Map([
                 ["en", "Please enter the first four digits of your postcode"],
+                ["en-be", "Please enter the four digits of your postal code"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
                 ["nl-be", "Voer de vier cijfers van je postcode in"],
                 ["fr-be", "4 chiffres"],
@@ -985,6 +1009,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How many of the children in your household go to school or day-care? Assume a normal situation, without any covid measures"],
+            ["en-be", "How many of the children in your household go to school or day-care?"],
             ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
             ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een kinderdagverblijf?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
@@ -1013,6 +1038,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -1024,6 +1050,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             {
                 content: new Map([
                     ["en", "Attending school or day-care may be a risk for acquiring certain virus based illnesses. We would like to check this."],
+                    ["en-be", "Attending school, daycare or childcare can increase the risk of contracting the coronavirus or influenza, as well as other similar illnesses. We wish to study this issue."],
                     ["nl", "Het bezoeken van een school of kinderdagverblijf kan het risico voor infecties verhogen. Of dit het geval is en in welke mate willen we graag onderzoeken."],
                     ["nl-be", "Naar school of kinderopvang gaan, kan een verhoogd risico zijn voor het krijgen van COVID-19 of griep en soortgelijke ziekten. We willen dit graag onderzoeken."],
                     ["fr", "Fréquenter l'école ou à la garderie pourrait augmenter les risques de contracter la grippe et des maladies similaires. Nous tenons à le vérifier."],
@@ -1035,6 +1062,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
@@ -1046,6 +1074,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             {
                 content: new Map([
                     ["en", "If the child is attending regular school or day-care (even this is just one day a week) then please count it. Attendance of clubs and activities does not count - even if regular."],
+                    ["en-be", "If your child attends school, daycare or childcare (even if only one day a week), please count it. Participation in (sport) associations or other extracurricular activities does not count."],
                     ["nl", "Zelfs als het kind slechts 1 maal per week naar een kinderdagverblijf gaat, geef dit dan aan (clubs en verenigingen tellen niet mee)"],
                     ["nl-be", "Als uw kind naar school of kinderopvang gaat (ook al is dit maar één dag in de week) antwoord dan met ja. Lidmaatschap bij (sport)verenigingen of andere buitenschoolse activiteiten tellen niet mee."],
                     ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
@@ -1064,6 +1093,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             key: '0', role: 'option',
             content: new Map([
                 ["en", "None"],
+                ["en-be", "None"],
                 ["nl", "Geen"],
                 ["nl-be", "Geen"],
                 ["fr", "Aucun"],
@@ -1105,6 +1135,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
             key: '99', role: 'option',
             content: new Map([
                 ["en", "More than 5"],
+                ["en-be", "More than 5"],
                 ["nl", "Meer dan 5"],
                 ["nl-be", "Meer dan 5"],
                 ["fr", "Plus de 5"],
@@ -1145,6 +1176,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your main means of transport? Assume a normal situation, without any covid measures"],
+            ["en-be", "What means of transportation do you typically use for your daily activities? Please select the transportation means you use the most."],
             ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["nl-be", "Hoe verplaatst u zich doorgaans voor uw dagelijkse activiteiten? Gelieve de vervoerswijze te selecteren waar u het meest gebruik van maakt."],
             ["fr", "Quel est votre principal moyen de transport?"],
@@ -1159,6 +1191,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -1170,6 +1203,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["en", "It has been suggested that using public transport may be a risk for infection. We would like to check this."],
+                    ["en-be", "We want to know if people who regularly use public transportation have a higher risk of infection."],
                     ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
@@ -1181,6 +1215,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
@@ -1192,6 +1227,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["en", "Tick the option that best represents your most normal mode of transport."],
+                    ["en-be", "Mark the box that best matches the means of transportation you most frequently use."],
                     ["nl", "Ga uit van de normale situatie en je meest gangbare - dagelijkse - manier van verplaatsen."],
                     ["nl-be", "Vink de optie aan die het beste overeenkomt met uw meest gebruikte vervoermiddel."],
                     ["fr", "Cochez l'option qui représente le mieux votre mode de transport habituel."],
@@ -1210,6 +1246,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Walking"],
+                ["en-be", "Walking"],
                 ["nl", "Lopend"],
                 ["nl-be", "Te voet"],
                 ["fr", "La marche"],
@@ -1221,6 +1258,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Bike"],
+                ["en-be", "Bike"],
                 ["nl", "Op de fiets"],
                 ["nl-be", "Op de fiets"],
                 ["fr", "Le vélo"],
@@ -1232,6 +1270,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Motorbike/scooter"],
+                ["en-be", "Motorbike/scooter"],
                 ["nl", "Met de scooter of motor"],
                 ["nl-be", "Met de scooter of motor"],
                 ["fr", "Le scooter, la moto"],
@@ -1243,6 +1282,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Car"],
+                ["en-be", "Car"],
                 ["nl", "Met de auto"],
                 ["nl-be", "Met de auto"],
                 ["fr", "La voiture"],
@@ -1254,6 +1294,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Public transportation (bus, train, tube, etc)"],
+                ["en-be", "Public transportation (bus, train, tube, etc)"],
                 ["nl", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["nl-be", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
@@ -1265,6 +1306,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             key: '5', role: 'option',
             content: new Map([
                 ["en", "Other"],
+                ["en-be", "Other"],
                 ["nl", "Anders"],
                 ["nl-be", "Andere"],
                 ["fr", "Autre"],
@@ -1304,6 +1346,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "On a normal day, how much time do you spend on public transport? (Bus, train, tube etc.) Assume a normal situation, without any covid measures"],
+            ["en-be", "On a normal day, how much time do you spend on public transport (bus, train, tube, etc)?"],
             ["nl", "Hoeveel tijd breng je op een gemiddelde dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["nl-be", "Hoeveel tijd brengt u op een doordeweekse dag door in het openbaar vervoer?"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
@@ -1318,6 +1361,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -1329,6 +1373,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             {
                 content: new Map([
                     ["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],
+                    ["en-be", "We want to know if people who regularly use public transportation have a higher risk of infection."],
                     ["nl", "Veel mensen denken dat het openbaar vervoer een risico op infecties met zich mee brengt, wij hopen dit te onderzoeken."],
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
@@ -1340,6 +1385,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
@@ -1351,6 +1397,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             {
                 content: new Map([
                     ["en", "Think of a typical day. If you use several different forms of public transport each day, remember to include all journeys. Don't include taxis or other forms of private transport."],
+                    ["en-be", "Think of a typical day. If you use different types of public transportation during the same day, don’t forget to include all the journeys. Do not include taxis or other forms of private transportation."],
                     ["nl", "Denk aan een typische dag. Als je verschillende vormen van openbaar vervoer gebuikt tel dan de duur bij elkaar op."],
                     ["nl-be", "Denk aan een typische dag. Als u elke dag verschillende vormen van openbaar vervoer gebruikt op één dag, vergeet dan niet om alle ritten mee te nemen. Exclusief taxi's of andere vormen van privévervoer."],
                     ["fr", "Pensez à une journée typique: si vous utilisez plusieurs formes de transports en commun chaque jour, rappelez-vous d'inclure tous les voyages. N'incluez pas les taxis ou les autres formes de transport privé."],
@@ -1369,6 +1416,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             key: '0', role: 'option',
             content: new Map([
                 ["en", "No time at all"],
+                ["en-be", "No time at all"],
                 ["nl", "Ik ga normaal niet met het openbaar vervoer"],
                 ["nl-be", "Ik ga normaal niet met het openbaar vervoer"],
                 ["fr", "Pas de temps du tout"],
@@ -1380,6 +1428,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             key: '1', role: 'option',
             content: new Map([
                 ["en", "0-30 minutes"],
+                ["en-be", "0-30 minutes"],
                 ["nl", "0 tot 30 minuten"],
                 ["nl-be", "0 tot 30 minuten"],
                 ["fr", "0-30 minutes"],
@@ -1391,6 +1440,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             key: '2', role: 'option',
             content: new Map([
                 ["en", "30 minutes - 1.5 hours"],
+                ["en-be", "30 minutes - 1.5 hours"],
                 ["nl", "30 minuten tot 1,5 uur"],
                 ["nl-be", "30 minuten tot 1,5 uur"],
                 ["fr", "30 minutes - 1.5 heures"],
@@ -1402,6 +1452,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             key: '3', role: 'option',
             content: new Map([
                 ["en", "1.5 hours - 4 hours"],
+                ["en-be", "1.5 hours - 4 hours"],
                 ["nl", "1,5 uur tot 4 uur"],
                 ["nl-be", "1,5 uur tot 4 uur"],
                 ["fr", "1.5 - 4 heures"],
@@ -1413,6 +1464,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Over 4 hours"],
+                ["en-be", "Over 4 hours"],
                 ["nl", "Meer dan 4 uur"],
                 ["nl-be", "Meer dan 4 uur"],
                 ["fr", "Plus de 4 heures"],
@@ -1452,6 +1504,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How often do you have common colds or flu-like diseases?"],
+            ["en-be", "How often do you have common colds or flu-like diseases?"],
             ["nl", "Hoe vaak heb je last van verkoudheid of griepachtige verschijnselen?"],
             ["nl-be", "Hoe vaak heeft u last van verkoudheid of griepachtige verschijnselen (voorbeeld: loopneus, hoest)?"],
             ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
@@ -1466,6 +1519,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", ""],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", ""],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
@@ -1477,6 +1531,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", ""],
+                    ["en-be", "We want to know if some people have an increased risk of infection."],
                     ["nl", ""],
                     ["nl-be", "We onderzoeken of sommige mensen een verhoogd risico op infecties hebben."],
                     ["fr", ""],
@@ -1495,6 +1550,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Never"],
+                ["en-be", "Never"],
                 ["nl", "Minder dan 1 keer per jaar"],
                 ["nl-be", "Nooit"],
                 ["fr", "Jamais"],
@@ -1506,6 +1562,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Once or twice a year"],
+                ["en-be", "Once or twice a year"],
                 ["nl", "1 of 2 keer per jaar"],
                 ["nl-be", "1 of 2 keer per jaar"],
                 ["fr", "1 ou 2 fois par an"],
@@ -1517,6 +1574,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Between 3 and 5 times a year"],
+                ["en-be", "Between 3 and 5 times a year"],
                 ["nl", "Tussen 3 en 5 keer per jaar"],
                 ["nl-be", "Tussen 3 en 5 keer per jaar"],
                 ["fr", "De 3 à 5 fois par an"],
@@ -1528,6 +1586,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Between 6 and 10 times a year"],
+                ["en-be", "Between 6 and 10 times a year"],
                 ["nl", "Tussen 6 en 10 keer per jaar"],
                 ["nl-be", "Tussen 6 en 10 keer per jaar"],
                 ["fr", "De 6 à 10 fois par an"],
@@ -1539,6 +1598,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             key: '4', role: 'option',
             content: new Map([
                 ["en", "More that 10 times a year"],
+                ["en-be", "More that 10 times a year"],
                 ["nl", "Meer dan 10 keer per jaar"],
                 ["nl-be", "Meer dan 10 keer per jaar"],
                 ["fr", "Plus de 10 fois par an"],
@@ -1550,6 +1610,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             key: '5', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
+                ["en-be", "I don't know"],
                 ["nl", "Dat weet ik niet"],
                 ["nl-be", "Dat weet ik niet"],
                 ["fr", "Je ne sais pas"],
@@ -1590,6 +1651,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],
+            ["en-be", "Did you receive a flu vaccine during the previous flu season (2019-2020)?"],
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
@@ -1604,6 +1666,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -1616,6 +1679,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "We would like to be able to work out how much protection the vaccine gives. We would also like to find out if there is some protection from vaccines received in previous years."],
+                    ["en-be", "We would like to study what level of protection the vaccine provides. We would also like to know if there is any protection from vaccines received in previous years."],
                     ["nl", "We willen de beschermende werking van het vaccin onderzoeken."],
                     ["nl-be", "We willen graag onderzoeken hoeveel bescherming het vaccin geeft. We willen ook graag weten of er enige bescherming is dankzij vaccins die in voorgaande jaren zijn ontvangen."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
@@ -1627,6 +1691,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
@@ -1638,6 +1703,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "Report yes, if you received the vaccine this season, usually in the autumn."],
+                    ["en-be", "Answer 'yes' if you were vaccinated in autumn/winter 2019-2020."],
                     ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
@@ -1656,6 +1722,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes"],
+                ["en-be", "Yes"],
                 ["nl", "Ja"],
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
@@ -1667,6 +1734,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
+                ["en-be", "No"],
                 ["nl", "Nee"],
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
@@ -1678,6 +1746,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know"],
+                ["en-be", "I don't know (anymore)"],
                 ["nl", "Dat weet ik niet (meer)"],
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
@@ -1837,6 +1906,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "When were you vaccinated against flu in the season 2020/2021?"],
+            ["en-be", "When were you vaccinated against flu this season (2020-2021)?"],
             ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
@@ -1858,6 +1928,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -1869,6 +1940,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             {
                 content: new Map([
                     ["en", "Knowing when people are vaccinated tells us how well the vaccination programme is being carried out."],
+                    ["en-be", "Knowing when people get vaccinated tells us how the vaccination program is being followed, as well as the effectiveness of the vaccine."],
                     ["nl", "Het weten van de timing van vaccinatie is belangrijk om de effectiviteit te schatten."],
                     ["nl-be", "Weten wanneer mensen worden gevaccineerd, vertelt ons hoe goed het vaccinatieprogramma wordt gevolgd en hoe effectief het vaccin is."],
                     ["fr", "Savoir quand les gens sont vaccinés nous permet d'évaluer le succès des campagnes de vaccination."],
@@ -1880,6 +1952,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
@@ -1891,6 +1964,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             {
                 content: new Map([
                     ["en", "Please, try and answer as accurately as possible. If you don't know the precise date, please give your best estimate. For instance, you might remember the month, then try and remember if it was at the beginning or the end of the month. Were there any significant events (e.g. a holiday or a birthday) that might help jog your memory?"],
+                    ["en-be", "Try to answer as precisely as possible. If you do not know the exact date, provide as close an estimate as possible. For example, if you remember the month, try to recall if it was in the beginning or end of the month. Did any important events take place (such as holidays or birthdays) that may help you to refresh your memory?"],
                     ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was."],
                     ["nl-be", "Probeer zo nauwkeurig mogelijk te antwoorden. Als u de precieze datum niet weet, geef dan uw beste schatting. U kunt zich bijvoorbeeld de maand herinneren en vervolgens proberen te herinneren of het aan het begin of het einde van de maand was. Waren er belangrijke gebeurtenissen (bijv. een vakantie of een verjaardag) die u zouden kunnen helpen om uw geheugen op te frissen?"],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
@@ -1913,6 +1987,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             },
             description: new Map([
                 ["en", "Choose date"],
+                ["en-be", "Choose date"],
                 ["nl", "Kies datum"],
                 ["nl-be", "Kies datum"],
                 ["fr", "Sélectionner une date"],
@@ -1924,6 +1999,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["en-be", "I don't know (anymore)"],
                 ["nl", "Dat weet ik niet (meer)"],
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas, je ne m'en souviens plus"],
@@ -2462,6 +2538,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Are you currently pregnant?"],
+            ["en-be", "Are you currently pregnant?"],
             ["nl", "Ben je op dit moment zwanger?"],
             ["nl-be", "Bent u op dit moment zwanger?"],
             ["fr", "Êtes-vous actuellement enceinte?"],
@@ -2491,6 +2568,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -2502,6 +2580,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             {
                 content: new Map([
                     ["en", "Infections during pregnancy can be different."],
+                    ["en-be", "Pregnancy is a potential risk factor for severe symptoms in the event of infection."],
                     ["nl", "Infecties kunnen soms anders verlopen bij zwangeren."],
                     ["nl-be", "Zwangerschap is een mogelijke risico-factor voor ernstige klachten bij infecties."],
                     ["fr", "La grossesse peut entraîner des complications si vous êtes infecté par la grippe."],
@@ -2520,6 +2599,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes"],
+                ["en-be", "Yes"],
                 ["nl", "Ja"],
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
@@ -2530,6 +2610,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             key: '1', role: 'option',
             content: new Map([
                 ["en", "No"],
+                ["en-be", "No"],
                 ["nl", "Nee"],
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
@@ -2540,6 +2621,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
+                ["en-be", "Don't know/would rather not answer"],
                 ["nl", "Dit weet ik niet/wil ik liever niet aangeven"],
                 ["nl-be", "Dit weet ik niet/wil ik liever niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
@@ -2581,6 +2663,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Which trimester of the pregnancy are you in?"],
+            ["en-be", "Which trimester of the pregnancy are you in?"],
             ["nl", "In welk trimester ben je van je zwangerschap?"],
             ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
             ["fr", "A quel stade de grossesse êtes-vous?"],
@@ -2600,6 +2683,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -2611,6 +2695,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             {
                 content: new Map([
                     ["en", "The stage of pregnancy might alter your infection, although this is not very clear."],
+                    ["en-be", "The risk of severe symptoms can vary depending on the pregnancy trimester, but this link has not yet been clearly established."],
                     ["nl", "Infecties kunnen soms anders verlopen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["nl-be", "Het risico op ernstige klachten van een infectie kan verschillen per trimester van een zwangerschap, maar heel duidelijk is dit nog niet."],
                     ["fr", "Le stade de grossesse pourrait influencer les risques de grippe grave, bien que ce soit pas démontré."],
@@ -2629,6 +2714,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             key: '0', role: 'option',
             content: new Map([
                 ["en", "First trimester (week 1-12)"],
+                ["en-be", "First trimester (week 1-12)"],
                 ["nl", "Eerste trimester (week 1-12)"],
                 ["nl-be", "Eerste trimester (week 1-12)"],
                 ["fr", "Premier trimestre (semaine 1-12)"],
@@ -2640,6 +2726,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Second trimester (week 13-28)"],
+                ["en-be", "Second trimester (week 13-28)"],
                 ["nl", "Tweede trimester (week 13-28)"],
                 ["nl-be", "Tweede trimester (week 13-28)"],
                 ["fr", "Deuxième trimestre (semaine 13-28)"],
@@ -2651,6 +2738,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Third trimester (week 29-delivery)"],
+                ["en-be", "Third trimester (week 29-delivery)"],
                 ["nl", "Derde trimester (week 29 tot bevalling)"],
                 ["nl-be", "Derde trimester (week 29 tot bevalling)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
@@ -2662,6 +2750,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Don't know/would rather not answer"],
+                ["en-be", "Don't know/would rather not answer"],
                 ["nl", "Dit weet ik niet / wil ik niet aangeven"],
                 ["nl-be", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
@@ -2827,6 +2916,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
+            ["en-be", "Do you have one of the following allergies that can cause respiratory symptoms?"],
             ["nl", "Heb je één of meer van de volgende allergieën?"],
             ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
@@ -2844,6 +2934,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["en-be", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
@@ -2855,6 +2946,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             {
                 content: new Map([
                     ["en", "Some allergic reactions can have similar symptoms to respiratory infections."],
+                    ["en-be", "Certain allergies provoke the same symptoms as respiratory infections."],
                     ["nl", "Sommige allergieën geven dezelfde klachten als luchtweginfecties"],
                     ["nl-be", "Sommige allergieën geven dezelfde klachten als luchtweginfecties."],
                     ["fr", "Certaines réactions allergiques peuvent avoir des symptômes similaires ceux d'une infection respiratoire."],
@@ -2866,6 +2958,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["en-be", "How should I answer this question?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
@@ -2877,6 +2970,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             {
                 content: new Map([
                     ["en", "Tick all the options that apply. We are only interested in those allergies that cause respiratory symptoms (i.e. sneezing, sunny nose, runny eyes)."],
+                    ["en-be", "Multiple answers are possible, mark all that apply."],
                     ["nl", "Meerdere antwoorden mogelijk, klik alle opties die relevant zijn."],
                     ["nl-be", "Meerdere antwoorden mogelijk, vink alle opties aan die relevant zijn."],
                     ["fr", "Cochez toutes les options applicables. Nous sommes seulement intéressés par les allergies qui provoquent des symptômes respiratoires (éternuement, nez coulant, yeux larmoyants)."],
@@ -2895,6 +2989,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
+                ['en-be', 'Select all options that apply'],
                 ['nl', 'Meerdere antwoorden mogelijk'],
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
@@ -2908,6 +3003,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Hay fever"],
+                ["en-be", "Hay fever"],
                 ["nl", "Hooikoorts"],
                 ["nl-be", "Hooikoorts"],
                 ["fr", "Rhume des foins"],
@@ -2920,6 +3016,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Allergy against house dust mite"],
+                ["en-be", "Allergy against house dust mite"],
                 ["nl", "Allergie voor huisstofmijt"],
                 ["nl-be", "Allergie voor huisstofmijt"],
                 ["fr", "Allergie aux acariens"],
@@ -2932,6 +3029,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Allergy against domestic animals or pets"],
+                ["en-be", "Allergy against domestic animals or pets"],
                 ["nl", "Allergie voor (huis)dieren"],
                 ["nl-be", "Allergie voor (huis)dieren"],
                 ["fr", "Allergie à des animaux domestiques"],["fr-be", ""],
@@ -2944,6 +3042,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "Other allergies that cause respiratory symptoms (e.g. sneezing, runny eyes)"],
+                ["en-be", "Other allergies that cause respiratory symptoms (e.g. sneezing, runny eyes)"],
                 ["nl", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["nl-be", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["fr", "Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
@@ -2955,6 +3054,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
             key: '5', role: 'option',
             content: new Map([
                 ["en", "I do not have an allergy that causes respiratory symptoms"],
+                ["en-be", "I do not have an allergy that causes respiratory symptoms"],
                 ["nl", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
                 ["nl-be", "Nee, ik heb geen allergie waarvan ik verkoudheidsklachten krijg"],
                 ["fr", "Je n'ai pas d'allergie causant des symptômes respiratoires"],
@@ -3090,6 +3190,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you have pets at home?"],
+            ["en-be", "Do you have pets at home?"],
             ["nl", "Heb je huisdieren?"],
             ["nl-be", "Heeft u huisdieren?"],
             ["fr", "Avez-vous un animal domestique?"],
@@ -3107,6 +3208,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             {
                 content: new Map([
                     ["en", ""],
+                    ["en-be", "Why are we asking this question?"],
                     ["nl", ""],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
@@ -3118,6 +3220,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             {
                 content: new Map([
                     ["en", ""],
+                    ["en-be", "We would like to know if having a pet could be linked to the risk of infection."],
                     ["nl", ""],
                     ["nl-be", "We onderzoeken of het hebben van huisdieren een link kan hebben met het risico op infecties."],
                     ["fr", ""],
@@ -3137,6 +3240,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
+                ['en-be', 'Select all options that apply'],
                 ['nl', 'Meerdere antwoorden mogelijk'],
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
@@ -3149,6 +3253,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             key: '0', role: 'option',
             content: new Map([
                 ["en", "No"],
+                ["en-be", "No"],
                 ["nl", "Nee"],
                 ["nl-be", "Nee"],
                 ["fr", "Non"],
@@ -3161,6 +3266,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one or more dogs"],
+                ["en-be", "Yes, one or more dogs"],
                 ["nl", "Ja, één of meerdere honden"],
                 ["nl-be", "Ja, één of meerdere honden"],
                 ["fr", "Oui, un ou plusieurs chien(s)"],
@@ -3173,6 +3279,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one or more cats"],
+                ["en-be", "Yes, one or more cats"],
                 ["nl", "Ja, één of meerdere katten"],
                 ["nl-be", "Ja, één of meerdere katten"],
                 ["fr", "Oui, un ou plusieurs chat(s)"],
@@ -3185,6 +3292,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one or more birds"],
+                ["en-be", "Yes, one or more birds"],
                 ["nl", "Ja, één of meerdere vogels"],
                 ["nl-be", "Ja, één of meerdere vogels"],
                 ["fr", "Oui, un ou plusieurs oiseau(x)"],
@@ -3197,6 +3305,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, one ore more other animals"],
+                ["en-be", "Yes, one ore more other animals"],
                 ["nl", "Ja, één of meer andere dieren"],
                 ["nl-be", "Ja, één of meer andere dieren"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
@@ -3227,9 +3336,11 @@ const surveyEnd = (parentKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],
+            ["en-be", "This was all for now, please submit your responses. Please come back or continue reporting symptoms you experience during the last week."],
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["fr-be", "Merci"],
+            ["de-be", "Vielen Dank"],
         ]))
     );
 
