@@ -5,7 +5,7 @@ import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../../../editor-engine/survey-editor/component-editor";
 import { CoronaVaccineQuestions } from "../questions/coronaVaccine";
-import { WeeklyQuestions as DefaultWeekly } from "../../common_question_pool/influenzanet-weekly";
+import { WeeklyQuestions as DefaultWeekly } from "../questions/tempWeeklyPool";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -51,7 +51,7 @@ const generateNLWeekly = (): Survey | undefined => {
     // COVID vaccination yes/no
     const Q_coronavaccine = CoronaVaccineQuestions.coronavaccine(rootKey, "Q2NL", true);
     survey.addExistingSurveyItem(Q_coronavaccine, rootKey);
-    
+
 
     // COVID vaccination date
     const Q_coronavaccineWhen = CoronaVaccineQuestions.coronavaccineWhen(rootKey, "Q2aNL", Q_coronavaccine.key, true);
