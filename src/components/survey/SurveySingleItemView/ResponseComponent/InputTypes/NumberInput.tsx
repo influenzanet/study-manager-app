@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
-import { getClassName, getLocaleStringTextByCode } from '../../utils';
+import { getClassName, getLabelPlacementStyle, getLocaleStringTextByCode } from '../../utils';
 import clsx from 'clsx';
 
 interface NumberInputProps {
@@ -82,13 +82,17 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
   const maxValue = props.compDef.properties?.max;
   const stepSize = props.compDef.properties?.stepSize;
 
+  const content = props.compDef.content;
+  const placeAfter = getLabelPlacementStyle(props.compDef.style) === 'after';
+
   return <div
     className={clsx("d-flex align-items-center",
       getClassName(props.compDef.style))}
   >
-    <label htmlFor={props.componentKey} className="me-1">
-      {getLocaleStringTextByCode(props.compDef.content, props.languageCode)}
-    </label>
+    {!placeAfter ? <label htmlFor={props.componentKey} className="me-1">
+      {getLocaleStringTextByCode(content, props.languageCode)}
+    </label> : null}
+
     <input
       style={{
         minWidth: 90,
@@ -100,7 +104,7 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
       id={props.componentKey}
       placeholder={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
       value={inputValue}
-      maxLength={4000}
+      maxLength={30}
       onFocus={handleFocus}
       onClick={(e) => (e.target as HTMLInputElement).select()}
       onChange={handleInputValueChange(props.compDef.key)}
@@ -109,6 +113,10 @@ const NumberInput: React.FC<NumberInputProps> = (props) => {
       max={maxValue ? maxValue as number : undefined}
       step={stepSize ? stepSize as number : undefined}
     />
+
+    {placeAfter ? <label htmlFor={props.componentKey} className="ms-1">
+      {getLocaleStringTextByCode(content, props.languageCode)}
+    </label> : null}
   </div>
 };
 

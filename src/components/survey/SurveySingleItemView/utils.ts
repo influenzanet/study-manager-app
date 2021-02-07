@@ -46,3 +46,14 @@ export const getClassName = (styles?: Array<{ key: string, value: string }>): st
   }
   return className.value;
 }
+
+export const getLabelPlacementStyle = (styles?: Array<{ key: string, value: string }>): string | undefined => {
+  if (!styles) {
+    return;
+  }
+  const className = styles.find(st => st.key === 'labelPlacement');
+  if (!className) {
+    return;
+  }
+  return className.value;
+}
