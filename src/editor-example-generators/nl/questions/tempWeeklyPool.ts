@@ -2112,14 +2112,22 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 ["nl", "Ja, ik heb maag-darmklachten of buikgriep"],
                 ["fr", "Gastro-entérite / grippe intestinale"],
             ])
-        }, {
+        },
+        {
             key: '9', role: 'option',
             content: new Map([
                 ["en", "New coronavirus (COVID-19)"],
                 ["nl", "Ja, het nieuwe coronavirus (COVID-19)"],
                 ["fr", "Nouveau coronavirus (COVID-19)"],
             ])
-        }, {
+        },
+        {
+            key: '10', role: 'option',
+            content: new Map([
+                ["nl", "Ja, ik heb een vaccinatie gehad die de klachten heeft veroorzaakt"],
+            ])
+        },
+        {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Other"],
