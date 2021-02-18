@@ -122,6 +122,7 @@ const DateInput: React.FC<DateInputProps> = (props) => {
           // showYearPicker
           // wrapperClassName="bg-grey-2 border-radius-0"
           // calendarClassName="bg-grey-2"
+          autoComplete="off"
           disabled={props.compDef.disabled !== undefined || props.disabled === true}
           popperPlacement="top"
         />
