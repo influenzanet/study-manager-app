@@ -3,26 +3,31 @@
 // Colors:
 // ---------------------------------------------
 $primary: #3464D5;
+$secondary: #EDEFF4;
 $success: #00A733;
 $warning: #FD9644;
 $danger: #DA3659;
+$info: #BCE0FA;
 
 $theme-colors: (
   "primary": $primary,
-  //"secondary":  $secondary,
+  "secondary":  $secondary,
   "success": $success,
-  //"info":       $info,
+  "info": $info,
   "warning": $warning,
   "danger": $danger,
 );
 
 $custom-colors: (
-    "grey-1": #EDEFF4,
-    "grey-2": #D2D8E1,
-    "grey-5": #6E7D93,
-    "grey-7": #4F5A6B,
-    "lightest": #fff,
-    "danger-light": #FCCFD9,
+  "grey-1": #EDEFF4,
+  "grey-2": #D2D8E1,
+  "grey-5": #6E7D93,
+  "grey-6": #606E82,
+  "grey-7": #4F5A6B,
+  "lightest": #fff,
+  "danger-light": #FCCFD9,
+  "warning-light": #FFEDBD,
+  "success-light": #B6F1CA,
 );
 
 // Merge the maps
@@ -58,6 +63,7 @@ $spacer: 1.875rem !default;
 $spacers: (
   0: 0,
   1: $spacer / 4,
+  1a: $spacer / 3,
   2: $spacer / 2,
   2a: $spacer / 1.5, // 20px
   3: $spacer,
@@ -70,6 +76,16 @@ $enable-negative-margins: true;
 // ---------------------------------------------
 // Form Inputs:
 // ---------------------------------------------
+$input-btn-padding-y: .5625rem !default;
+$input-padding-x:  0.75rem !default;
+
+$input-disabled-bg:                     map-get($theme-colors, "grey-2") !default;
+$input-disabled-border-color:           map-get($theme-colors, "grey-2") !default;
+
+$form-label-font-size: 1.125rem !default;
+$form-label-font-weight:  bold !default;
+
+$input-border-width: 0 !default;
 
 // Checkbox
 $form-check-input-width: 1.5em !default;
@@ -115,6 +131,10 @@ $enable-rounded: false !default;
     cursor: pointer;
 }
 
+.border-2 {
+  border-width: 2px !important;
+}
+
 .border-top-2 {
   border-top-style: solid;
   border-top-width: 2px !important;
@@ -125,3 +145,34 @@ $enable-rounded: false !default;
   border-bottom-width: 2px !important;
 }
 
+.min-vh-25 {
+  min-height: 25vh;
+}
+
+.min-vh-50 {
+  min-height: 50vh;
+}
+
+.min-vh-60 {
+  min-height: 60vh;
+}
+
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+.min-vw-25 {
+  min-height: 25vw;
+}
+
+.min-vw-50 {
+  min-height: 50vw;
+}
+
+.min-vw-60 {
+  min-height: 50vw;
+}
+
+.min-vw-75 {
+  min-height: 75vw;
+}

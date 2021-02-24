@@ -31,12 +31,14 @@ interface DateInputProps {
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
   disabled?: boolean;
+  setOpen: boolean | undefined;
 }
 
 const DateInput: React.FC<DateInputProps> = (props) => {
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [openOnce, setOpenOnce] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     props.prefill && props.prefill.value ? new Date(parseInt(props.prefill.value) * 1000) : undefined,
@@ -105,9 +107,8 @@ const DateInput: React.FC<DateInputProps> = (props) => {
       />
       break;
     default:
-      datepicker = <div className="input-group flex-grow-1">
+      datepicker = <label className="input-group flex-grow-1">
         <DatePicker
-          // open={pickerOpen}
           id={props.componentKey}
           className="form-control border-0"
           selected={selectedDate}
@@ -118,21 +119,21 @@ const DateInput: React.FC<DateInputProps> = (props) => {
           minDate={props.compDef.properties?.min ? new Date((props.compDef.properties?.min as number) * 1000) : undefined}
           maxDate={props.compDef.properties?.max ? new Date((props.compDef.properties?.max as number) * 1000) : undefined}
           // onCalendarClose={() => setPickerOpen(false)}
-          // onCalendarOpen={() => setPickerOpen(true)}
+          onCalendarOpen={() => props.setOpen ? setOpenOnce(true) : undefined}
           // showYearPicker
           // wrapperClassName="bg-grey-2 border-radius-0"
           // calendarClassName="bg-grey-2"
           autoComplete="off"
           disabled={props.compDef.disabled !== undefined || props.disabled === true}
           popperPlacement="top"
+          open={props.setOpen ? (openOnce ? undefined : true) : undefined}
         />
-        <label
-          htmlFor={props.componentKey}
+        <span
           aria-label="Calendar"
-          className="d-none d-sm-inline input-group-text bg-primary text-white border-0">
-          <CalendarIcon />
-        </label>
-      </div >
+          className="d-none d-sm-inline bg-primary text-white border-0">
+          <CalendarIcon fontSize="default" className="m-1" />
+        </span>
+      </label>
       break;
   }
 
