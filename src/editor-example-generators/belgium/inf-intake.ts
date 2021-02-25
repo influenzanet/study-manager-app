@@ -1437,7 +1437,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '10', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen onder de 3 jaar"],
                 ["fr-be", "Plus de 10 enfants de moins de 3 ans"],
@@ -1447,7 +1447,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '11', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 3 en 11 jaar"],
                 ["fr-be", "Plus de 10 enfants âgés entre 3 et 11 ans"],
@@ -1457,7 +1457,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '12', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 12 en 17 jaar"],
                 ["fr-be", "Plus de 10 enfants âgés entre 12 et 17 ans"],
@@ -1467,7 +1467,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '13', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 jongvolwassenen tussen de 18 en 30 jaar"],
                 ["fr-be", "Plus de 10 jeunes adultes âgés entre 18 et 30 ans"],
@@ -1477,7 +1477,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 mensen van 65 jaar en ouder"],
                 ["fr-be", "Plus de 10 personnes âgées de 65 ans et plus"],
@@ -1487,7 +1487,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Patiënten"],
                 ["fr-be", "Des patients"],
@@ -1497,7 +1497,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Groepen mensen (behalve kinderen en personen ouder dan 65) groter dan 10 personen"],
                 ["fr-be", "Des groupes de personnes (à l'exception des enfants et des personnes de plus de 65 ans) de plus de 10 personnes"],
