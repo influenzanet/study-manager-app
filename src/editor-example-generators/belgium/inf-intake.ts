@@ -875,8 +875,8 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2234,8 +2234,8 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2424,8 +2424,8 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2530,8 +2530,8 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2710,8 +2710,8 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -3040,8 +3040,8 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
