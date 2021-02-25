@@ -1055,10 +1055,10 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Waar werkt u in de gezondheidszorg?"],
-            ["fr-be", "Où travaillez-vous dans le secteur de la santé?"],
-            ["de-be", "Wo arbeiten Sie in der Gesundheitspflege?"],
-            ["en-be", " Where do you work in healthcare?"],
+            ["nl-be", "Waar werkt u in de gezondheidszorg en maatschappelijke dienstverlening?"],
+            ["fr-be", "Où travaillez-vous dans le secteur de la santé et les services sociaux?"],
+            ["de-be", "Wo arbeiten Sie in der Gesundheitspflege und soziale Dienstleistung?"],
+            ["en-be", "Where do you work in healthcare and social services?"],
         ]))
     );
 
