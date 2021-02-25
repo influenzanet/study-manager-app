@@ -1601,8 +1601,8 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden'],
-                ['fr-be', "Veuillez indiquer pour chaque catégorie d'âge combien de personnes vivent dans votre ménage"],
-                ['de-be', ""],
+                ['fr-be', "Pour chaque catégorie d'âge, veuillez indiquer le nombre de personnes qui vivent au sein de votre ménage"],
+                ['de-be', "Bitte geben Sie für jede Altersklasse an, wie viele Personen in Ihrem Haushalt wohnen"],
                 ['en-be', "Please indicate for each age category how many persons are living in your household"],
             ])),
     }, rg?.key);
