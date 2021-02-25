@@ -59,7 +59,7 @@ const YearMonthSelector: React.FC<YearMonthSelectorProps> = (props) => {
     });
 
     const yearSelector = <select
-        className="custom-select me-2 mb-2 mb-sm-0"
+        className="form-select mb-2 mb-sm-0"
         value={selectedYear !== undefined ? selectedYear : 'NaN'}
         onChange={({ target: { value } }) => setSelectedYear(value && value !== '-1' ? parseInt(value) : undefined)}
     >
@@ -72,7 +72,7 @@ const YearMonthSelector: React.FC<YearMonthSelectorProps> = (props) => {
     </select>
 
     const monthSelector = <select
-        className="custom-select mb-2 mb-sm-0"
+        className="form-select mb-2 mb-sm-0"
         value={selectedMonth !== undefined ? selectedMonth : 'NaN'}
         onChange={({ target: { value } }) => {
             console.log(value);
@@ -96,11 +96,16 @@ const YearMonthSelector: React.FC<YearMonthSelectorProps> = (props) => {
 
     return (
         <div
-            className="d-flex flex-wrap p-0"
+            className="row g-2"
         >
-            {yearSelector}
+            <div className="col">
+                {yearSelector}
+            </div>
+
             { selectedYear && !props.onlyYear ?
-                monthSelector : null}
+                <div className="col-auto">
+                    {monthSelector}
+                </div> : null}
         </div>
     );
 };

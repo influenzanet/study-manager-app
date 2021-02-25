@@ -5,7 +5,7 @@ import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../../../editor-engine/survey-editor/component-editor";
 import { CoronaVaccineQuestions } from "../questions/coronaVaccine";
-import { WeeklyQuestions as DefaultWeekly } from "../../common_question_pool/influenzanet-weekly";
+import { WeeklyQuestions as DefaultWeekly } from "../questions/tempWeeklyPool";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -51,7 +51,6 @@ const generateNLWeekly = (): Survey | undefined => {
     // COVID vaccination yes/no
     const Q_coronavaccine = CoronaVaccineQuestions.coronavaccine(rootKey, "Q2NL", true);
     survey.addExistingSurveyItem(Q_coronavaccine, rootKey);
-    
 
     // COVID vaccination date
     const Q_coronavaccineWhen = CoronaVaccineQuestions.coronavaccineWhen(rootKey, "Q2aNL", Q_coronavaccine.key, true);
@@ -69,6 +68,11 @@ const generateNLWeekly = (): Survey | undefined => {
     const q1aNL = survey.addNewSurveyItem({ itemKey: 'Q1aNL' }, rootKey);
     if (!q1aNL) { return; }
     survey.updateSurveyItem(q1aNL_def(q1aNL));
+
+    // ---------------------------------------------------------
+    const q1iNL = q1i_nl(rootKey, q1aNL.key, true);
+    survey.addExistingSurveyItem(q1iNL, rootKey);
+
     // ---------------------------------------------------------
 
     // Tested where
@@ -722,6 +726,80 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
         type: 'hard',
         rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
     });
+
+    return editor.getItem();
+}
+
+/**
+ * SYMPTOMS: multiple choice question about allergies
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const q1i_nl = (parentKey: string, keyQ1A: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q1iNL'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How many hours after the test did you get the results?"],
+            ["nl", "Hoeveel uur na de test heb je de uitslag gekregen?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyQ1A, [responseGroupKey, singleChoiceKey].join('.'), '1')
+    );
+
+
+    // INFO POPUP
+    // none
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl", "Binnen 1 uur"],
+            ])
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["nl", "Tussen 1 - 4 uur"],
+            ])
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl", "Tussen 4 - 24 uur"],
+            ])
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl", "Tussen 24 - 48 uur"],
+            ])
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl", "Na 48 uur"],
+            ])
+        },
+
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
     return editor.getItem();
 }

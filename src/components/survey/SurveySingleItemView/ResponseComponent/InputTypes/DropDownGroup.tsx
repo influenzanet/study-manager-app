@@ -58,7 +58,7 @@ const DropDownGroup: React.FC<DropDownGroupProps> = (props) => {
 
   const renderedInput = <select
     id={props.componentKey}
-    className="custom-select flex-grow-1"
+    className="form-select flex-grow-1"
     aria-label="Select"
     value={getSelectedKey()}
     onChange={handleSelectionChange}
