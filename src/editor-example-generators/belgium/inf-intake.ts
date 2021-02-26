@@ -3303,7 +3303,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
                 ["nl-be", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en één of meer van die mensen zijn positief getest op het coronavirus"],
                 ["fr-be", "Oui, j'en suis quasi certain(e), parce que moi et les personnes autour de moi avons eu ou avons les symptômes du coronavirus, et une ou plusieurs de ces personnes ont été testées positives pour le coronavirus"],
                 ["de-be", "Ja, ich weiß es genau, denn ich selbst und Menschen um mich herum hatten/haben Beschwerden, und einer oder mehrere dieser Menschen wurden positiv auf das Coronavirus getestet"],
-                ["en-be", "Yes, I am almost certain, because people around me had/have symptoms that resemble those of the coronavirus, and one or more of those people tested positive for coronavirus"],
+                ["en-be", "Yes, I am almost certain, because me and people around me had/have symptoms that resemble those of the coronavirus, and one or more of those people tested positive for coronavirus"],
             ])
         },
         {
