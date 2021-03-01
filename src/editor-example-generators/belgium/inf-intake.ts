@@ -976,7 +976,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten sind möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1121,7 +1121,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', "Plusieurs réponses sont possibles"],
                 ['de-be', 'Mehrere Antworten sind möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1431,7 +1431,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ['nl-be', 'Selecteer alle opties die relevant zijn (laat contacten in het openbaar vervoer buiten beschouwing).'],
                 ['fr-be', 'Plusieurs réponses sont possibles (et veuillez exclure les transports en commun).'],
                 ['de-be', 'Mehrere Antworten sind möglich (und lassen Sie den Öffentlichen Verkehr (ÖPNV) unberücksichtigt).'],
-                ['en-be', 'Select all options that apply (exlcude people you meet on public transports).'],
+                ['en', 'Select all options that apply (exlcude people you meet on public transports).'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1603,7 +1603,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ['nl-be', 'Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden'],
                 ['fr-be', "Pour chaque catégorie d'âge, veuillez indiquer le nombre de personnes qui vivent au sein de votre ménage"],
                 ['de-be', "Bitte geben Sie für jede Altersklasse an, wie viele Personen in Ihrem Haushalt wohnen"],
-                ['en-be', "Please indicate for each age category how many persons are living in your household"],
+                ['en', "Please indicate for each age category how many persons are living in your household"],
             ])),
     }, rg?.key);
 
@@ -2120,7 +2120,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten sind möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2337,7 +2337,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten sind möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2625,7 +2625,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Meerdere antwoorden mogelijk"],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten sind möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2975,7 +2975,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -3120,7 +3120,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -3420,7 +3420,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -4611,7 +4611,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ['fr-be', 'Plusieurs réponses sont possibles'],
                 ['de-be', 'Mehrere Antworten möglich'],
-                ['en-be', 'Select all options that apply'],
+                ['en', 'Select all options that apply'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
