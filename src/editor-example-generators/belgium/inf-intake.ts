@@ -3217,10 +3217,10 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Denkt u dat u al besmet bent (geweest) met het nieuwe coronavirus (COVID-19)?"],
-            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le nouveau coronavirus? (COVID-19)"],
-            ["de-be", "Denken Sie, dass Sie schon einmal mit dem neuen Coronavirus (COVID-19) infiziert (gewesen) waren?"],
-            ["en-be", "Do you think you are or have been infected with the novel coronavirus? (COVID-19)?"],
+            ["nl-be", "Denkt u dat u al besmet bent (geweest) met het coronavirus (COVID-19)?"],
+            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus? (COVID-19)"],
+            ["de-be", "Denken Sie, dass Sie schon einmal mit dem Coronavirus (COVID-19) infiziert (gewesen) waren?"],
+            ["en-be", "Do you think you are or have been infected with the coronavirus? (COVID-19)?"],
         ]))
     );
 
