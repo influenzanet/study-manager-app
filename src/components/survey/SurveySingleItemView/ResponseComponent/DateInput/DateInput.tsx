@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ItemComponent, ResponseItem } from 'survey-engine/lib/data_types';
 import DatePicker, { registerLocale } from "react-datepicker";
 import CalendarIcon from '@material-ui/icons/CalendarToday';
@@ -31,12 +31,14 @@ interface DateInputProps {
   responseChanged: (response: ResponseItem | undefined) => void;
   languageCode: string;
   disabled?: boolean;
+  openCalendar: boolean | undefined;
 }
 
 const DateInput: React.FC<DateInputProps> = (props) => {
   const [response, setResponse] = useState<ResponseItem | undefined>(props.prefill);
   const [touched, setTouched] = useState(false);
-  const [pickerOpen, setPickerOpen] = useState(false);
+  const datePickerRef = useRef<DatePicker>(null);
+  const spanRef = useRef<HTMLSpanElement>(null);
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     props.prefill && props.prefill.value ? new Date(parseInt(props.prefill.value) * 1000) : undefined,
@@ -52,10 +54,16 @@ const DateInput: React.FC<DateInputProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
 
+  useEffect(() => {
+    if (props.openCalendar) {
+      datePickerRef.current?.setOpen(true)
+    }
+  }, [props.openCalendar]);
+
   const handleDateChange = (date: Date | undefined) => {
     setTouched(true);
 
-    setPickerOpen(prev => !prev)
+
     setSelectedDate(date);
     if (!date) {
       setResponse(undefined);
@@ -105,11 +113,16 @@ const DateInput: React.FC<DateInputProps> = (props) => {
       />
       break;
     default:
-      datepicker = <div className="input-group flex-grow-1">
+      datepicker = <span
+        ref={spanRef}
+        tabIndex={0}
+        className="border-0 btn btn-primary p-0 d-flex flex-row "
+        onClick={() => datePickerRef.current?.setOpen(true)}
+      >
         <DatePicker
-          // open={pickerOpen}
           id={props.componentKey}
-          className="form-control border-0"
+          ref={datePickerRef}
+          className=" form-control border-0 shadow-none"
           selected={selectedDate}
           locale={props.languageCode}
           onChange={(date) => handleDateChange(date ? date as Date : undefined)}
@@ -117,22 +130,14 @@ const DateInput: React.FC<DateInputProps> = (props) => {
           placeholderText={getLocaleStringTextByCode(props.compDef.description, props.languageCode)}
           minDate={props.compDef.properties?.min ? new Date((props.compDef.properties?.min as number) * 1000) : undefined}
           maxDate={props.compDef.properties?.max ? new Date((props.compDef.properties?.max as number) * 1000) : undefined}
-          // onCalendarClose={() => setPickerOpen(false)}
-          // onCalendarOpen={() => setPickerOpen(true)}
-          // showYearPicker
-          // wrapperClassName="bg-grey-2 border-radius-0"
-          // calendarClassName="bg-grey-2"
+          onCalendarOpen={() => spanRef.current?.focus()}
           autoComplete="off"
           disabled={props.compDef.disabled !== undefined || props.disabled === true}
           popperPlacement="top"
+          shouldCloseOnSelect={true}
         />
-        <label
-          htmlFor={props.componentKey}
-          aria-label="Calendar"
-          className="d-none d-sm-inline input-group-text bg-primary text-white border-0">
-          <CalendarIcon />
-        </label>
-      </div >
+        <CalendarIcon fontSize="default" className="m-1" />
+      </span>
       break;
   }
 

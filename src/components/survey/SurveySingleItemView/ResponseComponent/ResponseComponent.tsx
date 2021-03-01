@@ -162,6 +162,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = (props) => {
             compDef={respComp}
             prefill={getPrefillForItem(respComp)}
             responseChanged={handleItemResponse(respComp.key ? respComp.key : 'no key found')}
+            openCalendar={undefined}
           />
         case 'sliderNumeric':
           return <SliderNumeric
