@@ -3272,10 +3272,10 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
         {
             key: '0', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik denk niet dat ik het nieuwe coronavirus al heb gehad"],
-                ["fr-be", "Non, je ne pense pas avoir été déjà infecté(e) par le nouveau coronavirus"],
-                ["de-be", "Nein, ich denke nicht, das ich das neue Coronavirus schon hatte"],
-                ["en-be", "No, I do not think I have already been infected with the novel coronavirus"],
+                ["nl-be", "Nee, ik denk niet dat ik het coronavirus al heb gehad"],
+                ["fr-be", "Non, je ne pense pas avoir été déjà infecté(e) par le coronavirus"],
+                ["de-be", "Nein, ich denke nicht, das ich das Coronavirus schon hatte"],
+                ["en-be", "No, I do not think I have already been infected with the coronavirus"],
             ])
         },
 
