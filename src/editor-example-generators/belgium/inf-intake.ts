@@ -875,8 +875,8 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -1055,10 +1055,10 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Waar werkt u in de gezondheidszorg?"],
-            ["fr-be", "Où travaillez-vous dans le secteur de la santé?"],
-            ["de-be", "Wo arbeiten Sie in der Gesundheitspflege?"],
-            ["en-be", " Where do you work in healthcare?"],
+            ["nl-be", "Waar werkt u in de gezondheidszorg en maatschappelijke dienstverlening?"],
+            ["fr-be", "Où travaillez-vous dans le secteur de la santé et les services sociaux?"],
+            ["de-be", "Wo arbeiten Sie in der Gesundheitspflege und soziale Dienstleistung?"],
+            ["en-be", "Where do you work in healthcare and social services?"],
         ]))
     );
 
@@ -1431,13 +1431,13 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ['nl-be', 'Selecteer alle opties die relevant zijn (laat contacten in het openbaar vervoer buiten beschouwing).'],
                 ['fr-be', 'Plusieurs réponses sont possibles (et veuillez exclure les transports en commun).'],
                 ['de-be', 'Mehrere Antworten sind möglich (und lassen Sie den Öffentlichen Verkehr (ÖPNV) unberücksichtigt).'],
-                ['de-be', 'Select all options that apply (exlcude people you meet on public transports).'],
+                ['en-be', 'Select all options that apply (exlcude people you meet on public transports).'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '10', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen onder de 3 jaar"],
                 ["fr-be", "Plus de 10 enfants de moins de 3 ans"],
@@ -1447,7 +1447,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '11', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 3 en 11 jaar"],
                 ["fr-be", "Plus de 10 enfants âgés entre 3 et 11 ans"],
@@ -1457,7 +1457,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '12', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 kinderen tussen de 12 en 17 jaar"],
                 ["fr-be", "Plus de 10 enfants âgés entre 12 et 17 ans"],
@@ -1467,7 +1467,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '13', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 jongvolwassenen tussen de 18 en 30 jaar"],
                 ["fr-be", "Plus de 10 jeunes adultes âgés entre 18 et 30 ans"],
@@ -1477,7 +1477,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Meer dan 10 mensen van 65 jaar en ouder"],
                 ["fr-be", "Plus de 10 personnes âgées de 65 ans et plus"],
@@ -1487,7 +1487,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Patiënten"],
                 ["fr-be", "Des patients"],
@@ -1497,7 +1497,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
                 ["nl-be", "Groepen mensen (behalve kinderen en personen ouder dan 65) groter dan 10 personen"],
                 ["fr-be", "Des groupes de personnes (à l'exception des enfants et des personnes de plus de 65 ans) de plus de 10 personnes"],
@@ -1601,8 +1601,8 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden'],
-                ['fr-be', "Veuillez indiquer pour chaque catégorie d'âge combien de personnes vivent dans votre ménage"],
-                ['de-be', ""],
+                ['fr-be', "Pour chaque catégorie d'âge, veuillez indiquer le nombre de personnes qui vivent au sein de votre ménage"],
+                ['de-be', "Bitte geben Sie für jede Altersklasse an, wie viele Personen in Ihrem Haushalt wohnen"],
                 ['en-be', "Please indicate for each age category how many persons are living in your household"],
             ])),
     }, rg?.key);
@@ -2234,8 +2234,8 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2424,8 +2424,8 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2530,8 +2530,8 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -2710,8 +2710,8 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -3040,8 +3040,8 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en-be", "Describe here (optional)"],
             ])
         },
@@ -3303,7 +3303,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
                 ["nl-be", "Ja, ik weet het vrij zeker, want ikzelf en mensen om me heen hadden/hebben klachten, en één of meer van die mensen zijn positief getest op het coronavirus"],
                 ["fr-be", "Oui, j'en suis quasi certain(e), parce que moi et les personnes autour de moi avons eu ou avons les symptômes du coronavirus, et une ou plusieurs de ces personnes ont été testées positives pour le coronavirus"],
                 ["de-be", "Ja, ich weiß es genau, denn ich selbst und Menschen um mich herum hatten/haben Beschwerden, und einer oder mehrere dieser Menschen wurden positiv auf das Coronavirus getestet"],
-                ["en-be", "Yes, I am almost certain, because people around me had/have symptoms that resemble those of the coronavirus, and one or more of those people tested positive for coronavirus"],
+                ["en-be", "Yes, I am almost certain, because me and people around me had/have symptoms that resemble those of the coronavirus, and one or more of those people tested positive for coronavirus"],
             ])
         },
         {

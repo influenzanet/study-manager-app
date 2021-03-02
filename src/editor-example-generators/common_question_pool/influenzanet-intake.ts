@@ -132,12 +132,12 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What is your date of birth (month and year)?"],
-            ["en-be", "What is your date of birth (month and year)?"],
+            ["en-be", "What is your date of birth (year and month)?"],
             ["nl", "Wanneer ben je geboren (maand en jaar)?"],
             ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
             ["fr", "Quelle est votre date de naissance (mois et année)"],
-            ["fr-be", "Quelle est votre date de naissance (le mois et l’année)?"],
-            ["de-be", "Wann sind Sie geboren (Monat und Jahr)?"],
+            ["fr-be", "Quelle est votre date de naissance (l’année et le mois)?"],
+            ["de-be", "Wann sind Sie geboren (Jahr und Monat)?"],
         ]))
     );
 
@@ -393,8 +393,8 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                 ["en-be", "Please enter the four digits of your postal code"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
                 ["nl-be", "Voer de vier cijfers van je postcode in"],
-                ["fr-be", "4 chiffres"],
-                ["de-be", "4 Ziffern"],
+                ["fr-be", "Entrez les quatre chiffres de votre code postal."],
+                ["de-be", "Bitte geben Sie die vier Stellen Ihrer Postleitzahl ein"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
@@ -1992,7 +1992,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                 ["nl-be", "Kies datum"],
                 ["fr", "Sélectionner une date"],
                 ["fr-be", "Sélectionner une date"],
-                ["de-be", "Datum"],
+                ["de-be", "Wählen Sie das Datum"],
             ]),
         },
         {
@@ -3339,8 +3339,8 @@ const surveyEnd = (parentKey: string): SurveyItem => {
             ["en-be", "This was all for now, please submit your responses. Please come back or continue reporting symptoms you experience during the last week."],
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
-            ["fr-be", "Merci"],
-            ["de-be", "Vielen Dank"],
+            ["fr-be", "Merci. C'était la dernière question. Après avoir sauvegardé vos réponses (cliquez sur envoyer), vous pouvez aller à la page qui vous permettra d'indiquer si vous avez eu des plaintes / ressenti des symptômes au cours de la semaine écoulée."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern (Druck versenden) können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
         ]))
     );
 
