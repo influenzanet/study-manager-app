@@ -37,7 +37,7 @@ const surveys = [
             'nl-be',
             'fr-be',
             'de-be',
-            'en-be',
+            'en',
         ]
     }
 ];

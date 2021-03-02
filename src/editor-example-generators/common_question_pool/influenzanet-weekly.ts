@@ -280,13 +280,13 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"],
+            /* ["en", "On your last visit, you reported that you were still ill. Are the symptoms you report today part of the same bout of illness?"], */
             ["nl", "In je laatste vragenlijst gaf je aan nog steeds klachten te hebben. Behoren de klachten die je nu meldt tot dezelfde klachtenperiode als de klachten die je de vorige keer al gemeld had?"],
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie?"],
             ["nl-be", "In uw laatste vragenlijst gaf u aan nog steeds ziek te zijn. Behoren de symptomen die u nu meldt tot dezelfde klachtenperiode als de symptomen die u de vorige keer al gemeld heeft?"],
             ["fr-be", "Lorsque vous avez complété le précédent questionnaire, vous avez indiqué que vous étiez toujours malade. Les symptômes que vous signalez actuellement font-ils partie de la même période que les symptômes que vous aviez déjà signalés la dernière fois ?"],
             ["de-be", "In Ihrer letzten Fragenliste gaben Sie an, noch immer krank zu sein. Gehören die Symptome, die Sie nun melden, zu demselben Beschwerdezeitraum wie die Symptome, die Sie das letzte Mal schon gemeldet haben?"],
-            ["en-be", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
+            ["en", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
         ]))
     );
 
@@ -299,49 +299,49 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit? "],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "To make filling out the rest of the survey quicker for you."],
+                    /* ["en", "To make filling out the rest of the survey quicker for you."], */
                     ["nl", "Om te bepalen of je klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
                     ["fr", "Afin que vous puissiez remplir le reste de l'enquête plus rapidement."],
                     ["nl-be", "Om het invullen van de rest van de vragenlijst te versnellen."],
                     ["fr-be", "Pour accélérer le remplissage du reste du questionnaire."],
                     ["de-be", "Um das Ausfüllen der restlichen Fragenliste zu beschleunigen."],
-                    ["en-be", "To speed up the completion of the rest of the questionnaire."],
+                    ["en", "To speed up the completion of the rest of the questionnaire."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."],
+                    /* ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."], */
                     ["nl", "Als je denkt dat de klachten die je vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'"],
                     ["fr", "Si vous pensez que les symptômes que vous avez déclarés aujourd'hui sont causés par le même épisode de maladie que vos symptômes précédents, s'il vous plaît cochez «oui» . Pour gagner du temps, nous avons rempli les informations que vous nous avez déjà fournies sur votre maladie.  S'il vous plaît, vérifiez qu'elles sont toujours correctes ou faites les modifications nécessaires si, par exemple, vous avez consulté un médecin ou pris plus de temps hors travail depuis la dernière fois que vous avez répondu au questionnaire."],
                     ["nl-be", "Als u denkt dat de klachten die u vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'. Sommige antwoorden zijn dan alvast ingevuld op basis van de antwoorden van vorige keer. Kunt u controleren of deze nog steeds kloppen? Bijvoorbeeld of u nu wel naar de huisarts bent geweest of niet naar het werk bent geweest."],
                     ["fr-be", "Si vous pensez que les plaintes que vous signalez aujourd'hui sont toujours causées par la même infection ou le même problème (même période durant laquelle les plaintes ont été observées), répondez alors oui à la question. Certaines réponses sont alors déjà remplies sur la base des réponses de la dernière fois. Pouvez-vous vérifier si ces réponses sont toujours correctes ? Par exemple, si vous avez consulté un médecin ou si vous n'êtes pas allé(e) au travail."],
                     ["de-be", "Wenn Sie der Meinung sind, dass die Beschwerden, über die Sie heute berichten, durch dieselbe Infektion / dasselbe Problem (in derselben Beschwerdezeit) verursacht werden, dann beantworten Sie die Frage mit ‚Ja‘. Manche Antworten sind dann auf der Grundlage der Antworten vom letzten Mal schon eingetragen. Können Sie kontrollieren, ob sie noch immer richtig sind? Zum Beispiel, ob Sie nun tatsächlich beim Hausarzt waren oder nicht bei der Arbeit gewesen sind."],
-                    ["en-be", "If you think that the complaints you are indicating today are caused by the same infection or the same problem (the same period during which you experienced the complaints), answer “yes”. Some responses are already filled in for you based on your answers in the previous questionnaire. Please verify that those responses are still correct: for example, if you have consulted a doctor or if you missed work."],
+                    ["en", "If you think that the complaints you are indicating today are caused by the same infection or the same problem (the same period during which you experienced the complaints), answer “yes”. Some responses are already filled in for you based on your answers in the previous questionnaire. Please verify that those responses are still correct: for example, if you have consulted a doctor or if you missed work."],
                 ]),
             },
         ])
@@ -353,37 +353,37 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Yes"],
+                /* ["en", "Yes"], */
                 ["nl", "Ja"],
                 ["fr", "Oui"],
                 ["nl-be", "Ja"],
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
-                ["en-be", "Yes"],
+                ["en", "Yes"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "No"],
+                /* ["en", "No"], */
                 ["nl", "Nee"],
                 ["fr", "Non"],
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
-                ["en-be", "No"],
+                ["en", "No"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I don't know/can't remember"],
+                /* ["en", "I don't know/can't remember"], */
                 ["nl", "Ik weet het niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en-be", "I don’t know/can’t remember"],
+                ["en", "I don’t know/can’t remember"],
             ])
         },
     ]);
@@ -419,13 +419,13 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When did the first symptoms appear?"],
+            /* ["en", "When did the first symptoms appear?"], */
             ["nl", "Op welke dag kwamen de eerste klachten opzetten? Als je de datum niet precies meer weet, kies dan een geschatte datum"],
             ["fr", "Quand les premiers symptômes sont-ils apparus?"],
             ["nl-be", "Op welke dag verschenen de eerste symptomen? Als u de exacte datum niet meer weet, selecteer dan een geschatte datum."],
             ["fr-be", "Quel jour les premiers symptômes sont-ils apparus ? Si vous ne vous souvenez plus de la date exacte, sélectionnez une date approximative."],
             ["de-be", "An welchem Tag erschienen die ersten Symptome? Wenn Sie das genaue Datum nicht mehr wissen, dann wählen Sie einfach ein geschätztes Datum."],
-            ["en-be", "On what day did you begin feeling the first symptoms? If you do not recall the exact date, please give an approximate date."],
+            ["en", "On what day did you begin feeling the first symptoms? If you do not recall the exact date, please give an approximate date."],
         ]))
     );
 
@@ -440,49 +440,49 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "To help us work out the number of cases that arise each day."],
+                    /* ["en", "To help us work out the number of cases that arise each day."], */
                     ["nl", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag."],
                     ["fr", "Pour nous aider à travailler sur le nombre de cas de grippe qui se déclarent chaque jour."],
                     ["nl-be", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag/week."],
                     ["fr-be", "Cette question nous aide à déterminer combien de personnes ressentent des symptômes par jour/semaine."],
                     ["de-be", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag/week. "],
-                    ["en-be", "This question will help us to determine how many people are experiencing symptoms per day/week."],
+                    ["en", "This question will help us to determine how many people are experiencing symptoms per day/week."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Please give as accurate an estimate as possible."],
+                    /* ["en", "Please give as accurate an estimate as possible."], */
                     ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                     ["nl-be", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr-be", "Veuillez répondre de la manière la plus précise possible."],
                     ["de-be", "Bitte so genau wie möglich."],
-                    ["en-be", "Answer as precisely as possible."],
+                    ["en", "Answer as precisely as possible."],
                 ]),
             },
         ])
@@ -497,13 +497,13 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
         },
         description: generateLocStrings(new Map([
-            ["en", "Choose date"],
+            /* ["en", "Choose date"], */
             ["nl", "Kies de dag"],
             ["fr", "Sélectionner la date"],
             ["nl-be", "Kies een datum"],
             ["fr-be", "Choisissez une date."],
             ["de-be", "Wählen Sie das Datum"],
-            ["en-be", "Choose date"],
+            ["en", "Choose date"],
         ]))
     }, rg?.key);
 
@@ -537,13 +537,13 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When did your symptoms end?"],
+            /* ["en", "When did your symptoms end?"], */
             ["nl", "Op welke dag waren je klachten weer verdwenen?"],
             ["fr", "Quand vos symptômes ont-ils disparu?"],
             ["nl-be", "Op welke dag waren je symptomen/klachten weer verdwenen?"],
             ["fr-be", "Quel jour vos symptômes / vos troubles médicaux avaient-ils à nouveau disparu?"],
             ["de-be", "An welchem Tag waren Ihre Symptome/Beschwerden wieder verschwunden?"],
-            ["en-be", "When did your symptoms end?"],
+            ["en", "When did your symptoms end?"],
         ]))
     );
 
@@ -555,49 +555,49 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Using the beginning and end dates of symptoms we can work out how long respiratory infections last."],
+                    /* ["en", "Using the beginning and end dates of symptoms we can work out how long respiratory infections last."], */
                     ["nl", "Op basis van de eerste en laatste dag van klachten kunnen we uitrekenen hoelang je last hebt gehad van (deze) klachten."],
                     ["fr", "En utilisant les dates de début et de fin des symptômes, nous pouvons travailler sur la durée des infections respiratoires."],
                     ["nl-be", "Op basis van de eerste en laatste dag van klachten kunnen we uitrekenen hoelang u last heeft gehad van (deze) klachten."],
                     ["fr-be", "Sur la base du premier et du dernier jour des plaintes, nous pouvons calculer depuis combien de temps vous souffrez de (ces) plaintes."],
                     ["de-be", "Auf der Grundlage des ersten und letzten Tages der Beschwerden können wir ausrechnen, wie lange Sie an (diesen) Beschwerden litten."],
-                    ["en-be", "We can use the first and last dates of the complaints to calculate how long your complaints lasted. "],
+                    ["en", "We can use the first and last dates of the complaints to calculate how long your complaints lasted. "],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Please give as accurate an estimate as possible."],
+                    /* ["en", "Please give as accurate an estimate as possible."], */
                     ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                     ["nl-be", "Wees alstublieft zo nauwkeurig mogelijk."],
                     ["fr-be", "Veuillez fournir la réponse la plus précise possible."],
                     ["de-be", "Mehrere Antworten sind möglich."],
-                    ["en-be", "Answer as precisely as possible."],
+                    ["en", "Answer as precisely as possible."],
                 ]),
             },
         ])
@@ -622,13 +622,13 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
             content: new Map([
-                ["en", "Choose date"],
+                /* ["en", "Choose date"], */
                 ["nl", "Kies de dag"],
                 ["fr", "Sélectionner la date"],
                 ["nl-be", "Kies een datum"],
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
-                ["en-be", "Choose date"],
+                ["en", "Choose date"],
             ])
         },
         //{
@@ -643,13 +643,13 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I am still ill"],
+                /* ["en", "I am still ill"], */
                 ["nl", "Ik heb nog steeds klachten."],
                 ["fr", "Je suis encore malade"],
                 ["nl-be", "Ik heb nog steeds klachten."],
                 ["fr-be", "Je suis encore malade"],
                 ["de-be", "Ich habe immer noch Beschwerden"],
-                ["en-be", "I am still ill"],
+                ["en", "I am still ill"],
             ])
         },
     ]);
@@ -683,13 +683,13 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did your symptoms develop suddenly over a few hours?"],
+            /* ["en", "Did your symptoms develop suddenly over a few hours?"], */
             ["nl", "Kwamen je klachten plotseling opzetten? (binnen een paar uur)"],
             ["fr", "Est-ce que vos symptômes se sont déclarés soudainement, en l'espace de quelques heures?"],
             ["nl-be", "Kwamen uw symptomen/klachten plotseling opzetten? (binnen enkele uren)"],
             ["fr-be", "Avez-vous ressenti ces symptômes / troubles médicaux de manière soudaine (en quelques heures) ?"],
             ["de-be", "Kamen Ihre Symptome/Beschwerden plötzlich? (innerhalb einiger Stunden)"],
-            ["en-be", "Did your symptoms develop suddenly over a few hours?"],
+            ["en", "Did your symptoms develop suddenly over a few hours?"],
         ]))
     );
 
@@ -701,49 +701,49 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Sudden onset of symptoms is believed to be common for flu."],
+                    /* ["en", "Sudden onset of symptoms is believed to be common for flu."], */
                     ["nl", "Dat klachten plotseling (binnen een paar uur) opzetten is gelinkt aan griep"],
                     ["fr", "L'apparition soudaine des symptômes est considéré comme commune pour la grippe."],
                     ["nl-be", "Dat klachten plotseling (binnen een paar uur) opzetten is gelinkt aan COVID-19 en griep."],
                     ["fr-be", "L'apparition soudaine des symptômes (en quelques heures) est liée au coronavirus et à la grippe."],
                     ["de-be", "Dass Beschwerden plötzlich (in ein paar Stunden) anfangen, hängt mit COVID-19 und Grippe zusammen."],
-                    ["en-be", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
+                    ["en", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Tick yes if your symptoms appeared over a few hours rather than gradually developing over a few days."],
+                    /* ["en", "Tick yes if your symptoms appeared over a few hours rather than gradually developing over a few days."], */
                     ["nl", "Beantwoord de vraag met Ja wanneer de klachten binnen enkele uren kwamen opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
                     ["fr", "Cochez «oui» si vos symptômes sont apparus en quelques heures plutôt que progressivement sur quelques jours."],
                     ["nl-be", "Beantwoord de vraag met Ja wanneer de klachten binnen enkele uren kwamen opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
                     ["fr-be", "Répondez Oui lorsque les symptômes sont apparus en quelques heures, plutôt qu'une apparition progressive étalée sur plusieurs jours."],
                     ["de-be", "Beantworten Sie die Frage mit Ja, wenn die Beschwerden innerhalb von einigen Stunden begannen, statt mit einer allmählichen Entwicklung über eine Anzahl von Tagen hinweg."],
-                    ["en-be", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
+                    ["en", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -756,13 +756,13 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Yes"],
+                /* ["en", "Yes"], */
                 ["nl", "Ja"],
                 ["fr", "Oui"],
                 ["nl-be", "Ja"],
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
-                ["en-be", "Yes"],
+                ["en", "Yes"],
             ])
         },
         {
@@ -771,19 +771,19 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
-                ["en-be", "No"],
+                ["en", "No"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I don't know/can't remember"],
+                /* ["en", "I don't know/can't remember"], */
                 ["nl", "Ik weet dit niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en-be", "I don’t know/can’t remember"],
+                ["en", "I don’t know/can’t remember"],
 
             ])
         },
@@ -819,13 +819,13 @@ const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When did your fever begin?"],
+            /* ["en", "When did your fever begin?"], */
             ["nl", "Op welke dag kwam de koorts opzetten? Als je de dag niet precies weet, kies dan een geschatte datum"],
             ["fr", "Quand est-ce que votre fièvre a commencé?"],
             ["nl-be", "Op welke dag kwam de koorts opzetten? Als u de dag niet precies weet, selecteer dan een geschatte datum"],
             ["fr-be", "Quel jour avez-vous ressenti de la fièvre ? Si vous ne vous souvenez plus de la date exacte, sélectionnez une date approximative."],
             ["de-be", "An welchem Tag kam das Fieber? Wenn Sie den Tag nicht genau wissen, dann wählen Sie einfach ein geschätztes Datum"],
-            ["en-be", "On what day did your fever start? If you do not recall the exact date, please give an approximate date."],
+            ["en", "On what day did your fever start? If you do not recall the exact date, please give an approximate date."],
 
         ]))
     )
@@ -838,49 +838,49 @@ const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Fever is very important for diagnosing, so we want to know when this started."],
+                    /* ["en", "Fever is very important for diagnosing, so we want to know when this started."], */
                     ["nl", "Koorts is belangrijk in de diagnose, daarom willen we graag weten wanneer deze klachten begonnen."],
                     ["fr", "La fièvre est très importante pour le diagnostic de la grippe. Nous voulons donc savoir quand cela a commencé."],
                     ["nl-be", "Koorts is belangrijk voor een diagnose, daarom willen we graag weten wanneer de koorts is begonnen."],
                     ["fr-be", "La fièvre est importante pour le diagnostic, c'est pourquoi nous aimerions savoir quand la fièvre a commencé."],
                     ["de-be", "Fieber ist für eine Diagnose nötig, darum möchten wir gerne wissen, wann das Fieber anfing."],
-                    ["en-be", "Fever is an important diagnostic symptom, so we would like to know when the fever appeared."],
+                    ["en", "Fever is an important diagnostic symptom, so we would like to know when the fever appeared."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Please give as accurate an estimate as possible."],
+                    /* ["en", "Please give as accurate an estimate as possible."], */
                     ["nl", "Wees alsjeblieft zo nauwkeurig mogelijk."],
                     ["fr", "Donnez, s'il vous plaît, une estimation aussi précise que possible."],
                     ["nl-be", "Wees alstublieft zo nauwkeurig mogelijk."],
                     ["fr-be", "Veuillez fournir la réponse la plus précise possible."],
                     ["de-be", "Bitte antworten Sie so genau wie möglich."],
-                    ["en-be", "Answer as precisely as possible."],
+                    ["en", "Answer as precisely as possible."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -897,25 +897,25 @@ const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
             },
             content: new Map([
-                ["en", "Choose date"],
+                /* ["en", "Choose date"], */
                 ["nl", "Kies de dag"],
                 ["fr", "Sélectionner la date"],
                 ["nl-be", "Kies een datum"],
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
-                ["en-be", "Choose date"],
+                ["en", "Choose date"],
             ])
         },
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "I don't know/can't rember"],
+                /* ["en", "I don't know/can't rember"], */
                 ["nl", "Ik weet het niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en-be", "I don’t know/can’t remember"],
+                ["en", "I don’t know/can’t remember"],
 
             ])
         },
@@ -951,13 +951,13 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did your fever develop suddenly over a few hours?"],
+            /* ["en", "Did your fever develop suddenly over a few hours?"], */
             ["nl", "Kwam de koorts plotseling opzetten? (binnen een paar uur)"],
             ["fr", "Est-ce que votre fièvre s'est déclarée soudainement, en l'espace de quelques heures?"],
             ["nl-be", "Kwam de koorts plotseling opzetten? (binnen een paar uur)?"],
             ["fr-be", "La fièvre est-elle apparue de manière soudaine (en quelques heures)?"],
             ["de-be", "Kam das Fieber plötzlich? (innerhalb von ein paar Stunden)"],
-            ["en-be", "Did your fever develop suddenly over a few hours?"],
+            ["en", "Did your fever develop suddenly over a few hours?"],
         ]))
     );
 
@@ -969,49 +969,49 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Certain illnesses are associated with a sudden onset of fever"],
+                    /* ["en", "Certain illnesses are associated with a sudden onset of fever"], */
                     ["nl", "Sommige ziekten veroorzaken een plotselinge koorts."],
                     ["fr", "La grippe est souvent associée à une apparition soudaine de fièvre."],
                     ["nl-be", "Dat klachten plotseling (binnen een paar uur) opzetten is gelinkt aan COVID-19 en griep."],
                     ["fr-be", "L'apparition soudaine des symptômes (en quelques heures) est liée au coronavirus et à la grippe."],
                     ["de-be", "Dass Beschwerden plötzlich (in ein paar Stunden) auftreten, hängt mit COVID-19 und Grippe zusammen."],
-                    ["en-be", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
+                    ["en", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Tick yes if your fever appeared over a few hours rather than gradually developing over a few days."],
+                    /* ["en", "Tick yes if your fever appeared over a few hours rather than gradually developing over a few days."], */
                     ["nl", "Beantwoord de vraag met Ja wanneer de koorts binnen enkele uren kwam opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
                     ["fr", "Cochez «oui» si votre fièvre est apparue en quelques heures plutôt que progressivement sur quelques jours."],
                     ["nl-be", "Beantwoord de vraag met Ja wanneer de klachten binnen enkele uren kwamen opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
                     ["fr-be", "Répondez Oui lorsque les symptômes sont apparus en quelques heures, plutôt qu'une apparition progressive étalée sur plusieurs jours."],
                     ["de-be", "Beantwoord de vraag met Ja wanneer de klachten binnen enkele uren kwamen opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
-                    ["en-be", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
+                    ["en", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
                 ]),
             },
         ])
@@ -1023,37 +1023,37 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Yes"],
+                /* ["en", "Yes"], */
                 ["nl", "Ja"],
                 ["fr", "Oui"],
                 ["nl-be", "Ja"],
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
-                ["en-be", "Yes"],
+                ["en", "Yes"],
             ])
         },
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "No"],
+                /* ["en", "No"], */
                 ["nl", "Nee"],
                 ["fr", "Non"],
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
-                ["en-be", "No"],
+                ["en", "No"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I don't know"],
+                /* ["en", "I don't know"], */
                 ["nl", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en-be", "I don’t know/can’t remember"],
+                ["en", "I don’t know/can’t remember"],
             ])
         },
     ]);
@@ -1087,13 +1087,13 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did you take your temperature?"],
+            /* ["en", "Did you take your temperature?"], */
             ["nl", "Heb je de temperatuur gemeten?"],
             ["fr", "Avez-vous pris votre température?"],
             ["nl-be", "Heeft u uw temperatuur gemeten na het verschijnen van de symptomen?"],
             ["fr-be", "Avez-vous pris votre température après l'apparition des symptômes?"],
             ["de-be", "Haben Sie Ihre Temperatur nach dem Erscheinen der Symptome gemessen?"],
-            ["en-be", "Did you take your temperature?"],
+            ["en", "Did you take your temperature?"],
         ]))
     );
 
@@ -1105,25 +1105,25 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Infections often cause a high temperature. However, not everyone takes their temperature when they are ill."],
+                    /* ["en", "Infections often cause a high temperature. However, not everyone takes their temperature when they are ill."], */
                     ["nl", "Infecties veroorzaken vaak een hoge temperatuur. Echter, niet iedereen meet hun temperatuur wanneer ze ziek zijn."],
                     ["fr", "La grippe est souvent associée à une température élevée. Cependant tout le monde ne prend pas sa température lorsqu'il est malade."],
                     ["nl-be", "Indien u de koorts heeft gemeten, willen we graag de hoogst gemeten temperatuur weten."],
                     ["fr-be", "Si vous avez mesuré votre température, nous aimerions connaître la température corporelle la plus élevée mesurée."],
                     ["de-be", "Wenn Sie das Fieber gemessen haben, möchten wir gerne die höchste gemessene Temperatur wissen."],
-                    ["en-be", "If you have taken your temperature, we would like to know the highest body temperature you have measured."],
+                    ["en", "If you have taken your temperature, we would like to know the highest body temperature you have measured."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1152,37 +1152,37 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Yes"],
+                /*  ["en", "Yes"], */
                 ["nl", "Ja"],
                 ["fr", "Oui"],
                 ["nl-be", "Ja"],
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
-                ["en-be", "Yes"],
+                ["en", "Yes"],
             ])
         },
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "No"],
+                /* ["en", "No"], */
                 ["nl", "Nee"],
                 ["fr", "Non"],
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
-                ["en-be", "No"],
+                ["en", "No"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "I don't know"],
+                /* ["en", "I don't know"], */
                 ["nl", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en-be", "I don’t know/can’t remember"],
+                ["en", "I don’t know/can’t remember"],
             ])
         },
     ]);
@@ -1218,13 +1218,13 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What was your highest temperature measured?"],
+            /* ["en", "What was your highest temperature measured?"], */
             ["nl", "Wat is je hoogst gemeten temperatuur?"],
             ["fr", "Quel a été votre température mesurée la plus élevée?"],
             ["nl-be", "Wat is uw hoogst gemeten lichaamstemperatuur?"],
             ["fr-be", "Après avoir pris votre température corporelle, quelle était la valeur maximale mesurée ?"],
             ["de-be", "Was ist Ihre höchste gemessene Körpertemperatur?"],
-            ["en-be", "What was your highest temperature measured?"],
+            ["en", "What was your highest temperature measured?"],
         ]))
     );
 
@@ -1238,49 +1238,49 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    /* ["en", "Why are we asking this?"], */
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
-                    ["en-be", "Why are we asking this question?"],
+                    ["en", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Certain infections often causes a high temperature."],
+                    /* ["en", "Certain infections often causes a high temperature."], */
                     ["nl", "Bepaalde infectieziekten veroorzaken een hoge temperatuur."],
                     ["fr", "La grippe provoque souvent une température élevée."],
                     ["nl-be", "Bepaalde infectieziekten veroorzaken een hoge temperatuur."],
                     ["fr-be", "Certaines maladies infectieuses provoquent une température élevée."],
                     ["de-be", "Bestimmte Infektionskrankheiten verursachen eine hohe Temperatur."],
-                    ["en-be", "Certain infectious diseases cause a raised temperature."],
+                    ["en", "Certain infectious diseases cause a raised temperature."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    /* ["en", "How should I answer it?"], */
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en-be", "How should I answer this question?"],
+                    ["en", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
-                    ["en", "Give the highest temperature you recorded during this episode of illness."],
+                    /*  ["en", "Give the highest temperature you recorded during this episode of illness."], */
                     ["nl", "Geef de hoogste temperatuur die je gemeten hebt tijdens je klachtenperiode."],
                     ["fr", "Indiquez la plus haute température que vous avez enregistrée au cours de cette épisode de maladie."],
                     ["nl-be", "Geef de hoogste temperatuur die u gemeten heeft tijdens uw klachtenperiode."],
                     ["fr-be", "Veuillez indiquer la température la plus élevée que vous avez mesurée pendant la période liée à vos symptômes."],
                     ["de-be", "Geben Sie die höchste Temperatur an, die Sie während der Zeit Ihre Beschwerden gemessen haben."],
-                    ["en-be", "Please indicate the highest temperature you measured during the period in which you experienced your symptoms."],
+                    ["en", "Please indicate the highest temperature you measured during the period in which you experienced your symptoms."],
                 ]),
             },
         ])
@@ -1292,85 +1292,85 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Below 37.0°C"],
+                /* ["en", "Below 37.0°C"], */
                 ["nl", "Onder de 37,0°C"],
                 ["fr", "Moins de 37°C"],
                 ["nl-be", "Onder de 37,0°C"],
                 ["fr-be", "En dessous de 37,0°C"],
                 ["de-be", "Unter 37,0°C"],
-                ["en-be", "Below 37.0°C"],
+                ["en", "Below 37.0°C"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "37.0° - 37.4°C"],
+                /* ["en", "37.0° - 37.4°C"], */
                 ["nl", "37,0°C - 37,4°C"],
                 ["fr", "37° – 37.4°C"],
                 ["nl-be", "37,0°C - 37,4°C"],
                 ["fr-be", "37,0°C - 37,4°C"],
                 ["de-be", "37,0°C - 37,4°C"],
-                ["en-be", "37.0°C - 37.4°C"],
+                ["en", "37.0°C - 37.4°C"],
 
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "37.5° - 37.9°C"],
+                /* ["en", "37.5° - 37.9°C"], */
                 ["nl", "37,5° - 37,9°C"],
                 ["fr", "37.5° – 37.9°C"],
                 ["nl-be", "37,5° - 37,9°C"],
                 ["fr-be", "37,5° - 37,9°C"],
                 ["de-be", "37,5° - 37,9°C"],
-                ["en-be", "37.5° - 37.9°C"],
+                ["en", "37.5° - 37.9°C"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["en", "38.0° - 38.9°C"],
+                /* ["en", "38.0° - 38.9°C"], */
                 ["nl", "38,0° - 38,9°C"],
                 ["fr", "38° – 38.9°C"],
                 ["nl-be", "38,0° - 38,9°C"],
                 ["fr-be", "38,0° - 38,9°C"],
                 ["de-be", "38,0° - 38,9°C"],
-                ["en-be", "38.0° - 38.9°C"],
+                ["en", "38.0° - 38.9°C"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "39.0° - 39.9°C"],
+                /* ["en", "39.0° - 39.9°C"], */
                 ["nl", "39,0° - 39,9°C"],
                 ["fr", "39° – 39.9°C"],
                 ["nl-be", "39,0° - 39,9°C"],
                 ["fr-be", "39,0° - 39,9°C"],
                 ["de-be", "39,0° - 39,9°C"],
-                ["en-be", "39.0° - 39.9°C"],
+                ["en", "39.0° - 39.9°C"],
             ])
         }, {
             key: '6', role: 'option',
             content: new Map([
-                ["en", "40.0°C or more"],
+                /* ["en", "40.0°C or more"], */
                 ["nl", "40,0°C of meer"],
                 ["fr", "40°C ou plus"],
                 ["nl-be", "40,0°C of meer"],
                 ["fr-be", "40,0°C ou plus"],
                 ["de-be", "40,0°C oder mehr"],
-                ["en-be", "40.0°C or more"],
+                ["en", "40.0°C or more"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
-                ["en", "I don't know/can't remember"],
+                /* ["en", "I don't know/can't remember"], */
                 ["nl", "Dat weet ik niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Das weiß ich nicht (mehr)"],
-                ["en-be", "I don't know/can't remember"],
+                ["en", "I don't know/can't remember"],
             ])
         },
     ]);
