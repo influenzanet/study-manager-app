@@ -18,26 +18,26 @@ const weekly = (): Survey | undefined => {
     survey.setSurveyName(generateLocStrings(
         new Map([
             ["nl-be", "Wekelijkse vragenlijst"],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", ""],
+            ["fr-be", "Questionnaire hebdomadaire"],
+            ["de-be", "Wöchentliche Fragenliste"],
+            ["en", "Weekly questionnaire"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["nl-be", "Klik hier voor je vragenlijst over je klachten in de afgelopen week. Meld alsjeblieft ook als je geen klachten had."],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", ""],
+            ["fr-be", "Cliquez ici pour votre questionnaire sur vos plaintes de la semaine dernière. Veuillez également signaler si vous n'avez aucune plainte."],
+            ["de-be", "Klicken Sie hier für Ihren Fragebogen zu Ihren Beschwerden in der letzten Woche. Bitte melden Sie auch, wenn Sie keine Beschwerden hatten."],
+            ["en", "Click here for your questionnaire about your complaints in the past week. Please also report if you had no complaints."],
         ])
     ));
 
     survey.setSurveyDuration(generateLocStrings(
         new Map([
             ["nl-be", "Invullen duurt 15 seconden tot 3 minuten, afhankelijk van je klachten."],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", ""],
+            ["fr-be", "Le remplissage prend de 15 secondes à 3 minutes, selon vos plaintes."],
+            ["de-be", "Das Ausfüllen dauert je nach Ihren Beschwerden 15 Sekunden bis 3 Minuten."],
+            ["en", "Filling in takes 15 seconds to 3 minutes, depending on your complaints."],
         ])
     ));
 
