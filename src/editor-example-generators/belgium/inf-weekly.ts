@@ -99,7 +99,7 @@ const weekly = (): Survey | undefined => {
     const Q_symptomStart = InfluenzanetWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
-    // // Qcov3 contact COVID-19--------------------------------------TEST
+    // // Qcov3 contact COVID-19--------------------------------------
 
     // // Qcov3b contact COVID-19 household --------------------------
 
