@@ -161,15 +161,15 @@ const weekly = (): Survey | undefined => {
 
     // // Q10 daily routine------------------------------------------------
 
-    // // Q10b today-------------------------------------------------------
+    // // Q_BE_10b today-------------------------------------------------------
 
-    // // Q10c daily toutine days-----------------------------------------
+    // // Q10_BE_c daily routine days-----------------------------------------
 
     // // Q11 think cause of symptoms --------------------------------------
     // const Q_causeOfSymptoms = InfluenzanetWeekly.causeOfSymptoms(hasSymptomGroupKey, true);
     // survey.addExistingSurveyItem(Q_causeOfSymptoms, hasSymptomGroupKey);
 
-    // // Qcov16 test -----------------------------------------------------
+    // // Qcov_BE_16 test -----------------------------------------------------
 
     // // qcov7 NPIs------------------------------------------------------
 
