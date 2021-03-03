@@ -200,7 +200,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl-be", "Wat is uw voornaamste bezigheid overdag?"],
             ["fr-be", "Quelle est votre activité principale pendant la journée?"],
             ["de-be", "Was ist Ihre wichtigste Beschäftigung tagsüber?"],
-            ["en", "What is your main activity?"], 
+            ["en", "What is your main activity?"],
         ]))
     );
 
@@ -246,7 +246,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
         ])
     );
 
-    // RESPONSE PART
+    // RESPONSE PART test
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
@@ -701,7 +701,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
                 ["de-be", "Bauindustrie"],
                 ["en", "Construction / building industry"],
             ])
-        },  
+        },
         {
             key: '1', role: 'option',
             content: new Map([
@@ -746,7 +746,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
                 ["de-be", "Gesundheitspflege und soziale Dienstleistung"],
                 ["en", "Healthcare and social services"],
             ])
-        }, 
+        },
         {
             key: '6', role: 'option',
             content: new Map([
@@ -1133,7 +1133,7 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
                 ["de-be", "Ich arbeite in einem Krankenhaus"],
                 ["en", "I work in a hospital"],
             ])
-        },  
+        },
         {
             key: '1', role: 'option',
             content: new Map([
@@ -3760,7 +3760,7 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
                     ["fr-be", "Pourquoi posons-nous cette question?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
-                    
+
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4080,10 +4080,10 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
         },
         {
             key: '12', role: 'option', content: new Map([
-               ["nl-be", "13 dagen" ],
-               ["fr-be", "13 jours"],
-               ["de-be", "13 Tagen"],
-               ["en", "13 days"],
+                ["nl-be", "13 dagen"],
+                ["fr-be", "13 jours"],
+                ["de-be", "13 Tagen"],
+                ["en", "13 days"],
             ]),
         },
         {
@@ -4259,7 +4259,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent(ddOptions, rg?.key);
-    
+
     // VALIDATIONs
     if (isRequired) {
         editor.addValidation({
@@ -4844,7 +4844,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
                 ["de-be", "Andere"],
                 ["en", "Other"],
             ])
-        },       
+        },
         {
             key: '0', role: 'option',
             content: new Map([
