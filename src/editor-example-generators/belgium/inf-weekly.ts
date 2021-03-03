@@ -7,6 +7,7 @@ import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTi
 import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
 const weekly = (): Survey | undefined => {
+    //comment
     const surveyKey = 'weekly';
 
     const survey = new SurveyEditor();
