@@ -164,8 +164,8 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);
 
     // // Q9b how soon after symptoms taking antivirals --------------------------------------
-    // const Q_whenAntivirals = InfluenzanetWeekly.whenAntivirals(hasSymptomGroupKey, Q_tookMedication.key, true);
-    // survey.addExistingSurveyItem(Q_whenAntivirals, hasSymptomGroupKey);
+    const Q_whenAntivirals = InfluenzanetWeekly.whenAntivirals(hasSymptomGroupKey, Q_tookMedication.key, true);
+    survey.addExistingSurveyItem(Q_whenAntivirals, hasSymptomGroupKey);
 
     // // Q10 daily routine------------------------------------------------
 

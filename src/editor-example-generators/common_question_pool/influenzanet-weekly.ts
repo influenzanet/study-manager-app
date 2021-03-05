@@ -2130,7 +2130,10 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "How long after the beginning of your symptoms did you start taking antiviral medication?"],
+            ["en", "How long after the onset of symptoms / medical problems did you start taking antiviral medication?"],
+            ["nl-be", "Hoe snel nadat uw symptomen/klachten opkwamen bent u begonnen met het gebruiken van antivirale middelen?"],
+            ["fr-be", "Combien de temps après la survenue des symptômes / des troubles médicaux avez-vous commencé à prendre des médicaments antiviraux?"],
+            ["de-be", "Wie schnell nach dem Auftreten Ihrer Symptome/Beschwerden haben Sie mit der Einnahme antiviraler Mittel begonnen?"],
             ["nl", "Hoe snel nadat je klachten opkwamen ben je begonnen met het gebruiken van antivirale middelen?"],
             ["fr", "Combien de temps après le début de vos symptômes avez-vous commencé à prendre des médicaments antiviraux ?"],
         ]))
@@ -2146,7 +2149,10 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    ["en", "Why are we asking this question?"],
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
@@ -2154,7 +2160,10 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             },
             {
                 content: new Map([
-                    ["en", "Antivirals are thought to be most effective if taken quickly after disease onset."],
+                    ["en", "To study how long a person waits before taking antivirals."],
+                    ["nl-be", "Om te onderzoeken hoe lang men wacht om antivirale middelen in te nemen."],
+                    ["fr-be", "Pour étudier combien de temps les personnes attendent avant de prendre des antiviraux."],
+                    ["de-be", "Um festzustellen, wie lange man wartet, um antivirale Mittel einzunehmen."],
                     ["nl", "Antivirale middelen werken beter wanneer ze snel worden genomen na het begin van de klachten."],
                     ["fr", "Les antiviraux sont supposés être plus efficace si pris rapidement après l'apparition de la maladie ."],
                 ]),
@@ -2162,7 +2171,10 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    ["en", "How should I answer this question?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                 ]),
@@ -2170,7 +2182,10 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             },
             {
                 content: new Map([
-                    ["en", "Report the time until you first started taking antivirals (which may not be the same day as you got your prescription)."],
+                    ["en", "Please indicate the number of days that passed between the onset of symptoms and the day you began taking antivirals."],
+                    ["nl-be", "Geef het aantal dagen tussen het begin van de klachten en de dag waarop u met de antivirale middelen begon."],
+                    ["fr-be", "Veuillez indiquer le nombre de jours écoulés entre l'apparition des symptômes et le jour où vous avez commencé à prendre les antiviraux."],
+                    ["de-be", "Geben Sie die Anzahl der Tage zwischen dem Beginn der Beschwerden und dem Tag ein, an dem Sie mit den antiviralen Mitteln begannen."],
                     ["nl", "Geef het aantal dagen tussen het begin van de klachten en de dag dat je met de antivirale middelen begon."],
                     ["fr", "Signaler le temps écoulé jusqu'à ce que vous ayez commencé à prendre des antiviraux (qui peut ne pas être le même jour que celui ou vous avez obtenu votre prescription)."],
                 ]),
@@ -2186,6 +2201,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Same day (within 24 hours)"],
+                ["nl-be", "Dezelfde dag (binnen 24 uur)"],
+                ["fr-be", "Le jour même (dans les 24 heures)"],
+                ["de-be", "Am selben Tag (innerhalb von 24 Stunden)"],
                 ["nl", "Dezelfde dag (binnen 24 uur)"],
                 ["fr", "Le jour même (dans les 24 heures)"],
             ])
@@ -2194,6 +2212,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '1', role: 'option',
             content: new Map([
                 ["en", "1 day"],
+                ["nl-be", "1 dag"],
+                ["fr-be", "1 jour"],
+                ["de-be", "1 Tag"],
                 ["nl", "1 dag"],
                 ["fr", "1 jour"],
             ])
@@ -2202,6 +2223,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '2', role: 'option',
             content: new Map([
                 ["en", "2 days"],
+                ["nl-be", "2 dagen"],
+                ["fr-be", "2 jours"],
+                ["de-be", "2 Tage"],
                 ["nl", "2 dagen"],
                 ["fr", "2 jours"],
             ])
@@ -2210,6 +2234,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '3', role: 'option',
             content: new Map([
                 ["en", "3 days"],
+                ["nl-be", "3 dagen"],
+                ["fr-be", "3 jours"],
+                ["de-be", "3 Tage"],
                 ["nl", "3 dagen"],
                 ["fr", "3 jours"],
             ])
@@ -2217,6 +2244,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '4', role: 'option',
             content: new Map([
                 ["en", "4 days"],
+                ["nl-be", "4 dagen"],
+                ["fr-be", "4 jours"],
+                ["de-be", "4 Tage"],
                 ["nl", "4 dagen"],
                 ["fr", "4 jours"],
             ])
@@ -2224,6 +2254,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '5', role: 'option',
             content: new Map([
                 ["en", "5-7 days"],
+                ["nl-be", "5-7 dagen"],
+                ["fr-be", "5–7 jours"],
+                ["de-be", "5-7 Tage"],
                 ["nl", "5-7 dagen"],
                 ["fr", "5 – 7 jours"],
             ])
@@ -2231,6 +2264,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '6', role: 'option',
             content: new Map([
                 ["en", "More than 7 days"],
+                ["nl-be", "Meer dan 7 dagen"],
+                ["fr-be", "Plus de 7 jours"],
+                ["de-be", "mehr als 7 Tage"],
                 ["nl", "Meer dan 7 dagen"],
                 ["fr", "Plus de 7 jours"],
             ])
@@ -2238,6 +2274,9 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '7', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["nl-be", "Dat weet ik niet (meer)"],
+                ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
+                ["de-be", "Das weiß ich nicht (mehr)"],
                 ["nl", "Dat weet ik niet (meer)."],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
             ])
