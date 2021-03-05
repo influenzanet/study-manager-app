@@ -2,9 +2,9 @@ import { Survey, SurveyItem, SurveyGroupItem } from "survey-engine/lib/data_type
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
 import { WeeklyQuestions as InfluenzanetWeekly } from "../common_question_pool/influenzanet-weekly";
-import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { initLikertScaleItem, initMatrixQuestion, initDropdownGroup, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
-import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
+import { likertScaleKey, matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
 const weekly = (): Survey | undefined => {
     const surveyKey = 'weekly';
@@ -99,19 +99,19 @@ const weekly = (): Survey | undefined => {
     const Q_symptomStart = InfluenzanetWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
-    // // Qcov3 pcr tested contact COVID-19--------------------------------------
-    const Q_covidPCRTestedContact = pcrTestedContact(rootKey, Q_symptoms.key, Q_same_illnes.key, true, "Qcov_BE_3");
+    // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
+    const Q_covidPCRTestedContact = pcrTestedContact(rootKey, Q_symptoms.key, true, "Qcov_BE_3");
     survey.addExistingSurveyItem(Q_covidPCRTestedContact, rootKey);
 
-    // // Qcov3b household pcr contacts COVID-19--------------------------
+    // // Qcov_BE_3b household pcr contacts COVID-19--------------------------
     const Q_pcrHouseholdContact = pcrHouseholdContact(rootKey, Q_covidPCRTestedContact.key, true, "Qcov_BE_3b");
     survey.addExistingSurveyItem(Q_pcrHouseholdContact, rootKey);
 
-    // // Qcov8 contact with people showing symptoms -------------------------------------
+    // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
     const Q_covidContact = covidSymptomsContact(rootKey, Q_symptoms.key, true, "Qcov_BE_8");
     survey.addExistingSurveyItem(Q_covidContact, rootKey);
 
-    // // Qcov8b contact with people showing symtoms in your household ---------------------------
+    // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
     const Q_covidHouseholdContact = covidHouseholdContact(rootKey, Q_covidContact.key, true, "Qcov_BE_8b");
     survey.addExistingSurveyItem(Q_covidHouseholdContact, rootKey);
 
@@ -187,7 +187,10 @@ const weekly = (): Survey | undefined => {
     const Q_SymptomImpliedCovidTest = SymptomImpliedCovidTest(hasSymptomGroupKey, true, "Qcov_BE_16");
     survey.addExistingSurveyItem(Q_SymptomImpliedCovidTest, hasSymptomGroupKey);
 
-    // // qcov7 NPIs------------------------------------------------------
+    // // Qcov_BE_7 Covid 19 habits change question ------------------------------------------------------
+    const Q_covidHabits = covidHabitsChange(rootKey, Q_symptoms.key, false, "Qcov_BE_7");
+    survey.addExistingSurveyItem(Q_covidHabits, rootKey);
+
 
     return survey.getSurvey();
 }
@@ -1213,7 +1216,7 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, keySameIllnes: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -2879,8 +2882,9 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
     return editor.getItem();
 }
 
+
 /**
- * DAILY ROUTINE
+ * COVID 19 Personal Habits Changes: likert scale question about changes in personal habits after experiencing covid symptoms
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
@@ -2993,7 +2997,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["en", "Yes, I had to adjust other daily activities (other than work/school)"],
             ])
         },
-        
+
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -3081,10 +3085,10 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
     );
 
     // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup'});
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '1', 
+            key: '1',
             role: 'option',
             content: new Map([
                 ["nl-be", "Ja"],
@@ -3094,7 +3098,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             ])
         },
         {
-            key: '0', 
+            key: '0',
             role: 'option',
             content: new Map([
                 ["nl-be", "Nee"],
@@ -3104,7 +3108,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             ])
         },
         {
-            key: '3', 
+            key: '3',
             role: 'option',
             content: new Map([
                 ["nl-be", "Andere (ik hoefde vandaag sowieso niet te werken of niet naar school te gaan)"],
@@ -3596,6 +3600,244 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
+
+    return editor.getItem();
+}
+
+/**
+ * COVID 19 Personal Habits Changes: likert scale question about changes in personal habits after experiencing covid symptoms
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov_BE_7'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", ""],
+            ["de-be", ""],
+            ["en", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
+    );
+
+    // RESPONSE PART
+    const likertOptions = [
+        {
+            key: "1", content: new Map([
+                ["en", " Yes, I am following this measure now for the first time, or in a stricter way"]
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["en", "No, I am not following this measure"]
+            ])
+        },
+        {
+            key: "3", content: new Map([
+                ["en", "I was already following this measure"]
+            ])
+        }
+    ];
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Regularly wash or disinfect hands'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Cough or sneeze into your elbow'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Use a disposable tissue'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Wear a face mask outdoors'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Wear a face mask indoors'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_5', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Avoid shaking hands'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_6', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Stop greeting by hugging and/or kissing on both cheeks'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_7', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Limit your use of public transport'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_8', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Avoid gatherings (going to the theater, cinema, stadium)'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_9', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Stay at home'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_10', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Telework or increase your number of telework days'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_11', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Avoid travel outside your own country or region'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_12', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Have your food/shopping delivered by a store or a friend/family member'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_13', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Avoid seeing friends and family'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_14', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_15', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Avoid being in contact with children'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_16', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ['en', 'None of these measures'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_17', likertOptions), rg?.key);
+
+
+
+
+    // VALIDATIONs
+    // None
 
     return editor.getItem();
 }
