@@ -1223,10 +1223,7 @@ const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, keySam
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('and',
-            expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
-            expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'prev'), "1"),
-            expWithArgs('not', expWithArgs('responseHasKeysAny', keySameIllnes, [responseGroupKey, singleChoiceKey].join('.'), '0', undefined)))
+        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
     );
 
     // INFO POPUP
