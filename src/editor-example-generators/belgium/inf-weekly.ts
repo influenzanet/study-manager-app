@@ -81,7 +81,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_resultTest, rootKey);
 
     //Q_BE_cov16z duration untill test result
-    const Q_durationTestResult = durationTestResult(rootKey, Q_resultTest.key, true, "Q_BE_cov16z")
+    const Q_durationTestResult = durationTestResult(rootKey, Q_resultTest.key, true, "Qcov_BE_16z")
     survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
 
     // // TO DO: add symtom group question
@@ -868,7 +868,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const durationTest = (parentKey: string, keyreasonTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q_BE_cov16e'
+    const defaultKey = 'Qcov_BE_16e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
     editor.setVersion(1);
@@ -2884,7 +2884,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
 
 
 /**
- * COVID 19 Personal Habits Changes: likert scale question about changes in personal habits after experiencing covid symptoms
+ * DAILY ROUTINE
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
