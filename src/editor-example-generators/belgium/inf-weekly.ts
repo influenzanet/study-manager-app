@@ -2339,15 +2339,15 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent({
-       role: 'text',
+        role: 'text',
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
-                ["fr-be","Plusieurs réponses sont possibles"],
-                ["de-be","Mehrere Antworten möglich"],
-                ["en","Multiple answers possible"],
-           ])),
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+            ])),
     }, rg?.key);
 
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2518,16 +2518,16 @@ const consFear = (parentKey: string, keyvisitedNoMedicalService?: string, isRequ
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent({
         role: 'text',
-         style: [{ key: 'className', value: 'mb-2' }],
-         content: generateLocStrings(
-             new Map([
-                 ['nl-be', 'Meerdere antwoorden mogelijk'],
-                 ["fr-be","Plusieurs réponses sont possibles"],
-                 ["de-be","Mehrere Antworten möglich"],
-                 ["en","Multiple answers possible"],
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
             ])),
-     }, rg?.key);
-    
+    }, rg?.key);
+
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '1', role: 'option',
@@ -2651,17 +2651,6 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
     );
 
     // RESPONSE PART
-    editor.addExistingResponseComponent({
-        role: 'text',
-        content: generateLocStrings(
-            new Map([
-                ['nl-be', "Selecteer het juiste aantal dagen"],
-                ["fr-be", "Sélectionnez le nombre de jours"],
-                ["de-be", "Wählen Sie die Anzahl der Tage"],
-                ["en", "Select the number of days"],
-            ])),
-    }, rg?.key);
-
     const ddOptions = initDropdownGroup('ddg', [
         {
             key: '0', role: 'option', content: new Map([
@@ -2938,6 +2927,16 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
     ]);
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', "Selecteer het juiste aantal dagen"],
+                ["fr-be", "Sélectionnez le nombre de jours"],
+                ["de-be", "Wählen Sie die Anzahl der Tage"],
+                ["en", "Select the number of days"],
+            ])),
+    }, rg?.key);
     editor.addExistingResponseComponent(ddOptions, rg?.key);
 
     // VALIDATIONs
