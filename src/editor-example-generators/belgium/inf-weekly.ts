@@ -1256,7 +1256,7 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const ddOptions = initDropdownGroup('ddg', [
         {
             key: '0', role: 'option',
             content: new Map([
@@ -1267,18 +1267,72 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
             ])
         },
         {
-            key: '1', role: 'numberInput',
-            //properties:{min:0,max:14},
-            description: new Map([
-                ["nl-be", "Dagen"],
-                ["fr-be", "Jours"],
-                ["de-be", "Tage"],
-                ["en", "Days"],
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "1 dag"],
+                ["fr-be", "1 jour"],
+                ["de-be", "1 Tag"],
+                ["en", "1 day"],
             ])
         },
         {
-            key: '99', role: 'option',
-            content: new Map([
+            key: '2', role: 'option', content: new Map([
+                ["nl-be", "2 dagen"],
+                ["fr-be", "2 jours"],
+                ["de-be", "2 Tagen"],
+                ["en", "2 days"],
+            ]),
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl-be", "3 dagen"],
+                ["fr-be", "3 jours"],
+                ["de-be", "3 Tagen"],
+                ["en", "3 days"],
+            ]),
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl-be", "4 dagen"],
+                ["fr-be", "4 jours"],
+                ["de-be", "4 Tagen"],
+                ["en", "4 days"],
+            ]),
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl-be", "5 dagen"],
+                ["fr-be", "5 jours"],
+                ["de-be", "5 Tagen"],
+                ["en", "5 days"],
+            ]),
+        },
+        {
+            key: '6', role: 'option', content: new Map([
+                ["nl-be", "6 dagen"],
+                ["fr-be", "6 jours"],
+                ["de-be", "6 Tagen"],
+                ["en", "6 days"],
+            ]),
+        },
+        {
+            key: '7', role: 'option', content: new Map([
+                ["nl-be", "7 dagen"],
+                ["fr-be", "7 jours"],
+                ["de-be", "7 Tagen"],
+                ["en", "7 days"],
+            ]),
+        },
+        {
+            key: '8', role: 'option', content: new Map([
+                ["nl-be", "meer dan 7 dagen"],
+                ["fr-be", "plus de 7 jours"],
+                ["de-be", "mehr als 7 Tage"],
+                ["en", "more than 7 days"],
+            ]),
+        },
+        {
+            key: '99', role: 'option', content: new Map([
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
@@ -1286,9 +1340,18 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
 
             ])
         },
+        // {
+        //     key: '1', role: 'numberInput',
+        //     //properties:{min:0,max:14},
+        //     description: new Map([
+        //         ["nl-be", "Dagen"],
+        //         ["fr-be", "Jours"],
+        //         ["de-be", "Tage"],
+        //         ["en", "Days"],
+        //     ])
+        // },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
-
 
     // VALIDATIONs
     if (isRequired) {
@@ -2592,23 +2655,285 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
         role: 'text',
         content: generateLocStrings(
             new Map([
-                ['nl-be', 'Selecteer het juiste aantal dagen'],
-                ["fr-be", ""],
-                ["de-be", ""],
-                ["en", ""],
+                ['nl-be', "Selecteer het juiste aantal dagen"],
+                ["fr-be", "Sélectionnez le nombre de jours"],
+                ["de-be", "Wählen Sie die Anzahl der Tage"],
+                ["en", "Select the number of days"],
             ])),
     }, rg?.key);
 
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const ddOptions = initDropdownGroup('ddg', [
         {
-            key: '1', role: 'numberInput',
-            //properties:{min:0,max:14},
-            description: new Map([
-                ["nl-be", "Dagen"],
-                ["fr-be", "Jours"],
-                ["de-be", "Tage"],
-                ["en", "Days"],
-            ])
+            key: '0', role: 'option', content: new Map([
+                ["nl-be", "1 dag"],
+                ["fr-be", "1 jour"],
+                ["de-be", "1 Tage"],
+                ["en", "1 day"],
+            ]),
+        },
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl-be", "2 dagen"],
+                ["fr-be", "2 jours"],
+                ["de-be", "2 Tagen"],
+                ["en", "2 days"],
+            ]),
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["nl-be", "3 dagen"],
+                ["fr-be", "3 jours"],
+                ["de-be", "3 Tagen"],
+                ["en", "3 days"],
+            ]),
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl-be", "4 dagen"],
+                ["fr-be", "4 jours"],
+                ["de-be", "4 Tagen"],
+                ["en", "4 days"],
+            ]),
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl-be", "5 dagen"],
+                ["fr-be", "5 jours"],
+                ["de-be", "5 Tagen"],
+                ["en", "5 days"],
+            ]),
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl-be", "6 dagen"],
+                ["fr-be", "6 jours"],
+                ["de-be", "6 Tagen"],
+                ["en", "6 days"],
+            ]),
+        },
+        {
+            key: '6', role: 'option', content: new Map([
+                ["nl-be", "7 dagen"],
+                ["fr-be", "7 jours"],
+                ["de-be", "7 Tagen"],
+                ["en", "7 days"],
+            ]),
+        },
+        {
+            key: '7', role: 'option', content: new Map([
+                ["nl-be", "8 dagen"],
+                ["fr-be", "8 jours"],
+                ["de-be", "8 Tagen"],
+                ["en", "8 days"],
+            ]),
+        },
+        {
+            key: '8', role: 'option', content: new Map([
+                ["nl-be", "9 dagen"],
+                ["fr-be", "9 jours"],
+                ["de-be", "9 Tagen"],
+                ["en", "9 days"],
+            ]),
+        },
+        {
+            key: '9', role: 'option', content: new Map([
+                ["nl-be", "10 dagen"],
+                ["fr-be", "10 jours"],
+                ["de-be", "10 Tagen"],
+                ["en", "10 days"],
+            ]),
+        },
+        {
+            key: '10', role: 'option', content: new Map([
+                ["nl-be", "11 dagen"],
+                ["fr-be", "11 jours"],
+                ["de-be", "11 Tagen"],
+                ["en", "11 days"],
+            ]),
+        },
+        {
+            key: '11', role: 'option', content: new Map([
+                ["nl-be", "12 dagen"],
+                ["fr-be", "12 jours"],
+                ["de-be", "12 Tagen"],
+                ["en", "12 days"],
+            ]),
+        },
+        {
+            key: '12', role: 'option', content: new Map([
+                ["nl-be", "13 dagen"],
+                ["fr-be", "13 jours"],
+                ["de-be", "13 Tagen"],
+                ["en", "13 days"],
+            ]),
+        },
+        {
+            key: '13', role: 'option', content: new Map([
+                ["nl-be", "14 dagen"],
+                ["fr-be", "14 jours"],
+                ["de-be", "14 Tagen"],
+                ["en", "14 days"],
+            ]),
+        },
+        {
+            key: '14', role: 'option', content: new Map([
+                ["nl-be", "15 dagen"],
+                ["fr-be", "15 jours"],
+                ["de-be", "15 Tagen"],
+                ["en", "15 days"],
+            ]),
+        },
+        {
+            key: '15', role: 'option', content: new Map([
+                ["nl-be", "16 dagen"],
+                ["fr-be", "16 jours"],
+                ["de-be", "16 Tagen"],
+                ["en", "16 days"],
+            ]),
+        },
+        {
+            key: '16', role: 'option', content: new Map([
+                ["nl-be", "17 dagen"],
+                ["fr-be", "17 jours"],
+                ["de-be", "17 Tagen"],
+                ["en", "17 days"],
+            ]),
+        },
+        {
+            key: '17', role: 'option', content: new Map([
+                ["nl-be", "18 dagen"],
+                ["fr-be", "18 jours"],
+                ["de-be", "18 Tagen"],
+                ["en", "18 days"],
+            ]),
+        },
+        {
+            key: '18', role: 'option', content: new Map([
+                ["nl-be", "19 dagen"],
+                ["fr-be", "19 jours"],
+                ["de-be", "19 Tagen"],
+                ["en", "19 days"],
+            ]),
+        },
+        {
+            key: '19', role: 'option', content: new Map([
+                ["nl-be", "20 dagen"],
+                ["fr-be", "20 jours"],
+                ["de-be", "20 Tagen"],
+                ["en", "20 days"],
+            ]),
+        },
+        {
+            key: '20', role: 'option', content: new Map([
+                ["nl-be", "21 dagen"],
+                ["fr-be", "21 jours"],
+                ["de-be", "21 Tagen"],
+                ["en", "21 days"],
+            ]),
+        },
+        {
+            key: '21', role: 'option', content: new Map([
+                ["nl-be", "22 dagen"],
+                ["fr-be", "22 jours"],
+                ["de-be", "22 Tagen"],
+                ["en", "22 days"],
+            ]),
+        },
+        {
+            key: '22', role: 'option', content: new Map([
+                ["nl-be", "23 dagen"],
+                ["fr-be", "23 jours"],
+                ["de-be", "23 Tagen"],
+                ["en", "23 days"],
+            ]),
+        },
+        {
+            key: '23', role: 'option', content: new Map([
+                ["nl-be", "24 dagen"],
+                ["fr-be", "24 jours"],
+                ["de-be", "24 Tagen"],
+                ["en", "24 days"],
+            ]),
+        },
+        {
+            key: '24', role: 'option', content: new Map([
+                ["nl-be", "25 dagen"],
+                ["fr-be", "25 jours"],
+                ["de-be", "25 Tagen"],
+                ["en", "25 days"],
+            ]),
+        },
+        {
+            key: '25', role: 'option', content: new Map([
+                ["nl-be", "26 dagen"],
+                ["fr-be", "26 jours"],
+                ["de-be", "26 Tagen"],
+                ["en", "26 days"],
+            ]),
+        },
+        {
+            key: '26', role: 'option', content: new Map([
+                ["nl-be", "27 dagen"],
+                ["fr-be", "27 jours"],
+                ["de-be", "27 Tagen"],
+                ["en", "27 days"],
+            ]),
+        },
+        {
+            key: '27', role: 'option', content: new Map([
+                ["nl-be", "28 dagen"],
+                ["fr-be", "28 jours"],
+                ["de-be", "28 Tagen"],
+                ["en", "28 days"],
+            ]),
+        },
+        {
+            key: '28', role: 'option', content: new Map([
+                ["nl-be", "29 dagen"],
+                ["fr-be", "29 jours"],
+                ["de-be", "29 Tagen"],
+                ["en", "29 days"],
+            ]),
+        },
+        {
+            key: '29', role: 'option', content: new Map([
+                ["nl-be", "30 dagen"],
+                ["fr-be", "30 jours"],
+                ["de-be", "30 Tagen"],
+                ["en", "30 days"],
+            ]),
+        },
+        {
+            key: '30', role: 'option', content: new Map([
+                ["nl-be", "31-40 dagen"],
+                ["fr-be", "31-40 jours"],
+                ["de-be", "31-40 Tagen"],
+                ["en", "31-40 days"],
+            ]),
+        },
+        {
+            key: '31', role: 'option', content: new Map([
+                ["nl-be", "41-50 dagen"],
+                ["fr-be", "41-50 jours"],
+                ["de-be", "41-50 Tagen"],
+                ["en", "41-50 days"],
+            ]),
+        },
+        {
+            key: '32', role: 'option', content: new Map([
+                ["nl-be", "51-60 dagen"],
+                ["fr-be", "51-60 jours"],
+                ["de-be", "51-60 Tagen"],
+                ["en", "51-60 days"],
+            ]),
+        },
+        {
+            key: '33', role: 'option', content: new Map([
+                ["nl-be", "meer dan 60 dagen"],
+                ["fr-be", "plus de 60 jours"],
+                ["de-be", "mehr als 60 Tage"],
+                ["en", "more than 60 days"],
+            ]),
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -3581,7 +3906,6 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["en", "more than 60 days"],
             ]),
         },
-
     ]);
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
