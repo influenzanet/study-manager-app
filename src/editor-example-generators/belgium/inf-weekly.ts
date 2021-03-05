@@ -184,6 +184,8 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_causeOfSymptoms, hasSymptomGroupKey);
 
     // // Qcov_BE_16 test -----------------------------------------------------
+    const Q_SymptomImpliedCovidTest = SymptomImpliedCovidTest(hasSymptomGroupKey, true, "Qcov_BE_16");
+    survey.addExistingSurveyItem(Q_SymptomImpliedCovidTest, hasSymptomGroupKey);
 
     // // qcov7 NPIs------------------------------------------------------
 
@@ -3473,6 +3475,118 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent(ddOptions, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * SYMPTOM IMPLIED COVID-19 TEST PERFORMED
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov_BE_16'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Heeft u omwille van uw symptomen een test laten uitvoeren voor COVID-19? "],
+            ["fr-be", "Avez-vous passé un test de dépistage du coronavirus en raison de vos symptômes ? "],
+            ["de-be", "Haben Sie aufgrund Ihrer Symptome einen Test auf COVID-19 durchführen lassen?"],
+            ["en", "Because of your symptoms, did you undergo a test/analyses to know if you have COVID-19?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten voor welke klachten mensen zich laten testen op COVID-19."],
+                    ["fr-be", "Nous voulons savoir sur la base de quelles plaintes les gens se font tester en vue de dépister le coronavirus."],
+                    ["de-be", "Wir möchten wissen, für welche Beschwerden Menschen sich auf COVID-19 testen lassen."],
+                    ["en", "We want to know which complaints lead people to get tested for the coronavirus."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option', content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, een test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
+                ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
+                ["de-be", "Ja, ein Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
+                ["en", "Yes, a PCR test (virus search, or a swab in nose or mouth, or a sputum or saliva sample)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, een bloedtest"],
+                ["fr-be", "Oui, un test sanguin"],
+                ["de-be", "Ja, ein Bluttest"],
+                ["en", "Yes, a serological analysis (screening for antibodies against this virus, from a drop of blood from fingertip or a blood sample)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Nog niet, ik ga binnekort een test laten uitvoeren"],
+                ["fr-be", "Pas encore, je vais bientôt me faire tester"],
+                ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
+                ["en", "Not yet, I plan to shortly undergo a test"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik zal geen test laten uitvoeren"],
+                ["fr-be", "Non, je ne me ferai pas tester"],
+                ["de-be", "Nein, ich werde keinen Test durchführen lassen"],
+                ["en", "No, I will not get tested"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
