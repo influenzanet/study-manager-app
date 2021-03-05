@@ -1981,7 +1981,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             },
             {
                 key: '16', role: 'option', content: new Map([
-                    ["nl", "Ik weet het niet (meer)"],
+                    ["nl-be", "Ik weet het niet (meer)"],
                     ["fr-be", "Je ne sais pas (plus)"],
                     ["de-be", "Ich weiß es nicht (mehr)"],
                     ["en", "I don’t know/can’t remember"],
@@ -2675,7 +2675,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl", "Heeft u vanwege uw symptomen/klachten medicijnen gebruikt? En zo ja, welke?"],
+            ["nl-be", "Heeft u vanwege uw symptomen/klachten medicijnen gebruikt? En zo ja, welke?"],
             ["fr-be", "Avez-vous pris des médicaments en raison de vos symptômes / troubles médicaux? Et si oui, lesquels?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symptome/Beschwerden Medikamente verwendet? Wenn ja, welche?"],
             ["en", "Did you take medication for these symptoms? "],
