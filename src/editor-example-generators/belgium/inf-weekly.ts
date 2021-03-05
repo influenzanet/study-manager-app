@@ -180,8 +180,8 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_dailyRoutineDaysMissed, hasSymptomGroupKey);
 
     // // Q11 think cause of symptoms --------------------------------------
-    // const Q_causeOfSymptoms = InfluenzanetWeekly.causeOfSymptoms(hasSymptomGroupKey, true);
-    // survey.addExistingSurveyItem(Q_causeOfSymptoms, hasSymptomGroupKey);
+    const Q_causeOfSymptoms = InfluenzanetWeekly.causeOfSymptoms(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_causeOfSymptoms, hasSymptomGroupKey);
 
     // // Qcov_BE_16 test -----------------------------------------------------
 

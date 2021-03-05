@@ -2313,6 +2313,9 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What do you think is causing your symptoms?"],
+            ["nl-be", "Heeft u zelf enig idee waar uw symptomen/klachten vandaan komen?"],
+            ["fr-be", "Avez-vous une idée de l'origine de vos symptômes / troubles médicaux ?"],
+            ["de-be", "Haben Sie selbst irgendeine Ahnung, woher Ihre Symptome/Beschwerden kommen?"],
             ["nl", "Heb je zelf enig idee waar je klachten vandaan komen?"],
             ["fr", "Quelle est selon vous l'origine de vos symptômes ?"],
         ]))
@@ -2326,7 +2329,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         generateHelpGroupComponent([
             {
                 content: new Map([
-                    ["en", "Why are we asking this?"],
+                    ["en", "Why are we asking this question?"],
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela?"],
                 ]),
@@ -2334,7 +2340,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             },
             {
                 content: new Map([
-                    ["en", "To help find out if our assessment of your illness based on your symptoms matches what you believe to be the cause. You might have a better idea of what is causing your illness than our computer algorithms."],
+                    ["en", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                    ["nl-be", "Om te achterhalen of onze beoordeling van uw ziekte op basis van uw symptomen overeenkomt met wat u denkt dat de oorzaak is. U heeft misschien een beter idee van de oorzaak van uw ziekte dan onze computeralgoritmen."],
+                    ["fr-be", "Pour savoir si notre évaluation de votre maladie, basée sur vos symptômes, correspond à ce que vous pensez en être la cause. Vous avez peut-être une meilleure idée de la cause de votre maladie que nos algorithmes informatiques."],
+                    ["de-be", "Um zu ermitteln, ob unsere Beurteilung Ihrer Krankheit auf der Grundlage Ihrer Symptome mit dem übereinstimmt, was Ihrer Meinung nach die Ursache ist. Sie haben vielleicht eine bessere Vorstellung von der Ursache Ihrer Krankheit als unsere Computeralgorithmen."],
                     ["nl", "Om uit te zoeken of je eigen idee wat de oorzaak kan zijn past bij je eigen klachten, en klachten van anderen. Ook heb je waarschijnlijk een beter idee wat het zou kunnen zijn dan computer algoritmes."],
                     ["fr", "Pour nous aider à trouver si notre évaluation de votre maladie en fonction de vos symptômes correspond à ce que vous croyez en être la cause. Vous pourriez avoir une meilleure idée de ce qui est la cause de votre maladie que nos algorithmes informatiques ."],
                 ]),
@@ -2342,7 +2351,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             },
             {
                 content: new Map([
-                    ["en", "How should I answer it?"],
+                    ["en", "How should I answer this question?"],
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre?"],
                 ]),
@@ -2350,7 +2362,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             },
             {
                 content: new Map([
-                    ["en", "If you are reasonably sure about what is causing your symptoms, please tick the appropriate box. Otherwise, please tick “I don’t know”."],
+                    ["en", "If you are reasonably sure of the cause of your symptoms, select the appropriate box. Otherwise, select 'No, I Don’t know'."],
+                    ["nl-be", "Als u redelijk zeker weet wat uw symptomen veroorzaakt, vink dan het juiste vakje aan. Vink anders 'Nee, ik heb geen idee' aan."],
+                    ["fr-be", "Si vous êtes raisonnablement certain(e) de la cause de vos symptômes, cochez la case appropriée. Sinon, cochez 'Non, je n'en ai aucune idée'."],
+                    ["de-be", "Wenn Sie ziemlich genau wissen, was Ihre Symptome verursacht, dann kreuzen Sie das richtige Kästchen an (oder haken es ab). Andernfalls kreuzen Sie 'Nein, ich habe keine Ahnung' an."],
                     ["nl", "Ben je vrij zeker van de oorzaak van je klachten geef deze oorzaak dan aan."],
                     ["fr", "Si vous êtes raisonnablement sûr de ce qui est la cause de vos symptômes, s'il vous plaît cochez la case appropriée. Sinon, cochez la case «Je ne sais pas»."],
                 ]),
@@ -2365,7 +2380,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Flu or flu-like illness"],
+                ["en", "Yes, I have flu or flu-like illness"],
+                ["nl-be", "Ja, ik heb griep, of griepachtige verschijnselen"],
+                ["fr-be", "Oui, j'ai la grippe, ou des symptômes de type grippal"],
+                ["de-be", "Ja, ich habe Grippe oder grippeartige Symptome"],
                 ["nl", "Ja, ik heb griep, of griepachtige verschijnselen"],
                 ["fr", " Grippe ou syndrome pseudo-grippal"],
             ])
@@ -2373,7 +2391,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "Common cold"],
+                ["en", "Yes, I have a common cold"],
+                ["nl-be", "Ja, ik ben verkouden"],
+                ["fr-be", "Oui, j'ai un rhume"],
+                ["de-be", "Ja, ich bin erkältet"],
                 ["nl", "Ja, ik ben verkouden"],
                 ["fr", "Rhume / refroidissement"],
             ])
@@ -2381,7 +2402,10 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         {
             key: '2', role: 'option',
             content: new Map([
-                ["en", "Allergy/hay fever"],
+                ["en", "Yes, I am suffering from an allergy/hay fever"],
+                ["nl-be", "Ja, ik heb last van een allergie/ hooikoorts"],
+                ["fr-be", "Oui, je souffre d'une allergie/du rhume des foins"],
+                ["de-be", "Ja, ich habe Beschwerden aufgrund einer Allergie/ eines Heuschnupfens"],
                 ["nl", "Ja ik heb last van een allergie/ hooikoorts"],
                 ["fr", " Allergie / rhume des foins"],
             ])
@@ -2389,35 +2413,50 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         {
             key: '6', role: 'option',
             content: new Map([
-                ["en", "Ashtma"],
+                ["en", "Yes, I am suffering from ashtma"],
+                ["nl-be", "Ja, ik heb last van astma"],
+                ["fr-be", "Oui, je souffre d'asthme"],
+                ["de-be", "Ja, ich habe Asthma-Beschwerden"],
                 ["nl", "Ja, ik heb last van astma"],
                 ["fr", "Asthme"],
             ])
         }, {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "Gastroenteritis/gastric flu"],
+                ["en", "Yes, I have gastroenteritis complaints or gastric flu"],
+                ["nl-be", "Ja, ik heb maag-darmklachten of buikgriep"],
+                ["fr-be", "Oui, j'ai des problèmes gastro-intestinaux ou une grippe intestinale"],
+                ["de-be", "Ja, ich habe Magen-Darm-Beschwerden oder eine Magen-Darm-Infektion (Gastroenteritis)"],
                 ["nl", "Ja, ik heb maag-darmklachten of buikgriep"],
                 ["fr", "Gastro-entérite / grippe intestinale"],
             ])
         }, {
             key: '9', role: 'option',
             content: new Map([
-                ["en", "New coronavirus (COVID-19)"],
+                ["en", "Yes, by the coronavirus (COVID-19)"],
+                ["nl-be", "Ja, het coronavirus (COVID-19)"],
+                ["fr-be", "Oui, il s’agit du coronavirus (COVID-19)"],
+                ["de-be", "Ja, COVID-19"],
                 ["nl", "Ja, het nieuwe coronavirus (COVID-19)"],
                 ["fr", "Nouveau coronavirus (COVID-19)"],
             ])
         }, {
             key: '4', role: 'option',
             content: new Map([
-                ["en", "Other"],
+                ["en", "Yes, I have another illness or cause which are causing these symptoms"],
+                ["nl-be", "Ja, ik heb een andere ziekte of reden die de klachten hebben veroorzaakt"],
+                ["fr-be", "Oui, ces symptômes ont été causés par une autre maladie ou par une autre origine"],
+                ["de-be", "Ja, ich habe eine andere Krankheit oder Gründe, welche die Beschwerden verursacht haben"],
                 ["nl", "Ja, ik heb een andere ziekte of reden die de klachten hebben veroorzaakt"],
                 ["fr", "Autre"],
             ])
         }, {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "I don't know"],
+                ["en", "No, I don't know"],
+                ["nl-be", "Nee, ik heb geen idee"],
+                ["fr-be", "Non, je n'en ai aucune idée"],
+                ["de-be", "Nein, ich habe keine Ahnung"],
                 ["nl", "Nee, ik heb geen idee"],
                 ["fr", "Je ne sais pas"],
             ])
