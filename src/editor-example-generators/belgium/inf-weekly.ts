@@ -533,9 +533,9 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
-                ["en", "Desribe here (optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
             ])
         },
     ]);
@@ -858,9 +858,9 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
-                ["en", "Desribe here (optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
             ])
         },
     ]);
@@ -2389,9 +2389,9 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
-                ["en", "Desribe here (optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
             ])
         },
         {
@@ -2512,9 +2512,9 @@ const consFear = (parentKey: string, keyvisitedNoMedicalService?: string, isRequ
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
-                ["fr-be", "Décris (facultatif)"],
-                ["de-be", "hier beschreiben (Optional)"],
-                ["en", "Desribe here (optional)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
             ])
         },
     ]);
