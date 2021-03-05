@@ -1255,7 +1255,6 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
     );
 
     // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const ddOptions = initDropdownGroup('ddg', [
         {
             key: '0', role: 'option',
@@ -1351,7 +1350,9 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
         //     ])
         // },
     ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
@@ -2650,7 +2651,6 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
     );
 
     // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent({
         role: 'text',
         content: generateLocStrings(
@@ -2936,7 +2936,9 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
             ]),
         },
     ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
