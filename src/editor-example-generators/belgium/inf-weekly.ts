@@ -570,9 +570,9 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
-            ["fr-be", ""],
-            ["de-be", ""],
+            ["nl-be", "Bent u bereid om meer informatie te geven met betrekking tot de door u gerapporteerde symptomen? Dit zal 5-10 minuten van uw tijd in beslag nemen."],
+            ["fr-be", "Êtes-vous disposé(e) à fournir de plus amples informations concernant les symptômes que vous avez signalés ? Cela vous prendra 5 à 10 minutes de votre temps."],
+            ["de-be", "Sind Sie bereit, in Bezug auf die von Ihnen gemeldeten Symptome weitere Informationen zu erteilen? Das wird 5-10 Minuten Ihrer Zeit in Beschlag nehmen."],
             ["en", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
         ]))
     );
@@ -1383,10 +1383,10 @@ const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, isRequ
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
+            ["nl-be", "In de 14 dagen voor de start van uw symptomen, bent u in nauw contact geweest met één of meerdere personen die een positieve test hadden voor COVID-19 (deze persoon kan al dan niet symptomen vertonen)?"],
+            ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une ou plusieurs personne(s) ayant obtenu un résultat positif au test de dépistage du coronavirus (cette personne peut présenter ou non des symptômes) ?"],
+            ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit einer oder mehreren Personen, die einen positiven Test auf COVID-19 hatten (Diese Person kann Symptome aufweisen oder auch nicht!)?"],
+            ["en", "During the 14 days before your symptoms appeared, were you  in close contact with one or more person(s) who tested positive for coronavirus (whether or not the person had symptoms)?"],
         ]))
     );
 
@@ -1409,10 +1409,10 @@ const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, isRequ
             },
             {
                 content: new Map([
-                    ["nl-be", "We willen weten hoe COVID-19 zich verspreidt in de bevolking."],
-                    ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
-                    ["de-be", "Wir möchten wissen, wie Covid-19 sich in der Bevölkerung verbreitet."],
-                    ["en", "We want to understand how the coronavirus is spreading within the population."],
+                    ["nl-be", "Om te onderzoeken hoe COVID-19 zich verspreidt in de algemene bevolking."],
+                    ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
+                    ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
+                    ["en", "In  order to study how the coronavirus spreads within the general population."],
                 ]),
             },
         ])
@@ -1479,10 +1479,10 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", "Do you live in the same household as that person?"],
+            ["nl-be", "Behoort deze persoon of één van deze personen tot uw huishouden?"],
+            ["fr-be", "Cette personne ou l'une de ces personnes fait-elle partie de votre ménage ou de votre foyer ?"],
+            ["de-be", "Gehört diese Person oder eine dieser Personen zu Ihrem Haushalt?"],
+            ["en", "Was this person or one of these persons a member of your household?"],
         ]))
     );
 
@@ -1505,10 +1505,28 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
             },
             {
                 content: new Map([
-                    ["nl-be", "We willen weten hoe COVID-19 zich verspreidt in de bevolking."],
-                    ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
-                    ["de-be", "Wir möchten wissen, wie Covid-19 sich in der Bevölkerung verbreitet."],
-                    ["en", "We want to understand how the coronavirus is spreading within the population."],
+                    ["nl-be", "COVID-19 en griep verspreiden zich zeer binnenshuis."],
+                    ["fr-be", "Le coronavirus et la grippe se propagent beaucoup à l'intérieur."],
+                    ["de-be", "COVID-19 und Grippe verbreiten sich sehr stark im Hause."],
+                    ["en", "The coronavirus and influenza spread quickly indoors."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Een lid van het huishouden wordt gedefinieerd als iemand (niet noodzakelijk verwant) die op hetzelfde adres woont als u en die de kookgelegenheid, woonkamer, zitkamer of eethoek deelt."],
+                    ["fr-be", "Un membre du ménage ou du foyer est défini comme une personne (pas nécessairement apparentée) qui vit à la même adresse que vous, et qui partage la cuisine, le salon, la salle de séjour ou la salle à manger."],
+                    ["de-be", "Ein Mitglied des Haushalts wird als jemand (nicht notwendigerweise verwandt) definiert, der an derselben Anschrift wie Sie wohnt und mit dem Sie die Kochgelegenheit, Wohnzimmer oder Essecke teilen."],
+                    ["en", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
                 ]),
             },
         ])
@@ -1538,10 +1556,10 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik weet het niet (meer)"],
-                ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en", "I don’t know/can’t remember"],
+                ["nl-be", "Nee, ik weet het niet"],
+                ["fr-be", "Je ne sais pas"],
+                ["de-be", "Ich weiß es nicht"],
+                ["en", "I don’t know"],
             ])
         },
     ]);
@@ -1576,10 +1594,10 @@ const covidSymptomsContact = (parentKey: string, keySymptomsQuestion: string, is
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", "In the 14 days before your symptoms started, have you been in close contact with someone presenting symptoms of COVID-19?"],
+            ["nl-be", "In de 14 dagen voor de start van uw symptomen, bent u in nauw contact geweest met iemand die symptomen van COVID-19 vertoonde?"],
+            ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une personne présentant des symptômes du coronavirus ?"],
+            ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit jemandem, der die Symptome von COVID-19 aufwies?"],
+            ["en", "During the 14 days before your symptoms appeared, were you in close contact with a person with coronavirus symptoms?"],
         ]))
     );
 
@@ -1602,10 +1620,10 @@ const covidSymptomsContact = (parentKey: string, keySymptomsQuestion: string, is
             },
             {
                 content: new Map([
-                    ["nl-be", "We willen weten hoe COVID-19 zich verspreidt in de bevolking."],
-                    ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
-                    ["de-be", "Wir möchten wissen, wie Covid-19 sich in der Bevölkerung verbreitet."],
-                    ["en", "We want to understand how the coronavirus is spreading within the population."],
+                    ["nl-be", "Om te onderzoeken hoe COVID-19 zich verspreidt in de algemene bevolking."],
+                    ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
+                    ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
+                    ["en", "In  order to study how the coronavirus spreads within the general population."],
                 ]),
             },
         ])
@@ -1672,10 +1690,10 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
-            ["fr-be", ""],
-            ["de-be", ""],
-            ["en", "Do you live in the same household as that person?"],
+            ["nl-be", "Behoort deze persoon of één van deze personen tot uw huishouden?"],
+            ["fr-be", "Cette personne ou l'une de ces personnes fait-elle partie de votre ménage ou de votre foyer ?"],
+            ["de-be", "Gehört diese Person oder eine dieser Personen zu Ihrem Haushalt?"],
+            ["en", "Was this person or one of these persons a member of your household?"],
         ]))
     );
 
@@ -1698,10 +1716,28 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
             },
             {
                 content: new Map([
-                    ["nl-be", "We willen weten hoe COVID-19 zich verspreidt in de bevolking."],
-                    ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
-                    ["de-be", "Wir möchten wissen, wie Covid-19 sich in der Bevölkerung verbreitet."],
-                    ["en", "We want to understand how the coronavirus is spreading within the population."],
+                    ["nl-be", "COVID-19 en griep verspreiden zich snel binnenshuis."],
+                    ["fr-be", "Le coronavirus et la grippe se propagent beaucoup à l'intérieur."],
+                    ["de-be", "COVID-19 und Grippe verbreiten sich sehr stark im Hause."],
+                    ["en", "The coronavirus and influenza spread quickly indoors."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Een lid van het huishouden wordt gedefinieerd als iemand (niet noodzakelijk verwant) die op hetzelfde adres woont als u en die de kookgelegenheid, woonkamer, zitkamer of eethoek deelt."],
+                    ["fr-be", "Un membre du ménage ou du foyer est défini comme une personne (pas nécessairement apparentée) qui vit à la même adresse que vous, et qui partage la cuisine, le salon, la salle de séjour ou la salle à manger."],
+                    ["de-be", "Ein Mitglied des Haushalts wird als jemand (nicht notwendigerweise verwandt) definiert, der an derselben Anschrift wie Sie wohnt und mit dem Sie die Kochgelegenheit, Wohnzimmer oder Essecke teilen."],
+                    ["en", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
                 ]),
             },
         ])
@@ -1731,10 +1767,10 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik weet het niet (meer)"],
-                ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en", "I don’t know/can’t remember"],
+                ["nl-be", "Nee, ik weet het niet"],
+                ["fr-be", "Je ne sais pas"],
+                ["de-be", "Ich weiß es nicht"],
+                ["en", "I don’t know"],
             ])
         },
     ]);
@@ -4053,7 +4089,7 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Heeft u vanwege uw symtomen deze maatregelen genomen of verstrengd (in vergelijking met de periode voor uw symptomen)?"],
             ["fr-be", ""],
             ["de-be", ""],
             ["en", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
@@ -4065,21 +4101,73 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
     );
 
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om te onderzoeken hoe verschillende maatregelen worden opgevolgd."],
+                    ["fr-be", "Afin d'examiner la manière dont les différentes mesures sont suivies."],
+                    ["de-be", "Um zu untersuchen, wie verschiedene Maßnahmen befolgt werden."],
+                    ["en", "To examine how different measures are being followed."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Bijvoorbeeld 'Handen schudden vermijden': Kies 'Ja', omwille van mijn symptomen heb ik geen of nog minder handen geschud; Kies 'Nee, ik pas deze maatregel niet toe', ik geef nog steeds mensen de hand ook al heb ik symptomen; Kies 'Nee, ik hield me al aan deze maatregel', want ook voor mijn symptomen gaf ik geen handen en heb dit niet aangepast."],
+                    ["fr-be", "Par exemple, 'Évitez de serrer les mains': Choisissez 'Oui' si vous avez serré moins de mains ou si vous n'avez plus serré de mains en raison de vos symptômes; Choisissez 'Non, je n'applique pas cette mesure', si vous continuez à serrer la main des gens malgré vos symptômes; Choisissez 'Non, J'appliquais déjà cette mesure' si vous ne serriez déjà plus la main des gens avant l'apparition de vos symptômes, et que vous n'avez pas modifié ce comportement."],
+                    ["de-be", "Zum Beispiel so, 'Hände schütteln vermeiden': Wählen Sie 'Ja', aufgrund meiner Symptome habe ich keine oder noch weniger Hände geschüttelt; Wählen Sie 'Nein, ich wende diese Maßnahme nicht an', ich gebe noch immer Menschen die Hand, obwohl ich schon Symptome habe; Wählen Sie 'Nein, ich hielt mich schon an diese Maßnahme', denn auch aufgrund meiner Symptome gab ich niemandem die Hand und habe das nicht gemacht."],
+                    ["en", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+
     // RESPONSE PART
     const likertOptions = [
         {
             key: "1", content: new Map([
-                ["en", " Yes, I am following this measure now for the first time, or in a stricter way"]
+                ["nl-be", "Ja, ik pas deze maatregel nu (voor het eerst) of meer (verstrengd) toe"],
+                ["fr-be", "Oui, j'applique cette mesure maintenant (pour la première fois) ou de manière plus stricte"],
+                ["de-be", "Ja, ich wende diese Maßnahme nun (zum ersten Mal) oder mehr (verstärkt) an"],
+                ["en", " Yes, I am following this measure now for the first time, or in a stricter way"],
             ])
         },
         {
             key: "2", content: new Map([
-                ["en", "No, I am not following this measure"]
+                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
+                ["fr-be", "Non, je n'applique pas cette mesure"],
+                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
+                ["en", "No, I am not following this measure"],
             ])
         },
         {
             key: "3", content: new Map([
-                ["en", "I was already following this measure"]
+                ["nl-be", "Nee, ik hield me al aan deze maatregel"],
+                ["fr-be", "Non, j'appliquais déjà cette mesure"],
+                ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
+                ["en", "I was already following this measure"],
             ])
         }
     ];
@@ -4091,6 +4179,9 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Regelmatig handen wassen/desinfecteren"],
+                ["fr-be", "Se laver/se désinfecter régulièrement les mains"],
+                ["de-be", "Regelmäßig die Hände waschen/desinfiziren"],
                 ['en', 'Regularly wash or disinfect hands'],
             ])),
     }, rg?.key);
@@ -4101,6 +4192,9 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Niezen en hoesten in uw elleboog"],
+                ["fr-be", "Éternuer et tousser dans votre coude"],
+                ["de-be", "In Ihren Ellenbogen niesen und husten"],
                 ['en', 'Cough or sneeze into your elbow'],
             ])),
     }, rg?.key);
@@ -4111,6 +4205,9 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Wegwerktissues gebruiken"],
+                ["fr-be", "Utiliser des mouchoirs jetables"],
+                ["de-be", "Einwegtaschentücher verwenden"],
                 ['en', 'Use a disposable tissue'],
             ])),
     }, rg?.key);
@@ -4121,6 +4218,9 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Een mondmasker dragen buitenshuis"],
+                ["fr-be", "Porter un masque buccal à l'extérieur"],
+                ["de-be", "Außerhalb des Hauses einen Mund-Nasen-Schutz tragen"],
                 ['en', 'Wear a face mask outdoors'],
             ])),
     }, rg?.key);
@@ -4131,6 +4231,9 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Een mondmasker dragen binnenshuis"],
+                ["fr-be", "Porter un masque buccal à l'intérieur"],
+                ["de-be", "Im Hause einen Mund-Nasen-Schutz tragen"],
                 ['en', 'Wear a face mask indoors'],
             ])),
     }, rg?.key);
@@ -4141,27 +4244,35 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Handen schudden vermijden"],
+                ["fr-be", "Éviter de serrer les mains"],
+                ["de-be", "Hände schütteln vermeiden"],
                 ['en', 'Avoid shaking hands'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_6', likertOptions), rg?.key);
-
+    
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Niet meer knuffelen of kus op de wang geven"],
+                ["fr-be", "Éviter les embrassades ou les bisous sur la joue"],
+                ["de-be", "Nicht mehr knutschen oder einen Kuss auf die Wange geben"],
                 ['en', 'Stop greeting by hugging and/or kissing on both cheeks'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_7', likertOptions), rg?.key);
 
-
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Gebruik van openbaar vervoer beperken"],
+                ["fr-be", "Limiter l'utilisation des transports en commun"],
+                ["de-be", "Die Nutzung des ÖPNV begrenzen"],
                 ['en', 'Limit your use of public transport'],
             ])),
     }, rg?.key);
@@ -4173,7 +4284,10 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
-                ['en', 'Avoid gatherings (going to the theater, cinema, stadium)'],
+                ["nl-be", "Drukke plaatsen mijden (supermarkt, cinema, stadium,...)"],
+                ["fr-be", "Éviter les lieux bondés (un supermarché, un cinéma, un stade, etc.)"],
+                ["de-be", "Belebte Plätze meiden (Supermarkt, Kino, Stadion, usw.)"],
+                ['en', 'Avoid bussy places (supermarket, cinema, stadium)'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_9', likertOptions), rg?.key);
@@ -4184,72 +4298,87 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Thuis blijven"],
+                ["fr-be", "Rester à la maison"],
+                ["de-be", "Zu Hause bleiben"],
                 ['en', 'Stay at home'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_10', likertOptions), rg?.key);
 
-
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Telewerken"],
+                ["fr-be", "Effectuer du télétravail"],
+                ["de-be", "Telearbeit oder erhöhen Sie die Anzahl der Telearbeitstage"],
                 ['en', 'Telework or increase your number of telework days'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_11', likertOptions), rg?.key);
-
-
+    
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Niet meer naar het buitenland reizen"],
+                ["fr-be", "Ne plus voyager à l'étranger"],
+                ["de-be", "Nicht mehr ins Ausland reisen!"],
                 ['en', 'Avoid travel outside your own country or region'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_12', likertOptions), rg?.key);
 
-
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Boodschappen aan huis laten leveren (door winkel/familie/vriend)"],
+                ["fr-be", "Se faire livrer ses achats à domicile (par un magasin/un membre de la famille/un ami)"],
+                ["de-be", "Aufträge nach Hause liefern lassen (durch das Geschäft/die Familie/Freunde)"],
                 ['en', 'Have your food/shopping delivered by a store or a friend/family member'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_13', likertOptions), rg?.key);
 
-
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Ontmoetingen met familie en vrienden beperken"],
+                ["fr-be", "Limiter les rencontres avec la famille et les amis"],
+                ["de-be", "Treffen mit Familie und Freunden einschränken und begrenzen"],
                 ['en', 'Avoid seeing friends and family'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_14', likertOptions), rg?.key);
-
-
+    
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Ontmoetingen met mensen 65+ jaar of met chronische aandoeningen beperken"],
+                ["fr-be", "Limiter les rencontres avec les personnes âgées de plus de 65 ans ou souffrant de maladies chroniques"],
+                ["de-be", "Treffen mit Menschen im Alter von 65+ Jahren oder mit chronischen Erkrankungen begrenzen"],
                 ['en', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_15', likertOptions), rg?.key);
 
-
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
+                ["nl-be", "Contact met kinderen beperken"],
+                ["fr-be", "Limiter les contacts avec les enfants"],
+                ["de-be", "Kontakt mit Kindern begrenzen"],
                 ['en', 'Avoid being in contact with children'],
             ])),
     }, rg?.key);
