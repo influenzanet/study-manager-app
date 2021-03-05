@@ -168,10 +168,12 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_whenAntivirals, hasSymptomGroupKey);
 
     // // Q10 daily routine------------------------------------------------
-    const Q_dailyRoutine = tookMedication(hasSymptomGroupKey, true, "Q10");
+    const Q_dailyRoutine = dailyRoutine(hasSymptomGroupKey, true, "Q10");
     survey.addExistingSurveyItem(Q_dailyRoutine, hasSymptomGroupKey);
 
     // // Q_BE_10b today-------------------------------------------------------
+    const Q_dailyRoutineToday = dailyRoutineToday(hasSymptomGroupKey, Q_dailyRoutine.key, true, "Q_BE_10b");
+    survey.addExistingSurveyItem(Q_dailyRoutineToday, hasSymptomGroupKey);
 
     // // Q10_BE_c daily routine days-----------------------------------------
 
@@ -2991,6 +2993,124 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * DAILY ROUTINE TODAY
+ * 
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyDailyRoutine: reference to question if participant missed work/school
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q_BE_10b';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Kan u op dit moment nog steeds niet werken of school volgen vanwege de symptomen/klachten?"],
+            ["fr-be", "Êtes-vous actuellement toujours dans l'incapacité de travailler ou de fréquenter l'école en raison des symptômes/plaintes ?"],
+            ["de-be", "Können Sie in diesem Augenblick aufgrund der Symptome/Beschwerden noch immer nicht arbeiten oder die Schule besuchen?"],
+            ["en", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om het effect te bepalen van de klachten op uw dagelijks leven."],
+                    ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
+                    ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
+                    ["en", "To determine how the symptoms are impacting your daily life."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Antwoord 'Ja' als u vanwege klachten vandaag nog niet kan werken of naar school gaan."],
+                    ["fr-be", "Répondez 'Oui' si vous ne pouvez pas vous rendre au travail ou à l'école aujourd'hui en raison de certains symptômes."],
+                    ["de-be", "Antworten Sie 'Ja', wenn Sie aufgrund von Beschwerden heute noch nicht arbeiten oder zur Schule gehen können."],
+                    ["en", "Answer 'yes' if you missed work or school today due to certain symptoms."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup'});
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', 
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+            ])
+        },
+        {
+            key: '0', 
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        },
+        {
+            key: '3', 
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Andere (ik hoefde vandaag sowieso niet te werken of niet naar school te gaan)"],
+                ["fr-be", "Autre (je ne devais pas travailler ou à aller à l'école aujourd'hui de toute façon)"],
+                ["de-be", "Andere (ich brauchte heute sowieso nicht zu arbeiten oder nicht zur Schule zu gehen)"],
+                ["en", "Other (I did not have to work or go to school today in any case)"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
     // VALIDATIONs
     if (isRequired) {
         editor.addValidation({
