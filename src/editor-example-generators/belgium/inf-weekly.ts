@@ -86,10 +86,14 @@ const weekly = (): Survey | undefined => {
 
     // // TO DO: add symtom group question
 
+    // Q1_2_def consent to further symptom questions
+    const Q_consentSymptomQuestion = consentForSymptoms(rootKey, Q_symptoms.key, true, "Q_BE_1_2")
+    survey.addExistingSurveyItem(Q_consentSymptomQuestion, rootKey);
+
     // // -------> HAS SYMPTOMS GROUP
-    const hasSymptomGroup = InfluenzanetWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key);
-    survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
-    const hasSymptomGroupKey = hasSymptomGroup.key;
+    const userConsentedSymptomsGroup = InfluenzanetWeekly.userConsentedSymptomsGroup(rootKey, Q_consentSymptomQuestion.key);
+    survey.addExistingSurveyItem(userConsentedSymptomsGroup, rootKey);
+    const hasSymptomGroupKey = userConsentedSymptomsGroup.key;
 
     // // Q2 same illnes --------------------------------------
     const Q_same_illnes = InfluenzanetWeekly.sameIllnes(hasSymptomGroupKey, true);
@@ -534,6 +538,95 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["en", "Desribe here (optional)"],
             ])
         },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * CONSENT FOR SYMPTOMS QUESTIONS: single choice question to get consent for further questions on symptoms
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q_BE_1_2'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", ""],
+            ["de-be", ""],
+            ["en", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten of je bereid bent de vervolgvragen te beantwoorden. Uw antwoorden op de vervolgvragen kunnen ons onderzoek helpen."],
+                    ["fr-be", "Nous voulons savoir si vous êtes prêt à répondre aux questions de suivi. Vos réponses aux questions de suivi peuvent aider notre enquête."],
+                    ["de-be", "Wir möchten wissen, ob Sie bereit sind, die Anschlussfragen zu beantworten. Ihre Antworten auf die Anschlussfragen können unsere Untersuchung unterstützen."],
+                    ["en", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our investigation."],
+                ]),
+                //style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option', content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        }
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -1213,6 +1306,7 @@ const durationTestResult = (parentKey: string, keyresultTest?: string, isRequire
  * PCR TESTED CONTACTS COVID-19: single choice question about contact with PCR tested Covid19 patients
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
@@ -1405,6 +1499,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
  * CONTACT WITH SYMPTOMATIC PERSONS: single choice question about contact with people showing covid symptoms
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
@@ -3608,6 +3703,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
  * COVID 19 Personal Habits Changes: likert scale question about changes in personal habits after experiencing covid symptoms
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
@@ -3821,20 +3917,6 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_16', likertOptions), rg?.key);
-
-
-    editor.addExistingResponseComponent({
-        role: 'text',
-        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
-        content: generateLocStrings(
-            new Map([
-                ['en', 'None of these measures'],
-            ])),
-    }, rg?.key);
-    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_17', likertOptions), rg?.key);
-
-
-
 
     // VALIDATIONs
     // None

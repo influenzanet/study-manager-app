@@ -263,6 +263,24 @@ const hasSymptomsGroup = (parentKey: string, keySymptomsQuestion: string, keyOve
     return editor.getItem();
 }
 
+/**
+ * GROUP DEPENDING ON IF ANY SYMPTOMS PRESENT AND USER WANTS TO ANSWER MORE QUESTIONS
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param userConsentForSymptoms reference to the symptom survey
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const userConsentedSymptomsGroup = (parentKey: string, userConsentForSymptoms: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'HS'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', userConsentForSymptoms, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+    );
+    editor.setSelectionMethod({ name: 'sequential' });
+    return editor.getItem();
+}
 
 /**
  * SAME ILLNES
@@ -2480,6 +2498,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
 export const WeeklyQuestions = {
     symptomps,
     hasSymptomsGroup,
+    userConsentedSymptomsGroup,
     sameIllnes,
     symptomsStart,
     symptomsEnd,
