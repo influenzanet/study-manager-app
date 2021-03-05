@@ -34,10 +34,10 @@ const weekly = (): Survey | undefined => {
 
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["nl-be", "Invullen duurt 15 seconden tot 3 minuten, afhankelijk van je klachten."],
-            ["fr-be", "Le remplissage prend de 15 secondes à 3 minutes, selon vos plaintes."],
-            ["de-be", "Das Ausfüllen dauert je nach Ihren Beschwerden 15 Sekunden bis 3 Minuten."],
-            ["en", "Filling in takes 15 seconds to 3 minutes, depending on your complaints."],
+            ["nl-be", "Invullen duurt 15 seconden tot 5 minuten, afhankelijk van je klachten."],
+            ["fr-be", "Le remplissage prend de 15 secondes à 5 minutes, selon vos plaintes."],
+            ["de-be", "Das Ausfüllen dauert je nach Ihren Beschwerden 15 Sekunden bis 5 Minuten."],
+            ["en", "Filling in takes 15 seconds to 5 minutes, depending on your complaints."],
         ])
     ));
 
