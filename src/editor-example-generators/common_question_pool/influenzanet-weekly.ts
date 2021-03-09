@@ -2149,7 +2149,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How long after the onset of symptoms / medical problems did you start taking antiviral medication?"],
-            ["nl-be", "Hoe snel nadat uw symptomen/klachten opkwamen bent u begonnen met het gebruiken van antivirale middelen?"],
+            ["nl-be", "Hoe snel nadat uw symptomen/klachten opkwamen bent u begonnen met het gebruiken van antivirale middelen?"],
             ["fr-be", "Combien de temps après la survenue des symptômes / des troubles médicaux avez-vous commencé à prendre des médicaments antiviraux?"],
             ["de-be", "Wie schnell nach dem Auftreten Ihrer Symptome/Beschwerden haben Sie mit der Einnahme antiviraler Mittel begonnen?"],
             ["nl", "Hoe snel nadat je klachten opkwamen ben je begonnen met het gebruiken van antivirale middelen?"],
