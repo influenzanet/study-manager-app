@@ -4244,6 +4244,17 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
     ];
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    // editor.addExistingResponseComponent({
+    //     role: 'text',
+    //     style: [{ key: 'className', value: 'mb-2' }],
+    //     content: generateLocStrings(
+    //         new Map([
+    //             ['nl-be', 'Optioneel in te vullen'],
+    //             ["fr-be", "Question facultative"],
+    //             ["de-be", "Optional einzutragen"],
+    //             ["en", "To be completed optionally"],
+    //         ])),
+    // }, rg?.key);
 
     editor.addExistingResponseComponent({
         role: 'text',
