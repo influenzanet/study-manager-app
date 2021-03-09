@@ -102,7 +102,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
     // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
-    const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, Q_symptoms.key, true, "Qcov_BE_3");
+    const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, true, "Qcov_BE_3");
     survey.addExistingSurveyItem(Q_covidPCRTestedContact, hasSymptomGroupKey);
 
     // // Qcov_BE_3b household pcr contacts COVID-19--------------------------
@@ -110,7 +110,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
 
     // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
-    const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, Q_symptoms.key, true, "Qcov_BE_8");
+    const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, true, "Qcov_BE_8");
     survey.addExistingSurveyItem(Q_covidContact, hasSymptomGroupKey);
 
     // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
@@ -190,8 +190,8 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_SymptomImpliedCovidTest, hasSymptomGroupKey);
 
     // // Qcov_BE_7 Covid 19 habits change question ------------------------------------------------------
-    const Q_covidHabits = covidHabitsChange(rootKey, Q_symptoms.key, false, "Qcov_BE_7");
-    survey.addExistingSurveyItem(Q_covidHabits, rootKey);
+    const Q_covidHabits = covidHabitsChange(hasSymptomGroupKey, false, "Qcov_BE_7");
+    survey.addExistingSurveyItem(Q_covidHabits, hasSymptomGroupKey);
 
 
     return survey.getSurvey();
@@ -1448,7 +1448,7 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1465,9 +1465,7 @@ const pcrTestedContact = (parentKey: string, keySymptomsQuestion: string, isRequ
     );
 
     // CONDITION
-    editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
-    );
+    // none
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -1659,7 +1657,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const covidSymptomsContact = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_8'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1676,9 +1674,7 @@ const covidSymptomsContact = (parentKey: string, keySymptomsQuestion: string, is
     );
 
     // CONDITION
-    editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
-    );
+    // none
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -4154,7 +4150,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_7'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4171,9 +4167,7 @@ const covidHabitsChange = (parentKey: string, keySymptomsQuestion: string, isReq
     );
 
     // CONDITION
-    editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
-    );
+    // none
 
     // INFO POPUP
     editor.setHelpGroupComponent(
