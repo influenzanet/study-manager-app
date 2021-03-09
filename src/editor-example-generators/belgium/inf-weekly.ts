@@ -796,10 +796,10 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option', content: new Map([
-                ["nl-be", "Enkel vanwege mijn symptomen"],
-                ["fr-be", "Uniquement en raison de mes symptômes"],
-                ["de-be", "Nur aufgrund meiner Symptome"],
-                ["en", "Solely because of my symptoms"],
+                ["nl-be", "Vanwege mijn symptomen"],
+                ["fr-be", "En raison de mes symptômes"],
+                ["de-be", "Aufgrund meiner Symptome"],
+                ["en", "Because of my symptoms"],
             ])
         },
         {
@@ -823,28 +823,28 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl-be", "Vanwege mijn terugkeer uit een risicogebied (ik had geen symptomen)"],
-                ["fr-be", "En raison de mon retour d'une zone à risque (je ne présentais pas de symptômes)"],
-                ["de-be", "Aufgrund meiner Rückkehr aus einem Risikogebiet (ich hatte keine Symptome)"],
-                ["en", "Because I returned from a risk area (I do not have any symptoms) "],
+                ["nl-be", "Vanwege mijn terugkeer uit een risicogebied"],
+                ["fr-be", "En raison de mon retour d'une zone à risque"],
+                ["de-be", "Aufgrund meiner Rückkehr aus einem Risikogebiet"],
+                ["en", "Because I returned from a risk area"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl-be", "Vanwege mijn deelname aan een risico-activiteit (vliegreis, evenement, ...) (ik had geen symptomen)"],
-                ["fr-be", "En raison de ma participation à une activité à risque (un voyage en avion, un événement, etc.) (je ne présentais aucun symptôme)"],
-                ["de-be", "Aufgrund meiner Teilnahme an einer Risiko-Aktivität (Flugreise, Veranstaltung, Event usw.) (ich hatte keine Symptome)"],
-                ["en", "Because I took part in a high-risk activity (a plane trip, an event, etc.) (I do not have any symptoms) "],
+                ["nl-be", "Vanwege mijn deelname aan een risico-activiteit (vliegreis, evenement, ...)"],
+                ["fr-be", "En raison de ma participation à une activité à risque (un voyage en avion, un événement, etc.)"],
+                ["de-be", "Aufgrund meiner Teilnahme an einer Risiko-Aktivität (Flugreise, Veranstaltung, Event usw.)"],
+                ["en", "Because I took part in a high-risk activity (a plane trip, an event, etc.)"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl-be", "Vanwege mijn beroep (ik had geen symptomen)"],
-                ["fr-be", "En raison de ma profession (je ne présentais pas de symptômes) "],
-                ["de-be", "Aufgrund meines Berufs (ich hatte keine Symptome)"],
-                ["en", "Because of my profession (I do not have any symptoms) "],
+                ["nl-be", "Vanwege mijn beroep"],
+                ["fr-be", "En raison de ma profession"],
+                ["de-be", "Aufgrund meines Berufs"],
+                ["en", "Because of my profession"],
             ])
         },
         {
@@ -953,7 +953,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
 }
 
 /**
- * DURATION COVID-19 TEST: duration untill COVID-19 test
+ * DURATION COVID-19 TEST: duration since symptoms untill COVID-19 test
  * TO DO: fix dropdown menu
  * 
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -979,7 +979,7 @@ const durationTest = (parentKey: string, keyreasonTest?: string, isRequired?: bo
     // CONDITION
     if (keyreasonTest) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
+            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
         );
     }
 
@@ -1026,21 +1026,83 @@ const durationTest = (parentKey: string, keyreasonTest?: string, isRequired?: bo
     );
 
     // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const ddOptions = initDropdownGroup('ddg', [
         {
-            key: '1', role: 'numberInput',
-            //properties:{min:0,max:14},
-            description: new Map([
-                ["nl-be", "Dagen"],
-                ["fr-be", "Jours"],
-                ["de-be", "Tage"],
-                ["en", "Days"],
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Op dezelfde dag"],
+                ["fr-be", "Le jour même "],
+                ["de-be", "Le jour même "],
+                ["en", "The same day"],
             ])
         },
         {
-            key: '99', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
+                ["nl-be", "1 dag"],
+                ["fr-be", "1 jour"],
+                ["de-be", "1 Tag"],
+                ["en", "1 day"],
+            ])
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["nl-be", "2 dagen"],
+                ["fr-be", "2 jours"],
+                ["de-be", "2 Tagen"],
+                ["en", "2 days"],
+            ]),
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl-be", "3 dagen"],
+                ["fr-be", "3 jours"],
+                ["de-be", "3 Tagen"],
+                ["en", "3 days"],
+            ]),
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl-be", "4 dagen"],
+                ["fr-be", "4 jours"],
+                ["de-be", "4 Tagen"],
+                ["en", "4 days"],
+            ]),
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl-be", "5 dagen"],
+                ["fr-be", "5 jours"],
+                ["de-be", "5 Tagen"],
+                ["en", "5 days"],
+            ]),
+        },
+        {
+            key: '6', role: 'option', content: new Map([
+                ["nl-be", "6 dagen"],
+                ["fr-be", "6 jours"],
+                ["de-be", "6 Tagen"],
+                ["en", "6 days"],
+            ]),
+        },
+        {
+            key: '7', role: 'option', content: new Map([
+                ["nl-be", "7 dagen"],
+                ["fr-be", "7 jours"],
+                ["de-be", "7 Tagen"],
+                ["en", "7 days"],
+            ]),
+        },
+        {
+            key: '8', role: 'option', content: new Map([
+                ["nl-be", "meer dan 7 dagen"],
+                ["fr-be", "plus de 7 jours"],
+                ["de-be", "mehr als 7 Tage"],
+                ["en", "more than 7 days"],
+            ]),
+        },
+        {
+            key: '99', role: 'option', content: new Map([
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
@@ -1048,8 +1110,20 @@ const durationTest = (parentKey: string, keyreasonTest?: string, isRequired?: bo
 
             ])
         },
+        // {
+        //     key: '1', role: 'numberInput',
+        //     //properties:{min:0,max:14},
+        //     description: new Map([
+        //         ["nl-be", "Dagen"],
+        //         ["fr-be", "Jours"],
+        //         ["de-be", "Tage"],
+        //         ["en", "Days"],
+        //     ])
+        // },
     ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
