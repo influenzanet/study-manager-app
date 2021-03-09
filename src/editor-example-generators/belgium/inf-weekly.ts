@@ -4174,8 +4174,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u vanwege uw symtomen deze maatregelen genomen of verstrengd (in vergelijking met de periode voor uw symptomen)?"],
-            ["fr-be", ""],
-            ["de-be", ""],
+            ["fr-be", "En raison de vos symptômes, avez-vous pris ou intensifié les mesures reprises ci-dessous (par rapport à la période précédant vos symptômes) ?"],
+            ["de-be", "Haben Sie aufgrund Ihrer Symtome diese Maßnahmen ergriffen oder verstärkt (im Vergleich mit dem Zeitraum vor Ihren Symptomen)?"],
             ["en", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
         ]))
     );
