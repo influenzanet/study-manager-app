@@ -84,8 +84,6 @@ const weekly = (): Survey | undefined => {
     const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
     survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
 
-    // // TO DO: add symtom group question
-
     // Q1_2_def consent to further symptom questions
     const Q_consentSymptomQuestion = consentForSymptoms(rootKey, Q_symptoms.key, true, "Q_BE_1_2")
     survey.addExistingSurveyItem(Q_consentSymptomQuestion, rootKey);
@@ -104,20 +102,20 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
 
     // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
-    const Q_covidPCRTestedContact = pcrTestedContact(rootKey, Q_symptoms.key, true, "Qcov_BE_3");
-    survey.addExistingSurveyItem(Q_covidPCRTestedContact, rootKey);
+    const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, Q_symptoms.key, true, "Qcov_BE_3");
+    survey.addExistingSurveyItem(Q_covidPCRTestedContact, hasSymptomGroupKey);
 
     // // Qcov_BE_3b household pcr contacts COVID-19--------------------------
-    const Q_pcrHouseholdContact = pcrHouseholdContact(rootKey, Q_covidPCRTestedContact.key, true, "Qcov_BE_3b");
-    survey.addExistingSurveyItem(Q_pcrHouseholdContact, rootKey);
+    const Q_pcrHouseholdContact = pcrHouseholdContact(hasSymptomGroupKey, Q_covidPCRTestedContact.key, true, "Qcov_BE_3b");
+    survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
 
     // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
-    const Q_covidContact = covidSymptomsContact(rootKey, Q_symptoms.key, true, "Qcov_BE_8");
-    survey.addExistingSurveyItem(Q_covidContact, rootKey);
+    const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, Q_symptoms.key, true, "Qcov_BE_8");
+    survey.addExistingSurveyItem(Q_covidContact, hasSymptomGroupKey);
 
     // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
-    const Q_covidHouseholdContact = covidHouseholdContact(rootKey, Q_covidContact.key, true, "Qcov_BE_8b");
-    survey.addExistingSurveyItem(Q_covidHouseholdContact, rootKey);
+    const Q_covidHouseholdContact = covidHouseholdContact(hasSymptomGroupKey, Q_covidContact.key, true, "Qcov_BE_8b");
+    survey.addExistingSurveyItem(Q_covidHouseholdContact, hasSymptomGroupKey);
 
     // // Q4 when symptoms end --------------------------------------
     const Q_symptomsEnd = InfluenzanetWeekly.symptomsEnd(hasSymptomGroupKey, Q_symptomStart.key, true);
