@@ -146,7 +146,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_visitedNoMedicalService, hasSymptomGroupKey);
 
     // // Qcov_BE_18b consequences fear-------------------------------------------------
-    const Q_consFear = consFear(hasSymptomGroupKey, Q_visitedNoMedicalService.key, true, "Qcov_BE_18b");
+    const Q_consFear = consFear(hasSymptomGroupKey, Q_visitedMedicalService.key, Q_visitedNoMedicalService.key, true, "Qcov_BE_18b");
     survey.addExistingSurveyItem(Q_consFear, hasSymptomGroupKey);
 
     // // Q_BE_7x duration hospitalisation----------------------------------------------
@@ -2596,7 +2596,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const consFear = (parentKey: string, keyvisitedNoMedicalService?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyvisitedNoMedicalService?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_18b';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -2614,7 +2614,10 @@ const consFear = (parentKey: string, keyvisitedNoMedicalService?: string, isRequ
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '9')
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyVisitedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '9')
+        )
     );
 
     // INFO POPUP
