@@ -791,6 +791,17 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option', content: new Map([
@@ -978,7 +989,7 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
     editor.setCondition(
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0'),
-            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0')
         )
     );
 
@@ -1282,7 +1293,7 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
     editor.setCondition(
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0'),
-            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keyresultTest, [responseGroupKey, singleChoiceKey].join('.'), '1', '2', '3')
         )
     );
 
@@ -3300,7 +3311,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '1',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, pijnstillers zoals paracetamol, aspirine of ibuprofen"],
                 ["fr-be", "Oui, des analgésiques tels que le paracétamol, l'aspirine ou l'ibuprofène"],
@@ -3311,7 +3322,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '9',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, middelen om de neus vrij te maken (neusspray, enz.)"],
                 ["fr-be", "Oui, des produits pour dégager le nez (un spray nasal, etc.)"],
@@ -4244,17 +4255,17 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
     ];
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    // editor.addExistingResponseComponent({
-    //     role: 'text',
-    //     style: [{ key: 'className', value: 'mb-2' }],
-    //     content: generateLocStrings(
-    //         new Map([
-    //             ['nl-be', 'Optioneel in te vullen'],
-    //             ["fr-be", "Question facultative"],
-    //             ["de-be", "Optional einzutragen"],
-    //             ["en", "To be completed optionally"],
-    //         ])),
-    // }, rg?.key);
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Optioneel in te vullen'],
+                ["fr-be", "Question facultative"],
+                ["de-be", "Optional einzutragen"],
+                ["en", "To be completed optionally"],
+            ])),
+    }, rg?.key);
 
     editor.addExistingResponseComponent({
         role: 'text',
