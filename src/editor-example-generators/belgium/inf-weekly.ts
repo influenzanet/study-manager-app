@@ -793,7 +793,7 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option', content: new Map([
                 ["nl-be", "Enkel vanwege mijn symptomen"],
@@ -2389,7 +2389,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Mijn symptomen kwamen recent op."],
                 ["fr-be", "Mes symptômes sont apparus récemment."],
@@ -2459,7 +2459,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '8', role: 'option',
-            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Omwille van financiële redenen."],
                 ["fr-be", "Pour des raisons financières."],
@@ -2469,7 +2469,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '9', role: 'option',
-            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Omwille van angst voor de gevolgen als de dokter vermoedt dat ik COVID-19 heb."],
                 ["fr-be", "Par crainte des conséquences si le médecin me suspecte d'avoir contracté le coronavirus."],
@@ -2544,7 +2544,7 @@ const consFear = (parentKey: string, keyvisitedNoMedicalService?: string, isRequ
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, singleChoiceKey].join('.'), '9')
+        expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '9')
     );
 
     // INFO POPUP
@@ -3216,7 +3216,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '0',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '6', '10'),
             content: new Map([
                 ["nl-be", "Nee, ik heb geen medicijnen gebruikt"],
                 ["fr-be", "Non, je n'ai pris aucun médicament"],
@@ -3249,7 +3249,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '2',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, medicijnen om het hoesten te onderdrukken (keelpastilles, enz.)"],
                 ["fr-be", "Oui, des médicaments pour calmer la toux (des pastilles pour la gorge, etc.)"],
@@ -3260,7 +3260,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '3',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
                 ["fr-be", "Oui, des antiviraux comme le Tamiflu ou le Relenza"],
@@ -3271,7 +3271,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '4',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, antibiotica"],
                 ["fr-be", "Oui, des antibiotiques"],
@@ -3282,9 +3282,9 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '7',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
-                ["nl-be", "JJa, homeopathische middelen"],
+                ["nl-be", "Ja, homeopathische middelen"],
                 ["fr-be", "Oui, des remèdes homéopathiques"],
                 ["de-be", "Ja, homöopathische Mittel"],
                 ["en", "Yes, homeopathy"],
@@ -3293,7 +3293,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '8',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, andere alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
                 ["fr-be", "Oui, d’autres médicaments alternatifs (des huiles essentielles, la phytothérapie, etc.)"],
@@ -3304,7 +3304,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '5',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6', '10'),
             content: new Map([
                 ["nl-be", "Ja, andere medicatie"],
                 ["fr-be", "Oui, d'autres médicaments"],
@@ -3326,7 +3326,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         {
             key: '6',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '10'),
             content: new Map([
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
