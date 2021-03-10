@@ -4096,17 +4096,29 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option', content: new Map([
-                ["nl-be", "Nee"],
-                ["fr-be", "Non"],
-                ["de-be", "Nein"],
-                ["en", "No"],
-            ])
-        },
+    editor.addExistingResponseComponent({
+        role: 'text',
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+            ])),
+        style: [{ key: 'className', value: 'mb-1' }]
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        // {
+        //     key: '0', role: 'option', content: new Map([
+        //         ["nl-be", "Nee"],
+        //         ["fr-be", "Non"],
+        //         ["de-be", "Nein"],
+        //         ["en", "No"],
+        //     ])
+        // },
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3','4'),
             content: new Map([
                 ["nl-be", "Ja, een test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
                 ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
@@ -4116,6 +4128,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3','4'),
             content: new Map([
                 ["nl-be", "Ja, een bloedtest"],
                 ["fr-be", "Oui, un test sanguin"],
@@ -4125,6 +4138,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1','2','4'),
             content: new Map([
                 ["nl-be", "Nog niet, ik ga binnekort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
@@ -4134,6 +4148,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1','2','3'),
             content: new Map([
                 ["nl-be", "Nee, ik zal geen test laten uitvoeren"],
                 ["fr-be", "Non, je ne me ferai pas tester"],
