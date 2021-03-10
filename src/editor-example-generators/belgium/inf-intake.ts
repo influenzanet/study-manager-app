@@ -129,7 +129,7 @@ const intake = (): Survey | undefined => {
     const Q_pregnancy = DefaultIntake.pregnancy(rootKey, Q_gender.key, Q_birthdate.key, true);
     survey.addExistingSurveyItem(Q_pregnancy, rootKey);
 
-    const Q_pregnancy_trimester = DefaultIntake.pregnancyTrimester(rootKey, Q_pregnancy.key, true);
+    const Q_pregnancy_trimester = DefaultIntake.pregnancyTrimester(rootKey, Q_gender.key, Q_birthdate.key, Q_pregnancy.key, true);
     survey.addExistingSurveyItem(Q_pregnancy_trimester, rootKey);
 
     const Q_smoking = smoking(rootKey, true);

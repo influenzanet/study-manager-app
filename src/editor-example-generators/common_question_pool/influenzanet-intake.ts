@@ -2589,7 +2589,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday: string, keyQPregnancy: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q12b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -2609,7 +2609,18 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyQPregnancy, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyQGender, [responseGroupKey, singleChoiceKey].join('.'), '1'), // female
+            expWithArgs('gte',
+                expWithArgs('dateResponseDiffFromNow', keyQBirthday, [responseGroupKey, '1'].join('.'), 'years', 1),
+                14
+            ),
+            expWithArgs('lte',
+                expWithArgs('dateResponseDiffFromNow', keyQBirthday, [responseGroupKey, '1'].join('.'), 'years', 1),
+                50
+            ),
+            expWithArgs('responseHasKeysAny', keyQPregnancy, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        )
     );
 
     // INFO POPUP
