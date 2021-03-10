@@ -242,7 +242,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["nl-be", "Het belangrijkste onderdeel van deze enquête is het opvolgen van de door u gerapporteerde symptomen."],
                     ["fr-be", "La partie la plus importante de cette enquête a trait au suivi des symptômes que vous avez signalés."],
                     ["de-be", "Der wichtigste Teil dieser Umfrage ist das Verfolgen der von Ihnen gemeldeten Symptome."],
-                    ["en", "The most important part of this investigation is about following up on the symptoms you have reported."],
+                    ["en", "The most important part of this study is about following up on the symptoms you have reported."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -597,7 +597,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                     ["nl-be", "We willen weten of je bereid bent de vervolgvragen te beantwoorden. Uw antwoorden op de vervolgvragen kunnen ons onderzoek helpen."],
                     ["fr-be", "Nous voulons savoir si vous êtes prêt à répondre aux questions de suivi. Vos réponses aux questions de suivi peuvent aider notre enquête."],
                     ["de-be", "Wir möchten wissen, ob Sie bereit sind, die Anschlussfragen zu beantworten. Ihre Antworten auf die Anschlussfragen können unsere Untersuchung unterstützen."],
-                    ["en", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our investigation."],
+                    ["en", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -1888,7 +1888,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             ["nl-be", "Heeft u medische hulp gezocht vanwege uw symptomen/klachten? En zo ja, waar?"],
             ["fr-be", "Avez-vous consulté un médecin en raison de vos symptômes/plaintes ? Et si oui, où?"],
             ["de-be", "Haben Sie wegen Ihrer Symptome/Beschwerden ärztliche Hilfe aufgesucht? Und wenn ja, wo?"],
-            ["en", "Did you consult a doctor because of your symptoms / complaints? If yes, where?"],
+            ["en", "Did you consult medical assistance because of your symptoms / complaints? If yes, where?"],
         ]))
     );
 
@@ -2091,7 +2091,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
                     ["nl-be", "Om uit te zoeken hoe snel mensen met klachten worden gezien door een medische hulpverlener/specialist."],
                     ["fr-be", "Pour savoir à quelle vitesse les personnes présentant des symptômes sont vues par un médecin/spécialiste/professionnel de la santé."],
                     ["de-be", "Um festzustellen, wie schnell Menschen mit Beschwerden von einem Arzthelfer/Facharzt gesehen werden."],
-                    ["en", "Bitte geben Sie nur die Anzahl der Tage vom Beginn der Beschwerden bis zu Ihrem ERSTEN Besuch bei dem betreffenden Arzthelfer/Spezialisten an."],
+                    ["en", "To know how quickly people with symptoms are seen by a doctor/specialist/health professional."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
