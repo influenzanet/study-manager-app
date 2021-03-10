@@ -1326,6 +1326,14 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
             ])
         },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Not applicable, I don't have work/school"],
+                ["nl", "Niet van toepassing, ik heb geen werk/school"],
+
+            ])
+        },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 

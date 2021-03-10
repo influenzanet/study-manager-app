@@ -677,15 +677,43 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 { ...ddg }
             ],
         },
+//       {
+//            key: '2', role: 'responseRow',
+//            cells: [
+//                {
+//                    key: 'l', role: 'label',
+//                    content: new Map([
+//                        ["en", "5 - 18 years"],
+//                        ["nl", "5 - 18 jaar"],
+//                        ["fr", "5 - 18 ans"],
+//                    ])
+//                },
+//                { ...ddg }
+//            ],
+//        },
         {
-            key: '2', role: 'responseRow',
+            key: '6', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
                     content: new Map([
-                        ["en", "5 - 18 years"],
-                        ["nl", "5 - 18 jaar"],
-                        ["fr", "5 - 18 ans"],
+                        ["en", "5 - 12 years"],
+                        ["nl", "5 - 12 jaar"],
+                        ["fr", "5 - 12 ans"],
+                    ])
+                },
+                { ...ddg }
+            ],
+        },
+        {
+            key: '7', role: 'responseRow',
+            cells: [
+                {
+                    key: 'l', role: 'label',
+                    content: new Map([
+                        ["en", "13 - 18 years"],
+                        ["nl", "13 - 18 jaar"],
+                        ["fr", "13 - 18 ans"],
                     ])
                 },
                 { ...ddg }
