@@ -78,10 +78,10 @@ const intake = (): Survey | undefined => {
     const Q_work_sector = work_sector(rootKey, Q_main_activity.key, true);
     survey.addExistingSurveyItem(Q_work_sector, rootKey);
 
-    const Q_work_school = work_school(rootKey, Q_work_sector.key, true);
+    const Q_work_school = work_school(rootKey, Q_main_activity.key, Q_work_sector.key, true);
     survey.addExistingSurveyItem(Q_work_school, rootKey);
 
-    const Q_work_medical = work_medical(rootKey, Q_work_sector.key, true);
+    const Q_work_medical = work_medical(rootKey, Q_main_activity.key, Q_work_sector.key, true);
     survey.addExistingSurveyItem(Q_work_medical, rootKey);
 
     const Q_highest_education = highest_education(rootKey, true);
@@ -902,7 +902,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const work_school = (parentKey: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const work_school = (parentKey: string, keyMainActivity?: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q4_BE_c3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -918,11 +918,12 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
     );
 
     // CONDITION
-    if (keywork_sector) {
-        editor.setCondition(
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2'),
             expWithArgs('responseHasKeysAny', keywork_sector, [responseGroupKey, singleChoiceKey].join('.'), '10')
-        );
-    }
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -1047,7 +1048,7 @@ const work_school = (parentKey: string, keywork_sector?: string, isRequired?: bo
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const work_medical = (parentKey: string, keyMainActivity?: string, keywork_sector?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q4_BE_c4'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1063,11 +1064,12 @@ const work_medical = (parentKey: string, keywork_sector?: string, isRequired?: b
     );
 
     // CONDITION
-    if (keywork_sector) {
-        editor.setCondition(
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2'),
             expWithArgs('responseHasKeysAny', keywork_sector, [responseGroupKey, singleChoiceKey].join('.'), '5')
-        );
-    }
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
