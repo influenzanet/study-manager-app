@@ -2633,6 +2633,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '99'),
             content: new Map([
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
@@ -2642,7 +2643,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             content: new Map([
                 ["nl-be", "Ja, voor astma"],
                 ["fr-be", "Oui, pour l'asthme"],
@@ -2652,7 +2653,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             content: new Map([
                 ["nl-be", "Ja, voor diabetes"],
                 ["fr-be", "Oui, pour le diabète"],
@@ -2662,7 +2663,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             content: new Map([
                 ["nl-be", "Ja, voor chronische longziekten (COPD, emfyseem, enz.)"],
                 ["fr-be", "Oui, pour des maladies pulmonaires chroniques (BPCO, l’emphysème, etc.)"],
@@ -2672,7 +2673,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             content: new Map([
                 ["nl-be", "Ja, voor hartaandoeningen"],
                 ["fr-be", "Oui, pour les maladies cardiaques"],
@@ -2682,7 +2683,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '5', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             content: new Map([
                 ["nl-be", "Ja, voor nieraandoeningen"],
                 ["fr-be", "Oui, pour les maladies rénales"],
@@ -2692,7 +2693,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '6', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             content: new Map([
                 ["nl-be", "Ja, voor een verzwakte afweer (bijvoorbeeld door een auto-immuunziekte, kankerbehandeling of na een orgaantransplantatie)"],
                 ["fr-be", "Oui, pour un système immunitaire affaibli (par exemple : en raison d'une maladie auto-immune, d’un traitement contre le cancer ou à la suite d’une transplantation d'organe)"],
@@ -2702,7 +2703,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
         },
         {
             key: '7', role: 'input',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '99'),
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Ja, voor andere redenen"],
