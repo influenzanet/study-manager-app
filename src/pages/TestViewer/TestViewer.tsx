@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import SurveyView from '../../components/survey/SurveyView/SurveyView';
 import { Box, Button, TextField } from '@material-ui/core';
 import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data_types';
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
+import { SurveyView } from 'case-web-ui';
 
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
