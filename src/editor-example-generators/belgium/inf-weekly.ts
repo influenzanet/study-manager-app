@@ -193,6 +193,8 @@ const weekly = (): Survey | undefined => {
     const Q_covidHabits = covidHabitsChange(hasSymptomGroupKey, false, "Qcov_BE_7");
     survey.addExistingSurveyItem(Q_covidHabits, hasSymptomGroupKey);
 
+    const surveyEndText = surveyEnd(rootKey);
+    survey.addExistingSurveyItem(surveyEndText, rootKey);
 
     return survey.getSurvey();
 }
@@ -4493,6 +4495,29 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_16', likertOptions), rg?.key);
 
     // VALIDATIONs
+    // None
+
+    return editor.getItem();
+}
+
+/**
+ * SURVEY END TEXT
+*/ 
+const surveyEnd = (parentKey: string): SurveyItem => {
+    const defaultKey = 'surveyEnd'
+    const itemKey = [parentKey, defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, type: 'surveyEnd', isGroup: false });
+
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Thank you! This was all for now, please submit (push send) your responses. We will ask you again next week."],
+            ["nl-be", "Dank je wel. Dit was de laatste vraag. Druk 'verzenden' om je antwoorden op te slaan. Volgende week vragen we je weer om een nieuwe vragenlijst in te vullen."],
+            ["fr-be", "Merci. C'était la dernière question.  Cliquez sur 'envoyer' pour sauvegardé vos réponses. Nous vous contacterons à nouveau la semaine prochaine afin de compléter un nouveau questionnaire."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Drücken Sie auf 'versenden', um Ihre Antworten zu speichern. In der volgenden Woche fragen wir wieder."],
+        ]))
+    );
+
+    // CONDITION
     // None
 
     return editor.getItem();
