@@ -177,6 +177,9 @@ const intake = (): Survey | undefined => {
     const Q_additional_covid19_questions_ongoing_symptoms = additional_covid19_questions_ongoing_symptoms(rootKey, Q_additional_covid19_questions_returned_health.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_ongoing_symptoms, rootKey);
 
+    const surveyEndText = DefaultIntake.surveyEnd(rootKey);
+    survey.addExistingSurveyItem(surveyEndText, rootKey);
+
     return survey.getSurvey();
 }
 
