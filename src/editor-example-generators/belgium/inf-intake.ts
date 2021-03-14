@@ -201,7 +201,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat is uw voornaamste bezigheid overdag?"],
-            ["fr-be", "Quelle est votre activité principale pendant la journée?"],
+            ["fr-be", "Quelle est votre activité principale pendant la journée ?"],
             ["de-be", "Was ist Ihre wichtigste Beschäftigung tagsüber?"],
             ["en", "What is your main activity?"],
         ]))
@@ -213,7 +213,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -240,7 +240,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 content: new Map([
                     ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die niet naar kinderdagverblijf of school gaan, vinkt u het vakje 'anders' aan."],
-                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas à la garderie ou l'école, cochez la case 'autre'."],
+                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas à la garderie ou l'école, cochez la case « autre »."],
                     ["de-be", "Kreuzen Sie das Kästchen an, das am meisten mit Ihrem Beruf übereinstimmt. Für Babys und Kleinkinder, die nicht zur Kita oder Schule gehen, kreuzen Sie das Kästchen 'andere' an."],
                     ["en", "Check the box that best matches your main activity or profession. For babies and young children not attending daycare or school, check 'other'."],
                 ]),
@@ -375,7 +375,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat is de postcode van de plek waar u het meeste van uw (werk)tijd doorbrengt (voorbeeld: werkplek/school/universiteit)?"],
-            ["fr-be", "Quel est le code postal du lieu où vous passez la plupart de votre temps (de travail) (exemple : le lieu de travail/l’école/l’université)"],
+            ["fr-be", "Quel est le code postal du lieu où vous passez la plupart de votre temps (de travail) (exemple : le lieu de travail/l’école/l’université) ?"],
             ["de-be", "Welche Postleitzahl hat die Stelle, wo Sie den Großteil Ihrer (Arbeits-)Zeit verbringen (zum Beispiel: Arbeitsplatz/Schule/Universität)?"],
             ["en", "What is the postal code of your school/college/workplace (where you spend the majority of your working/studying time)?"],
         ]))
@@ -394,7 +394,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -495,7 +495,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Welk soort werk doet u?"],
-            ["fr-be", "Quel type de travail effectuez-vous?"],
+            ["fr-be", "Quel type de travail effectuez-vous ?"],
             ["de-be", "Welche Art von Arbeit leisten Sie?"],
             ["en", "Which of the following descriptions most closely matches with your main occupation?"],
         ]))
@@ -514,7 +514,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -638,7 +638,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Tot welke sector behoort het bedrijf of organisatie waarin u werkt?"],
-            ["fr-be", "À quel secteur appartient l'entreprise ou l'organisation au sein de laquelle vous travaillez?"],
+            ["fr-be", "À quel secteur appartient l'entreprise ou l'organisation au sein de laquelle vous travaillez ?"],
             ["de-be", "Zu welchem Bereich gehört das Unternehmen oder die Organisation, in der Sie arbeiten?"],
             ["en", "In which business sector does your company/organisation operate?"],
         ]))
@@ -657,7 +657,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -675,7 +675,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -914,7 +914,7 @@ const work_school = (parentKey: string, keyMainActivity?: string, keywork_sector
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Waar werkt u in het onderwijs of kinderopvang?"],
-            ["fr-be", "Où travaillez-vous dans le domaine de l'éducation ou de la garde d'enfants?"],
+            ["fr-be", "Où travaillez-vous dans le domaine de l'éducation ou de la garde d'enfants ?"],
             ["de-be", "Wo arbeiten Sie in der (Aus-)Bildung oder Kita?"],
             ["en", "Where do you work in education or childcare?"],
         ]))
@@ -934,7 +934,7 @@ const work_school = (parentKey: string, keyMainActivity?: string, keywork_sector
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -952,7 +952,7 @@ const work_school = (parentKey: string, keyMainActivity?: string, keywork_sector
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1060,7 +1060,7 @@ const work_medical = (parentKey: string, keyMainActivity?: string, keywork_secto
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Waar werkt u in de gezondheidszorg en maatschappelijke dienstverlening?"],
-            ["fr-be", "Où travaillez-vous dans le secteur de la santé et les services sociaux?"],
+            ["fr-be", "Où travaillez-vous dans le secteur de la santé et les services sociaux ?"],
             ["de-be", "Wo arbeiten Sie in der Gesundheitspflege und soziale Dienstleistung?"],
             ["en", "Where do you work in healthcare and social services?"],
         ]))
@@ -1080,7 +1080,7 @@ const work_medical = (parentKey: string, keyMainActivity?: string, keywork_secto
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -1098,7 +1098,7 @@ const work_medical = (parentKey: string, keyMainActivity?: string, keywork_secto
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1233,7 +1233,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat is uw hoogst voltooide opleiding?"],
-            ["fr-be", "Quel est votre diplôme le plus élevé?"],
+            ["fr-be", "Quel est votre diplôme le plus élevé ?"],
             ["de-be", "Was ist Ihre höchste erreichte Ausbildung?"],
             ["en", "What is the highest level of formal education qualification that you have?"],
         ]))
@@ -1245,7 +1245,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -1263,7 +1263,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1378,7 +1378,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u tijdens een normale dag contact met:"],
-            ["fr-be", "Lors d'une journée normale, avez-vous des contacts avec:"],
+            ["fr-be", "Lors d'une journée normale, avez-vous des contacts avec :"],
             ["de-be", "Haben Sie an einem normalen Tag Kontakt mit:"],
             ["en", "Do you have contact with any of the following during the course of a typical day:"],
         ]))
@@ -1390,7 +1390,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -1408,7 +1408,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1550,7 +1550,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "INCLUSIEF UZELF: hoeveel personen van de verschillende leeftijdsgroepen wonen er in uw huishouden?"],
-            ["fr-be", "Y COMPRIS VOUS-MÊME : combien de personnes des différentes tranches d'âge vivent-elles au sein de votre ménage?"],
+            ["fr-be", "Y COMPRIS VOUS-MÊME : combien de personnes des différentes tranches d'âge vivent-elles au sein de votre ménage ?"],
             ["de-be", "EINSCHLIESSLICH IHNEN SELBST: Wie viele Personen der verschiedenen Altersgruppen wohnen in Ihrem Haushalt?"],
             ["en", "INCLUDING YOU, how many people in each of the following age groups live in your household?"],
         ]))
@@ -1562,7 +1562,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -1580,7 +1580,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1605,10 +1605,10 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ['nl-be', 'Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden'],
-                ['fr-be', "Pour chaque catégorie d'âge, veuillez indiquer le nombre de personnes qui vivent au sein de votre ménage"],
-                ['de-be', "Bitte geben Sie für jede Altersklasse an, wie viele Personen in Ihrem Haushalt wohnen"],
-                ['en', "Please indicate for each age category how many persons are living in your household"],
+                ['nl-be', "Gelieve voor iedere leeftijdscategorie aan te duiden hoeveel personen er wonen in uw huishouden."],
+                ['fr-be', "Pour chaque catégorie d'âge, veuillez indiquer le nombre de personnes qui vivent au sein de votre ménage."],
+                ['de-be', "Bitte geben Sie für jede Altersklasse an, wie viele Personen in Ihrem Haushalt wohnen."],
+                ['en', "Please indicate for each age category how many persons are living in your household."],
             ])),
     }, rg?.key);
 
@@ -1817,7 +1817,7 @@ const age_groups_likert = (parentKey: string, keyOverride?: string): SurveyItem 
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1831,7 +1831,7 @@ const age_groups_likert = (parentKey: string, keyOverride?: string): SurveyItem 
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1962,7 +1962,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -1980,7 +1980,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1989,7 +1989,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["nl-be", "Rapporteer 'ja', als u het vaccin dit seizoen heeft gekregen, meestal in de herfst. Als u zich na het invullen van deze vragenlijst laat vaccineren, rapporteer 'nee' en kies in een volgende vraag voor de optie 'Ik ben van plan om mezelf nog te laten vaccineren'."],
-                    ["fr-be", "Indiquez 'oui' si vous vous êtes fait vacciner cette saison, généralement au cours de l'automne. Si vous vous faites vacciner après avoir complété ce questionnaire, indiquez 'non' et choisissez l'option 'Je suis d’avis de me faire vacciner' au niveau d'une question ultérieure."],
+                    ["fr-be", "Indiquez « oui » si vous vous êtes fait vacciner cette saison, généralement au cours de l'automne. Si vous vous faites vacciner après avoir complété ce questionnaire, indiquez « non » et choisissez l'option « Je suis d’avis de me faire vacciner » au niveau d'une question ultérieure."],
                     ["de-be", "Schreiben Sie 'ja', wenn Sie den Impfstoff in dieser Impfsaison erhalten haben, meistens im Herbst. Wenn Sie sich nach dem Ausfüllen dieser Fragenliste impfen lassen, schreiben Sie bitte 'nein' und wählen Sie in einer folgenden Frage die Alternative 'Ich plane, mich noch impfen zu lassen'."],
                     ["en", "Mark 'yes' if you have been vaccinated this season; generally this takes place in autumn. If you will be vaccinated after completing this questionnaire, mark 'no' and choose the option 'I am planning to be vaccinated, but haven’t been yet'."],
                 ]),
@@ -2060,7 +2060,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2020/2021) een griepvaccin te halen?"],
-            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2020/2021)?"],
+            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2020/2021) ?"],
             ["de-be", "Was waren für Sie die wichtigsten Gründe, um in dieser Grippesaison (2020/2021) einen Grippeimpfstoff zu verwenden?"],
             ["en", "What were your reasons for getting a seasonal influenza vaccination this year (2020/2021)?"],
         ]))
@@ -2079,7 +2079,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -2097,7 +2097,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2277,7 +2277,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2020/2021)?"],
-            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2020/2021)?"],
+            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2020/2021) ?"],
             ["de-be", "Was waren die Gründe dafür, dass Sie sich in dieser Grippesaison (2020/2021) nicht mehr impfen ließen?"],
             ["en", "What were your reasons for not getting a seasonal influenza vaccination this year (2020/2021)?"],
         ]))
@@ -2296,7 +2296,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -2314,7 +2314,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2572,7 +2572,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Gebruikt u regelmatig medicatie voor één of meer van de volgende aandoeningen?"],
-            ["fr-be", "Prenez-vous régulièrement des médicaments pour une ou plusieurs des affections suivantes?"],
+            ["fr-be", "Prenez-vous régulièrement des médicaments pour une ou plusieurs des affections suivantes ?"],
             ["de-be", "Verwenden Sie regelmäßig Medikation gegen eine oder mehrere der folgenden Krankheiten?"],
             ["en", "Do you take regular medication for any of the following medical conditions?"],
         ]))
@@ -2584,7 +2584,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -2602,7 +2602,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2611,7 +2611,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["nl-be", "Antwoord alleen met 'ja' als u reguliere medicatie gebruikt voor uw medisch probleem. Als u bijvoorbeeld slechts af en toe een astma-inhalator gebruikt, antwoord dan niet met 'ja' bij astma."],
-                    ["fr-be", "Ne répondez 'oui' que si vous prenez régulièrement des médicaments pour traiter votre problème médical. Par exemple, si vous n'utilisez un inhalateur pour traiter l'asthme que de manière occasionnelle, ne répondez pas 'oui' concernant l'asthme."],
+                    ["fr-be", "Ne répondez « oui » que si vous prenez régulièrement des médicaments pour traiter votre problème médical. Par exemple, si vous n'utilisez un inhalateur pour traiter l'asthme que de manière occasionnelle, ne répondez pas « oui » concernant l'asthme."],
                     ["de-be", "Antworten Sie nur mit 'ja', wenn Sie reguläre Medikation für Ihr medizinisches Problem verwenden. Wenn Sie zum Beispiel nur ab und zu einen Asthma-Inhalatoren verwenden, dann antworten Sie bitte nicht mit 'ja' bei Asthma."],
                     ["en", "Only answer 'yes' if you regularly take medication for your medical issue. For example, if you only use an inhaler for asthma occasionally, don’t answer 'yes' for asthma."],
                 ]),
@@ -2763,7 +2763,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Rookt u of heeft u gerookt?"],
-            ["fr-be", "Fumez-vous ou avez-vous fumé?"],
+            ["fr-be", "Fumez-vous ou avez-vous fumé ?"],
             ["de-be", "Rauchen Sie oder haben Sie geraucht?"],
             ["en", "Do you smoke or have you smoked tobacco?"],
         ]))
@@ -2778,7 +2778,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -2796,7 +2796,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2921,7 +2921,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Volgt u een specifiek dieet?"],
-            ["fr-be", "Suivez-vous un régime alimentaire particulier?"],
+            ["fr-be", "Suivez-vous un régime alimentaire particulier ?"],
             ["de-be", "Befolgen Sie eine spezielle Diät?"],
             ["en", "Do you follow a special diet?"],
         ]))
@@ -2936,7 +2936,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -2954,7 +2954,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich das beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3083,7 +3083,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Waar heeft u van Infectieradar.be gehoord?"],
-            ["fr-be", "Où avez-vous entendu parler d'Infectieradar.be?"],
+            ["fr-be", "Où avez-vous entendu parler d'Infectieradar.be ?"],
             ["de-be", "Wo haben Sie von infectieradar.be gehört?"],
             ["en", "Where did you hear about Infectieradar.be?"],
         ]))
@@ -3098,7 +3098,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -3224,7 +3224,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Denkt u dat u al besmet bent (geweest) met het coronavirus (COVID-19)?"],
-            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus? (COVID-19)"],
+            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus (COVID-19) ?"],
             ["de-be", "Denken Sie, dass Sie schon einmal mit dem Coronavirus (COVID-19) infiziert (gewesen) waren?"],
             ["en", "Do you think you are or have been infected with the coronavirus? (COVID-19)?"],
         ]))
@@ -3236,7 +3236,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -3254,7 +3254,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie muss ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3361,7 +3361,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Met welke symptomen ging uw COVID-19 infectie gepaard?"],
-            ["fr-be", "Quels symptômes avez-vous ressentis lorsque vous avez été infecté(e) par le coronavirus?"],
+            ["fr-be", "Quels symptômes avez-vous ressentis lorsque vous avez été infecté(e) par le coronavirus ?"],
             ["de-be", "Mit welchen Symptomen ging Ihre COVID-19-Infektion gepaart?"],
             ["en", "What symptoms did you experience when you were infected with the coronavirus?"],
         ]))
@@ -3380,7 +3380,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -3398,7 +3398,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie muss ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3669,7 +3669,7 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
         generateTitleComponent(
             new Map([
                 ["nl-be", "U gaf aan klachten te hebben van een mogelijke of bevestigde COVID-19 infectie. We willen u enkele bijkomende vragen stellen over deze COVID-19 infectie. Wil u deze extra vragen invullen?"],
-                ["fr-be", "Vous avez indiqué des symptômes qui correspondent à une infection potentielle ou confirmée par le coronavirus. Nous souhaitons vous poser quelques questions supplémentaires à ce sujet. Souhaitez-vous répondre à ces questions supplémentaires?"],
+                ["fr-be", "Vous avez indiqué des symptômes qui correspondent à une infection potentielle ou confirmée par le coronavirus. Nous souhaitons vous poser quelques questions supplémentaires à ce sujet. Souhaitez-vous répondre à ces questions supplémentaires ?"],
                 ["de-be", "Sie gaben an, Beschwerden von einer möglichen oder bestätigten COVID-19-Infektion zu haben. Wir möchten Ihnen einige zusätzliche Fragen über diese COVID-19-Infektion stellen. Wir möchten Sie bitten, diese zusätzlichen Fragen zu beantworten?"],
                 ["en", "You have indicated that you have some symptoms that correspond with a possible or confirmed coronavirus infection. We would like to ask you some additional questions about this. Are you willing to answer a few more questions?"],
             ]),
@@ -3744,7 +3744,7 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft een arts uw COVID-19 klachten behandeld?"],
-            ["fr-be", "Un médecin a-t-il traité vos plaintes liées au coronavirus?"],
+            ["fr-be", "Un médecin a-t-il traité vos plaintes liées au coronavirus ?"],
             ["de-be", "Hat ein Arzt Ihre COVID-19-Beschwerden behandelt?"],
             ["en", "Has a doctor treated you for your coronavirus symptoms?"],
         ]))
@@ -3763,7 +3763,7 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
 
@@ -3852,7 +3852,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u gehospitaliseerd geweest voor deze COVID-19 klachten?"],
-            ["fr-be", "Avez-vous été hospitalisé(e) dans le cadre de ces symptômes relatifs au coronavirus?"],
+            ["fr-be", "Avez-vous été hospitalisé(e) dans le cadre de ces symptômes relatifs au coronavirus ?"],
             ["de-be", "Waren Sie aufgrund dieser COVID-19-Beschwerden im Krankenhaus?"],
             ["en", "Were you hospitalised due to these coronavirus symptoms?"],
         ]))
@@ -3871,7 +3871,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -3950,7 +3950,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Hoe lang bent u gehospitaliseerd geweest? Indien u meerdere keren bent gehospitaliseerd, mag u de duur van elke hospitalisatie samentellen."],
-            ["fr-be", "Combien de temps avez-vous été hospitalisé(e)? Si vous avez été hospitalisé(e) plusieurs fois, vous pouvez cumuler la durée de chaque hospitalisation."],
+            ["fr-be", "Combien de temps avez-vous été hospitalisé(e) ? Si vous avez été hospitalisé(e) plusieurs fois, vous pouvez cumuler la durée de chaque hospitalisation."],
             ["de-be", "Wie lange waren Sie im Krankenhaus? Wenn Sie mehrere Male im Krankenhaus waren, dürfen Sie die Dauer der Krankenhausaufenthalte zusammenzählen."],
             ["en", "For how long were you hospitalised? If you were hospitalised more than once, please add together the duration of each hospitalisation."],
         ]))
@@ -3969,7 +3969,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -4294,7 +4294,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u in ICU (afdeling intensieve zorgen) opgenomen?"],
-            ["fr-be", "Avez-vous été admis(e) aux soins intensifs (ICU)?"],
+            ["fr-be", "Avez-vous été admis(e) aux soins intensifs (ICU) ?"],
             ["de-be", "Wurden Sie in eine Intensivstation (ICU) aufgenommen?"],
             ["en", "Were you admitted to the intensive care unit (ICU)?"],
         ]))
@@ -4313,7 +4313,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -4392,7 +4392,7 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u in coma geweest?"],
-            ["fr-be", "Avez-vous été dans le coma?"],
+            ["fr-be", "Avez-vous été dans le coma ?"],
             ["de-be", "Waren Sie im Koma?"],
             ["en", "Were you ever in a coma?"],
         ]))
@@ -4411,7 +4411,7 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -4481,7 +4481,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Is uw gezondheid terug helemaal dezelfde als voor uw COVID-19 infectie?"],
-            ["fr-be", "Vous sentez-vous à nouveau comme vous l’étiez avant d’avoir contracté le coronavirus?"],
+            ["fr-be", "Vous sentez-vous à nouveau comme vous l’étiez avant d’avoir contracté le coronavirus ?"],
             ["de-be", "Ist Ihre Gesundheit vollständig dieselbe wie vor Ihrer COVID-19-Infektion?"],
             ["en", "Are you back to the way you felt before you caught the coronavirus?"],
         ]))
@@ -4500,7 +4500,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
@@ -4570,7 +4570,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Welke klachten heeft u nu nog?"],
-            ["fr-be", "Quel type de symptômes ressentez-vous encore?"],
+            ["fr-be", "Quel type de symptômes ressentez-vous encore ?"],
             ["de-be", "Welche Beschwerden haben Sie jetzt noch?"],
             ["en", "What symptoms are you still experiencing?"],
         ]))
@@ -4589,7 +4589,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this?"],
                 ]),
