@@ -1296,10 +1296,10 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         {
             key: '11', role: 'option',
             content: new Map([
-                ["nl-be", "Diploma lager onderwijs"],
-                ["fr-be", "Le diplôme de l’enseignement primaire"],
+                ["nl-be", "Getuigschrift lager onderwijs"],
+                ["fr-be", "Le certificat de l’enseignement primaire"],
                 ["de-be", "Zeugnis der Grundschulausbildung"],
-                ["en", "Grade of primary school"],
+                ["en", "Certificate of primary school"],
             ])
         },
         {
