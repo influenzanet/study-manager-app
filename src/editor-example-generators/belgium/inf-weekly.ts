@@ -233,7 +233,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -251,7 +251,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -259,10 +259,10 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             },
             {
                 content: new Map([
-                    ["nl-be", "Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden."],
+                    ["nl-be", "Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden. Meerdere antwoorden mogelijk."],
                     ["fr-be", "Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé. Plusieurs réponses sont possibles."],
-                    ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab. Wenn Sie zum Beispiel Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden. Mehrere Antworten sind möglich."],
-                    ["en", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers are possible."],
+                    ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab. Mehrere Antworten sind möglich."],
+                    ["en", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -276,10 +276,10 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ['nl-be', 'Meerdere antwoorden mogelijk'],
-                ["fr-be", "Plusieurs réponses sont possibles"],
-                ["de-be", "Mehrere Antworten möglich"],
-                ["en", "Multiple answers possible"],
+                ['nl-be', 'Meerdere antwoorden mogelijk. \nVoor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden.'],
+                ["fr-be", "Plusieurs réponses sont possibles. \nPour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
+                ["de-be", "Mehrere Antworten möglich \nFür Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab."],
+                ["en", "Multiple answers possible. \nIf you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -659,7 +659,7 @@ const covidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u sinds de vorige vragenlijst een COVID-19 test laten uitvoeren (of in de afgelopen 7 dagen indien dit uw eerste bezoek is)?"],
-            ["fr-be", "Avez-vous passé un test de dépistage du coronavirus depuis le dernier questionnaire (ou au cours des 7 derniers jours s'il s'agit de votre première visite)?"],
+            ["fr-be", "Avez-vous passé un test de dépistage du coronavirus depuis le dernier questionnaire (ou au cours des 7 derniers jours s'il s'agit de votre première visite) ?"],
             ["de-be", "Haben Sie seit der vorigen Fragenliste einen COVID-19-Test durchführen lassen (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
             ["en", "Have you been tested for coronavirus since the last questionnaire (or within the past 7 days if this is your first visit)?"],
         ]))
@@ -754,7 +754,7 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat was de reden dat u een COVID-19 test liet uitvoeren?"],
-            ["fr-be", "Pour quelle raison avez-vous effectué un test de dépistage du coronavirus?"],
+            ["fr-be", "Pour quelle raison avez-vous effectué un test de dépistage du coronavirus ?"],
             ["de-be", "Was war der Grund dafür, dass Sie einen COVID-19-Test durchführen ließen?"],
             ["en", "Why are you being tested for coronavirus?"],
         ]))
@@ -773,7 +773,7 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -906,7 +906,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wanneer heeft u een test laten uitvoeren voor COVID-19? Als u de datum niet meer precies weet, mag u deze schatten."],
-            ["fr-be", "Quand avez-vous fait réaliser un test de dépistage du coronavirus? Si vous ne vous souvenez pas (plus) de la date exacte, vous pouvez l'estimer."],
+            ["fr-be", "Quand avez-vous fait réaliser un test de dépistage du coronavirus ? Si vous ne vous souvenez pas (plus) de la date exacte, vous pouvez l'estimer."],
             ["de-be", "Wann haben Sie einen Test auf COVID-19 durchführen lassen? Wenn Sie das Datum nicht mehr genau wissen, dürfen Sie es schätzen."],
             ["en", "When did you get tested for the coronavirus? If you don't remember the exact date, please give an estimate."],
         ]))
@@ -981,7 +981,7 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Hoe snel na de start van uw symptomen/klachten heeft u een COVID-19 test kunnen laten uitvoeren?"],
-            ["fr-be", "Combien de temps après le début de vos symptômes/plaintes avez-vous pu passer un test de dépistage du coronavirus?"],
+            ["fr-be", "Combien de temps après le début de vos symptômes/plaintes avez-vous pu passer un test de dépistage du coronavirus ?"],
             ["de-be", "Wie schnell nach dem Beginn Ihrer Symptome/Beschwerden konnten Sie einen COVID-19-Test durchführen lassen?"],
             ["en", "How long after the onset of your symptoms / complaints were you able to get tested for coronavirus?"],
         ]))
@@ -1019,7 +1019,7 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1323,7 +1323,7 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1600,7 +1600,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1809,7 +1809,7 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -1921,7 +1921,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2065,7 +2065,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Hoe snel na de start van uw symptomen/klachten heeft u voor de EERSTE keer medische hulp gezocht?"],
-            ["fr-be", "Combien de temps après l'apparition de vos symptômes/plaintes avez-vous consulté un médecin pour la PREMIÈRE fois?"],
+            ["fr-be", "Combien de temps après l'apparition de vos symptômes/plaintes avez-vous consulté un médecin pour la PREMIÈRE fois ?"],
             ["de-be", "Wie schnell nach dem Beginn Ihrer Symptome/Beschwerden haben Sie zum ERSTEN Mal ärztliche Hilfe aufgesucht?"],
             ["en", "How soon after your symptoms appeared did you first visit this medical service?"],
         ]))
@@ -2100,7 +2100,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2403,7 +2403,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Wat zijn de voornaamste redenen dat u geen medische hulp zocht in verband met de gerapporteerde symptomen?"],
-            ["fr-be", "Quelles sont les principales raisons pour lesquelles vous n'avez pas consulté un médecin pour les symptômes signalés?"],
+            ["fr-be", "Quelles sont les principales raisons pour lesquelles vous n'avez pas consulté un médecin pour les symptômes signalés ?"],
             ["de-be", "Was sind die wichtigsten Gründe dafür, dass Sie im Zusammenhang mit den gemeldeten Symptomen keine ärztliche Hilfe aufsuchten?"],
             ["en", "What is the main reason for which you did not contact any health professional for the symptoms you declared today?"],
         ]))
@@ -2438,7 +2438,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -2738,7 +2738,7 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Hoe lang ben je gehospitaliseerd geweest?"],
-            ["fr-be", "Combien de temps avez-vous été hospitalisé(e)?"],
+            ["fr-be", "Combien de temps avez-vous été hospitalisé(e) ?"],
             ["de-be", "Wie lange waren Sie im Krankenhaus?"],
             ["en", "For how long were you hospitalised?"],
         ]))
@@ -2755,7 +2755,7 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3091,7 +3091,7 @@ const addICU = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: b
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Ben je in ICU (afdeling intensieve zorgen) opgenomen?"],
-            ["fr-be", "Avez-vous été admis(e) aux soins intensifs (ICU)?"],
+            ["fr-be", "Avez-vous été admis(e) aux soins intensifs (ICU) ?"],
             ["de-be", "Waren Sie auf einer Intensivstation (ICU)?"],
             ["en", "Were you admitted to the intensive care unit (ICU)?"],
         ]))
@@ -3167,7 +3167,7 @@ const inComa = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: b
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Ben je in coma geweest?"],
-            ["fr-be", "Avez-vous été dans le coma?"],
+            ["fr-be", "Avez-vous été dans le coma ?"],
             ["de-be", "Waren Sie im Koma?"],
             ["en", "Were you in a coma?"],
         ]))
@@ -3234,7 +3234,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u vanwege uw symptomen/klachten medicijnen gebruikt? En zo ja, welke?"],
-            ["fr-be", "Avez-vous pris des médicaments en raison de vos symptômes / troubles médicaux? Et si oui, lesquels?"],
+            ["fr-be", "Avez-vous pris des médicaments en raison de vos symptômes / troubles médicaux ? Et si oui, lesquels ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symptome/Beschwerden Medikamente verwendet? Wenn ja, welche?"],
             ["en", "Did you take medication for these symptoms? "],
         ]))
@@ -3249,7 +3249,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -3267,7 +3267,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3470,7 +3470,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -3488,7 +3488,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3603,7 +3603,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -3621,7 +3621,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -3630,7 +3630,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             {
                 content: new Map([
                     ["nl-be", "Antwoord 'Ja' als u vanwege klachten vandaag nog niet kan werken of naar school gaan."],
-                    ["fr-be", "Répondez 'Oui' si vous ne pouvez pas vous rendre au travail ou à l'école aujourd'hui en raison de certains symptômes."],
+                    ["fr-be", "Répondez « Oui » si vous ne pouvez pas vous rendre au travail ou à l'école aujourd'hui en raison de certains symptômes."],
                     ["de-be", "Antworten Sie 'Ja', wenn Sie aufgrund von Beschwerden heute noch nicht arbeiten oder zur Schule gehen können."],
                     ["en", "Answer 'yes' if you missed work or school today due to certain symptoms."],
                 ]),
@@ -3720,7 +3720,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -3738,7 +3738,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -4063,7 +4063,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u omwille van uw symptomen een test laten uitvoeren voor COVID-19? "],
-            ["fr-be", "Avez-vous passé un test de dépistage du coronavirus en raison de vos symptômes ? "],
+            ["fr-be", "Avez-vous passé un test de dépistage du coronavirus en raison de vos symptômes ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symptome einen Test auf COVID-19 durchführen lassen?"],
             ["en", "Because of your symptoms, did you undergo a test/analyses to know if you have COVID-19?"],
         ]))
@@ -4078,7 +4078,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -4206,7 +4206,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             {
                 content: new Map([
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
                 ]),
@@ -4224,7 +4224,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             {
                 content: new Map([
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
                 ]),
@@ -4233,7 +4233,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             {
                 content: new Map([
                     ["nl-be", "Bijvoorbeeld 'Handen schudden vermijden': Kies 'Ja', omwille van mijn symptomen heb ik geen of nog minder handen geschud; Kies 'Nee, ik pas deze maatregel niet toe', ik geef nog steeds mensen de hand ook al heb ik symptomen; Kies 'Nee, ik hield me al aan deze maatregel', want ook voor mijn symptomen gaf ik geen handen en heb dit niet aangepast."],
-                    ["fr-be", "Par exemple, 'Évitez de serrer les mains': Choisissez 'Oui' si vous avez serré moins de mains ou si vous n'avez plus serré de mains en raison de vos symptômes; Choisissez 'Non, je n'applique pas cette mesure', si vous continuez à serrer la main des gens malgré vos symptômes; Choisissez 'Non, J'appliquais déjà cette mesure' si vous ne serriez déjà plus la main des gens avant l'apparition de vos symptômes, et que vous n'avez pas modifié ce comportement."],
+                    ["fr-be", "Par exemple, « Évitez de serrer les mains » : Choisissez « Oui » si vous avez serré moins de mains ou si vous n'avez plus serré de mains en raison de vos symptômes ; Choisissez « Non, je n'applique pas cette mesure », si vous continuez à serrer la main des gens malgré vos symptômes ; Choisissez « Non, J'appliquais déjà cette mesure » si vous ne serriez déjà plus la main des gens avant l'apparition de vos symptômes, et que vous n'avez pas modifié ce comportement."],
                     ["de-be", "Zum Beispiel so, 'Hände schütteln vermeiden': Wählen Sie 'Ja', aufgrund meiner Symptome habe ich keine oder noch weniger Hände geschüttelt; Wählen Sie 'Nein, ich wende diese Maßnahme nicht an', ich gebe noch immer Menschen die Hand, obwohl ich schon Symptome habe; Wählen Sie 'Nein, ich hielt mich schon an diese Maßnahme', denn auch aufgrund meiner Symptome gab ich niemandem die Hand und habe das nicht gemacht."],
                     ["en", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
                 ]),
@@ -4510,10 +4510,10 @@ const surveyEnd = (parentKey: string): SurveyItem => {
 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Thank you! This was all for now, please submit (push send) your responses. We will ask you again next week."],
-            ["nl-be", "Dank je wel. Dit was de laatste vraag. Druk 'verzenden' om je antwoorden op te slaan. Volgende week vragen we je weer om een nieuwe vragenlijst in te vullen."],
-            ["fr-be", "Merci. C'était la dernière question.  Cliquez sur 'envoyer' pour sauvegardé vos réponses. Nous vous contacterons à nouveau la semaine prochaine afin de compléter un nouveau questionnaire."],
-            ["de-be", "Vielen Dank! Das war die letzte Frage. Drücken Sie auf 'versenden', um Ihre Antworten zu speichern. In der volgenden Woche fragen wir wieder."],
+            ["en", "Thank you! This was all for now, please submit (push « send ») your responses. We will ask you again next week."],
+            ["nl-be", "Dank je wel! Dit was de laatste vraag. Druk « verzenden » om je antwoorden op te slaan. Volgende week vragen we je weer om een nieuwe vragenlijst in te vullen."],
+            ["fr-be", "Merci ! C'était la dernière question.  Cliquez sur « envoyer » pour sauvegardé vos réponses. Nous vous contacterons à nouveau la semaine prochaine afin de compléter un nouveau questionnaire."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Drücken Sie auf « versenden », um Ihre Antworten zu speichern. In der volgenden Woche fragen wir wieder."],
         ]))
     );
 
