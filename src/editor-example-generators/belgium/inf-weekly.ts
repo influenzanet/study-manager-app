@@ -276,10 +276,10 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ['nl-be', 'Meerdere antwoorden mogelijk. \nVoor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden.'],
-                ["fr-be", "Plusieurs réponses sont possibles. \nPour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
-                ["de-be", "Mehrere Antworten möglich \nFür Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab."],
-                ["en", "Multiple answers possible. \nIf you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
+                ['nl-be', 'Meerdere antwoorden mogelijk. Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden.'],
+                ["fr-be", "Plusieurs réponses sont possibles. Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
+                ["de-be", "Mehrere Antworten möglich. Für Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab."],
+                ["en", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -1888,7 +1888,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u medische hulp gezocht vanwege uw symptomen/klachten? En zo ja, waar?"],
-            ["fr-be", "Avez-vous consulté un médecin en raison de vos symptômes/plaintes ? Et si oui, où?"],
+            ["fr-be", "Avez-vous consulté un médecin en raison de vos symptômes/plaintes ? Et si oui, où ?"],
             ["de-be", "Haben Sie wegen Ihrer Symptome/Beschwerden ärztliche Hilfe aufgesucht? Und wenn ja, wo?"],
             ["en", "Did you consult medical assistance because of your symptoms / complaints? If yes, where?"],
         ]))
