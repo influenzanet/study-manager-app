@@ -511,7 +511,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
     editor.addExistingResponseComponent({
         key: '0', role: 'dateInput',
         properties: {
-            min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+            min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
             max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
         },
         description: generateLocStrings(new Map([
