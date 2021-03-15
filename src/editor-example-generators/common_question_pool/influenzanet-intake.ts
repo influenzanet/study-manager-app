@@ -1606,7 +1606,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver (2018-2019) ?"],
-            ["fr-be", "Lors de la précédente saison de la grippe (l’hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe ?"],
+            ["fr-be", "Lors de la précédente saison de la grippe (hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe ?"],
             ["de-be", "Haben Sie sich in der vorigen Grippesaison (2019/2020) eine Grippeimpfung verabreichen lassen?"],
         ]))
     );

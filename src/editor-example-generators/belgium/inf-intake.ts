@@ -3298,7 +3298,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, ik denk het wel, ik had/heb klachten die erop lijken, en mensen om me heen ook"],
-                ["fr-be", "Oui, je suppose. J'ai eu/j'ai eu des symptômes qui ressemblent à ceux du coronavirus, et les personnes autour de moi également"],
+                ["fr-be", "Oui, je suppose. J'ai eu/j'ai des symptômes qui ressemblent à ceux du coronavirus, et les personnes autour de moi également"],
                 ["de-be", "Ja, ich denke schon, ich hatte/habe Beschwerden, die dem ähneln, und Menschen um mich herum auch"],
                 ["en", "Yes, I think so because I, and people around me, had/have symptoms that resemble those of the coronavirus"],
             ])

@@ -1246,7 +1246,7 @@ const resultTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Dat wil ik niet aangeven"],
-                ["fr-be", "Je ne préfère ne pas le spécifier"],
+                ["fr-be", "Je préfère ne pas le spécifier"],
                 ["de-be", "Das möchte ich nicht angeben"],
                 ["en", "I prefer not to specify"],
             ])
