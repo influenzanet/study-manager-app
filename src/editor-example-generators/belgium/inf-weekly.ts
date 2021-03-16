@@ -4397,7 +4397,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Drukke plaatsen mijden (supermarkt, cinema, stadium,...)"],
                 ["fr-be", "Éviter les lieux bondés (un supermarché, un cinéma, un stade, etc.)"],
                 ["de-be", "Belebte Plätze meiden (Supermarkt, Kino, Stadion, usw.)"],
-                ['en', 'Avoid bussy places (supermarket, cinema, stadium)'],
+                ['en', 'Avoid busy places (supermarket, cinema, stadium)'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_9', likertOptions), rg?.key);

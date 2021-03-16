@@ -1436,7 +1436,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ['nl-be', 'Selecteer alle opties die relevant zijn (laat contacten in het openbaar vervoer buiten beschouwing).'],
                 ['fr-be', 'Plusieurs réponses sont possibles (et veuillez exclure les transports en commun).'],
                 ['de-be', 'Mehrere Antworten sind möglich (und lassen Sie den Öffentlichen Verkehr (ÖPNV) unberücksichtigt).'],
-                ['en', 'Select all options that apply (exlcude people you meet on public transports).'],
+                ['en', 'Select all options that apply (exclude people you meet on public transports).'],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
