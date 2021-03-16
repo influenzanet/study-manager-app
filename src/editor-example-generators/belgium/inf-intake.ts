@@ -311,7 +311,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             content: new Map([
                 ["nl-be", "Ik ben (technisch) werkloos omwille van de coronasituatie"],
                 ["fr-be", "Je suis au chômage (technique) à cause de la situation liée au coronavirus"],
-                ["de-be", "Ich bin aufgrund der Coronasituation (technisch) arbeitslos"],
+                ["de-be", "Ich bin aufgrund der Coronasituation arbeitslos"],
                 ["en", "I am technically unemployed due to the COVID-19 epidemic"],
             ])
         },
@@ -1636,28 +1636,28 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["nl-be", "2 personen"],
                     ["fr-be", "2 personnes"],
                     ["de-be", "2 Personen"],
-                    ["en", "2 Persons"],
+                    ["en", "2 People"],
                 ]),
             }, {
                 key: '3', role: 'option', content: new Map([
                     ["nl-be", "3 personen"],
                     ["fr-be", "3 personnes"],
                     ["de-be", "3 Personen"],
-                    ["en", "3 Persons"],
+                    ["en", "3 People"],
                 ]),
             }, {
                 key: '4', role: 'option', content: new Map([
                     ["nl-be", "4 personen"],
                     ["fr-be", "4 personnes"],
                     ["de-be", "4 Personen"],
-                    ["en", "4 Persons"],
+                    ["en", "4 People"],
                 ]),
             }, {
                 key: '5', role: 'option', content: new Map([
                     ["nl-be", "5 personen of meer"],
                     ["fr-be", "5 personnes ou plus"],
                     ["de-be", "5 Personen oder mehr"],
-                    ["en", "5 or more Persons"],
+                    ["en", "5 or more People"],
                 ]),
             },
         ]
