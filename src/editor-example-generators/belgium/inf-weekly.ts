@@ -4120,7 +4120,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         // },
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3','4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4'),
             content: new Map([
                 ["nl-be", "Ja, een test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
                 ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
@@ -4130,7 +4130,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3','4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4'),
             content: new Map([
                 ["nl-be", "Ja, een bloedtest"],
                 ["fr-be", "Oui, un test sanguin"],
@@ -4140,7 +4140,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1','2','4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '4'),
             content: new Map([
                 ["nl-be", "Nog niet, ik ga binnekort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
@@ -4150,7 +4150,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1','2','3'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '3'),
             content: new Map([
                 ["nl-be", "Nee, ik zal geen test laten uitvoeren"],
                 ["fr-be", "Non, je ne me ferai pas tester"],
@@ -4361,7 +4361,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_6', likertOptions), rg?.key);
-    
+
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
@@ -4428,7 +4428,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_11', likertOptions), rg?.key);
-    
+
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
@@ -4467,7 +4467,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_14', likertOptions), rg?.key);
-    
+
     editor.addExistingResponseComponent({
         role: 'text',
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
@@ -4502,7 +4502,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
 
 /**
  * SURVEY END TEXT
-*/ 
+*/
 const surveyEnd = (parentKey: string): SurveyItem => {
     const defaultKey = 'surveyEnd'
     const itemKey = [parentKey, defaultKey].join('.');
@@ -4513,7 +4513,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
             ["en", "Thank you! This was all for now, please submit (push « send ») your responses. We will ask you again next week."],
             ["nl-be", "Dank je wel! Dit was de laatste vraag. Druk « verzenden » om je antwoorden op te slaan. Volgende week vragen we je weer om een nieuwe vragenlijst in te vullen."],
             ["fr-be", "Merci ! C'était la dernière question.  Cliquez sur « envoyer » pour sauvegardé vos réponses. Nous vous contacterons à nouveau la semaine prochaine afin de compléter un nouveau questionnaire."],
-            ["de-be", "Vielen Dank! Das war die letzte Frage. Drücken Sie auf « versenden », um Ihre Antworten zu speichern. In der volgenden Woche fragen wir wieder."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Drücken Sie auf « versenden », um Ihre Antworten zu speichern. In der folgenden Woche fragen wir wieder."],
         ]))
     );
 

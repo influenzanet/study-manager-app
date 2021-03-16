@@ -1335,7 +1335,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
-            }, 
+            },
             {
                 content: new Map([
                     /*["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],*/
@@ -1621,7 +1621,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen we das?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1634,7 +1634,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "We willen graag onderzoeken hoeveel bescherming het vaccin geeft. We willen ook graag weten of er enige bescherming is dankzij vaccins die in voorgaande jaren zijn ontvangen."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
                     ["fr-be", "Nous aimerions étudier le degré de protection offert par le vaccin. Nous aimerions également savoir s'il existe un certain degré de protection grâce aux vaccins reçus au cours des années précédentes."],
-                    ["de-be", "Wir möchten gerne untersuchen, wieviel Schutz der Impfstoff verleiht. Wir möchten auch gerne wissen, ob es dank der Impfstoffe einen Schutz gibt, die in früheren Jahren erhalten wurden."],
+                    ["de-be", "Wir möchten gerne untersuchen, wieviel Schutz der Impfstoff verleiht. Wir möchten auch gerne wissen, ob es dank der Impfstoffe einen Schutz gibt, der früheren Jahren erhalten wurden."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1657,7 +1657,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                     ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im vorigen Jahr (im Herbst/Winter von 2019-2020)"],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im vorigen Jahr erhalten haben (im Herbst/Winter von 2019-2020)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1912,7 +1912,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl-be", "Probeer zo nauwkeurig mogelijk te antwoorden. Als u de precieze datum niet weet, geef dan uw beste schatting. U kunt zich bijvoorbeeld de maand herinneren en vervolgens proberen te herinneren of het aan het begin of het einde van de maand was. Waren er belangrijke gebeurtenissen (bijv. een vakantie of een verjaardag) die u zouden kunnen helpen om uw geheugen op te frissen?"],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
                     ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date exacte, veuillez fournir une estimation la plus précise possible. Par exemple, vous pouvez vous souvenir du mois, et ensuite essayer de vous souvenir si c’était plutôt au début ou à la fin du mois. Des événements importants (par exemple, des vacances ou un anniversaire) ont-ils eu lieu, lesquels pourraient vous aider à vous rafraîchir la mémoire."],
-                    ["de-be", "Versuchen Sie, so genau wie möglich zu antworten. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung an. Sie können sich zum Beispiel den Monat an den Monat und danach versuchen, sich zu erinnern, ob es am Beginn oder am Ende des Monats war. Gab es wichtige Ereignisse (zum Beispiel ein Urlaub oder ein Jahrestag), die Ihnen helfen könnten, Ihr Gedächtnis aufzufrischen?"],
+                    ["de-be", "Versuchen Sie so genau wie möglich zu antworten. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung an. Sie können zum Beispiel versuchen, sich zu erinnern ob es am Angang oder am Ende des Monats war. Gab es wichtige Ereignisse (zum Beispiel ein Urlaub oder ein Jahrestag), die Ihnen helfen könnten Ihr Gedächtnis aufzufrischen?"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2676,7 +2676,7 @@ const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday
                 ["fr-be", "Deuxième trimestre (semaines 13-28)"],
                 ["de-be", "Zweites Quartal (Woche 13-28)"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             content: new Map([
@@ -2687,7 +2687,7 @@ const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday
                 ["fr-be", "Troisième trimestre (semaine 29 jusqu'à l'accouchement)"],
                 ["de-be", "Drittes Quartal (Woche 29 bis zur Entbindung/Geburt)"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             content: new Map([
@@ -2945,7 +2945,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["fr-be", "Le rhume des foins"],
                 ["de-be", "Heuschnupfen"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
@@ -2957,7 +2957,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["fr-be", "Une allergie aux acariens"],
                 ["de-be", "Allergie gegen Hausstaubmilben"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
@@ -2965,11 +2965,11 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["en", "Allergy against domestic animals or pets"],
                 ["nl", "Allergie voor (huis)dieren"],
                 ["nl-be", "Allergie voor (huis)dieren"],
-                ["fr", "Allergie à des animaux domestiques"],["fr-be", ""],
+                ["fr", "Allergie à des animaux domestiques"], ["fr-be", ""],
                 ["fr-be", "Une allergie aux animaux (domestiques)"],
                 ["de-be", "Allergie gegen (Haus-)Tiere"],
             ])
-        }, 
+        },
         {
             key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
@@ -2981,7 +2981,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["fr-be", "Une autre allergie qui provoque chez moi les symptômes du rhume (un nez qui coule, des yeux larmoyants)"],
                 ["de-be", "Eine andere Allergie, von der ich Erkältungsbeschwerden (laufende Nase, tränende Augen) bekomme"],
             ])
-        }, 
+        },
         {
             key: '5', role: 'option',
             content: new Map([
@@ -3262,7 +3262,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["fr-be", "Merci. C'était la dernière question. Après avoir sauvegardé vos réponses (cliquez sur « envoyer »), vous pouvez aller à la page qui vous permettra d'indiquer si vous avez eu des plaintes / ressenti des symptômes au cours de la semaine écoulée."],
-            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern (Druck « versenden ») können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
         ]))
     );
 
