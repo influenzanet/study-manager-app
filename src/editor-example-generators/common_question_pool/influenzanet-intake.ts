@@ -217,7 +217,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 code: 'de-be', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' Jahr' }
+                    { str: ' Jahr/e' }
                 ]
             }
         ]
@@ -1182,7 +1182,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                     ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
-                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem Öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
+                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1267,7 +1267,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
                 ["fr-be", "Par les transports en commun (bus, train, métro, tram, etc.)"],
-                ["de-be", "Mit dem Öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
+                ["de-be", "Mit dem öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
             ])
         },
         {
@@ -1318,7 +1318,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             ["nl-be", "Hoeveel tijd brengt u op een doordeweekse dag door in het openbaar vervoer?"],
             ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics (bus, train, métro, etc.)?"],
             ["fr-be", "Combien de temps passez-vous dans les transports en commun lors d'un jour de semaine ?"],
-            ["de-be", "Wieviel Zeit verbringen Sie an einem Wochentag im Öffentlichen Verkehr?"],
+            ["de-be", "Wieviel Zeit verbringen Sie an einem Wochentag im öffentlichen Verkehr?"],
         ]))
     );
 
@@ -1344,7 +1344,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                     ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
-                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem Öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
+                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1607,7 +1607,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver (2018-2019) ?"],
             ["fr-be", "Lors de la précédente saison de la grippe (hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe ?"],
-            ["de-be", "Haben Sie sich in der vorigen Grippesaison (2019/2020) eine Grippeimpfung verabreichen lassen?"],
+            ["de-be", "Haben Sie sich in der letzten Grippesaison (2019/2020) eine Grippeimpfung bekommen?"],
         ]))
     );
 

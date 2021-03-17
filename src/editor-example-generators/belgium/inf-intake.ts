@@ -376,7 +376,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
         generateTitleComponent(new Map([
             ["nl-be", "Wat is de postcode van de plek waar u het meeste van uw (werk)tijd doorbrengt (voorbeeld: werkplek/school/universiteit)?"],
             ["fr-be", "Quel est le code postal du lieu où vous passez la plupart de votre temps (de travail) (exemple : le lieu de travail/l’école/l’université) ?"],
-            ["de-be", "Welche Postleitzahl hat die Stelle, wo Sie den Großteil Ihrer (Arbeits-)Zeit verbringen (zum Beispiel: Arbeitsplatz/Schule/Universität)?"],
+            ["de-be", "Was ist die Postleitzahl, wo Sie den Großteil Ihrer (Arbeits-)Zeit verbringen (zum Beispiel: Arbeitsplatz/Schule/Universität)?"],
             ["en", "What is the postal code of your school/college/workplace (where you spend the majority of your working/studying time)?"],
         ]))
     );
@@ -719,7 +719,7 @@ const work_sector = (parentKey: string, keyMainActivity?: string, isRequired?: b
             content: new Map([
                 ["nl-be", "Extraterritoriale organisaties en lichamen"],
                 ["fr-be", "Les organisations et les organismes extraterritoriaux"],
-                ["de-be", "Extraterritoriale Organisationen und Körperschaften"],
+                ["de-be", "Exterritoriale Organisationen und Körperschaften"],
                 ["en", "Extra-territorial organisations and bodies"],
             ])
         },
@@ -1435,7 +1435,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             new Map([
                 ['nl-be', 'Selecteer alle opties die relevant zijn (laat contacten in het openbaar vervoer buiten beschouwing).'],
                 ['fr-be', 'Plusieurs réponses sont possibles (et veuillez exclure les transports en commun).'],
-                ['de-be', 'Mehrere Antworten sind möglich (und lassen Sie den Öffentlichen Verkehr (ÖPNV) unberücksichtigt).'],
+                ['de-be', 'Mehrere Antworten sind möglich (und lassen Sie den öffentlichen Verkehr (ÖPNV) unberücksichtigt).'],
                 ['en', 'Select all options that apply (exclude people you meet on public transports).'],
             ])),
     }, rg?.key);
@@ -1951,7 +1951,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u in het huidige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
             ["fr-be", "Lors de la saison de la grippe de l’hiver 2020/2021, vous êtes-vous fait vacciner contre la grippe ?"],
-            ["de-be", "Haben Sie sich in der heutigen Grippesaison (2020/2021) einen Grippeimpfstoff verabreichen lassen?"],
+            ["de-be", "Haben Sie in der (jetzigen) Grippesaison (2020/2021) einen Grippeimpfstoff bekommen?"],
             ["en", "Did you receive a flu vaccine during this autumn/winter flu season (2020-2021)?"],
         ]))
     );
@@ -2439,7 +2439,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik achtte de kans klein dat ik griep krijg"],
                 ["fr-be", "Selon moi, il était peu probable que je contracte la grippe"],
-                ["de-be", "Ich halte die Möglichkeit für klein, dass ich Grippe bekomme"],
+                ["de-be", "Ich halte die Möglichkeit für klein, dass ich die Grippe bekomme"],
                 ["en", "I don’t think that I am likely to get influenza"],
             ])
         },
@@ -3225,7 +3225,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
         generateTitleComponent(new Map([
             ["nl-be", "Denkt u dat u al besmet bent (geweest) met het coronavirus (COVID-19)?"],
             ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus (COVID-19) ?"],
-            ["de-be", "Denken Sie, dass Sie schon einmal mit dem Coronavirus (COVID-19) infiziert (gewesen) waren?"],
+            ["de-be", "Denken Sie, dass Sie schon einmal mit dem Coronavirus (COVID-19) infiziert waren?"],
             ["en", "Do you think you are or have been infected with the coronavirus? (COVID-19)?"],
         ]))
     );
@@ -3280,7 +3280,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             content: new Map([
                 ["nl-be", "Nee, ik denk niet dat ik het coronavirus al heb gehad"],
                 ["fr-be", "Non, je ne pense pas avoir été déjà infecté(e) par le coronavirus"],
-                ["de-be", "Nein, ich denke nicht, das ich das Coronavirus schon hatte"],
+                ["de-be", "Nein, ich denke nicht, dass ich das Coronavirus schon hatte"],
                 ["en", "No, I do not think I have already been infected with the coronavirus"],
             ])
         },
@@ -3317,7 +3317,7 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
             content: new Map([
                 ["nl-be", "Ja, ik weet het zeker, want ik ben positief getest op het coronavirus, en ik had/heb klachten die erop lijken"],
                 ["fr-be", "Oui, j'en suis certain(e), parce que j'ai été testé(e) positif (positive) pour le coronavirus, et j'ai eu/j'ai des symptômes qui ressemblent à ceux du coronavirus"],
-                ["de-be", "Ja, ich weiß es sicher, denn ich wurde auf das Coronavirus positiv getestet, und ich hastte/habe Beschwerden, die ihm ähneln"],
+                ["de-be", "Ja, ich weiß es sicher, denn ich wurde auf das Coronavirus positiv getestet und ich hatte/habe Symptome"],
                 ["en", "Yes, I am certain, because I tested positive for coronavirus, and I had/have symptoms that resemble those of the coronavirus"],
             ])
         },
