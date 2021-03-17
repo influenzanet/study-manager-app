@@ -4142,7 +4142,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '4'),
             content: new Map([
-                ["nl-be", "Nog niet, ik ga binnekort een test laten uitvoeren"],
+                ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
                 ["en", "Not yet, I plan to shortly undergo a test"],
@@ -4254,19 +4254,19 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ])
         },
         {
-            key: "2", content: new Map([
-                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
-                ["fr-be", "Non, je n'applique pas cette mesure"],
-                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
-                ["en", "No, I am not following this measure"],
-            ])
-        },
-        {
             key: "3", content: new Map([
                 ["nl-be", "Nee, ik hield me al aan deze maatregel"],
                 ["fr-be", "Non, j'appliquais déjà cette mesure"],
                 ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
                 ["en", "I was already following this measure"],
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
+                ["fr-be", "Non, je n'applique pas cette mesure"],
+                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
+                ["en", "No, I am not following this measure"],
             ])
         }
     ];
