@@ -989,8 +989,8 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
         generateTitleComponent(new Map([
             /*["en", "How many of the children in your household go to school or day-care? Assume a normal situation, without any covid measures"],*/
             ["en", "How many of the children in your household go to school or day-care?"],
-            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
-            ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een kinderdagverblijf?"],
+            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een in kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
+            ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een in kinderdagverblijf?"],
             ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie ?"],
             ["fr-be", "Combien d'enfants de votre ménage sont scolarisés ou vont à la crèche ?"],
             ["de-be", "Wie viele Kinder in Ihrem Haushalt sitzen in der Schule oder einer Kita?"],

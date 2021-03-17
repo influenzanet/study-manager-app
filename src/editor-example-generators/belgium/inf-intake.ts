@@ -239,7 +239,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 content: new Map([
-                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die niet naar kinderdagverblijf of school gaan, vinkt u het vakje 'anders' aan."],
+                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die niet naar kinderdagverblijf of school gaan, vinkt u het vakje 'andere' aan."],
                     ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas à la garderie ou l'école, cochez la case « autre »."],
                     ["de-be", "Kreuzen Sie das Kästchen an, das am meisten mit Ihrem Beruf übereinstimmt. Für Babys und Kleinkinder, die nicht zur Kita oder Schule gehen, kreuzen Sie das Kästchen 'andere' an."],
                     ["en", "Check the box that best matches your main activity or profession. For babies and young children not attending daycare or school, check 'other'."],
@@ -402,7 +402,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             },
             {
                 content: new Map([
-                    ["nl-be", "Om te bepalen hoe ver u zich op regelematige basis verplaatst."],
+                    ["nl-be", "Om te bepalen hoe ver u zich op regelmatige basis verplaatst."],
                     ["fr-be", "En vue de pouvoir déterminer la distance que vous parcourez régulièrement lors de vos déplacements."],
                     ["de-be", "Um zu bestimmen, wie weit Sie sich auf regelmäßiger Basis (fort-)bewegen."],
                     ["en", "To be able to determine the distance you regularly travel during your movements."],
@@ -556,8 +556,8 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
         {
             key: '10', role: 'option',
             content: new Map([
-                ["nl-be", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
-                ["fr-be", "J’effectue un autre type de travail intellectuel (responsable, chercheur, comptable)"],
+                ["nl-be", "Ik doe kenniswerk (manager, onderzoeker, accountant)"],
+                ["fr-be", "J’effectue un type de travail intellectuel (responsable, chercheur, comptable)"],
                 ["de-be", "Ich  arbeite im Büro (Manager, Forscher, Untersucher, Buchhalter)"],
                 ["en", "Professional (e.g. manager, researcher, engineer)"],
             ])
@@ -565,7 +565,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist, etc.)"],
+                ["nl-be", "Ik doe administratief werk (administratie, financieel assistent, receptionist, etc.)"],
                 ["fr-be", "J’effectue un travail administratif (administration, assistant financier, réceptionniste, etc.)"],
                 ["de-be", "Ich leiste Verwaltungsarbeiten (Verwaltung, finanzieller Assistent, Empfang usw.)"],
                 ["en", "Office work (e.g. admin, finance assistant, receptionist, etc)"],
