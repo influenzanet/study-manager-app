@@ -162,19 +162,19 @@ const intake = (): Survey | undefined => {
     const Q_additional_covid19_questions_hospital = additional_covid19_questions_hospital(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_hospital, rootKey);
 
-    const Q_additional_covid19_questions_hospital_length = additional_covid19_questions_hospital_length(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions_hospital.key, false);
+    const Q_additional_covid19_questions_hospital_length = additional_covid19_questions_hospital_length(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_hospital.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_hospital_length, rootKey);
 
-    const Q_additional_covid19_questions_ICU = additional_covid19_questions_ICU(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions_hospital.key, false);
+    const Q_additional_covid19_questions_ICU = additional_covid19_questions_ICU(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_hospital.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_ICU, rootKey);
 
-    const Q_additional_covid19_questions_coma = additional_covid19_questions_coma(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions_hospital.key, false);
+    const Q_additional_covid19_questions_coma = additional_covid19_questions_coma(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_hospital.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_coma, rootKey);
 
     const Q_additional_covid19_questions_returned_health = additional_covid19_questions_returned_health(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_returned_health, rootKey);
 
-    const Q_additional_covid19_questions_ongoing_symptoms = additional_covid19_questions_ongoing_symptoms(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions_returned_health.key, false);
+    const Q_additional_covid19_questions_ongoing_symptoms = additional_covid19_questions_ongoing_symptoms(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_returned_health.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_ongoing_symptoms, rootKey);
 
     const surveyEndText = DefaultIntake.surveyEnd(rootKey);
@@ -3943,7 +3943,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyprevious_co
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_hospital_length = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_hospital_length = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22c'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -3962,6 +3962,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyprev
     editor.setCondition(
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
             expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
         )
     );
@@ -4288,7 +4289,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyprev
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_ICU = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_ICU = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22d'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4307,6 +4308,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyprevious_covid19
     editor.setCondition(
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
             expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
         )
     );
@@ -4387,7 +4389,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyprevious_covid19
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_coma = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_coma = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4406,6 +4408,7 @@ const additional_covid19_questions_coma = (parentKey: string, keyprevious_covid1
     editor.setCondition(
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
             expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
         )
     );
@@ -4567,7 +4570,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyprev
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions_returned_health?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_returned_health?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22g'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4586,6 +4589,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keypre
     editor.setCondition(
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_returned_health, [responseGroupKey, singleChoiceKey].join('.'), '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
             expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
         )
     );
