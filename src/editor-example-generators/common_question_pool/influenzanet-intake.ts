@@ -131,7 +131,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
             ["fr", "Quelle est votre date de naissance (mois et année) ?"],
             ["fr-be", "Quelle est votre date de naissance (l’année et le mois) ?"],
-            ["de-be", "Wann sind Sie geboren (Jahr und Monat)?"],
+            ["de-be", "Wann sind Sie geboren (Jahr und Monat)?"],
         ]))
     );
 
@@ -1245,7 +1245,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met de scooter of motor"],
                 ["fr", "Le scooter, la moto"],
                 ["fr-be", "À mobylette ou à moto"],
-                ["de-be", "Mit dem Motorroller oder Motorrad"],
+                ["de-be", "Mit dem Motorroller oder Motorrad"],
             ])
         },
         {
@@ -1256,7 +1256,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met de auto"],
                 ["fr", "La voiture"],
                 ["fr-be", "En voiture"],
-                ["de-be", "Mit dem Auto"],
+                ["de-be", "Mit dem Auto"],
             ])
         },
         {
@@ -1267,7 +1267,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
                 ["fr-be", "Par les transports en commun (bus, train, métro, tram, etc.)"],
-                ["de-be", "Mit dem Öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
+                ["de-be", "Mit dem Öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
             ])
         },
         {
@@ -1396,7 +1396,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "0 tot 30 minuten"],
                 ["fr", "0-30 minutes"],
                 ["fr-be", "De 0 à 30 minutes"],
-                ["de-be", "0 bis 30 Minuten"],
+                ["de-be", "0 bis 30 Minuten"],
             ])
         },
         {
@@ -1407,7 +1407,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "30 minuten tot 1,5 uur"],
                 ["fr", "30 minutes - 1.5 heures"],
                 ["fr-be", "De 30 minutes à 1,5 heure"],
-                ["de-be", "30 Minuten bis 1,5 Stunden"],
+                ["de-be", "30 Minuten bis 1,5 Stunden"],
             ])
         },
         {
@@ -1418,7 +1418,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "1,5 uur tot 4 uur"],
                 ["fr", "1.5 - 4 heures"],
                 ["fr-be", "De 1,5 à 4 heures"],
-                ["de-be", "1,5 Stunden bis 4 Stunden"],
+                ["de-be", "1,5 Stunden bis 4 Stunden"],
             ])
         },
         {
@@ -1429,7 +1429,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "Meer dan 4 uur"],
                 ["fr", "Plus de 4 heures"],
                 ["fr-be", "Plus de 4 heures"],
-                ["de-be", "Mehr als 4 Stunden"],
+                ["de-be", "Mehr als 4 Stunden"],
             ])
         },
     ]);
@@ -1522,7 +1522,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "1 of 2 keer per jaar"],
                 ["fr", "1 ou 2 fois par an"],
                 ["fr-be", "1 à 2 fois par an"],
-                ["de-be", "1 oder 2 Mal pro Jahr"],
+                ["de-be", "1 oder 2 Mal pro Jahr"],
             ])
         },
         {
@@ -1533,7 +1533,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Tussen 3 en 5 keer per jaar"],
                 ["fr", "De 3 à 5 fois par an"],
                 ["fr-be", "Entre 3 et 5 fois par an"],
-                ["de-be", "Zwischen 3 und 5 Mal pro Jahr"],
+                ["de-be", "Zwischen 3 und 5 Mal pro Jahr"],
             ])
         },
         {
@@ -1544,7 +1544,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Tussen 6 en 10 keer per jaar"],
                 ["fr", "De 6 à 10 fois par an"],
                 ["fr-be", "Entre 6 et 10 fois par an"],
-                ["de-be", "Zwischen 6 und 10 Mal pro Jahr"],
+                ["de-be", "Zwischen 6 und 10 Mal pro Jahr"],
             ])
         },
         {
@@ -1555,7 +1555,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Meer dan 10 keer per jaar"],
                 ["fr", "Plus de 10 fois par an"],
                 ["fr-be", "Plus de 10 fois par an"],
-                ["de-be", "Mehr als 10 Mal pro Jahr"],
+                ["de-be", "Mehr als 10 Mal pro Jahr"],
             ])
         },
         {
@@ -1697,7 +1697,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
                 ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Das weiß ich nicht (mehr)"],
+                ["de-be", "Das weiß ich nicht (mehr)"],
             ])
         },
     ]);
@@ -1856,7 +1856,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2020-2021) ?"],
             ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021 ?"],
-            ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],
+            ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],
         ]))
     );
 
@@ -2480,10 +2480,10 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
         generateTitleComponent(new Map([
             ["en", "Are you currently pregnant?"],
             ["nl", "Ben je op dit moment zwanger?"],
-            ["nl-be", "Bent u op dit moment zwanger?"],
+            ["nl-be", "Bent u op dit moment zwanger?"],
             ["fr", "Êtes-vous actuellement enceinte ?"],
             ["fr-be", "Êtes-vous actuellement enceinte ?"],
-            ["de-be", "Sind Sie in diesem Moment schwanger?"],
+            ["de-be", "Sind Sie in diesem Moment schwanger?"],
         ]))
     );
 
@@ -2600,10 +2600,10 @@ const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday
         generateTitleComponent(new Map([
             ["en", "Which trimester of the pregnancy are you in?"],
             ["nl", "In welk trimester ben je van je zwangerschap?"],
-            ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
+            ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
             ["fr", "A quel stade de grossesse êtes-vous ?"],
             ["fr-be", "Dans quel trimestre de votre grossesse vous situez-vous ?"],
-            ["de-be", "In welchem Quartal Ihrer Schwangerschaft sind Sie?"],
+            ["de-be", "In welchem Quartal Ihrer Schwangerschaft sind Sie?"],
         ]))
     );
 
@@ -2685,7 +2685,7 @@ const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday
                 ["nl-be", "Derde trimester (week 29 tot bevalling)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
                 ["fr-be", "Troisième trimestre (semaine 29 jusqu'à l'accouchement)"],
-                ["de-be", "Drittes Quartal (Woche 29 bis zur Entbindung/Geburt)"],
+                ["de-be", "Drittes Quartal (Woche 29 bis zur Entbindung/Geburt)"],
             ])
         },
         {
@@ -2696,7 +2696,7 @@ const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday
                 ["nl-be", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
                 ["fr-be", "Je ne veux pas / je préfère ne pas répondre à cette question"],
-                ["de-be", "Das weiß ich nicht / möchte ich nicht angeben"],
+                ["de-be", "Das weiß ich nicht / möchte ich nicht angeben"],
             ])
         },
     ]);
@@ -2858,10 +2858,10 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
             ["nl", "Heb je één of meer van de volgende allergieën?"],
-            ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
+            ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
             ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires ?"],
             ["fr-be", "Souffrez-vous d’une ou de plusieurs des allergies suivantes ?"],
-            ["de-be", "Haben Sie eine oder mehrere der folgenden Allergien?"],
+            ["de-be", "Haben Sie eine oder mehrere der folgenden Allergien?"],
         ]))
     );
 
@@ -2955,7 +2955,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Allergie voor huisstofmijt"],
                 ["fr", "Allergie aux acariens"],
                 ["fr-be", "Une allergie aux acariens"],
-                ["de-be", "Allergie gegen Hausstaubmilben"],
+                ["de-be", "Allergie gegen Hausstaubmilben"],
             ])
         },
         {
@@ -2967,7 +2967,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Allergie voor (huis)dieren"],
                 ["fr", "Allergie à des animaux domestiques"], ["fr-be", ""],
                 ["fr-be", "Une allergie aux animaux (domestiques)"],
-                ["de-be", "Allergie gegen (Haus-)Tiere"],
+                ["de-be", "Allergie gegen (Haus-)Tiere"],
             ])
         },
         {
@@ -2979,7 +2979,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["fr", "Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
                 ["fr-be", "Une autre allergie qui provoque chez moi les symptômes du rhume (un nez qui coule, des yeux larmoyants)"],
-                ["de-be", "Eine andere Allergie, von der ich Erkältungsbeschwerden (laufende Nase, tränende Augen) bekomme"],
+                ["de-be", "Eine andere Allergie, von der ich Erkältungsbeschwerden (laufende Nase, tränende Augen) bekomme"],
             ])
         },
         {
@@ -3196,7 +3196,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere honden"],
                 ["fr", "Oui, un ou plusieurs chien(s)"],
                 ["fr-be", "Oui, un ou plusieurs chien(s)"],
-                ["de-be", "Ja, einen oder mehrere Hunde"],
+                ["de-be", "Ja, einen oder mehrere Hunde"],
             ])
         },
         {
@@ -3208,7 +3208,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere katten"],
                 ["fr", "Oui, un ou plusieurs chat(s)"],
                 ["fr-be", "Oui, un ou plusieurs chat(s)"],
-                ["de-be", "Ja, eine oder mehrere Katzen"],
+                ["de-be", "Ja, eine oder mehrere Katzen"],
             ])
         },
         {
@@ -3220,7 +3220,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere vogels"],
                 ["fr", "Oui, un ou plusieurs oiseau(x)"],
                 ["fr-be", "Oui, un ou plusieurs oiseau(x)"],
-                ["de-be", "Ja, einen Vogel oder mehrere Vögel"],
+                ["de-be", "Ja, einen Vogel oder mehrere Vögel"],
             ])
         },
         {
@@ -3232,7 +3232,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meer andere dieren"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
                 ["fr-be", "Oui, un ou plusieurs autre(s) animal (animaux)"],
-                ["de-be", "Ja, eines oder mehrere andere Tiere"],
+                ["de-be", "Ja, eines oder mehrere andere Tiere"],
             ])
         },
     ]);
