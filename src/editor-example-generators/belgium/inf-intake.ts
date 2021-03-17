@@ -3169,9 +3169,9 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl-be", "Via vrienden en familie"],
-                ["fr-be", "Par l'intermédiaire des amis et de la famille"],
-                ["de-be", "Über Freunde und Familie"],
+                ["nl-be", "Via vrienden en/of familie"],
+                ["fr-be", "Par l'intermédiaire des amis et/ou de la famille"],
+                ["de-be", "Über Freunde und/oder Familie"],
                 ["en", "Friends and/or family"],
             ])
         },
