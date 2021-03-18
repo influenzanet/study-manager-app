@@ -261,7 +261,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 content: new Map([
                     ["nl-be", "Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden. Meerdere antwoorden mogelijk."],
                     ["fr-be", "Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé. Plusieurs réponses sont possibles."],
-                    ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab. Mehrere Antworten sind möglich."],
+                    ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an. Mehrere Antworten sind möglich."],
                     ["en", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -278,7 +278,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             new Map([
                 ['nl-be', 'Meerdere antwoorden mogelijk. Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden.'],
                 ["fr-be", "Plusieurs réponses sont possibles. Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
-                ["de-be", "Mehrere Antworten möglich. Für Menschen mit chronischen (längeren) Krankheiten haken Sie bitte nur Veränderungen in Symptomen ab."],
+                ["de-be", "Mehrere Antworten möglich. Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an."],
                 ["en", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
             ])),
     }, rg?.key);
@@ -4142,7 +4142,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '4'),
             content: new Map([
-                ["nl-be", "Nog niet, ik ga binnekort een test laten uitvoeren"],
+                ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
                 ["en", "Not yet, I plan to shortly undergo a test"],
@@ -4254,19 +4254,19 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ])
         },
         {
-            key: "2", content: new Map([
-                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
-                ["fr-be", "Non, je n'applique pas cette mesure"],
-                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
-                ["en", "No, I am not following this measure"],
-            ])
-        },
-        {
             key: "3", content: new Map([
                 ["nl-be", "Nee, ik hield me al aan deze maatregel"],
                 ["fr-be", "Non, j'appliquais déjà cette mesure"],
                 ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
                 ["en", "I was already following this measure"],
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
+                ["fr-be", "Non, je n'applique pas cette mesure"],
+                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
+                ["en", "No, I am not following this measure"],
             ])
         }
     ];

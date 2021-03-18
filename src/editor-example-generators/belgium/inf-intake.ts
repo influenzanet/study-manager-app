@@ -156,25 +156,25 @@ const intake = (): Survey | undefined => {
     const Q_additional_covid19_questions = additional_covid19_questions(rootKey, Q_previous_covid19_episode.key, true);
     survey.addExistingSurveyItem(Q_additional_covid19_questions, rootKey);
 
-    const Q_additional_covid19_questions_medical_aid = additional_covid19_questions_medical_aid(rootKey, Q_additional_covid19_questions.key, false);
+    const Q_additional_covid19_questions_medical_aid = additional_covid19_questions_medical_aid(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_medical_aid, rootKey);
 
-    const Q_additional_covid19_questions_hospital = additional_covid19_questions_hospital(rootKey, Q_additional_covid19_questions.key, false);
+    const Q_additional_covid19_questions_hospital = additional_covid19_questions_hospital(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_hospital, rootKey);
 
-    const Q_additional_covid19_questions_hospital_length = additional_covid19_questions_hospital_length(rootKey, Q_additional_covid19_questions_hospital.key, false);
+    const Q_additional_covid19_questions_hospital_length = additional_covid19_questions_hospital_length(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_hospital.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_hospital_length, rootKey);
 
-    const Q_additional_covid19_questions_ICU = additional_covid19_questions_ICU(rootKey, Q_additional_covid19_questions_hospital.key, false);
+    const Q_additional_covid19_questions_ICU = additional_covid19_questions_ICU(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_hospital.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_ICU, rootKey);
 
-    const Q_additional_covid19_questions_coma = additional_covid19_questions_coma(rootKey, Q_additional_covid19_questions_hospital.key, false);
+    const Q_additional_covid19_questions_coma = additional_covid19_questions_coma(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_hospital.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_coma, rootKey);
 
-    const Q_additional_covid19_questions_returned_health = additional_covid19_questions_returned_health(rootKey, Q_additional_covid19_questions.key, false);
+    const Q_additional_covid19_questions_returned_health = additional_covid19_questions_returned_health(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_returned_health, rootKey);
 
-    const Q_additional_covid19_questions_ongoing_symptoms = additional_covid19_questions_ongoing_symptoms(rootKey, Q_additional_covid19_questions_returned_health.key, false);
+    const Q_additional_covid19_questions_ongoing_symptoms = additional_covid19_questions_ongoing_symptoms(rootKey, Q_previous_covid19_episode.key, Q_additional_covid19_questions.key, Q_additional_covid19_questions_returned_health.key, false);
     survey.addExistingSurveyItem(Q_additional_covid19_questions_ongoing_symptoms, rootKey);
 
     const surveyEndText = DefaultIntake.surveyEnd(rootKey);
@@ -239,7 +239,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             },
             {
                 content: new Map([
-                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die niet naar kinderdagverblijf of school gaan, vinkt u het vakje 'anders' aan."],
+                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep. Voor baby's, peuters en kleuters die niet naar kinderdagverblijf of school gaan, vinkt u het vakje 'andere' aan."],
                     ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale. Pour les bébés et les jeunes enfants qui ne vont pas à la garderie ou l'école, cochez la case « autre »."],
                     ["de-be", "Kreuzen Sie das Kästchen an, das am meisten mit Ihrem Beruf übereinstimmt. Für Babys und Kleinkinder, die nicht zur Kita oder Schule gehen, kreuzen Sie das Kästchen 'andere' an."],
                     ["en", "Check the box that best matches your main activity or profession. For babies and young children not attending daycare or school, check 'other'."],
@@ -402,7 +402,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             },
             {
                 content: new Map([
-                    ["nl-be", "Om te bepalen hoe ver u zich op regelematige basis verplaatst."],
+                    ["nl-be", "Om te bepalen hoe ver u zich op regelmatige basis verplaatst."],
                     ["fr-be", "En vue de pouvoir déterminer la distance que vous parcourez régulièrement lors de vos déplacements."],
                     ["de-be", "Um zu bestimmen, wie weit Sie sich auf regelmäßiger Basis (fort-)bewegen."],
                     ["en", "To be able to determine the distance you regularly travel during your movements."],
@@ -556,8 +556,8 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
         {
             key: '10', role: 'option',
             content: new Map([
-                ["nl-be", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
-                ["fr-be", "J’effectue un autre type de travail intellectuel (responsable, chercheur, comptable)"],
+                ["nl-be", "Ik doe kenniswerk (manager, onderzoeker, accountant)"],
+                ["fr-be", "J’effectue un type de travail intellectuel (responsable, chercheur, comptable)"],
                 ["de-be", "Ich  arbeite im Büro (Manager, Forscher, Untersucher, Buchhalter)"],
                 ["en", "Professional (e.g. manager, researcher, engineer)"],
             ])
@@ -565,7 +565,7 @@ const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boo
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", "Ik doe administratiefwerk (administratie, financieel assistent, receptionist, etc.)"],
+                ["nl-be", "Ik doe administratief werk (administratie, financieel assistent, receptionist, etc.)"],
                 ["fr-be", "J’effectue un travail administratif (administration, assistant financier, réceptionniste, etc.)"],
                 ["de-be", "Ich leiste Verwaltungsarbeiten (Verwaltung, finanzieller Assistent, Empfang usw.)"],
                 ["en", "Office work (e.g. admin, finance assistant, receptionist, etc)"],
@@ -3169,9 +3169,9 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl-be", "Via vrienden en familie"],
-                ["fr-be", "Par l'intermédiaire des amis et de la famille"],
-                ["de-be", "Über Freunde und Familie"],
+                ["nl-be", "Via vrienden en/of familie"],
+                ["fr-be", "Par l'intermédiaire des amis et/ou de la famille"],
+                ["de-be", "Über Freunde und/oder Familie"],
                 ["en", "Friends and/or family"],
             ])
         },
@@ -3735,7 +3735,7 @@ const additional_covid19_questions = (parentKey: string, keyprevious_covid19_epi
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_medical_aid = (parentKey: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_medical_aid = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22a'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -3751,11 +3751,12 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -3843,7 +3844,7 @@ const additional_covid19_questions_medical_aid = (parentKey: string, keyaddition
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_hospital = (parentKey: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_hospital = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -3859,11 +3860,12 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -3941,7 +3943,7 @@ const additional_covid19_questions_hospital = (parentKey: string, keyadditional_
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_hospital_length = (parentKey: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_hospital_length = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22c'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -3957,11 +3959,13 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions_hospital) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -4285,7 +4289,7 @@ const additional_covid19_questions_hospital_length = (parentKey: string, keyaddi
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_ICU = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22d'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4301,11 +4305,13 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions_hospital) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -4383,7 +4389,7 @@ const additional_covid19_questions_ICU = (parentKey: string, keyadditional_covid
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_coma = (parentKey: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_coma = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_hospital?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4399,11 +4405,13 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions_hospital) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_hospital, [responseGroupKey, singleChoiceKey].join('.'), '0', '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -4472,7 +4480,7 @@ const additional_covid19_questions_coma = (parentKey: string, keyadditional_covi
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_returned_health = (parentKey: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_returned_health = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22f'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4488,11 +4496,12 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -4561,7 +4570,7 @@ const additional_covid19_questions_returned_health = (parentKey: string, keyaddi
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadditional_covid19_questions_returned_health?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyprevious_covid19_episode?: string, keyadditional_covid19_questions?: string, keyadditional_covid19_questions_returned_health?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q_BE_22g'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -4577,11 +4586,13 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keyadd
     );
 
     // CONDITION
-    if (keyadditional_covid19_questions_returned_health) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_returned_health, [responseGroupKey, singleChoiceKey].join('.'), '1')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions_returned_health, [responseGroupKey, singleChoiceKey].join('.'), '1'),
+            expWithArgs('responseHasKeysAny', keyadditional_covid19_questions, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyprevious_covid19_episode, [responseGroupKey, singleChoiceKey].join('.'), '2', '3', '4', '5')
+        )
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(

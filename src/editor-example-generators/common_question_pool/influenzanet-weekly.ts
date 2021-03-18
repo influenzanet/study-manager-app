@@ -972,7 +972,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
             /* ["en", "Did your fever develop suddenly over a few hours?"], */
             ["nl", "Kwam de koorts plotseling opzetten? (binnen een paar uur)"],
             ["fr", "Est-ce que votre fièvre s'est déclarée soudainement, en l'espace de quelques heures ?"],
-            ["nl-be", "Kwam de koorts plotseling opzetten? (binnen een paar uur)?"],
+            ["nl-be", "Kwam de koorts plotseling (binnen een paar uur) opzetten?"],
             ["fr-be", "La fièvre est-elle apparue de manière soudaine (en quelques heures) ?"],
             ["de-be", "Kam das Fieber plötzlich? (innerhalb von ein paar Stunden)"],
             ["en", "Did your fever develop suddenly over a few hours?"],
