@@ -1,9 +1,9 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
-import { initEQ5DHealthIndicatorQuestion, QuestionGenerators } from "../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../editor-engine/utils/simple-generators";
-import { SimpleQuestionEditor } from "../../../editor-engine/utils/simple-question-editor";
-import { GroupItemEditor } from "../../../editor-engine/utils/survey-group-editor-helper";
+import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
+import { initEQ5DHealthIndicatorQuestion, QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";
+import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 
 export class EQ5DGroup extends GroupItemEditor {
