@@ -1,6 +1,10 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
-import { generateLocStrings } from "./simple-generators";
+import { singleChoiceKey } from "./key-definitions";
+import { generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
+import { SimpleQuestionEditor } from "./simple-question-editor";
+
+
 
 interface OptionDef {
     key: string;
@@ -12,6 +16,72 @@ interface OptionDef {
     style?: Array<{ key: string, value: string }>;
     optionProps?: ComponentProperties;
 }
+
+const generateSingleChoiceQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    responseOptions: Array<OptionDef>;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}
+): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, props.responseOptions);
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+export const QuestionGenerators = {
+    singleChoice: generateSingleChoiceQuestion,
+}
+
+
+
 
 export const initSingleChoiceGroup = (
     key: string,

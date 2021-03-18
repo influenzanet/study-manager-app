@@ -1,10 +1,9 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
-import { initEQ5DHealthIndicatorQuestion, initSingleChoiceGroup } from "../../../editor-engine/utils/question-type-generator";
+import { initEQ5DHealthIndicatorQuestion, QuestionGenerators } from "../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../editor-engine/utils/simple-question-editor";
 import { GroupItemEditor } from "../../../editor-engine/utils/survey-group-editor-helper";
-import { singleChoiceKey } from "../../common_question_pool/key-definitions";
 
 
 export class EQ5DGroup extends GroupItemEditor {
@@ -34,363 +33,322 @@ export class EQ5DGroup extends GroupItemEditor {
     }
 }
 
+
+const copyRightText = new Map([
+    ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
+    ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation."],
+]);
+
+
 const eq5dCopyright = {
-    role: 'footnote', content: generateLocStrings(new Map([
-        ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
-        ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation."],
-    ])), style: [
+    role: 'footnote', content: generateLocStrings(copyRightText), style: [
         { key: 'className', value: 'fs-small fst-italic text-center' }
     ]
 };
 
-
 const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'MOB';
-    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey, 1);
 
-    // QUESTION TEXT
-    simpleEditor.setTitle(new Map([
-        ["en", "MOBILITY"],
-        ["nl", "MOBILITEIT"],
-    ]));
-
-    simpleEditor.addDisplayComponent(
-        {
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
-            ]))
-        }
-    )
-
-    // RESPONSE
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I have no problems walking"],
-                ["nl", "Ik heb geen problemen met lopen"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I have slight problems walking"],
-                ["nl", "Ik heb een beetje problemen met lopen"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I have moderate problems walking"],
-                ["nl", "Ik heb matige problemen met lopen"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "I have severe problems walking"],
-                ["nl", "Ik heb ernstige problemen met lopen"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "I am unable to walk"],
-                ["nl", "Ik ben niet in staat om te lopen"],
-            ])
-        },
-    ]);
-    simpleEditor.setResponseGroupWithContent(rg_inner);
-
-
-    if (isRequired) {
-        simpleEditor.addHasResponseValidation();
-    }
-
-    if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
-    return simpleEditor.getItem();
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["en", "MOBILITY"],
+            ["nl", "MOBILITEIT"],
+        ]),
+        topDisplayCompoments: [
+            {
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["en", "Please select the ONE option that best describes your health TODAY."],
+                    ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
+                ]))
+            }
+        ],
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["en", "I have no problems walking"],
+                    ["nl", "Ik heb geen problemen met lopen"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["en", "I have slight problems walking"],
+                    ["nl", "Ik heb een beetje problemen met lopen"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["en", "I have moderate problems walking"],
+                    ["nl", "Ik heb matige problemen met lopen"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["en", "I have severe problems walking"],
+                    ["nl", "Ik heb ernstige problemen met lopen"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["en", "I am unable to walk"],
+                    ["nl", "Ik ben niet in staat om te lopen"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+        footnoteText: useCopyRight ? copyRightText : undefined,
+    })
 }
 
 const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'SC';
-    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey, 1);
 
-    // QUESTION TEXT
-    simpleEditor.setTitle(new Map([
-        ["en", "SELF-CARE"],
-        ["nl", "ZELFZORG"],
-    ]));
-
-
-    simpleEditor.addDisplayComponent(
-        {
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["en", "SELF-CARE"],
+            ["nl", "ZELFZORG"],
+        ]),
+        topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
                 ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
-        }
-    )
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I have no problems washing or dressing myself"],
-                ["nl", "Ik heb geen problemen met mijzelf wassen of aankleden"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I have slight problems washing or dressing myself"],
-                ["nl", "Ik heb een beetje problemen met mijzelf wassen of aankleden"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I have moderate problems washing or dressing myself"],
-                ["nl", "Ik heb matige problemen met mijzelf wassen of aankleden"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "I have severe problems washing or dressing myself"],
-                ["nl", "Ik heb ernstige problemen met mijzelf wassen of aankleden"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "I am unable to wash or dress myself"],
-                ["nl", "Ik ben niet in staat mijzelf te wassen of aan te kleden"],
-            ])
-        },
-    ]);
-    simpleEditor.setResponseGroupWithContent(rg_inner);
-
-    if (isRequired) {
-        simpleEditor.addHasResponseValidation()
-    }
-
-    if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
-    return simpleEditor.getItem();
+        }],
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["en", "I have no problems washing or dressing myself"],
+                    ["nl", "Ik heb geen problemen met mijzelf wassen of aankleden"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["en", "I have slight problems washing or dressing myself"],
+                    ["nl", "Ik heb een beetje problemen met mijzelf wassen of aankleden"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["en", "I have moderate problems washing or dressing myself"],
+                    ["nl", "Ik heb matige problemen met mijzelf wassen of aankleden"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["en", "I have severe problems washing or dressing myself"],
+                    ["nl", "Ik heb ernstige problemen met mijzelf wassen of aankleden"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["en", "I am unable to wash or dress myself"],
+                    ["nl", "Ik ben niet in staat mijzelf te wassen of aan te kleden"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+        footnoteText: useCopyRight ? copyRightText : undefined,
+    });
 }
 
 const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'ACT';
-    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey, 1);
 
-    // QUESTION TEXT
-    simpleEditor.setTitle(new Map([
-        ["en", "USUAL ACTIVITIES"],
-        ["nl", "DAGELIJKSE ACTIVITEITEN"],
-    ]),
-        new Map([
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["en", "USUAL ACTIVITIES"],
+            ["nl", "DAGELIJKSE ACTIVITEITEN"],
+        ]),
+        questionSubText: new Map([
             ["en", "(e.g. work, study, housework, family or leisure activities)"],
             ["nl", "(bijv. werk, studie, huishouden, gezins- en vrijetijdsactiviteiten)"],
-        ])
-    );
-
-    simpleEditor.addDisplayComponent(
-        {
+        ]),
+        topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
                 ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
-        }
-    )
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I have no problems doing my usual activities"],
-                ["nl", "Ik heb geen problemen met mijn dagelijkse activiteiten"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I have slight problems doing my usual activities"],
-                ["nl", "Ik heb een beetje problemen met mijn dagelijkse activiteiten"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I have moderate problems doing my usual activities"],
-                ["nl", "Ik heb matige problemen met mijn dagelijkse activiteiten"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "I have severe problems doing my usual activities"],
-                ["nl", "Ik heb ernstige problemen met mijn dagelijkse activiteiten"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "I am unable to do my usual activities"],
-                ["nl", "Ik ben niet in staat mijn dagelijkse activiteiten uit te voeren"],
-            ])
-        },
-    ]);
-    simpleEditor.setResponseGroupWithContent(rg_inner);
-
-    if (isRequired) {
-        simpleEditor.addHasResponseValidation()
-    }
-
-    if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
-    return simpleEditor.getItem();
+        }],
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["en", "I have no problems doing my usual activities"],
+                    ["nl", "Ik heb geen problemen met mijn dagelijkse activiteiten"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["en", "I have slight problems doing my usual activities"],
+                    ["nl", "Ik heb een beetje problemen met mijn dagelijkse activiteiten"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["en", "I have moderate problems doing my usual activities"],
+                    ["nl", "Ik heb matige problemen met mijn dagelijkse activiteiten"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["en", "I have severe problems doing my usual activities"],
+                    ["nl", "Ik heb ernstige problemen met mijn dagelijkse activiteiten"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["en", "I am unable to do my usual activities"],
+                    ["nl", "Ik ben niet in staat mijn dagelijkse activiteiten uit te voeren"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+        footnoteText: useCopyRight ? copyRightText : undefined,
+    });
 }
 
 const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'PAIN';
-    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey, 1);
 
-    // QUESTION TEXT
-    simpleEditor.setTitle(new Map([
-        ["en", "PAIN / DISCOMFORT"],
-        ["nl", "PIJN / ONGEMAK"],
-    ]));
-
-    simpleEditor.addDisplayComponent(
-        {
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["en", "PAIN / DISCOMFORT"],
+            ["nl", "PIJN / ONGEMAK"],
+        ]),
+        topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
                 ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
-        }
-    )
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I have no pain or discomfort"],
-                ["nl", "Ik heb geen pijn of ongemak"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I have slight pain or discomfort"],
-                ["nl", "Ik heb een beetje pijn of ongemak"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I have moderate pain or discomfort"],
-                ["nl", "Ik heb matige pijn of ongemak"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "I have severe pain or discomfort"],
-                ["nl", "Ik heb ernstige pijn of ongemak"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "I have extreme pain or discomfort"],
-                ["nl", "Ik heb extreme pijn of ongemak"],
-            ])
-        },
-    ]);
-    simpleEditor.setResponseGroupWithContent(rg_inner);
-
-    if (isRequired) {
-        simpleEditor.addHasResponseValidation();
-    }
-
-    if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
-    return simpleEditor.getItem();
+        }],
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["en", "I have no pain or discomfort"],
+                    ["nl", "Ik heb geen pijn of ongemak"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["en", "I have slight pain or discomfort"],
+                    ["nl", "Ik heb een beetje pijn of ongemak"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["en", "I have moderate pain or discomfort"],
+                    ["nl", "Ik heb matige pijn of ongemak"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["en", "I have severe pain or discomfort"],
+                    ["nl", "Ik heb ernstige pijn of ongemak"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["en", "I have extreme pain or discomfort"],
+                    ["nl", "Ik heb extreme pijn of ongemak"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+        footnoteText: useCopyRight ? copyRightText : undefined,
+    });
 }
 
 const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'ANX';
-    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey, 1);
-
-    // QUESTION TEXT
-    simpleEditor.setTitle(new Map([
-        ["en", "ANXIETY / DEPRESSION"],
-        ["nl", "ANGST / SOMBERHEID"],
-    ]));
-
-
-    simpleEditor.addDisplayComponent(
-        {
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["en", "ANXIETY / DEPRESSION"],
+            ["nl", "ANGST / SOMBERHEID"],
+        ]),
+        topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
                 ["en", "Please select the ONE option that best describes your health TODAY."],
                 ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
             ]))
-        }
-    )
-
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["en", "I am not anxious or depressed"],
-                ["nl", "Ik ben niet angstig of somber"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["en", "I am slightly anxious or depressed"],
-                ["nl", "Ik ben een beetje angstig of somber"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["en", "I am moderately anxious or depressed"],
-                ["nl", "Ik ben matig angstig of somber"],
-            ])
-        },
-        {
-            key: '3', role: 'option',
-            content: new Map([
-                ["en", "I am severely anxious or depressed"],
-                ["nl", "Ik ben erg angstig of somber"],
-            ])
-        },
-        {
-            key: '4', role: 'option',
-            content: new Map([
-                ["en", "I am extremely anxious or depressed"],
-                ["nl", "Ik ben extreem angstig of somber"],
-            ])
-        },
-    ]);
-    simpleEditor.setResponseGroupWithContent(rg_inner);
-
-    if (isRequired) {
-        simpleEditor.addHasResponseValidation();
-    }
-
-    if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
-    return simpleEditor.getItem();
+        }],
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["en", "I am not anxious or depressed"],
+                    ["nl", "Ik ben niet angstig of somber"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["en", "I am slightly anxious or depressed"],
+                    ["nl", "Ik ben een beetje angstig of somber"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["en", "I am moderately anxious or depressed"],
+                    ["nl", "Ik ben matig angstig of somber"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["en", "I am severely anxious or depressed"],
+                    ["nl", "Ik ben erg angstig of somber"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["en", "I am extremely anxious or depressed"],
+                    ["nl", "Ik ben extreem angstig of somber"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+        footnoteText: useCopyRight ? copyRightText : undefined,
+    });
 }
 
 const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string): SurveyItem => {
