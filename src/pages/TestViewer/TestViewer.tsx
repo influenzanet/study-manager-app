@@ -5,7 +5,7 @@ import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
-import { SurveyView } from 'case-web-ui';
+import { SelectField, SurveyView } from 'case-web-ui';
 
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
@@ -72,78 +72,38 @@ const TestViewer: React.FC = () => {
                 <div className="col-12 mb-2">
                     {/* instance selector */}
                     <div className="mb-1">Instance:</div>
-                    <div className="btn-group w-100">
-                        <button type="button"
-                            className="btn btn-lightest text-start"
-                            aria-expanded="false">
-                            {instance}
-                        </button>
-                        <button
-                            style={{ maxWidth: 35 }}
-                            type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span className="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul className="dropdown-menu w-100">
-                            {instances.map(i => <li
-                                key={i}
-                                className="dropdown-item cursor-pointer"
-                                onClick={() => history.replace(getSurveyURL(i, availableSurveys.find(obj => obj.instance === i)?.surveys[0].name))}
-                            >
-                                {i}
-                            </li>)}
-                        </ul>
-                    </div>
+                    <SelectField
+                        value={instance}
+                        values={instances.map(i => { return { code: i, label: i } })}
+                        onChange={(event) => {
+                            const i = event.target.value;
+                            history.replace(getSurveyURL(i, availableSurveys.find(obj => obj.instance === i)?.surveys[0].name))
+                        }}
+                    />
                 </div>
                 <div className="col-12 mb-2">
                     {/* survey key selector */}
                     <div className="mb-1">Survey:</div>
-                    <div className="btn-group w-100">
-                        <button type="button" className="btn btn-lightest text-start" aria-expanded="false">
-                            {surveyKey}
-                        </button>
-                        <button type="button"
-                            style={{ maxWidth: 35 }}
-                            className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span className="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul className="dropdown-menu w-100">
-                            {
-                                selectedInstanceObj?.surveys.map(
-                                    survey => <li
-                                        key={survey.name}
-                                        className="dropdown-item cursor-pointer"
-                                        onClick={() => history.replace(getSurveyURL(instance, survey.name))}
-                                    >
-                                        {survey.name}
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </div>
+                    <SelectField
+                        value={surveyKey}
+                        values={selectedInstanceObj?.surveys.map(survey => { return { code: survey.name, label: survey.name } })}
+                        onChange={(event) => {
+                            const value = event.target.value;
+                            history.replace(getSurveyURL(instance, value))
+                        }}
+                    />
                 </div>
                 <div className="col-12">
                     {/* language selector */}
                     <div className="mb-1">Language:</div>
-                    <div className="btn-group w-100">
-                        <button type="button"
-                            className="btn btn-lightest text-start" aria-expanded="false">
-                            {selectedInstanceObj?.languageCodes.find(l => l === selectedLanguage)}
-                        </button>
-                        <button type="button"
-                            style={{ maxWidth: 35 }}
-                            className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span className="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul className="dropdown-menu w-100">
-                            {selectedInstanceObj?.languageCodes.map(l => <li
-                                key={l}
-                                className="dropdown-item cursor-pointer"
-                                onClick={() => setSelectedLanguage(l)}
-                            >
-                                {l}
-                            </li>)}
-                        </ul>
-                    </div>
+                    <SelectField
+                        value={selectedLanguage}
+                        values={selectedInstanceObj?.languageCodes.map(l => { return { code: l, label: l } })}
+                        onChange={(event) => {
+                            const value = event.target.value;
+                            setSelectedLanguage(value)
+                        }}
+                    />
                 </div>
             </div>
         </div>
