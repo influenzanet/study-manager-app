@@ -24,8 +24,8 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             ["en", "What is your gender?"],
             ["nl", "Wat is je geslacht?"],
             ["nl-be", "Wat is uw geslacht?"],
-            ["fr", "Quel est votre sexe?"],
-            ["fr-be", "Quel est votre sexe?"],
+            ["fr", "Quel est votre sexe ?"],
+            ["fr-be", "Quel est votre sexe ?"],
             ["de-be", "Was ist Ihr Geschlecht?"],
         ]))
     );
@@ -38,8 +38,8 @@ const gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -129,9 +129,9 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["en", "What is your date of birth (year and month)?"],
             ["nl", "Wanneer ben je geboren (maand en jaar)?"],
             ["nl-be", "Wanneer bent u geboren (jaar en maand)?"],
-            ["fr", "Quelle est votre date de naissance (mois et année)"],
-            ["fr-be", "Quelle est votre date de naissance (l’année et le mois)?"],
-            ["de-be", "Wann sind Sie geboren (Jahr und Monat)?"],
+            ["fr", "Quelle est votre date de naissance (mois et année) ?"],
+            ["fr-be", "Quelle est votre date de naissance (l’année et le mois) ?"],
+            ["de-be", "Wann sind Sie geboren (Jahr und Monat)?"],
         ]))
     );
 
@@ -143,8 +143,8 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -217,7 +217,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 code: 'de-be', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' Jahr' }
+                    { str: ' Jahr/e' }
                 ]
             }
         ]
@@ -255,8 +255,8 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             ["en", "What is your home postal code?"],
             ["nl", "Wat zijn de eerste vier cijfers van je postcode?"],
             ["nl-be", "Wat is de postcode van uw woonplaats?"],
-            ["fr", "Quelle est le code postal de votre domicile?"],
-            ["fr-be", "Quel est le code postal de votre localité?"],
+            ["fr", "Quelle est le code postal de votre domicile ?"],
+            ["fr-be", "Quel est le code postal de votre localité ?"],
             ["de-be", "Welche Postleitzahl hat Ihr Wohnsitz?"],
         ]))
     );
@@ -269,8 +269,8 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -411,7 +411,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -559,7 +559,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -575,7 +575,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -685,7 +685,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -701,7 +701,7 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 content: new Map([
                     ["en", "Hint:"],
                     ["nl", "Uitleg:"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -815,7 +815,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -989,10 +989,10 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
         generateTitleComponent(new Map([
             /*["en", "How many of the children in your household go to school or day-care? Assume a normal situation, without any covid measures"],*/
             ["en", "How many of the children in your household go to school or day-care?"],
-            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
-            ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een kinderdagverblijf?"],
-            ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie?"],
-            ["fr-be", "Combien d'enfants de votre ménage sont scolarisés ou vont à la crèche?"],
+            ["nl", "Hoeveel van de kinderen in je huishouden zitten op school of een in kinderdagverblijf (of peuterspeelzaal)? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)"],
+            ["nl-be", "Hoeveel van de kinderen in uw huishouden zitten op school of een in kinderdagverblijf?"],
+            ["fr", "Combien d'enfants de votre ménage vont à l'école ou à la garderie ?"],
+            ["fr-be", "Combien d'enfants de votre ménage sont scolarisés ou vont à la crèche ?"],
             ["de-be", "Wie viele Kinder in Ihrem Haushalt sitzen in der Schule oder einer Kita?"],
         ]))
     );
@@ -1019,8 +1019,8 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1042,8 +1042,8 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["en", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr", "Comment dois-je répondre ?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1055,7 +1055,7 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
                     ["nl", "Zelfs als het kind slechts 1 maal per week naar een kinderdagverblijf gaat, geef dit dan aan (clubs en verenigingen tellen niet mee)"],
                     ["nl-be", "Als uw kind naar school of kinderopvang gaat (ook al is dit maar één dag in de week) antwoord dan met ja. Lidmaatschap bij (sport)verenigingen of andere buitenschoolse activiteiten tellen niet mee."],
                     ["fr", "Cochez oui si votre enfant fréquente régulièrement l'école ou à la garderie (même seulement un jour par semaine ). La fréquentation d'autres clubs ou activités, même régulière, ne compte pas."],
-                    ["fr-be", "Si votre enfant fréquente l'école, la garderie ou la crèche (même si ce n'est qu'un jour par semaine), veuillez répondre oui. Une affiliation auprès d’associations (sportives) ou une inscription à d’autres activités extrascolaires ne compte pas."],
+                    ["fr-be", "Si votre enfant fréquente l'école, la garderie ou la crèche (même si ce n'est qu'un jour par semaine), veuillez répondre « oui ». Une affiliation auprès d’associations (sportives) ou une inscription à d’autres activités extrascolaires ne compte pas."],
                     ["de-be", "Wenn Ihr Kind zur Schule oder zur Kita (Kindertagesstätte, Kindergarten) geht (auch wenn es nur an einem Tag in der Woche ist), so antworten Sie bitte mit ja. Mitgliedschaft in (Sport-)Vereinen oder andere außerschulische Aktivitäten zählen nicht."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -1154,7 +1154,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
             ["en", "What means of transportation do you typically use for your daily activities? Please select the transportation means you use the most."],
             ["nl", "Hoe verplaats je je meestal? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["nl-be", "Hoe verplaatst u zich doorgaans voor uw dagelijkse activiteiten? Gelieve de vervoerswijze te selecteren waar u het meest gebruik van maakt."],
-            ["fr", "Quel est votre principal moyen de transport?"],
+            ["fr", "Quel est votre principal moyen de transport ?"],
             ["fr-be", "Comment vous déplacez-vous habituellement dans le cadre de vos activités quotidiennes ? Veuillez sélectionner le mode de transport que vous utilisez le plus."],
             ["de-be", "Wie bewegen Sie sich in der Regel für Ihre täglichen Aktivitäten? Bitte wählen Sie die Transportweise, von der Sie meistens Gebrauch machen."],
         ]))
@@ -1168,8 +1168,8 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1182,7 +1182,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                     ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
-                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem Öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
+                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1191,7 +1191,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                     ["en", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
@@ -1245,7 +1245,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met de scooter of motor"],
                 ["fr", "Le scooter, la moto"],
                 ["fr-be", "À mobylette ou à moto"],
-                ["de-be", "Mit dem Motorroller oder Motorrad"],
+                ["de-be", "Mit dem Motorroller oder Motorrad"],
             ])
         },
         {
@@ -1256,7 +1256,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met de auto"],
                 ["fr", "La voiture"],
                 ["fr-be", "En voiture"],
-                ["de-be", "Mit dem Auto"],
+                ["de-be", "Mit dem Auto"],
             ])
         },
         {
@@ -1267,7 +1267,7 @@ const means_of_transport = (parentKey: string, isRequired?: boolean, keyOverride
                 ["nl-be", "Met het openbaar vervoer (bus, trein, metro, tram, enz.)"],
                 ["fr", "Transports publics (bus, train, métro, etc)"],
                 ["fr-be", "Par les transports en commun (bus, train, métro, tram, etc.)"],
-                ["de-be", "Mit dem Öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
+                ["de-be", "Mit dem öffentlichen Verkehr (ÖPNV: Bus, Zug, U-Bahn, Straßenbahn usw.)"],
             ])
         },
         {
@@ -1316,9 +1316,9 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
             ["en", "On a normal day, how much time do you spend on public transport (bus, train, tube, etc)?"],
             ["nl", "Hoeveel tijd breng je op een gemiddelde dag door in het openbaar vervoer? Ga uit van de normale situatie (dus zonder eventuele coronamaatregelen)."],
             ["nl-be", "Hoeveel tijd brengt u op een doordeweekse dag door in het openbaar vervoer?"],
-            ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics? (bus, train, métro, etc.)"],
-            ["fr-be", "Combien de temps passez-vous dans les transports en commun lors d'un jour de semaine?"],
-            ["de-be", "Wieviel Zeit verbringen Sie an einem Wochentag im Öffentlichen Verkehr?"],
+            ["fr", "Dans une journée normale, combien de temps passez-vous dans les transports publics (bus, train, métro, etc.)?"],
+            ["fr-be", "Combien de temps passez-vous dans les transports en commun lors d'un jour de semaine ?"],
+            ["de-be", "Wieviel Zeit verbringen Sie an einem Wochentag im öffentlichen Verkehr?"],
         ]))
     );
 
@@ -1330,12 +1330,12 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
-            }, 
+            },
             {
                 content: new Map([
                     /*["en", "It has been suggested that using public transport may be a risk for getting flu. We would like to check this."],*/
@@ -1344,7 +1344,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["nl-be", "We onderzoeken indien mensen die vaak reizen met het openbaar vervoer een verhoogd risico op infecties hebben."],
                     ["fr", "Il a été suggéré que l'utilisation des transports publics augmente les risques de contracter la grippe. Nous tenons à le vérifier."],
                     ["fr-be", "Nous souhaitons savoir si les personnes qui empruntent régulièrement les transports en commun présentent un risque d'infection plus élevé."],
-                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem Öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
+                    ["de-be", "Wir untersuchen, ob Menschen, die oft mit dem öffentlichen Verkehr (ÖPNV) fahren/reisen, ein erhöhtes Infektionsrisiko aufweisen."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1353,8 +1353,8 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                     ["en", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr", "Comment dois-je répondre ?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1396,7 +1396,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "0 tot 30 minuten"],
                 ["fr", "0-30 minutes"],
                 ["fr-be", "De 0 à 30 minutes"],
-                ["de-be", "0 bis 30 Minuten"],
+                ["de-be", "0 bis 30 Minuten"],
             ])
         },
         {
@@ -1407,7 +1407,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "30 minuten tot 1,5 uur"],
                 ["fr", "30 minutes - 1.5 heures"],
                 ["fr-be", "De 30 minutes à 1,5 heure"],
-                ["de-be", "30 Minuten bis 1,5 Stunden"],
+                ["de-be", "30 Minuten bis 1,5 Stunden"],
             ])
         },
         {
@@ -1418,7 +1418,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "1,5 uur tot 4 uur"],
                 ["fr", "1.5 - 4 heures"],
                 ["fr-be", "De 1,5 à 4 heures"],
-                ["de-be", "1,5 Stunden bis 4 Stunden"],
+                ["de-be", "1,5 Stunden bis 4 Stunden"],
             ])
         },
         {
@@ -1429,7 +1429,7 @@ const pub_transport_duration = (parentKey: string, isRequired?: boolean, keyOver
                 ["nl-be", "Meer dan 4 uur"],
                 ["fr", "Plus de 4 heures"],
                 ["fr-be", "Plus de 4 heures"],
-                ["de-be", "Mehr als 4 Stunden"],
+                ["de-be", "Mehr als 4 Stunden"],
             ])
         },
     ]);
@@ -1466,8 +1466,8 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
             ["en", "How often do you have common colds or flu-like diseases?"],
             ["nl", "Hoe vaak heb je last van verkoudheid of griepachtige verschijnselen?"],
             ["nl-be", "Hoe vaak heeft u last van verkoudheid of griepachtige verschijnselen (voorbeeld: loopneus, hoest)?"],
-            ["fr", "Avez vous souvent le rhume ou des maladies de type grippal?"],
-            ["fr-be", "À quelle fréquence souffrez-vous d'un rhume ou de symptômes ressemblant à ceux de la grippe (par exemple, un nez qui coule, une toux)?"],
+            ["fr", "Avez vous souvent le rhume ou des maladies de type grippal ?"],
+            ["fr-be", "À quelle fréquence souffrez-vous d'un rhume ou de symptômes ressemblant à ceux de la grippe (par exemple, un nez qui coule, une toux) ?"],
             ["de-be", "Wie oft haben Sie Beschwerden durch Erkältung oder grippeartige Symptome (Beispiel: laufende Nase, Husten)?"],
         ]))
     );
@@ -1481,7 +1481,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                     ["nl", ""],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1522,7 +1522,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "1 of 2 keer per jaar"],
                 ["fr", "1 ou 2 fois par an"],
                 ["fr-be", "1 à 2 fois par an"],
-                ["de-be", "1 oder 2 Mal pro Jahr"],
+                ["de-be", "1 oder 2 Mal pro Jahr"],
             ])
         },
         {
@@ -1533,7 +1533,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Tussen 3 en 5 keer per jaar"],
                 ["fr", "De 3 à 5 fois par an"],
                 ["fr-be", "Entre 3 et 5 fois par an"],
-                ["de-be", "Zwischen 3 und 5 Mal pro Jahr"],
+                ["de-be", "Zwischen 3 und 5 Mal pro Jahr"],
             ])
         },
         {
@@ -1544,7 +1544,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Tussen 6 en 10 keer per jaar"],
                 ["fr", "De 6 à 10 fois par an"],
                 ["fr-be", "Entre 6 et 10 fois par an"],
-                ["de-be", "Zwischen 6 und 10 Mal pro Jahr"],
+                ["de-be", "Zwischen 6 und 10 Mal pro Jahr"],
             ])
         },
         {
@@ -1555,7 +1555,7 @@ const common_cold_frequency = (parentKey: string, isRequired?: boolean, keyOverr
                 ["nl-be", "Meer dan 10 keer per jaar"],
                 ["fr", "Plus de 10 fois par an"],
                 ["fr-be", "Plus de 10 fois par an"],
-                ["de-be", "Mehr als 10 Mal pro Jahr"],
+                ["de-be", "Mehr als 10 Mal pro Jahr"],
             ])
         },
         {
@@ -1605,9 +1605,9 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
             ["en", "Did you receive a flu vaccine during the previous flu season (2019-2020)?"],
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
-            ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
-            ["fr-be", "Lors de la précédente saison de la grippe (l’hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe?"],
-            ["de-be", "Haben Sie sich in der vorigen Grippesaison (2019/2020) eine Grippeimpfung verabreichen lassen?"],
+            ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver (2018-2019) ?"],
+            ["fr-be", "Lors de la précédente saison de la grippe (hiver 2019/2020), vous êtes-vous fait vacciner contre la grippe ?"],
+            ["de-be", "Haben Sie sich in der letzten Grippesaison (2019/2020) eine Grippeimpfung bekommen?"],
         ]))
     );
 
@@ -1619,9 +1619,9 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen we das?"],
+                    ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1634,7 +1634,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl-be", "We willen graag onderzoeken hoeveel bescherming het vaccin geeft. We willen ook graag weten of er enige bescherming is dankzij vaccins die in voorgaande jaren zijn ontvangen."],
                     ["fr", "Nous aimerions savoir à quel point la protection par le vaccin fonctionne. Nous aimerions aussi savoir si il y a une certaine protection par les vaccins reçus au cours des années précédentes."],
                     ["fr-be", "Nous aimerions étudier le degré de protection offert par le vaccin. Nous aimerions également savoir s'il existe un certain degré de protection grâce aux vaccins reçus au cours des années précédentes."],
-                    ["de-be", "Wir möchten gerne untersuchen, wieviel Schutz der Impfstoff verleiht. Wir möchten auch gerne wissen, ob es dank der Impfstoffe einen Schutz gibt, die in früheren Jahren erhalten wurden."],
+                    ["de-be", "Wir möchten gerne untersuchen, wieviel Schutz der Impfstoff verleiht. Wir möchten auch gerne wissen, ob es dank der Impfstoffe einen Schutz gibt, der früheren Jahren erhalten wurden."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1643,7 +1643,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["en", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
@@ -1656,8 +1656,8 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
                     ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
                     ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
-                    ["fr-be", "Veuillez répondre oui si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im vorigen Jahr (im Herbst/Winter von 2019-2020)"],
+                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im vorigen Jahr erhalten haben (im Herbst/Winter von 2019-2020)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1697,7 +1697,7 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr", "Je ne sais pas"],
                 ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Das weiß ich nicht (mehr)"],
+                ["de-be", "Das weiß ich nicht (mehr)"],
             ])
         },
     ]);
@@ -1747,7 +1747,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1765,7 +1765,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1854,9 +1854,9 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["en", "When were you vaccinated against flu this season (2020-2021)?"],
             ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
-            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
-            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021?"],
-            ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2020-2021) ?"],
+            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021 ?"],
+            ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],
         ]))
     );
 
@@ -1875,8 +1875,8 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1898,8 +1898,8 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["en", "How should I answer this question?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr", "Comment dois-je répondre ?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1911,8 +1911,8 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
                     ["nl", "Probeer zo goed mogelijk te antwoorden, de exacte datum is niet belangrijk, maar wel of het aan het begin of het eind van de maand was."],
                     ["nl-be", "Probeer zo nauwkeurig mogelijk te antwoorden. Als u de precieze datum niet weet, geef dan uw beste schatting. U kunt zich bijvoorbeeld de maand herinneren en vervolgens proberen te herinneren of het aan het begin of het einde van de maand was. Waren er belangrijke gebeurtenissen (bijv. een vakantie of een verjaardag) die u zouden kunnen helpen om uw geheugen op te frissen?"],
                     ["fr", "Essayez de répondre le plus précisément possible. Si vous ne connaissez pas la date précise, donnez votre meilleure estimation. Par exemple, vous pouvez vous rappeler du mois, puis essayez de vous souvenir si c'était au début ou à la fin du mois. Essayez de vous servir d'événements importants (p. ex. vacances ou anniversaire) pour vous aider à vous rafraîchir la mémoire."],
-                    ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date exacte, veuillez fournir une estimation la plus précise possible. Par exemple, vous pouvez vous souvenir du mois, et ensuite essayer de vous souvenir si c’était plutôt au début ou à la fin du mois. Des événements importants (par exemple, des vacances ou un anniversaire) ont-ils eu lieu, lesquels pourraient vous aider à vous rafraîchir la mémoire?"],
-                    ["de-be", "Versuchen Sie, so genau wie möglich zu antworten. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung an. Sie können sich zum Beispiel den Monat an den Monat und danach versuchen, sich zu erinnern, ob es am Beginn oder am Ende des Monats war. Gab es wichtige Ereignisse (zum Beispiel ein Urlaub oder ein Jahrestag), die Ihnen helfen könnten, Ihr Gedächtnis aufzufrischen?"],
+                    ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date exacte, veuillez fournir une estimation la plus précise possible. Par exemple, vous pouvez vous souvenir du mois, et ensuite essayer de vous souvenir si c’était plutôt au début ou à la fin du mois. Des événements importants (par exemple, des vacances ou un anniversaire) ont-ils eu lieu, lesquels pourraient vous aider à vous rafraîchir la mémoire."],
+                    ["de-be", "Versuchen Sie so genau wie möglich zu antworten. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung an. Sie können zum Beispiel versuchen, sich zu erinnern ob es am Angang oder am Ende des Monats war. Gab es wichtige Ereignisse (zum Beispiel ein Urlaub oder ein Jahrestag), die Ihnen helfen könnten Ihr Gedächtnis aufzufrischen?"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2136,7 +2136,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2152,7 +2152,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2330,7 +2330,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2346,7 +2346,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2480,10 +2480,10 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
         generateTitleComponent(new Map([
             ["en", "Are you currently pregnant?"],
             ["nl", "Ben je op dit moment zwanger?"],
-            ["nl-be", "Bent u op dit moment zwanger?"],
-            ["fr", "Êtes-vous actuellement enceinte?"],
-            ["fr-be", "Êtes-vous actuellement enceinte?"],
-            ["de-be", "Sind Sie in diesem Moment schwanger?"],
+            ["nl-be", "Bent u op dit moment zwanger?"],
+            ["fr", "Êtes-vous actuellement enceinte ?"],
+            ["fr-be", "Êtes-vous actuellement enceinte ?"],
+            ["de-be", "Sind Sie in diesem Moment schwanger?"],
         ]))
     );
 
@@ -2510,8 +2510,8 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2589,7 +2589,7 @@ const pregnancy = (parentKey: string, keyQGender: string, keyQBirthday: string, 
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const pregnancy_trimester = (parentKey: string, keyQGender: string, keyQBirthday: string, keyQPregnancy: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q12b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -2600,16 +2600,27 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
         generateTitleComponent(new Map([
             ["en", "Which trimester of the pregnancy are you in?"],
             ["nl", "In welk trimester ben je van je zwangerschap?"],
-            ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
-            ["fr", "A quel stade de grossesse êtes-vous?"],
-            ["fr-be", "Dans quel trimestre de votre grossesse vous situez-vous?"],
-            ["de-be", "In welchem Quartal Ihrer Schwangerschaft sind Sie?"],
+            ["nl-be", "In welk trimester bent u van uw zwangerschap?"],
+            ["fr", "A quel stade de grossesse êtes-vous ?"],
+            ["fr-be", "Dans quel trimestre de votre grossesse vous situez-vous ?"],
+            ["de-be", "In welchem Quartal Ihrer Schwangerschaft sind Sie?"],
         ]))
     );
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyQPregnancy, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyQGender, [responseGroupKey, singleChoiceKey].join('.'), '1'), // female
+            expWithArgs('gte',
+                expWithArgs('dateResponseDiffFromNow', keyQBirthday, [responseGroupKey, '1'].join('.'), 'years', 1),
+                14
+            ),
+            expWithArgs('lte',
+                expWithArgs('dateResponseDiffFromNow', keyQBirthday, [responseGroupKey, '1'].join('.'), 'years', 1),
+                50
+            ),
+            expWithArgs('responseHasKeysAny', keyQPregnancy, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        )
     );
 
     // INFO POPUP
@@ -2620,8 +2631,8 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2665,7 +2676,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["fr-be", "Deuxième trimestre (semaines 13-28)"],
                 ["de-be", "Zweites Quartal (Woche 13-28)"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             content: new Map([
@@ -2674,9 +2685,9 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl-be", "Derde trimester (week 29 tot bevalling)"],
                 ["fr", "Troisième trimestre (semaine 29 ou plus)"],
                 ["fr-be", "Troisième trimestre (semaine 29 jusqu'à l'accouchement)"],
-                ["de-be", "Drittes Quartal (Woche 29 bis zur Entbindung/Geburt)"],
+                ["de-be", "Drittes Quartal (Woche 29 bis zur Entbindung/Geburt)"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             content: new Map([
@@ -2685,7 +2696,7 @@ const pregnancy_trimester = (parentKey: string, keyQPregnancy: string, isRequire
                 ["nl-be", "Dit weet ik niet / wil ik niet aangeven"],
                 ["fr", "Je ne sais pas, je ne désire pas répondre"],
                 ["fr-be", "Je ne veux pas / je préfère ne pas répondre à cette question"],
-                ["de-be", "Das weiß ich nicht / möchte ich nicht angeben"],
+                ["de-be", "Das weiß ich nicht / möchte ich nicht angeben"],
             ])
         },
     ]);
@@ -2736,7 +2747,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 content: new Map([
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2752,7 +2763,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 content: new Map([
                     ["en", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
+                    ["fr", "Comment dois-je répondre ?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2847,10 +2858,10 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["en", "Do you have one of the following allergies that can cause respiratory symptoms?"],
             ["nl", "Heb je één of meer van de volgende allergieën?"],
-            ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
-            ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires?"],
-            ["fr-be", "Souffrez-vous d’une ou de plusieurs des allergies suivantes?"],
-            ["de-be", "Haben Sie eine oder mehrere der folgenden Allergien?"],
+            ["nl-be", "Heeft u één of meer van de volgende allergieën?"],
+            ["fr", "Avez-vous l'une des allergies suivantes qui peuvent causer des symptômes respiratoires ?"],
+            ["fr-be", "Souffrez-vous d’une ou de plusieurs des allergies suivantes ?"],
+            ["de-be", "Haben Sie eine oder mehrere der folgenden Allergien?"],
         ]))
     );
 
@@ -2865,8 +2876,8 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["en", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["nl-be", "Waarom vragen we dit?"],
-                    ["fr", "Pourquoi demandons-nous cela?"],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2887,8 +2898,8 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["en", "How should I answer this question?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr", "Comment dois-je répondre?"],
-                    ["fr-be", "Comment dois-je répondre à cette question?"],
+                    ["fr", "Comment dois-je répondre ?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich das beantworten?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -2934,7 +2945,7 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["fr-be", "Le rhume des foins"],
                 ["de-be", "Heuschnupfen"],
             ])
-        }, 
+        },
         {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
@@ -2944,9 +2955,9 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Allergie voor huisstofmijt"],
                 ["fr", "Allergie aux acariens"],
                 ["fr-be", "Une allergie aux acariens"],
-                ["de-be", "Allergie gegen Hausstaubmilben"],
+                ["de-be", "Allergie gegen Hausstaubmilben"],
             ])
-        }, 
+        },
         {
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
@@ -2954,11 +2965,11 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["en", "Allergy against domestic animals or pets"],
                 ["nl", "Allergie voor (huis)dieren"],
                 ["nl-be", "Allergie voor (huis)dieren"],
-                ["fr", "Allergie à des animaux domestiques"],["fr-be", ""],
+                ["fr", "Allergie à des animaux domestiques"], ["fr-be", ""],
                 ["fr-be", "Une allergie aux animaux (domestiques)"],
-                ["de-be", "Allergie gegen (Haus-)Tiere"],
+                ["de-be", "Allergie gegen (Haus-)Tiere"],
             ])
-        }, 
+        },
         {
             key: '4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
@@ -2968,9 +2979,9 @@ const allergies = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["nl-be", "Een andere allergie waarvan ik verkoudheidsklachten (loopneus, tranende ogen) krijg"],
                 ["fr", "Autres allergies provoquant des symptômes respiratoires (p. ex. éternuements, yeux larmoyants, etc)"],
                 ["fr-be", "Une autre allergie qui provoque chez moi les symptômes du rhume (un nez qui coule, des yeux larmoyants)"],
-                ["de-be", "Eine andere Allergie, von der ich Erkältungsbeschwerden (laufende Nase, tränende Augen) bekomme"],
+                ["de-be", "Eine andere Allergie, von der ich Erkältungsbeschwerden (laufende Nase, tränende Augen) bekomme"],
             ])
-        }, 
+        },
         {
             key: '5', role: 'option',
             content: new Map([
@@ -3112,8 +3123,8 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
             ["en", "Do you have pets at home?"],
             ["nl", "Heb je huisdieren?"],
             ["nl-be", "Heeft u huisdieren?"],
-            ["fr", "Avez-vous un animal domestique?"],
-            ["fr-be", "Avez-vous des animaux de compagnie?"],
+            ["fr", "Avez-vous un animal domestique ?"],
+            ["fr-be", "Avez-vous des animaux de compagnie ?"],
             ["de-be", "Haben Sie Haustiere?"],
         ]))
     );
@@ -3130,7 +3141,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                     ["nl", ""],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr", ""],
-                    ["fr-be", "Pourquoi posons-nous cette question?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -3185,7 +3196,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere honden"],
                 ["fr", "Oui, un ou plusieurs chien(s)"],
                 ["fr-be", "Oui, un ou plusieurs chien(s)"],
-                ["de-be", "Ja, einen oder mehrere Hunde"],
+                ["de-be", "Ja, einen oder mehrere Hunde"],
             ])
         },
         {
@@ -3197,7 +3208,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere katten"],
                 ["fr", "Oui, un ou plusieurs chat(s)"],
                 ["fr-be", "Oui, un ou plusieurs chat(s)"],
-                ["de-be", "Ja, eine oder mehrere Katzen"],
+                ["de-be", "Ja, eine oder mehrere Katzen"],
             ])
         },
         {
@@ -3209,7 +3220,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meerdere vogels"],
                 ["fr", "Oui, un ou plusieurs oiseau(x)"],
                 ["fr-be", "Oui, un ou plusieurs oiseau(x)"],
-                ["de-be", "Ja, einen Vogel oder mehrere Vögel"],
+                ["de-be", "Ja, einen Vogel oder mehrere Vögel"],
             ])
         },
         {
@@ -3221,7 +3232,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 ["nl-be", "Ja, één of meer andere dieren"],
                 ["fr", "Oui, un ou plusieurs animaux d'autres espèces"],
                 ["fr-be", "Oui, un ou plusieurs autre(s) animal (animaux)"],
-                ["de-be", "Ja, eines oder mehrere andere Tiere"],
+                ["de-be", "Ja, eines oder mehrere andere Tiere"],
             ])
         },
     ]);
@@ -3247,11 +3258,11 @@ const surveyEnd = (parentKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             /*["en", "This was all for now, please submit your responses. Please come back and find a different survey about how you feel and your health status."],*/
-            ["en", "This was all for now, please submit your responses. Please come back or continue reporting symptoms you experience during the last week."],
-            ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
-            ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk verzenden) kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
-            ["fr-be", "Merci. C'était la dernière question. Après avoir sauvegardé vos réponses (cliquez sur envoyer), vous pouvez aller à la page qui vous permettra d'indiquer si vous avez eu des plaintes / ressenti des symptômes au cours de la semaine écoulée."],
-            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern (Druck versenden) können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
+            ["en", "Thank you! This was all for now, please submit (push « send ») your responses. Please come back or continue reporting symptoms you experience during the last week."],
+            ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
+            ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
+            ["fr-be", "Merci. C'était la dernière question. Après avoir sauvegardé vos réponses (cliquez sur « envoyer »), vous pouvez aller à la page qui vous permettra d'indiquer si vous avez eu des plaintes / ressenti des symptômes au cours de la semaine écoulée."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
         ]))
     );
 
