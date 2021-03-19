@@ -347,7 +347,7 @@ const generateNLWeekly = (): Survey | undefined => {
     // console.log(q32Editor.findResponseComponent('rg'));
     // q32Editor.removeResponseComponent('rg.scg');
 
-    console.log(survey.getSurvey());
+    // console.log(survey.getSurvey());
     // console.log(survey.getSurveyJSON());
 
 

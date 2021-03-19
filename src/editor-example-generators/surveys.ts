@@ -2,10 +2,10 @@ import getBelIntake from './belgium/inf-intake';
 import getBelWeekly from './belgium/inf-weekly';
 import getExampleIntake from './nl/infectieradar/inf-intake';
 import getExampleWeekly from './nl/infectieradar/inf-weekly';
-import getEQ5D from './nl/long-covid/intake';
 
 
 import likertScales from './examples/likert-scales';
+import { LongCovidSurveys } from './nl/long-covid';
 
 const surveys = [
     {
@@ -18,10 +18,23 @@ const surveys = [
         ]
     },
     {
-        instance: 'nl', surveys: [
+        instance: 'nl-infectieradar', surveys: [
             { name: "intake", survey: getExampleIntake() },
             { name: "weekly", survey: getExampleWeekly() },
-            { name: "EQ5D", survey: getEQ5D() },
+        ],
+        languageCodes: [
+            'nl',
+            'en',
+        ]
+    },
+    {
+        instance: 'nl-long-covid', surveys: [
+            { name: "T0", survey: LongCovidSurveys.T0 },
+            { name: "short", survey: LongCovidSurveys.short },
+            { name: "3m", survey: LongCovidSurveys.m3 },
+            { name: "6m", survey: LongCovidSurveys.m6 },
+            { name: "9m", survey: LongCovidSurveys.m9 },
+            { name: "12m", survey: LongCovidSurveys.m12 },
         ],
         languageCodes: [
             'nl',
