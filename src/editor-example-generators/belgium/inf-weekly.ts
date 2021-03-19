@@ -3318,7 +3318,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
                 ["nl-be", "Ja, pijnstillers zoals paracetamol, aspirine of ibuprofen"],
                 ["fr-be", "Oui, des analgésiques tels que le paracétamol, l'aspirine ou l'ibuprofène"],
                 ["de-be", "Ja, Schmerzmittel wie Paracetamol, Aspirin oder Ibuprofen"],
-                ["en", "yes, pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
+                ["en", "Yes, pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
             ])
         },
         {
@@ -3329,7 +3329,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
                 ["nl-be", "Ja, middelen om de neus vrij te maken (neusspray, enz.)"],
                 ["fr-be", "Oui, des produits pour dégager le nez (un spray nasal, etc.)"],
                 ["de-be", "Ja, Mittel, um die Nase frei zu machen (Nasenspray usw.)"],
-                ["en", "yes, nasal decongestants (nose spray, etc.)"],
+                ["en", "Yes, nasal decongestants (nose spray, etc.)"],
             ])
         },
         {
