@@ -1,5 +1,6 @@
 export const responseGroupKey = 'rg';
 export const singleChoiceKey = 'scg';
+export const likertScaleGroupKey = 'lg';
 export const likertScaleKey = 'likert';
 export const multipleChoiceKey = 'mcg';
 export const dropDownKey = 'ddg';
