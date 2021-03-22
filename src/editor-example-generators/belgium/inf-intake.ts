@@ -1672,7 +1672,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     content: new Map([
                         ["nl-be", "0 - 4 jaar"],
                         ["fr-be", "0 - 4 ans"],
-                        ["de-be", "0 - 4 Jahre"],
+                        ["de-be", "0 - 4 Jahr/e"],
                         ["en", "0 - 4 years"],
                     ])
                 },
