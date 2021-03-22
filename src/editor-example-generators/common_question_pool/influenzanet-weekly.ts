@@ -911,8 +911,17 @@ const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         {
             key: '1', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
-                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
+                min: {
+                    dtype: 'exp', exp: {
+                        name: 'getAttribute',
+                        data: [
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomsStart, [responseGroupKey, '0'].join('.')) },
+                            { str: 'value', dtype: 'str' }
+                        ],
+                        returnType: 'int',
+                    }
+                },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
             content: new Map([
                 /* ["en", "Choose date"], */

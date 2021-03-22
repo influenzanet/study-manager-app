@@ -928,7 +928,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
         {
             key: '0', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
             },
             description: new Map([
