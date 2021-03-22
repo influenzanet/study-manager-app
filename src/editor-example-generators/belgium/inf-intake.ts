@@ -1990,7 +1990,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["nl-be", "Rapporteer 'ja', als u het vaccin dit seizoen heeft gekregen, meestal in de herfst. Als u zich na het invullen van deze vragenlijst laat vaccineren, rapporteer 'nee' en kies in een volgende vraag voor de optie 'Ik ben van plan om mezelf nog te laten vaccineren'."],
                     ["fr-be", "Indiquez « oui » si vous vous êtes fait vacciner cette saison, généralement au cours de l'automne. Si vous vous faites vacciner après avoir complété ce questionnaire, indiquez « non » et choisissez l'option « Je suis d’avis de me faire vacciner » au niveau d'une question ultérieure."],
-                    ["de-be", "Schreiben Sie 'ja', wenn Sie den Impfstoff in dieser Impfsaison erhalten haben, meistens im Herbst. Wenn Sie sich nach dem Ausfüllen dieser Fragenliste impfen lassen, schreiben Sie bitte 'nein' und wählen Sie in einer folgenden Frage die Alternative 'Ich plane, mich noch impfen zu lassen'."],
+                    ["de-be", "Schreiben Sie 'ja', wenn Sie den Impfstoff in dieser Impfsaison erhalten haben, meistens im Herbst. Wenn Sie sich nach dem Ausfüllen dieser Fragen impfen lassen, schreiben Sie bitte 'nein' und wählen Sie in einer folgenden Frage die Alternative 'Ich plane, mich noch impfen zu lassen'."],
                     ["en", "Mark 'yes' if you have been vaccinated this season; generally this takes place in autumn. If you will be vaccinated after completing this questionnaire, mark 'no' and choose the option 'I am planning to be vaccinated, but haven’t been yet'."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
