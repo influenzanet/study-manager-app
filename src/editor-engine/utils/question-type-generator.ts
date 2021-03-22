@@ -190,7 +190,6 @@ const generateSimpleLikertGroupQuestion = (props: {
     }
 
     if (props.isRequired) {
-        console.warn('todo: check for each row answered');
         simpleEditor.editor.addValidation({
             key: 'r',
             type: 'hard',
@@ -217,10 +216,82 @@ const generateSimpleLikertGroupQuestion = (props: {
     return simpleEditor.getItem();
 }
 
+const generateDatePickerInput = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    dateInputMode: 'YMD' | 'YM' | 'Y';
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    inputLabelText?: Map<string, string>;
+    placeholderText?: Map<string, string>;
+    minRelativeDate?: number;
+    maxRelativeDate?: number;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner: ItemComponent = {
+        key: '0', role: 'dateInput',
+        properties: {
+            dateInputMode: { str: props.dateInputMode },
+            min: props.minRelativeDate ? { dtype: 'exp', exp: expWithArgs('timestampWithOffset', props.minRelativeDate) } : undefined,
+            max: props.maxRelativeDate ? { dtype: 'exp', exp: expWithArgs('timestampWithOffset', props.maxRelativeDate) } : undefined,
+        },
+        content: props.inputLabelText ? generateLocStrings(props.inputLabelText) : undefined,
+        description: props.placeholderText ? generateLocStrings(props.placeholderText) : undefined,
+    };
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
 export const QuestionGenerators = {
     singleChoice: generateSingleChoiceQuestion,
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
+    dateInput: generateDatePickerInput,
 }
 
 

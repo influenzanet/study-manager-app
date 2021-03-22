@@ -13,12 +13,31 @@ export class AcuteHealthGroup extends GroupItemEditor {
 
     initQuestions() {
         this.addItem(q_acuteSymptoms(this.key, true))
+        this.addItem(
+            QuestionGenerators.dateInput({
+                parentKey: this.key,
+                itemKey: 'testDateInput',
+                questionText: new Map([
+                    ["en", "Example Date Input"],
+                ]),
+                dateInputMode: 'YMD',
+                inputLabelText: new Map([
+                    ["en", "Input: "],
+                ]),
+                placeholderText: new Map([
+                    ["en", "Enter a date"],
+                ]),
+                minRelativeDate: -864000, // optional
+                maxRelativeDate: 10, // optional
+                isRequired: true
+            })
+        )
     }
 }
 
 
 
-const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'SYM';
 
     return QuestionGenerators.simpleLikertGroup({
@@ -27,13 +46,6 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, useCopyRight?:
         questionText: new Map([
             ["en", "Acute symptoms"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["en", "Please select the ONE option that best describes your health TODAY."],
-            ]))
-        }],
         scaleOptions: [
             {
                 key: '0',
