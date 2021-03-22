@@ -219,7 +219,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["nl-be", "Had u sinds de vorige vragenlijst één of meerdere van deze klachten/symptomen (of in de afgelopen 7 dagen indien dit uw eerste bezoek is)?"],
             ["fr-be", "Depuis le dernier questionnaire, avez-vous ressenti un ou plusieurs des troubles médicaux / des symptômes détaillés ci-dessous ?"],
-            ["de-be", "Hatten Sie seit der vorigen Fragen eines oder mehrere dieser Beschwerden/Symptome (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
+            ["de-be", "Hatten Sie seit der letzten Fragen eines oder mehrere dieser Beschwerden/Symptome (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
             ["en", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
         ]))
     );
@@ -660,7 +660,7 @@ const covidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u sinds de vorige vragenlijst een COVID-19 test laten uitvoeren (of in de afgelopen 7 dagen indien dit uw eerste bezoek is)?"],
             ["fr-be", "Avez-vous passé un test de dépistage du coronavirus depuis le dernier questionnaire (ou au cours des 7 derniers jours s'il s'agit de votre première visite) ?"],
-            ["de-be", "Haben Sie seit der vorigen Fragen einen COVID-19-Test durchführen lassen (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
+            ["de-be", "Haben Sie seit der letzten Fragen einen COVID-19-Test durchführen lassen (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
             ["en", "Have you been tested for coronavirus since the last questionnaire (or within the past 7 days if this is your first visit)?"],
         ]))
     );
