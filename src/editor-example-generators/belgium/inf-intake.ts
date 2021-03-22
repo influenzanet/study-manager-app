@@ -200,9 +200,9 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat is uw voornaamste bezigheid overdag?"],
-            ["fr-be", "Quelle est votre activité principale pendant la journée ?"],
-            ["de-be", "Was ist Ihre wichtigste Beschäftigung tagsüber?"],
+            ["nl-be", "Wat is uw voornaamste bezigheid?"],
+            ["fr-be", "Quelle est votre activité principale ?"],
+            ["de-be", "Was ist Ihre wichtigste Beschäftigung ?"],
             ["en", "What is your main activity?"],
         ]))
     );
@@ -1474,9 +1474,9 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             key: '13', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
-                ["nl-be", "Meer dan 10 jongvolwassenen tussen de 18 en 30 jaar"],
-                ["fr-be", "Plus de 10 jeunes adultes âgés entre 18 et 30 ans"],
-                ["de-be", "Mehr als 10 junge Erwachsene im Alter von 18 bis 30 Jahren"],
+                ["nl-be", "Meer dan 10 mensen tussen de 18 en 30 jaar"],
+                ["fr-be", "Plus de 10 personnes âgées entre 18 et 30 ans"],
+                ["de-be", "Mehr als 10 Menschen im Alter von 18 bis 30 Jahren"],
                 ["en", "More than 10 people between 18 and 30 years of age"],
             ])
         },
@@ -2132,116 +2132,116 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
         {
             key: '0', role: 'option',
             content: new Map([
-                ["nl-be", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziek)."],
-                ["fr-be", "Je fais partie d’un groupe à risque (grossesse, personne âgée de 60 ans ou plus, maladie chronique)."],
-                ["de-be", "Ich gehöre zu einer Risikogruppe (schwanger, 60 Jahre oder älter, chronisch krank)."],
-                ["en", "I belong to a risk group (e.g. pregnant, over 65, underlying health condition, etc)."],
+                ["nl-be", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziekte)"],
+                ["fr-be", "Je fais partie d’un groupe à risque (grossesse, personne âgée de 60 ans ou plus, maladie chronique)"],
+                ["de-be", "Ich gehöre zu einer Risikogruppe (schwanger, 60 Jahre oder älter, chronisch krank)"],
+                ["en", "I belong to a risk group (e.g. pregnant, over 65, underlying health condition, etc)"],
             ])
         },
         {
             key: '11', role: 'option',
             content: new Map([
-                ["nl-be", "Andere personen in mijn huishouden behoren tot een risicogroep."],
-                ["fr-be", "Les autres personnes de mon ménage font partie d’un groupe à risque."],
-                ["de-be", "Andere Personen in meinem Haushalt gehören zu einer Risikogruppe."],
-                ["en", "Other people in my household belong to a risk group."],
+                ["nl-be", "Andere personen in mijn huishouden behoren tot een risicogroep"],
+                ["fr-be", "Les autres personnes de mon ménage font partie d’un groupe à risque"],
+                ["de-be", "Andere Personen in meinem Haushalt gehören zu einer Risikogruppe"],
+                ["en", "Other people in my household belong to a risk group"],
             ])
         },
         {
             key: '12', role: 'option',
             content: new Map([
-                ["nl-be", "De COVID-19 pandemie moedigde me aan om mezelf te laten vaccineren dit jaar."],
-                ["fr-be", "La pandémie relative au coronavirus m'a encouragé à me faire vacciner cette année."],
-                ["de-be", "Die COVID-19-Pandemie ermutigte mich, mich selbst dieses Jahr impfen zu lassen."],
-                ["en", "The coronavirus pandemic motivated me to get vaccinated this year."],
+                ["nl-be", "De COVID-19 pandemie moedigde me aan om mezelf te laten vaccineren dit jaar"],
+                ["fr-be", "La pandémie relative au coronavirus m'a encouragé à me faire vacciner cette année"],
+                ["de-be", "Die COVID-19-Pandemie ermutigte mich, mich selbst dieses Jahr impfen zu lassen"],
+                ["en", "The coronavirus pandemic motivated me to get vaccinated this year"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", "Vaccinatie voorkomt dat ikzelf griep krijg."],
-                ["fr-be", "La vaccination m'évite de contracter personnellement la grippe."],
-                ["de-be", "Impfung verhindert, dass ich selbst Grippe bekomme."],
-                ["en", "Vaccination decreases my risk of getting influenza."],
+                ["nl-be", "Vaccinatie voorkomt dat ikzelf griep krijg"],
+                ["fr-be", "La vaccination m'évite de contracter personnellement la grippe"],
+                ["de-be", "Impfung verhindert, dass ich selbst Grippe bekomme"],
+                ["en", "Vaccination decreases my risk of getting influenza"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen."],
-                ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes."],
-                ["de-be", "Impfung verhindert, dass ich kein Grippevirus auf andere Menschen übertrage."],
-                ["en", "Vaccination decreases the risk of spreading influenza to others."],
+                ["nl-be", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen"],
+                ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes"],
+                ["de-be", "Impfung verhindert, dass ich kein Grippevirus auf andere Menschen übertrage"],
+                ["en", "Vaccination decreases the risk of spreading influenza to others"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl-be", "Mijn huisarts heeft me de griepvaccin aangeraden."],
-                ["fr-be", "Mon médecin m'a recommandé le vaccin contre la grippe."],
-                ["de-be", "Mein Hausarzt hat mir die Grippeimpfung empfohlen."],
-                ["en", "My doctor recommended it."],
+                ["nl-be", "Mijn huisarts heeft me de griepvaccin aangeraden"],
+                ["fr-be", "Mon médecin m'a recommandé le vaccin contre la grippe"],
+                ["de-be", "Mein Hausarzt hat mir die Grippeimpfung empfohlen"],
+                ["en", "My doctor recommended it"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl-be", "Het griepvaccin werd aangeboden op mijn werk/op school."],
-                ["fr-be", "Le vaccin contre la grippe a été proposé au travail/à l'école."],
-                ["de-be", "Der Grippeimpfstoff wurde an meinem Arbeitsplatz/in der Schule angeboten."],
-                ["en", "It was recommended in my workplace/school."],
+                ["nl-be", "Het griepvaccin werd aangeboden op mijn werk/op school"],
+                ["fr-be", "Le vaccin contre la grippe a été proposé au travail/à l'école"],
+                ["de-be", "Der Grippeimpfstoff wurde an meinem Arbeitsplatz/in der Schule angeboten"],
+                ["en", "It was recommended in my workplace/school"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl-be", "Het griepvaccin is voor mij gemakkelijk beschikbaar."],
-                ["fr-be", "Le vaccin contre la grippe est facilement accessible pour moi."],
-                ["de-be", "Der Grippeimpfstoff ist für mich einfach verfügbar."],
-                ["en", "The vaccine was readily available and vaccine administration was convenient."],
+                ["nl-be", "Het griepvaccin is voor mij gemakkelijk beschikbaar"],
+                ["fr-be", "Le vaccin contre la grippe est facilement accessible pour moi"],
+                ["de-be", "Der Grippeimpfstoff ist für mich einfach verfügbar"],
+                ["en", "The vaccine was readily available and vaccine administration was convenient"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
-                ["nl-be", "Het griepvaccin was gratis."],
-                ["fr-be", "Le vaccin contre la grippe était gratuit."],
-                ["de-be", "Der Grippeimpfstoff war gratis."],
-                ["en", "The vaccine was free (no cost)."],
+                ["nl-be", "Het griepvaccin was gratis"],
+                ["fr-be", "Le vaccin contre la grippe était gratuit"],
+                ["de-be", "Der Grippeimpfstoff war gratis"],
+                ["en", "The vaccine was free (no cost)"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
-                ["nl-be", "Ik wil deze winter geen werk/school missen."],
-                ["fr-be", "Je ne veux pas m’absenter du travail / des cours durant cet hiver."],
-                ["de-be", "Ich möchte in diesem Winter keine Arbeitstunde/keinen Schulunterricht verpassen."],
-                ["en", "I don’t want to miss work/school."],
+                ["nl-be", "Ik wil deze winter geen werk/school missen"],
+                ["fr-be", "Je ne veux pas m’absenter du travail / des cours durant cet hiver"],
+                ["de-be", "Ich möchte in diesem Winter keine Arbeitstunde/keinen Schulunterricht verpassen"],
+                ["en", "I don’t want to miss work/school"],
             ])
         },
         {
             key: '8', role: 'option',
             content: new Map([
-                ["nl-be", "Ik haal het griepvaccin altijd."],
-                ["fr-be", "Je me fais toujours vacciner contre la grippe."],
-                ["de-be", "Ich nehme den Grippeimpfstoff immer."],
-                ["en", "I always get the vaccine."],
+                ["nl-be", "Ik haal het griepvaccin altijd"],
+                ["fr-be", "Je me fais toujours vacciner contre la grippe"],
+                ["de-be", "Ich nehme den Grippeimpfstoff immer"],
+                ["en", "I always get the vaccine"],
             ])
         },
         {
             key: '9', role: 'input',
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
-                ["nl-be", "Andere reden."],
-                ["fr-be", "Une autre raison."],
-                ["de-be", "Andere Gründe."],
-                ["en", "Other reason(s)."],
+                ["nl-be", "Andere reden"],
+                ["fr-be", "Une autre raison"],
+                ["de-be", "Andere Gründe"],
+                ["en", "Other reason(s)"],
             ]),
             description: new Map([
-                ["nl-be", "Beschrijf hier (optioneel in te vullen)."],
-                ["fr-be", "Veuillez fournir une description ici (facultatif)."],
-                ["de-be", "Beschreiben Sie es hier (optional einzutragen)."],
-                ["en", "Describe here (optional)."],
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
             ])
         },
     ]);
@@ -2351,7 +2351,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik ben van plan om mezelf nog te laten vaccineren"],
                 ["fr-be", "J'ai l'intention de me faire vacciner"],
-                ["de-be", "Ich plane, mich selbst noch impfen zu lassen. "],
+                ["de-be", "Ich plane, mich selbst noch impfen zu lassen"],
                 ["en", "I am planning to be vaccinated, but haven’t been yet"],
             ])
         },

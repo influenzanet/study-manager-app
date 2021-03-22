@@ -1653,9 +1653,9 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     /*["en", "Report yes, if you received the vaccine this season, usually in the autumn."],*/
                     ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2019-2020."],
-                    ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
-                    ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
-                    ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
+                    ["nl", "Zeg 'ja' wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
+                    ["fr", "Répondez « oui » si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                     ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
                     ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2019-2020)"],
                 ]),
