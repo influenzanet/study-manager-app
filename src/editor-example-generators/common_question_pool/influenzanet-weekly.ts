@@ -828,7 +828,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'a';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -915,7 +915,7 @@ const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     dtype: 'exp', exp: {
                         name: 'getAttribute',
                         data: [
-                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomsStart, [responseGroupKey, '0'].join('.')) },
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomStart, [responseGroupKey, '0'].join('.')) },
                             { str: 'value', dtype: 'str' }
                         ],
                         returnType: 'int',
@@ -1416,7 +1416,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
 }
 
 
-const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, keySymptomStart: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q6';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
@@ -1428,7 +1428,7 @@ const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, isReq
     );
 
     // Fever Start
-    editor.addSurveyItem(feverStart(itemKey, isRequired));
+    editor.addSurveyItem(feverStart(itemKey, keySymptomStart, isRequired));
 
     // Developed Suddenly
     editor.addSurveyItem(feverDevelopedSuddenly(itemKey, isRequired));

@@ -126,7 +126,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptomsSuddenlyDeveloped, hasSymptomGroupKey);
 
     // // ----> fever group  - 4 questions
-    const feverGroup = InfluenzanetWeekly.feverGroup.all(hasSymptomGroupKey, Q_symptoms.key, true);
+    const feverGroup = InfluenzanetWeekly.feverGroup.all(hasSymptomGroupKey, Q_symptoms.key, Q_symptomStart.key, true);
     survey.addExistingSurveyItem(feverGroup, hasSymptomGroupKey);
 
     // // Q_BE_7 visited medical service --------------------------------------
