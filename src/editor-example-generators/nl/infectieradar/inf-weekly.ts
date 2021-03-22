@@ -4,8 +4,8 @@ import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/l
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../../../editor-engine/survey-editor/component-editor";
-import { CoronaVaccineQuestions } from "../questions/coronaVaccine";
-import { WeeklyQuestions as DefaultWeekly } from "../questions/tempWeeklyPool";
+import { CoronaVaccineQuestions } from "./questions/coronaVaccine";
+import { WeeklyQuestions as DefaultWeekly } from "./questions/tempWeeklyPool";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -347,7 +347,7 @@ const generateNLWeekly = (): Survey | undefined => {
     // console.log(q32Editor.findResponseComponent('rg'));
     // q32Editor.removeResponseComponent('rg.scg');
 
-    console.log(survey.getSurvey());
+    // console.log(survey.getSurvey());
     // console.log(survey.getSurveyJSON());
 
 

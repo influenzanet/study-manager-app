@@ -1,6 +1,10 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
-import { generateLocStrings } from "./simple-generators";
+import { likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { generateRandomKey } from "./randomKeyGenerator";
+import { expWithArgs, generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
+import { SimpleQuestionEditor } from "./simple-question-editor";
+
 
 interface OptionDef {
     key: string;
@@ -12,6 +16,213 @@ interface OptionDef {
     style?: Array<{ key: string, value: string }>;
     optionProps?: ComponentProperties;
 }
+
+const generateSingleChoiceQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    responseOptions: Array<OptionDef>;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, props.responseOptions);
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+
+const generateMultipleChoiceQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    responseOptions: Array<OptionDef>;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}
+): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, props.responseOptions);
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+const generateSimpleLikertGroupQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    rows: Array<LikertGroupRow>,
+    scaleOptions: Array<{
+        key: string;
+        className?: string;
+        content: Map<string, string>;
+    }>,
+    stackOnSmallScreen?: boolean;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initLikertScaleGroup(
+        likertScaleGroupKey,
+        props.rows,
+        props.scaleOptions,
+        props.stackOnSmallScreen,
+    );
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        console.warn('todo: check for each row answered');
+        simpleEditor.editor.addValidation({
+            key: 'r',
+            type: 'hard',
+            rule: expWithArgs('and',
+                ...props.rows.map(r => expWithArgs(
+                    'responseHasKeysAny',
+                    [props.parentKey, props.itemKey].join('.'),
+                    [responseGroupKey, likertScaleGroupKey, r.key].join('.'),
+                    ...props.scaleOptions.map(o => o.key)
+                ))
+            )
+        })
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+export const QuestionGenerators = {
+    singleChoice: generateSingleChoiceQuestion,
+    multipleChoice: generateMultipleChoiceQuestion,
+    simpleLikertGroup: generateSimpleLikertGroupQuestion,
+}
+
 
 export const initSingleChoiceGroup = (
     key: string,
@@ -321,6 +532,71 @@ export const initEQ5DHealthIndicatorQuestion = (
 
     return groupEdit.getComponent() as ItemGroupComponent;
 }
+
+interface LikertGroupRow {
+    key: string;
+    content: Map<string, string>;
+    hideTopBorder?: boolean;
+    optionDisabled?: Array<{
+        optionKey: string;
+        exp: Expression;
+    }>;
+    displayCondition?: Expression;
+}
+
+export const initLikertScaleGroup = (
+    key: string,
+    rows: Array<LikertGroupRow>,
+    scaleOptions: Array<{
+        key: string;
+        className?: string;
+        content: Map<string, string>;
+    }>,
+    stackOnSmallScreen?: boolean,
+    displayCondition?: Expression,
+): ItemGroupComponent => {
+    const groupEdit = new ComponentEditor(undefined, {
+        key: key,
+        isGroup: true,
+        role: 'likertGroup',
+    });
+
+    if (displayCondition) {
+        groupEdit.setDisplayCondition(displayCondition);
+    }
+
+    rows.forEach((row, index) => {
+        groupEdit.addItemComponent({
+            key: generateRandomKey(4),
+            role: 'text',
+            style: [{
+                key: 'className', value:
+                    'mb-1 fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-7' : '')
+            }, { key: 'variant', value: 'h6' }],
+            content: generateLocStrings(row.content),
+        });
+
+        const item = initLikertScaleItem(
+            row.key,
+            scaleOptions.map(option => {
+                return {
+                    key: option.key,
+                    className: option.className,
+                    content: option.content,
+                    disabled: row.optionDisabled?.find(cond => cond.optionKey === option.key)?.exp,
+                }
+            }),
+            stackOnSmallScreen,
+            row.displayCondition
+        )
+        groupEdit.addItemComponent(item);
+    });
+
+
+
+    return groupEdit.getComponent() as ItemGroupComponent;
+}
+
 
 export const initLikertScaleItem = (
     key: string,

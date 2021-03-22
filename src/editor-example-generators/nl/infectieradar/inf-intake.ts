@@ -3,7 +3,7 @@ import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent,
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
-import { IntakeQuestions as DefaultIntake } from "../questions/tempIntakePool";
+import { IntakeQuestions as DefaultIntake } from "./questions/tempIntakePool";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
