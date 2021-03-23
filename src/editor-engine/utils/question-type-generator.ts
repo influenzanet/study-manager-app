@@ -1,6 +1,6 @@
 import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, isExpression } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
-import { likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
@@ -348,7 +348,7 @@ const generateDatePickerInput = (props: {
     }
 
     const rg_inner: ItemComponent = {
-        key: '0', role: 'dateInput',
+        key: datePickerKey, role: 'dateInput',
         properties: {
             dateInputMode: { str: props.dateInputMode },
             min: props.minRelativeDate ? (isExpression(props.minRelativeDate) ? { dtype: 'exp', exp: props.minRelativeDate } : { dtype: 'exp', exp: expWithArgs('timestampWithOffset', durationObjectToSeconds(props.minRelativeDate)) }) : undefined,
