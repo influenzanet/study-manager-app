@@ -1,4 +1,4 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, isExpression } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 import { likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
@@ -216,6 +216,39 @@ const generateSimpleLikertGroupQuestion = (props: {
     return simpleEditor.getItem();
 }
 
+interface Duration {
+    years?: number;
+    month?: number;
+    days?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+};
+
+const durationObjectToSeconds = (duration: Duration): number => {
+    let value = 0;
+
+    if (duration.years !== undefined) {
+        value += duration.years * 31536000;
+    }
+    if (duration.month !== undefined) {
+        value += duration.month * 2592000;
+    }
+    if (duration.days !== undefined) {
+        value += duration.days * 86400;
+    }
+    if (duration.hours !== undefined) {
+        value += duration.hours * 3600;
+    }
+    if (duration.minutes !== undefined) {
+        value += duration.minutes * 60;
+    }
+    if (duration.seconds !== undefined) {
+        value += duration.seconds;
+    }
+    return value;
+}
+
 const generateDatePickerInput = (props: {
     parentKey: string;
     itemKey: string;
@@ -231,8 +264,8 @@ const generateDatePickerInput = (props: {
     topDisplayCompoments?: Array<ItemComponent>;
     inputLabelText?: Map<string, string>;
     placeholderText?: Map<string, string>;
-    minRelativeDate?: number;
-    maxRelativeDate?: number;
+    minRelativeDate?: Duration | Expression;
+    maxRelativeDate?: Duration | Expression;
     bottomDisplayCompoments?: Array<ItemComponent>;
     isRequired?: boolean;
     footnoteText?: Map<string, string>;
@@ -260,8 +293,8 @@ const generateDatePickerInput = (props: {
         key: '0', role: 'dateInput',
         properties: {
             dateInputMode: { str: props.dateInputMode },
-            min: props.minRelativeDate ? { dtype: 'exp', exp: expWithArgs('timestampWithOffset', props.minRelativeDate) } : undefined,
-            max: props.maxRelativeDate ? { dtype: 'exp', exp: expWithArgs('timestampWithOffset', props.maxRelativeDate) } : undefined,
+            min: props.minRelativeDate ? (isExpression(props.minRelativeDate) ? { dtype: 'exp', exp: props.minRelativeDate } : { dtype: 'exp', exp: expWithArgs('timestampWithOffset', durationObjectToSeconds(props.minRelativeDate)) }) : undefined,
+            max: props.maxRelativeDate ? (isExpression(props.maxRelativeDate) ? { dtype: 'exp', exp: props.maxRelativeDate } : { dtype: 'exp', exp: expWithArgs('timestampWithOffset', durationObjectToSeconds(props.maxRelativeDate)) }) : undefined,
         },
         content: props.inputLabelText ? generateLocStrings(props.inputLabelText) : undefined,
         description: props.placeholderText ? generateLocStrings(props.placeholderText) : undefined,
@@ -642,7 +675,7 @@ export const initLikertScaleGroup = (
             role: 'text',
             style: [{
                 key: 'className', value:
-                    'mb-1 fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-7' : '')
+                    'mb-1 fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-2' : '')
             }, { key: 'variant', value: 'h6' }],
             content: generateLocStrings(row.content),
         });

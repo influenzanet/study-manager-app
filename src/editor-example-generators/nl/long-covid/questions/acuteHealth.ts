@@ -27,8 +27,8 @@ export class AcuteHealthGroup extends GroupItemEditor {
                 placeholderText: new Map([
                     ["en", "Enter a date"],
                 ]),
-                minRelativeDate: -864000, // optional
-                maxRelativeDate: 10, // optional
+                minRelativeDate: { years: -1, days: -10, seconds: -864000 }, // optional
+                maxRelativeDate: { seconds: 1 }, // optional
                 isRequired: true
             })
         )
