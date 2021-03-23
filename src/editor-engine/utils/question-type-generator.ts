@@ -218,7 +218,7 @@ const generateSimpleLikertGroupQuestion = (props: {
 
 interface Duration {
     years?: number;
-    month?: number;
+    months?: number;
     days?: number;
     hours?: number;
     minutes?: number;
@@ -231,8 +231,8 @@ const durationObjectToSeconds = (duration: Duration): number => {
     if (duration.years !== undefined) {
         value += duration.years * 31536000;
     }
-    if (duration.month !== undefined) {
-        value += duration.month * 2592000;
+    if (duration.months !== undefined) {
+        value += duration.months * 2592000;
     }
     if (duration.days !== undefined) {
         value += duration.days * 86400;
