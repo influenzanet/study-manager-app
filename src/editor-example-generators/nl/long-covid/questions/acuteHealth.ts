@@ -1,4 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -18,6 +19,13 @@ export class AcuteHealthGroup extends GroupItemEditor {
         this.addItem(q_acuteSymptoms_4(this.key, true));
         this.addItem(q_acuteSymptoms_5(this.key, true));
         this.addItem(q_acuteSymptoms_6(this.key, true));
+
+        const q3 = l3q3(this.key, true);
+        this.addItem(q3);
+
+        this.addItem(l3q4(this.key, q3.key, true));
+
+        this.addItem(l3q5(this.key, q3.key, true));
     }
 }
 
@@ -413,6 +421,211 @@ const q_acuteSymptoms_6 = (parentKey: string, isRequired?: boolean, keyOverride?
                 key: 'oors',
                 content: new Map([
                     ["nl", "Oorsuizen"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    })
+}
+
+const l3q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'q3';
+
+    return QuestionGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["nl", "Heb je een arts gezien, gesproken of gebeld vanwege je klachten? En zo ja, waar?"],
+        ]),
+        topDisplayCompoments: [
+            {
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Meerdere antwoorden mogelijk"],
+                ]))
+            }
+        ], responseOptions: [
+            {
+                key: '0', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Nee, ik heb geen medische hulp gezocht"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                content: new Map([
+                    ["nl", "Ja, bij de huisarts of huisarts assistent"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                content: new Map([
+                    ["nl", "Ja, bij de eerste hulp van het ziekenhuis of de huisartsenpost"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                content: new Map([
+                    ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                content: new Map([
+                    ["nl", "Ja, ik heb andere medische hulp gezocht"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
+                ])
+            }
+        ],
+        isRequired: isRequired,
+    })
+}
+
+const l3q4 = (parentKey: string, keyQ3: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'q4';
+
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: CommonExpressions.multipleChoiceOptionsSelected(keyQ3, '3'),
+        questionText: new Map([
+            ["nl", "Vink aan wat van toepassing is bij je ziekenhuisopname"],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben op de Intensive Care (IC) opgenomen "],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb zuurstof toegediend gekregen"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Geen van beide"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    })
+}
+
+
+const l3q5 = (parentKey: string, keyQ3: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'q5';
+
+    return QuestionGenerators.dropDown({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: CommonExpressions.multipleChoiceOptionOnlyOtherKeysSelected(keyQ3, '0'),
+        questionText: new Map([
+            ["nl", "Hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Op dezelfde dag als de eerste klachten"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "1 dag"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "2 dagen"],
+                ]),
+            }, {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "3 dagen"],
+                ]),
+            }, {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "4 dagen"],
+                ]),
+            }, {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "5 dagen"],
+                ]),
+            }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "6 dagen"],
+                ]),
+            }, {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "7 dagen"],
+                ]),
+            }, {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "8 dagen"],
+                ]),
+            }, {
+                key: '9', role: 'option',
+                content: new Map([
+                    ["nl", "9 dagen"],
+                ]),
+            }, {
+                key: '10', role: 'option',
+                content: new Map([
+                    ["nl", "10 dagen"],
+                ]),
+            }, {
+                key: '11', role: 'option',
+                content: new Map([
+                    ["nl", "11 dagen"],
+                ]),
+            }, {
+                key: '12', role: 'option',
+                content: new Map([
+                    ["nl", "12 dagen"],
+                ]),
+            }, {
+                key: '13', role: 'option',
+                content: new Map([
+                    ["nl", "13 dagen"],
+                ]),
+            }, {
+                key: '14', role: 'option',
+                content: new Map([
+                    ["nl", "14 dagen"],
+                ]),
+            },
+            {
+                key: '15', role: 'option',
+                content: new Map([
+                    ["nl", "> 14 dagen"],
+                ])
+            },
+            {
+                key: '16', role: 'option',
+                content: new Map([
+                    ["nl", "Dat weet ik niet (meer)"],
                 ])
             },
         ],

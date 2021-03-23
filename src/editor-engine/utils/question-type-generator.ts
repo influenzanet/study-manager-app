@@ -75,6 +75,64 @@ const generateSingleChoiceQuestion = (props: {
     return simpleEditor.getItem();
 }
 
+const generateDropDownQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    responseOptions: Array<OptionDef>;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initDropdownGroup(singleChoiceKey, props.responseOptions);
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
 
 const generateMultipleChoiceQuestion = (props: {
     parentKey: string;
@@ -325,6 +383,7 @@ export const QuestionGenerators = {
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
     dateInput: generateDatePickerInput,
+    dropDown: generateDropDownQuestion,
 }
 
 
