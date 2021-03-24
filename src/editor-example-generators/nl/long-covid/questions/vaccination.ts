@@ -12,26 +12,26 @@ export class VaccinationGroup extends GroupItemEditor {
     }
 
     initQuestions() {
-        const C2q1 = q_C2q1_def(this.key, true);
-        const condition_vaccine_received = CommonExpressions.singleChoiceOptionsSelected(C2q1.key, '1');
-        const C2q2 = q_C2q2_def(this.key, true, condition_vaccine_received);
-        const condition_1_vaccine = CommonExpressions.singleChoiceOptionsSelected(C2q2.key, '0');
-        const condition_2_vaccines = CommonExpressions.singleChoiceOptionsSelected(C2q2.key, '1');
-        const C2q5 = q_C2q5_def(this.key, true, condition_2_vaccines);
+        const vacc = q_vacc_def(this.key, true);
+        const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
+        const vacc_num = q_vacc_num_def(this.key, true, condition_vacc_yes);
+        const condition_1vacc = CommonExpressions.singleChoiceOptionsSelected(vacc_num.key, '1vacc');
+        const condition_2vacc = CommonExpressions.singleChoiceOptionsSelected(vacc_num.key, '2vacc');
+        const vacc2_date1 = q_vacc2_date1_def(this.key, true, condition_2vacc);
 
-        this.addItem(C2q1);
-        this.addItem(C2q2);
-        this.addItem(q_C2q3_def(this.key, true, condition_vaccine_received));
-        this.addItem(q_C2q4_def(this.key, true, condition_1_vaccine));
-        this.addItem(C2q5);
-        this.addItem(q_C2q6_def(this.key, true, condition_2_vaccines, C2q5.key));
-        this.addItem(q_C2q7_def(this.key, true));
-        this.addItem(q_C2q8_def(this.key, true));
+        this.addItem(vacc);
+        this.addItem(vacc_num);
+        this.addItem(q_vacc_type_def(this.key, true, condition_vacc_yes));
+        this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
+        this.addItem(vacc2_date1);
+        this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
+        this.addItem(q_vacc_influenza_def(this.key, true));
+        this.addItem(q_vacc_pneumoc_def(this.key, true));
     }
 }
 
-const q_C2q1_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q1';
+const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q1';
 
     return QuestionGenerators.singleChoice({
         parentKey: parentKey,
@@ -42,19 +42,19 @@ const q_C2q1_def = (parentKey: string, isRequired?: boolean, condition?: Express
         ]),
         responseOptions: [
             {
-                key: '0', role: 'option',
+                key: 'no', role: 'option',
                 content: new Map([
                     ["nl", "Nee"],
                 ])
             },
             {
-                key: '1', role: 'option',
+                key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
             },
             {
-                key: '2', role: 'option',
+                key: 'unknown', role: 'option',
                 content: new Map([
                     ["nl", "Weet ik niet"],
                 ])
@@ -64,8 +64,8 @@ const q_C2q1_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-const q_C2q2_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q2';
+const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q2';
 
     return QuestionGenerators.singleChoice({
         parentKey: parentKey,
@@ -76,13 +76,13 @@ const q_C2q2_def = (parentKey: string, isRequired?: boolean, condition?: Express
         ]),
         responseOptions: [
             {
-                key: '0', role: 'option',
+                key: '1vacc', role: 'option',
                 content: new Map([
                     ["nl", "1 vaccinatie"],
                 ])
             },
             {
-                key: '1', role: 'option',
+                key: '2vacc', role: 'option',
                 content: new Map([
                     ["nl", "2 vaccinaties"],
                 ])
@@ -92,10 +92,10 @@ const q_C2q2_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-const q_C2q3_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q3';
+const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return QuestionGenerators.singleChoice({
+    return QuestionGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -156,8 +156,8 @@ const q_C2q3_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-const q_C2q4_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q4';
+const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q4';
 
     return QuestionGenerators.dateInput({
         parentKey: parentKey,
@@ -176,8 +176,8 @@ const q_C2q4_def = (parentKey: string, isRequired?: boolean, condition?: Express
 }
 
 
-const q_C2q5_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q5';
+const q_vacc2_date1_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q5';
 
     return QuestionGenerators.dateInput({
         parentKey: parentKey,
@@ -195,8 +195,8 @@ const q_C2q5_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccinationKey?: string, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q6';
+const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccinationKey?: string, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q6';
     const firstVaccinationExpression = firstVaccinationKey
         ? {
             reference: CommonExpressions.getDatePickerResponseValue(firstVaccinationKey),
@@ -221,9 +221,8 @@ const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-//TODO: Bold
-const q_C2q7_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q7';
+const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q7';
 
     return QuestionGenerators.singleChoice({
         parentKey: parentKey,
@@ -259,9 +258,8 @@ const q_C2q7_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-//TODO: Bold
-const q_C2q8_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'C2q8';
+const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q8';
 
     return QuestionGenerators.singleChoice({
         parentKey: parentKey,
