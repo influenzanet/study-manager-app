@@ -1,6 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class MedicineGroup extends GroupItemEditor {
