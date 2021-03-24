@@ -197,7 +197,12 @@ const q_C2q5_def = (parentKey: string, isRequired?: boolean, condition?: Express
 
 const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccinationKey?: string, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'C2q6';
-    const firstVaccinationExpression = firstVaccinationKey ? CommonExpressions.getDatePickerResponseValue(firstVaccinationKey) : undefined;
+    const firstVaccinationExpression = firstVaccinationKey
+        ? {
+            reference: CommonExpressions.getDatePickerResponseValue(firstVaccinationKey),
+            days: 5
+        }
+        : undefined;
 
     return QuestionGenerators.dateInput({
         parentKey: parentKey,
@@ -210,10 +215,7 @@ const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Express
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: {
-            reference: firstVaccinationExpression,
-            days: 5
-        },
+        minRelativeDate: firstVaccinationExpression,
         maxRelativeDate: { seconds: 1 },
         isRequired: isRequired,
     });
