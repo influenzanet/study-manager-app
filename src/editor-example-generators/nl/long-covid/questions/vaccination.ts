@@ -17,13 +17,14 @@ export class VaccinationGroup extends GroupItemEditor {
         const C2q2 = q_C2q2_def(this.key, true, condition_vaccine_received);
         const condition_1_vaccine = CommonExpressions.singleChoiceOptionsSelected(C2q2.key, '0');
         const condition_2_vaccines = CommonExpressions.singleChoiceOptionsSelected(C2q2.key, '1');
+        const C2q5 = q_C2q5_def(this.key, true, condition_2_vaccines);
 
         this.addItem(C2q1);
         this.addItem(C2q2);
         this.addItem(q_C2q3_def(this.key, true, condition_vaccine_received));
         this.addItem(q_C2q4_def(this.key, true, condition_1_vaccine));
-        this.addItem(q_C2q5_def(this.key, true, condition_2_vaccines));
-        this.addItem(q_C2q6_def(this.key, true, condition_2_vaccines));
+        this.addItem(C2q5);
+        this.addItem(q_C2q6_def(this.key, true, condition_2_vaccines, C2q5.key));
         this.addItem(q_C2q7_def(this.key, true));
         this.addItem(q_C2q8_def(this.key, true));
     }
@@ -194,9 +195,9 @@ const q_C2q5_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-//TODO: must be after first vaccination
-const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccintationKey?: string, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'C2q6';
+    const firstVaccinationExpression = firstVaccintationKey ? CommonExpressions.getDatePickerResponseValue(firstVaccintationKey) : undefined;
 
     return QuestionGenerators.dateInput({
         parentKey: parentKey,
@@ -209,6 +210,7 @@ const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Express
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
+        minRelativeDate: firstVaccinationExpression,
         maxRelativeDate: { seconds: 1 },
         isRequired: isRequired,
     });

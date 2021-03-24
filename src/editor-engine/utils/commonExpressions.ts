@@ -1,3 +1,4 @@
+import { Expression } from "survey-engine/lib/data_types"
 import { datePickerKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions"
 import { expWithArgs } from "./simple-generators"
 
@@ -6,7 +7,7 @@ const multipleChoiceOptionsSelected = (itemKey: string, ...optionKeys: string[])
 const multipleChoiceOptionSelectedAll = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasKeysAll', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 const multipleChoiceOptionOnlyOtherKeysSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasOnlyKeysOtherThan', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 
-const getDatePickerResponseValue = (itemKey: string) => {
+const getDatePickerResponseValue = (itemKey: string): Expression => {
     return {
         name: 'getAttribute',
         data: [
