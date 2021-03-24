@@ -195,9 +195,9 @@ const q_C2q5_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccintationKey?: string, keyOverride?: string): SurveyItem => {
+const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccinationKey?: string, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'C2q6';
-    const firstVaccinationExpression = firstVaccintationKey ? CommonExpressions.getDatePickerResponseValue(firstVaccintationKey) : undefined;
+    const firstVaccinationExpression = firstVaccinationKey ? CommonExpressions.getDatePickerResponseValue(firstVaccinationKey) : undefined;
 
     return QuestionGenerators.dateInput({
         parentKey: parentKey,
