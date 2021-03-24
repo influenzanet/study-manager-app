@@ -275,6 +275,7 @@ const generateSimpleLikertGroupQuestion = (props: {
 }
 
 interface Duration {
+    reference?: number | Expression;
     years?: number;
     months?: number;
     days?: number;
@@ -322,8 +323,8 @@ const generateDatePickerInput = (props: {
     topDisplayCompoments?: Array<ItemComponent>;
     inputLabelText?: Map<string, string>;
     placeholderText?: Map<string, string>;
-    minRelativeDate?: Duration | Expression;
-    maxRelativeDate?: Duration | Expression;
+    minRelativeDate?: Duration;
+    maxRelativeDate?: Duration;
     bottomDisplayCompoments?: Array<ItemComponent>;
     isRequired?: boolean;
     footnoteText?: Map<string, string>;
@@ -351,8 +352,22 @@ const generateDatePickerInput = (props: {
         key: datePickerKey, role: 'dateInput',
         properties: {
             dateInputMode: { str: props.dateInputMode },
-            min: props.minRelativeDate ? (isExpression(props.minRelativeDate) ? { dtype: 'exp', exp: props.minRelativeDate } : { dtype: 'exp', exp: expWithArgs('timestampWithOffset', durationObjectToSeconds(props.minRelativeDate)) }) : undefined,
-            max: props.maxRelativeDate ? (isExpression(props.maxRelativeDate) ? { dtype: 'exp', exp: props.maxRelativeDate } : { dtype: 'exp', exp: expWithArgs('timestampWithOffset', durationObjectToSeconds(props.maxRelativeDate)) }) : undefined,
+            min: props.minRelativeDate ? {
+                dtype: 'exp', exp:
+                    expWithArgs(
+                        'timestampWithOffset',
+                        durationObjectToSeconds(props.minRelativeDate),
+                        props.minRelativeDate.reference ? props.minRelativeDate.reference : undefined
+                    )
+            } : undefined,
+            max: props.maxRelativeDate ? {
+                dtype: 'exp', exp:
+                    expWithArgs(
+                        'timestampWithOffset',
+                        durationObjectToSeconds(props.maxRelativeDate),
+                        props.maxRelativeDate.reference ? props.maxRelativeDate.reference : undefined
+                    )
+            } : undefined,
         },
         content: props.inputLabelText ? generateLocStrings(props.inputLabelText) : undefined,
         description: props.placeholderText ? generateLocStrings(props.placeholderText) : undefined,

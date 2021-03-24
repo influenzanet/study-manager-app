@@ -210,7 +210,10 @@ const q_C2q6_def = (parentKey: string, isRequired?: boolean, condition?: Express
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: firstVaccinationExpression,
+        minRelativeDate: {
+            reference: firstVaccinationExpression,
+            days: 5
+        },
         maxRelativeDate: { seconds: 1 },
         isRequired: isRequired,
     });
