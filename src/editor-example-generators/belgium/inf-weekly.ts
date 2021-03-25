@@ -4125,7 +4125,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Ja, een test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
                 ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
                 ["de-be", "Ja, ein Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
-                ["en", "Yes, a PCR test (virus search, or a swab in nose or mouth, or a sputum or saliva sample)"],
+                ["en", "Yes, a test based on a swab in nose or mouth, or a sputum or saliva sample"],
             ])
         },
         {
