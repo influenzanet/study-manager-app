@@ -397,7 +397,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
                 ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
-                ["de-be", "Ermüdet und lendenlahm (allgemeines Unwohlsein)"],
+                ["de-be", "Ermüdet und (körperlich) erschöpft (allgemeines Unwohlsein)"],
                 ["en", "Feeling tired or exhausted (malaise)"],
             ])
         },
@@ -437,7 +437,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["nl-be", "Misselijkheid"],
                 ["fr-be", "Des nausées"],
-                ["de-be", "Unpässlichkeit"],
+                ["de-be", "Unwohlsein"],
                 ["en", "Nausea"],
             ])
         },

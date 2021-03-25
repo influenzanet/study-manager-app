@@ -3262,7 +3262,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["fr-be", "Merci. C'était la dernière question. Après avoir sauvegardé vos réponses (cliquez sur « envoyer »), vous pouvez aller à la page qui vous permettra d'indiquer si vous avez eu des plaintes / ressenti des symptômes au cours de la semaine écoulée."],
-            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Falls Sie neue Beschwerden haben, können Sie nach dem Abspeichern die Fragen erneut beantworten."],
         ]))
     );
 
