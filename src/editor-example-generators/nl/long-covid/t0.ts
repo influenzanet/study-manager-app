@@ -3,6 +3,7 @@ import { SimpleSurveyEditor } from "../../../editor-engine/utils/simple-survey-e
 import { Q_CBS } from "./questions/cbs";
 import { DemographieGroup } from "./questions/demographie";
 import { EQ5DGroup } from './questions/eq5d';
+import { HADSGroup } from "./questions/hads";
 import { Q_IPAQ } from "./questions/ipaq";
 import { MedicineGroup } from "./questions/medicine";
 import { SF36Group } from "./questions/sf-36";
@@ -32,6 +33,8 @@ export const generateT0 = (): Survey | undefined => {
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
     // surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
 
+    const hadsGroup = new HADSGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
 
     surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
