@@ -8,6 +8,7 @@ import { EQ5DGroup } from './questions/eq5d';
 import { HADSGroup } from "./questions/hads";
 import { Q_IPAQ } from "./questions/ipaq";
 import { MedicineGroup } from "./questions/medicine";
+import { SaTGroup } from "./questions/sat";
 import { SF36Group } from "./questions/sf-36";
 
 
@@ -31,7 +32,10 @@ export const generateT0 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    // EQ5D group
+
+    const satGroupEditor = new SaTGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
+
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, false);
     surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
 
