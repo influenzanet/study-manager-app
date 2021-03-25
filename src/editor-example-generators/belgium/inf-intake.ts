@@ -257,7 +257,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             content: new Map([
                 ["nl-be", "Ik werk fulltime in loondienst"],
                 ["fr-be", "Je travaille à plein temps en tant qu’employé(e)"],
-                ["de-be", "Ich arbeit Vollzeit im Arbeitsverhältnis"],
+                ["de-be", "Ich arbeit Vollzeit im Angestelltenverhältnis"],
                 ["en", "Paid employment, full-time"],
             ])
         },
@@ -266,7 +266,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             content: new Map([
                 ["nl-be", "Ik werk parttime in loondienst"],
                 ["fr-be", "Je travaille à temps partiel en tant qu'employé(e)"],
-                ["de-be", "Ich arbeite Teilzeit im Arbeitsverhältnis"],
+                ["de-be", "Ich arbeite Teilzeit im Angestelltenverhältnis"],
                 ["en", "Paid employment, part-time"],
             ])
         },
@@ -2170,7 +2170,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen"],
                 ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes"],
-                ["de-be", "Impfung verhindert, dass ich kein Grippevirus auf andere Menschen übertrage"],
+                ["de-be", "Impfung verhindert, dass ich das Grippevirus auf andere Menschen übertrage"],
                 ["en", "Vaccination decreases the risk of spreading influenza to others"],
             ])
         },
