@@ -26,6 +26,8 @@ export class AcuteHealthGroup extends GroupItemEditor {
         this.addItem(l3q4(this.key, q3.key, true));
 
         this.addItem(l3q5(this.key, q3.key, true));
+
+        this.addItem(l3q6(this.key, true));
     }
 }
 
@@ -492,6 +494,7 @@ const l3q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     })
 }
 
+
 const l3q4 = (parentKey: string, keyQ3: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'q4';
 
@@ -626,6 +629,100 @@ const l3q5 = (parentKey: string, keyQ3: string, isRequired?: boolean, keyOverrid
                 key: '16', role: 'option',
                 content: new Map([
                     ["nl", "Dat weet ik niet (meer)"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    })
+}
+
+
+const l3q6 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'q6';
+
+    return QuestionGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 14 dagen? En zo ja, welke?"],
+        ]),
+        topDisplayCompoments: [
+            {
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Meerdere antwoorden mogelijk"],
+                ]))
+            }
+        ], responseOptions: [
+            {
+                key: '0', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Nee, ik heb geen medicijnen gebruikt"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, pijnstillers zoals paracetamol, aspirine of ibuprofen"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, antibiotica"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, medicijnen voor hooikoorts"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, homeopathisch middelen"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
+                ])
+            },
+            {
+                key: '8', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, andere medicatie"],
+                ])
+            },
+            {
+                key: '9', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Dit wil ik niet aangeven"],
                 ])
             },
         ],

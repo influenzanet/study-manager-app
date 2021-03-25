@@ -31,23 +31,23 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zeer vaak"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Vaak"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Af en toe"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zelden"],
                 ]),
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nooit"],
                 ])
             }
         ],
