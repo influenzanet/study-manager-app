@@ -32,13 +32,37 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q1?"],
+            ["nl", "Wat vind je, over het algemeen genomen, van je gezondheid?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Uitstekend"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Zeer goed"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Goed"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Matig"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Slecht"],
                 ])
             },
         ]
@@ -52,13 +76,37 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q2?"],
+            ["nl", "In vergelijking met een jaar geleden, hoe zou je nu je gezondheid in het algemeen beoordelen?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Veel beter dan een jaar geleden"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Iets beter dan een jaar geleden"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ongeveer hetzelfde als een jaar geleden"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Iets slechter dan een jaar geleden"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Veel slechter dan een jaar geleden"],
                 ])
             },
         ]
@@ -72,72 +120,72 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q3?"],
+            ["nl", "De volgende vragen gaan over dagelijkse bezigheden. Word je door je gezondheid op dit moment beperkt bij deze bezigheden? Zo ja, in welke mate?"],
         ]),
         scaleOptions: [
             {
-                key: '1', content: new Map([
-                    ["nl", "TODO"],
+                key: '3', content: new Map([
+                    ["nl", "ja, ernstig beperkt"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "ja, een beetje beperkt"],
                 ])
             }, {
-                key: '3', content: new Map([
-                    ["nl", "TODO"],
+                key: '1', content: new Map([
+                    ["nl", "nee, helemaal niet beperkt"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Forse inspanning zoals hardlopen, zware voorwerpen tillen, inspannend sporten"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Matige inspanning zoals het verplaatsen van een tafel, stofzuigen, fietsen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Tillen of boodschappen dragen"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Een paar trappen oplopen"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Eén trap oplopen"],
                 ])
             },
             {
                 key: 'f', content: new Map([
-                    ["nl", "TODO: f"],
+                    ["nl", "Buigen, knielen of bukken"],
                 ])
             },
             {
                 key: 'g', content: new Map([
-                    ["nl", "TODO: g"],
+                    ["nl", "Meer dan een kilometer lopen"],
                 ])
             },
             {
                 key: 'h', content: new Map([
-                    ["nl", "TODO: h"],
+                    ["nl", "Een halve kilometer lopen"],
                 ])
             },
             {
                 key: 'i', content: new Map([
-                    ["nl", "TODO: i"],
+                    ["nl", "Honderd meter lopen"],
                 ])
             },
             {
                 key: 'j', content: new Map([
-                    ["nl", "TODO: j"],
+                    ["nl", "Uzelf wassen of aankleden"],
                 ])
             }
         ]
