@@ -8,8 +8,11 @@ import { EQ5DGroup } from './questions/eq5d';
 import { HADSGroup } from "./questions/hads";
 import { Q_IPAQ } from "./questions/ipaq";
 import { MedicineGroup } from "./questions/medicine";
+import { Q_mMRC } from "./questions/mMRC";
+import { NCSIGroup } from "./questions/ncsi";
 import { SaTGroup } from "./questions/sat";
 import { SF36Group } from "./questions/sf-36";
+import { Q_TICP } from "./questions/ticp";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -32,6 +35,12 @@ export const generateT0 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
+    surveyEditor.addSurveyItemToRoot(Q_TICP(surveyKey, true));
+
+    surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, true));
+
+    const ncsiGroupEditor = new NCSIGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
 
     const satGroupEditor = new SaTGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
