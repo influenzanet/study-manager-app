@@ -1,4 +1,4 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
@@ -33,6 +33,7 @@ const generateSingleChoiceQuestion = (props: {
     bottomDisplayCompoments?: Array<ItemComponent>;
     isRequired?: boolean;
     footnoteText?: Map<string, string>;
+    customValidations?: Array<Validation>;
 }): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
@@ -62,6 +63,10 @@ const generateSingleChoiceQuestion = (props: {
 
     if (props.isRequired) {
         simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.customValidations) {
+        props.customValidations.forEach(v => simpleEditor.editor.addValidation(v));
     }
 
     if (props.footnoteText) {

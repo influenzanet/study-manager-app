@@ -1,6 +1,7 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { responseGroupKey, singleChoiceKey } from "../../../../editor-engine/utils/key-definitions";
 import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
+import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class DemographieGroup extends GroupItemEditor {
@@ -14,6 +15,7 @@ export class DemographieGroup extends GroupItemEditor {
     initQuestions() {
         this.addItem(q_age(this.key, true))
         this.addItem(q_gender(this.key, true))
+        this.addItem(q_postal_code(this.key, true))
 
 
         const q11Condition = expWithArgs('gt', 10, 1);
@@ -68,6 +70,58 @@ const q_gender = (parentKey: string, isRequired?: boolean, keyOverride?: string)
                     ["nl", "Anders"],
                 ])
             },
+        ]
+    })
+}
+
+const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'PC';
+    const fullKey = [parentKey, itemKey].join('.');
+
+    return QuestionGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Wat zijn de 4 cijfers van je postcode?"],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'input',
+                // style: [{ key: 'className', value: 'w-100' }],
+                content: new Map([
+                    ["nl", "Postcode"],
+                ]),
+                description: new Map([
+                    ["nl", "de eerste vier cijfers"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Dit wil ik niet aangeven"],
+                ])
+            },
+        ],
+        bottomDisplayCompoments: [
+            {
+                role: 'error',
+                content: generateLocStrings(new Map([
+                    ["nl", "Voer de eerste vier cijfers van je postcode in"],
+                ])),
+                displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
+            }
+        ],
+        customValidations: [
+            {
+                key: 'r2',
+                type: 'hard',
+                rule: expWithArgs('or',
+                    expWithArgs('not', expWithArgs('hasResponse', fullKey, responseGroupKey)),
+                    expWithArgs('checkResponseValueWithRegex', fullKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+                    expWithArgs('responseHasKeysAny', fullKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
+                )
+            }
         ]
     })
 }
