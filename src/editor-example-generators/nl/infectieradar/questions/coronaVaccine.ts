@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { initMultipleChoiceGroup, initSingleChoiceGroup } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../../../editor-engine/utils/simple-generators";
 import { multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../../../common_question_pool/key-definitions";
@@ -138,7 +139,7 @@ const coronavaccineWhen = (parentKey: string, key: string, keyCoronaVaccination:
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [keyCoronaVaccination].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '3', '4')
+        CommonExpressions.singleChoiceOptionsSelected(keyCoronaVaccination, '3', '4')
     )
 
     // INFO POPUP

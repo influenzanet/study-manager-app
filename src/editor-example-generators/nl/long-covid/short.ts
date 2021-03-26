@@ -35,7 +35,7 @@ export const generateShort = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
 
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
-    surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
+    //surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
 
     return surveyEditor.getSurvey();
 }

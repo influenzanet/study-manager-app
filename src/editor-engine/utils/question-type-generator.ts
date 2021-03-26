@@ -1,6 +1,6 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
-import { likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
@@ -54,6 +54,64 @@ const generateSingleChoiceQuestion = (props: {
     }
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, props.responseOptions);
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+const generateDropDownQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    responseOptions: Array<OptionDef>;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initDropdownGroup(singleChoiceKey, props.responseOptions);
     simpleEditor.setResponseGroupWithContent(rg_inner);
 
     if (props.bottomDisplayCompoments) {
@@ -190,7 +248,6 @@ const generateSimpleLikertGroupQuestion = (props: {
     }
 
     if (props.isRequired) {
-        console.warn('todo: check for each row answered');
         simpleEditor.editor.addValidation({
             key: 'r',
             type: 'hard',
@@ -217,10 +274,201 @@ const generateSimpleLikertGroupQuestion = (props: {
     return simpleEditor.getItem();
 }
 
+const generateNumericSliderQuestion = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    sliderLabel: Map<string, string>;
+    min?: number | ExpressionArg;
+    max?: number | ExpressionArg;
+    stepSize?: number | ExpressionArg;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner: ItemComponent = {
+        key: 'slider', role: 'sliderNumeric',
+        content: generateLocStrings(props.sliderLabel),
+        properties: {
+            min: props.min !== undefined ? (typeof (props.min) === 'number' ? { dtype: 'num', num: props.min } : props.min) : undefined,
+            max: props.max !== undefined ? (typeof (props.max) === 'number' ? { dtype: 'num', num: props.max } : props.max) : undefined,
+            stepSize: props.stepSize ? (typeof (props.stepSize) === 'number' ? { dtype: 'num', num: props.stepSize } : props.stepSize) : undefined,
+        }
+    }
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+interface Duration {
+    reference?: number | Expression;
+    years?: number;
+    months?: number;
+    days?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+};
+
+const durationObjectToSeconds = (duration: Duration): number => {
+    let value = 0;
+
+    if (duration.years !== undefined) {
+        value += duration.years * 31536000;
+    }
+    if (duration.months !== undefined) {
+        value += duration.months * 2592000;
+    }
+    if (duration.days !== undefined) {
+        value += duration.days * 86400;
+    }
+    if (duration.hours !== undefined) {
+        value += duration.hours * 3600;
+    }
+    if (duration.minutes !== undefined) {
+        value += duration.minutes * 60;
+    }
+    if (duration.seconds !== undefined) {
+        value += duration.seconds;
+    }
+    return value;
+}
+
+const generateDatePickerInput = (props: {
+    parentKey: string;
+    itemKey: string;
+    version?: number;
+    dateInputMode: 'YMD' | 'YM' | 'Y';
+    questionText: Map<string, string>;
+    questionSubText?: Map<string, string>;
+    helpGroupContent?: Array<{
+        content: Map<string, string>,
+        style?: Array<{ key: string, value: string }>,
+    }>;
+    condition?: Expression;
+    topDisplayCompoments?: Array<ItemComponent>;
+    inputLabelText?: Map<string, string>;
+    placeholderText?: Map<string, string>;
+    minRelativeDate?: Duration;
+    maxRelativeDate?: Duration;
+    bottomDisplayCompoments?: Array<ItemComponent>;
+    isRequired?: boolean;
+    footnoteText?: Map<string, string>;
+}): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner: ItemComponent = {
+        key: datePickerKey, role: 'dateInput',
+        properties: {
+            dateInputMode: { str: props.dateInputMode },
+            min: props.minRelativeDate ? {
+                dtype: 'exp', exp:
+                    expWithArgs(
+                        'timestampWithOffset',
+                        durationObjectToSeconds(props.minRelativeDate),
+                        props.minRelativeDate.reference ? props.minRelativeDate.reference : undefined
+                    )
+            } : undefined,
+            max: props.maxRelativeDate ? {
+                dtype: 'exp', exp:
+                    expWithArgs(
+                        'timestampWithOffset',
+                        durationObjectToSeconds(props.maxRelativeDate),
+                        props.maxRelativeDate.reference ? props.maxRelativeDate.reference : undefined
+                    )
+            } : undefined,
+        },
+        content: props.inputLabelText ? generateLocStrings(props.inputLabelText) : undefined,
+        description: props.placeholderText ? generateLocStrings(props.placeholderText) : undefined,
+    };
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
 export const QuestionGenerators = {
     singleChoice: generateSingleChoiceQuestion,
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
+    dateInput: generateDatePickerInput,
+    dropDown: generateDropDownQuestion,
+    numericSlider: generateNumericSliderQuestion,
 }
 
 
@@ -571,7 +819,7 @@ export const initLikertScaleGroup = (
             role: 'text',
             style: [{
                 key: 'className', value:
-                    'mb-1 fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-7' : '')
+                    'mb-1 fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-2' : '')
             }, { key: 'variant', value: 'h6' }],
             content: generateLocStrings(row.content),
         });
