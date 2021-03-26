@@ -9,15 +9,44 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CIS?"],
+            ["nl", "Vermoeidheid"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
+            ]))
+        },
+        {
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Je kunt elke vraag beantwoorden door in één van de zeven hokjes een kruisje te zetten. De plaats van het kruisje geeft aan in welke mate je vindt dat de uitspraak op jou van toepassing is."],
+            ]))
+        },
+        {
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Wanneer je vindt dat het antwoord niet 'ja, dat klopt', maar ook niet 'nee, dat klopt niet' is, zet dan een kruisje in het hokje dat het meest overeenkomt met je gevoel."],
+            ]))
+        },
+        {
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+            ]))
+        },
+        {
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-1 border-bottom border-1 border-grey-5 pt-1 mt-2 fw-bold' }],
             content: generateLocStrings(new Map([
                 ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
             ]))
-        }],
+        }
+    ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -52,42 +81,42 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Ik voel me moe"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Lichamelijk voel ik me uitgeput"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Ik voel me fit"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Ik voel me slap"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Ik voel me uitgerust"],
                 ])
             },
             {
                 key: 'f', content: new Map([
-                    ["nl", "TODO: f"],
+                    ["nl", "Lichamelijk voel ik me in een slechte conditie"],
                 ])
             },
             {
                 key: 'g', content: new Map([
-                    ["nl", "TODO: g"],
+                    ["nl", "Ik ben gauw moe"],
                 ])
             },
             {
                 key: 'h', content: new Map([
-                    ["nl", "TODO: h"],
+                    ["nl", "Lichamelijk voel ik me in een uitstekende conditie"],
                 ])
             },
         ]
