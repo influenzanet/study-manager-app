@@ -30,7 +30,7 @@ const q_age = (parentKey: string, isRequired?: boolean, keyOverride?: string): S
         itemKey: itemKey,
         dateInputMode: 'YM',
         questionText: new Map([
-            ["nl", "Q1: Age?"],
+            ["nl", "Wat is je geboortemaand en jaar?"],
         ]),
         minRelativeDate: {
             years: -110
@@ -49,7 +49,7 @@ const q_gender = (parentKey: string, isRequired?: boolean, keyOverride?: string)
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Q2: Gender?"],
+            ["nl", "Wat is je geslacht?"],
         ]),
         responseOptions: [
             {
