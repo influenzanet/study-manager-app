@@ -12,7 +12,7 @@ import { Q_mMRC } from "./questions/mMRC";
 import { NCSIGroup } from "./questions/ncsi";
 import { SaTGroup } from "./questions/sat";
 import { SF36Group } from "./questions/sf-36";
-import { Q_TICP } from "./questions/ticp";
+import { GeneralHealthGroup } from "./questions/ticp";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -35,7 +35,8 @@ export const generateT0 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    surveyEditor.addSurveyItemToRoot(Q_TICP(surveyKey, true));
+    const generalHealthGroupEditor = new GeneralHealthGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(generalHealthGroupEditor.getItem());
 
     surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, true));
 

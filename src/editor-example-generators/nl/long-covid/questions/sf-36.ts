@@ -200,38 +200,38 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q4?"],
+            ["nl", "Had je, ten gevolge van je lichamelijke gezondheid, de afgelopen 4 weken één van de volgende problemen bij uw werk of andere dagelijkse bezigheden?"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Ja"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nee"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Je hebt minder bereikt dan je zou willen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Je was beperkt in het soort werk of het soort bezigheden"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Je had moeite met het werk of andere bezigheden (het kostte je bijvoorbeeld extra inspanning)"],
                 ])
             },
         ]
@@ -245,33 +245,33 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q5?"],
+            ["nl", "Had je, ten gevolge van een emotioneel probleem (bijvoorbeeld doordat je jezelf depressief of angstig voelde), de afgelopen 4 weken één van de volgende problemen bij uw werk of andere dagelijkse bezigheden?"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Ja"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nee"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Je hebt minder bereikt dan je zou willen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Je hebt werk of andere bezigheden niet zo zorgvuldig gedaan als je gewend bent"],
                 ])
             },
         ]
@@ -285,13 +285,37 @@ const Q6 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q6?"],
+            ["nl", "In hoeverre heeft je lichamelijke gezondheid of hebben je emotionele problemen je de afgelopen 4 weken belemmerd in je normale sociale bezigheden met gezin, vrienden, buren of anderen?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Helemaal niet"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Enigszins"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nogal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Veel"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Heel erg veel"],
                 ])
             },
         ]
@@ -305,13 +329,43 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q7?"],
+            ["nl", "Hoeveel pijn had je de afgelopen 4 weken?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '6', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Geen"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Heel licht"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Licht"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nogal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstig"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Heel ernstig"],
                 ])
             },
         ]
@@ -325,13 +379,37 @@ const Q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q8?"],
+            ["nl", "In welke mate heeft pijn je de afgelopen vier weken belemmerd bij je normale werkzaamheden (zowel werk buitenshuis als huishoudelijk werk)?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Helemaal niet"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Enigszins"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nogal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Veel"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Heel erg veel"],
                 ])
             },
         ]
@@ -345,79 +423,79 @@ const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q9?"],
+            ["nl", "Deze vragen gaan over hoe je jezelf de afgelopen 4 weken heeft gevoeld. Wil je bij elke vraag het antwoord aankruisen dat het beste aansluit bij hoe je jezelf hebt gevoeld?"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "voortdurend"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "meestal"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "vaak"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "soms"],
                 ])
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "zelden"],
                 ])
             }, {
                 key: '6', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "nooit"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Voelde je jezelf levenslustig?"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Voelde je jezelf erg zenuwachtig?"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Zat je zo erg in de put dat niets je kon opvrolijken?"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Voelde je jezelf kalm en rustig?"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Voelde je jezelf erg energiek?"],
                 ])
             },
             {
                 key: 'f', content: new Map([
-                    ["nl", "TODO: f"],
+                    ["nl", "Voelde je jezelf neerslachtig en somber?"],
                 ])
             },
             {
                 key: 'g', content: new Map([
-                    ["nl", "TODO: g"],
+                    ["nl", "Voelde je jezelf uitgeblust?"],
                 ])
             },
             {
                 key: 'h', content: new Map([
-                    ["nl", "TODO: h"],
+                    ["nl", "Voelde je jezelf gelukkig?"],
                 ])
             },
             {
                 key: 'i', content: new Map([
-                    ["nl", "TODO: i"],
+                    ["nl", "Voelde je jezelf moe?"],
                 ])
             },
         ]
@@ -432,13 +510,37 @@ const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q10?"],
+            ["nl", "Hoe vaak hebben je lichamelijke gezondheid of emotionele problemen gedurende de afgelopen 4 weken je sociale activiteiten (zoals bezoek aan vrienden of naaste familieleden) belemmerd?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Voortdurend"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Meestal"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Soms"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Zelden"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Nooit"],
                 ])
             },
         ]
@@ -452,51 +554,51 @@ const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q11?"],
+            ["nl", "Wil je het antwoord kiezen dat het beste weergeeft hoe juist of onjuist je elk van de volgende uitspraken voor jezelf vindt?"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "volkomen juist"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "grotendeels juist"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "weet ik niet"],
                 ])
             },
             {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "grotendeels onjuist"],
                 ])
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "volkomen onjuist"],
                 ])
             },
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Ik lijk gemakkelijker ziek te worden dan andere mensen"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Ik ben net zo gezond als andere mensen die ik ken"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Ik verwacht dat mijn gezondheid achteruit zal gaan"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Mijn gezondheid is uitstekend"],
                 ])
             },
         ]

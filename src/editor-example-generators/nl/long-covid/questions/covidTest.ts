@@ -247,19 +247,31 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q6"],
+            ["nl", "Met welke test is dit bevestigd?"],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "0"],
+                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest) "],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "1"],
+                    ["nl", "Bevestigd door bloedtest (serologie) "],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
                 ])
             },
         ],
@@ -275,7 +287,7 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q7"],
+            ["nl", "Denk en/of weet je dat je al eerder besmet bent geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)? (meer dan 10 dagen geleden)?"],
         ]),
         responseOptions: [
             {
@@ -315,19 +327,31 @@ const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, conditi
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q8"],
+            ["nl", "Met welke test is dit bevestigd?"],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "0"],
+                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest)"],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "1"],
+                    ["nl", "Bevestigd door bloedtest (serologie)"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
                 ])
             },
         ],
@@ -343,7 +367,7 @@ const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, con
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q9"],
+            ["nl", "Wanneer is deze test (ongeveer) afgenomen?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
@@ -363,7 +387,7 @@ const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, conditi
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q10"],
+            ["nl", "Wanneer denk je dat je besmet geweest bent met het coronavirus (ongeveer)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
