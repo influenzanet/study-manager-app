@@ -425,6 +425,7 @@ const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         questionText: new Map([
             ["nl", "Deze vragen gaan over hoe je jezelf de afgelopen 4 weken heeft gevoeld. Wil je bij elke vraag het antwoord aankruisen dat het beste aansluit bij hoe je jezelf hebt gevoeld?"],
         ]),
+        stackOnSmallScreen: true,
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -556,6 +557,7 @@ const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Wil je het antwoord kiezen dat het beste weergeeft hoe juist of onjuist je elk van de volgende uitspraken voor jezelf vindt?"],
         ]),
+        stackOnSmallScreen: true,
         scaleOptions: [
             {
                 key: '1', content: new Map([
