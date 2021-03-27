@@ -18,20 +18,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
             ]))
         },
-        {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Je kunt elke vraag beantwoorden door in één van de zeven hokjes een kruisje te zetten. De plaats van het kruisje geeft aan in welke mate je vindt dat de uitspraak op jou van toepassing is."],
-            ]))
-        },
-        {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Wanneer je vindt dat het antwoord niet 'ja, dat klopt', maar ook niet 'nee, dat klopt niet' is, zet dan een kruisje in het hokje dat het meest overeenkomt met je gevoel."],
-            ]))
-        },
+      
         {
             role: 'text',
             style: [{ key: 'variant', value: 'p' }],

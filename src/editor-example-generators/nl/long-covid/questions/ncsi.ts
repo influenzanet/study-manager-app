@@ -26,7 +26,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "NCSI.Q1?"],
+            ["nl", "Geef aan hoe benauwd/ kortademig u zich de meeste dagen van de afgelopen maand voelde:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -81,7 +81,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", ""],
                 ])
             },
         ]
@@ -95,7 +95,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "NCSI.Q2?"],
+            ["nl", "Geef aan hoe vervelend u uw benauwdheid/ kortademigheid vond in de afgelopen maand:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -150,7 +150,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", ""],
                 ])
             },
         ]
@@ -164,7 +164,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "NCSI.Q3?"],
+            ["nl", "Geef aan hoe benauwd/ kortademig u zich voelde gedurende de meeste dagelijkse activiteiten in de afgelopen maand:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -219,7 +219,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", ""],
                 ])
             },
         ]
@@ -233,8 +233,20 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "NCSI.Q4?"],
+            ["nl", "Emoties bij kortademigheid of benauwdheid"],
         ]),
+        questionSubText: new Map([
+            ["nl", "De volgende vragen hebben betrekking op emoties (gevoelens) die u kunt hebben terwijl u benauwd/kortademig bent."],
+        ]),
+        topDisplayCompoments: [
+        {
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Vink het getal aan dat aangeeft hoe hevig die emotie is als u benauwd/kortademig bent."],
+            ]))
+        },
+    ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -257,32 +269,32 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Bezorgd"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Angstig"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Paniekerig"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Gefrustreerd"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Humeurig"],
                 ])
             },
             {
                 key: 'f', content: new Map([
-                    ["nl", "TODO: f"],
+                    ["nl", "Geïrriteerd"],
                 ])
             },
         ]

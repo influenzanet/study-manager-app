@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 
 export const Q_CBS = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'CBS';
@@ -8,59 +9,63 @@ export const Q_CBS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CBS?"],
+            ["nl", "Eenzaamheid"],
         ]),
+        topDisplayCompoments: [{
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Hieronder volgen 6 uitspraken. Wil je van elk van de volgende uitspraken aangeven in hoeverre die op jou, zoals je de laatste tijd bent, van toepassing is?"],
+            ]))
+        },
+    ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "ja"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "min of meer"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "nee"],
                 ])
             },
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Ik ervaar een leegte om me heen"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Er zijn genoeg mensen op wie ik in geval van narigheid kan terugvallen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Ik heb veel mensen op wie ik volledig kan vertrouwen"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Ik mis mensen om me heen"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Er zijn voldoende mensen met wie ik me nauw verbonden voel"],
                 ])
             },
             {
                 key: 'f', content: new Map([
-                    ["nl", "TODO: f"],
+                    ["nl", "Vaak voel ik me in de steek gelaten"],
                 ])
             },
-            {
-                key: 'g', content: new Map([
-                    ["nl", "TODO: g"],
-                ])
-            },
+           
         ]
     });
 }
