@@ -2436,10 +2436,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/bootstrap@^5.0.11":
-  version "5.0.11"
-  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-5.0.11.tgz#5ec8620730f8564a95616c826ab2860dc4e811ca"
-  integrity sha512-oru7NLIzboWyj88JB8+9kkP55fw6OfwEKc56ChwJRnC7CR5ZkML2wOz3X2sTTY3/DWgW87Ww48bVNL5qsKCm2A==
+"@types/bootstrap@^5.0.12":
+  version "5.0.12"
+  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-5.0.12.tgz#d044b6404bf3c89fc90df2822a86dfcd349db522"
+  integrity sha512-iowwPfp9Au6aoxS2hOgeRjXE25xdfLrTpmxzQSUs21z5qY3UZpmjSIWF4h8jPYPEXgZioIKLB2OSU8oWzzJAcQ==
   dependencies:
     "@popperjs/core" "2.6.0"
     "@types/jquery" "*"
@@ -2541,10 +2541,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.20.tgz#f7974863edd21d1f8a494a73e8e2b3658615c340"
   integrity sha512-Y93R97Ouif9JEOWPIUyU+eyIdyRqQR0I8Ez1dzku4hDx34NWh4HbtIc3WNzwB1Y9ULvNGeu5B8h8bVL5cAk4/A==
 
-"@types/node@^14.14.36":
-  version "14.14.36"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.36.tgz#5637905dbb15c30a33a3c65b9ef7c20e3c85ebad"
-  integrity sha512-kjivUwDJfIjngzbhooRnOLhGYz6oRFi+L+EpMjxroDYXwDw9lHrJJ43E+dJ6KAd3V3WxWAJ/qZE9XKYHhjPOFQ==
+"@types/node@^14.14.37":
+  version "14.14.37"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
+  integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -4040,10 +4040,10 @@ case-sensitive-paths-webpack-plugin@2.3.0:
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz#23ac613cc9a856e4f88ff8bb73bbb5e989825cf7"
   integrity sha512-/4YgnZS8y1UXXmC02xD5rRrBEu6T5ub+mQHLNRj0fzTRbgdBYhsNo2V5EqwgqrExjxsjtF/OpAKAMkKsxbD5XQ==
 
-case-web-ui@^1.1.11:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/case-web-ui/-/case-web-ui-1.1.11.tgz#f6aceb500e2fbd8e74c4521d7e3fbf48f62da4ef"
-  integrity sha512-n8VNNqtFDfxxVkez1k+e9o8W17WfsCASrlUrJWmVyFxjQDR1f7ncDj2qdlO+lVhCVFjBPWpULKGQtWlHLsnU0A==
+case-web-ui@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/case-web-ui/-/case-web-ui-1.1.12.tgz#02fecb5c72ffbd3f7891a56a1a51a8594a93642f"
+  integrity sha512-k2g3STNacEtLAtgSDJF32ofRZ5ZSvcmk0wdPc+sow0YImDdcTEh+zEL6rD+QgKArl9EGetQX2ItyHLdtq5jcJw==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.15.3"
 
@@ -10371,10 +10371,10 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-i18next@^11.8.11:
-  version "11.8.11"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.8.11.tgz#bdf0440bad0d576664057a0c1233cb4fecf9eaab"
-  integrity sha512-S17B952IB8T5Zs0SoGNR5zSHU5N7+X2D2OydhAtqNHT+iw9Tbt7WBNExufe9NbmpUQUUjKrCHIkl2diNTdGYtA==
+react-i18next@^11.8.12:
+  version "11.8.12"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.8.12.tgz#6a9f57277062fb6a6129cad4db5e6198d5c60b58"
+  integrity sha512-M2PSVP9MzT/7yofXfCOF5gAVotinrM4BXWiguk8uFSznJsfFzTjrp3K9CBWcXitpoCBVZGZJ2AnbaWGSNkJqfw==
   dependencies:
     "@babel/runtime" "^7.13.6"
     html-parse-stringify2 "^2.0.1"

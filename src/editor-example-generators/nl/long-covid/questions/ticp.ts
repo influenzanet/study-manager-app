@@ -39,6 +39,19 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "TODO"],
                 ])
             },
+            {
+                key: 'subtitle1', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Subtitle 1"],
+                ])
+            },
+            {
+                key: 'todo2', role: 'option',
+                content: new Map([
+                    ["nl", "TODO"],
+                ])
+            },
         ],
         isRequired: isRequired,
     })
