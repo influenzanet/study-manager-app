@@ -654,7 +654,7 @@ const l3q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverrid
     return QuestionGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,
-        condition:  CommonExpressions.multipleChoiceOptionsSelected(keyQ8, 'ja_klachten'), // TODO: Fix this ;-)
+        condition: CommonExpressions.singleChoiceOptionsSelected(keyQ8, 'ja_klachten'),
         questionText: new Map([
             ["nl", "Hoeveel dagen ben je ziek gemeld van werk/school? "],
         ]),
