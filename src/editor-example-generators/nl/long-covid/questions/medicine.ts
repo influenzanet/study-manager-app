@@ -35,8 +35,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             content: generateLocStrings(new Map([
                 ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
             ]))
-        },
-    ],
+        },],
         responseOptions: [
             {
                 key: 'ja', role: 'option',
@@ -56,7 +55,12 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a';
-    return QuestionGenerators.dropDown({
+
+    const inputProperties = {
+        min: 1,
+        max: 50
+    };
+    return QuestionGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -65,125 +69,144 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ]),
         responseOptions: [
             {
-                key: '1', role: 'option',
+                key: '1', role: 'numberInput',
                 content: new Map([
                     ["nl", "Cardioloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '2', role: 'option',
+                key: '2', role: 'numberInput',
                 content: new Map([
                     ["nl", "Dermatoloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '3', role: 'option',
+                key: '3', role: 'numberInput',
                 content: new Map([
                     ["nl", "Endocrinoloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '4', role: 'option',
+                key: '4', role: 'numberInput',
                 content: new Map([
                     ["nl", "Fysiotherapeut"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '5', role: 'option',
+                key: '5', role: 'numberInput',
                 content: new Map([
                     ["nl", "Gynaecoloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '6', role: 'option',
+                key: '6', role: 'numberInput',
                 content: new Map([
                     ["nl", "Homeopaat"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '7', role: 'option',
+                key: '7', role: 'numberInput',
                 content: new Map([
                     ["nl", "Huisarts"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
-           
+
             {
-                key: '8', role: 'option',
+                key: '8', role: 'numberInput',
                 content: new Map([
                     ["nl", "Immunoloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '9', role: 'option',
+                key: '9', role: 'numberInput',
                 content: new Map([
                     ["nl", "Internist"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '10', role: 'option',
+                key: '10', role: 'numberInput',
                 content: new Map([
                     ["nl", "Maatschappelijk werker"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '11', role: 'option',
+                key: '11', role: 'numberInput',
                 content: new Map([
                     ["nl", "Neuroloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '12', role: 'option',
+                key: '12', role: 'numberInput',
                 content: new Map([
                     ["nl", "Oogarts"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '13', role: 'option',
+                key: '13', role: 'numberInput',
                 content: new Map([
                     ["nl", "Oncoloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '14', role: 'option',
+                key: '14', role: 'numberInput',
                 content: new Map([
                     ["nl", "Psychiater"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '15', role: 'option',
+                key: '15', role: 'numberInput',
                 content: new Map([
                     ["nl", "Psycholoog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '16', role: 'option',
+                key: '16', role: 'numberInput',
                 content: new Map([
                     ["nl", "Reumatoloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '17', role: 'option',
+                key: '17', role: 'numberInput',
                 content: new Map([
                     ["nl", "Plastisch chirurg"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '18', role: 'option',
+                key: '18', role: 'numberInput',
                 content: new Map([
                     ["nl", "Uroloog"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '19', role: 'option',
+                key: '19', role: 'numberInput',
                 content: new Map([
                     ["nl", "Revalidatiearts"],
-                ])
+                ]),
+                optionProps: inputProperties,
             },
             {
-                key: '20', role: 'option',
+                key: '20', role: 'input',
                 content: new Map([
                     ["nl", "Andere zorgverlener"],
-                ])
+                ]),
             },
         ]
     });
@@ -200,20 +223,20 @@ const Q2b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ]),
         topDisplayCompoments: [
             {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Tel voor het aantal contacten alle controles, spreekuren, bezoeken op afspraak, telefonische contacten en huisbezoeken mee."],
-            ]))
-        },
-        {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Telefonische contacten om een afspraak te maken dienen niet meegeteld te worden. Als je een antwoord niet precies weet, mag je gerust een schatting geven."],
-            ]))
-        },
-    ],
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Tel voor het aantal contacten alle controles, spreekuren, bezoeken op afspraak, telefonische contacten en huisbezoeken mee."],
+                ]))
+            },
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Telefonische contacten om een afspraak te maken dienen niet meegeteld te worden. Als je een antwoord niet precies weet, mag je gerust een schatting geven."],
+                ]))
+            },
+        ],
         responseOptions: [
             {
                 key: '1', role: 'option',

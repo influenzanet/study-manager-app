@@ -583,6 +583,15 @@ const initResponseGroup = (
             optEditor.setStyles(optionDef.style);
         }
         if (optionDef.optionProps) {
+            if (typeof (optionDef.optionProps.min) === 'number') {
+                optionDef.optionProps.min = { dtype: 'num', num: optionDef.optionProps.min }
+            }
+            if (typeof (optionDef.optionProps.max) === 'number') {
+                optionDef.optionProps.max = { dtype: 'num', num: optionDef.optionProps.max }
+            }
+            if (typeof (optionDef.optionProps.stepSize) === 'number') {
+                optionDef.optionProps.stepSize = { dtype: 'num', num: optionDef.optionProps.stepSize }
+            }
             optEditor.setProperties(optionDef.optionProps);
         }
         groupEdit.addItemComponent(optEditor.getComponent());
