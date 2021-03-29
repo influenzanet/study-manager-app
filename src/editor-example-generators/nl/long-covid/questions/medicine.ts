@@ -420,7 +420,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             {
                 key: '3', role: 'option',
                 content: new Map([
-                    ["nl", "Maagbeschermers/maagzuurremmers (bijvoorbeeld omeprazol)"],
+                    ["nl", "Maagbeschermers/ maagzuurremmers (bijvoorbeeld omeprazol)"],
                 ])
             },
             {
