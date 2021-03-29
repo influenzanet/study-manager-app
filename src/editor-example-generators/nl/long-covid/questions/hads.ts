@@ -35,13 +35,31 @@ const Q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.a?"],
+            ["nl", "Ik voel me gespannen:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "meestal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "vaak"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "af en toe, soms"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal niet"],
                 ])
             },
         ]
@@ -55,13 +73,31 @@ const Q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.b?"],
+            ["nl", "Ik geniet nog steeds van de dingen waar ik vroeger van genoot:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "zeker zo veel"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "wel wat minder"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "duidelijk minder"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "eigenlijk nauwelijks nog"],
                 ])
             },
         ]
@@ -75,13 +111,31 @@ const Q_c = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.c?"],
+            ["nl", "Ik heb een soort angstgevoel alsof er iets vreselijks zal gebeuren:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "jazeker, en vrij erg"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "ja, maar niet zo erg"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "een beetje, maar het hindert me niet"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal niet"],
                 ])
             },
         ]
@@ -95,13 +149,31 @@ const Q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.d?"],
+            ["nl", "Ik kan  best lachen en de dingen van de vrolijke kant zien:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "net zoveel als vroeger"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "nu wel wat minder"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "duidelijk minder"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal niet"],
                 ])
             },
         ]
@@ -115,13 +187,31 @@ const Q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.e?"],
+            ["nl", "Ik maak me ongerust:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "heel erg vaak"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "vaak"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "af en toe, maar niet zo vaak"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "heel soms"],
                 ])
             },
         ]
@@ -135,13 +225,31 @@ const Q_f = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.f?"],
+            ["nl", "Ik voel me opgewekt:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "helemaal niet"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "heel af en toe"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "soms"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "meestal"],
                 ])
             },
         ]
@@ -155,13 +263,31 @@ const Q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.g?"],
+            ["nl", "Ik kan best rustig zitten en me ontspannen:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "jazeker"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "meestal"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "af en toe"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal niet"],
                 ])
             },
         ]
@@ -175,13 +301,31 @@ const Q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.h?"],
+            ["nl", "Ik heb het gevoel dat alles moeizamer gaat:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "bijna altijd"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "heel vaak"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "soms"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal niet"],
                 ])
             },
         ]
@@ -195,15 +339,34 @@ const Q_i = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.i?"],
+            ["nl", "Ik heb een soort angstig, gespannen gevoel in mijn buik:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "helemaal niet"],
                 ])
             },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "soms"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "vrij vaak"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "heel vaak"],
+                ])
+            },
+
         ]
     });
 }
@@ -215,13 +378,31 @@ const Q_j = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.j?"],
+            ["nl", "Het interesseert me niet meer hoe ik eruit zie:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "inderdaad, helemaal niet meer"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "niet meer zoveel als eigenlijk zou moeten"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "het interesseert met wel, maar iets minder dan vroeger"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "het interesseert me nog net zoveel als vroeger"],
                 ])
             },
         ]
@@ -235,13 +416,31 @@ const Q_k = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.k?"],
+            ["nl", "Ik ben onrustig en voel dat ik iets te doen moet hebben:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "inderdaad, heel duidelijk"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "duidelijk"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "enigszins"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal niet"],
                 ])
             },
         ]
@@ -255,13 +454,31 @@ const Q_l = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.l?"],
+            ["nl", "Ik verheug me van tevoren op dingen die komen gaan:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "net zoveel als vroeger"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "een beetje minder dan vroeger"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "veel minder dan vroeger"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "bijna nooit"],
                 ])
             },
         ]
@@ -275,13 +492,31 @@ const Q_m = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.m?"],
+            ["nl", "Ik raak plotseling in paniek:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "inderdaad, zeer vaak"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "tamelijk vaak"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "soms"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "helemaal nooit"],
                 ])
             },
         ]
@@ -295,15 +530,34 @@ const Q_n = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "HADS.n?"],
+            ["nl", "Ik kan van een goed boek genieten, of van zoiets als een radio- of televisieprogramma:"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "vaak"],
                 ])
             },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "tamelijk vaak"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "af en toe"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "heel zelden"],
+                ])
+            },
+
         ]
     });
 }

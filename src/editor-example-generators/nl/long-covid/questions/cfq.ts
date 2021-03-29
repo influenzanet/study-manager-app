@@ -26,7 +26,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q1?"],
+            ["nl", "CFQ.Q1"],
         ]),
         scaleOptions: [
             {
@@ -54,27 +54,27 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Iets lezen en vlak daarna niet meer weten wat je gelezen hebt, zodat je het moet overlezen"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Vergeten waarom je naar een bepaald gedeelte van je huis bent gelopen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Wegwijzers over het hoofd zien"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Links en rechts verwarren bij het beschrijven van een route"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Per ongeluk tegen mensen opbotsen"],
                 ])
             },
         ]
@@ -88,55 +88,55 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q2?"],
+            ["nl", "CFQ.Q2"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zeer vaak"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Vaak"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Af en toe"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zelden"],
                 ]),
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nooit"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Niet meer weten of je het licht of het gas hebt uitgedaan, of de deur hebt afgesloten"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Niet luisteren naar de naam van een persoon op het moment dat deze persoon zich aan je voorstelt"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Iets er uitflappen en achteraf bedenken dat dat wel eens beledigend voor iemand zou kunnen zijn"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Niet merken dat iemand iets tegen je zegt als je met iets anders bezig bent"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Boos worden en daar later spijt van hebben"],
                 ])
             },
         ]
@@ -150,55 +150,55 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q3?"],
+            ["nl", "CFQ.Q3"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zeer vaak"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Vaak"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Af en toe"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zelden"],
                 ]),
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nooit"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Belangrijke brieven dagenlang onbeantwoord laten"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Vergeten welke straat je moet inslaan als je een route kiest die je goed kent, maar die je zelden gebruikt"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "In een supermarkt niet kunnen vinden wat je zoekt terwijl het er wel is"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Je plotseling afvragen of je een woord op de juiste manier gebruikt"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Moeite hebben met het nemen van beslissingen"],
                 ])
             },
         ]
@@ -212,55 +212,55 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q4?"],
+            ["nl", "CFQ.Q4"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zeer vaak"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Vaak"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Af en toe"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zelden"],
                 ]),
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nooit"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Afspraken vergeten"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Vergeten waar je iets hebt neergelegd, zoals een boek of een krant"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Per ongeluk iets weggooien wat je nodig hebt en bewaren wat je wilde weggooien"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Dagdromen terwijl je eigenlijk naar iets of iemand zou moeten luisteren"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Namen van mensen vergeten"],
                 ])
             },
         ]
@@ -274,55 +274,55 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q5?"],
+            ["nl", "CFQ.Q5"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zeer vaak"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Vaak"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Af en toe"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Zelden"],
                 ]),
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nooit"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Beginnen met iets maar het niet afmaken, omdat je ongemerkt met iets anders bent begonnen"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Niet op een woord kunnen komen terwijl het 'op het puntje van je tong' ligt"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "In een winkel vergeten wat je kwam kopen"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Dingen uit je handen laten vallen"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "In een gesprek niets meer weten om over te praten"],
                 ])
             },
         ]
