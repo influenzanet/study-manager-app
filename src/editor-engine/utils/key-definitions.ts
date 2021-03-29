@@ -6,5 +6,6 @@ export const multipleChoiceKey = 'mcg';
 export const dropDownKey = 'ddg';
 export const sliderCategoricalKey = "scc";
 export const inputKey = "ic";
+export const numericInputKey = "num";
 export const datePickerKey = "date";
 export const matrixKey = "mat";
