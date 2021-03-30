@@ -1308,7 +1308,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Getuigschrift tweede graad secundair onderwijs"],
                 ["fr-be", "Le certificat d'enseignement secondaire du deuxième degré"],
                 ["de-be", "Zeugnis des zweiten Grades der Sekundarschule"],
-                ["en", "Grade of secondary school until second cycle"],
+                ["en", "Degree of secondary school until second cycle"],
             ])
         },
         {
@@ -1317,7 +1317,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Diploma secundair onderwijs"],
                 ["fr-be", "Le diplôme de l’enseignement secondaire"],
                 ["de-be", "Abschlusszeugnis der Sekundarschule"],
-                ["en", "Grade of secondary school (all three cycles)"],
+                ["en", "Degree of secondary school (all three cycles)"],
             ])
         },
         {
@@ -1326,7 +1326,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Professionele of Academische Bachelor opleiding"],
                 ["fr-be", "Un bachelier professionnel ou académique"],
                 ["de-be", "Professionelle oder Akademische Bachelor-Ausbilung"],
-                ["en", "A professional or academic bachelor grade"],
+                ["en", "A professional or academic bachelor degree"],
             ])
         },
         {
@@ -1335,7 +1335,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Master opleiding of PhD (doctor)"],
                 ["fr-be", "Une maîtrise ou un doctorat (docteur)"],
                 ["de-be", "Master-Ausbildung oder PhD (Dr.)"],
-                ["en", "A master or PhD grade"],
+                ["en", "A master or PhD degree"],
             ])
         },
         {
