@@ -34,6 +34,9 @@ const q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         sliderLabel: new Map([
             ["nl", "Mijn reukvermogen voorafgaand dit onderzoek: (geen reukvermogen 0 - uitstekend reukvermogen 100)"],
         ]),
+        noResponseLabel: new Map([
+            ["nl", "MOVE SLIDER"],
+        ]),
         min: 0,
         max: 100,
     });
@@ -50,6 +53,9 @@ const q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ]),
         sliderLabel: new Map([
             ["nl", "Mijn reukvermogen op dit moment: (geen reukvermogen 0 - uitstekend reukvermogen 100)"],
+        ]),
+        noResponseLabel: new Map([
+            ["nl", "MOVE SLIDER"],
         ]),
         min: 0,
         max: 100,
@@ -109,6 +115,9 @@ const q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         sliderLabel: new Map([
             ["nl", "Mijn smaakvermogen voorafgaand aan dit onderzoek: (geen smaakvermogen 0 - uitstekend smaakvermogen 100):"],
         ]),
+        noResponseLabel: new Map([
+            ["nl", "MOVE SLIDER"],
+        ]),
         min: 0,
         max: 100,
     });
@@ -127,6 +136,9 @@ const q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ]),
         sliderLabel: new Map([
             ["nl", "Mijn smaakvermogen op dit moment: (geen smaakvermogen 0 - uitstekend smaakvermogen 100):"],
+        ]),
+        noResponseLabel: new Map([
+            ["nl", "MOVE SLIDER"],
         ]),
         min: 0,
         max: 100,
@@ -197,6 +209,9 @@ const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         sliderLabel: new Map([
             ["nl", "Mijn vermogen voor het voelen van sensaties voorafgaand aan dit onderzoek: (helemaal niet gevoelig 0 - heel erg gevoelig 100"],
         ]),
+        noResponseLabel: new Map([
+            ["nl", "MOVE SLIDER"],
+        ]),
         min: 0,
         max: 100,
     });
@@ -213,6 +228,9 @@ const q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ]),
         sliderLabel: new Map([
             ["nl", "Mijn vermogen voor het voelen van sensaties op dit moment: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],
+        ]),
+        noResponseLabel: new Map([
+            ["nl", "MOVE SLIDER"],
         ]),
         min: 0,
         max: 100,

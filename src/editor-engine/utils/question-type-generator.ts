@@ -303,6 +303,7 @@ const generateSimpleLikertGroupQuestion = (props: LikertGroupQuestionProps): Sur
 
 interface NumericSliderProps extends GenericQuestionProps {
     sliderLabel: Map<string, string>;
+    noResponseLabel: Map<string, string>;
     min?: number | ExpressionArg;
     max?: number | ExpressionArg;
     stepSize?: number | ExpressionArg;

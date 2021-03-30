@@ -138,7 +138,7 @@ const TestViewer: React.FC = () => {
                                 }}
                                 /* context={{
                                     participantFlags: {
-                                        prev: 1
+                                        prev: "1",
                                     }
                                 }} */
                                 submitBtnText={'Submit'}

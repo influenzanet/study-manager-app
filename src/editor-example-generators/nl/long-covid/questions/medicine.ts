@@ -60,6 +60,8 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         min: 1,
         max: 50
     };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+
     return QuestionGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -74,6 +76,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Cardioloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '2', role: 'numberInput',
@@ -81,6 +84,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Dermatoloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '3', role: 'numberInput',
@@ -88,6 +92,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Endocrinoloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '4', role: 'numberInput',
@@ -95,6 +100,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Fysiotherapeut"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '5', role: 'numberInput',
@@ -102,6 +108,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Gynaecoloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '6', role: 'numberInput',
@@ -109,6 +116,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Homeopaat"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '7', role: 'numberInput',
@@ -116,6 +124,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Huisarts"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
 
             {
@@ -124,6 +133,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Immunoloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '9', role: 'numberInput',
@@ -131,6 +141,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Internist"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '10', role: 'numberInput',
@@ -138,6 +149,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Maatschappelijk werker"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '11', role: 'numberInput',
@@ -145,6 +157,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Neuroloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '12', role: 'numberInput',
@@ -152,6 +165,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Oogarts"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '13', role: 'numberInput',
@@ -159,6 +173,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Oncoloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '14', role: 'numberInput',
@@ -166,6 +181,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Psychiater"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '15', role: 'numberInput',
@@ -173,6 +189,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Psycholoog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '16', role: 'numberInput',
@@ -180,6 +197,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Reumatoloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '17', role: 'numberInput',
@@ -187,6 +205,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Plastisch chirurg"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '18', role: 'numberInput',
@@ -194,6 +213,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Uroloog"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '19', role: 'numberInput',
@@ -201,6 +221,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Revalidatiearts"],
                 ]),
                 optionProps: inputProperties,
+                style: inputStyle,
             },
             {
                 key: '20', role: 'input',
