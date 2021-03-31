@@ -42,11 +42,9 @@ const q_acuteSymptoms_1 = (parentKey: string, isRequired?: boolean, keyOverride?
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier geen, een beetje of veel last van gehad hebt in de afgelopen week."],
+            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
         ]),
-        questionSubText: new Map([
-            ["nl", "Klachten die u al voor een langere periode heeft of die worden veroorzaakt door een langdurige ziekte (chronische klachten), hoeven hier niet gemeld te worden."]
-        ]),
+       
         topDisplayCompoments: [
             {
                 role: 'text',
@@ -130,11 +128,9 @@ const q_acuteSymptoms_2 = (parentKey: string, isRequired?: boolean, keyOverride?
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier geen, een beetje of veel last van gehad hebt in de afgelopen week."],
+            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
         ]),
-        questionSubText: new Map([
-            ["nl", "Klachten die u al voor een langere periode heeft of die worden veroorzaakt door een langdurige ziekte (chronische klachten), hoeven hier niet gemeld te worden."]
-        ]),
+       
         topDisplayCompoments: [
             {
                 role: 'text',
@@ -217,11 +213,9 @@ const q_acuteSymptoms_3 = (parentKey: string, isRequired?: boolean, keyOverride?
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier geen, een beetje of veel last van gehad hebt in de afgelopen week."],
+            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
         ]),
-        questionSubText: new Map([
-            ["nl", "Klachten die u al voor een langere periode heeft of die worden veroorzaakt door een langdurige ziekte (chronische klachten), hoeven hier niet gemeld te worden."]
-        ]),
+       
         topDisplayCompoments: [
             {
                 role: 'text',

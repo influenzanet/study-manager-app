@@ -31,11 +31,14 @@ const q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Beoordeel je reukvermogen voorafgaand aan dit onderzoek"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Mijn reukvermogen voorafgaand dit onderzoek: (geen reukvermogen 0 - uitstekend reukvermogen 100)."],
+        ]),
         sliderLabel: new Map([
-            ["nl", "Mijn reukvermogen voorafgaand dit onderzoek: (geen reukvermogen 0 - uitstekend reukvermogen 100)"],
+            ["nl", "Jouw selectie:"],
         ]),
         noResponseLabel: new Map([
-            ["nl", "MOVE SLIDER"],
+            ["nl", "Beweeg de slider om je antwoord te geven"],
         ]),
         min: 0,
         max: 100,

@@ -27,7 +27,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener?"],
+            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener, anders dan voor corona?"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -67,7 +67,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden? "],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden, en hoe vaak? "],
         ]),
         responseOptions: [
             {
@@ -254,7 +254,7 @@ const Q2b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Telefonische contacten om een afspraak te maken dienen niet meegeteld te worden. Als je een antwoord niet precies weet, mag je gerust een schatting geven."],
+                    ["nl", "Telefonische contacten om een afspraak te maken dienen niet meegeteld te worden. Als je een antwoord niet precies weet, mag je een schatting geven."],
                 ]))
             },
         ],

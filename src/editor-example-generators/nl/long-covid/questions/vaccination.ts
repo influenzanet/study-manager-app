@@ -42,15 +42,15 @@ const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Express
         ]),
         responseOptions: [
             {
-                key: 'no', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
                 key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
+                ])
+            },
+            {
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
                 ])
             },
             {
@@ -236,21 +236,28 @@ const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition
         ]),
         responseOptions: [
             {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
+                key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
             },
             {
-                key: '2', role: 'option',
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            
+            {
+                key: 'dontknow', role: 'option',
                 content: new Map([
                     ["nl", "Weet ik niet"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],
@@ -273,21 +280,28 @@ const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?:
         ]),
         responseOptions: [
             {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
+                key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
             },
             {
-                key: '2', role: 'option',
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            
+            {
+                key: 'dontknow', role: 'option',
                 content: new Map([
                     ["nl", "Weet ik niet"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],

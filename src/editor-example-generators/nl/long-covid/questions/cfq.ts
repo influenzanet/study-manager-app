@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class CFQGroup extends GroupItemEditor {
@@ -26,8 +27,17 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q1"],
+            ["nl", "Cognitie (1)"],
         ]),
+        topDisplayCompoments: [
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "De volgende vragen gaan over kleine, alledaagse vergissingen die iedereen van tijd tot tijd maakt. Sommige van die vergissingen overkomen jou mogelijk wat vaker dan andere. Hieronder kun je het  hokje aanvinken dat hoort bij je antwoord."],
+                ]))
+            },
+            ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -54,7 +64,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "Iets lezen en vlak daarna niet meer weten wat je gelezen hebt, zodat je het moet overlezen"],
+                    ["nl", "Iets lezen en vlak daarna niet meer weten wat je gelezen hebt, zodat je nog een keer moet lezen"],
                 ])
             },
             {
@@ -88,7 +98,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q2"],
+            ["nl", "Cognitie (2)"],
         ]),
         scaleOptions: [
             {
@@ -116,7 +126,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "Niet meer weten of je het licht of het gas hebt uitgedaan, of de deur hebt afgesloten"],
+                    ["nl", "Niet meer weten of je het licht of het gas hebt uitgedaan, of de deur op slot hebt gedaan"],
                 ])
             },
             {
@@ -150,7 +160,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q3"],
+            ["nl", "Cognitie (3)"],
         ]),
         scaleOptions: [
             {
@@ -178,7 +188,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "Belangrijke brieven dagenlang onbeantwoord laten"],
+                    ["nl", "Belangrijke berichten dagenlang onbeantwoord laten"],
                 ])
             },
             {
@@ -212,7 +222,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q4"],
+            ["nl", "Cognitie (4)"],
         ]),
         scaleOptions: [
             {
@@ -250,7 +260,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "Per ongeluk iets weggooien wat je nodig hebt en bewaren wat je wilde weggooien"],
+                    ["nl", "Per ongeluk iets weggooien wat je nodig hebt of bewaren wat je wilde weggooien"],
                 ])
             },
             {
@@ -274,7 +284,7 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "CFQ.Q5"],
+            ["nl", "Cognitie (5)"],
         ]),
         scaleOptions: [
             {
