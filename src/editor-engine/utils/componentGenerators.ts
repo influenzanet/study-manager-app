@@ -14,6 +14,11 @@ interface OptionProps extends CommonProps {
     disabled?: Expression;
 }
 
+interface OptionTextProps extends CommonProps {
+    key: string;
+    className?: string;
+}
+
 const option = (props: OptionProps): OptionDef => {
     return {
         key: props.key,
@@ -21,6 +26,22 @@ const option = (props: OptionProps): OptionDef => {
         content: props.content,
         displayCondition: props.displayCondition,
         disabled: props.disabled,
+    }
+}
+
+const multipleChoiceOptionSubtitle = (props: OptionTextProps): OptionDef => {
+    const styles = [];
+    if (props.className !== undefined) {
+        styles.push({
+            key: 'className', value: props.className
+        })
+    }
+    return {
+        key: props.key,
+        role: 'text',
+        content: props.content,
+        displayCondition: props.displayCondition,
+        style: styles,
     }
 }
 
@@ -84,6 +105,7 @@ const footnote = (props: {
 
 export const ComponentGenerators = {
     option,
+    multipleChoiceOptionSubtitle,
     footnote,
     text,
     markdown,

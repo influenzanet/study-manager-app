@@ -1,9 +1,10 @@
 import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
+import { ItemEditor } from "../survey-editor/item-editor";
 import { ComponentGenerators } from "./componentGenerators";
 import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
-import { expWithArgs, generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
+import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
 
 
@@ -472,6 +473,21 @@ const generateDisplay = (props: DisplayProps): SurveyItem => {
     return simpleEditor.getItem();
 }
 
+const generateSurveyEnd = (parentKey: string, content: Map<string, string>, condition?: Expression): SurveyItem => {
+    const defaultKey = 'surveyEnd'
+    const itemKey = [parentKey, defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, type: 'surveyEnd', isGroup: false });
+
+    editor.setTitleComponent(
+        generateTitleComponent(content)
+    );
+
+    // CONDITION
+    editor.setCondition(condition);
+
+    return editor.getItem();
+}
+
 export const SurveyItemGenerators = {
     singleChoice: generateSingleChoiceQuestion,
     multipleChoice: generateMultipleChoiceQuestion,
@@ -481,6 +497,7 @@ export const SurveyItemGenerators = {
     numericSlider: generateNumericSliderQuestion,
     numericInput: generateNumericInputQuestion,
     display: generateDisplay,
+    surveyEnd: generateSurveyEnd,
 }
 
 

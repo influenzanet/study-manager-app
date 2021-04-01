@@ -1,4 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -147,13 +148,13 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Verzakking"],
                 ])
             },
-            {
-                key: 'andereziektes', role: 'text',
-                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+            ComponentGenerators.multipleChoiceOptionSubtitle({
+                key: 'andereziektes',
+                className: 'fw-bold mb-2',
                 content: new Map([
                     ["nl", "Andere ziektes"],
                 ])
-            },
+            }),
             {
                 key: 'andereziektes1', role: 'option',
                 content: new Map([
@@ -237,13 +238,14 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Migraine"],
                 ])
             },
-            {
-                key: 'andereproblemen', role: 'text',
-                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+            // ---------------------------
+            ComponentGenerators.multipleChoiceOptionSubtitle({
+                key: 'andereproblemen',
+                className: 'fw-bold mb-2',
                 content: new Map([
                     ["nl", "Andere lichamelijke of psychische problemen"],
                 ])
-            },
+            }),
             {
                 key: 'andereproblemen1', role: 'option',
                 content: new Map([
@@ -317,7 +319,7 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ])
             },
             {
-                key: 'geenvandeze', role: 'text',
+                key: 'geenvandezeText', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
                     ["nl", "Vink aan als geen van bovenstaande van toepassing is"],

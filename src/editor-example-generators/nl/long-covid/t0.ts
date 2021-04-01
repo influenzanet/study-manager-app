@@ -1,4 +1,5 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { SurveyItemGenerators } from "../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../editor-engine/utils/simple-survey-editor";
 import { Q_CBS } from "./questions/cbs";
 import { CFQGroup } from "./questions/cfq";
@@ -69,6 +70,10 @@ export const generateT0 = (): Survey | undefined => {
 
     const demographieGroupEditor = new DemographieGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(demographieGroupEditor.getItem());
+
+    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
+        ['nl', 'Thank you for your time, please submit here.']
+    ])));
 
     return surveyEditor.getSurvey();
 }
