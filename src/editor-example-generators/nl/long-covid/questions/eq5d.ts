@@ -1,6 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
-import { initEQ5DHealthIndicatorQuestion, QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -49,7 +49,7 @@ const eq5dCopyright = {
 const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'MOB';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
@@ -111,7 +111,7 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
 const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'SC';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
@@ -171,7 +171,7 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
 const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'ACT';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
@@ -235,7 +235,7 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
 const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'PAIN';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
@@ -294,7 +294,7 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
 
 const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'ANX';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([

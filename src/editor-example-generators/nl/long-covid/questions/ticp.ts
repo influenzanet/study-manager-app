@@ -1,5 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -19,7 +19,7 @@ export class GeneralHealthGroup extends GroupItemEditor {
 const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
 
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
@@ -33,7 +33,7 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             ]))
         }],
         responseOptions: [
-          
+
             {
                 key: 'long', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
@@ -216,21 +216,21 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Andere ziekten van het zenuwstelsel, zoals ziekte van Parkinson"],
                 ])
             },
-           
+
             {
                 key: 'zenuw3', role: 'option',
                 content: new Map([
                     ["nl", "Multiple sclerose"],
                 ])
             },
-           
+
             {
                 key: 'zenuw4', role: 'option',
                 content: new Map([
                     ["nl", "Duizeligheid met vallen"],
                 ])
             },
-       
+
             {
                 key: 'zenuw5', role: 'option',
                 content: new Map([
@@ -256,21 +256,21 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Overspannen, depressie, ernstige nervositeit"],
                 ])
             },
-           
+
             {
                 key: 'andereproblemen3', role: 'option',
                 content: new Map([
                     ["nl", "Chronische huidziekte of eczeem"],
                 ])
             },
-           
+
             {
                 key: 'andereproblemen4', role: 'option',
                 content: new Map([
                     ["nl", "Letsel door ongeluk in en om huis sport, school, werk of in het verkeer"],
                 ])
             },
-       
+
             {
                 key: 'andereproblemen5', role: 'option',
                 content: new Map([
@@ -289,21 +289,21 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Alcoholverslaving"],
                 ])
             },
-           
+
             {
                 key: 'andereproblemen8', role: 'option',
                 content: new Map([
                     ["nl", "Drugsverslaving"],
                 ])
             },
-           
+
             {
                 key: 'andereproblemen9', role: 'option',
                 content: new Map([
                     ["nl", "Ernstige vermoeidheid, langer dan 3 maanden"],
                 ])
             },
-       
+
             {
                 key: 'andereproblemen10', role: 'option',
                 content: new Map([
@@ -329,7 +329,7 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                     ["nl", "Geen van bovenstaande"],
                 ])
             },
-            
+
         ],
         isRequired: isRequired,
     })

@@ -1,12 +1,13 @@
 import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
+import { ComponentGenerators } from "./componentGenerators";
 import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
 
 
-interface OptionDef {
+export interface OptionDef {
     key: string;
     role: string;
     content?: Map<string, string>;
@@ -349,11 +350,7 @@ const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem =>
     }
 
     if (props.footnoteText) {
-        simpleEditor.addDisplayComponent({
-            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
-                { key: 'className', value: 'fs-small fst-italic text-center' }
-            ]
-        })
+        simpleEditor.addDisplayComponent(ComponentGenerators.footnote({ content: props.footnoteText }))
     }
 
     return simpleEditor.getItem();
@@ -456,17 +453,26 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
     }
 
     if (props.footnoteText) {
-        simpleEditor.addDisplayComponent({
-            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
-                { key: 'className', value: 'fs-small fst-italic text-center' }
-            ]
-        })
+        simpleEditor.addDisplayComponent(ComponentGenerators.footnote({ content: props.footnoteText }))
     }
 
     return simpleEditor.getItem();
 }
 
-export const QuestionGenerators = {
+
+interface DisplayProps {
+    parentKey: string;
+    itemKey: string;
+    content: Array<ItemComponent>;
+}
+
+const generateDisplay = (props: DisplayProps): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, 1);
+    props.content.forEach(item => simpleEditor.addDisplayComponent(item))
+    return simpleEditor.getItem();
+}
+
+export const SurveyItemGenerators = {
     singleChoice: generateSingleChoiceQuestion,
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
@@ -474,6 +480,7 @@ export const QuestionGenerators = {
     dropDown: generateDropDownQuestion,
     numericSlider: generateNumericSliderQuestion,
     numericInput: generateNumericInputQuestion,
+    display: generateDisplay,
 }
 
 

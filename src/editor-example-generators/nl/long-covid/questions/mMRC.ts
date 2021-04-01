@@ -1,9 +1,9 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 
 export const Q_mMRC = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'mMRC';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -31,18 +31,18 @@ export const Q_mMRC = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 ["nl", "Door mijn kortademigheid loop ik op vlak terrein langzamer dan andere mensen van mijn leeftijd of moet ik stoppen om op adem te komen als ik mijn eigen tempo loop."],
             ])
         },
-       {
+        {
             key: '4', role: 'option',
             content: new Map([
                 ["nl", "Na ongeveer 100 meter lopen op vlak terrein moet ik na een paar minuten stoppen om op adem te komen."],
             ])
         },
-       {
+        {
             key: '5', role: 'option',
             content: new Map([
                 ["nl", "Ik ben te kortademig om het huis uit te gaan, of ik ben kortademig tijdens het aan- of uitkleden."],
             ])
         },
-    ],
+        ],
     })
 }

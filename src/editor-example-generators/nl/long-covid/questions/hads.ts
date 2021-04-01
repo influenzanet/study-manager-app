@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class HADSGroup extends GroupItemEditor {
@@ -11,6 +12,7 @@ export class HADSGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addItem(Q_instructions(this.key))
         this.addItem(Q_a(this.key, true))
         this.addItem(Q_b(this.key, true))
         this.addItem(Q_c(this.key, true))
@@ -28,9 +30,34 @@ export class HADSGroup extends GroupItemEditor {
     }
 }
 
+
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+# Angst en depressie
+
+Het is bekend dat emoties bij de meeste ziektes een belangrijke rol spelen.
+Met deze vragenlijst willen wij te weten te komen hoe je je voelt. Lees iedere vraag goed door en geef je antwoord aan met een kruisje in het hokje dat het beste weergeeft hoe je je gedurende **de afgelopen week** gevoeld hebt.
+
+Denk niet te lang na over een antwoord. Het gaat bij deze uitspraken om je eigen indruk. Er bestaan geen foute antwoorden, elk antwoord is goed, zolang het maar je eigen indruk weergeeft.
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
 const Q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'a';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -38,17 +65,17 @@ const Q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             ["nl", "Ik voel me gespannen:"],
         ]),
         responseOptions: [
-            {
-                key: '1', role: 'option',
+            ComponentGenerators.option({
+                key: '1',
                 content: new Map([
                     ["nl", "meestal"],
                 ])
-            },
+            }),
             {
                 key: '2', role: 'option',
                 content: new Map([
                     ["nl", "vaak"],
-                ])
+                ]),
             },
             {
                 key: '3', role: 'option',
@@ -68,7 +95,7 @@ const Q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'b';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -106,7 +133,7 @@ const Q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_c = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'c';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -144,7 +171,7 @@ const Q_c = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'd';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -182,7 +209,7 @@ const Q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'e';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -220,7 +247,7 @@ const Q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_f = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'f';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -258,7 +285,7 @@ const Q_f = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'g';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -296,7 +323,7 @@ const Q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'h';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -334,7 +361,7 @@ const Q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_i = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'i';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -373,7 +400,7 @@ const Q_i = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_j = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'j';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -411,7 +438,7 @@ const Q_j = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_k = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'k';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -449,7 +476,7 @@ const Q_k = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_l = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'l';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -487,7 +514,7 @@ const Q_l = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_m = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'm';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -525,7 +552,7 @@ const Q_m = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q_n = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'n';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,

@@ -25,3 +25,23 @@ export const CommonExpressions = {
     multipleChoiceOptionOnlyOtherKeysSelected,
     getDatePickerResponseValue,
 }
+
+
+const ifThen = (condition: Expression, actions: Expression[]) => expWithArgs('IFTHEN', condition, ...actions)
+const checkEventType = (equalsType: 'ENTER' | 'SUBMIT') => expWithArgs('checkEventType', equalsType)
+const addNewSurvey = (
+    surveyKey: string,
+    category: 'prio' | 'normal' | 'optional',
+    activeFrom?: number | Expression,
+    activeUntil?: number | Expression) => expWithArgs('ADD_NEW_SURVEY', surveyKey, activeFrom !== undefined ? activeFrom : 0, activeUntil !== undefined ? activeUntil : 0, category)
+
+const removeAllSurveys = () => expWithArgs('REMOVE_ALL_SURVEYS')
+const updateParticipantFlag = (key: string, newValue: string) => expWithArgs('UPDATE_FLAG', key, newValue)
+
+export const StudyExpressions = {
+    ifThen,
+    checkEventType,
+    addNewSurvey,
+    removeAllSurveys,
+    updateParticipantFlag,
+}

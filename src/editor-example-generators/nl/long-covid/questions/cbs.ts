@@ -1,10 +1,10 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 
 export const Q_CBS = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'CBS';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -18,7 +18,7 @@ export const Q_CBS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl", "Hieronder volgen 6 uitspraken. Wil je van elk van de volgende uitspraken aangeven in hoeverre die op jou, zoals je de laatste tijd bent, van toepassing is?"],
             ]))
         },
-    ],
+        ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -65,7 +65,7 @@ export const Q_CBS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["nl", "Vaak voel ik me in de steek gelaten"],
                 ])
             },
-           
+
         ]
     });
 }

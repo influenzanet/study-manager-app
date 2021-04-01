@@ -1,6 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class VaccinationGroup extends GroupItemEditor {
@@ -33,7 +33,7 @@ export class VaccinationGroup extends GroupItemEditor {
 const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -67,7 +67,7 @@ const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Express
 const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -95,7 +95,7 @@ const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Exp
 const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -159,7 +159,7 @@ const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
 const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -179,7 +179,7 @@ const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: E
 const q_vacc2_date1_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -204,7 +204,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
         }
         : undefined;
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -224,7 +224,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q7';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -247,7 +247,7 @@ const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition
                     ["nl", "Nee"],
                 ])
             },
-            
+
             {
                 key: 'dontknow', role: 'option',
                 content: new Map([
@@ -268,7 +268,7 @@ const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition
 const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -291,7 +291,7 @@ const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?:
                     ["nl", "Nee"],
                 ])
             },
-            
+
             {
                 key: 'dontknow', role: 'option',
                 content: new Map([

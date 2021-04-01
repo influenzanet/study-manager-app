@@ -1,10 +1,10 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 
 export const Q_IPAQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'DvIPAQ';
-    return QuestionGenerators.dropDown({
+    return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -15,14 +15,14 @@ export const Q_IPAQ = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl", "Hoeveel tijd bracht je gewoonlijk zittend door gedurende een doordeweekse dag in de afgelopen 7 dagen?"],
         ]),
         topDisplayCompoments: [
-        {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Bij deze tijd mag zitten achter een bureau, tijd die zittend wordt doorgebracht met vrienden, zittend lezen, studeren of tv kijken worden gerekend."],
-            ]))
-        },
-    ],
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Bij deze tijd mag zitten achter een bureau, tijd die zittend wordt doorgebracht met vrienden, zittend lezen, studeren of tv kijken worden gerekend."],
+                ]))
+            },
+        ],
         responseOptions: [
             {
                 key: '0', role: 'option',

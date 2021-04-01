@@ -1,5 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -21,7 +21,7 @@ export class NCSIGroup extends GroupItemEditor {
 
 const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -90,7 +90,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -159,7 +159,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -228,7 +228,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -239,14 +239,14 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             ["nl", "De volgende vragen hebben betrekking op emoties (gevoelens) die u kunt hebben terwijl u benauwd/kortademig bent."],
         ]),
         topDisplayCompoments: [
-        {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Vink het getal aan dat aangeeft hoe hevig die emotie is als u benauwd/kortademig bent."],
-            ]))
-        },
-    ],
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Vink het getal aan dat aangeeft hoe hevig die emotie is als u benauwd/kortademig bent."],
+                ]))
+            },
+        ],
         scaleOptions: [
             {
                 key: '1', content: new Map([

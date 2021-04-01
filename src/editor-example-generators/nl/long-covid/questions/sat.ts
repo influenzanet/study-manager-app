@@ -1,5 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class SaTGroup extends GroupItemEditor {
@@ -24,7 +24,7 @@ export class SaTGroup extends GroupItemEditor {
 
 const q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'a';
-    return QuestionGenerators.numericSlider({
+    return SurveyItemGenerators.numericSlider({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -47,7 +47,7 @@ const q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'b';
-    return QuestionGenerators.numericSlider({
+    return SurveyItemGenerators.numericSlider({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -68,7 +68,7 @@ const q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'c';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -108,7 +108,7 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
 const q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'd';
-    return QuestionGenerators.numericSlider({
+    return SurveyItemGenerators.numericSlider({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -130,7 +130,7 @@ const q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'e';
-    return QuestionGenerators.numericSlider({
+    return SurveyItemGenerators.numericSlider({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -151,7 +151,7 @@ const q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'f';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -202,7 +202,7 @@ export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
 const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'g';
-    return QuestionGenerators.numericSlider({
+    return SurveyItemGenerators.numericSlider({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -222,7 +222,7 @@ const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'h';
-    return QuestionGenerators.numericSlider({
+    return SurveyItemGenerators.numericSlider({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,

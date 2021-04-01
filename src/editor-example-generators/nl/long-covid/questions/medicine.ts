@@ -1,5 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -22,7 +22,7 @@ export class MedicineGroup extends GroupItemEditor {
 
 const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -62,7 +62,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     };
     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
 
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -235,7 +235,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q2b = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2b';
-    return QuestionGenerators.dropDown({
+    return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -385,7 +385,7 @@ const Q2b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -411,7 +411,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,

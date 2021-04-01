@@ -1,10 +1,10 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 
 export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'CIS';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -18,7 +18,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
             ]))
         },
-      
+
         {
             role: 'text',
             style: [{ key: 'variant', value: 'p' }],
@@ -33,7 +33,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
             ]))
         }
-    ],
+        ],
         scaleOptions: [
             {
                 key: '1', content: new Map([

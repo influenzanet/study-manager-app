@@ -1,6 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -37,7 +37,7 @@ export class CovidTestGroup extends GroupItemEditor {
 const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -65,7 +65,7 @@ const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Express
 const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -85,7 +85,7 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
 const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -149,7 +149,7 @@ const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?
 const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
 
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -202,7 +202,7 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -242,7 +242,7 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -282,7 +282,7 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
 const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q7';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -328,7 +328,7 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
 const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -368,7 +368,7 @@ const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, conditi
 const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q9';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -388,7 +388,7 @@ const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, con
 const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q10';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
