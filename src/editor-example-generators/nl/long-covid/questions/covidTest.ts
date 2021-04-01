@@ -42,7 +42,7 @@ const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Express
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je afgelopen 10 dagen een test gedaan om het coronavirus aan te tonen?"],
+            ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt?"],
         ]),
         responseOptions: [
             {
@@ -120,7 +120,7 @@ const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?
             {
                 key: '4', role: 'option',
                 content: new Map([
-                    ["nl", "Bij een bedrijf (op mijn eigen initiatief)"],
+                    ["nl", "Bij een bedrijf (op eigen initiatief)"],
                 ])
             },
             {
@@ -167,7 +167,7 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Ik heb klachten"],
+                    ["nl", "Ik had klachten"],
                 ])
             },
             {
@@ -179,13 +179,13 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
             {
                 key: '2', role: 'option',
                 content: new Map([
-                    ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik (mogelijk) contact heb gehad met iemand die positief getest is op corona"],
+                    ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik mogelijk in contact ben geweest met iemand die positief getest is op corona"],
                 ])
             },
             {
                 key: '3', role: 'option',
                 content: new Map([
-                    ["nl", "Ik heb een melding gekregen via de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
+                    ["nl", "Ik heb een melding gekregen van de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
                 ])
             },
             {
@@ -231,7 +231,7 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
             {
                 key: 'no-rep', role: 'option',
                 content: new Map([
-                    ["nl", "Dit wil ik niet aangeven"],
+                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],
@@ -294,6 +294,12 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
                 key: 'pos_earl_test', role: 'option',
                 content: new Map([
                     ["nl", "Ja, bevestigd met een positieve test"],
+                ])
+            },
+            {
+                key: 'pos_earl_zelftest', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, bevestigd met een zelftest"],
                 ])
             },
             {
@@ -387,7 +393,7 @@ const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, conditi
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Wanneer denk je dat je besmet geweest bent met het coronavirus (ongeveer)?"],
+            ["nl", "Wanneer denk je dat je besmet bent met het coronavirus (ongeveer)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([

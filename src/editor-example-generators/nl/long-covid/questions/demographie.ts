@@ -289,9 +289,39 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: 'nee', role: 'option',
                 content: new Map([
-                    ["nl", "todo"],
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'eerder', role: 'option',
+                content: new Map([
+                    ["nl", "Nee, maar ik heb in het verleden wel gerookt"],
+                ])
+            },
+            {
+                key: 'afentoe', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, af en toe"],
+                ])
+            },
+            {
+                key: 'minder10', role: 'option',
+                content: new Map([
+                    ["nl", "Dagelijks, minder dan 10 sigaretten/sigaren per dag"],
+                ])
+            },
+            {
+                key: 'meer10', role: 'option',
+                content: new Map([
+                    ["nl", "Dagelijks, 10 keer of vaker per dag"],
+                ])
+            },
+            {
+                key: 'esigaret', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, alleen e-sigaretten"],
                 ])
             },
         ]

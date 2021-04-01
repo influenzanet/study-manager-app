@@ -33,25 +33,303 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             ]))
         }],
         responseOptions: [
+          
             {
-                key: 'todo', role: 'option',
-                content: new Map([
-                    ["nl", "TODO"],
-                ])
-            },
-            {
-                key: 'subtitle1', role: 'text',
+                key: 'long', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
-                    ["nl", "Subtitle 1"],
+                    ["nl", "Longen en hoofdholten"],
                 ])
             },
             {
-                key: 'todo2', role: 'option',
+                key: 'long1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Astma, chronische bronchitis of kaakholten"],
                 ])
             },
+            {
+                key: 'long2', role: 'option',
+                content: new Map([
+                    ["nl", "Ontsteking van de neusbijholte, voorhoofdsholte of kaakholten"],
+                ])
+            },
+            {
+                key: 'hart', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Hart en bloedvaten"],
+                ])
+            },
+            {
+                key: 'hart1', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige hartkwaal of hartinfarct"],
+                ])
+            },
+            {
+                key: 'hart2', role: 'option',
+                content: new Map([
+                    ["nl", "Hoge bloeddruk"],
+                ])
+            },
+            {
+                key: 'hart3', role: 'option',
+                content: new Map([
+                    ["nl", "Beroerte of gevolgen van beroerte"],
+                ])
+            },
+            {
+                key: 'maagdarm', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Maag en darmen"],
+                ])
+            },
+            {
+                key: 'maagdarm1', role: 'option',
+                content: new Map([
+                    ["nl", "Maagzweer of zweer aan de 12-vingerige darm"],
+                ])
+            },
+            {
+                key: 'maagdarm2', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige darmstoornissen, langer dan 3 maanden"],
+                ])
+            },
+            {
+                key: 'gallever', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Galblaas, lever en nieren"],
+                ])
+            },
+            {
+                key: 'gallever1', role: 'option',
+                content: new Map([
+                    ["nl", "Galstenen of galblaasontsteking"],
+                ])
+            },
+            {
+                key: 'gallever2', role: 'option',
+                content: new Map([
+                    ["nl", "Leverziekte of levercirrose"],
+                ])
+            },
+            {
+                key: 'gallever3', role: 'option',
+                content: new Map([
+                    ["nl", "Nierstenen"],
+                ])
+            },
+            {
+                key: 'gallever4', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige nierziekte"],
+                ])
+            },
+            {
+                key: 'blaas', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Blaas en baarmoeder"],
+                ])
+            },
+            {
+                key: 'blaas1', role: 'option',
+                content: new Map([
+                    ["nl", "Chronische blaasontsteking"],
+                ])
+            },
+            {
+                key: 'blaas2', role: 'option',
+                content: new Map([
+                    ["nl", "Verzakking"],
+                ])
+            },
+            {
+                key: 'andereziektes', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Andere ziektes"],
+                ])
+            },
+            {
+                key: 'andereziektes1', role: 'option',
+                content: new Map([
+                    ["nl", "Suikerziekte"],
+                ])
+            },
+            {
+                key: 'andereziektes2', role: 'option',
+                content: new Map([
+                    ["nl", "Schildklierafwijking"],
+                ])
+            },
+            {
+                key: 'ruggewrichten', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Rug en gewrichten"],
+                ])
+            },
+            {
+                key: 'ruggewrichten1', role: 'option',
+                content: new Map([
+                    ["nl", "Rugaandoening van hardnekkige aard, langer dan 3 maanden, of hernia"],
+                ])
+            },
+            {
+                key: 'ruggewrichten2', role: 'option',
+                content: new Map([
+                    ["nl", "Gewrichtsslijtage (artrose) van knieën, heupen of handen"],
+                ])
+            },
+            {
+                key: 'ruggewrichten3', role: 'option',
+                content: new Map([
+                    ["nl", "Gewrichtsontsteking (reuma) van handen en/of voeten"],
+                ])
+            },
+            {
+                key: 'ruggewrichten4', role: 'option',
+                content: new Map([
+                    ["nl", "Andere chronische reuma, langer dan 3 maanden"],
+                ])
+            },
+            {
+                key: 'zenuw', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Zenuwstelsel"],
+                ])
+            },
+            {
+                key: 'zenuw1', role: 'option',
+                content: new Map([
+                    ["nl", "Epilepsie"],
+                ])
+            },
+            {
+                key: 'zenuw2', role: 'option',
+                content: new Map([
+                    ["nl", "Andere ziekten van het zenuwstelsel, zoals ziekte van Parkinson"],
+                ])
+            },
+           
+            {
+                key: 'zenuw3', role: 'option',
+                content: new Map([
+                    ["nl", "Multiple sclerose"],
+                ])
+            },
+           
+            {
+                key: 'zenuw4', role: 'option',
+                content: new Map([
+                    ["nl", "Duizeligheid met vallen"],
+                ])
+            },
+       
+            {
+                key: 'zenuw5', role: 'option',
+                content: new Map([
+                    ["nl", "Migraine"],
+                ])
+            },
+            {
+                key: 'andereproblemen', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Andere lichamelijke of psychische problemen"],
+                ])
+            },
+            {
+                key: 'andereproblemen1', role: 'option',
+                content: new Map([
+                    ["nl", "Kwaadaardige aandoening of kanker"],
+                ])
+            },
+            {
+                key: 'andereproblemen2', role: 'option',
+                content: new Map([
+                    ["nl", "Overspannen, depressie, ernstige nervositeit"],
+                ])
+            },
+           
+            {
+                key: 'andereproblemen3', role: 'option',
+                content: new Map([
+                    ["nl", "Chronische huidziekte of eczeem"],
+                ])
+            },
+           
+            {
+                key: 'andereproblemen4', role: 'option',
+                content: new Map([
+                    ["nl", "Letsel door ongeluk in en om huis sport, school, werk of in het verkeer"],
+                ])
+            },
+       
+            {
+                key: 'andereproblemen5', role: 'option',
+                content: new Map([
+                    ["nl", "Afweerstoornis"],
+                ])
+            },
+            {
+                key: 'andereproblemen6', role: 'option',
+                content: new Map([
+                    ["nl", "Ondergaan van transplantatie"],
+                ])
+            },
+            {
+                key: 'andereproblemen7', role: 'option',
+                content: new Map([
+                    ["nl", "Alcoholverslaving"],
+                ])
+            },
+           
+            {
+                key: 'andereproblemen8', role: 'option',
+                content: new Map([
+                    ["nl", "Drugsverslaving"],
+                ])
+            },
+           
+            {
+                key: 'andereproblemen9', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige vermoeidheid, langer dan 3 maanden"],
+                ])
+            },
+       
+            {
+                key: 'andereproblemen10', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige pijnklachten, langer dan 3 maanden"],
+                ])
+            },
+            {
+                key: 'andereproblemen11', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige concentratiestoornissen, langer dan 3 maanden"],
+                ])
+            },
+            {
+                key: 'geenvandeze', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Vink aan als geen van bovenstaande van toepassing is"],
+                ])
+            },
+            {
+                key: 'geenvandeze', role: 'option',
+                content: new Map([
+                    ["nl", "Geen van bovenstaande"],
+                ])
+            },
+            
         ],
         isRequired: isRequired,
     })

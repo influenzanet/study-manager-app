@@ -120,7 +120,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "De volgende vragen gaan over dagelijkse bezigheden. Word je door je gezondheid op dit moment beperkt bij deze bezigheden? Zo ja, in welke mate?"],
+            ["nl", "De volgende vragen gaan over dagelijkse bezigheden. Word je door je gezondheid op dit moment beperkt in deze bezigheden? Zo ja, in welke mate?"],
         ]),
         scaleOptions: [
             {
@@ -200,7 +200,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Had je, ten gevolge van je lichamelijke gezondheid, de afgelopen 4 weken één van de volgende problemen bij uw werk of andere dagelijkse bezigheden?"],
+            ["nl", "Had je, ten gevolge van je lichamelijke gezondheid, de afgelopen 4 weken één van de volgende problemen bij je werk of andere dagelijkse bezigheden?"],
         ]),
         scaleOptions: [
             {
@@ -245,7 +245,7 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Had je, ten gevolge van een emotioneel probleem (bijvoorbeeld doordat je jezelf depressief of angstig voelde), de afgelopen 4 weken één van de volgende problemen bij uw werk of andere dagelijkse bezigheden?"],
+            ["nl", "Had je, ten gevolge van een emotioneel probleem (bijvoorbeeld doordat je jezelf depressief of angstig voelde), de afgelopen 4 weken één van de volgende problemen bij je werk of andere dagelijkse bezigheden?"],
         ]),
         scaleOptions: [
             {
@@ -379,7 +379,7 @@ const Q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "In welke mate heeft pijn je de afgelopen vier weken belemmerd bij je normale werkzaamheden (zowel werk buitenshuis als huishoudelijk werk)?"],
+            ["nl", "In welke mate heeft pijn je de afgelopen vier weken belemmerd in je normale werkzaamheden (zowel werk buitenshuis als huishoudelijk werk)?"],
         ]),
         responseOptions: [
             {
@@ -423,7 +423,7 @@ const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Deze vragen gaan over hoe je jezelf de afgelopen 4 weken heeft gevoeld. Wil je bij elke vraag het antwoord aankruisen dat het beste aansluit bij hoe je jezelf hebt gevoeld?"],
+            ["nl", "Deze vragen gaan over hoe je jezelf de afgelopen 4 weken hebt gevoeld. Wil je bij elke vraag het antwoord aankruisen dat het beste aansluit bij hoe je jezelf hebt gevoeld?"],
         ]),
         stackOnSmallScreen: true,
         scaleOptions: [
@@ -511,7 +511,7 @@ const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Hoe vaak hebben je lichamelijke gezondheid of emotionele problemen gedurende de afgelopen 4 weken je sociale activiteiten (zoals bezoek aan vrienden of naaste familieleden) belemmerd?"],
+            ["nl", "Hoe vaak heeftje lichamelijke gezondheid of hebben emotionele problemen gedurende de afgelopen 4 weken je sociale activiteiten (zoals bezoek aan vrienden of naaste familieleden) belemmerd?"],
         ]),
         responseOptions: [
             {
