@@ -56,7 +56,7 @@ export const generateHelpGroupComponent = (
 export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression => {
     return {
         name: name,
-        data: args.map(arg => {
+        data: args.filter(a => a !== undefined).map(arg => {
             if (typeof (arg) === 'string') {
                 return {
                     dtype: 'str',
@@ -79,7 +79,7 @@ export const expWithArgs = (name: ExpressionName, ...args: any[]): Expression =>
 export const generatePageBreak = (parentKey: string, key?: string): SurveySingleItem => {
 
     return {
-        key: parentKey + '.' + (key ? key : generateRandomKey(4)),
+        key: parentKey + '.' + (key ? key : "PB_" + generateRandomKey(4)),
         version: 0,
         type: 'pageBreak'
     };
