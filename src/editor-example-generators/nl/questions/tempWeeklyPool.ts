@@ -1783,7 +1783,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Hayfever medication"],
-                ["nl", "Ja, medicatie tegen hooikoorst"],
+                ["nl", "Ja, medicatie tegen hooikoorts"],
 
             ])
         },
