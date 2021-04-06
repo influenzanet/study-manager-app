@@ -317,7 +317,7 @@ const l3q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
         ], responseOptions: [
             {
                 key: '0', role: 'option',
-                disabled: CommonExpressions.multipleChoiceOptionOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
                 content: new Map([
                     ["nl", "Nee, ik heb geen medische hulp gezocht"],
                 ])
@@ -403,7 +403,7 @@ const l3q6 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverrid
     return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,
-        condition: CommonExpressions.multipleChoiceOptionOnlyOtherKeysSelected(keyQ4, '0'),
+        condition: CommonExpressions.multipleChoiceOnlyOtherKeysSelected(keyQ4, '0'),
         questionText: new Map([
             ["nl", "Hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
         ]),
@@ -525,7 +525,7 @@ const l3q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
         responseOptions: [
             {
                 key: '0', role: 'option',
-                disabled: CommonExpressions.multipleChoiceOptionOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
                 content: new Map([
                     ["nl", "Nee, ik heb geen medicijnen gebruikt"],
                 ])

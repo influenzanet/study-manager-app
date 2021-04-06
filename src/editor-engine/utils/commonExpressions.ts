@@ -6,7 +6,7 @@ import { expWithArgs } from "./simple-generators"
 const singleChoiceOptionsSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), ...optionKeys)
 const multipleChoiceOptionsSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 const multipleChoiceOptionSelectedAll = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasKeysAll', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
-const multipleChoiceOptionOnlyOtherKeysSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasOnlyKeysOtherThan', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
+const multipleChoiceOnlyOtherKeysSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasOnlyKeysOtherThan', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 
 const getDatePickerResponseValue = (itemKey: string): Expression => {
     return {
@@ -29,14 +29,14 @@ export const CommonExpressions = {
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     multipleChoiceOptionSelectedAll,
-    multipleChoiceOptionOnlyOtherKeysSelected,
+    multipleChoiceOnlyOtherKeysSelected,
     getDatePickerResponseValue,
     timestampWithOffset,
 }
 
 
 const ifThen = (condition: Expression, actions: Expression[]) => expWithArgs('IFTHEN', condition, ...actions)
-const checkEventType = (equalsType: 'ENTER' | 'SUBMIT') => expWithArgs('checkEventType', equalsType)
+const checkEventType = (equalsType: 'ENTER' | 'SUBMIT' | 'TIMER') => expWithArgs('checkEventType', equalsType)
 const addNewSurvey = (
     surveyKey: string,
     category: 'prio' | 'normal' | 'optional',
@@ -45,6 +45,9 @@ const addNewSurvey = (
 
 const removeAllSurveys = () => expWithArgs('REMOVE_ALL_SURVEYS')
 const updateParticipantFlag = (key: string, newValue: string) => expWithArgs('UPDATE_FLAG', key, newValue)
+
+const stopParticipation = () => expWithArgs('UPDATE_STUDY_STATUS', 'inactive');
+const finishParticipation = () => expWithArgs('UPDATE_STUDY_STATUS', 'finished');
 
 const checkSurveyResponseKey = (surveyKey: string) => expWithArgs('checkSurveyResponseKey', surveyKey);
 const getStudyEntryTime = () => expWithArgs('getStudyEntryTime');
@@ -86,6 +89,8 @@ export const StudyActions = {
     addNewSurvey,
     removeAllSurveys,
     updateParticipantFlag,
+    stopParticipation,
+    finishParticipation,
 }
 
 export const StudyExpressions = {
@@ -100,4 +105,5 @@ export const StudyExpressions = {
     hasSurveyKeyValidFromOlderThan,
     hasSurveyKeyValidUntilSoonerThan,
     timestampWithOffset,
+    multipleChoiceOnlyOtherKeysSelected,
 }
