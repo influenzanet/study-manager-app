@@ -1,4 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -11,6 +12,7 @@ export class SaTGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addItem(Q_instructions(this.key))
         this.addItem(q_a(this.key, true))
         this.addItem(q_b(this.key, true))
         this.addItem(q_c(this.key, true))
@@ -20,6 +22,27 @@ export class SaTGroup extends GroupItemEditor {
         this.addItem(q_g(this.key, true))
         this.addItem(q_h(this.key, true))
     }
+}
+
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+# Reuk- en smaakvermogen
+
+Deze vragen gaan over je reukvermogen (bijvoorbeeld het ruiken van bloemen of zeep of stinkend afval) maar niet over de smaakbeleving van eten in je mond.
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
 
 const q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
