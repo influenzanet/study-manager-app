@@ -1,7 +1,9 @@
 import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 import { ItemEditor } from "../survey-editor/item-editor";
+import { CommonExpressions } from "./commonExpressions";
 import { ComponentGenerators } from "./componentGenerators";
+import { Duration, durationObjectToSeconds } from "./duration";
 import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "./simple-generators";
@@ -334,6 +336,7 @@ const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem =>
     const rg_inner: ItemComponent = {
         key: 'slider', role: 'sliderNumeric',
         content: generateLocStrings(props.sliderLabel),
+        description: generateLocStrings(props.noResponseLabel),
         properties: {
             min: props.min !== undefined ? (typeof (props.min) === 'number' ? { dtype: 'num', num: props.min } : props.min) : undefined,
             max: props.max !== undefined ? (typeof (props.max) === 'number' ? { dtype: 'num', num: props.max } : props.max) : undefined,
@@ -357,46 +360,20 @@ const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem =>
     return simpleEditor.getItem();
 }
 
-interface Duration {
-    reference?: number | Expression;
-    years?: number;
-    months?: number;
-    days?: number;
-    hours?: number;
-    minutes?: number;
-    seconds?: number;
-};
 
-const durationObjectToSeconds = (duration: Duration): number => {
-    let value = 0;
-
-    if (duration.years !== undefined) {
-        value += duration.years * 31536000;
-    }
-    if (duration.months !== undefined) {
-        value += duration.months * 2592000;
-    }
-    if (duration.days !== undefined) {
-        value += duration.days * 86400;
-    }
-    if (duration.hours !== undefined) {
-        value += duration.hours * 3600;
-    }
-    if (duration.minutes !== undefined) {
-        value += duration.minutes * 60;
-    }
-    if (duration.seconds !== undefined) {
-        value += duration.seconds;
-    }
-    return value;
-}
 
 interface DatePickerInput extends GenericQuestionProps {
     dateInputMode: 'YMD' | 'YM' | 'Y';
     inputLabelText?: Map<string, string>;
     placeholderText?: Map<string, string>;
-    minRelativeDate?: Duration;
-    maxRelativeDate?: Duration;
+    minRelativeDate?: {
+        reference?: number | Expression;
+        delta: Duration;
+    };
+    maxRelativeDate?: {
+        reference?: number | Expression;
+        delta: Duration;
+    };
 }
 
 const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
@@ -424,18 +401,16 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
         properties: {
             dateInputMode: { str: props.dateInputMode },
             min: props.minRelativeDate ? {
-                dtype: 'exp', exp:
-                    expWithArgs(
-                        'timestampWithOffset',
-                        durationObjectToSeconds(props.minRelativeDate),
-                        props.minRelativeDate.reference ? props.minRelativeDate.reference : undefined
-                    )
+                dtype: 'exp', exp: CommonExpressions.timestampWithOffset(
+                    props.minRelativeDate.delta,
+                    props.minRelativeDate.reference
+                )
             } : undefined,
             max: props.maxRelativeDate ? {
                 dtype: 'exp', exp:
                     expWithArgs(
                         'timestampWithOffset',
-                        durationObjectToSeconds(props.maxRelativeDate),
+                        durationObjectToSeconds(props.maxRelativeDate.delta),
                         props.maxRelativeDate.reference ? props.maxRelativeDate.reference : undefined
                     )
             } : undefined,

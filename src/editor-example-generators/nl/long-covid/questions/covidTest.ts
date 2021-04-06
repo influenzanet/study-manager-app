@@ -76,8 +76,8 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { days: -10 },
-        maxRelativeDate: { seconds: 1 },
+        minRelativeDate: { delta: { days: -10 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }

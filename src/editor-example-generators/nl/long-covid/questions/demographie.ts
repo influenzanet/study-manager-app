@@ -43,10 +43,14 @@ const q_age = (parentKey: string, isRequired?: boolean, keyOverride?: string): S
             ["nl", "Wat is je geboortemaand en jaar?"],
         ]),
         minRelativeDate: {
-            years: -110
+            delta: {
+                years: -110
+            }
         },
         maxRelativeDate: {
-            years: -10
+            delta: {
+                years: -10
+            }
         },
         isRequired: isRequired,
     });

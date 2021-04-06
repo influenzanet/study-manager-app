@@ -1,4 +1,5 @@
 import { Expression } from "survey-engine/lib/data_types"
+import { Duration, durationObjectToSeconds } from "./duration"
 import { datePickerKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions"
 import { expWithArgs } from "./simple-generators"
 
@@ -18,12 +19,19 @@ const getDatePickerResponseValue = (itemKey: string): Expression => {
     }
 }
 
+const timestampWithOffset = (delta: Duration, reference?: number | Expression) => expWithArgs(
+    'timestampWithOffset',
+    durationObjectToSeconds(delta),
+    reference ? reference : undefined
+)
+
 export const CommonExpressions = {
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     multipleChoiceOptionSelectedAll,
     multipleChoiceOptionOnlyOtherKeysSelected,
     getDatePickerResponseValue,
+    timestampWithOffset,
 }
 
 
@@ -38,10 +46,58 @@ const addNewSurvey = (
 const removeAllSurveys = () => expWithArgs('REMOVE_ALL_SURVEYS')
 const updateParticipantFlag = (key: string, newValue: string) => expWithArgs('UPDATE_FLAG', key, newValue)
 
-export const StudyExpressions = {
+const checkSurveyResponseKey = (surveyKey: string) => expWithArgs('checkSurveyResponseKey', surveyKey);
+const getStudyEntryTime = () => expWithArgs('getStudyEntryTime');
+const hasSurveyKeyAssigned = (surveyKey: string) => expWithArgs('hasSurveyKeyAssigned', surveyKey);
+const getSurveyKeyAssignedFrom = (surveyKey: string) => expWithArgs('getSurveyKeyAssignedFrom', surveyKey);
+const getSurveyKeyAssignedUntil = (surveyKey: string) => expWithArgs('getSurveyKeyAssignedUntil', surveyKey);
+
+/**
+ * Results of "T_ref = reference + delta" will be checked against "validFrom" of the assinged survey (if present). True T_ref > T_validFrom.
+ * @param surveyKey which survey it should check for
+ * @param delta delta time to the reference time (by default current time).
+ * @param reference optional reference time. If undefined it will take the current time.
+ * @returns
+ */
+const hasSurveyKeyValidFromOlderThan = (surveyKey: string, delta: Duration, reference?: number | Expression) => {
+    return expWithArgs('lt',
+        getSurveyKeyAssignedFrom(surveyKey),
+        timestampWithOffset(delta, reference)
+    );
+}
+
+
+/**
+ * Results of "T_ref = reference + delta" will be checked against "validUntil" of the assinged survey (if present). True T_ref < T_validUntil.
+ * @param surveyKey which survey it should check for
+ * @param delta delta time to the reference time (by default current time).
+ * @param reference optional reference time. If undefined it will take the current time.
+ * @returns
+ */
+const hasSurveyKeyValidUntilSoonerThan = (surveyKey: string, delta: Duration, reference?: number | Expression) => {
+    return expWithArgs('gt',
+        getSurveyKeyAssignedUntil(surveyKey),
+        timestampWithOffset(delta, reference)
+    );
+}
+
+export const StudyActions = {
     ifThen,
-    checkEventType,
     addNewSurvey,
     removeAllSurveys,
     updateParticipantFlag,
+}
+
+export const StudyExpressions = {
+    checkEventType,
+    checkSurveyResponseKey,
+    getStudyEntryTime,
+    hasSurveyKeyAssigned,
+    singleChoiceOptionsSelected,
+    multipleChoiceOptionsSelected,
+    getSurveyKeyAssignedFrom,
+    getSurveyKeyAssignedUntil,
+    hasSurveyKeyValidFromOlderThan,
+    hasSurveyKeyValidUntilSoonerThan,
+    timestampWithOffset,
 }

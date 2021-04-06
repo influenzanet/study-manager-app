@@ -170,7 +170,7 @@ const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: E
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        maxRelativeDate: { seconds: 1 },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -190,7 +190,7 @@ const q_vacc2_date1_def = (parentKey: string, isRequired?: boolean, condition?: 
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        maxRelativeDate: { seconds: 1 },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -200,7 +200,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
     const firstVaccinationExpression = firstVaccinationKey
         ? {
             reference: CommonExpressions.getDatePickerResponseValue(firstVaccinationKey),
-            days: 5
+            delta: { days: 5 }
         }
         : undefined;
 
@@ -216,7 +216,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
             ["nl", "dd-mm-jjjj"],
         ]),
         minRelativeDate: firstVaccinationExpression,
-        maxRelativeDate: { seconds: 1 },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
