@@ -56,7 +56,7 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
             {
                 content: new Map([
                     ["en", "Please indicate whether you are vaccinated."],
-                    ["nl", "Geef aan of je al gevaccineerd bent."],
+                    ["nl", "Geef aan of je sinds het invullen van de vorige vragenlijst een vaccinatie gehad hebt.  Wij onthouden de antwoorden  uit eerdere vragenlijsten en weten dus zo of je al gevaccineerd bent. Vul 'nee' in wanneer je sinds het invullen van de vorige vragenlijst geen nieuwe vaccinatie hebt gehad, maar al wel een of twee keer gevaccineerd bent."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
