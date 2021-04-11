@@ -17,7 +17,7 @@ import { GeneralHealthGroup } from "./questions/ticp";
 
 
 export const generateT0 = (): Survey | undefined => {
-    const surveyKey = 'TO';
+    const surveyKey = 'T0';
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,

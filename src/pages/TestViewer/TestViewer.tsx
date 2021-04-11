@@ -33,6 +33,7 @@ const TestViewer: React.FC = () => {
             setSelectedLanguage(selectedInstanceObj.languageCodes[0]);
         }
         setSelectedSurvey(selected.survey);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [instance, surveyKey]);
 
     console.log(selectedSurvey);

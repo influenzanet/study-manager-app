@@ -2,13 +2,13 @@ import { Survey } from "survey-engine/lib/data_types";
 import { SimpleSurveyEditor } from "../../../editor-engine/utils/simple-survey-editor";
 import { EQ5DGroup } from "./questions/eq5d";
 
-export const generateM6 = (): Survey | undefined => {
-    const surveyKey = 'M6';
+export const generateT3 = (): Survey | undefined => {
+    const surveyKey = 'T3';
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "M6"],
+            ["en", "T3"],
         ]),
         description: new Map([
             ["en", "..."],

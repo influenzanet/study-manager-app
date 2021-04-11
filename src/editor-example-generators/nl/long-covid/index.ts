@@ -1,15 +1,15 @@
-import { generateM3 } from './m3';
-import { generateM6 } from './m6';
-import { generateM9 } from './m9';
-import { generateM12 } from './m12';
-import { generateShort } from './short';
+import { generateT3 } from './T3';
+import { generateT6 } from './T6';
+import { generateT9 } from './T9';
+import { generateT12 } from './T12';
+import { generateShort } from './Tshort';
 import { generateT0 } from './t0';
 
 export const LongCovidSurveys = {
     T0: generateT0(),
     short: generateShort(),
-    m3: generateM3(),
-    m6: generateM6(),
-    m9: generateM9(),
-    m12: generateM12(),
+    T3: generateT3(),
+    T6: generateT6(),
+    T9: generateT9(),
+    T12: generateT12(),
 }
