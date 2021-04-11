@@ -2,7 +2,7 @@ import { Expression } from "survey-engine/lib/data_types";
 import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/commonExpressions"
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators";
 
-const surveyKeys = {
+export const surveyKeys = {
     T0: 'T0',
     short: 'short',
     T3: 'T3',
@@ -260,7 +260,7 @@ const handleTimerEvent = (): Expression => {
 }
 
 
-const studyRules = [
+export const studyRules = [
     handleStudyEntryEvent(),
     handleSubmissionEvent(),
     handleTimerEvent(),
