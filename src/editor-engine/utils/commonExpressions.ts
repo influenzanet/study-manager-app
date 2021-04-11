@@ -69,6 +69,25 @@ const hasSurveyKeyValidFromOlderThan = (surveyKey: string, delta: Duration, refe
     );
 }
 
+/**
+ * If a survey is assigned with validFrom <= now and validUnil >= now
+ * @param surveyKey which survey it should check for
+ * @returns
+ */
+const hasSurveyKeyActive = (surveyKey: string) => {
+    return expWithArgs(
+        'and',
+        expWithArgs('lte',
+            getSurveyKeyAssignedFrom(surveyKey),
+            timestampWithOffset({ seconds: 1 })
+        ),
+        expWithArgs('gte',
+            getSurveyKeyAssignedUntil(surveyKey),
+            timestampWithOffset({ seconds: -1 })
+        ),
+    )
+}
+
 
 /**
  * Results of "T_ref = reference + delta" will be checked against "validUntil" of the assinged survey (if present). True T_ref < T_validUntil.
@@ -79,8 +98,8 @@ const hasSurveyKeyValidFromOlderThan = (surveyKey: string, delta: Duration, refe
  */
 const hasSurveyKeyValidUntilSoonerThan = (surveyKey: string, delta: Duration, reference?: number | Expression) => {
     return expWithArgs('gt',
-        getSurveyKeyAssignedUntil(surveyKey),
-        timestampWithOffset(delta, reference)
+        timestampWithOffset(delta, reference),
+        getSurveyKeyAssignedUntil(surveyKey)
     );
 }
 
@@ -104,6 +123,7 @@ export const StudyExpressions = {
     getSurveyKeyAssignedUntil,
     hasSurveyKeyValidFromOlderThan,
     hasSurveyKeyValidUntilSoonerThan,
+    hasSurveyKeyActive,
     timestampWithOffset,
     multipleChoiceOnlyOtherKeysSelected,
 }
