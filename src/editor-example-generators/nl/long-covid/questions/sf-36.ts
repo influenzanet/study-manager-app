@@ -1,4 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -11,6 +12,7 @@ export class SF36Group extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addItem(Q_instructions(this.key))
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
         this.addItem(Q3(this.key, true))
@@ -25,6 +27,26 @@ export class SF36Group extends GroupItemEditor {
     }
 }
 
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Functioneren
+
+De volgende vragen gaan over je algemene gezondheid. Wanneer je twijfelt over het antwoord op een vraag, probeer dan het antwoord te geven dat het meest van toepassing is.
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
     return SurveyItemGenerators.singleChoice({
@@ -120,7 +142,10 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "De volgende vragen gaan over dagelijkse bezigheden. Word je door je gezondheid op dit moment beperkt in deze bezigheden? Zo ja, in welke mate?"],
+            ["nl", "De volgende vragen gaan over dagelijkse bezigheden."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Word je door je gezondheid op dit moment beperkt in deze bezigheden? Zo ja, in welke mate?"],
         ]),
         scaleOptions: [
             {

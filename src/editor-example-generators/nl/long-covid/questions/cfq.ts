@@ -1,4 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -12,6 +13,7 @@ export class CFQGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addItem(Q_instructions(this.key))
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
         this.addItem(Q3(this.key, true))
@@ -20,6 +22,26 @@ export class CFQGroup extends GroupItemEditor {
     }
 }
 
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Cognitie
+
+De volgende vragen gaan over kleine, alledaagse vergissingen die iedereen van tijd tot tijd maakt. Sommige van die vergissingen overkomen jou mogelijk wat vaker dan anderen.
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
     return SurveyItemGenerators.simpleLikertGroup({
@@ -27,17 +49,12 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Cognitie (1)"],
+            ["nl", "Cognitie (1/5)"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'variant', value: 'p' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "De volgende vragen gaan over kleine, alledaagse vergissingen die iedereen van tijd tot tijd maakt. Sommige van die vergissingen overkomen jou mogelijk wat vaker dan andere. Hieronder kun je het  hokje aanvinken dat hoort bij je antwoord."],
-                ]))
-            },
-        ],
+        
+        questionSubText: new Map([
+            ["nl", "Vul hieronder het vakje in dat hoort bij je antwoord."],
+        ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -98,7 +115,10 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Cognitie (2)"],
+            ["nl", "Cognitie (2/5)"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Vul hieronder het vakje in dat hoort bij je antwoord."],
         ]),
         scaleOptions: [
             {
@@ -160,7 +180,10 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Cognitie (3)"],
+            ["nl", "Cognitie (3/5)"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Vul hieronder het vakje in dat hoort bij je antwoord."],
         ]),
         scaleOptions: [
             {
@@ -222,7 +245,10 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Cognitie (4)"],
+            ["nl", "Cognitie (4/5)"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Vul hieronder het vakje in dat hoort bij je antwoord."],
         ]),
         scaleOptions: [
             {
@@ -284,7 +310,10 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Cognitie (5)"],
+            ["nl", "Cognitie (5/5)"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Vul hieronder het vakje in dat hoort bij je antwoord."],
         ]),
         scaleOptions: [
             {

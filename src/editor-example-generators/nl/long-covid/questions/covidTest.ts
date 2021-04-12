@@ -156,13 +156,10 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
         questionText: new Map([
             ["nl", "Wat is de reden dat je jezelf hebt laten testen op het coronavirus?"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Meerdere antwoorden mogelijk."],
-            ]))
-        }],
+       
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -287,7 +284,10 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Denk en/of weet je dat je al eerder besmet bent geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)? (meer dan 10 dagen geleden)?"],
+            ["nl", "Denk en/of weet je dat je al eerder besmet bent geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meer dan 10 dagen geleden."],
         ]),
         responseOptions: [
             {

@@ -24,13 +24,16 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Algemene gezondheid"],
+            ["nl", "Welke lichamelijke en psychische problemen heb je?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
-                ["nl", "Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk)."],
+                ["nl", "Kruis aan welke problemen je nu hebt of in de afgelopen 12 maanden hebt gehad."],
             ]))
         }],
         responseOptions: [
