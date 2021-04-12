@@ -4327,7 +4327,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
-                ["nl-be", "Wegwerktissues gebruiken"],
+                ["nl-be", "Wegwerptissues gebruiken"],
                 ["fr-be", "Utiliser des mouchoirs jetables"],
                 ["de-be", "Einwegtaschentücher verwenden"],
                 ['en', 'Use a disposable tissue'],
