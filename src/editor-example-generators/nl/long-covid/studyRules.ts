@@ -4,11 +4,15 @@ import { expWithArgs } from "../../../editor-engine/utils/simple-generators";
 
 export const surveyKeys = {
     T0: 'T0',
-    short: 'short',
+    short: 'SHORT',
     T3: 'T3',
+    T3c: 'T3c',
     T6: 'T6',
+    T6c: 'T6c',
     T9: 'T9',
+    T9c: 'T9c',
     T12: 'T12',
+    T12c: 'T12c',
 }
 
 const timestampFromStudyStart = (daysDelta: number) => {
@@ -50,10 +54,23 @@ const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "normal", 180, 
 const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "normal", 270, 30);
 const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "normal", 360, 30);
 
+const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "normal", 90, 30);
+const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "normal", 180, 30);
+const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "normal", 270, 30);
+const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "normal", 360, 30);
+
 const handleT0Submission = (): Expression => {
-    const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-        'T0.TICP.Q1', 'geenvandeze'
-    )
+    const hasReportedSymptoms = () =>
+        expWithArgs(
+            'or',
+            StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+                'T0.SYM.Q1', 'geenvandeze'
+            ),
+            StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+                'T0.TODO', 'geenvandeze'
+            ),
+        )
+
     const hasNoReportedSymptoms = () => expWithArgs('not', hasReportedSymptoms());
 
     return StudyActions.ifThen(
@@ -67,7 +84,10 @@ const handleT0Submission = (): Expression => {
             ),
             StudyActions.ifThen(
                 hasNoReportedSymptoms(),
-                [assignT3()]
+                [
+                    assignT3(),
+                    // TODO: set "child" flag
+                ]
             )
         ]
     )
@@ -83,7 +103,8 @@ const handleShortSubmission = (): Expression => {
         'short.TICP.Q1', 'geenvandeze'
     )
 
-    const shouldAssignShortAgain = () => expWithArgs('and',
+    const shouldAssignShortAgain = () => expWithArgs(
+        'and',
         hasReportedSymptoms(),
         isStudyInitialPhase(),
     );

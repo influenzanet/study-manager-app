@@ -35,6 +35,10 @@ const surveys = [
             { name: "T6", survey: LongCovidSurveys.T6 },
             { name: "T9", survey: LongCovidSurveys.T9 },
             { name: "T12", survey: LongCovidSurveys.T12 },
+            { name: "T3c", survey: LongCovidSurveys.T3c },
+            { name: "T6c", survey: LongCovidSurveys.T6c },
+            { name: "T9c", survey: LongCovidSurveys.T9c },
+            { name: "T12c", survey: LongCovidSurveys.T12c },
         ],
         languageCodes: [
             'nl',

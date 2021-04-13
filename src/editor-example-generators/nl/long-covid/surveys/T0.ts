@@ -1,23 +1,24 @@
 import { Survey } from "survey-engine/lib/data_types";
-import { SurveyItemGenerators } from "../../../editor-engine/utils/question-type-generator";
-import { SimpleSurveyEditor } from "../../../editor-engine/utils/simple-survey-editor";
-import { Q_CBS } from "./questions/cbs";
-import { CFQGroup } from "./questions/cfq";
-import { Q_CIS } from "./questions/cis";
-import { DemographieGroup } from "./questions/demographie";
-import { EQ5DGroup } from './questions/eq5d';
-import { HADSGroup } from "./questions/hads";
-import { Q_IPAQ } from "./questions/ipaq";
-import { MedicineGroup } from "./questions/medicine";
-import { Q_mMRC } from "./questions/mMRC";
-import { NCSIGroup } from "./questions/ncsi";
-import { SaTGroup } from "./questions/sat";
-import { SF36Group } from "./questions/sf-36";
-import { GeneralHealthGroup } from "./questions/ticp";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
+import { Q_CBS } from "../questions/cbs";
+import { CFQGroup } from "../questions/cfq";
+import { Q_CIS } from "../questions/cis";
+import { DemographieGroup } from "../questions/demographie";
+import { EQ5DGroup } from '../questions/eq5d';
+import { HADSGroup } from "../questions/hads";
+import { Q_IPAQ } from "../questions/ipaq";
+import { MedicineGroup } from "../questions/medicine";
+import { Q_mMRC } from "../questions/mMRC";
+import { NCSIGroup } from "../questions/ncsi";
+import { SaTGroup } from "../questions/sat";
+import { SF36Group } from "../questions/sf-36";
+import { GeneralHealthGroup } from "../questions/ticp";
+import { surveyKeys } from "../studyRules";
 
 
 export const generateT0 = (): Survey | undefined => {
-    const surveyKey = 'T0';
+    const surveyKey = surveyKeys.T0;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,

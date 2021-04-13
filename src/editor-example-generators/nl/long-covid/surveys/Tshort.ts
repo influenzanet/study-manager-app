@@ -1,15 +1,16 @@
 import { Survey } from "survey-engine/lib/data_types";
-import { SimpleSurveyEditor } from "../../../editor-engine/utils/simple-survey-editor";
-import { AcuteHealthGroup } from "./questions/acuteHealth";
-import { CovidTestGroup } from "./questions/covidTest";
-import { EQ5DGroup } from "./questions/eq5d";
-import { VaccinationGroup } from "./questions/vaccination";
+import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
+import { AcuteHealthGroup } from "../questions/acuteHealth";
+import { CovidTestGroup } from "../questions/covidTest";
+import { EQ5DGroup } from "../questions/eq5d";
+import { VaccinationGroup } from "../questions/vaccination";
+import { surveyKeys } from "../studyRules";
 
 export const generateShort = (): Survey | undefined => {
-    const surveyKey = 'SHORT';
+    const surveyKey = surveyKeys.short;
 
     const surveyEditor = new SimpleSurveyEditor({
-        surveyKey: surveyKey,
+        surveyKey: surveyKeys.short,
         name: new Map([
             ["en", "short"],
         ]),
