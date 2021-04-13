@@ -14,10 +14,11 @@ export class DemographieGroup extends GroupItemEditor {
     }
 
     initQuestions() {
-        const Q_Age = q_age(this.key, true);
-        const Q_gender = q_gender(this.key, true);
+
+        /*const Q_gender = q_gender(this.key, true);
         this.addItem(Q_Age)
         this.addItem(Q_gender)
+        const Q_Age = q_age(this.key, true);
         this.addItem(q_postal_code(this.key, true))
 
         const Q_pregnancy = Q3(this.key, Q_gender.key, Q_Age.key, true);
@@ -30,30 +31,8 @@ export class DemographieGroup extends GroupItemEditor {
 
         const q11Condition = expWithArgs('gt', 10, 1);
         this.addItem(new Q12Group(this.key, q11Condition).getItem());
+        */
     }
-}
-
-const q_age = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q1';
-    return SurveyItemGenerators.dateInput({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        dateInputMode: 'YM',
-        questionText: new Map([
-            ["nl", "Wat is je geboortemaand en jaar?"],
-        ]),
-        minRelativeDate: {
-            delta: {
-                years: -110
-            }
-        },
-        maxRelativeDate: {
-            delta: {
-                years: -10
-            }
-        },
-        isRequired: isRequired,
-    });
 }
 
 const q_gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
@@ -84,58 +63,6 @@ const q_gender = (parentKey: string, isRequired?: boolean, keyOverride?: string)
                     ["nl", "Anders"],
                 ])
             },
-        ]
-    })
-}
-
-const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'PC';
-    const fullKey = [parentKey, itemKey].join('.');
-
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Wat zijn de 4 cijfers van je postcode?"],
-        ]),
-        responseOptions: [
-            {
-                key: '0', role: 'input',
-                // style: [{ key: 'className', value: 'w-100' }],
-                content: new Map([
-                    ["nl", "Postcode"],
-                ]),
-                description: new Map([
-                    ["nl", "de eerste vier cijfers"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["nl", "Dit wil ik niet aangeven"],
-                ])
-            },
-        ],
-        bottomDisplayCompoments: [
-            {
-                role: 'error',
-                content: generateLocStrings(new Map([
-                    ["nl", "Voer de eerste vier cijfers van je postcode in"],
-                ])),
-                displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
-            }
-        ],
-        customValidations: [
-            {
-                key: 'r2',
-                type: 'hard',
-                rule: expWithArgs('or',
-                    expWithArgs('not', expWithArgs('hasResponse', fullKey, responseGroupKey)),
-                    expWithArgs('checkResponseValueWithRegex', fullKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
-                    expWithArgs('responseHasKeysAny', fullKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
-                )
-            }
         ]
     })
 }

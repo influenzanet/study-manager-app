@@ -1,7 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class CFQGroup extends GroupItemEditor {
@@ -51,7 +50,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         questionText: new Map([
             ["nl", "Cognitie (1/5)"],
         ]),
-        
+
         questionSubText: new Map([
             ["nl", "Vul hieronder het vakje in dat hoort bij je antwoord."],
         ]),

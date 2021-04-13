@@ -1,7 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class CovidTestGroup extends GroupItemEditor {
@@ -156,7 +155,7 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
         questionText: new Map([
             ["nl", "Wat is de reden dat je jezelf hebt laten testen op het coronavirus?"],
         ]),
-       
+
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),

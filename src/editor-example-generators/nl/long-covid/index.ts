@@ -7,11 +7,13 @@ import { generateT6c } from './surveys/T6c';
 import { generateT9c } from './surveys/T9c';
 import { generateT12c } from './surveys/T12c';
 import { generateShort } from './surveys/Tshort';
+import { generateShortC } from './surveys/Tshortc';
 import { generateT0 } from './surveys/T0';
 
 export const LongCovidSurveys = {
     T0: generateT0(),
     short: generateShort(),
+    shortC: generateShortC(),
     T3: generateT3(),
     T6: generateT6(),
     T9: generateT9(),

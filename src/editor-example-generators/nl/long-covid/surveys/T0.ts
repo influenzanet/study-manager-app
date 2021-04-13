@@ -1,6 +1,10 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
+import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { Q_CBS } from "../questions/cbs";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
@@ -11,6 +15,7 @@ import { Q_IPAQ } from "../questions/ipaq";
 import { MedicineGroup } from "../questions/medicine";
 import { Q_mMRC } from "../questions/mMRC";
 import { NCSIGroup } from "../questions/ncsi";
+import { ParticipantCategoryGroup } from "../questions/participantCategory";
 import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
@@ -37,40 +42,81 @@ export const generateT0 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    const generalHealthGroupEditor = new GeneralHealthGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(generalHealthGroupEditor.getItem());
+    const categoryQuestions = new ParticipantCategoryGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(categoryQuestions.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, true));
 
-    const ncsiGroupEditor = new NCSIGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
+    const isChildParticipant = expWithArgs('lt',
+        categoryQuestions.getAgeInYearsExpression(),
+        16
+    )
+    const isNotChildParticipant = expWithArgs('gte',
+        categoryQuestions.getAgeInYearsExpression(),
+        16
+    )
 
-    const satGroupEditor = new SaTGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
+    // ===========================
+    // ADULT QUESTIONS BRANCH
+    const adultVersion = new GroupItemEditor(surveyKey, 'A');
+    adultVersion.groupEditor.setCondition(isNotChildParticipant)
 
-    const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, false);
-    surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
+    const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
+    adultVersion.addItem(generalHealthGroupEditor.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_CIS(surveyKey, true));
+    adultVersion.addItem(Q_mMRC(adultVersion.key, true));
 
-    const cfqGroup = new CFQGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(cfqGroup.getItem());
+    const ncsiGroupEditor = new NCSIGroup(adultVersion.key);
+    adultVersion.addItem(ncsiGroupEditor.getItem());
 
-    const hadsGroup = new HADSGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
+    const satGroupEditor = new SaTGroup(adultVersion.key);
+    adultVersion.addItem(satGroupEditor.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
+    const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, false);
+    adultVersion.addItem(eq5dGroupEditor.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
+    adultVersion.addItem(Q_CIS(adultVersion.key, true));
 
-    const sf36Group = new SF36Group(surveyKey);
-    surveyEditor.addSurveyItemToRoot(sf36Group.getItem());
+    const cfqGroup = new CFQGroup(adultVersion.key);
+    adultVersion.addItem(cfqGroup.getItem());
 
-    const medicineGroupEditor = new MedicineGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
+    const hadsGroup = new HADSGroup(adultVersion.key);
+    adultVersion.addItem(hadsGroup.getItem());
 
-    const demographieGroupEditor = new DemographieGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(demographieGroupEditor.getItem());
+    adultVersion.addItem(Q_CBS(adultVersion.key, true));
+
+    adultVersion.addItem(Q_IPAQ(adultVersion.key, true));
+
+    const sf36Group = new SF36Group(adultVersion.key);
+    adultVersion.addItem(sf36Group.getItem());
+
+    const medicineGroupEditor = new MedicineGroup(adultVersion.key);
+    adultVersion.addItem(medicineGroupEditor.getItem());
+
+    const demographieGroupEditor = new DemographieGroup(adultVersion.key);
+    adultVersion.addItem(demographieGroupEditor.getItem());
+
+
+    // ===========================
+    // CHILD QUESTIONS BRANCH
+    const childVersion = new GroupItemEditor(surveyKey, 'C');
+    childVersion.groupEditor.setCondition(isChildParticipant);
+
+    childVersion.addItem(SurveyItemGenerators.display({
+        parentKey: childVersion.key,
+        itemKey: 'info',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ['nl', `Child version info`]
+                ])
+            })]
+    }))
+
+
+
+    surveyEditor.addSurveyItemToRoot(adultVersion.getItem());
+    surveyEditor.addSurveyItemToRoot(childVersion.getItem());
+
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
         ['nl', 'Thank you for your time, please submit here.']

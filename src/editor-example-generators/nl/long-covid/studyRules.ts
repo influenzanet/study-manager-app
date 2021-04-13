@@ -5,6 +5,7 @@ import { expWithArgs } from "../../../editor-engine/utils/simple-generators";
 export const surveyKeys = {
     T0: 'T0',
     short: 'SHORT',
+    shortC: 'SHORTc',
     T3: 'T3',
     T3c: 'T3c',
     T6: 'T6',
@@ -49,6 +50,15 @@ const assignShort = () => StudyActions.addNewSurvey(
     StudyExpressions.timestampWithOffset({
         days: 14
     }));
+const assignShortC = () => StudyActions.addNewSurvey(
+    surveyKeys.shortC,
+    "normal",
+    StudyExpressions.timestampWithOffset({
+        days: 7
+    }),
+    StudyExpressions.timestampWithOffset({
+        days: 14
+    }));
 const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "normal", 90, 30);
 const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "normal", 180, 30);
 const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "normal", 270, 30);
@@ -73,22 +83,47 @@ const handleT0Submission = (): Expression => {
 
     const hasNoReportedSymptoms = () => expWithArgs('not', hasReportedSymptoms());
 
+    const isChildParticipant = () => StudyExpressions.singleChoiceOptionsSelected(
+        "T0.TODO", "C"
+    )
+    const isNotChildParticipant = () => StudyExpressions.singleChoiceOptionsSelected(
+        "T0.TODO", "A"
+    )
+
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T0),
         [
             StudyActions.removeAllSurveys(),
             StudyActions.ifThen(
-                hasReportedSymptoms(),
-                [assignShort()]
-
+                isChildParticipant(),
+                [
+                    StudyActions.updateParticipantFlag("surveyCategory", "C"),
+                    StudyActions.ifThen(
+                        hasReportedSymptoms(),
+                        [assignShort()]
+                    ),
+                    StudyActions.ifThen(
+                        hasNoReportedSymptoms(),
+                        [assignT3c()]
+                    )
+                ]
             ),
             StudyActions.ifThen(
-                hasNoReportedSymptoms(),
+                isNotChildParticipant(),
                 [
-                    assignT3(),
-                    // TODO: set "child" flag
+                    StudyActions.updateParticipantFlag("surveyCategory", "A"),
+                    StudyActions.ifThen(
+                        hasReportedSymptoms(),
+                        [assignShort()]
+                    ),
+                    StudyActions.ifThen(
+                        hasNoReportedSymptoms(),
+                        [assignT3(),]
+                    )
                 ]
-            )
+            ),
+
+
         ]
     )
 }
@@ -130,61 +165,91 @@ const handleShortSubmission = (): Expression => {
 }
 
 const handleT3Submission = (): Expression => {
-    const performActions = () => [
-        StudyActions.removeAllSurveys(),
-        assignT6(),
-    ]
-
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T3),
-        performActions(),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT6(),
+        ]
+    )
+}
+
+const handleT3cSubmission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T3c),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT6c(),
+        ]
     )
 }
 
 const handleT6Submission = (): Expression => {
-    const performActions = () => [
-        StudyActions.removeAllSurveys(),
-        assignT9(),
-    ]
-
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T6),
-        performActions(),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT9(),
+        ]
+    )
+}
+
+const handleT6cSubmission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T6c),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT9c(),
+        ]
     )
 }
 
 const handleT9Submission = (): Expression => {
-    const performActions = () => [
-        StudyActions.removeAllSurveys(),
-        assignT12(),
-    ]
-
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T9),
-        performActions(),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT12(),
+        ]
+    )
+}
+
+const handleT9cSubmission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T9c),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT12c(),
+        ]
     )
 }
 
 const handleT12Submission = (): Expression => {
-    const performActions = () => [
-        StudyActions.removeAllSurveys(),
-        StudyActions.finishParticipation(),
-    ];
-
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T12),
-        performActions(),
+        [
+            StudyActions.removeAllSurveys(),
+            StudyActions.finishParticipation(),
+        ]
+    )
+}
+
+const handleT12cSubmission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T12c),
+        [
+            StudyActions.removeAllSurveys(),
+            StudyActions.finishParticipation(),
+        ]
     )
 }
 
 const handleStudyEntryEvent = (): Expression => {
-    const performActions = () => [
-        assignT0()
-    ];
-
     return StudyActions.ifThen(
         StudyExpressions.checkEventType('ENTER'),
-        performActions(),
+        [
+            assignT0()
+        ]
     )
 }
 const handleSubmissionEvent = () => StudyActions.ifThen(
@@ -193,9 +258,13 @@ const handleSubmissionEvent = () => StudyActions.ifThen(
         handleT0Submission(),
         handleShortSubmission(),
         handleT3Submission(),
+        handleT3cSubmission(),
         handleT6Submission(),
+        handleT6cSubmission(),
         handleT9Submission(),
+        handleT9cSubmission(),
         handleT12Submission(),
+        handleT12cSubmission(),
     ]
 )
 
