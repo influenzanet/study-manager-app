@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";
@@ -23,6 +24,7 @@ export class EQ5DGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addItem(Q_instructions(this.key))
         this.addItem(q_mobility_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
         this.addItem(q_selfcare_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
         this.addItem(q_activities_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
@@ -46,6 +48,27 @@ const eq5dCopyright = {
     ]
 };
 
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Kwaliteit van leven
+
+Zet bij iedere groep in de lijst een kruisje in het hokje dat het best past bij jouw gezondheid zoals je die VANDAAG ervaart.
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
 const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'MOB';
 
@@ -56,16 +79,7 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             ["en", "MOBILITY"],
             ["nl", "MOBILITEIT"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["en", "Please select the ONE option that best describes your health TODAY."],
-                    ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
-                ]))
-            }
-        ],
+      
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -118,14 +132,7 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             ["en", "SELF-CARE"],
             ["nl", "ZELFZORG"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
-            ]))
-        }],
+        
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -182,14 +189,7 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
             ["en", "(e.g. work, study, housework, family or leisure activities)"],
             ["nl", "(bijv. werk, studie, huishouden, gezins- en vrijetijdsactiviteiten)"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
-            ]))
-        }],
+        
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -242,14 +242,7 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
             ["en", "PAIN / DISCOMFORT"],
             ["nl", "PIJN / ONGEMAK"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
-            ]))
-        }],
+        
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -301,14 +294,7 @@ const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: b
             ["en", "ANXIETY / DEPRESSION"],
             ["nl", "ANGST / SOMBERHEID"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["en", "Please select the ONE option that best describes your health TODAY."],
-                ["nl", "Klik in de lijst hieronder het hokje aan dat het best past bij uw gezondheid VANDAAG."],
-            ]))
-        }],
+        
         responseOptions: [
             {
                 key: '0', role: 'option',

@@ -16,9 +16,11 @@ export class SaTGroup extends GroupItemEditor {
         this.addItem(q_a(this.key, true))
         this.addItem(q_b(this.key, true))
         this.addItem(q_c(this.key, true))
+        this.addItem(Q_instructions2(this.key))
         this.addItem(q_d(this.key, true))
         this.addItem(q_e(this.key, true))
         this.addItem(q_f(this.key, true))
+        this.addItem(Q_instructions2(this.key))
         this.addItem(q_g(this.key, true))
         this.addItem(q_h(this.key, true))
     }
@@ -26,7 +28,7 @@ export class SaTGroup extends GroupItemEditor {
 
 const Q_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
-# Reuk- en smaakvermogen
+## Reukvermogen
 
 Deze vragen gaan over je reukvermogen (bijvoorbeeld het ruiken van bloemen of zeep of stinkend afval) maar niet over de smaakbeleving van eten in je mond.
 `
@@ -77,11 +79,14 @@ const q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Beoordeel je reukvermogen OP DIT MOMENT"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Mijn reukvermogen op dit moment: (geen reukvermogen 0 - uitstekend reukvermogen 100)."],
+        ]),
         sliderLabel: new Map([
-            ["nl", "Mijn reukvermogen op dit moment: (geen reukvermogen 0 - uitstekend reukvermogen 100)"],
+            ["nl", "Jouw selectie:"],
         ]),
         noResponseLabel: new Map([
-            ["nl", "MOVE SLIDER"],
+            ["nl", "Beweeg de slider om je antwoord te geven"],
         ]),
         min: 0,
         max: 100,
@@ -96,7 +101,10 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in uw reukvermogen? (Selecteer alles dat van toepassing is)"],
+            ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in uw reukvermogen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Selecteer alles dat van toepassing is."],
         ]),
         responseOptions: [
             {
@@ -127,7 +135,26 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     });
 }
 
+const Q_instructions2 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Smaakvermogen
 
+De volgende vragen gaan over je smaakvermogen. Bijvoorbeeld het proeven van zoet, zuur, zout en bitter.
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro2',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 
 const q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'd';
@@ -138,11 +165,14 @@ const q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Beoordeel je smaakvermogen voorafgaand aan dit onderzoek"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Mijn smaakvermogen voorafgaand aan dit onderzoek: (geen smaakvermogen 0 - uitstekend smaakvermogen 100)"],
+        ]),
         sliderLabel: new Map([
-            ["nl", "Mijn smaakvermogen voorafgaand aan dit onderzoek: (geen smaakvermogen 0 - uitstekend smaakvermogen 100):"],
+            ["nl", "Jouw selectie:"],
         ]),
         noResponseLabel: new Map([
-            ["nl", "MOVE SLIDER"],
+            ["nl", "Beweeg de slider om je antwoord te geven"],
         ]),
         min: 0,
         max: 100,
@@ -160,11 +190,14 @@ const q_e = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Beoordeel je smaakvermogen OP DIT MOMENT"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Mijn smaakvermogen op dit moment: (geen smaakvermogen 0 - uitstekend smaakvermogen 100)"],
+        ]),
         sliderLabel: new Map([
-            ["nl", "Mijn smaakvermogen op dit moment: (geen smaakvermogen 0 - uitstekend smaakvermogen 100):"],
+            ["nl", "Jouw selectie:"],
         ]),
         noResponseLabel: new Map([
-            ["nl", "MOVE SLIDER"],
+            ["nl", "Beweeg de slider om je antwoord te geven"],
         ]),
         min: 0,
         max: 100,
@@ -179,7 +212,10 @@ export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Merk je OP DIT MOMENT verandering in specifieke smaken? (Selecteer alles waar in je een verandering hebt gemerkt)"],
+            ["nl", "Merk je OP DIT MOMENT verandering in specifieke smaken?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Selecteer alles waarin je een verandering hebt gemerkt."],
         ]),
         responseOptions: [
             {
@@ -222,7 +258,26 @@ export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     });
 }
 
+const Q_instructions3 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Sensaties
 
+De volgende vragen gaan over andere sensaties in je mond zoals branden, koelen of tintelen. Bijvoorbeeld van chilipepers, kauwgom, pepermunt of koolzuur.
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro3',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'g';
     return SurveyItemGenerators.numericSlider({
@@ -232,11 +287,14 @@ const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Beoordeel je vermogen om deze andere sensaties in uw mond te voelen voorafgaand aan dit onderzoek"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Mijn vermogen voor het voelen van sensaties voorafgaand aan dit onderzoek: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],
+        ]),
         sliderLabel: new Map([
-            ["nl", "Mijn vermogen voor het voelen van sensaties voorafgaand aan dit onderzoek: (helemaal niet gevoelig 0 - heel erg gevoelig 100"],
+            ["nl", "Jouw selectie:"],
         ]),
         noResponseLabel: new Map([
-            ["nl", "MOVE SLIDER"],
+            ["nl", "Beweeg de slider om je antwoord te geven"],
         ]),
         min: 0,
         max: 100,
@@ -252,11 +310,14 @@ const q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Beoordeel je vermogen om deze andere sensaties in uw mond te voelen OP DIT MOMENT"],
         ]),
-        sliderLabel: new Map([
+        questionSubText: new Map([
             ["nl", "Mijn vermogen voor het voelen van sensaties op dit moment: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],
         ]),
+        sliderLabel: new Map([
+            ["nl", "Jouw selectie:"],
+        ]),
         noResponseLabel: new Map([
-            ["nl", "MOVE SLIDER"],
+            ["nl", "Beweeg de slider om je antwoord te geven"],
         ]),
         min: 0,
         max: 100,

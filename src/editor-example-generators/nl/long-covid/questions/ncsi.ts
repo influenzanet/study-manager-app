@@ -26,7 +26,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Geef aan hoe benauwd/ kortademig u zich de meeste dagen van de afgelopen maand voelde:"],
+            ["nl", "Geef aan hoe benauwd/kortademig u zich de meeste dagen van de afgelopen maand voelde:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -95,7 +95,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Geef aan hoe vervelend u uw benauwdheid/ kortademigheid vond in de afgelopen maand:"],
+            ["nl", "Geef aan hoe vervelend u uw benauwdheid/kortademigheid vond in de afgelopen maand:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -164,7 +164,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Geef aan hoe benauwd/ kortademig u zich voelde gedurende de meeste dagelijkse activiteiten in de afgelopen maand:"],
+            ["nl", "Geef aan hoe benauwd/kortademig u zich voelde gedurende de meeste dagelijkse activiteiten in de afgelopen maand:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
