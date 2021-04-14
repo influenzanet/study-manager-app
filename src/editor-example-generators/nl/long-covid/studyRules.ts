@@ -35,7 +35,7 @@ const assignSurveyFromStudyStart = (
 
 const assignT0 = () => StudyActions.addNewSurvey(
     surveyKeys.T0,
-    "normal",
+    "prio",
     StudyExpressions.timestampWithOffset({ seconds: -500 }),
     StudyExpressions.timestampWithOffset({
         days: 7
@@ -43,13 +43,14 @@ const assignT0 = () => StudyActions.addNewSurvey(
 
 const assignShort = () => StudyActions.addNewSurvey(
     surveyKeys.short,
-    "normal",
+    "prio",
     StudyExpressions.timestampWithOffset({
         days: 7
     }),
     StudyExpressions.timestampWithOffset({
         days: 14
     }));
+
 const assignShortC = () => StudyActions.addNewSurvey(
     surveyKeys.shortC,
     "normal",
@@ -59,10 +60,10 @@ const assignShortC = () => StudyActions.addNewSurvey(
     StudyExpressions.timestampWithOffset({
         days: 14
     }));
-const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "normal", 90, 30);
-const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "normal", 180, 30);
-const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "normal", 270, 30);
-const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "normal", 360, 30);
+const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 30);
+const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 30);
+const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 30);
+const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 30);
 
 const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "normal", 90, 30);
 const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "normal", 180, 30);

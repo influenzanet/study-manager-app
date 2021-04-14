@@ -1,5 +1,4 @@
 import { Survey } from "survey-engine/lib/data_types";
-import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
@@ -8,6 +7,7 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 import { Q_CBS } from "../questions/cbs";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
+import { CovidTestGroup } from "../questions/covidTest";
 import { DemographieGroup } from "../questions/demographie";
 import { EQ5DGroup } from '../questions/eq5d';
 import { HADSGroup } from "../questions/hads";
@@ -28,13 +28,13 @@ export const generateT0 = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "T0"],
+            ["nl", "Vragenlijst start LongCOVID"],
         ]),
         description: new Map([
-            ["en", "..."],
+            ["nl", "Dit is de eerste vragenlijst van het LongCOVID onderzoek. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
-            ["en", "..."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
         ])
     })
 
@@ -59,6 +59,9 @@ export const generateT0 = (): Survey | undefined => {
     // ADULT QUESTIONS BRANCH
     const adultVersion = new GroupItemEditor(surveyKey, 'A');
     adultVersion.groupEditor.setCondition(isNotChildParticipant)
+
+    const covidTestGroupEditor = new CovidTestGroup(adultVersion.key);
+    adultVersion.addItem(covidTestGroupEditor.getItem());
 
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());
@@ -107,7 +110,7 @@ export const generateT0 = (): Survey | undefined => {
         content: [
             ComponentGenerators.markdown({
                 content: new Map([
-                    ['nl', `Child version info`]
+                    ['nl', `Het LongCOVID onderzoek bij kinderen is helaas nog niet van start gegaan. Volg de informatie op de website [www.rivm.nl/longcovidonderzoek](www.rivm.nl/longcovidonderzoek) over de start van het onderzoek bij kinderen.`]
                 ])
             })]
     }))
@@ -119,7 +122,7 @@ export const generateT0 = (): Survey | undefined => {
 
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Thank you for your time, please submit here.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
     ])));
 
     return surveyEditor.getSurvey();

@@ -1,4 +1,5 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { CovidTestGroup } from "../questions/covidTest";
@@ -12,13 +13,13 @@ export const generateShort = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKeys.short,
         name: new Map([
-            ["en", "short"],
+            ["nl", "Wekelijkse update van klachten LongCOVID onderzoek"],
         ]),
         description: new Map([
-            ["en", "..."],
+            ["nl", "In de vorige vragenlijst heb je aangegeven klachten te hebben. In deze update vragen we je of deze klachten nog steeds aanwezig zijn, en hoe je je voelt."],
         ]),
         durationText: new Map([
-            ["en", "..."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 5 minuten van je tijd."],
         ])
     })
 
@@ -37,6 +38,11 @@ export const generateShort = (): Survey | undefined => {
 
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
     //surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
+
+
+    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
+    ])));
 
     return surveyEditor.getSurvey();
 }
