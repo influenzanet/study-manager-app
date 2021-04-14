@@ -19,6 +19,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const infect_earlier = q_infect_earlier_def(this.key, true);
         const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
+        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'no');
 
         this.addItem(test);
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
@@ -30,6 +31,7 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
         this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
         this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
+        this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
     }
 }
 
@@ -400,6 +402,40 @@ const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, conditi
         ]),
         minRelativeDate: undefined,
         maxRelativeDate: undefined,
+        isRequired: isRequired,
+    });
+}
+
+const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q11';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze deels of geheel door het coronavirus komen?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
+                ])
+            },
+        ],
         isRequired: isRequired,
     });
 }
