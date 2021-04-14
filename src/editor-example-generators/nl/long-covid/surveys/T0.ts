@@ -19,6 +19,7 @@ import { ParticipantCategoryGroup } from "../questions/participantCategory";
 import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
+import { VaccinationGroup } from "../questions/vaccination";
 import { surveyKeys } from "../studyRules";
 
 
@@ -95,7 +96,7 @@ export const generateT0 = (): Survey | undefined => {
     const medicineGroupEditor = new MedicineGroup(adultVersion.key);
     adultVersion.addItem(medicineGroupEditor.getItem());
 
-    const demographieGroupEditor = new DemographieGroup(adultVersion.key);
+    const demographieGroupEditor = new DemographieGroup(adultVersion.key, categoryQuestions.getAgeInYearsExpression());
     adultVersion.addItem(demographieGroupEditor.getItem());
 
 
