@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -13,30 +14,42 @@ export class AcuteHealthGroup extends GroupItemEditor {
     }
 
     initQuestions() {
-        this.addItem(q_acuteSymptoms_1(this.key, true));
-        this.addItem(q_acuteSymptoms_2(this.key, true));
-        this.addItem(q_acuteSymptoms_3(this.key, true));
+        const Q_symptoms = q_acuteSymptoms(this.key, true);
+        this.addItem(Q_symptoms);
 
-        const q4 = l3q4(this.key, true);
-        this.addItem(q4);
+        const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+            Q_symptoms.key, 'geen'
+        );
 
-        this.addItem(l3q5(this.key, q4.key, true));
+        const hasSymptomsGroup = new GroupItemEditor(this.key, 'WS');
+        hasSymptomsGroup.groupEditor.setCondition(hasReportedSymptoms);
 
-        this.addItem(l3q6(this.key, q4.key, true));
+        hasSymptomsGroup.addItem(Q2(hasSymptomsGroup.key, true));
+        hasSymptomsGroup.addItem(Q3(hasSymptomsGroup.key, true));
 
-        this.addItem(l3q7(this.key, true));
+        hasSymptomsGroup.addItem(IPQ(hasSymptomsGroup.key, true));
 
-        const q8 = l3q8(this.key, true);
-        this.addItem(q8)
+        const q4 = Q4(hasSymptomsGroup.key, true);
+        hasSymptomsGroup.addItem(q4);
 
-        this.addItem(l3q9(this.key, q8.key, true));
+        hasSymptomsGroup.addItem(Q5(hasSymptomsGroup.key, q4.key, true));
+
+        hasSymptomsGroup.addItem(Q6(hasSymptomsGroup.key, q4.key, true));
+
+        hasSymptomsGroup.addItem(Q7(hasSymptomsGroup.key, true));
+
+        const q8 = Q8(hasSymptomsGroup.key, true);
+        hasSymptomsGroup.addItem(q8)
+
+        hasSymptomsGroup.addItem(Q9(hasSymptomsGroup.key, q8.key, true));
+
+        this.addItem(hasSymptomsGroup.getItem());
     }
 }
 
 
-
-const q_acuteSymptoms_1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'SYM_1';
+const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'SYM';
 
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
@@ -115,32 +128,6 @@ const q_acuteSymptoms_1 = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["nl", "Vermoeidheid"],
                 ])
             },
-        ],
-        isRequired: isRequired,
-    })
-}
-
-
-const q_acuteSymptoms_2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'SYM_2';
-
-    return SurveyItemGenerators.multipleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
-        ]),
-
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
-        responseOptions: [
             {
                 key: 'malaise', role: 'option',
                 content: new Map([
@@ -151,12 +138,6 @@ const q_acuteSymptoms_2 = (parentKey: string, isRequired?: boolean, keyOverride?
                 key: 'eetlust', role: 'option',
                 content: new Map([
                     ["nl", "Verminderde eetlust"],
-                ])
-            },
-            {
-                key: 'spierpijn', role: 'option',
-                content: new Map([
-                    ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
                 ])
             },
             {
@@ -201,31 +182,6 @@ const q_acuteSymptoms_2 = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["nl", "Buikpijn"],
                 ])
             },
-        ],
-        isRequired: isRequired,
-    })
-}
-
-const q_acuteSymptoms_3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'SYM_3';
-
-    return SurveyItemGenerators.multipleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
-        ]),
-
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
-        responseOptions: [
             {
                 key: 'geen_reuk', role: 'option',
                 content: new Map([
@@ -292,13 +248,189 @@ const q_acuteSymptoms_3 = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["nl", "Oorsuizen"],
                 ])
             },
+            {
+                key: 'geen', role: 'option',
+                content: new Map([
+                    ["nl", "Geen van deze klachten"],
+                ])
+            },
         ],
         isRequired: isRequired,
     })
 }
 
-const l3q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'q4';
+
+
+
+const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q2';
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Op welke datum begonnen de eerste klachten (je mag de datum ook schatten)?"],
+        ]),
+        dateInputMode: 'YMD',
+        placeholderText: new Map([
+            ["nl", "dd-mm-jjjj"],
+        ]),
+        minRelativeDate: { delta: { days: -40 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+    });
+}
+
+const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q3';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Denk je dat deze klachten geheel of deels door het coronavirus komen?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            }, {
+                key: 'misschien', role: 'option',
+                content: new Map([
+                    ["nl", "Misschien"],
+                ])
+            }, {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, waarschijnlijk wel"],
+                ])
+            }, {
+                key: 'other', role: 'input',
+                content: new Map([
+                    ["nl", "Nee, andere oorzaak namelijk:"],
+                ])
+            }, {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Weet it niet"],
+                ])
+            },
+        ]
+    });
+}
+
+const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'IPQ';
+    return SurveyItemGenerators.simpleLikertGroup({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Je hebt eerder aangegeven dat je afgelopen week klachten had."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
+        ]),
+        topDisplayCompoments: [
+            ComponentGenerators.text({
+                content: new Map([
+                    ['nl', '0 helemaal geen invloed – 10 zeer veel invloed']
+                ]),
+                className: 'mb-2'
+            })
+        ],
+        scaleOptions: [
+            {
+                key: '1', content: new Map([
+                    ["nl", "1"],
+                ])
+            }, {
+                key: '2', content: new Map([
+                    ["nl", "2"],
+                ])
+            }, {
+                key: '3', content: new Map([
+                    ["nl", "3"],
+                ])
+            }, {
+                key: '4', content: new Map([
+                    ["nl", "4"],
+                ]),
+            }, {
+                key: '5', content: new Map([
+                    ["nl", "5"],
+                ])
+            }, {
+                key: '6', content: new Map([
+                    ["nl", "6"],
+                ])
+            }, {
+                key: '7', content: new Map([
+                    ["nl", "7"],
+                ])
+            }, {
+                key: '8', content: new Map([
+                    ["nl", "8"],
+                ])
+            }, {
+                key: '9', content: new Map([
+                    ["nl", "9"],
+                ])
+            }, {
+                key: '10', content: new Map([
+                    ["nl", "10"],
+                ])
+            }
+        ],
+        rows: [
+            {
+                key: 'a', content: new Map([
+                    ["nl", "Hoeveel beïnvloeden uw klachten je leven?"],
+                ])
+            },
+            {
+                key: 'b', content: new Map([
+                    ["nl", "Hoe lang denk je dat je klachten zullen duren?"],
+                ])
+            },
+            {
+                key: 'c', content: new Map([
+                    ["nl", "Hoeveel controle vind je dat je hebt over je klachten?"],
+                ])
+            },
+            {
+                key: 'd', content: new Map([
+                    ["nl", "Hoeveel denk je dat je behandeling kan helpen bij je klachten?"],
+                ])
+            },
+            {
+                key: 'e', content: new Map([
+                    ["nl", "Hoe sterk ervaar je klachten?"],
+                ])
+            },
+            {
+                key: 'f', content: new Map([
+                    ["nl", "Hoe bezorgd ben je over je klachten?"],
+                ])
+            },
+            {
+                key: 'g', content: new Map([
+                    ["nl", "In welke mate vind je dat je je klachten begrijpt?"],
+                ])
+            },
+            {
+                key: 'h', content: new Map([
+                    ["nl", "h.	Hoeveel invloed hebben de klachten op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
+                ])
+            },
+        ]
+    });
+}
+
+
+const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q4';
 
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
@@ -362,8 +494,8 @@ const l3q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
 }
 
 
-const l3q5 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'q5';
+const Q5 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q5';
 
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -397,8 +529,8 @@ const l3q5 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverrid
 }
 
 
-const l3q6 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'q6';
+const Q6 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q6';
 
     return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
@@ -504,8 +636,8 @@ const l3q6 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverrid
 }
 
 
-const l3q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'q7';
+const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q7';
 
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
@@ -598,8 +730,8 @@ const l3q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     })
 }
 
-const l3q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'q8';
+const Q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q8';
 
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -643,8 +775,8 @@ const l3q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     })
 }
 
-const l3q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'q9';
+const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q9';
     return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,

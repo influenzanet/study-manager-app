@@ -4,6 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { Q_CBS } from "../questions/cbs";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
@@ -66,6 +67,9 @@ export const generateT0 = (): Survey | undefined => {
 
     const vaccineGroupEditor = new VaccinationGroup(adultVersion.key);
     adultVersion.addItem(vaccineGroupEditor.getItem());
+
+    const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
+    adultVersion.addItem(acuteHealthGroupEditor.getItem());
 
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());
