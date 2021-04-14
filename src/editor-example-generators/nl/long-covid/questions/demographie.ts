@@ -1,7 +1,7 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
-import { datePickerKey, numericInputKey, responseGroupKey, singleChoiceKey } from "../../../../editor-engine/utils/key-definitions";
+import { numericInputKey, responseGroupKey } from "../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -49,13 +49,21 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q11(this.key, true))
 
         const q12Condition = expWithArgs('gt',
-            expWithArgs('getAttribute',
-                expWithArgs('getResponseItem', nrOfPersons.key, [responseGroupKey, numericInputKey].join('.')),
-                'value'
-            ),
+            CommonExpressions.getResponseValueAsNum(nrOfPersons.key, [responseGroupKey, numericInputKey].join('.')),
             1
         );
-        this.addItem(Q12(this.key, q12Condition, true))
+        this.addItem(Q12(this.key, q12Condition, true));
+
+        this.addItem(Q13(this.key, true))
+        const jobStatus = Q14(this.key, true);
+        this.addItem(jobStatus)
+
+        const q15condition = CommonExpressions.singleChoiceOptionsSelected(jobStatus.key, '1', '2', '3');
+        this.addItem(Q15(this.key, q15condition, true))
+
+        this.addItem(Q16(this.key, true))
+        this.addItem(Q17(this.key, true))
+        this.addItem(Q18(this.key, true))
     }
 }
 
@@ -400,7 +408,7 @@ const Q12 = (parentKey: string, condition: Expression, isRequired?: boolean, key
             {
                 key: 'a', role: 'numberInput',
                 content: new Map([
-                    ["nl", "<4 jaar"],
+                    ["nl", "< 4 jaar"],
                 ]),
                 optionProps: inputProperties,
                 style: inputStyle,
@@ -455,3 +463,322 @@ const Q12 = (parentKey: string, condition: Expression, isRequired?: boolean, key
 }
 
 
+const Q13 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q13';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Wat is je hoogst (met diploma) afgeronde opleiding?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Basisonderwijs of lager onderwijs"],
+                ]),
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Lbo (ambachtsschool, huishoudschool, lts, leao, etc.)"],
+                ]),
+            }, {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Vmbo, mavo of (m)ulo"],
+                ]),
+            }, {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Havo of vwo"],
+                ]),
+            }, {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Hbo"],
+                ]),
+            }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Universiteit"],
+                ]),
+            }, {
+                key: '7', role: 'input',
+                content: new Map([
+                    ["nl", "Anders, namelijk"],
+                ]),
+            },
+        ]
+    });
+}
+
+const Q14 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q14';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Wat is je voornaamste bezigheid overdag?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk fulltime in loondienst"],
+                ]),
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk parttime in loondienst"],
+                ]),
+            }, {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk als zelfstandige/ ondernemer"],
+                ]),
+            }, {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben een scholier of student"],
+                ]),
+            }, {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben huisman/huisvrouw"],
+                ]),
+            }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben werkloos"],
+                ]),
+            }, {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben thuis vanwege langdurige ziekte of zwangerschapsverlof"],
+                ]),
+            }, {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben met pensioen"],
+                ]),
+            }, {
+                key: '9', role: 'option',
+                content: new Map([
+                    ["nl", "Anders"],
+                ]),
+            },
+        ]
+    });
+}
+
+
+const Q15 = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q15';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de gezondheidzorg"],
+                ]),
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
+                ]),
+            }, {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de kinderopvang/onderwijs (basis, voortgezet, MBO, HBO of WO-onderwijs)"],
+                ]),
+            }, {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de horeca"],
+                ]),
+            }, {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de detailhandel (supermarkt, verkoop in andere winkels)"],
+                ]),
+            }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in het openbaar vervoer (bijv. trein, bus, metro of taxi)"],
+                ]),
+            }, {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben thuis vanwege langdurige ziekte of zwangerschapsverlof"],
+                ]),
+            }, {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
+                ]),
+            }, {
+                key: '9', role: 'option',
+                content: new Map([
+                    ["nl", "Ik doe administratief werk (administratie, financieel assistent, receptionist etc.)"],
+                ]),
+            },
+            {
+                key: '10', role: 'option',
+                content: new Map([
+                    ["nl", "Ik doe technisch werk (uitvoerend in techniek, bouw, productie)"],
+                ]),
+            },
+            {
+                key: '11', role: 'option',
+                content: new Map([
+                    ["nl", "Anders, valt niet in bovengenoemde opties"],
+                ]),
+            },
+        ]
+    });
+}
+
+
+const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q16';
+
+    const inputProperties = {
+        min: 1,
+        max: 50
+    };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '80px' }];
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was, anders dan corona?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ]),
+            },
+            {
+                key: 'ja', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Ja, TODO (ca. that many days): "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+        ]
+    });
+}
+
+const Q17 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q17';
+
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Hoe heb je over het LongCOVID onderzoek gehoord?"],
+        ]),
+        topDisplayCompoments: [
+            ComponentGenerators.text({
+                content: new Map([[
+                    'nl', 'Meerdere antwoorden mogelijk'
+                ]]),
+                className: "mb-2"
+            })
+        ],
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Uitnodiging via e-mail na deelname aan CONTEST onderzoek"],
+                ]),
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Uitnodiging via de e-mail na contact met de GGD voor bron en contactonderzoek"],
+                ]),
+            }, {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Uitnodiging per brief"],
+                ]),
+            }, {
+                key: '4', role: 'input',
+                content: new Map([
+                    ["nl", "Via de media, namelijk:"],
+                ]),
+            }, {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Via vrienden of familie"],
+                ]),
+            }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Via google of een andere internet zoekmachine"],
+                ]),
+            }, {
+                key: '7', role: 'input',
+                content: new Map([
+                    ["nl", "Anders, namelijk:"],
+                ]),
+            },
+        ]
+    });
+}
+
+
+const Q18 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q18';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Zouden wij je eventueel mogen benaderen voor aanvullend onderzoek?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ]),
+            },
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ]),
+            },
+        ]
+    });
+}
