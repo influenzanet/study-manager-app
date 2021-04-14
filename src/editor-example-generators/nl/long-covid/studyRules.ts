@@ -91,22 +91,31 @@ const handleT0Submission = (): Expression => {
         "T0.TODO", "A"
     )
 
+    const isInterestedInAdditionalResearch = () => StudyExpressions.singleChoiceOptionsSelected(
+        "T0.DEM.Q18", "ja"
+    )
+
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T0),
         [
             StudyActions.removeAllSurveys(),
             StudyActions.ifThen(
+                isInterestedInAdditionalResearch(),
+                [StudyActions.updateParticipantFlag("additionalStudies", "ja"),]
+            ),
+            StudyActions.ifThen(
                 isChildParticipant(),
                 [
-                    StudyActions.updateParticipantFlag("surveyCategory", "C"),
+                    StudyActions.finishParticipation(),
+                    /*StudyActions.updateParticipantFlag("surveyCategory", "C"),
                     StudyActions.ifThen(
                         hasReportedSymptoms(),
-                        [assignShort()]
+                        [assignShortC()]
                     ),
                     StudyActions.ifThen(
                         hasNoReportedSymptoms(),
                         [assignT3c()]
-                    )
+                    )*/
                 ]
             ),
             StudyActions.ifThen(

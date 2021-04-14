@@ -64,6 +64,9 @@ export const generateT0 = (): Survey | undefined => {
     const covidTestGroupEditor = new CovidTestGroup(adultVersion.key);
     adultVersion.addItem(covidTestGroupEditor.getItem());
 
+    const vaccineGroupEditor = new VaccinationGroup(adultVersion.key);
+    adultVersion.addItem(vaccineGroupEditor.getItem());
+
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());
 
