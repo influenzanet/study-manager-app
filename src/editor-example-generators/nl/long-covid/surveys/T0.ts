@@ -78,10 +78,10 @@ export const generateT0 = (): Survey | undefined => {
     const ncsiGroupEditor = new NCSIGroup(adultVersion.key);
     adultVersion.addItem(ncsiGroupEditor.getItem());
 
-    const satGroupEditor = new SaTGroup(adultVersion.key, true);
+    const satGroupEditor = new SaTGroup(adultVersion.key);
     adultVersion.addItem(satGroupEditor.getItem());
 
-    const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, false);
+    const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, true);
     adultVersion.addItem(eq5dGroupEditor.getItem());
 
     adultVersion.addItem(Q_CIS(adultVersion.key, true));

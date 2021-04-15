@@ -2,29 +2,42 @@ import { SurveyItem } from "survey-engine/lib/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class SaTGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, showT0Question: boolean, keyOverride?: string) {
+    constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'SaT';
         super(parentKey, groupKey);
-        this.initQuestions(showT0Question);
+        this.initQuestions();
     }
 
-    initQuestions(showT0Question: boolean) {
+    initQuestions() {
         this.addItem(Q_instructions(this.key))
-        this.addItem(q_a(this.key, true))
-        this.addItem(q_b(this.key, true))
-        this.addItem(q_c(this.key, true))
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(q_a(this.key, true))
+        }
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
+            this.addItem(q_b(this.key, true))
+            this.addItem(q_c(this.key, true))
+        }
+
         this.addItem(Q_instructions2(this.key))
-        if (showT0Question) {
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(q_d(this.key, true))
         }
-        this.addItem(q_e(this.key, true))
-        this.addItem(q_f(this.key, true))
-        this.addItem(Q_instructions2(this.key))
-        this.addItem(q_g(this.key, true))
-        this.addItem(q_h(this.key, true))
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
+            this.addItem(q_e(this.key, true))
+            this.addItem(q_f(this.key, true))
+        }
+
+        this.addItem(Q_instructions3(this.key))
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(q_g(this.key, true))
+        }
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
+            this.addItem(q_h(this.key, true))
+        }
     }
 }
 

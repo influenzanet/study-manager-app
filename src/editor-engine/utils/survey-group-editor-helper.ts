@@ -19,6 +19,10 @@ export class GroupItemEditor {
         }
     }
 
+    isPartOfSurvey(surveyKey: string): boolean {
+        return this.key.includes(surveyKey)
+    }
+
     getItem() {
         return this.groupEditor.getItem();
     }

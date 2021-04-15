@@ -4,7 +4,6 @@ import { ComponentGenerators } from "../../../../editor-engine/utils/componentGe
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
-import surveys from "../../../surveys";
 import { surveyKeys } from "../studyRules";
 
 export class AcuteHealthGroup extends GroupItemEditor {
@@ -13,10 +12,6 @@ export class AcuteHealthGroup extends GroupItemEditor {
         const groupKey = keyOverride ? keyOverride : 'AH';
         super(parentKey, groupKey);
         this.initQuestions();
-    }
-
-    isPartOfSurvey(surveyKey: string): boolean {
-        return this.key.includes(surveyKey)
     }
 
     initQuestions() {
