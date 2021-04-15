@@ -17,6 +17,7 @@ export class AcuteHealthGroup extends GroupItemEditor {
     initQuestions() {
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
+        this.addPageBreak();
 
         const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q_symptoms.key, 'geen'
@@ -60,6 +61,7 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
 
         this.addItem(hasSymptomsGroup.getItem());
+        this.addPageBreak();
     }
 }
 
@@ -79,7 +81,7 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         responseOptions: [
             {
                 key: 'long', role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
                     ["nl", "Selecteer je klachten"],
                 ])
@@ -490,7 +492,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 key: 'h', content: new Map([
-                    ["nl", "h.	Hoeveel invloed hebben de klachten op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
+                    ["nl", "Hoeveel invloed hebben de klachten op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
                 ])
             },
         ]
