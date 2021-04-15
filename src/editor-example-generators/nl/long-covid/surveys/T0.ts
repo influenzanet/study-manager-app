@@ -47,7 +47,6 @@ export const generateT0 = (): Survey | undefined => {
     const categoryQuestions = new ParticipantCategoryGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(categoryQuestions.getItem());
 
-
     const isChildParticipant = expWithArgs('lt',
         categoryQuestions.getAgeInYearsExpression(),
         16
@@ -62,10 +61,10 @@ export const generateT0 = (): Survey | undefined => {
     const adultVersion = new GroupItemEditor(surveyKey, 'A');
     adultVersion.groupEditor.setCondition(isNotChildParticipant)
 
-    const covidTestGroupEditor = new CovidTestGroup(adultVersion.key);
+    const covidTestGroupEditor = new CovidTestGroup(adultVersion.key, true);
     adultVersion.addItem(covidTestGroupEditor.getItem());
 
-    const vaccineGroupEditor = new VaccinationGroup(adultVersion.key);
+    const vaccineGroupEditor = new VaccinationGroup(adultVersion.key, true);
     adultVersion.addItem(vaccineGroupEditor.getItem());
 
     const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
@@ -79,7 +78,7 @@ export const generateT0 = (): Survey | undefined => {
     const ncsiGroupEditor = new NCSIGroup(adultVersion.key);
     adultVersion.addItem(ncsiGroupEditor.getItem());
 
-    const satGroupEditor = new SaTGroup(adultVersion.key);
+    const satGroupEditor = new SaTGroup(adultVersion.key, true);
     adultVersion.addItem(satGroupEditor.getItem());
 
     const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, false);

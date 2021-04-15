@@ -5,19 +5,21 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 
 export class SaTGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, showT0Question: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'SaT';
         super(parentKey, groupKey);
-        this.initQuestions();
+        this.initQuestions(showT0Question);
     }
 
-    initQuestions() {
+    initQuestions(showT0Question: boolean) {
         this.addItem(Q_instructions(this.key))
         this.addItem(q_a(this.key, true))
         this.addItem(q_b(this.key, true))
         this.addItem(q_c(this.key, true))
         this.addItem(Q_instructions2(this.key))
-        this.addItem(q_d(this.key, true))
+        if (showT0Question) {
+            this.addItem(q_d(this.key, true))
+        }
         this.addItem(q_e(this.key, true))
         this.addItem(q_f(this.key, true))
         this.addItem(Q_instructions2(this.key))

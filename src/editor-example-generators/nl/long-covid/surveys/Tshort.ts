@@ -27,14 +27,13 @@ export const generateShort = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    const covidTestGroupEditor = new CovidTestGroup(surveyKey);
+    const covidTestGroupEditor = new CovidTestGroup(surveyKey, false);
     surveyEditor.addSurveyItemToRoot(covidTestGroupEditor.getItem());
-
-    const vaccineGroupEditor = new VaccinationGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(vaccineGroupEditor.getItem());
 
     const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
+
+
 
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
     //surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());

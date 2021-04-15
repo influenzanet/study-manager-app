@@ -1,5 +1,6 @@
 import { Expression } from "survey-engine/lib/data_types";
 import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/commonExpressions"
+import { datePickerKey, responseGroupKey } from "../../../editor-engine/utils/key-definitions";
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators";
 
 export const surveyKeys = {
@@ -71,25 +72,23 @@ const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "normal", 270
 const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "normal", 360, 30);
 
 const handleT0Submission = (): Expression => {
-    const hasReportedSymptoms = () =>
-        expWithArgs(
-            'or',
-            StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-                'T0.SYM.Q1', 'geenvandeze'
-            ),
-            StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-                'T0.TODO', 'geenvandeze'
-            ),
-        )
+    const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+        'T0.A.AH.Q1', 'geen'
+    )
 
     const hasNoReportedSymptoms = () => expWithArgs('not', hasReportedSymptoms());
 
-    const isChildParticipant = () => StudyExpressions.singleChoiceOptionsSelected(
-        "T0.TODO", "C"
+    const isChildParticipant = () => expWithArgs(
+        'gt',
+        StudyExpressions.getResponseValueAsNum(
+            "T0.CAT.Q2", [responseGroupKey, datePickerKey].join('.')
+        ),
+        StudyExpressions.timestampWithOffset({
+            years: -16,
+        })
     )
-    const isNotChildParticipant = () => StudyExpressions.singleChoiceOptionsSelected(
-        "T0.TODO", "A"
-    )
+
+    const isNotChildParticipant = () => expWithArgs('not', isChildParticipant());
 
     const isInterestedInAdditionalResearch = () => StudyExpressions.singleChoiceOptionsSelected(
         "T0.DEM.Q18", "ja"
@@ -145,7 +144,7 @@ const handleShortSubmission = (): Expression => {
     )
 
     const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-        'short.TICP.Q1', 'geenvandeze'
+        surveyKeys.short + '.AH.Q1', 'geen'
     )
 
     const shouldAssignShortAgain = () => expWithArgs(

@@ -1,7 +1,10 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
+import { AcuteHealthGroup } from "../questions/acuteHealth";
+import { CovidTestGroup } from "../questions/covidTest";
 import { EQ5DGroup } from "../questions/eq5d";
+import { VaccinationGroup } from "../questions/vaccination";
 import { surveyKeys } from "../studyRules";
 
 export const generateT12 = (): Survey | undefined => {
@@ -24,6 +27,15 @@ export const generateT12 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
+    const covidTestGroupEditor = new CovidTestGroup(surveyKey, false);
+    surveyEditor.addSurveyItemToRoot(covidTestGroupEditor.getItem());
+
+    const vaccineGroupEditor = new VaccinationGroup(surveyKey, false);
+    surveyEditor.addSurveyItemToRoot(vaccineGroupEditor.getItem());
+
+    const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
+
     // EQ5D group
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
     surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());

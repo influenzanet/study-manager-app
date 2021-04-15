@@ -3,6 +3,9 @@ import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-surve
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { EQ5DGroup } from "../questions/eq5d";
 import { surveyKeys } from "../studyRules";
+import { CovidTestGroup } from "../questions/covidTest";
+import { VaccinationGroup } from "../questions/vaccination";
+import { AcuteHealthGroup } from "../questions/acuteHealth";
 
 export const generateT6 = (): Survey | undefined => {
     const surveyKey = surveyKeys.T6;
@@ -24,6 +27,16 @@ export const generateT6 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
+    const covidTestGroupEditor = new CovidTestGroup(surveyKey, false);
+    surveyEditor.addSurveyItemToRoot(covidTestGroupEditor.getItem());
+
+    const vaccineGroupEditor = new VaccinationGroup(surveyKey, false);
+    surveyEditor.addSurveyItemToRoot(vaccineGroupEditor.getItem());
+
+    const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
+
+
     // EQ5D group
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
     surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
