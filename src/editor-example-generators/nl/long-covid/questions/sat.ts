@@ -16,6 +16,7 @@ export class SaTGroup extends GroupItemEditor {
         this.addItem(q_a(this.key, true))
         this.addItem(q_b(this.key, true))
         this.addItem(q_c(this.key, true))
+        this.addPageBreak();
         this.addItem(Q_instructions2(this.key))
         this.addItem(q_d(this.key, true))
         this.addItem(q_e(this.key, true))
@@ -23,6 +24,7 @@ export class SaTGroup extends GroupItemEditor {
         this.addItem(Q_instructions2(this.key))
         this.addItem(q_g(this.key, true))
         this.addItem(q_h(this.key, true))
+        this.addPageBreak();
     }
 }
 
@@ -101,7 +103,7 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in uw reukvermogen?"],
+            ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in je reukvermogen?"],
         ]),
         questionSubText: new Map([
             ["nl", "Selecteer alles dat van toepassing is."],
@@ -285,7 +287,7 @@ const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Beoordeel je vermogen om deze andere sensaties in uw mond te voelen voorafgaand aan dit onderzoek"],
+            ["nl", "Beoordeel je vermogen om deze andere sensaties in je mond te voelen voorafgaand aan dit onderzoek"],
         ]),
         questionSubText: new Map([
             ["nl", "Mijn vermogen voor het voelen van sensaties voorafgaand aan dit onderzoek: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],
@@ -308,7 +310,7 @@ const q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Beoordeel je vermogen om deze andere sensaties in uw mond te voelen OP DIT MOMENT"],
+            ["nl", "Beoordeel je vermogen om deze andere sensaties in je mond te voelen OP DIT MOMENT"],
         ]),
         questionSubText: new Map([
             ["nl", "Mijn vermogen voor het voelen van sensaties op dit moment: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],

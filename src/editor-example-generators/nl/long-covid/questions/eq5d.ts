@@ -30,8 +30,10 @@ export class EQ5DGroup extends GroupItemEditor {
         this.addItem(q_activities_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
         this.addItem(q_pain_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
         this.addItem(q_anxiety_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
+        this.addPageBreak();
         this.addItem(q_healthstatus_instructions_def(this.key));
         this.addItem(q_healthstatus_def(this.key, this.isRequired, this.useCopyRight), this.usePageBreaks);
+        this.addPageBreak();
     }
 }
 

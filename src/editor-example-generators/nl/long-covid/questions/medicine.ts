@@ -1,4 +1,5 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -12,10 +13,17 @@ export class MedicineGroup extends GroupItemEditor {
     }
 
     initQuestions() {
-        this.addItem(Q1(this.key, true))
-        this.addItem(Q2a(this.key, true))
-        this.addItem(Q3(this.key, true))
-        this.addItem(Q4(this.key, true))
+        const healthcare_provider = Q1(this.key, true);
+        const use_medicine = Q3(this.key, true);
+        const condition_healthcare_provider = CommonExpressions.singleChoiceOptionsSelected(healthcare_provider.key, 'ja');
+        const condition_use_medicine = CommonExpressions.singleChoiceOptionsSelected(use_medicine.key, 'ja');
+ 
+        this.addItem(healthcare_provider)
+        this.addItem(Q2a(this.key, true, condition_healthcare_provider));
+        this.addPageBreak();
+        this.addItem(use_medicine)
+        this.addItem(Q4(this.key, true, condition_use_medicine))
+        this.addPageBreak();
     }
 }
 
@@ -52,7 +60,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
     });
 }
 
-const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a';
 
     const inputProperties = {
@@ -64,6 +72,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden, en hoe vaak? "],
@@ -294,11 +303,12 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
     });
 }
 
-const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Welke medicijnen zijn dit?"],

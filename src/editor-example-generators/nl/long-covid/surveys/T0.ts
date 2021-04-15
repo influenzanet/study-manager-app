@@ -4,6 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { Q_CBS } from "../questions/cbs";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
@@ -19,6 +20,7 @@ import { ParticipantCategoryGroup } from "../questions/participantCategory";
 import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
+import { VaccinationGroup } from "../questions/vaccination";
 import { surveyKeys } from "../studyRules";
 
 
@@ -62,6 +64,12 @@ export const generateT0 = (): Survey | undefined => {
 
     const covidTestGroupEditor = new CovidTestGroup(adultVersion.key);
     adultVersion.addItem(covidTestGroupEditor.getItem());
+
+    const vaccinationGroupEditor = new VaccinationGroup(adultVersion.key);
+    adultVersion.addItem(vaccinationGroupEditor.getItem());
+
+    const accuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
+    adultVersion.addItem(accuteHealthGroupEditor.getItem());
 
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());

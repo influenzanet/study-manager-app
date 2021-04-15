@@ -13,29 +13,28 @@ export class AcuteHealthGroup extends GroupItemEditor {
     }
 
     initQuestions() {
-        this.addItem(q_acuteSymptoms_1(this.key, true));
-        this.addItem(q_acuteSymptoms_2(this.key, true));
-        this.addItem(q_acuteSymptoms_3(this.key, true));
-
+        this.addItem(q_acuteSymptoms(this.key, true));
+        this.addPageBreak();
         const q4 = l3q4(this.key, true);
         this.addItem(q4);
 
         this.addItem(l3q5(this.key, q4.key, true));
 
         this.addItem(l3q6(this.key, q4.key, true));
-
+        this.addPageBreak();
         this.addItem(l3q7(this.key, true));
-
+        
         const q8 = l3q8(this.key, true);
         this.addItem(q8)
 
         this.addItem(l3q9(this.key, q8.key, true));
+        this.addPageBreak();
     }
 }
 
 
 
-const q_acuteSymptoms_1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'SYM_1';
 
     return SurveyItemGenerators.multipleChoice({
@@ -44,17 +43,17 @@ const q_acuteSymptoms_1 = (parentKey: string, isRequired?: boolean, keyOverride?
         questionText: new Map([
             ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
         ]),
-
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
+            {
+                key: 'long', role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'koorts', role: 'option',
                 content: new Map([
@@ -115,32 +114,13 @@ const q_acuteSymptoms_1 = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["nl", "Vermoeidheid"],
                 ])
             },
-        ],
-        isRequired: isRequired,
-    })
-}
-
-
-const q_acuteSymptoms_2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'SYM_2';
-
-    return SurveyItemGenerators.multipleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
-        ]),
-
-        topDisplayCompoments: [
             {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
-        responseOptions: [
+                key: 'long', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'malaise', role: 'option',
                 content: new Map([
@@ -201,31 +181,13 @@ const q_acuteSymptoms_2 = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["nl", "Buikpijn"],
                 ])
             },
-        ],
-        isRequired: isRequired,
-    })
-}
-
-const q_acuteSymptoms_3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'SYM_3';
-
-    return SurveyItemGenerators.multipleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        questionText: new Map([
-            ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
-        ]),
-
-        topDisplayCompoments: [
             {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
-        responseOptions: [
+                key: 'long', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'geen_reuk', role: 'option',
                 content: new Map([
@@ -290,6 +252,12 @@ const q_acuteSymptoms_3 = (parentKey: string, isRequired?: boolean, keyOverride?
                 key: 'oorsuizen', role: 'option',
                 content: new Map([
                     ["nl", "Oorsuizen"],
+                ])
+            },
+            {
+                key: 'geenvandeze', role: 'option',
+                content: new Map([
+                    ["nl", "Geen van deze klachten"],
                 ])
             },
         ],
@@ -569,7 +537,7 @@ const l3q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
                 key: '6', role: 'option',
                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
                 content: new Map([
-                    ["nl", "Ja, homeopathisch middelen"],
+                    ["nl", "Ja, homeopathische middelen"],
                 ])
             },
             {

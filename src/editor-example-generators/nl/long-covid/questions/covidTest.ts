@@ -19,12 +19,13 @@ export class CovidTestGroup extends GroupItemEditor {
         const infect_earlier = q_infect_earlier_def(this.key, true);
         const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
-        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'no');
+        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_zelftest', 'pos_earl_notest', 'unknown');
 
         this.addItem(test);
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
+        this.addPageBreak();
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
         this.addItem(infect_earlier);
@@ -32,6 +33,7 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
         this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
         this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
+        this.addPageBreak();
     }
 }
 
@@ -380,8 +382,8 @@ const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, con
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: undefined,
-        maxRelativeDate: undefined,
+        minRelativeDate: { delta: { days: -500 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -400,8 +402,8 @@ const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, conditi
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: undefined,
-        maxRelativeDate: undefined,
+        minRelativeDate: { delta: { days: -500 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
