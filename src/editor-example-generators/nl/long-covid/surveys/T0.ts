@@ -47,7 +47,6 @@ export const generateT0 = (): Survey | undefined => {
     const categoryQuestions = new ParticipantCategoryGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(categoryQuestions.getItem());
 
-
     const isChildParticipant = expWithArgs('lt',
         categoryQuestions.getAgeInYearsExpression(),
         16
@@ -62,14 +61,14 @@ export const generateT0 = (): Survey | undefined => {
     const adultVersion = new GroupItemEditor(surveyKey, 'A');
     adultVersion.groupEditor.setCondition(isNotChildParticipant)
 
-    const covidTestGroupEditor = new CovidTestGroup(adultVersion.key);
+    const covidTestGroupEditor = new CovidTestGroup(adultVersion.key, true);
     adultVersion.addItem(covidTestGroupEditor.getItem());
 
-    const vaccinationGroupEditor = new VaccinationGroup(adultVersion.key);
-    adultVersion.addItem(vaccinationGroupEditor.getItem());
+    const vaccineGroupEditor = new VaccinationGroup(adultVersion.key, true);
+    adultVersion.addItem(vaccineGroupEditor.getItem());
 
-    const accuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
-    adultVersion.addItem(accuteHealthGroupEditor.getItem());
+    const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
+    adultVersion.addItem(acuteHealthGroupEditor.getItem());
 
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());
@@ -82,7 +81,7 @@ export const generateT0 = (): Survey | undefined => {
     const satGroupEditor = new SaTGroup(adultVersion.key);
     adultVersion.addItem(satGroupEditor.getItem());
 
-    const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, false);
+    const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, true);
     adultVersion.addItem(eq5dGroupEditor.getItem());
 
     adultVersion.addItem(Q_CIS(adultVersion.key, true));
@@ -103,7 +102,7 @@ export const generateT0 = (): Survey | undefined => {
     const medicineGroupEditor = new MedicineGroup(adultVersion.key);
     adultVersion.addItem(medicineGroupEditor.getItem());
 
-    const demographieGroupEditor = new DemographieGroup(adultVersion.key);
+    const demographieGroupEditor = new DemographieGroup(adultVersion.key, categoryQuestions.getAgeInYearsExpression());
     adultVersion.addItem(demographieGroupEditor.getItem());
 
 

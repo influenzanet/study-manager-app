@@ -19,6 +19,14 @@ const getDatePickerResponseValue = (itemKey: string): Expression => {
     }
 }
 
+const getResponseValueAsNum = (itemKey: string, responseKey: string): Expression => {
+    return expWithArgs('getResponseValueAsNum', itemKey, responseKey);
+}
+
+const getResponseValueAsStr = (itemKey: string, responseKey: string): Expression => {
+    return expWithArgs('getResponseValueAsStr', itemKey, responseKey);
+}
+
 const timestampWithOffset = (delta: Duration, reference?: number | Expression) => expWithArgs(
     'timestampWithOffset',
     durationObjectToSeconds(delta),
@@ -32,6 +40,8 @@ export const CommonExpressions = {
     multipleChoiceOnlyOtherKeysSelected,
     getDatePickerResponseValue,
     timestampWithOffset,
+    getResponseValueAsNum,
+    getResponseValueAsStr,
 }
 
 
@@ -117,6 +127,8 @@ export const StudyExpressions = {
     checkSurveyResponseKey,
     getStudyEntryTime,
     hasSurveyKeyAssigned,
+    getResponseValueAsNum,
+    getResponseValueAsStr,
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     getSurveyKeyAssignedFrom,

@@ -5,13 +5,13 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 
 export class CovidTestGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
         super(parentKey, groupKey);
-        this.initQuestions();
+        this.initQuestions(isT0);
     }
 
-    initQuestions() {
+    initQuestions(isT0: boolean,) {
         const test = q_test_def(this.key, true);
         const condition_test_yes = CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes');
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
@@ -28,11 +28,13 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
-        this.addItem(infect_earlier);
-        this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
-        this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
-        this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
-        this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
+        if (isT0) {
+            this.addItem(infect_earlier);
+            this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
+            this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
+            this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
+            this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
+        }
         this.addPageBreak();
     }
 }

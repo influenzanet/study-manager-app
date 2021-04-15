@@ -5,13 +5,13 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 
 export class VaccinationGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'VAC';
         super(parentKey, groupKey);
-        this.initQuestions();
+        this.initQuestions(isT0);
     }
 
-    initQuestions() {
+    initQuestions(isT0: boolean) {
         const vacc = q_vacc_def(this.key, true);
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
         const vacc_num = q_vacc_num_def(this.key, true, condition_vacc_yes);
@@ -22,13 +22,22 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(vacc);
         this.addItem(vacc_num);
         this.addItem(q_vacc_type_def(this.key, true, condition_vacc_yes));
-        this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
+
+        if (!isT0) {
+            this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
+        }
+
         this.addItem(vacc2_date1);
-        this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
-        this.addPageBreak();
-        this.addItem(q_vacc_influenza_def(this.key, true));
-        this.addItem(q_vacc_pneumoc_def(this.key, true));
-        this.addPageBreak();
+
+        if (!isT0) {
+            this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
+            this.addPageBreak();
+        }
+        if (isT0) {
+            this.addItem(q_vacc_influenza_def(this.key, true));
+            this.addItem(q_vacc_pneumoc_def(this.key, true));
+            this.addPageBreak();
+        }
     }
 }
 
