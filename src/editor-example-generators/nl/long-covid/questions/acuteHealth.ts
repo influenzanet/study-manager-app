@@ -80,7 +80,7 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         ]),
         responseOptions: [
             {
-                key: 'long', role: 'text',
+                key: 'long1', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
                     ["nl", "Selecteer je klachten"],
@@ -147,7 +147,7 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 ])
             },
             {
-                key: 'long', role: 'text',
+                key: 'long2', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
                     ["nl", "Selecteer je klachten"],
