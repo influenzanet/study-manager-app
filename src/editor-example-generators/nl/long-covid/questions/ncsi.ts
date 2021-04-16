@@ -15,7 +15,9 @@ export class NCSIGroup extends GroupItemEditor {
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
         this.addItem(Q3(this.key, true))
+        this.addPageBreak();
         this.addItem(Q4(this.key, true))
+        this.addPageBreak();
     }
 }
 
@@ -26,13 +28,13 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Geef aan hoe benauwd/kortademig u zich de meeste dagen van de afgelopen maand voelde:"],
+            ["nl", "Geef aan hoe benauwd / kortademig je jezelf de meeste dagen van de afgelopen maand voelde:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
-                ["nl", "1 = helemaal niet benauwd/kortademig, 10 = heel erg benauwd/kortademig"],
+                ["nl", "1 = helemaal niet benauwd / kortademig, 10 = heel erg benauwd/kortademig"],
             ]))
         }],
         scaleOptions: [
@@ -95,13 +97,13 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Geef aan hoe vervelend u uw benauwdheid/kortademigheid vond in de afgelopen maand:"],
+            ["nl", "Geef aan hoe vervelend je je benauwdheid / kortademigheid vond in de afgelopen maand:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
-                ["nl", "1 = helemaal niet benauwd/kortademig, 10 = heel erg benauwd/kortademig"],
+                ["nl", "1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
             ]))
         }],
         scaleOptions: [
@@ -164,7 +166,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Geef aan hoe benauwd/kortademig u zich voelde gedurende de meeste dagelijkse activiteiten in de afgelopen maand:"],
+            ["nl", "Geef aan hoe benauwd / kortademig je jezelf voelde gedurende de meeste dagelijkse activiteiten in de afgelopen maand:"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -236,14 +238,14 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             ["nl", "Emoties bij kortademigheid of benauwdheid"],
         ]),
         questionSubText: new Map([
-            ["nl", "De volgende vragen hebben betrekking op emoties (gevoelens) die u kunt hebben terwijl u benauwd/kortademig bent."],
+            ["nl", "De volgende vragen hebben betrekking op emoties (gevoelens) die je kunt hebben terwijl je benauwd / kortademig bent."],
         ]),
         topDisplayCompoments: [
             {
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Vink het getal aan dat aangeeft hoe hevig die emotie is als u benauwd/kortademig bent."],
+                    ["nl", "Vink het getal aan dat aangeeft hoe hevig die emotie is als je benauwd / kortademig bent."],
                 ]))
             },
         ],

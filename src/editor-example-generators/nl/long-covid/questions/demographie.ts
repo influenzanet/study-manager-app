@@ -95,6 +95,12 @@ const q_gender = (parentKey: string, isRequired?: boolean, keyOverride?: string)
                     ["nl", "Anders"],
                 ])
             },
+            {
+                key: 'wilnietzeggen', role: 'option',
+                content: new Map([
+                    ["nl", "Wil ik niet zeggen"],
+                ])
+            },
         ]
     })
 }
@@ -498,15 +504,20 @@ const Q13 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             }, {
                 key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "Hbo"],
+                    ["nl", "Mbo"],
                 ]),
             }, {
                 key: '6', role: 'option',
                 content: new Map([
+                    ["nl", "Hbo"],
+                ]),
+            }, {
+                key: '7', role: 'option',
+                content: new Map([
                     ["nl", "Universiteit"],
                 ]),
             }, {
-                key: '7', role: 'input',
+                key: '8', role: 'input',
                 content: new Map([
                     ["nl", "Anders, namelijk"],
                 ]),
@@ -665,7 +676,7 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
     const inputProperties = {
         min: 1,
-        max: 50
+        max: 92
     };
     const inputStyle = [{ key: 'inputMaxWidth', value: '80px' }];
 
@@ -686,7 +697,7 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: 'ja', role: 'numberInput',
                 content: new Map([
-                    ["nl", "Ja, TODO (ca. that many days): "],
+                    ["nl", "Ja, ik ben ongeveer het volgende aantal dagen afwezig geweest: "],
                 ]),
                 optionProps: inputProperties,
                 style: inputStyle,

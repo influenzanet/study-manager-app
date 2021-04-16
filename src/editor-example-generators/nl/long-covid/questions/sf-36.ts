@@ -12,18 +12,24 @@ export class SF36Group extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addPageBreak();
         this.addItem(Q_instructions(this.key))
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
+        this.addPageBreak();
         this.addItem(Q3(this.key, true))
+        this.addPageBreak();
         this.addItem(Q4(this.key, true))
         this.addItem(Q5(this.key, true))
         this.addItem(Q6(this.key, true))
+        this.addPageBreak();
         this.addItem(Q7(this.key, true))
         this.addItem(Q8(this.key, true))
+        this.addPageBreak();
         this.addItem(Q9(this.key, true))
         this.addItem(Q10(this.key, true))
         this.addItem(Q11(this.key, true))
+        this.addPageBreak();
     }
 }
 

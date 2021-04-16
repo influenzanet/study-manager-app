@@ -18,7 +18,7 @@ export class ParticipantCategoryGroup extends GroupItemEditor {
         this.addItem(q_person_def(this.key, true));
         this.addItem(this.Q_age);
         this.addItem(q_postal_code(this.key, true));
-        // this.addPageBreak();
+        this.addPageBreak();
     }
 
     getAgeInYearsExpression() {

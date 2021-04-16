@@ -14,6 +14,7 @@ export class GeneralHealthGroup extends GroupItemEditor {
 
     initQuestions() {
         this.addItem(q_L4q1(this.key, true));
+        this.addPageBreak();
     }
 }
 
