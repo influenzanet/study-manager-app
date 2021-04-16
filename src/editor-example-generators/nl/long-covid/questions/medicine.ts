@@ -17,12 +17,13 @@ export class MedicineGroup extends GroupItemEditor {
         const use_medicine = Q3(this.key, true);
         const condition_healthcare_provider = CommonExpressions.singleChoiceOptionsSelected(healthcare_provider.key, 'ja');
         const condition_use_medicine = CommonExpressions.singleChoiceOptionsSelected(use_medicine.key, 'ja');
- 
+
         this.addItem(healthcare_provider)
         this.addItem(Q2a(this.key, true, condition_healthcare_provider));
         this.addPageBreak();
         this.addItem(use_medicine)
         this.addItem(Q4(this.key, true, condition_use_medicine))
+        this.addItem(Q16(this.key, true))
         this.addPageBreak();
     }
 }
@@ -316,7 +317,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
-        
+
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -377,6 +378,41 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
                 content: new Map([
                     ["nl", "Andere medicijnen, namelijk:"],
                 ])
+            },
+        ]
+    });
+}
+
+const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q16';
+
+    const inputProperties = {
+        min: 1,
+        max: 92
+    };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '80px' }];
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was, anders dan corona?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ]),
+            },
+            {
+                key: 'ja', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Ja, ik ben ongeveer het volgende aantal dagen afwezig geweest: "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
             },
         ]
     });

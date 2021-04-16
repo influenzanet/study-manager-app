@@ -282,6 +282,7 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             },
             {
                 key: 'geen', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), 'geen'),
                 content: new Map([
                     ["nl", "Geen van deze klachten"],
                 ])

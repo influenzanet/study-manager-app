@@ -61,7 +61,6 @@ export class DemographieGroup extends GroupItemEditor {
         const q15condition = CommonExpressions.singleChoiceOptionsSelected(jobStatus.key, '1', '2', '3');
         this.addItem(Q15(this.key, q15condition, true))
 
-        this.addItem(Q16(this.key, true))
         this.addItem(Q17(this.key, true))
         this.addItem(Q18(this.key, true))
     }
@@ -665,42 +664,6 @@ const Q15 = (parentKey: string, condition: Expression, isRequired?: boolean, key
                 content: new Map([
                     ["nl", "Anders, valt niet in bovengenoemde opties"],
                 ]),
-            },
-        ]
-    });
-}
-
-
-const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q16';
-
-    const inputProperties = {
-        min: 1,
-        max: 92
-    };
-    const inputStyle = [{ key: 'inputMaxWidth', value: '80px' }];
-
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was, anders dan corona?"],
-        ]),
-        responseOptions: [
-            {
-                key: 'nee', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ]),
-            },
-            {
-                key: 'ja', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Ja, ik ben ongeveer het volgende aantal dagen afwezig geweest: "],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
             },
         ]
     });

@@ -1,4 +1,5 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
@@ -331,6 +332,7 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
             },
             {
                 key: 'geenvandeze', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), 'geenvandeze'),
                 content: new Map([
                     ["nl", "Geen van bovenstaande"],
                 ])
