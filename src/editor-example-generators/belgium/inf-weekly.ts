@@ -4138,18 +4138,16 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["en", "Yes, a serological analysis (screening for antibodies against this virus, from a drop of blood from fingertip or a blood sample)"],
             ])
         },
-        /*
         {
             key: '5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '3'),
             content: new Map([
                 ["nl-be", "Ja, een sneltest (antigeentest) (met een resultaat beschikbaar binnen het uur)"],
-                ["fr-be", "Oui, un autotest "],
-                ["de-be", "Ja, ein selbsttest"],
+                ["fr-be", "Oui, un test antigénique rapide (sur un écouvillon introduit dans le nez ou la bouche, permettant d'obtenir un résultat en moins d'une heure)"],
+                ["de-be", "Ja, ein Antigen-Schnelltest (mit einem Wattestäbchen in Nase oder Mund mit einem Ergebnis, das in unter einer Stunde verfügbar ist)"],
                 ["en", "Yes, a rapid antigen detection test (on a swab in nose or mouth, with a result available in less than an hour)"],
             ])
         },
-        */
         {
             key: '3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '4'),
