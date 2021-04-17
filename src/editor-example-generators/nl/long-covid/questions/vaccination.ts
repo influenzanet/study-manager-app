@@ -1,17 +1,17 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class VaccinationGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'VAC';
         super(parentKey, groupKey);
-        this.initQuestions();
+        this.initQuestions(isT0);
     }
 
-    initQuestions() {
+    initQuestions(isT0: boolean) {
         const vacc = q_vacc_def(this.key, true);
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
         const vacc_num = q_vacc_num_def(this.key, true, condition_vacc_yes);
@@ -22,18 +22,23 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(vacc);
         this.addItem(vacc_num);
         this.addItem(q_vacc_type_def(this.key, true, condition_vacc_yes));
+
         this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
+
         this.addItem(vacc2_date1);
+
         this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
+        this.addPageBreak();
         this.addItem(q_vacc_influenza_def(this.key, true));
         this.addItem(q_vacc_pneumoc_def(this.key, true));
+        this.addPageBreak();
     }
 }
 
 const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -42,15 +47,15 @@ const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Express
         ]),
         responseOptions: [
             {
-                key: 'no', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
                 key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
+                ])
+            },
+            {
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
                 ])
             },
             {
@@ -67,7 +72,7 @@ const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Express
 const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -95,7 +100,7 @@ const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Exp
 const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -159,7 +164,7 @@ const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
 const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -170,7 +175,7 @@ const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: E
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        maxRelativeDate: { seconds: 1 },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -179,7 +184,7 @@ const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: E
 const q_vacc2_date1_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -190,7 +195,7 @@ const q_vacc2_date1_def = (parentKey: string, isRequired?: boolean, condition?: 
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        maxRelativeDate: { seconds: 1 },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -200,11 +205,11 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
     const firstVaccinationExpression = firstVaccinationKey
         ? {
             reference: CommonExpressions.getDatePickerResponseValue(firstVaccinationKey),
-            days: 5
+            delta: { days: 5 }
         }
         : undefined;
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -216,7 +221,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
             ["nl", "dd-mm-jjjj"],
         ]),
         minRelativeDate: firstVaccinationExpression,
-        maxRelativeDate: { seconds: 1 },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -224,7 +229,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q7';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -236,21 +241,28 @@ const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition
         ]),
         responseOptions: [
             {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
+                key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
             },
             {
-                key: '2', role: 'option',
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+
+            {
+                key: 'dontknow', role: 'option',
                 content: new Map([
                     ["nl", "Weet ik niet"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],
@@ -261,7 +273,7 @@ const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition
 const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -273,21 +285,28 @@ const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?:
         ]),
         responseOptions: [
             {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
+                key: 'yes', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
             },
             {
-                key: '2', role: 'option',
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+
+            {
+                key: 'dontknow', role: 'option',
                 content: new Map([
                     ["nl", "Weet ik niet"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],

@@ -1,18 +1,17 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class CovidTestGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
         super(parentKey, groupKey);
-        this.initQuestions();
+        this.initQuestions(isT0);
     }
 
-    initQuestions() {
+    initQuestions(isT0: boolean,) {
         const test = q_test_def(this.key, true);
         const condition_test_yes = CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes');
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
@@ -20,29 +19,35 @@ export class CovidTestGroup extends GroupItemEditor {
         const infect_earlier = q_infect_earlier_def(this.key, true);
         const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
+        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_zelftest', 'pos_earl_notest', 'unknown');
 
         this.addItem(test);
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
+        this.addPageBreak();
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
-        this.addItem(infect_earlier);
-        this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
-        this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
-        this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
+        if (isT0) {
+            this.addItem(infect_earlier);
+            this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
+            this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
+            this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
+            this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
+        }
+        this.addPageBreak();
     }
 }
 
 const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je afgelopen 10 dagen een test gedaan om het coronavirus aan te tonen?"],
+            ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt?"],
         ]),
         responseOptions: [
             {
@@ -65,7 +70,7 @@ const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Express
 const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -76,8 +81,8 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { days: -10 },
-        maxRelativeDate: { seconds: 1 },
+        minRelativeDate: { delta: { days: -10 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -85,7 +90,7 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
 const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -120,7 +125,7 @@ const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?
             {
                 key: '4', role: 'option',
                 content: new Map([
-                    ["nl", "Bij een bedrijf (op mijn eigen initiatief)"],
+                    ["nl", "Bij een bedrijf (op eigen initiatief)"],
                 ])
             },
             {
@@ -149,25 +154,22 @@ const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?
 const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
 
-    return QuestionGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
             ["nl", "Wat is de reden dat je jezelf hebt laten testen op het coronavirus?"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Meerdere antwoorden mogelijk."],
-            ]))
-        }],
+
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Ik heb klachten"],
+                    ["nl", "Ik had klachten"],
                 ])
             },
             {
@@ -179,13 +181,13 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
             {
                 key: '2', role: 'option',
                 content: new Map([
-                    ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik (mogelijk) contact heb gehad met iemand die positief getest is op corona"],
+                    ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik mogelijk in contact ben geweest met iemand die positief getest is op corona"],
                 ])
             },
             {
                 key: '3', role: 'option',
                 content: new Map([
-                    ["nl", "Ik heb een melding gekregen via de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
+                    ["nl", "Ik heb een melding gekregen van de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
                 ])
             },
             {
@@ -202,7 +204,7 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -231,7 +233,7 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
             {
                 key: 'no-rep', role: 'option',
                 content: new Map([
-                    ["nl", "Dit wil ik niet aangeven"],
+                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],
@@ -242,24 +244,36 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q6"],
+            ["nl", "Met welke test is dit bevestigd?"],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "0"],
+                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest) "],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "1"],
+                    ["nl", "Bevestigd door bloedtest (serologie) "],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
                 ])
             },
         ],
@@ -270,18 +284,27 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
 const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q7';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q7"],
+            ["nl", "Denk en/of weet je dat je al eerder besmet bent geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meer dan 10 dagen geleden."],
         ]),
         responseOptions: [
             {
                 key: 'pos_earl_test', role: 'option',
                 content: new Map([
                     ["nl", "Ja, bevestigd met een positieve test"],
+                ])
+            },
+            {
+                key: 'pos_earl_zelftest', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, bevestigd met een zelftest"],
                 ])
             },
             {
@@ -310,24 +333,36 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
 const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
 
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q8"],
+            ["nl", "Met welke test is dit bevestigd?"],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "0"],
+                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest)"],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "1"],
+                    ["nl", "Bevestigd door bloedtest (serologie)"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
                 ])
             },
         ],
@@ -338,19 +373,19 @@ const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, conditi
 const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q9';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q9"],
+            ["nl", "Wanneer is deze test (ongeveer) afgenomen?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: undefined,
-        maxRelativeDate: undefined,
+        minRelativeDate: { delta: { days: -500 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
 }
@@ -358,19 +393,53 @@ const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, con
 const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q10';
 
-    return QuestionGenerators.dateInput({
+    return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Q10"],
+            ["nl", "Wanneer denk je dat je besmet bent met het coronavirus (ongeveer)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: undefined,
-        maxRelativeDate: undefined,
+        minRelativeDate: { delta: { days: -500 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+        isRequired: isRequired,
+    });
+}
+
+const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q11';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze deels of geheel door het coronavirus komen?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
+                ])
+            },
+        ],
         isRequired: isRequired,
     });
 }

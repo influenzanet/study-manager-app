@@ -1,5 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
-import { QuestionGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
+import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class SF36Group extends GroupItemEditor {
@@ -11,23 +12,50 @@ export class SF36Group extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addPageBreak();
+        this.addItem(Q_instructions(this.key))
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
+        this.addPageBreak();
         this.addItem(Q3(this.key, true))
+        this.addPageBreak();
         this.addItem(Q4(this.key, true))
         this.addItem(Q5(this.key, true))
         this.addItem(Q6(this.key, true))
+        this.addPageBreak();
         this.addItem(Q7(this.key, true))
         this.addItem(Q8(this.key, true))
+        this.addPageBreak();
         this.addItem(Q9(this.key, true))
         this.addItem(Q10(this.key, true))
         this.addItem(Q11(this.key, true))
+        this.addPageBreak();
     }
 }
 
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Functioneren
+
+De volgende vragen gaan over je algemene gezondheid. Wanneer je twijfelt over het antwoord op een vraag, probeer dan het antwoord te geven dat het meest van toepassing is.
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -71,7 +99,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -115,12 +143,15 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "De volgende vragen gaan over dagelijkse bezigheden. Word je door je gezondheid op dit moment beperkt bij deze bezigheden? Zo ja, in welke mate?"],
+            ["nl", "De volgende vragen gaan over dagelijkse bezigheden."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Word je door je gezondheid op dit moment beperkt in deze bezigheden? Zo ja, in welke mate?"],
         ]),
         scaleOptions: [
             {
@@ -195,43 +226,43 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q4?"],
+            ["nl", "Had je, ten gevolge van je lichamelijke gezondheid, de afgelopen 4 weken één van de volgende problemen bij je werk of andere dagelijkse bezigheden?"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Ja"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nee"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Je hebt minder bereikt dan je zou willen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Je was beperkt in het soort werk of het soort bezigheden"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Je had moeite met het werk of andere bezigheden (het kostte je bijvoorbeeld extra inspanning)"],
                 ])
             },
         ]
@@ -240,38 +271,38 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q5?"],
+            ["nl", "Had je, ten gevolge van een emotioneel probleem (bijvoorbeeld doordat je jezelf depressief of angstig voelde), de afgelopen 4 weken één van de volgende problemen bij je werk of andere dagelijkse bezigheden?"],
         ]),
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Ja"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Nee"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Je hebt minder bereikt dan je zou willen"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Je hebt werk of andere bezigheden niet zo zorgvuldig gedaan als je gewend bent"],
                 ])
             },
         ]
@@ -280,18 +311,42 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q6 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q6?"],
+            ["nl", "In hoeverre heeft je lichamelijke gezondheid of hebben je emotionele problemen je de afgelopen 4 weken belemmerd in je normale sociale bezigheden met gezin, vrienden, buren of anderen?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Helemaal niet"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Enigszins"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nogal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Veel"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Heel erg veel"],
                 ])
             },
         ]
@@ -300,18 +355,48 @@ const Q6 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q7';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q7?"],
+            ["nl", "Hoeveel pijn had je de afgelopen 4 weken?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '6', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Geen"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Heel licht"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Licht"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nogal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstig"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Heel ernstig"],
                 ])
             },
         ]
@@ -320,18 +405,42 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q8?"],
+            ["nl", "In welke mate heeft pijn je de afgelopen vier weken belemmerd in je normale werkzaamheden (zowel werk buitenshuis als huishoudelijk werk)?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Helemaal niet"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Enigszins"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nogal"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Veel"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Heel erg veel"],
                 ])
             },
         ]
@@ -340,84 +449,85 @@ const Q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q9';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q9?"],
+            ["nl", "Deze vragen gaan over hoe je jezelf de afgelopen 4 weken hebt gevoeld. Wil je bij elke vraag het antwoord aankruisen dat het beste aansluit bij hoe je jezelf hebt gevoeld?"],
         ]),
+        stackOnSmallScreen: true,
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "voortdurend"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "meestal"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "vaak"],
                 ])
             }, {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "soms"],
                 ])
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "zelden"],
                 ])
             }, {
                 key: '6', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "nooit"],
                 ])
             }
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Voelde je jezelf levenslustig?"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Voelde je jezelf erg zenuwachtig?"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Zat je zo erg in de put dat niets je kon opvrolijken?"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Voelde je jezelf kalm en rustig?"],
                 ])
             },
             {
                 key: 'e', content: new Map([
-                    ["nl", "TODO: e"],
+                    ["nl", "Voelde je jezelf erg energiek?"],
                 ])
             },
             {
                 key: 'f', content: new Map([
-                    ["nl", "TODO: f"],
+                    ["nl", "Voelde je jezelf neerslachtig en somber?"],
                 ])
             },
             {
                 key: 'g', content: new Map([
-                    ["nl", "TODO: g"],
+                    ["nl", "Voelde je jezelf uitgeblust?"],
                 ])
             },
             {
                 key: 'h', content: new Map([
-                    ["nl", "TODO: h"],
+                    ["nl", "Voelde je jezelf gelukkig?"],
                 ])
             },
             {
                 key: 'i', content: new Map([
-                    ["nl", "TODO: i"],
+                    ["nl", "Voelde je jezelf moe?"],
                 ])
             },
         ]
@@ -427,18 +537,42 @@ const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
 
 const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q10';
-    return QuestionGenerators.singleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q10?"],
+            ["nl", "Hoe vaak heeftje lichamelijke gezondheid of hebben emotionele problemen gedurende de afgelopen 4 weken je sociale activiteiten (zoals bezoek aan vrienden of naaste familieleden) belemmerd?"],
         ]),
         responseOptions: [
             {
-                key: 'todo', role: 'option',
+                key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "Voortdurend"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Meestal"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Soms"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Zelden"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Nooit"],
                 ])
             },
         ]
@@ -447,56 +581,57 @@ const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
 const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q11';
-    return QuestionGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "SF36.Q11?"],
+            ["nl", "Wil je het antwoord kiezen dat het beste weergeeft hoe juist of onjuist je elk van de volgende uitspraken voor jezelf vindt?"],
         ]),
+        stackOnSmallScreen: true,
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "volkomen juist"],
                 ])
             }, {
                 key: '2', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "grotendeels juist"],
                 ])
             }, {
                 key: '3', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "weet ik niet"],
                 ])
             },
             {
                 key: '4', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "grotendeels onjuist"],
                 ])
             }, {
                 key: '5', content: new Map([
-                    ["nl", "TODO"],
+                    ["nl", "volkomen onjuist"],
                 ])
             },
         ],
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "TODO: a"],
+                    ["nl", "Ik lijk gemakkelijker ziek te worden dan andere mensen"],
                 ])
             },
             {
                 key: 'b', content: new Map([
-                    ["nl", "TODO: b"],
+                    ["nl", "Ik ben net zo gezond als andere mensen die ik ken"],
                 ])
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "TODO: c"],
+                    ["nl", "Ik verwacht dat mijn gezondheid achteruit zal gaan"],
                 ])
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "TODO: d"],
+                    ["nl", "Mijn gezondheid is uitstekend"],
                 ])
             },
         ]

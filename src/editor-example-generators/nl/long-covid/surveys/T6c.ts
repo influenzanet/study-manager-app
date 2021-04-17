@@ -1,14 +1,15 @@
 import { Survey } from "survey-engine/lib/data_types";
-import { SimpleSurveyEditor } from "../../../editor-engine/utils/simple-survey-editor";
-import { EQ5DGroup } from "./questions/eq5d";
+import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
+import { EQ5DGroup } from "../questions/eq5d";
+import { surveyKeys } from "../studyRules";
 
-export const generateM3 = (): Survey | undefined => {
-    const surveyKey = 'M3';
+export const generateT6c = (): Survey | undefined => {
+    const surveyKey = surveyKeys.T6c;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "M3"],
+            ["en", "T6c"],
         ]),
         description: new Map([
             ["en", "..."],

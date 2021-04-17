@@ -1,12 +1,16 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
-import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { ItemEditor } from "../survey-editor/item-editor";
+import { CommonExpressions } from "./commonExpressions";
+import { ComponentGenerators } from "./componentGenerators";
+import { Duration, durationObjectToSeconds } from "./duration";
+import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
-import { expWithArgs, generateHelpGroupComponent, generateLocStrings } from "./simple-generators";
+import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
 
 
-interface OptionDef {
+export interface OptionDef {
     key: string;
     role: string;
     content?: Map<string, string>;
@@ -17,7 +21,7 @@ interface OptionDef {
     optionProps?: ComponentProperties;
 }
 
-const generateSingleChoiceQuestion = (props: {
+interface GenericQuestionProps {
     parentKey: string;
     itemKey: string;
     version?: number;
@@ -29,11 +33,89 @@ const generateSingleChoiceQuestion = (props: {
     }>;
     condition?: Expression;
     topDisplayCompoments?: Array<ItemComponent>;
-    responseOptions: Array<OptionDef>;
     bottomDisplayCompoments?: Array<ItemComponent>;
     isRequired?: boolean;
     footnoteText?: Map<string, string>;
-}): SurveyItem => {
+    customValidations?: Array<Validation>;
+}
+
+interface NumericInputQuestionProps extends GenericQuestionProps {
+    content: Map<string, string>;
+    contentBehindInput?: boolean;
+    componentProperties?: ComponentProperties;
+}
+
+interface OptionQuestionProps extends GenericQuestionProps {
+    responseOptions: Array<OptionDef>;
+}
+
+interface LikertGroupQuestionProps extends GenericQuestionProps {
+    rows: Array<LikertGroupRow>,
+    scaleOptions: Array<{
+        key: string;
+        className?: string;
+        content: Map<string, string>;
+    }>,
+    stackOnSmallScreen?: boolean;
+}
+
+const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner: ItemComponent = {
+        key: numericInputKey,
+        role: 'numberInput',
+        properties: {
+            min: props.componentProperties?.min !== undefined ? (typeof (props.componentProperties.min) === 'number' ? { dtype: 'num', num: props.componentProperties.min } : props.componentProperties.min) : undefined,
+            max: props.componentProperties?.max !== undefined ? (typeof (props.componentProperties?.max) === 'number' ? { dtype: 'num', num: props.componentProperties.max } : props.componentProperties.max) : undefined,
+            stepSize: props.componentProperties?.stepSize ? (typeof (props.componentProperties.stepSize) === 'number' ? { dtype: 'num', num: props.componentProperties.stepSize } : props.componentProperties.stepSize) : undefined,
+        },
+        content: generateLocStrings(props.content),
+        style: props.contentBehindInput ? [{ key: 'labelPlacement', value: 'after' }] : undefined,
+    };
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.customValidations) {
+        props.customValidations.forEach(v => simpleEditor.editor.addValidation(v));
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
+const generateSingleChoiceQuestion = (props: OptionQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
@@ -64,6 +146,10 @@ const generateSingleChoiceQuestion = (props: {
         simpleEditor.addHasResponseValidation();
     }
 
+    if (props.customValidations) {
+        props.customValidations.forEach(v => simpleEditor.editor.addValidation(v));
+    }
+
     if (props.footnoteText) {
         simpleEditor.addDisplayComponent({
             role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
@@ -75,23 +161,7 @@ const generateSingleChoiceQuestion = (props: {
     return simpleEditor.getItem();
 }
 
-const generateDropDownQuestion = (props: {
-    parentKey: string;
-    itemKey: string;
-    version?: number;
-    questionText: Map<string, string>;
-    questionSubText?: Map<string, string>;
-    helpGroupContent?: Array<{
-        content: Map<string, string>,
-        style?: Array<{ key: string, value: string }>,
-    }>;
-    condition?: Expression;
-    topDisplayCompoments?: Array<ItemComponent>;
-    responseOptions: Array<OptionDef>;
-    bottomDisplayCompoments?: Array<ItemComponent>;
-    isRequired?: boolean;
-    footnoteText?: Map<string, string>;
-}): SurveyItem => {
+const generateDropDownQuestion = (props: OptionQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
@@ -134,24 +204,7 @@ const generateDropDownQuestion = (props: {
 }
 
 
-const generateMultipleChoiceQuestion = (props: {
-    parentKey: string;
-    itemKey: string;
-    version?: number;
-    questionText: Map<string, string>;
-    questionSubText?: Map<string, string>;
-    helpGroupContent?: Array<{
-        content: Map<string, string>,
-        style?: Array<{ key: string, value: string }>,
-    }>;
-    condition?: Expression;
-    topDisplayCompoments?: Array<ItemComponent>;
-    responseOptions: Array<OptionDef>;
-    bottomDisplayCompoments?: Array<ItemComponent>;
-    isRequired?: boolean;
-    footnoteText?: Map<string, string>;
-}
-): SurveyItem => {
+const generateMultipleChoiceQuestion = (props: OptionQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
@@ -193,29 +246,7 @@ const generateMultipleChoiceQuestion = (props: {
     return simpleEditor.getItem();
 }
 
-const generateSimpleLikertGroupQuestion = (props: {
-    parentKey: string;
-    itemKey: string;
-    version?: number;
-    questionText: Map<string, string>;
-    questionSubText?: Map<string, string>;
-    helpGroupContent?: Array<{
-        content: Map<string, string>,
-        style?: Array<{ key: string, value: string }>,
-    }>;
-    condition?: Expression;
-    topDisplayCompoments?: Array<ItemComponent>;
-    rows: Array<LikertGroupRow>,
-    scaleOptions: Array<{
-        key: string;
-        className?: string;
-        content: Map<string, string>;
-    }>,
-    stackOnSmallScreen?: boolean;
-    bottomDisplayCompoments?: Array<ItemComponent>;
-    isRequired?: boolean;
-    footnoteText?: Map<string, string>;
-}): SurveyItem => {
+const generateSimpleLikertGroupQuestion = (props: LikertGroupQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
@@ -274,26 +305,15 @@ const generateSimpleLikertGroupQuestion = (props: {
     return simpleEditor.getItem();
 }
 
-const generateNumericSliderQuestion = (props: {
-    parentKey: string;
-    itemKey: string;
-    version?: number;
-    questionText: Map<string, string>;
-    questionSubText?: Map<string, string>;
-    helpGroupContent?: Array<{
-        content: Map<string, string>,
-        style?: Array<{ key: string, value: string }>,
-    }>;
-    condition?: Expression;
-    topDisplayCompoments?: Array<ItemComponent>;
+interface NumericSliderProps extends GenericQuestionProps {
     sliderLabel: Map<string, string>;
+    noResponseLabel: Map<string, string>;
     min?: number | ExpressionArg;
     max?: number | ExpressionArg;
     stepSize?: number | ExpressionArg;
-    bottomDisplayCompoments?: Array<ItemComponent>;
-    isRequired?: boolean;
-    footnoteText?: Map<string, string>;
-}): SurveyItem => {
+}
+
+const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
@@ -316,6 +336,7 @@ const generateNumericSliderQuestion = (props: {
     const rg_inner: ItemComponent = {
         key: 'slider', role: 'sliderNumeric',
         content: generateLocStrings(props.sliderLabel),
+        description: generateLocStrings(props.noResponseLabel),
         properties: {
             min: props.min !== undefined ? (typeof (props.min) === 'number' ? { dtype: 'num', num: props.min } : props.min) : undefined,
             max: props.max !== undefined ? (typeof (props.max) === 'number' ? { dtype: 'num', num: props.max } : props.max) : undefined,
@@ -333,71 +354,29 @@ const generateNumericSliderQuestion = (props: {
     }
 
     if (props.footnoteText) {
-        simpleEditor.addDisplayComponent({
-            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
-                { key: 'className', value: 'fs-small fst-italic text-center' }
-            ]
-        })
+        simpleEditor.addDisplayComponent(ComponentGenerators.footnote({ content: props.footnoteText }))
     }
 
     return simpleEditor.getItem();
 }
 
-interface Duration {
-    reference?: number | Expression;
-    years?: number;
-    months?: number;
-    days?: number;
-    hours?: number;
-    minutes?: number;
-    seconds?: number;
-};
 
-const durationObjectToSeconds = (duration: Duration): number => {
-    let value = 0;
 
-    if (duration.years !== undefined) {
-        value += duration.years * 31536000;
-    }
-    if (duration.months !== undefined) {
-        value += duration.months * 2592000;
-    }
-    if (duration.days !== undefined) {
-        value += duration.days * 86400;
-    }
-    if (duration.hours !== undefined) {
-        value += duration.hours * 3600;
-    }
-    if (duration.minutes !== undefined) {
-        value += duration.minutes * 60;
-    }
-    if (duration.seconds !== undefined) {
-        value += duration.seconds;
-    }
-    return value;
-}
-
-const generateDatePickerInput = (props: {
-    parentKey: string;
-    itemKey: string;
-    version?: number;
+interface DatePickerInput extends GenericQuestionProps {
     dateInputMode: 'YMD' | 'YM' | 'Y';
-    questionText: Map<string, string>;
-    questionSubText?: Map<string, string>;
-    helpGroupContent?: Array<{
-        content: Map<string, string>,
-        style?: Array<{ key: string, value: string }>,
-    }>;
-    condition?: Expression;
-    topDisplayCompoments?: Array<ItemComponent>;
     inputLabelText?: Map<string, string>;
     placeholderText?: Map<string, string>;
-    minRelativeDate?: Duration;
-    maxRelativeDate?: Duration;
-    bottomDisplayCompoments?: Array<ItemComponent>;
-    isRequired?: boolean;
-    footnoteText?: Map<string, string>;
-}): SurveyItem => {
+    minRelativeDate?: {
+        reference?: number | Expression;
+        delta: Duration;
+    };
+    maxRelativeDate?: {
+        reference?: number | Expression;
+        delta: Duration;
+    };
+}
+
+const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
@@ -422,18 +401,16 @@ const generateDatePickerInput = (props: {
         properties: {
             dateInputMode: { str: props.dateInputMode },
             min: props.minRelativeDate ? {
-                dtype: 'exp', exp:
-                    expWithArgs(
-                        'timestampWithOffset',
-                        durationObjectToSeconds(props.minRelativeDate),
-                        props.minRelativeDate.reference ? props.minRelativeDate.reference : undefined
-                    )
+                dtype: 'exp', exp: CommonExpressions.timestampWithOffset(
+                    props.minRelativeDate.delta,
+                    props.minRelativeDate.reference
+                )
             } : undefined,
             max: props.maxRelativeDate ? {
                 dtype: 'exp', exp:
                     expWithArgs(
                         'timestampWithOffset',
-                        durationObjectToSeconds(props.maxRelativeDate),
+                        durationObjectToSeconds(props.maxRelativeDate.delta),
                         props.maxRelativeDate.reference ? props.maxRelativeDate.reference : undefined
                     )
             } : undefined,
@@ -452,23 +429,50 @@ const generateDatePickerInput = (props: {
     }
 
     if (props.footnoteText) {
-        simpleEditor.addDisplayComponent({
-            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
-                { key: 'className', value: 'fs-small fst-italic text-center' }
-            ]
-        })
+        simpleEditor.addDisplayComponent(ComponentGenerators.footnote({ content: props.footnoteText }))
     }
 
     return simpleEditor.getItem();
 }
 
-export const QuestionGenerators = {
+
+interface DisplayProps {
+    parentKey: string;
+    itemKey: string;
+    content: Array<ItemComponent>;
+}
+
+const generateDisplay = (props: DisplayProps): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, 1);
+    props.content.forEach(item => simpleEditor.addDisplayComponent(item))
+    return simpleEditor.getItem();
+}
+
+const generateSurveyEnd = (parentKey: string, content: Map<string, string>, condition?: Expression): SurveyItem => {
+    const defaultKey = 'surveyEnd'
+    const itemKey = [parentKey, defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, type: 'surveyEnd', isGroup: false });
+
+    editor.setTitleComponent(
+        generateTitleComponent(content)
+    );
+
+    // CONDITION
+    editor.setCondition(condition);
+
+    return editor.getItem();
+}
+
+export const SurveyItemGenerators = {
     singleChoice: generateSingleChoiceQuestion,
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
     dateInput: generateDatePickerInput,
     dropDown: generateDropDownQuestion,
     numericSlider: generateNumericSliderQuestion,
+    numericInput: generateNumericInputQuestion,
+    display: generateDisplay,
+    surveyEnd: generateSurveyEnd,
 }
 
 
@@ -578,6 +582,15 @@ const initResponseGroup = (
             optEditor.setStyles(optionDef.style);
         }
         if (optionDef.optionProps) {
+            if (typeof (optionDef.optionProps.min) === 'number') {
+                optionDef.optionProps.min = { dtype: 'num', num: optionDef.optionProps.min }
+            }
+            if (typeof (optionDef.optionProps.max) === 'number') {
+                optionDef.optionProps.max = { dtype: 'num', num: optionDef.optionProps.max }
+            }
+            if (typeof (optionDef.optionProps.stepSize) === 'number') {
+                optionDef.optionProps.stepSize = { dtype: 'num', num: optionDef.optionProps.stepSize }
+            }
             optEditor.setProperties(optionDef.optionProps);
         }
         groupEdit.addItemComponent(optEditor.getComponent());
