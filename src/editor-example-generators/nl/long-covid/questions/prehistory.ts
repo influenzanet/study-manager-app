@@ -2,7 +2,7 @@ import { SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class PrehistoryGroup extends GroupItemEditor {
@@ -61,12 +61,14 @@ const Q1a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ])
             },
             {
-                key: 'ja', role: 'numberInput',
+                key: 'ja', role: 'dateInput',
                 content: new Map([
-                    ["nl", "Ja, voor het laatst in [jaartal]:"],
+                    ["nl", "Ja, voor het laatst in het jaar: (kies jaartal)"],
                 ]),
                 optionProps: {
-                    min: 0,
+                    dateInputMode: { str: 'Y' },
+                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -3311280000) },
+                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
                 }
             },
         ],
@@ -85,15 +87,10 @@ const Q1b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Ben je voor deze angstklachten behandeld?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        
         responseOptions: [
             {
                 key: 'nee', role: 'option',
@@ -138,7 +135,7 @@ const Q1c = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Heb je voordat ooit last gehad van depressieve klachten?"],
+            ["nl", "Heb je ooit last gehad van depressieve klachten?"],
         ]),
         responseOptions: [
             {
@@ -148,12 +145,14 @@ const Q1c = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ])
             },
             {
-                key: 'ja', role: 'numberInput',
+                key: 'ja', role: 'dateInput',
                 content: new Map([
-                    ["nl", "Ja, voor het laatst in [jaartal]:"],
+                    ["nl", "Ja, voor het laatst in het jaar: (kies jaartal)"],
                 ]),
                 optionProps: {
-                    min: 0,
+                    dateInputMode: { str: 'Y' },
+                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -3311280000) },
+                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
                 }
             },
         ],
@@ -172,15 +171,10 @@ const Q1d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Ben je voor deze depressieve klachten behandeld?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+    
         responseOptions: [
             {
                 key: 'nee', role: 'option',
