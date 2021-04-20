@@ -17,6 +17,7 @@ import { MedicineGroup } from "../questions/medicine";
 import { Q_mMRC } from "../questions/mMRC";
 import { NCSIGroup } from "../questions/ncsi";
 import { ParticipantCategoryGroup } from "../questions/participantCategory";
+import { PrehistoryGroup } from "../questions/prehistory";
 import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
@@ -69,6 +70,9 @@ export const generateT0 = (): Survey | undefined => {
 
     const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
     adultVersion.addItem(acuteHealthGroupEditor.getItem());
+
+    const prehistoryGroupEditor = new PrehistoryGroup(adultVersion.key);
+    adultVersion.addItem(prehistoryGroupEditor.getItem());
 
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());
