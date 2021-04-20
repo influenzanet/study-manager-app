@@ -15,12 +15,13 @@ export class PrehistoryGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        const isRequired = true;
         this.addItem(Q_instructions(this.key));
-        this.addItem(Q1a(this.key));
-        this.addItem(Q1b(this.key));
-        this.addItem(Q1c(this.key));
-        this.addItem(Q1d(this.key));
-        this.addItem(Q2(this.key));
+        this.addItem(Q1a(this.key, isRequired));
+        this.addItem(Q1b(this.key, isRequired));
+        this.addItem(Q1c(this.key, isRequired));
+        this.addItem(Q1d(this.key, isRequired));
+        this.addItem(Q2(this.key, isRequired));
         this.addPageBreak();
     }
 }
