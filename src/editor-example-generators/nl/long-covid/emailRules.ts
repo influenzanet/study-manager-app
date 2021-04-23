@@ -4,6 +4,18 @@ import { durationObjectToSeconds } from "../../../editor-engine/utils/duration"
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators"
 import { surveyKeys } from "./studyRules"
 
+const studyKey = 'longcovid';
+const defaultLanguage = 'nl';
+const sendingTime = {
+    hour: 19,
+    minute: 0
+};
+const headerOverrides = {
+    from: '"LongCOVID" <noreply@infectieradar.nl>',
+    sender: 'noreply@infectieradar.nl',
+    replyTo: ['info@infectieradar.nl'],
+}
+
 const reminderCondition = (surveyKey: string, activeForDays: number) => {
     return expWithArgs('and',
         StudyExpressions.hasSurveyKeyActive(surveyKey),
@@ -15,25 +27,14 @@ const reminderCondition = (surveyKey: string, activeForDays: number) => {
     )
 }
 
-// in days
-/*const reminderPeriods = {
-    T0:  3,
-    short: 2,
-    T3:
-}
-
-//
-const surveyActiveForMax = {
-    T0:  3.5,
-    short:  2.5,
-}*/
-
-
 
 const generateStudyReminderEmailConfig = (
     studyKey: string,
     label: string,
-    firstTime: Date,
+    sendingTime: {
+        hour: number;
+        minute: number;
+    },
     period: Duration,
     defaultLanguage: string,
     condition: Expression,
@@ -45,30 +46,80 @@ const generateStudyReminderEmailConfig = (
     return {
         sendTo: 'study-participants',
         studyKey: studyKey,
+        label: label,
+        headerOverrides: headerOverrides,
         messageType: 'study-reminder',
+        sendingTime,
         condition: { dtype: 'exp', exp: condition },
-        nextTime: Math.floor(firstTime.getTime() / 1000.0),
         period: Math.floor(durationObjectToSeconds(period)),
-        defaultLaunguage: defaultLanguage,
+        defaultLanguage: defaultLanguage,
         translations: translations,
     }
 }
 
-const studyKey = 'longcovid';
-const defaultLanguage = 'nl';
-const firstTime = new Date(2021, 4, 8, 12, 0, 0);
-
-const emailConfigs = {
-    T0Reminder: generateStudyReminderEmailConfig(
+export const emailConfigs = [
+    generateStudyReminderEmailConfig(
         studyKey,
         'T0 reminder',
-        firstTime,
-        { days: 1 },
+        sendingTime,
+        { days: 2 },
         defaultLanguage,
         reminderCondition(surveyKeys.T0, 3.8),
         [
-            { lang: 'nl', subject: 'Your first survey is available' }
+            { lang: 'nl', subject: 'T0 survey is available' }
         ],
     ),
-    // TshortReminder: ...
-}
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'SHORT reminder',
+        sendingTime,
+        { days: 2 },
+        defaultLanguage,
+        reminderCondition(surveyKeys.short, 3.8),
+        [
+            { lang: 'nl', subject: 'Short survey is available' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T3 reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        reminderCondition(surveyKeys.T3, 14.8),
+        [
+            { lang: 'nl', subject: 'T3 survey is available' }
+        ],
+    ), generateStudyReminderEmailConfig(
+        studyKey,
+        'T6 reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        reminderCondition(surveyKeys.T6, 14.8),
+        [
+            { lang: 'nl', subject: 'T6 survey is available' }
+        ],
+    ), generateStudyReminderEmailConfig(
+        studyKey,
+        'T9 reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        reminderCondition(surveyKeys.T9, 14.8),
+        [
+            { lang: 'nl', subject: 'T9 survey is available' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T12 reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        reminderCondition(surveyKeys.T12, 14.8),
+        [
+            { lang: 'nl', subject: 'T12 survey is available' }
+        ],
+    ),
+]
