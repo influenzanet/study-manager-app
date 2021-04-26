@@ -80,6 +80,28 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
         ]),
         responseOptions: [
             {
+                key: 'huisarts', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Huisarts"],
+                ])
+            },
+            {
+                key: '0', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Huisarts"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: 'specialist', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Medisch specialist"],
+                ])
+            },
+            {
                 key: '1', role: 'numberInput',
                 content: new Map([
                     ["nl", "Cardioloog"],
@@ -95,14 +117,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 optionProps: inputProperties,
                 style: inputStyle,
             },
-            {
-                key: '3', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Diëtist"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
+           
             {
                 key: '4', role: 'numberInput',
                 content: new Map([
@@ -112,41 +127,9 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 style: inputStyle,
             },
             {
-                key: '5', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Ergotherapeut"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
-            {
-                key: '6', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Fysiotherapeut"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
-            {
                 key: '7', role: 'numberInput',
                 content: new Map([
                     ["nl", "Gynaecoloog"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
-            {
-                key: '8', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Homeopaat"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
-            {
-                key: '9', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Huisarts"],
                 ]),
                 optionProps: inputProperties,
                 style: inputStyle,
@@ -168,22 +151,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 optionProps: inputProperties,
                 style: inputStyle,
             },
-            {
-                key: '12', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Logopedist"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
-            {
-                key: '13', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Maatschappelijk werker"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
+            
             {
                 key: '14', role: 'numberInput',
                 content: new Map([
@@ -192,14 +160,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 optionProps: inputProperties,
                 style: inputStyle,
             },
-            {
-                key: '15', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Oefentherapeut"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
+          
             {
                 key: '16', role: 'numberInput',
                 content: new Map([
@@ -220,14 +181,6 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 key: '18', role: 'numberInput',
                 content: new Map([
                     ["nl", "Psychiater"],
-                ]),
-                optionProps: inputProperties,
-                style: inputStyle,
-            },
-            {
-                key: '19', role: 'numberInput',
-                content: new Map([
-                    ["nl", "Psycholoog"],
                 ]),
                 optionProps: inputProperties,
                 style: inputStyle,
@@ -260,6 +213,84 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 key: '23', role: 'numberInput',
                 content: new Map([
                     ["nl", "Revalidatiearts"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: 'paraspecialist', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Paramedisch specialist"],
+                ])
+            },
+            {
+                key: '3', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Diëtist"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '5', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Ergotherapeut"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '6', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Fysiotherapeut"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '15', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Oefentherapeut"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '12', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Logopedist"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: 'overigespec', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Overig"],
+                ])
+            },
+            {
+                key: '8', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Homeopaat"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '13', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Maatschappelijk werker"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '19', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Psycholoog"],
                 ]),
                 optionProps: inputProperties,
                 style: inputStyle,

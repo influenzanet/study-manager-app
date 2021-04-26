@@ -1,5 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -19,13 +20,12 @@ export class CovidTestGroup extends GroupItemEditor {
         const infect_earlier = q_infect_earlier_def(this.key, true);
         const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
-        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_zelftest', 'pos_earl_notest', 'unknown');
+        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
         this.addItem(test);
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
-        this.addPageBreak();
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
         if (isT0) {
@@ -230,12 +230,6 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
                     ["nl", "Ik heb de uitslag nog niet"],
                 ])
             },
-            {
-                key: 'no-rep', role: 'option',
-                content: new Map([
-                    ["nl", "Dat wil ik niet aangeven"],
-                ])
-            },
         ],
         isRequired: isRequired,
     });
@@ -249,7 +243,7 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Met welke test is dit bevestigd?"],
+            ["nl", "Met welke test is deze uitslag bevestigd?"],
         ]),
         responseOptions: [
             {
@@ -289,7 +283,7 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Denk en/of weet je dat je al eerder besmet bent geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
+            ["nl", "Ben je al eerder besmet geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
         ]),
         questionSubText: new Map([
             ["nl", "Meer dan 10 dagen geleden."],
@@ -302,15 +296,15 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
                 ])
             },
             {
-                key: 'pos_earl_zelftest', role: 'option',
+                key: 'pos_earl_notest', role: 'option',
                 content: new Map([
-                    ["nl", "Ja, bevestigd met een zelftest"],
+                    ["nl", "Ja, ik denk het wel maar er is geen test gedaan"],
                 ])
             },
             {
-                key: 'pos_earl_notest', role: 'option',
+                key: 'pos_earl_maybe_notest', role: 'option',
                 content: new Map([
-                    ["nl", "Ja, maar er is geen test gedaan"],
+                    ["nl", "Misschien wel, maar er is geen test gedaan"],
                 ])
             },
             {
@@ -443,3 +437,7 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
         isRequired: isRequired,
     });
 }
+function Q_instructions(key: string): SurveyItem {
+    throw new Error("Function not implemented.");
+}
+
