@@ -11,7 +11,7 @@ export const Q_mMRC = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl", "Kortademigheid"],
         ]),
         questionSubText: new Map([
-            ["nl", "Welke van de onderstaande uitspraken is voor u het meest van toepassing?"],
+            ["nl", "Welke van de onderstaande uitspraken is voor jou het meest van toepassing?"],
         ]),
         responseOptions: [{
             key: '1', role: 'option',

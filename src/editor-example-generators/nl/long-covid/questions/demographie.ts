@@ -691,7 +691,7 @@ const Q17 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Uitnodiging via e-mail na deelname aan CONTEST onderzoek"],
+                    ["nl", "Uitnodiging via e-mail na deelname aan ander RIVM onderzoek onderzoek (b.v. CONTEST)"],
                 ]),
             },
             {

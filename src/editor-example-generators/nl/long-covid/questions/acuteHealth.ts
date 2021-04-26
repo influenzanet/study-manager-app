@@ -414,6 +414,11 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ],
         scaleOptions: [
             {
+                key: '0', content: new Map([
+                    ["nl", "0"],
+                ])
+            },
+            {
                 key: '1', content: new Map([
                     ["nl", "1"],
                 ])
@@ -852,7 +857,7 @@ const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?
     return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,
-        condition: CommonExpressions.singleChoiceOptionsSelected(keyQ8, 'ja_klachten'),
+        condition: CommonExpressions.singleChoiceOptionsSelected(keyQ8, 'ja_klachten','ja_magniet'),
         questionText: new Map([
             ["nl", "Hoeveel dagen ben je ziek gemeld van werk/school? "],
         ]),

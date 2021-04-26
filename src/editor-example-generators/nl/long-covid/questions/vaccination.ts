@@ -2,6 +2,7 @@ import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class VaccinationGroup extends GroupItemEditor {
 
@@ -29,8 +30,12 @@ export class VaccinationGroup extends GroupItemEditor {
 
         this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
         this.addPageBreak();
-        this.addItem(q_vacc_influenza_def(this.key, true));
-        this.addItem(q_vacc_pneumoc_def(this.key, true));
+        
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(q_vacc_influenza_def(this.key, true));
+            this.addItem(q_vacc_pneumoc_def(this.key, true));
+        }
+
         this.addPageBreak();
     }
 }
@@ -106,6 +111,9 @@ const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         condition: condition,
         questionText: new Map([
             ["nl", "Welk vaccin tegen het coronavirus heb je ontvangen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         responseOptions: [
             {

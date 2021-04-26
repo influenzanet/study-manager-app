@@ -95,7 +95,7 @@ const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: st
         ]),
         responseOptions: [
             {
-                key: '0', role: 'input',
+                key: 'postcode', role: 'input',
                 // style: [{ key: 'className', value: 'w-100' }],
                 content: new Map([
                     ["nl", "Postcode"],
@@ -105,7 +105,7 @@ const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 ])
             },
             {
-                key: '1', role: 'option',
+                key: 'nietaangeven', role: 'option',
                 content: new Map([
                     ["nl", "Dit wil ik niet aangeven"],
                 ])
@@ -126,8 +126,8 @@ const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 type: 'hard',
                 rule: expWithArgs('or',
                     expWithArgs('not', expWithArgs('hasResponse', fullKey, responseGroupKey)),
-                    expWithArgs('checkResponseValueWithRegex', fullKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
-                    expWithArgs('responseHasKeysAny', fullKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
+                    expWithArgs('checkResponseValueWithRegex', fullKey, [responseGroupKey, singleChoiceKey, 'postcode'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+                    expWithArgs('responseHasKeysAny', fullKey, [responseGroupKey, singleChoiceKey].join('.'), 'nietaangeven')
                 )
             }
         ]

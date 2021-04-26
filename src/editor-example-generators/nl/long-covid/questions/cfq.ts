@@ -147,27 +147,27 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         ],
         rows: [
             {
-                key: 'a', content: new Map([
+                key: 'f', content: new Map([
                     ["nl", "Niet meer weten of je het licht of het gas hebt uitgedaan, of de deur op slot hebt gedaan"],
                 ])
             },
             {
-                key: 'b', content: new Map([
+                key: 'g', content: new Map([
                     ["nl", "Niet luisteren naar de naam van een persoon op het moment dat deze persoon zich aan je voorstelt"],
                 ])
             },
             {
-                key: 'c', content: new Map([
+                key: 'h', content: new Map([
                     ["nl", "Iets er uitflappen en achteraf bedenken dat dat wel eens beledigend voor iemand zou kunnen zijn"],
                 ])
             },
             {
-                key: 'd', content: new Map([
+                key: 'i', content: new Map([
                     ["nl", "Niet merken dat iemand iets tegen je zegt als je met iets anders bezig bent"],
                 ])
             },
             {
-                key: 'e', content: new Map([
+                key: 'j', content: new Map([
                     ["nl", "Boos worden en daar later spijt van hebben"],
                 ])
             },
@@ -212,27 +212,27 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         ],
         rows: [
             {
-                key: 'a', content: new Map([
+                key: 'k', content: new Map([
                     ["nl", "Belangrijke berichten dagenlang onbeantwoord laten"],
                 ])
             },
             {
-                key: 'b', content: new Map([
+                key: 'l', content: new Map([
                     ["nl", "Vergeten welke straat je moet inslaan als je een route kiest die je goed kent, maar die je zelden gebruikt"],
                 ])
             },
             {
-                key: 'c', content: new Map([
+                key: 'm', content: new Map([
                     ["nl", "In een supermarkt niet kunnen vinden wat je zoekt terwijl het er wel is"],
                 ])
             },
             {
-                key: 'd', content: new Map([
+                key: 'n', content: new Map([
                     ["nl", "Je plotseling afvragen of je een woord op de juiste manier gebruikt"],
                 ])
             },
             {
-                key: 'e', content: new Map([
+                key: 'o', content: new Map([
                     ["nl", "Moeite hebben met het nemen van beslissingen"],
                 ])
             },
@@ -277,27 +277,27 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         ],
         rows: [
             {
-                key: 'a', content: new Map([
+                key: 'p', content: new Map([
                     ["nl", "Afspraken vergeten"],
                 ])
             },
             {
-                key: 'b', content: new Map([
+                key: 'q', content: new Map([
                     ["nl", "Vergeten waar je iets hebt neergelegd, zoals een boek of een krant"],
                 ])
             },
             {
-                key: 'c', content: new Map([
+                key: 'r', content: new Map([
                     ["nl", "Per ongeluk iets weggooien wat je nodig hebt of bewaren wat je wilde weggooien"],
                 ])
             },
             {
-                key: 'd', content: new Map([
+                key: 's', content: new Map([
                     ["nl", "Dagdromen terwijl je eigenlijk naar iets of iemand zou moeten luisteren"],
                 ])
             },
             {
-                key: 'e', content: new Map([
+                key: 't', content: new Map([
                     ["nl", "Namen van mensen vergeten"],
                 ])
             },
@@ -342,27 +342,27 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         ],
         rows: [
             {
-                key: 'a', content: new Map([
+                key: 'u', content: new Map([
                     ["nl", "Beginnen met iets maar het niet afmaken, omdat je ongemerkt met iets anders bent begonnen"],
                 ])
             },
             {
-                key: 'b', content: new Map([
+                key: 'v', content: new Map([
                     ["nl", "Niet op een woord kunnen komen terwijl het 'op het puntje van je tong' ligt"],
                 ])
             },
             {
-                key: 'c', content: new Map([
+                key: 'w', content: new Map([
                     ["nl", "In een winkel vergeten wat je kwam kopen"],
                 ])
             },
             {
-                key: 'd', content: new Map([
+                key: 'x', content: new Map([
                     ["nl", "Dingen uit je handen laten vallen"],
                 ])
             },
             {
-                key: 'e', content: new Map([
+                key: 'y', content: new Map([
                     ["nl", "In een gesprek niets meer weten om over te praten"],
                 ])
             },
