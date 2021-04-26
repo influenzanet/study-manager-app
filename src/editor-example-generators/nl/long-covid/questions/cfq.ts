@@ -16,7 +16,6 @@ export class CFQGroup extends GroupItemEditor {
         this.addItem(Q_instructions(this.key))
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
-        this.addPageBreak();
         this.addItem(Q3(this.key, true))
         this.addItem(Q4(this.key, true))
         this.addItem(Q5(this.key, true))

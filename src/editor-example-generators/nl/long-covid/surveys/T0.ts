@@ -96,7 +96,7 @@ export const generateT0 = (): Survey | undefined => {
     const hadsGroup = new HADSGroup(adultVersion.key);
     adultVersion.addItem(hadsGroup.getItem());
 
-    adultVersion.addItem(Q_CBS(adultVersion.key, true));
+    // adultVersion.addItem(Q_CBS(adultVersion.key, true));
 
     adultVersion.addItem(Q_IPAQ(adultVersion.key, true));
 

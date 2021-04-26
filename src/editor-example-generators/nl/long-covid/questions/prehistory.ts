@@ -283,7 +283,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                 ])
             }, {
                 key: '10', content: new Map([
-                    ["nl", "10"],
+                    ["nl", "10 ernstig"],
                 ])
             },
         ],

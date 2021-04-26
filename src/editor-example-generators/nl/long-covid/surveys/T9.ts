@@ -56,7 +56,7 @@ export const generateT9 = (): Survey | undefined => {
     const cfqGroup = new CFQGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(cfqGroup.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
+    // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
     const sf36Group = new SF36Group(surveyKey);
     surveyEditor.addSurveyItemToRoot(sf36Group.getItem());

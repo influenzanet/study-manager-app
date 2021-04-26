@@ -29,7 +29,6 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(vacc2_date1);
 
         this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
-        this.addPageBreak();
         
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(q_vacc_influenza_def(this.key, true));

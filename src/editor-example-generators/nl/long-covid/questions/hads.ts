@@ -15,23 +15,19 @@ export class HADSGroup extends GroupItemEditor {
         this.addItem(Q_instructions(this.key))
         this.addItem(Q_a(this.key, true))
         this.addItem(Q_b(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_c(this.key, true))
         this.addItem(Q_d(this.key, true))
         this.addItem(Q_e(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_f(this.key, true))
         this.addItem(Q_g(this.key, true))
         this.addItem(Q_h(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_i(this.key, true))
         this.addItem(Q_j(this.key, true))
         this.addItem(Q_k(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_l(this.key, true))
         this.addItem(Q_m(this.key, true))
         this.addItem(Q_n(this.key, true))
-        this.addPageBreak();
+       
     }
 }
 

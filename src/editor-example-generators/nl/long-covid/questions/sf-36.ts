@@ -15,20 +15,16 @@ export class SF36Group extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(Q_instructions(this.key))
         this.addItem(Q1(this.key, true))
-        this.addItem(Q2(this.key, true))
-        this.addPageBreak();
+        // this.addItem(Q2(this.key, true))
         this.addItem(Q3(this.key, true))
-        this.addPageBreak();
         this.addItem(Q4(this.key, true))
         this.addItem(Q5(this.key, true))
         this.addItem(Q6(this.key, true))
-        this.addPageBreak();
         this.addItem(Q7(this.key, true))
         this.addItem(Q8(this.key, true))
-        this.addPageBreak();
         this.addItem(Q9(this.key, true))
         this.addItem(Q10(this.key, true))
-        this.addItem(Q11(this.key, true))
+        // this.addItem(Q11(this.key, true))
         this.addPageBreak();
     }
 }
@@ -53,6 +49,7 @@ De volgende vragen gaan over je algemene gezondheid. Wanneer je twijfelt over he
         ]
     });
 }
+// SF12
 const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
     return SurveyItemGenerators.singleChoice({
@@ -97,50 +94,51 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
     });
 }
 
-const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q2';
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "In vergelijking met een jaar geleden, hoe zou je nu je gezondheid in het algemeen beoordelen?"],
-        ]),
-        responseOptions: [
-            {
-                key: '5', role: 'option',
-                content: new Map([
-                    ["nl", "Veel beter dan een jaar geleden"],
-                ])
-            },
-            {
-                key: '4', role: 'option',
-                content: new Map([
-                    ["nl", "Iets beter dan een jaar geleden"],
-                ])
-            },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["nl", "Ongeveer hetzelfde als een jaar geleden"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "Iets slechter dan een jaar geleden"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["nl", "Veel slechter dan een jaar geleden"],
-                ])
-            },
-        ]
-    });
-}
+// const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q2';
+//     return SurveyItemGenerators.singleChoice({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         isRequired: isRequired,
+//         questionText: new Map([
+//             ["nl", "In vergelijking met een jaar geleden, hoe zou je nu je gezondheid in het algemeen beoordelen?"],
+//         ]),
+//         responseOptions: [
+//             {
+//                 key: '5', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Veel beter dan een jaar geleden"],
+//                 ])
+//             },
+//             {
+//                 key: '4', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Iets beter dan een jaar geleden"],
+//                 ])
+//             },
+//             {
+//                 key: '3', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Ongeveer hetzelfde als een jaar geleden"],
+//                 ])
+//             },
+//             {
+//                 key: '2', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Iets slechter dan een jaar geleden"],
+//                 ])
+//             },
+//             {
+//                 key: '1', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Veel slechter dan een jaar geleden"],
+//                 ])
+//             },
+//         ]
+//     });
+// }
 
+// SF12
 const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
     return SurveyItemGenerators.simpleLikertGroup({
@@ -245,11 +243,11 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             }
         ],
         rows: [
-            {
-                key: 'a', content: new Map([
-                    ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
-                ])
-            },
+            // {
+            //     key: 'a', content: new Map([
+            //         ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
+            //     ])
+            // },
             {
                 key: 'b', content: new Map([
                     ["nl", "Je hebt minder bereikt dan je zou willen"],
@@ -260,11 +258,11 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                     ["nl", "Je was beperkt in het soort werk of het soort bezigheden"],
                 ])
             },
-            {
-                key: 'd', content: new Map([
-                    ["nl", "Je had moeite met het werk of andere bezigheden (het kostte je bijvoorbeeld extra inspanning)"],
-                ])
-            },
+            // {
+            //     key: 'd', content: new Map([
+            //         ["nl", "Je had moeite met het werk of andere bezigheden (het kostte je bijvoorbeeld extra inspanning)"],
+            //     ])
+            // },
         ]
     });
 }
@@ -290,11 +288,11 @@ const Q5 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             }
         ],
         rows: [
-            {
-                key: 'a', content: new Map([
-                    ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
-                ])
-            },
+            // {
+            //     key: 'a', content: new Map([
+            //         ["nl", "Je hebt minder tijd kunnen besteden aan werk of andere bezigheden"],
+            //     ])
+            // },
             {
                 key: 'b', content: new Map([
                     ["nl", "Je hebt minder bereikt dan je zou willen"],
@@ -403,6 +401,7 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
     });
 }
 
+// SF12
 const Q8 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
     return SurveyItemGenerators.singleChoice({
@@ -485,56 +484,56 @@ const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             }
         ],
         rows: [
-            {
-                key: 'a', content: new Map([
-                    ["nl", "Voelde je jezelf levenslustig?"],
-                ])
-            },
-            {
-                key: 'b', content: new Map([
-                    ["nl", "Voelde je jezelf erg zenuwachtig?"],
-                ])
-            },
-            {
-                key: 'c', content: new Map([
-                    ["nl", "Zat je zo erg in de put dat niets je kon opvrolijken?"],
-                ])
-            },
+            // {
+            //     key: 'a', content: new Map([
+            //         ["nl", "Voelde je jezelf levenslustig?"],
+            //     ])
+            // },
+            // {
+            //     key: 'b', content: new Map([
+            //         ["nl", "Voelde je jezelf erg zenuwachtig?"],
+            //     ])
+            // },
+            // {
+            //     key: 'c', content: new Map([
+            //         ["nl", "Zat je zo erg in de put dat niets je kon opvrolijken?"],
+            //     ])
+            // },
             {
                 key: 'd', content: new Map([
                     ["nl", "Voelde je jezelf kalm en rustig?"],
                 ])
             },
-            {
-                key: 'e', content: new Map([
-                    ["nl", "Voelde je jezelf erg energiek?"],
-                ])
-            },
+            // {
+            //     key: 'e', content: new Map([
+            //         ["nl", "Voelde je jezelf erg energiek?"],
+            //     ])
+            // },
             {
                 key: 'f', content: new Map([
                     ["nl", "Voelde je jezelf neerslachtig en somber?"],
                 ])
             },
-            {
-                key: 'g', content: new Map([
-                    ["nl", "Voelde je jezelf uitgeblust?"],
-                ])
-            },
-            {
-                key: 'h', content: new Map([
-                    ["nl", "Voelde je jezelf gelukkig?"],
-                ])
-            },
-            {
-                key: 'i', content: new Map([
-                    ["nl", "Voelde je jezelf moe?"],
-                ])
-            },
+            // {
+            //     key: 'g', content: new Map([
+            //         ["nl", "Voelde je jezelf uitgeblust?"],
+            //     ])
+            // },
+            // {
+            //     key: 'h', content: new Map([
+            //         ["nl", "Voelde je jezelf gelukkig?"],
+            //     ])
+            // },
+            // {
+            //     key: 'i', content: new Map([
+            //         ["nl", "Voelde je jezelf moe?"],
+            //     ])
+            // },
         ]
     });
 }
 
-
+// SF12
 const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q10';
     return SurveyItemGenerators.singleChoice({
@@ -579,61 +578,61 @@ const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     });
 }
 
-const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q11';
-    return SurveyItemGenerators.simpleLikertGroup({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Wil je het antwoord kiezen dat het beste weergeeft hoe juist of onjuist je elk van de volgende uitspraken voor jezelf vindt?"],
-        ]),
-        stackOnSmallScreen: true,
-        scaleOptions: [
-            {
-                key: '1', content: new Map([
-                    ["nl", "volkomen juist"],
-                ])
-            }, {
-                key: '2', content: new Map([
-                    ["nl", "grotendeels juist"],
-                ])
-            }, {
-                key: '3', content: new Map([
-                    ["nl", "weet ik niet"],
-                ])
-            },
-            {
-                key: '4', content: new Map([
-                    ["nl", "grotendeels onjuist"],
-                ])
-            }, {
-                key: '5', content: new Map([
-                    ["nl", "volkomen onjuist"],
-                ])
-            },
-        ],
-        rows: [
-            {
-                key: 'a', content: new Map([
-                    ["nl", "Ik lijk gemakkelijker ziek te worden dan andere mensen"],
-                ])
-            },
-            {
-                key: 'b', content: new Map([
-                    ["nl", "Ik ben net zo gezond als andere mensen die ik ken"],
-                ])
-            },
-            {
-                key: 'c', content: new Map([
-                    ["nl", "Ik verwacht dat mijn gezondheid achteruit zal gaan"],
-                ])
-            },
-            {
-                key: 'd', content: new Map([
-                    ["nl", "Mijn gezondheid is uitstekend"],
-                ])
-            },
-        ]
-    });
-}
+// const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q11';
+//     return SurveyItemGenerators.simpleLikertGroup({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         isRequired: isRequired,
+//         questionText: new Map([
+//             ["nl", "Wil je het antwoord kiezen dat het beste weergeeft hoe juist of onjuist je elk van de volgende uitspraken voor jezelf vindt?"],
+//         ]),
+//         stackOnSmallScreen: true,
+//         scaleOptions: [
+//             {
+//                 key: '1', content: new Map([
+//                     ["nl", "volkomen juist"],
+//                 ])
+//             }, {
+//                 key: '2', content: new Map([
+//                     ["nl", "grotendeels juist"],
+//                 ])
+//             }, {
+//                 key: '3', content: new Map([
+//                     ["nl", "weet ik niet"],
+//                 ])
+//             },
+//             {
+//                 key: '4', content: new Map([
+//                     ["nl", "grotendeels onjuist"],
+//                 ])
+//             }, {
+//                 key: '5', content: new Map([
+//                     ["nl", "volkomen onjuist"],
+//                 ])
+//             },
+//         ],
+//         rows: [
+//             {
+//                 key: 'a', content: new Map([
+//                     ["nl", "Ik lijk gemakkelijker ziek te worden dan andere mensen"],
+//                 ])
+//             },
+//             {
+//                 key: 'b', content: new Map([
+//                     ["nl", "Ik ben net zo gezond als andere mensen die ik ken"],
+//                 ])
+//             },
+//             {
+//                 key: 'c', content: new Map([
+//                     ["nl", "Ik verwacht dat mijn gezondheid achteruit zal gaan"],
+//                 ])
+//             },
+//             {
+//                 key: 'd', content: new Map([
+//                     ["nl", "Mijn gezondheid is uitstekend"],
+//                 ])
+//             },
+//         ]
+//     });
+// }

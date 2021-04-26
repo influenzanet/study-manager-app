@@ -738,7 +738,7 @@ const Q18 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Zouden wij je eventueel mogen benaderen voor aanvullend onderzoek?"],
+            ["nl", "Zouden wij je eventueel mogen benaderen voor toekomstig aanvullend onderzoek over het coronavirus?"],
         ]),
         responseOptions: [
             {

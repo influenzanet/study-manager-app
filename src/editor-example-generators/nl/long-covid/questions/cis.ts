@@ -28,6 +28,13 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         },
         {
             role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Bijvoorbeeld als u zich wel wat ontspannen voelt, maar niet zo erg ontspannen, kunt u een van de vakjes aanklikken die in de buurt staan van de antwoordmogelijkheid 'ja, dat klopt'. Dus bijvoorbeeld als volgt:"],
+            ]))
+        },
+        {
+            role: 'text',
             style: [{ key: 'className', value: 'mb-1 border-bottom border-1 border-grey-5 pt-1 mt-2 fw-bold' }],
             content: generateLocStrings(new Map([
                 ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],

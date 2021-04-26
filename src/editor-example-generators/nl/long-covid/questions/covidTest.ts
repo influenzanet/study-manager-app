@@ -1,5 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -25,7 +26,6 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
-        this.addPageBreak();
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
         if (isT0) {
@@ -228,12 +228,6 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
                 key: 'unknown', role: 'option',
                 content: new Map([
                     ["nl", "Ik heb de uitslag nog niet"],
-                ])
-            },
-            {
-                key: 'no-rep', role: 'option',
-                content: new Map([
-                    ["nl", "Dat wil ik niet aangeven"],
                 ])
             },
         ],
@@ -443,3 +437,7 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
         isRequired: isRequired,
     });
 }
+function Q_instructions(key: string): SurveyItem {
+    throw new Error("Function not implemented.");
+}
+
