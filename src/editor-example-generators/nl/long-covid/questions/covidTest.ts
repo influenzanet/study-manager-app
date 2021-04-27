@@ -13,6 +13,8 @@ export class CovidTestGroup extends GroupItemEditor {
     }
 
     initQuestions(isT0: boolean,) {
+        this.addItem(Q_instructions(this.key))
+        this.addItem(Q_instructions1(this.key))
         const test = q_test_def(this.key, true);
         const condition_test_yes = CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes');
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
@@ -35,8 +37,54 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
             this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
         }
+        this.addItem(Q_instructions2(this.key))
         this.addPageBreak();
     }
+}
+
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Deze vragenlijst bestaat uit 5 onderdelen:
+
+1. Testen op het coronavirus
+2. Vaccinaties
+3. Gezondheidsklachten en zorggebruik
+4. Algemene gezondheid
+5. Algemene gegevens
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+const Q_instructions1 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 1 - Testen op het coronavirus**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro2',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
 
 const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
@@ -437,7 +485,23 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
         isRequired: isRequired,
     });
 }
-function Q_instructions(key: string): SurveyItem {
-    throw new Error("Function not implemented.");
-}
 
+const Q_instructions2 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+###### _Dit is het einde van Onderdeel 1. Onderdeel 2 van deze vragenlijst gaat over vaccinaties._
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro3',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}

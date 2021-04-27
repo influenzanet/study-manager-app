@@ -1,5 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -24,6 +25,7 @@ export class MedicineGroup extends GroupItemEditor {
         this.addItem(use_medicine)
         this.addItem(Q4(this.key, true, condition_use_medicine))
         this.addItem(Q16(this.key, true))
+        this.addItem(Q_instructions2(this.key))
         this.addPageBreak();
     }
 }
@@ -445,6 +447,26 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 optionProps: inputProperties,
                 style: inputStyle,
             },
+        ]
+    });
+}
+
+const Q_instructions2 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+###### _Dit is het einde van Onderdeel 4. Onderdeel 5 van deze vragenlijst gaat over je algemene gegevens._
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro3',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
         ]
     });
 }

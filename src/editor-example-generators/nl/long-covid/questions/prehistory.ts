@@ -21,6 +21,7 @@ export class PrehistoryGroup extends GroupItemEditor {
         const condition_angst_yes = CommonExpressions.singleChoiceOptionsSelected(q_Q1a.key, 'ja');
         const condition_depressie_yes = CommonExpressions.singleChoiceOptionsSelected(q_Q1c.key, 'ja');
 
+        this.addItem(Q_instructions1(this.key))
         this.addItem(Q_instructions(this.key));
         this.addItem(q_Q1a);
         this.addItem(Q1b(this.key, isRequired, condition_angst_yes));
@@ -29,6 +30,25 @@ export class PrehistoryGroup extends GroupItemEditor {
         this.addItem(Q2(this.key, isRequired));
         this.addPageBreak();
     }
+}
+
+const Q_instructions1 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 3 - Algemene gezondheid**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
 
 const Q_instructions = (parentKey: string): SurveyItem => {
