@@ -15,6 +15,7 @@ export class AcuteHealthGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        this.addItem(Q_instructions(this.key))
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
         this.addPageBreak();
@@ -61,10 +62,29 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
 
         this.addItem(hasSymptomsGroup.getItem());
+        this.addItem(Q_instructions2(this.key))
         this.addPageBreak();
     }
 }
 
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 3 - Gezondheidsklachten en zorggebruik**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 
 const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1';
@@ -907,4 +927,24 @@ const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?
         ],
         isRequired: isRequired,
     })
+}
+
+const Q_instructions2 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+###### _Dit is het einde van Onderdeel 3. Onderdeel 4 van deze vragenlijst gaat over algemene gezondheid._
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro3',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
