@@ -797,6 +797,7 @@ export const initEQ5DHealthIndicatorQuestion = (
 interface LikertGroupRow {
     key: string;
     content: Map<string, string>;
+    descriptions?: ItemComponent[];
     hideTopBorder?: boolean;
     optionDisabled?: Array<{
         optionKey: string;
@@ -832,10 +833,16 @@ export const initLikertScaleGroup = (
             role: 'text',
             style: [{
                 key: 'className', value:
-                    'mb-1 fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-2' : '')
+                    'fw-bold' + (index !== 0 ? ' pt-1 mt-2' : '') + ((!row.hideTopBorder && index > 0) ? ' border-top border-1 border-grey-2' : '') + (row.descriptions ? ' mb-0' : ' mb-1')
             }, { key: 'variant', value: 'h6' }],
             content: generateLocStrings(row.content),
         });
+
+        if (row.descriptions) {
+            row.descriptions.forEach(desc => {
+                groupEdit.addItemComponent(desc);
+            });
+        }
 
         const item = initLikertScaleItem(
             row.key,
