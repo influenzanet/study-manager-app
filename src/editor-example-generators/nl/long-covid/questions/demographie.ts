@@ -15,7 +15,7 @@ export class DemographieGroup extends GroupItemEditor {
     }
 
     initQuestions(getAgeInYearsExpression: Expression) {
-
+        this.addItem(Q_instructions(this.key))
         const Q_gender = q_gender(this.key, true);
         this.addItem(Q_gender)
 
@@ -64,6 +64,25 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q17(this.key, true))
         this.addItem(Q18(this.key, true))
     }
+}
+
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 5 - Algemene gegevens**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
 
 const q_gender = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
@@ -691,7 +710,7 @@ const Q17 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Uitnodiging via e-mail na deelname aan CONTEST onderzoek"],
+                    ["nl", "Uitnodiging via e-mail na deelname aan ander RIVM onderzoek onderzoek (b.v. CONTEST)"],
                 ]),
             },
             {
@@ -738,7 +757,7 @@ const Q18 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Zouden wij je eventueel mogen benaderen voor aanvullend onderzoek?"],
+            ["nl", "Zouden wij je eventueel mogen benaderen voor toekomstig aanvullend onderzoek over het coronavirus?"],
         ]),
         responseOptions: [
             {

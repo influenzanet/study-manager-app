@@ -18,33 +18,39 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         questionText: new Map([
             ["nl", "Vermoeidheid"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'variant', value: 'p' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
-                ]))
-            },
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ['nl', imageContent]
-                ])
-            }),
-            {
-                role: 'text',
-                style: [{ key: 'variant', value: 'p' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
-                ]))
-            },
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-1 border-bottom border-1 border-grey-5 pt-1 mt-2 fw-bold' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
-                ]))
-            }
+        topDisplayCompoments: [{
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
+            ]))
+        },
+        ComponentGenerators.markdown({
+            content: new Map([
+                ['nl', imageContent]
+            ])
+        }),
+        {
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+            ]))
+        },
+        {
+            role: 'text',
+            style: [{ key: 'variant', value: 'p' }],
+            content: generateLocStrings(new Map([
+                ["nl", "Bijvoorbeeld als u zich wel wat ontspannen voelt, maar niet zo erg ontspannen, kunt u een van de vakjes aanklikken die in de buurt staan van de antwoordmogelijkheid 'ja, dat klopt'. Dus bijvoorbeeld als volgt:"],
+            ]))
+        },
+        {
+            role: 'text',
+            style: [{ key: 'className', value: 'mb-1 border-bottom border-1 border-grey-5 pt-1 mt-2 fw-bold' }],
+            content: generateLocStrings(new Map([
+                ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
+            ]))
+        }
         ],
         scaleOptions: [
             {

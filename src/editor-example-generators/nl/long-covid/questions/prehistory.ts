@@ -1,8 +1,8 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class PrehistoryGroup extends GroupItemEditor {
@@ -16,14 +16,39 @@ export class PrehistoryGroup extends GroupItemEditor {
 
     initQuestions() {
         const isRequired = true;
+        const q_Q1a = Q1a(this.key, isRequired);
+        const q_Q1c = Q1c(this.key, isRequired);
+        const condition_angst_yes = CommonExpressions.singleChoiceOptionsSelected(q_Q1a.key, 'ja');
+        const condition_depressie_yes = CommonExpressions.singleChoiceOptionsSelected(q_Q1c.key, 'ja');
+
+        this.addItem(Q_instructions1(this.key))
         this.addItem(Q_instructions(this.key));
-        this.addItem(Q1a(this.key, isRequired));
-        this.addItem(Q1b(this.key, isRequired));
-        this.addItem(Q1c(this.key, isRequired));
-        this.addItem(Q1d(this.key, isRequired));
+        this.addItem(q_Q1a);
+        this.addItem(Q1b(this.key, isRequired, condition_angst_yes));
+        this.addItem(q_Q1c);
+        this.addItem(Q1d(this.key, isRequired, condition_depressie_yes));
         this.addItem(Q2(this.key, isRequired));
         this.addPageBreak();
     }
+}
+
+const Q_instructions1 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 3 - Algemene gezondheid**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
 
 const Q_instructions = (parentKey: string): SurveyItem => {
@@ -77,7 +102,7 @@ const Q1a = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     });
 }
 
-const Q1b = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q1b = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1b';
 
     const optionsDisabled = CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee');
@@ -85,6 +110,7 @@ const Q1b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         questionText: new Map([
             ["nl", "Ben je voor deze angstklachten behandeld?"],
         ]),
@@ -161,7 +187,7 @@ const Q1c = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     });
 }
 
-const Q1d = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q1d = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1d';
 
     const optionsDisabled = CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee');
@@ -169,6 +195,7 @@ const Q1d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         questionText: new Map([
             ["nl", "Ben je voor deze depressieve klachten behandeld?"],
         ]),
@@ -220,10 +247,17 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "De 4 vragen hieronder bestaan uit vragen die betrekking hebben op de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen (of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek)."],
+            ["nl", "De vragen hieronder gaan over de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek."],
         ]),
         scaleOptions: [
             {
+                key: '0', content: new Map([
+                    ["nl", "0 niet ernstig"],
+                ])
+            }, {
                 key: '1', content: new Map([
                     ["nl", "1"],
                 ])
@@ -261,7 +295,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                 ])
             }, {
                 key: '10', content: new Map([
-                    ["nl", "10"],
+                    ["nl", "10 ernstig"],
                 ])
             },
         ],
@@ -292,7 +326,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "Hoe ernstig waren je klachten met betrekking tot jouw mentaal functioneren (concentratiezwakte, vergeetachtigheid, moeilijk op woorden komen of meerdere dingen tegelijkertijd doen)?"],
+                    ["nl", "Hoe ernstig waren je klachten met betrekking tot concentratie?"],
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([

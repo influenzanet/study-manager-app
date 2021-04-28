@@ -65,7 +65,7 @@ export const generateT3 = (): Survey | undefined => {
     const hadsGroup = new HADSGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
+    // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
     surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
 
