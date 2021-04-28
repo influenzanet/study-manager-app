@@ -404,19 +404,11 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionSubText: new Map([
             ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
         ]),
-        topDisplayCompoments: [
-            ComponentGenerators.text({
-                content: new Map([
-                    ['nl', '0 helemaal geen invloed – 10 zeer veel invloed']
-                ]),
-                className: 'mb-2'
-            })
-        ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
                     ["nl", "1"],
-                ])
+                ]),
             }, {
                 key: '2', content: new Map([
                     ["nl", "2"],
@@ -459,42 +451,98 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: 'a', content: new Map([
                     ["nl", "Hoeveel beïnvloeden uw klachten je leven?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 helemaal geen invloed – 10 zeer veel invloed']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'b', content: new Map([
                     ["nl", "Hoe lang denk je dat je klachten zullen duren?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 een zeer korte tijd – 10 mijn hele leven']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'c', content: new Map([
                     ["nl", "Hoeveel controle vind je dat je hebt over je klachten?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 helemaal geen controle - 10 zeer veel controle']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'd', content: new Map([
                     ["nl", "Hoeveel denk je dat je behandeling kan helpen bij je klachten?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 Helemaal niet -  10 zeer veel']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'e', content: new Map([
                     ["nl", "Hoe sterk ervaar je klachten?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 helemaal geen klachten - 10 veel ernstige klachten']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'f', content: new Map([
                     ["nl", "Hoe bezorgd ben je over je klachten?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 helemaal niet bezorgd - 10 zeer bezorgd']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'g', content: new Map([
                     ["nl", "In welke mate vind je dat je je klachten begrijpt?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 helemaal geen begrip - 10 zeer veel begrip']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'h', content: new Map([
                     ["nl", "Hoeveel invloed hebben de klachten op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', '0 helemaal geen invloed - 10 zeer veel invloed']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
         ]
     });
@@ -581,7 +629,7 @@ const Q5 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?
                 key: '0', role: 'option',
                 content: new Map([
                     ["nl", "Ik ben op de Intensive Care (IC) opgenomen "],
-                ])
+                ]),
             },
             {
                 key: '1', role: 'option',

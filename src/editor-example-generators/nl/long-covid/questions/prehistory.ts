@@ -91,7 +91,7 @@ const Q1b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
-        
+
         responseOptions: [
             {
                 key: 'nee', role: 'option',
@@ -175,7 +175,7 @@ const Q1d = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
-    
+
         responseOptions: [
             {
                 key: 'nee', role: 'option',
@@ -222,14 +222,6 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         questionText: new Map([
             ["nl", "De 4 vragen hieronder bestaan uit vragen die betrekking hebben op de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen (of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek)."],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Geef aan op een schaal van 0 (niet vermoeid) tot 10 (ernstig vermoeid)"],
-            ]))
-        },
-        ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -277,22 +269,50 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             {
                 key: 'a', content: new Map([
                     ["nl", "Hoe ernstig was je vermoeidheid?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', 'Geef aan op een schaal van 0 (niet vermoeid) tot 10 (ernstig vermoeid)']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'b', content: new Map([
                     ["nl", "Hoe ernstig waren je pijnklachten?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', 'Geef aan op een schaal van 0 (niet vermoeid) tot 10 (ernstig vermoeid)']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'c', content: new Map([
                     ["nl", "Hoe ernstig waren je klachten met betrekking tot jouw mentaal functioneren (concentratiezwakte, vergeetachtigheid, moeilijk op woorden komen of meerdere dingen tegelijkertijd doen)?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', 'Geef aan op een schaal van 0 (geen concentratiestoornissen) tot 10 (ernstige concentratiestoornissen)']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
             {
                 key: 'd', content: new Map([
                     ["nl", "Hoe ernstig waren je benauwdheid/kortademigheid?"],
-                ])
+                ]), descriptions: [
+                    ComponentGenerators.text({
+                        content: new Map([
+                            ['nl', 'Geef aan op een schaal van 0 (niet benauwd / kortademig) tot 10 (ernstig benauwd / kortademig)']
+                        ]),
+                        className: "fst-italic mb-1"
+                    }),
+                ]
             },
         ]
     });
