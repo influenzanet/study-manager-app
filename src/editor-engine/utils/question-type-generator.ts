@@ -799,6 +799,7 @@ interface LikertGroupRow {
     content: Map<string, string>;
     descriptions?: ItemComponent[];
     hideTopBorder?: boolean;
+    hideLabels?: boolean;
     optionDisabled?: Array<{
         optionKey: string;
         exp: Expression;
@@ -850,7 +851,7 @@ export const initLikertScaleGroup = (
                 return {
                     key: option.key,
                     className: option.className,
-                    content: option.content,
+                    content: row.hideLabels ? undefined : option.content,
                     disabled: row.optionDisabled?.find(cond => cond.optionKey === option.key)?.exp,
                 }
             }),
