@@ -13,7 +13,9 @@ export class SaTGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
         this.addItem(Q_instructions(this.key))
+        }
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(q_a(this.key, true))
         }
@@ -21,7 +23,9 @@ export class SaTGroup extends GroupItemEditor {
             this.addItem(q_b(this.key, true))
             this.addItem(q_c(this.key, true))
         }
-        this.addItem(Q_instructions2(this.key))
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
+            this.addItem(Q_instructions2(this.key))
+            }
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(q_d(this.key, true))
         }
@@ -29,7 +33,9 @@ export class SaTGroup extends GroupItemEditor {
             this.addItem(q_e(this.key, true))
             this.addItem(q_f(this.key, true))
         }
-        this.addItem(Q_instructions3(this.key))
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
+            this.addItem(Q_instructions3(this.key))
+            }
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(q_g(this.key, true))
         }

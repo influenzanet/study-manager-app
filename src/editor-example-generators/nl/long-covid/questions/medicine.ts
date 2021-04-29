@@ -4,6 +4,7 @@ import { ComponentGenerators } from "../../../../editor-engine/utils/componentGe
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class MedicineGroup extends GroupItemEditor {
 
@@ -25,7 +26,9 @@ export class MedicineGroup extends GroupItemEditor {
         this.addItem(use_medicine)
         this.addItem(Q4(this.key, true, condition_use_medicine))
         this.addItem(Q16(this.key, true))
-        this.addItem(Q_instructions2(this.key))
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(Q_instructions2(this.key))
+        }
         this.addPageBreak();
     }
 }

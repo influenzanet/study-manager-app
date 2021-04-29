@@ -3,6 +3,7 @@ import { CommonExpressions } from "../../../../editor-engine/utils/commonExpress
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class CovidTestGroup extends GroupItemEditor {
 
@@ -13,8 +14,19 @@ export class CovidTestGroup extends GroupItemEditor {
     }
 
     initQuestions(isT0: boolean,) {
-        this.addItem(Q_instructions(this.key))
-        this.addItem(Q_instructions1(this.key))
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(Q_instructionsT0(this.key))
+        }
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.T6) || this.isPartOfSurvey(surveyKeys.T9) || this.isPartOfSurvey(surveyKeys.T12)) {
+            this.addItem(Q_instructionsT36912(this.key))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructionsTshort(this.key))
+        } else {
+            this.addItem(Q_instructions1(this.key))
+        }
+
         const test = q_test_def(this.key, true);
         const condition_test_yes = CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes');
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
@@ -37,12 +49,15 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
             this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
         }
-        this.addItem(Q_instructions2(this.key))
+
+        if (!this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructions2(this.key))
+        }
         this.addPageBreak();
     }
 }
 
-const Q_instructions = (parentKey: string): SurveyItem => {
+const Q_instructionsT0 = (parentKey: string): SurveyItem => {
     const markdownContent = `
 ## Deze vragenlijst bestaat uit 5 onderdelen:
 
@@ -51,6 +66,52 @@ const Q_instructions = (parentKey: string): SurveyItem => {
 3. Gezondheidsklachten en zorggebruik
 4. Algemene gezondheid
 5. Algemene gegevens
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+
+const Q_instructionsT36912 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Deze vragenlijst bestaat uit 4 onderdelen:
+
+1. Testen op het coronavirus
+2. Vaccinaties
+3. Gezondheidsklachten en zorggebruik
+4. Algemene gezondheid
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+const Q_instructionsTshort = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Deze update gaat over testen op het coronavirus en over je gezondheid en zorgebruik.
 
 `
 

@@ -62,8 +62,11 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
 
         this.addItem(hasSymptomsGroup.getItem());
-        this.addItem(Q_instructions2(this.key))
-        this.addPageBreak();
+        if (!this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructions2(this.key))
+            this.addPageBreak();
+        }
+
     }
 }
 
@@ -925,7 +928,7 @@ const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?
     return SurveyItemGenerators.dropDown({
         parentKey: parentKey,
         itemKey: itemKey,
-        condition: CommonExpressions.singleChoiceOptionsSelected(keyQ8, 'ja_klachten','ja_magniet'),
+        condition: CommonExpressions.singleChoiceOptionsSelected(keyQ8, 'ja_klachten', 'ja_magniet'),
         questionText: new Map([
             ["nl", "Hoeveel dagen ben je ziek gemeld van werk/school? "],
         ]),
