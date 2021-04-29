@@ -13,28 +13,21 @@ export class SaTGroup extends GroupItemEditor {
     }
 
     initQuestions() {
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
         this.addItem(Q_instructions(this.key))
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(q_a(this.key, true))
         }
+        
         if (!this.isPartOfSurvey(surveyKeys.T9)) {
             this.addItem(q_b(this.key, true))
             this.addItem(q_c(this.key, true))
         }
-        this.addItem(Q_instructions2(this.key))
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(q_d(this.key, true))
-        }
+        if (!this.isPartOfSurvey(surveyKeys.T9)) {
+            this.addItem(Q_instructions2(this.key))
+            }
+        
         if (!this.isPartOfSurvey(surveyKeys.T9)) {
             this.addItem(q_e(this.key, true))
             this.addItem(q_f(this.key, true))
-        }
-        this.addItem(Q_instructions3(this.key))
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(q_g(this.key, true))
-        }
-        if (!this.isPartOfSurvey(surveyKeys.T9)) {
-            this.addItem(q_h(this.key, true))
         }
         this.addPageBreak();
     }
@@ -61,28 +54,7 @@ Deze vragen gaan over je reukvermogen (bijvoorbeeld het ruiken van bloemen of ze
     });
 }
 
-const q_a = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'a';
-    return SurveyItemGenerators.numericSlider({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Beoordeel je reukvermogen voorafgaand aan dit onderzoek"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Mijn reukvermogen voorafgaand dit onderzoek: (geen reukvermogen 0 - uitstekend reukvermogen 100)."],
-        ]),
-        sliderLabel: new Map([
-            ["nl", "Jouw selectie:"],
-        ]),
-        noResponseLabel: new Map([
-            ["nl", "Beweeg de slider om je antwoord te geven"],
-        ]),
-        min: 0,
-        max: 100,
-    });
-}
+
 
 const q_b = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'b';
@@ -122,9 +94,15 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         ]),
         responseOptions: [
             {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Mijn reukvermogen is normaal"],
+                ])
+            },
+            {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Ik kan helemaal niet ruiken / Geuren ruiken minder sterk dan voorheen"],
+                    ["nl", "Ik kan helemaal niet ruiken / geuren ruiken minder sterk dan voorheen"],
                 ])
             },
             {
@@ -145,6 +123,7 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["nl", "Reukvermogen varieert (het komt en het gaat)"],
                 ])
             },
+           
         ]
     });
 }
@@ -167,29 +146,6 @@ De volgende vragen gaan over je smaakvermogen. Bijvoorbeeld het proeven van zoet
                 className: ''
             })
         ]
-    });
-}
-
-const q_d = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'd';
-    return SurveyItemGenerators.numericSlider({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Beoordeel je smaakvermogen voorafgaand aan dit onderzoek"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Mijn smaakvermogen voorafgaand aan dit onderzoek: (geen smaakvermogen 0 - uitstekend smaakvermogen 100)"],
-        ]),
-        sliderLabel: new Map([
-            ["nl", "Jouw selectie:"],
-        ]),
-        noResponseLabel: new Map([
-            ["nl", "Beweeg de slider om je antwoord te geven"],
-        ]),
-        min: 0,
-        max: 100,
     });
 }
 
@@ -233,6 +189,12 @@ export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         ]),
         responseOptions: [
             {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Geen specifieke verandering"],
+                ])
+            },
+            {
                 key: '1', role: 'option',
                 content: new Map([
                     ["nl", "Zoet"],
@@ -262,78 +224,7 @@ export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["nl", "Hartig/umami"],
                 ])
             },
-            {
-                key: '6', role: 'option',
-                content: new Map([
-                    ["nl", "Geen specifieke verandering"],
-                ])
-            },
+          
         ]
-    });
-}
-
-const Q_instructions3 = (parentKey: string): SurveyItem => {
-    const markdownContent = `
-## Sensaties
-
-De volgende vragen gaan over andere sensaties in je mond zoals branden, koelen of tintelen. Bijvoorbeeld van chilipepers, kauwgom, pepermunt of koolzuur.
-    `
-
-    return SurveyItemGenerators.display({
-        parentKey: parentKey,
-        itemKey: 'intro3',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ["nl", markdownContent],
-                ]),
-                className: ''
-            })
-        ]
-    });
-}
-const q_g = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'g';
-    return SurveyItemGenerators.numericSlider({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Beoordeel je vermogen om deze andere sensaties in je mond te voelen voorafgaand aan dit onderzoek"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Mijn vermogen voor het voelen van sensaties voorafgaand aan dit onderzoek: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],
-        ]),
-        sliderLabel: new Map([
-            ["nl", "Jouw selectie:"],
-        ]),
-        noResponseLabel: new Map([
-            ["nl", "Beweeg de slider om je antwoord te geven"],
-        ]),
-        min: 0,
-        max: 100,
-    });
-}
-
-const q_h = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'h';
-    return SurveyItemGenerators.numericSlider({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["nl", "Beoordeel je vermogen om deze andere sensaties in je mond te voelen OP DIT MOMENT"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Mijn vermogen voor het voelen van sensaties op dit moment: (helemaal niet gevoelig 0 - heel erg gevoelig 100)"],
-        ]),
-        sliderLabel: new Map([
-            ["nl", "Jouw selectie:"],
-        ]),
-        noResponseLabel: new Map([
-            ["nl", "Beweeg de slider om je antwoord te geven"],
-        ]),
-        min: 0,
-        max: 100,
     });
 }

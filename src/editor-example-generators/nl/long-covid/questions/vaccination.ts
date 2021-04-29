@@ -14,7 +14,10 @@ export class VaccinationGroup extends GroupItemEditor {
     }
 
     initQuestions(isT0: boolean) {
-        this.addItem(Q_instructions(this.key))
+
+        if (this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructions(this.key))
+        }
         const vacc = q_vacc_def(this.key, true);
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
         const vacc_num = q_vacc_num_def(this.key, true, condition_vacc_yes);
@@ -31,7 +34,7 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(vacc2_date1);
 
         this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
-        
+
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(q_vacc_influenza_def(this.key, true));
             this.addItem(q_vacc_pneumoc_def(this.key, true));
