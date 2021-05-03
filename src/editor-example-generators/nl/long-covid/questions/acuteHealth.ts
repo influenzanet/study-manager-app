@@ -15,7 +15,9 @@ export class AcuteHealthGroup extends GroupItemEditor {
     }
 
     initQuestions() {
-        this.addItem(Q_instructions(this.key))
+        if (!this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructions(this.key))
+        }
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
         this.addPageBreak();

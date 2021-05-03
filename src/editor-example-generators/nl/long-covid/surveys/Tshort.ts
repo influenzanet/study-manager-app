@@ -12,7 +12,7 @@ export const generateShort = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKeys.short,
         name: new Map([
-            ["nl", "Wekelijkse update van klachten LongCOVID onderzoek"],
+            ["nl", "Wekelijkse update van klachten LongCOVID-onderzoek"],
         ]),
         description: new Map([
             ["nl", "In de vorige vragenlijst heb je aangegeven klachten te hebben. In deze update vragen we je of deze klachten nog steeds aanwezig zijn, en hoe je je voelt."],
@@ -37,7 +37,7 @@ export const generateShort = (): Survey | undefined => {
 
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
     ])));
 
     return surveyEditor.getSurvey();

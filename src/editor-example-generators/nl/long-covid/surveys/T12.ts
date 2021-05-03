@@ -24,10 +24,10 @@ export const generateT12 = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Nieuwe vragenlijst LongCOVID: 12 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 12 maanden"],
         ]),
         description: new Map([
-            ["nl", "Een jaar geleden ben je gestart met het LongCOVID onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
+            ["nl", "Een jaar geleden ben je gestart met het LongCOVID-onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
             ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
@@ -46,7 +46,7 @@ export const generateT12 = (): Survey | undefined => {
 
     const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
-
+      
     const generalHealthGroupEditor = new GeneralHealthGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(generalHealthGroupEditor.getItem());
 
@@ -80,7 +80,7 @@ export const generateT12 = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen.']
     ])));
 
     return surveyEditor.getSurvey();

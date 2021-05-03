@@ -31,13 +31,13 @@ export const generateT0 = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Vragenlijst start LongCOVID"],
+            ["nl", "Vragenlijst start LongCOVID-onderzoek"],
         ]),
         description: new Map([
-            ["nl", "Dit is de eerste vragenlijst van het LongCOVID onderzoek. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
+            ["nl", "Dit is de eerste vragenlijst van het LongCOVID-onderzoek. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
-            ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 30 minuten van je tijd."],
         ])
     })
 
@@ -121,7 +121,7 @@ export const generateT0 = (): Survey | undefined => {
         content: [
             ComponentGenerators.markdown({
                 content: new Map([
-                    ['nl', `Het LongCOVID onderzoek bij kinderen is helaas nog niet van start gegaan. Volg de informatie op de website [www.rivm.nl/longcovidonderzoek](www.rivm.nl/longcovidonderzoek) over de start van het onderzoek bij kinderen.`]
+                    ['nl', `Het LongCOVID-onderzoek bij kinderen is helaas nog niet van start gegaan. Volg de informatie op de website [longcovid.rivm.nl](longcovid.rivm.nl) over de start van het onderzoek bij kinderen.`]
                 ])
             })]
     }))
@@ -133,7 +133,7 @@ export const generateT0 = (): Survey | undefined => {
 
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
     ])));
 
     return surveyEditor.getSurvey();

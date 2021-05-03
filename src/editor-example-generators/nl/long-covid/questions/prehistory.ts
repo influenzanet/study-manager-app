@@ -34,12 +34,12 @@ export class PrehistoryGroup extends GroupItemEditor {
 
 const Q_instructions1 = (parentKey: string): SurveyItem => {
     const markdownContent = `
-## **Onderdeel 3 - Algemene gezondheid**
+## **Onderdeel 4 - Algemene gezondheid**
 `
 
     return SurveyItemGenerators.display({
         parentKey: parentKey,
-        itemKey: 'intro',
+        itemKey: 'intro2',
         content: [
             ComponentGenerators.markdown({
                 content: new Map([
