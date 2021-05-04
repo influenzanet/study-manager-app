@@ -15,7 +15,7 @@ export class VaccinationGroup extends GroupItemEditor {
 
     initQuestions(isT0: boolean) {
 
-        if (this.isPartOfSurvey(surveyKeys.short)) {
+        if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions(this.key))
         }
         const vacc = q_vacc_def(this.key, true);
