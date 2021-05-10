@@ -66,6 +66,14 @@ const getSurveyKeyAssignedFrom = (surveyKey: string) => expWithArgs('getSurveyKe
 const getSurveyKeyAssignedUntil = (surveyKey: string) => expWithArgs('getSurveyKeyAssignedUntil', surveyKey);
 
 /**
+ *
+ * @param key look up this flag
+ * @param value and for this value
+ * @returns return true if key - value pair (with case sensitive matching for both key and value) is present. If any of the two is different, or participant flags is empty, it returns false.
+ */
+const hasParticipantFlag = (key: string, value: string) => expWithArgs('hasParticipantFlag', key, value);
+
+/**
  * Results of "T_ref = reference + delta" will be checked against "validFrom" of the assinged survey (if present). True T_ref > T_validFrom.
  * @param surveyKey which survey it should check for
  * @param delta delta time to the reference time (by default current time).
@@ -136,6 +144,7 @@ export const StudyExpressions = {
     hasSurveyKeyValidFromOlderThan,
     hasSurveyKeyValidUntilSoonerThan,
     hasSurveyKeyActive,
+    hasParticipantFlag,
     timestampWithOffset,
     multipleChoiceOnlyOtherKeysSelected,
 }
