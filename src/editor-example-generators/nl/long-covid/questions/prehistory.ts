@@ -318,7 +318,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
-                            ['nl', 'Geef aan op een schaal van 0 (niet vermoeid) tot 10 (ernstig vermoeid)']
+                            ['nl', 'Geef aan op een schaal van 0 (geen pijnklachten) tot 10 (ernstige pijnklachten)']
                         ]),
                         className: "fst-italic mb-1"
                     }),
