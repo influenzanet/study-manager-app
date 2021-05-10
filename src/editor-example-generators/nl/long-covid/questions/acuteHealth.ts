@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -20,9 +20,12 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
-        this.addPageBreak();
 
         const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+            Q_symptoms.key, 'geen'
+        );
+
+        const hasNoReportedSymptoms = CommonExpressions.multipleChoiceOptionsSelected(
             Q_symptoms.key, 'geen'
         );
 
@@ -60,7 +63,12 @@ export class AcuteHealthGroup extends GroupItemEditor {
             const q8 = Q8(hasSymptomsGroup.key, true);
             hasSymptomsGroup.addItem(q8)
 
-            hasSymptomsGroup.addItem(Q9(hasSymptomsGroup.key, q8.key, true));
+            hasSymptomsGroup.addItem(Q9(hasSymptomsGroup.key, q8.key, true), true);
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q3(this.key, hasNoReportedSymptoms, true));
+            this.addPageBreak();
         }
 
         this.addItem(hasSymptomsGroup.getItem());
@@ -306,10 +314,17 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 ])
             },
             {
+                key: 'long3', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Vink aan als geen van bovenstaande van toepassing is"],
+                ])
+            },
+            {
                 key: 'geen', role: 'option',
                 disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), 'geen'),
                 content: new Map([
-                    ["nl", "Geen van deze klachten"],
+                    ["nl", "Geen van de bovenstaande klachten"],
                 ])
             },
         ],
@@ -407,6 +422,25 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Op welke datum begonnen de eerste klachten (je mag de datum ook schatten)?"],
+        ]),
+        dateInputMode: 'YMD',
+        placeholderText: new Map([
+            ["nl", "dd-mm-jjjj"],
+        ]),
+        minRelativeDate: { delta: { days: -40 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+    });
+}
+
+const Q3 = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q3';
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
@@ -516,7 +550,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "Hoeveel denk je dat je behandeling kan helpen bij je klachten?"],
+                    ["nl", "Hoeveel denk je dat een behandeling kan helpen bij je klachten?"],
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
@@ -634,6 +668,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: '5', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '5'),
                 content: new Map([
                     ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
                 ])

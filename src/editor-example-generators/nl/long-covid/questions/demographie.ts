@@ -540,9 +540,9 @@ const Q13 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Universiteit"],
                 ]),
             }, {
-                key: '8', role: 'input',
+                key: '8', role: 'option',
                 content: new Map([
-                    ["nl", "Anders, namelijk"],
+                    ["nl", "Anders"],
                 ]),
             },
         ]
