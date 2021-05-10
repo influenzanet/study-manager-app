@@ -932,7 +932,7 @@ const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?
         itemKey: itemKey,
         condition: CommonExpressions.singleChoiceOptionsSelected(keyQ8, 'ja_klachten', 'ja_magniet'),
         questionText: new Map([
-            ["nl", "Hoeveel dagen ben je ziek gemeld van werk/school? "],
+            ["nl", "Hoeveel dagen ben je ziek gemeld van werk/school?"],
         ]),
         responseOptions: [
             {
