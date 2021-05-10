@@ -306,10 +306,17 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 ])
             },
             {
+                key: 'long3', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Vink aan als geen van bovenstaande van toepassing is"],
+                ])
+            },
+            {
                 key: 'geen', role: 'option',
                 disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), 'geen'),
                 content: new Map([
-                    ["nl", "Geen van deze klachten"],
+                    ["nl", "Geen van de bovenstaande klachten"],
                 ])
             },
         ],
@@ -516,7 +523,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "Hoeveel denk je dat je behandeling kan helpen bij je klachten?"],
+                    ["nl", "Hoeveel denk je dat een behandeling kan helpen bij je klachten?"],
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
@@ -634,6 +641,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: '5', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '5'),
                 content: new Map([
                     ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
                 ])

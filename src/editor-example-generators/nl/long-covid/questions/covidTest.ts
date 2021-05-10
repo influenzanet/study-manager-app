@@ -300,9 +300,9 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
                 ])
             },
             {
-                key: '4', role: 'input',
+                key: '4', role: 'option',
                 content: new Map([
-                    ["nl", "Vanwege een andere reden, namelijk"],
+                    ["nl", "Vanwege een andere reden"],
                 ])
             },
         ],
@@ -352,7 +352,7 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Met welke test is deze uitslag bevestigd?"],
+            ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
         ]),
         responseOptions: [
             {
@@ -395,7 +395,7 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
             ["nl", "Ben je al eerder besmet geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
         ]),
         questionSubText: new Map([
-            ["nl", "Meer dan 10 dagen geleden."],
+            ["nl", "Het gaat hier om een eerdere infectie, meer dan 7 dagen geleden."],
         ]),
         responseOptions: [
             {
