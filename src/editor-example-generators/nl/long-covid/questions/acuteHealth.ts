@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -20,9 +20,12 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
-        this.addPageBreak();
 
         const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+            Q_symptoms.key, 'geen'
+        );
+
+        const hasNoReportedSymptoms = CommonExpressions.multipleChoiceOptionsSelected(
             Q_symptoms.key, 'geen'
         );
 
@@ -45,12 +48,6 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
 
         if (
-            this.isPartOfSurvey(surveyKeys.short)
-        ) {
-            hasSymptomsGroup.addItem(Q3(hasSymptomsGroup.key, true));
-        }
-
-        if (
             this.isPartOfSurvey(surveyKeys.T0) ||
             this.isPartOfSurvey(surveyKeys.short)
         ) {
@@ -66,7 +63,12 @@ export class AcuteHealthGroup extends GroupItemEditor {
             const q8 = Q8(hasSymptomsGroup.key, true);
             hasSymptomsGroup.addItem(q8)
 
-            hasSymptomsGroup.addItem(Q9(hasSymptomsGroup.key, q8.key, true));
+            hasSymptomsGroup.addItem(Q9(hasSymptomsGroup.key, q8.key, true), true);
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q3(this.key, hasNoReportedSymptoms, true));
+            this.addPageBreak();
         }
 
         this.addItem(hasSymptomsGroup.getItem());
@@ -430,11 +432,12 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
     });
 }
 
-const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q3 = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
     return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
