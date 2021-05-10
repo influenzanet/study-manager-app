@@ -45,6 +45,12 @@ export class AcuteHealthGroup extends GroupItemEditor {
         }
 
         if (
+            this.isPartOfSurvey(surveyKeys.short)
+        ) {
+            hasSymptomsGroup.addItem(Q3(hasSymptomsGroup.key, true));
+        }
+
+        if (
             this.isPartOfSurvey(surveyKeys.T0) ||
             this.isPartOfSurvey(surveyKeys.short)
         ) {
@@ -414,6 +420,24 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Op welke datum begonnen de eerste klachten (je mag de datum ook schatten)?"],
+        ]),
+        dateInputMode: 'YMD',
+        placeholderText: new Map([
+            ["nl", "dd-mm-jjjj"],
+        ]),
+        minRelativeDate: { delta: { days: -40 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+    });
+}
+
+const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q3';
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([

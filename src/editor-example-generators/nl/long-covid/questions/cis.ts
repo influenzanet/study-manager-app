@@ -57,7 +57,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "1"],
+                    ["nl", "1 ja dat klopt"],
                 ])
             }, {
                 key: '2', content: new Map([
@@ -81,7 +81,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ])
             }, {
                 key: '7', content: new Map([
-                    ["nl", "7"],
+                    ["nl", "7 nee dat klopt niet"],
                 ])
             }
         ],
@@ -89,7 +89,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'a', content: new Map([
                     ["nl", "Ik voel me moe"],
-                ]),
+                ]), 
             },
             {
                 key: 'b', content: new Map([

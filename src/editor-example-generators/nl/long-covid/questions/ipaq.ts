@@ -9,11 +9,9 @@ export const Q_IPAQ = (parentKey: string, isRequired?: boolean, keyOverride?: st
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Lichamelijke activiteit"],
-        ]),
-        questionSubText: new Map([
             ["nl", "Hoeveel tijd bracht je gewoonlijk zittend door gedurende een doordeweekse dag in de afgelopen 7 dagen?"],
         ]),
+    
         topDisplayCompoments: [
             {
                 role: 'text',
