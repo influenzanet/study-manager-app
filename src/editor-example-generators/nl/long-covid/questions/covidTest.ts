@@ -222,7 +222,7 @@ const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?
             {
                 key: '2', role: 'option',
                 content: new Map([
-                    ["nl", "GGD is langs geweest"],
+                    ["nl", "GGD kwam naar mijn huis"],
                 ])
             },
             {
@@ -302,6 +302,12 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
             {
                 key: '4', role: 'option',
                 content: new Map([
+                    ["nl", "In verband met een uitje (bijv. evenement, attractiepark, dierentuin)"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
                     ["nl", "Vanwege een andere reden"],
                 ])
             },
@@ -347,18 +353,21 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6';
 
-    return SurveyItemGenerators.singleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
             ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest) "],
+                    ["nl", "Bevestigd door PCR of antigeen sneltest"],
                 ])
             },
             {
@@ -436,18 +445,21 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
 const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
 
-    return SurveyItemGenerators.singleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Met welke test is dit bevestigd?"],
+            ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest)"],
+                    ["nl", "Bevestigd door PCR of antigeen sneltest"],
                 ])
             },
             {
