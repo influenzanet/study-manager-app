@@ -43,7 +43,7 @@ const StudyFileDownloads: React.FC<StudyFileDownloadsProps> = (props) => {
                                 var a = document.createElement("a");
                                 var file = new Blob([JSON.stringify(exportData)], { type: 'json' });
                                 a.href = URL.createObjectURL(file);
-                                a.download = `${exportData.label.split(' ')[0]}.json`;
+                                a.download = `${exportData.label.replaceAll(' ', '_')}.json`;
                                 a.click();
                             }}>
                             {'Save Email Reminder Definition'}
