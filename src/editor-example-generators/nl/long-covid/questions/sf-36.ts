@@ -541,7 +541,7 @@ const Q10 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Hoe vaak heeftje lichamelijke gezondheid of hebben emotionele problemen gedurende de afgelopen 4 weken je sociale activiteiten (zoals bezoek aan vrienden of naaste familieleden) belemmerd?"],
+            ["nl", "Hoe vaak heeft je lichamelijke gezondheid of hebben emotionele problemen gedurende de afgelopen 4 weken je sociale activiteiten (zoals bezoek aan vrienden of naaste familieleden) belemmerd?"],
         ]),
         responseOptions: [
             {

@@ -247,15 +247,13 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "De vragen hieronder gaan over de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen."],
+            ["nl", "De vragen hieronder gaan over de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen. Of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek."],
         ]),
-        questionSubText: new Map([
-            ["nl", "Of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek."],
-        ]),
+    
         scaleOptions: [
             {
                 key: '0', content: new Map([
-                    ["nl", "0 niet ernstig"],
+                    ["nl", "0"],
                 ])
             }, {
                 key: '1', content: new Map([
@@ -295,7 +293,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                 ])
             }, {
                 key: '10', content: new Map([
-                    ["nl", "10 ernstig"],
+                    ["nl", "10"],
                 ])
             },
         ],
@@ -326,7 +324,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: 'c', content: new Map([
-                    ["nl", "Hoe ernstig waren je klachten met betrekking tot concentratie?"],
+                    ["nl", "Hoe ernstig waren je concentratiestoornissen?"],
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
@@ -338,7 +336,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: 'd', content: new Map([
-                    ["nl", "Hoe ernstig waren je benauwdheid/kortademigheid?"],
+                    ["nl", "Hoe ernstig was je benauwdheid/kortademigheid?"],
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([

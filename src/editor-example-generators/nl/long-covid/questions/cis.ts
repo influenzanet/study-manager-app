@@ -52,7 +52,14 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 content: generateLocStrings(new Map([
                     ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
                 ]))
-            }
+            },
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Vink hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+                ]))
+            },
         ],
         scaleOptions: [
             {

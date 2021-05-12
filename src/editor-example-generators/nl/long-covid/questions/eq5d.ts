@@ -58,7 +58,7 @@ const Q_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
 ## Kwaliteit van leven
 
-Zet bij iedere groep in de lijst een kruisje in het hokje dat het best past bij jouw gezondheid zoals je die VANDAAG ervaart.
+Vink bij iedere groep in de lijst aan wat het best past bij jouw gezondheid zoals je die VANDAAG ervaart.
     `
 
     return SurveyItemGenerators.display({

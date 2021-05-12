@@ -33,7 +33,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Vul je deze lijst in voor jezelf of voor een kind)?"],
+            ["nl", "Vul je deze lijst in voor jezelf of voor een kind?"],
         ]),
         responseOptions: [
             {
@@ -45,7 +45,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'kind', role: 'option',
                 content: new Map([
-                    ["nl", "Voor mijn kind van <16 jaar oud"],
+                    ["nl", "Voor mijn kind van jonger dan 16 jaar oud"],
                 ])
             },
         ],
@@ -61,6 +61,9 @@ const q_age = (parentKey: string, isRequired?: boolean, keyOverride?: string): S
         dateInputMode: 'YM',
         questionText: new Map([
             ["nl", "Wat is je geboortejaar en maand?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Het gaat hier om geboortejaar en maand van diegene voor wie je de vragenlijst invult."],
         ]),
         minRelativeDate: {
             delta: {
