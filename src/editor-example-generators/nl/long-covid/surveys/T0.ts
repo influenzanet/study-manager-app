@@ -1,11 +1,11 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
-import { Q_CBS } from "../questions/cbs";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
 import { CovidTestGroup } from "../questions/covidTest";
@@ -77,9 +77,10 @@ export const generateT0 = (): Survey | undefined => {
     const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
     adultVersion.addItem(generalHealthGroupEditor.getItem());
 
-    adultVersion.addItem(Q_mMRC(adultVersion.key, true));
+    const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(acuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+    adultVersion.addItem(Q_mMRC(adultVersion.key, hasKortademigCondition, true));
 
-    const ncsiGroupEditor = new NCSIGroup(adultVersion.key);
+    const ncsiGroupEditor = new NCSIGroup(adultVersion.key, hasKortademigCondition);
     adultVersion.addItem(ncsiGroupEditor.getItem());
 
     const satGroupEditor = new SaTGroup(adultVersion.key);

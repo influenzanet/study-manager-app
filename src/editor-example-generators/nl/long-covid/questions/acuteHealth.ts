@@ -7,14 +7,12 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 import { surveyKeys } from "../studyRules";
 
 export class AcuteHealthGroup extends GroupItemEditor {
+    qAcuteSymptomsKey: string;
 
     constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'AH';
         super(parentKey, groupKey);
-        this.initQuestions();
-    }
 
-    initQuestions() {
         if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions(this.key))
         }
@@ -28,6 +26,8 @@ export class AcuteHealthGroup extends GroupItemEditor {
         const hasNoReportedSymptoms = CommonExpressions.multipleChoiceOptionsSelected(
             Q_symptoms.key, 'geen'
         );
+
+        this.qAcuteSymptomsKey = Q_symptoms.key;
 
         const hasSymptomsGroup = new GroupItemEditor(this.key, 'WS');
         hasSymptomsGroup.groupEditor.setCondition(hasReportedSymptoms);
@@ -77,6 +77,10 @@ export class AcuteHealthGroup extends GroupItemEditor {
             this.addPageBreak();
         }
 
+    }
+
+    getQAcuteHealthKey(): string {
+        return this.qAcuteSymptomsKey;
     }
 }
 
