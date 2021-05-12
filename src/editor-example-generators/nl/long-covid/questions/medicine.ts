@@ -412,8 +412,14 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
                     ["nl", "Bloedverdunners (bijvoorbeeld clopidogrel)"],
                 ])
             },
+             {
+                key: '10', role: 'option',
+                content: new Map([
+                    ["nl", "Anticonceptiepil"],
+                ])
+            },
             {
-                key: '10', role: 'input',
+                key: '11', role: 'input',
                 content: new Map([
                     ["nl", "Andere medicijnen, namelijk:"],
                 ])
