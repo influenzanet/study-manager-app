@@ -11,9 +11,9 @@ const sendingTime = {
     minute: 0
 };
 const headerOverrides = {
-    from: '"LongCOVID" <noreply@infectieradar.nl>',
-    sender: 'noreply@infectieradar.nl',
-    replyTo: ['info@infectieradar.nl'],
+    from: '"LongCOVID" <noreply@rivm.nl>',
+    sender: 'noreply@rivm.nl',
+    replyTo: ['longcovid@rivm.nl'],
 }
 
 const reminderCondition = (surveyKey: string, activeForDays: number) => {
