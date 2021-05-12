@@ -78,15 +78,19 @@ const handleT0Submission = (): Expression => {
 
     const hasNoReportedSymptoms = () => expWithArgs('not', hasReportedSymptoms());
 
-    const isChildParticipant = () => expWithArgs(
-        'gt',
-        StudyExpressions.getResponseValueAsNum(
-            "T0.CAT.Q2", [responseGroupKey, datePickerKey].join('.')
-        ),
-        StudyExpressions.timestampWithOffset({
-            years: -16,
-        })
-    )
+    const isChildParticipant = () =>
+        expWithArgs('or',
+            StudyExpressions.singleChoiceOptionsSelected('T0.CAT.Q1', 'kind'),
+            expWithArgs(
+                'gt',
+                StudyExpressions.getResponseValueAsNum(
+                    "T0.CAT.Q2", [responseGroupKey, datePickerKey].join('.')
+                ),
+                StudyExpressions.timestampWithOffset({
+                    years: -16,
+                })
+            )
+        )
 
     const isNotChildParticipant = () => expWithArgs('not', isChildParticipant());
 
