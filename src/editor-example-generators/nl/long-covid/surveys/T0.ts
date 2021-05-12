@@ -48,13 +48,16 @@ export const generateT0 = (): Survey | undefined => {
     const categoryQuestions = new ParticipantCategoryGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(categoryQuestions.getItem());
 
-    const isChildParticipant = expWithArgs('lt',
-        categoryQuestions.getAgeInYearsExpression(),
-        16
-    )
-    const isNotChildParticipant = expWithArgs('gte',
-        categoryQuestions.getAgeInYearsExpression(),
-        16
+    const isChildParticipant =
+        expWithArgs('or',
+            expWithArgs('lt',
+                categoryQuestions.getAgeInYearsExpression(),
+                16
+            ),
+            categoryQuestions.getIsForAKind()
+        );
+    const isNotChildParticipant = expWithArgs('not',
+        isChildParticipant
     )
 
     // ===========================
