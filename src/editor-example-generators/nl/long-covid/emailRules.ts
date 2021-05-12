@@ -87,7 +87,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T0, 0, 1.99),
         [
-            { lang: 'nl', subject: 'T0 survey is available' }
+            { lang: 'nl', subject: 'De start vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (T0)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -98,7 +98,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T0, 2, 3.99),
         [
-            { lang: 'nl', subject: 'T0 survey is available' }
+            { lang: 'nl', subject: 'Reminder: de start vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (T0)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -109,7 +109,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.short, 0, 1.99),
         [
-            { lang: 'nl', subject: 'Short survey is available' }
+            { lang: 'nl', subject: 'De nieuwe update voor het LongCOVID-onderzoek staat voor je klaar' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -120,7 +120,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.short, 2, 3.99),
         [
-            { lang: 'nl', subject: 'Short survey is available' }
+            { lang: 'nl', subject: 'Reminder: de nieuwe update voor het LongCOVID-onderzoek staat voor je klaar' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -131,7 +131,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T3, 0, 4.99),
         [
-            { lang: 'nl', subject: 'T3 survey is available' }
+            { lang: 'nl', subject: 'De nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (3 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -142,7 +142,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T3, 5, 14.99),
         [
-            { lang: 'nl', subject: 'T3 survey is available' }
+            { lang: 'nl', subject: 'Reminder: de nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (3 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -153,7 +153,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T6, 0, 4.99),
         [
-            { lang: 'nl', subject: 'T6 survey is available' }
+            { lang: 'nl', subject: 'De nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (6 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -164,7 +164,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T6, 5, 14.99),
         [
-            { lang: 'nl', subject: 'T6 survey is available' }
+            { lang: 'nl', subject: 'Reminder: de nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (6 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -175,7 +175,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T9, 0, 4.99),
         [
-            { lang: 'nl', subject: 'T9 survey is available' }
+            { lang: 'nl', subject: 'De nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (9 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -186,7 +186,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T9, 5, 14.99),
         [
-            { lang: 'nl', subject: 'T9 survey is available' }
+            { lang: 'nl', subject: 'Reminder: de nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (9 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -197,7 +197,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T12, 0, 4.99),
         [
-            { lang: 'nl', subject: 'T12 survey is available' }
+            { lang: 'nl', subject: 'De laatste vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (12 maanden)' }
         ],
     ),
     generateStudyReminderEmailConfig(
@@ -208,7 +208,7 @@ export const emailConfigs = [
         defaultLanguage,
         surveyActiveInIntervalCondition(surveyKeys.T12, 5, 14.99),
         [
-            { lang: 'nl', subject: 'T12 survey is available' }
+            { lang: 'nl', subject: 'Reminder: de laatste vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (12 maanden)' }
         ],
     ),
 ]
