@@ -367,13 +367,13 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door PCR of antigeen sneltest"],
+                    ["nl", "Met een PCR of antigeen sneltest"],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door bloedtest (serologie) "],
+                    ["nl", "Met een bloedtest (serologie) "],
                 ])
             },
             {
@@ -459,13 +459,13 @@ const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, conditi
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door PCR of antigeen sneltest"],
+                    ["nl", "Met een PCR of antigeen sneltest"],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door bloedtest (serologie)"],
+                    ["nl", "Met een bloedtest (serologie)"],
                 ])
             },
             {

@@ -207,7 +207,7 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 key: 'ogen', role: 'option',
                 content: new Map([
-                    ["nl", "Ontstoken ogen ogen"],
+                    ["nl", "Ontstoken ogen"],
                 ])
             },
             {
@@ -471,7 +471,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Je hebt eerder aangegeven dat je afgelopen week klachten had."],
+            ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had."],
         ]),
         questionSubText: new Map([
             ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
@@ -527,7 +527,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         rows: [
             {
                 key: 'a', content: new Map([
-                    ["nl", "Hoeveel beïnvloeden uw klachten je leven?"],
+                    ["nl", "Hoeveel beïnvloeden je klachten je leven?"],
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
@@ -926,7 +926,7 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                 key: '5', role: 'option',
                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
                 content: new Map([
-                    ["nl", "Ja, medicijnen voor hooikoorts (anti-allergie tablet of drank of allergie-neusspray)"],
+                    ["nl", "Ja, medicijnen voor hooikoorts of astma (anti-allergie tablet of drank of allergie-neusspray)"],
                 ])
             },
             {

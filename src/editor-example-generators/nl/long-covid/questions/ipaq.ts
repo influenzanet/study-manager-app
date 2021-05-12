@@ -17,7 +17,7 @@ export const Q_IPAQ = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Bij deze tijd mag zitten achter een bureau, tijd die zittend wordt doorgebracht met vrienden, zittend lezen, studeren of tv kijken worden gerekend."],
+                    ["nl", "Bij deze tijd mag zitten achter een bureau, tijd die zittend wordt doorgebracht met vrienden, werk, zittend lezen, studeren of tv kijken worden gerekend."],
                 ]))
             },
         ],
