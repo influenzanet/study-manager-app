@@ -37,11 +37,11 @@ const reminderCondition = (surveyKey: string, activeForDays: number) => {
 const surveyActiveInIntervalCondition = (surveyKey: string, start: number, end: number) => {
     return expWithArgs(
         'and',
-        expWithArgs('gte',
+        expWithArgs('lte',
             StudyExpressions.getSurveyKeyAssignedFrom(surveyKey),
             StudyExpressions.timestampWithOffset({ days: -start })
         ),
-        expWithArgs('lte',
+        expWithArgs('gte',
             StudyExpressions.getSurveyKeyAssignedFrom(surveyKey),
             StudyExpressions.timestampWithOffset({ days: -end })
         ),

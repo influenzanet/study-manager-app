@@ -4,7 +4,7 @@ import { ItemEditor } from "../survey-editor/item-editor";
 import { CommonExpressions } from "./commonExpressions";
 import { ComponentGenerators } from "./componentGenerators";
 import { Duration, durationObjectToSeconds } from "./duration";
-import { datePickerKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { datePickerKey, dropDownKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
@@ -181,7 +181,7 @@ const generateDropDownQuestion = (props: OptionQuestionProps): SurveyItem => {
         props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
     }
 
-    const rg_inner = initDropdownGroup(singleChoiceKey, props.responseOptions);
+    const rg_inner = initDropdownGroup(dropDownKey, props.responseOptions);
     simpleEditor.setResponseGroupWithContent(rg_inner);
 
     if (props.bottomDisplayCompoments) {
