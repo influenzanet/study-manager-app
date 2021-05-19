@@ -306,7 +306,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
             {
                 key: '24', role: 'input',
                 content: new Map([
-                    ["nl", "Andere zorgverlener"],
+                    ["nl", "Andere zorgverlener, namelijk:"],
                 ]),
             },
         ]
@@ -442,7 +442,7 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was, anders dan corona?"],
+            ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was (anders dan door het coronavirus)?"],
         ]),
         responseOptions: [
             {
