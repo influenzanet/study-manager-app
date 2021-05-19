@@ -8,7 +8,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
     const itemKey = keyOverride ? keyOverride : 'CIS';
 
     const imageContent = `
-<img src="${CISexample}" width="100%"/>
+<img src="${CISexample}" width="70%"/>
 `
 
     return SurveyItemGenerators.simpleLikertGroup({
