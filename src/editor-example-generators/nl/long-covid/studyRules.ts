@@ -106,7 +106,7 @@ const handleT0Submission = (): Expression => {
     const isNotChildParticipant = () => expWithArgs('not', isChildParticipant());
 
     const isInterestedInAdditionalResearch = () => StudyExpressions.singleChoiceOptionsSelected(
-        "T0.DEM.Q18", "ja"
+        "T0.A.DEM.Q20", "ja"
     )
 
 
