@@ -1,5 +1,5 @@
 import { Expression } from "survey-engine/lib/data_types"
-import { StudyExpressions } from "../../../editor-engine/utils/commonExpressions"
+import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/studyServiceExpressions"
 import { durationObjectToSeconds } from "../../../editor-engine/utils/duration"
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators"
 import { surveyKeys } from "./studyRules"

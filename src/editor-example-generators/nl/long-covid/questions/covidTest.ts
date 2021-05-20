@@ -17,8 +17,14 @@ export class CovidTestGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(Q_instructionsT0(this.key))
         }
+
         if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.T6) || this.isPartOfSurvey(surveyKeys.T9) || this.isPartOfSurvey(surveyKeys.T12)) {
             this.addItem(Q_instructionsT36912(this.key))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
+            const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
+            this.addItem(Q_testFollowUp(this.key, true, followUpCondition))
         }
 
         if (this.isPartOfSurvey(surveyKeys.short)) {
@@ -145,6 +151,40 @@ const Q_instructions1 = (parentKey: string): SurveyItem => {
                 className: ''
             })
         ]
+    });
+}
+
+const Q_testFollowUp = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q5followup';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "In de eerdere vragenlijst gaf je aan de uitslag van je coronatest nog niet te hebben. Heb je inmiddels de uitslag van deze test?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'pos', role: 'option',
+                content: new Map([
+                    ["nl", "Positief, dus WEL besmet (geweest) met het coronavirus"],
+                ])
+            },
+            {
+                key: 'neg', role: 'option',
+                content: new Map([
+                    ["nl", "Negatief, dus GEEN bewijs voor besmetting met het coronavirus"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb de uitslag nog niet"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
     });
 }
 

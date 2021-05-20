@@ -1,5 +1,5 @@
 import { Expression } from "survey-engine/lib/data_types";
-import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/commonExpressions"
+import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/studyServiceExpressions"
 import { datePickerKey, responseGroupKey } from "../../../editor-engine/utils/key-definitions";
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators";
 
@@ -121,7 +121,7 @@ const handleT0Submission = (): Expression => {
             ),
             StudyActions.ifThen(
                 adultVersionChecks.isTestResultUnknown(),
-                [StudyActions.updateParticipantFlag("TR", "unknown"),]
+                [StudyActions.updateParticipantFlag("testResult", "unknown"),]
             ),
             StudyActions.ifThen(
                 isChildParticipant(),
@@ -168,6 +168,10 @@ const handleShortSubmission = (): Expression => {
         surveyKeys.short + '.AH.Q1', 'geen'
     )
 
+    const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
+        surveyKeys.short + 'TEST.Q5followup', 'pos', 'neg'
+    );
+
     const shouldAssignShortAgain = () => expWithArgs(
         'and',
         hasReportedSymptoms(),
@@ -185,6 +189,12 @@ const handleShortSubmission = (): Expression => {
         StudyActions.ifThen(
             shouldNotAssignShortAgain(),
             [assignT3()]
+        ),
+        StudyActions.ifThen(
+            hasTestResultAlready(),
+            [
+                StudyActions.updateParticipantFlag('testResult', 'known')
+            ]
         )
     ]
 
@@ -195,11 +205,21 @@ const handleShortSubmission = (): Expression => {
 }
 
 const handleT3Submission = (): Expression => {
+    const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
+        surveyKeys.T3 + 'TEST.Q5followup', 'pos', 'neg'
+    );
+
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T3),
         [
             StudyActions.removeAllSurveys(),
             assignT6(),
+            StudyActions.ifThen(
+                hasTestResultAlready(),
+                [
+                    StudyActions.updateParticipantFlag('testResult', 'known')
+                ]
+            )
         ]
     )
 }
