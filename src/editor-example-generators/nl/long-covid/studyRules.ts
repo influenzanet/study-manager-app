@@ -72,11 +72,22 @@ const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "normal", 270
 const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "normal", 360, 30);
 
 const handleT0Submission = (): Expression => {
-    const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-        'T0.A.AH.Q1', 'geen'
+    const adultVersionChecks = {
+        hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+            'T0.A.AH.Q1', 'geen'
+        ),
+        hasLongTermProblemsDueCorona: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.TEST.Q11", "ja"
+        )
+
+    }
+    const shouldGetAdultShortSurvey = () => expWithArgs(
+        'and',
+        adultVersionChecks.hasReportedSymptoms(),
+        expWithArgs('not', adultVersionChecks.hasLongTermProblemsDueCorona()),
     )
 
-    const hasNoReportedSymptoms = () => expWithArgs('not', hasReportedSymptoms());
+    const shouldGetAdultT3Survey = () => expWithArgs('not', shouldGetAdultShortSurvey());
 
     const isChildParticipant = () =>
         expWithArgs('or',
@@ -97,6 +108,8 @@ const handleT0Submission = (): Expression => {
     const isInterestedInAdditionalResearch = () => StudyExpressions.singleChoiceOptionsSelected(
         "T0.DEM.Q18", "ja"
     )
+
+
 
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T0),
@@ -126,11 +139,11 @@ const handleT0Submission = (): Expression => {
                 [
                     StudyActions.updateParticipantFlag("surveyCategory", "A"),
                     StudyActions.ifThen(
-                        hasReportedSymptoms(),
+                        shouldGetAdultShortSurvey(),
                         [assignShort()]
                     ),
                     StudyActions.ifThen(
-                        hasNoReportedSymptoms(),
+                        shouldGetAdultT3Survey(),
                         [assignT3(),]
                     )
                 ]
