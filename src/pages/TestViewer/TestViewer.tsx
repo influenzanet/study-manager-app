@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { Box, Button, TextField } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data_types';
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
-import { SelectField, SurveyView } from 'case-web-ui';
+import { SelectField, SurveyView, TextField } from 'case-web-ui';
 
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
@@ -16,6 +16,10 @@ const TestViewer: React.FC = () => {
     const [studyName, setStudyName] = useState('covid-19');
     let { instance, surveyKey } = useParams<{ instance: string; surveyKey: string; }>();
     const history = useHistory();
+
+
+    const [pFlagKey, setPFlagKey] = useState('');
+    const [pFlagValue, setPFlagValue] = useState('');
 
     // Language settings
     const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -123,6 +127,11 @@ const TestViewer: React.FC = () => {
                     {surveySelector}
                     {survey ? <div>{renderSurveyNameAndDescription(survey)}</div> : null}
 
+                    <div className="py-2a px-2 px-sm-3 bg-grey-1 my-2">
+                        <h5>Participant flags</h5>
+                        <TextField label="Key" value={pFlagKey} onChange={(event) => setPFlagKey(event.target.value)} />
+                        <TextField label="Value" value={pFlagValue} onChange={(event) => setPFlagValue(event.target.value)} />
+                    </div>
                 </div>
                 <div className="col-12 col-lg-8">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
@@ -137,11 +146,11 @@ const TestViewer: React.FC = () => {
                                 onSubmit={(resp) => {
                                     console.log(resp)
                                 }}
-                                /* context={{
+                                context={{
                                     participantFlags: {
-                                        prev: "1",
+                                        [pFlagKey]: pFlagValue,
                                     }
-                                }} */
+                                }}
                                 submitBtnText={'Submit'}
                                 // submitBtnText={'Verzenden'}
                                 nextBtnText={'Next Page'}
@@ -155,18 +164,18 @@ const TestViewer: React.FC = () => {
                     <Box display="flex" alignItems="center" justifyContent="center">
 
                         <Box textAlign="center" p={2}>
-                            <TextField
-                                label="Study name"
-                                variant="filled"
+                            <div className="bg-primary p-2">
+                                <TextField
+                                    label="Study name"
+                                    value={studyName}
+                                    onChange={(event) => {
+                                        const v = event.target.value as string;
+                                        setStudyName(v);
+                                    }}
+                                >
 
-                                value={studyName}
-                                onChange={(event) => {
-                                    const v = event.target.value as string;
-                                    setStudyName(v);
-                                }}
-                            >
-
-                            </TextField>
+                                </TextField>
+                            </div>
                         </Box>
 
                         <Box textAlign="center" alignContent="center" p={2}>
