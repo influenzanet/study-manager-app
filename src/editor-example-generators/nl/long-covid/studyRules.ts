@@ -78,8 +78,10 @@ const handleT0Submission = (): Expression => {
         ),
         hasLongTermProblemsDueCorona: () => StudyExpressions.singleChoiceOptionsSelected(
             "T0.A.TEST.Q11", "ja"
+        ),
+        isTestResultUnknown: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.TEST.Q5", "unknown"
         )
-
     }
     const shouldGetAdultShortSurvey = () => expWithArgs(
         'and',
@@ -109,8 +111,6 @@ const handleT0Submission = (): Expression => {
         "T0.A.DEM.Q20", "ja"
     )
 
-
-
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T0),
         [
@@ -118,6 +118,10 @@ const handleT0Submission = (): Expression => {
             StudyActions.ifThen(
                 isInterestedInAdditionalResearch(),
                 [StudyActions.updateParticipantFlag("additionalStudies", "ja"),]
+            ),
+            StudyActions.ifThen(
+                adultVersionChecks.isTestResultUnknown(),
+                [StudyActions.updateParticipantFlag("TR", "unknown"),]
             ),
             StudyActions.ifThen(
                 isChildParticipant(),
