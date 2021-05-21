@@ -698,7 +698,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -40 } },
+        minRelativeDate: { delta: { days: -500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
     });
 }
@@ -1309,6 +1309,11 @@ const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?
                     ["nl", "5 dagen"],
                 ]),
             }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "6 dagen"],
+                ]),
+            },{
                 key: '7', role: 'option',
                 content: new Map([
                     ["nl", "7 dagen"],
