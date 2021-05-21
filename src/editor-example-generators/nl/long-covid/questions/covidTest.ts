@@ -6,10 +6,13 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 import { surveyKeys } from "../studyRules";
 
 export class CovidTestGroup extends GroupItemEditor {
+    Q11JaCondition?: Expression;
 
     constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
         super(parentKey, groupKey);
+        this.Q11JaCondition = undefined;
+
         this.initQuestions(isT0);
     }
 
@@ -53,13 +56,19 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
             this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
             this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
-            this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
+            const Q11 = q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten);
+            this.addItem(Q11);
+            this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
         }
 
         if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions2(this.key))
         }
         this.addPageBreak();
+    }
+
+    getQ11JaCondition(): Expression | undefined {
+        return this.Q11JaCondition;
     }
 }
 

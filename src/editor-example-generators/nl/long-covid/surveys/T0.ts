@@ -71,7 +71,7 @@ export const generateT0 = (): Survey | undefined => {
     const vaccineGroupEditor = new VaccinationGroup(adultVersion.key, true);
     adultVersion.addItem(vaccineGroupEditor.getItem());
 
-    const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key);
+    const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key, covidTestGroupEditor.getQ11JaCondition());
     adultVersion.addItem(acuteHealthGroupEditor.getItem());
 
     const prehistoryGroupEditor = new PrehistoryGroup(adultVersion.key);
