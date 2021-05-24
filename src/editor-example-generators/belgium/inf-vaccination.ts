@@ -57,7 +57,7 @@ const vaccination = (): Survey | undefined => {
     const rootKey = rootItemEditor.getItem().key;
 
     const Q_vac = vac(rootKey, true);
-    survey.addExistingSurveyItem(vac, rootKey);
+    survey.addExistingSurveyItem(Q_vac, rootKey);
 
 
     return survey.getSurvey();
