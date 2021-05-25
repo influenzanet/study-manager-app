@@ -8,6 +8,7 @@ import { surveyKeys } from "../studyRules";
 
 export class AcuteHealthGroup extends GroupItemEditor {
     qAcuteSymptomsKey: string;
+    hasAnyLongSymptoms?: Expression;
 
     constructor(parentKey: string, TestQ11jaCondition?: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'AH';
@@ -16,12 +17,14 @@ export class AcuteHealthGroup extends GroupItemEditor {
         if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions(this.key))
         }
+
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             const QlongSymp = q_longSymptoms(this.key, TestQ11jaCondition, true);
+            this.hasAnyLongSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+                QlongSymp.key, 'geen'
+            )
             this.addItem(QlongSymp)
         }
-
-
 
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
@@ -65,6 +68,7 @@ export class AcuteHealthGroup extends GroupItemEditor {
             hasSymptomsGroup.addItem(Q5a(hasSymptomsGroup.key, q4.key, true));
             hasSymptomsGroup.addItem(Q6(hasSymptomsGroup.key, q4.key, true));
 
+            hasSymptomsGroup.addItem(Q7_longsymptoms(hasSymptomsGroup.key, this.hasAnyLongSymptoms, true));
             hasSymptomsGroup.addItem(Q7(hasSymptomsGroup.key, true));
 
             const q8 = Q8(hasSymptomsGroup.key, true);
@@ -1138,113 +1142,114 @@ const Q6 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?
 }
 
 
-// const Q7_longsymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-//     const itemKey = keyOverride ? keyOverride : 'Q7_longsymptoms';
+const Q7_longsymptoms = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q7_longsymptoms';
 
-//     return SurveyItemGenerators.multipleChoice({
-//         parentKey: parentKey,
-//         itemKey: itemKey,
-//         questionText: new Map([
-//             ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus? En zo ja, welke?"],
-//         ]),
-//         topDisplayCompoments: [
-//             {
-//                 role: 'text',
-//                 style: [{ key: 'className', value: 'mb-2' }],
-//                 content: generateLocStrings(new Map([
-//                     ["nl", "Meerdere antwoorden mogelijk"],
-//                 ]))
-//             }
-//         ],
-//         responseOptions: [
-//             {
-//                 key: '0', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Nee, ik heb geen medicijnen gebruikt"],
-//                 ])
-//             },
-//             {
-//                 key: '1', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, pijnstillers zoals paracetamol, diclofenac of ibuprofen"],
-//                 ])
-//             },
-//             {
-//                 key: '2', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
-//                 ])
-//             },
-//             {
-//                 key: '3', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
-//                 ])
-//             },
-//             {
-//                 key: 'afweerremmers', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, afweerremmende medicatie zoals prednison of dexamethason"],
-//                 ])
-//             },
-//             {
-//                 key: '4', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, antibiotica"],
-//                 ])
-//             },
-//             {
-//                 key: '5', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, medicijnen voor hooikoorts of astma (anti-allergie tablet of drank of allergie-neusspray)"],
-//                 ])
-//             },
-//             {
-//                 key: '6', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, homeopathische middelen"],
-//                 ])
-//             },
-//             {
-//                 key: '7', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
-//                 ])
-//             },
-//             {
-//                 key: '8', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, vitamines (bijvoorbeeld vitamine C of vitamine D)"],
-//                 ])
-//             },
-//             {
-//                 key: '9', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Ja, andere medicatie"],
-//                 ])
-//             },
-//             {
-//                 key: '10', role: 'option',
-//                 disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
-//                 content: new Map([
-//                     ["nl", "Dit wil ik niet aangeven"],
-//                 ])
-//             },
-//         ],
-//         isRequired: isRequired,
-//     })
-// }
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        condition: condition,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus? En zo ja, welke?"],
+        ]),
+        topDisplayCompoments: [
+            {
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Meerdere antwoorden mogelijk"],
+                ]))
+            }
+        ],
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Nee, ik heb geen medicijnen gebruikt"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, pijnstillers zoals paracetamol, diclofenac of ibuprofen"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
+                ])
+            },
+            {
+                key: 'afweerremmers', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, afweerremmende medicatie zoals prednison of dexamethason"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, antibiotica"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, medicijnen voor hooikoorts of astma (anti-allergie tablet of drank of allergie-neusspray)"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, homeopathische middelen"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
+                ])
+            },
+            {
+                key: '8', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, vitamines (bijvoorbeeld vitamine C of vitamine D)"],
+                ])
+            },
+            {
+                key: '9', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Ja, andere medicatie"],
+                ])
+            },
+            {
+                key: '10', role: 'option',
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                content: new Map([
+                    ["nl", "Dit wil ik niet aangeven"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    })
+}
 
 const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q7';
@@ -1440,7 +1445,7 @@ const Q9 = (parentKey: string, keyQ8: string, isRequired?: boolean, keyOverride?
                 content: new Map([
                     ["nl", "6 dagen"],
                 ]),
-            },{
+            }, {
                 key: '7', role: 'option',
                 content: new Map([
                     ["nl", "7 dagen"],

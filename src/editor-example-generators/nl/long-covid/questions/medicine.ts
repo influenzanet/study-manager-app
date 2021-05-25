@@ -8,17 +8,20 @@ import { surveyKeys } from "../studyRules";
 
 export class MedicineGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, TestQ11jaCondition?: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'MED';
         super(parentKey, groupKey);
-        this.initQuestions();
+        this.initQuestions(TestQ11jaCondition);
     }
 
-    initQuestions() {
+    initQuestions(condition_TestQ11ja?: Expression) {
         const healthcare_provider = Q1(this.key, true);
         const use_medicine = Q3(this.key, true);
         const condition_healthcare_provider = CommonExpressions.singleChoiceOptionsSelected(healthcare_provider.key, 'ja');
         const condition_use_medicine = CommonExpressions.singleChoiceOptionsSelected(use_medicine.key, 'ja');
+
+        // this.addItem(Q1_longsymptoms(this.key, condition_TestQ11ja));
+        // this.addItem(Q2a_longsymptoms(this.key, condition_TestQ11ja));
 
         this.addItem(healthcare_provider)
         this.addItem(Q2a(this.key, true, condition_healthcare_provider));
@@ -33,11 +36,12 @@ export class MedicineGroup extends GroupItemEditor {
     }
 }
 
-// const Q1_longsymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+// const Q1_longsymptoms = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
 //     const itemKey = keyOverride ? keyOverride : 'Q1_longsymptoms';
 //     return SurveyItemGenerators.singleChoice({
 //         parentKey: parentKey,
 //         itemKey: itemKey,
+//         condition: condition,
 //         isRequired: isRequired,
 //         questionText: new Map([
 //             ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten rondom het coronavirus?"],
@@ -122,7 +126,7 @@ export class MedicineGroup extends GroupItemEditor {
 //                 optionProps: inputProperties,
 //                 style: inputStyle,
 //             },
-           
+
 //             {
 //                 key: '4', role: 'numberInput',
 //                 content: new Map([
@@ -172,7 +176,7 @@ export class MedicineGroup extends GroupItemEditor {
 //                 optionProps: inputProperties,
 //                 style: inputStyle,
 //             },
-          
+
 //             {
 //                 key: '16', role: 'numberInput',
 //                 content: new Map([
@@ -409,7 +413,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 optionProps: inputProperties,
                 style: inputStyle,
             },
-           
+
             {
                 key: '4', role: 'numberInput',
                 content: new Map([
@@ -459,7 +463,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
                 optionProps: inputProperties,
                 style: inputStyle,
             },
-          
+
             {
                 key: '16', role: 'numberInput',
                 content: new Map([
@@ -703,7 +707,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
                     ["nl", "Bloedverdunners (bijvoorbeeld clopidogrel)"],
                 ])
             },
-             {
+            {
                 key: '10', role: 'option',
                 content: new Map([
                     ["nl", "Anticonceptiepil"],
