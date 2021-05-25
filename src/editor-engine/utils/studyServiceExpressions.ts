@@ -8,6 +8,23 @@ const multipleChoiceOptionsSelected = (itemKey: string, ...optionKeys: string[])
 const multipleChoiceOnlyOtherKeysSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasOnlyKeysOtherThan', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 
 
+/**
+ * Control flow method to use an if-else like structure
+ * @param condition expression, return value interpreted as boolean
+ * @param actionIfTrue if condition evaluates to true, this action will be performed.
+ * @param actionIfFalse optional, if defined and the condition returns false, this action will be performed.
+ * @returns
+ */
+const IF = (condition: Expression, actionIfTrue: Expression, actionIfFalse?: Expression): Expression => expWithArgs('IF', condition, actionIfTrue, actionIfFalse)
+
+/**
+ * Perform a list of expressions / actions
+ * @param args: list of expressions to be evaluated
+ * @returns
+ */
+const DO = (...args: Expression[]): Expression => expWithArgs('DO', ...args)
+
+
 const ifThen = (condition: Expression, actions: Expression[]) => expWithArgs('IFTHEN', condition, ...actions)
 const checkEventType = (equalsType: 'ENTER' | 'SUBMIT' | 'TIMER') => expWithArgs('checkEventType', equalsType)
 const addNewSurvey = (
@@ -86,6 +103,23 @@ const hasSurveyKeyActive = (surveyKey: string) => {
 
 
 /**
+ * Method to run a check on previous responses of the participant.
+ * @param condition expression that will be evaluated on each retrieved response
+ * @param checkType - optional - 'all'/'any'/<number>: determines how to calculate the final value of the check. Default: 'all'. 'all' means, all the retrieved responses need to fulfil the condition, otherwise the methods returns false. 'any' means at least one retrieved response needs to fulfil the condtion. In both cases, if there were no responses retrieved, returns false. If a number is given here, it means, at least this many response need to fulfil the condition.
+ * @param surveyKey - optional - filter for responses of this survey.
+ * @param querySince - optional - retrieve responses that were submitted later than this timestamp. Expressions need to return a timestamp, or hard coded numbers can be used as well.
+ * @param queryUntil - optional - retrieve responses that were submitted before this timestamp. Expressions need to return a timestamp, or hard coded numbers can be used as well.
+ * @returns true/false
+ */
+const checkConditionForOldResponses = (
+    condition: Expression,
+    checkType?: number | 'all' | 'any',
+    surveyKey?: string,
+    querySince?: number | Expression,
+    queryUntil?: number | Expression,
+): Expression => expWithArgs('checkConditionForOldResponses', condition, checkType, surveyKey, querySince, queryUntil)
+
+/**
  * Results of "T_ref = reference + delta" will be checked against "validUntil" of the assinged survey (if present). True T_ref < T_validUntil.
  * @param surveyKey which survey it should check for
  * @param delta delta time to the reference time (by default current time).
@@ -100,6 +134,8 @@ const hasSurveyKeyValidUntilSoonerThan = (surveyKey: string, delta: Duration, re
 }
 
 export const StudyActions = {
+    if: IF,
+    do: DO,
     ifThen,
     addNewSurvey,
     removeAllSurveys,
@@ -115,6 +151,7 @@ export const StudyExpressions = {
     hasSurveyKeyAssigned,
     getResponseValueAsNum,
     getResponseValueAsStr,
+    checkConditionForOldResponses,
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     getSurveyKeyAssignedFrom,

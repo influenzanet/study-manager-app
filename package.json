@@ -3,32 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@date-io/moment": "2.10.8",
-    "@fontsource/open-sans": "^4.2.2",
-    "@material-ui/core": "^4.11.3",
+    "@date-io/moment": "2.10.11",
+    "@fontsource/open-sans": "^4.3.0",
+    "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@popperjs/core": "^2.9.2",
-    "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.37",
-    "@types/react": "^17.0.3",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "@types/react": "^17.0.7",
     "@types/react-datepicker": "^3.1.8",
-    "@types/react-dom": "^17.0.3",
+    "@types/react-dom": "^17.0.5",
     "@types/react-router-dom": "^5.1.6",
-    "bootstrap": "^5.0.0-beta2",
-    "case-web-ui": "^1.1.16",
-    "date-fns": "^2.21.0",
-    "i18next": "^20.2.1",
+    "bootstrap": "^5.0.1",
+    "case-web-ui": "^1.1.18",
+    "date-fns": "^2.21.3",
+    "i18next": "^20.3.0",
     "moment": "2.24.0",
     "node-sass": "4.14.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-i18next": "^11.8.13",
+    "react-i18next": "^11.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "survey-engine": "^0.9.8",
+    "survey-engine": "^0.9.9",
     "typeface-roboto": "^1.1.13",
     "typescript": "^4.2.4",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -55,6 +55,6 @@
     ]
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.0.12"
+    "@types/bootstrap": "^5.0.15"
   }
 }
