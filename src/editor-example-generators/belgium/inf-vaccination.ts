@@ -541,7 +541,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: '1', role: 'dateInput',
                 optionProps: {
-                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
+                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -86400*365) },
                     max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
                 },
                 description: new Map([
@@ -665,7 +665,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                             returnType: 'int',
                         }
                     },
-                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) },
+                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
                 },
                 content: new Map([
                     ["nl-be", "Kies een datum"],
