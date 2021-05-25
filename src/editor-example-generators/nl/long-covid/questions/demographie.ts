@@ -66,6 +66,7 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q18(this.key, qWorkcondition, true))
         this.addItem(Q19(this.key, true))
         this.addItem(Q20(this.key, true))
+        this.addItem(Q21(this.key, true))
     }
 }
 
@@ -917,5 +918,22 @@ const Q20 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ]),
             },
         ]
+    });
+}
+
+
+const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q21';
+
+    return SurveyItemGenerators.multilineTextInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "TODO:"],
+        ]),
+        placeholderText: new Map([
+            ["nl", "Placeholder"]
+        ])
     });
 }

@@ -4,7 +4,7 @@ import { ItemEditor } from "../survey-editor/item-editor";
 import { CommonExpressions } from "./commonExpressions";
 import { ComponentGenerators } from "./componentGenerators";
 import { Duration, durationObjectToSeconds } from "./duration";
-import { datePickerKey, dropDownKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { datePickerKey, dropDownKey, inputKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
@@ -376,6 +376,11 @@ interface DatePickerInput extends GenericQuestionProps {
     };
 }
 
+interface MultiLineTextInput extends GenericQuestionProps {
+    inputLabelText?: Map<string, string>;
+    placeholderText?: Map<string, string>;
+}
+
 const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
@@ -435,6 +440,48 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
     return simpleEditor.getItem();
 }
 
+const generateMultilineInput = (props: MultiLineTextInput): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner: ItemComponent = {
+        key: inputKey, role: 'multilineTextInput',
+        content: props.inputLabelText ? generateLocStrings(props.inputLabelText) : undefined,
+        description: props.placeholderText ? generateLocStrings(props.placeholderText) : undefined,
+    };
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent(ComponentGenerators.footnote({ content: props.footnoteText }))
+    }
+
+    return simpleEditor.getItem();
+}
+
 
 interface DisplayProps {
     parentKey: string;
@@ -468,6 +515,7 @@ export const SurveyItemGenerators = {
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
     dateInput: generateDatePickerInput,
+    multilineTextInput: generateMultilineInput,
     dropDown: generateDropDownQuestion,
     numericSlider: generateNumericSliderQuestion,
     numericInput: generateNumericInputQuestion,
