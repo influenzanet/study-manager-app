@@ -110,7 +110,11 @@ export const generateT0 = (): Survey | undefined => {
     const medicineGroupEditor = new MedicineGroup(adultVersion.key);
     adultVersion.addItem(medicineGroupEditor.getItem());
 
-    const demographieGroupEditor = new DemographieGroup(adultVersion.key, categoryQuestions.getAgeInYearsExpression());
+    const demographieGroupEditor = new DemographieGroup(
+        adultVersion.key,
+        categoryQuestions.getAgeInYearsExpression(),
+        covidTestGroupEditor.getQ11JaCondition(),
+    );
     adultVersion.addItem(demographieGroupEditor.getItem());
 
 

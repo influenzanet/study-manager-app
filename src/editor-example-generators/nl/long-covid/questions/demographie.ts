@@ -8,13 +8,16 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 
 export class DemographieGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, getAgeInYearsExpression: Expression, keyOverride?: string) {
+    constructor(parentKey: string, getAgeInYearsExpression: Expression, testQ11jaCondition?: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'DEM';
         super(parentKey, groupKey);
-        this.initQuestions(getAgeInYearsExpression);
+        this.initQuestions(getAgeInYearsExpression, testQ11jaCondition);
     }
 
-    initQuestions(getAgeInYearsExpression: Expression) {
+    initQuestions(
+        getAgeInYearsExpression: Expression,
+        testQ11jaCondition?: Expression,
+    ) {
         this.addItem(Q_instructions(this.key))
         const Q_gender = q_gender(this.key, true);
         this.addItem(Q_gender)
