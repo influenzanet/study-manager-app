@@ -62,6 +62,15 @@ const vaccination = (): Survey | undefined => {
     const Q_vaccineBrand = vaccineBrand(rootKey, Q_vac.key, true);
     survey.addExistingSurveyItem(Q_vaccineBrand, rootKey);
 
+    const Q_vaccineShots = vaccineShots(rootKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineShots, rootKey);
+
+    const Q_dateFirstVaccine = dateFirstVaccine(rootKey, Q_vac.key, Q_vaccineShots.key, true);
+    survey.addExistingSurveyItem(Q_dateFirstVaccine, rootKey);
+
+    const Q_dateSecondVaccine = dateSecondVaccine(rootKey, Q_vac.key, Q_vaccineShots.key, Q_dateFirstVaccine.key, true);
+    survey.addExistingSurveyItem(Q_dateSecondVaccine, rootKey);
+
     const Q_sideEffects = sideEffects(rootKey, Q_vac.key, true);
     survey.addExistingSurveyItem(Q_sideEffects, rootKey);
 
@@ -135,7 +144,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ])
     );
 
-    // RESPONSE PART test
+    // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
@@ -240,7 +249,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // INFO POPUP
     // not applicable
 
-    // RESPONSE PART test
+    // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
@@ -289,7 +298,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             ])
         },
         {
-            key: '6', role: 'option',
+            key: '6', role: 'input',
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Andere"],
@@ -315,6 +324,368 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * VACCINE SHOTS: How many times has the participant been vaccinated
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const vaccineShots = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q35c'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", "?"],
+            ["de-be", "?"],
+            ["en", "How many doses of the vaccine did you receive?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyvac) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "We would like to be able to work out how much protection a complete vaccination scheme gives."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "Report the number of doses you received (which corresponds to the number of time you were vaccinated against COVID-19 )."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "One"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Two"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "More than two"],
+            ])
+        },
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "I Don't know/Can't remember"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * DATE VACCINE 1: What is the date of the first vaccination
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const dateFirstVaccine = (parentKey: string, keyvac?: string, keyvaccineShots?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q35d'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", "?"],
+            ["de-be", "?"],
+            ["en", "When did you receive your first injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1'),
+            expWithArgs('responseHasKeysAny', keyvaccineShots, [responseGroupKey, singleChoiceKey].join('.'), '1', '2', '3')
+        )
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+        // RESPONSE PART
+        const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+        const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+            {
+                key: '1', role: 'dateInput',
+                optionProps: {
+                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
+                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
+                },
+                description: new Map([
+                    ["nl-be", "Kies een datum"],
+                    ["fr-be", "Choisissez la date"],
+                    ["de-be", "Datum auswählen"],
+                    ["en", "Choose date"],
+                ]),
+            },
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl-be", "Ik weet het niet (meer)"],
+                    ["fr-be", "Je ne sais pas (plus)"],
+                    ["de-be", "Ich weiß es nicht (mehr)"],
+                    ["en", "I don’t know/can’t remember"],
+    
+                ])
+            },
+        ]);
+        editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * DATE VACCINE 2: What is the date of the second vaccination
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?: string, keyDateFirstVaccine?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q35e'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", "?"],
+            ["de-be", "?"],
+            ["en", "When did you receive your second injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyVac, [responseGroupKey, singleChoiceKey].join('.'), '1'),
+            expWithArgs('responseHasKeysAny', keyVaccineShots, [responseGroupKey, singleChoiceKey].join('.'), '2', '3')
+        )
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+        // RESPONSE PART
+        const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+        const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+            {
+                key: '1', role: 'dateInput',
+                optionProps: {
+                    min: {
+                        dtype: 'exp', exp: {
+                            name: 'getAttribute',
+                            data: [
+                                { dtype: 'exp', exp: expWithArgs('getResponseItem', keyDateFirstVaccine, [responseGroupKey, '1'].join('.')) },
+                                { str: 'value', dtype: 'str' }
+                            ],
+                            returnType: 'int',
+                        }
+                    },
+                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) },
+                },
+                content: new Map([
+                    ["nl-be", "Kies een datum"],
+                    ["fr-be", "Choisissez une date."],
+                    ["de-be", "Wählen Sie das Datum"],
+                    ["en", "Choose date"],
+                ])
+            },
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl-be", "Ik weet het niet (meer)"],
+                    ["fr-be", "Je ne sais pas (plus)"],
+                    ["de-be", "Ich weiß es nicht (mehr)"],
+                    ["en", "I don’t know/can’t remember"],
+    
+                ])
+            },
+        ]);
+        editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
@@ -400,7 +771,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ])
     );
 
-    // RESPONSE PART test
+    // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent({
         role: 'text',
@@ -554,7 +925,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             ])
         },
         {
-            key: '14', role: 'option',
+            key: '14', role: 'input',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
