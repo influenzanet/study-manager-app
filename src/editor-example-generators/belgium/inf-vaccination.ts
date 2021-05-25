@@ -59,11 +59,17 @@ const vaccination = (): Survey | undefined => {
     const Q_vac = vac(rootKey, true);
     survey.addExistingSurveyItem(Q_vac, rootKey);
 
+    const Q_vaccineBrand = vaccineBrand(rootKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineBrand, rootKey);
+
+    const Q_sideEffects = sideEffects(rootKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_sideEffects, rootKey);
 
     return survey.getSurvey();
 }
 
 export default vaccination;
+
 
 /**
  * VAC: single choice question about vaccination status
@@ -138,7 +144,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ["nl-be", ""],
                 ["fr-be", ""],
                 ["de-be", ""],
-                ["en", "Yes, I received at least one COVID-19 vaccine "],
+                ["en", "Yes, I received at least one COVID-19 vaccine"],
             ])
         },
         {
@@ -184,6 +190,384 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "I don't know/can't remember"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * VACCINE BRAND: Which vaccine was provided
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q35b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", "?"],
+            ["de-be", "?"],
+            ["en", "Which COVID-19 vaccine did you receive?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyvac) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        );
+    }
+
+    // INFO POPUP
+    // not applicable
+
+    // RESPONSE PART test
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "AstraZeneca"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Pfizer/BioNTech"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Moderna"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Janssen Pharmaceutica (Johnson & Johnson)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "CureVac"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            style: [{ key: 'className', value: 'w-100' }],
+            content: new Map([
+                ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
+                ["de-be", "Andere"],
+                ["en", "Other"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
+            ])
+        },
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "I Don't know/Can't remember"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * SIDE EFFECTS: Side effects questions
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q35h'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", ""],
+            ["fr-be", "?"],
+            ["de-be", "?"],
+            ["en", "Did you experience any side effects of this vaccination? If yes, select up to 3 options that are most applicable."],
+        ]))
+    );
+
+    // CONDITION
+    if (keyvac) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "We want to investigate what are the side effects that people experience from COVID-19 vaccination."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", ""],
+                    ["fr-be", ""],
+                    ["de-be", ""],
+                    ["en", "Please select up to 3 side effects that you experienced after COVID-19 vaccination."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART test
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Select up to 3 options that are most applicable"],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "None"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Allergic reaction"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Severe allergic reaction (with medical intervention)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Diarrhea"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Feeling of being feverish (not measured)"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Fever (measured and above 38°C)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Headache"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Shortness of breath"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Nausea or vomiting"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Tiredness"],
+            ])
+        },
+        {
+            key: '10', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Chest or stomach pain"],
+            ])
+        },
+        {
+            key: '11', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Painful and/or swollen arm at the vaccination site"],
+            ])
+        },
+        {
+            key: '12', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Muscle or joint pain"],
+            ])
+        },
+        {
+            key: '13', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", ""],
+                ["fr-be", ""],
+                ["de-be", ""],
+                ["en", "Swelling or cold feeling in arm or leg"],
+            ])
+        },
+        {
+            key: '14', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            style: [{ key: 'className', value: 'w-100' }],
+            content: new Map([
+                ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
+                ["de-be", "Andere"],
+                ["en", "Other"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
             ])
         },
     ]);
