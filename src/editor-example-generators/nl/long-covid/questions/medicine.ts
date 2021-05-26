@@ -15,8 +15,17 @@ export class MedicineGroup extends GroupItemEditor {
     }
 
     initQuestions(condition_TestQ11ja?: Expression) {
-        this.addItem(Q1_longsymptoms(this.key, condition_TestQ11ja));
-        this.addItem(Q2a_longsymptoms(this.key, condition_TestQ11ja));
+        // For people with longsymptoms
+        this.addPageBreak();
+        const Q1_long = gen_Q1_longsymptoms(this.key, true, condition_TestQ11ja);
+        this.addItem(Q1_long);
+        this.addItem(
+            Q2a_longsymptoms(this.key,
+                true,
+                CommonExpressions.singleChoiceOptionsSelected(Q1_long.key, 'ja')
+            )
+        );
+
         const healthcare_provider = Q1(this.key, true);
         const use_medicine = Q3(this.key, true);
         const condition_healthcare_provider = CommonExpressions.singleChoiceOptionsSelected(healthcare_provider.key, 'ja');
@@ -35,7 +44,7 @@ export class MedicineGroup extends GroupItemEditor {
     }
 }
 
-const Q1_longsymptoms = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const gen_Q1_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q1_longsymptoms';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -69,7 +78,7 @@ const Q1_longsymptoms = (parentKey: string, condition?: Expression, isRequired?:
     });
 }
 
-const Q2a_longsymptoms = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a_longsymptoms';
 
     const inputProperties = {

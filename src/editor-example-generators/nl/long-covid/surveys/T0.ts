@@ -107,7 +107,7 @@ export const generateT0 = (): Survey | undefined => {
     const sf36Group = new SF36Group(adultVersion.key);
     adultVersion.addItem(sf36Group.getItem());
 
-    const medicineGroupEditor = new MedicineGroup(adultVersion.key, covidTestGroupEditor.Q11JaCondition);
+    const medicineGroupEditor = new MedicineGroup(adultVersion.key, covidTestGroupEditor.getQ11JaCondition());
     adultVersion.addItem(medicineGroupEditor.getItem());
 
     const demographieGroupEditor = new DemographieGroup(
