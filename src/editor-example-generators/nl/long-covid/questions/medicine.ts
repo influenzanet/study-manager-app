@@ -69,7 +69,7 @@ const Q1_longsymptoms = (parentKey: string, condition?: Expression, isRequired?:
     });
 }
 
-const Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+const Q2a_longsymptoms = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a_longsymptoms';
 
     const inputProperties = {
