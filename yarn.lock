@@ -2614,10 +2614,10 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/react@^17.0.7":
-  version "17.0.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.7.tgz#5f2ca73d8baee8c286e96c95df557799ac0d1996"
-  integrity sha512-lBc3fY20hRFQ/pXQT2XdtmpJeXZnRH8N+WPnEzEfPTzuKmaJTA7k/xGWHBaPvKceKpbf0ZnMlLWY/0sFZ5rfkw==
+"@types/react@^17.0.8":
+  version "17.0.8"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.8.tgz#fe76e3ba0fbb5602704110fd1e3035cf394778e3"
+  integrity sha512-3sx4c0PbXujrYAKwXxNONXUtRp9C+hE2di0IuxFyf5BELD+B+AXL8G7QrmSKhVwKZDbv0igiAjQAMhXj8Yg3aw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -11809,10 +11809,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-survey-engine@^0.9.9:
-  version "0.9.9"
-  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.9.9.tgz#284056768e874e1da42c4bb5559bda1fb294c28c"
-  integrity sha512-Ex5ZiIcPmgUmTiFVOLhkZyB6ze8ZCBS+1PYqSOusSQtgAGp2M1YJEi0SN4ELcvV0Y9tx1ND09ozW2X2K5MRRQg==
+survey-engine@^0.9.10:
+  version "0.9.10"
+  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.9.10.tgz#e4db9324bdcc529a2f6b9cf65110843cd9f77840"
+  integrity sha512-kbTr8s26WdC6ctuerh5ZP6v2AFyPudVGkAsD3B65ibLnhxhjml7QYcCiceOQi7uUCVP5rGPv0kEbaW61Fv/Lsg==
   dependencies:
     moment "2.24.0"
 
