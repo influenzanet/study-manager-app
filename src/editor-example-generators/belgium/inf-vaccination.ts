@@ -593,8 +593,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", ""],
-            ["fr-be", "?"],
-            ["de-be", "?"],
+            ["fr-be", ""],
+            ["de-be", ""],
             ["en", "When did you receive your second injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
         ]))
     );
@@ -649,43 +649,42 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ])
     );
 
-        // RESPONSE PART
-        const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-        const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-            {
-                key: '1', role: 'dateInput',
-                optionProps: {
-                    min: {
-                        dtype: 'exp', exp: {
-                            name: 'getAttribute',
-                            data: [
-                                { dtype: 'exp', exp: expWithArgs('getResponseItem', keyDateFirstVaccine, [responseGroupKey, '1'].join('.')) },
-                                { str: 'value', dtype: 'str' }
-                            ],
-                            returnType: 'int',
-                        }
-                    },
-                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'dateInput',
+            optionProps: {
+                min: {
+                    dtype: 'exp', exp: {
+                        name: 'getAttribute',
+                        data: [
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keyDateFirstVaccine, [singleChoiceKey, '1'].join('.')) },
+                            { str: 'value', dtype: 'str' }
+                        ],
+                        returnType: 'int',
+                    }
                 },
-                content: new Map([
-                    ["nl-be", "Kies een datum"],
-                    ["fr-be", "Choisissez une date."],
-                    ["de-be", "Wählen Sie das Datum"],
-                    ["en", "Choose date"],
-                ])
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
-            {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl-be", "Ik weet het niet (meer)"],
-                    ["fr-be", "Je ne sais pas (plus)"],
-                    ["de-be", "Ich weiß es nicht (mehr)"],
-                    ["en", "I don’t know/can’t remember"],
-    
-                ])
-            },
-        ]);
-        editor.addExistingResponseComponent(rg_inner, rg?.key);
+            content: new Map([
+                ["nl-be", "Kies een datum"],
+                ["fr-be", "Choisissez une date."],
+                ["de-be", "Wählen Sie das Datum"],
+                ["en", "Choose date"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik weet het niet (meer)"],
+                ["fr-be", "Je ne sais pas (plus)"],
+                ["de-be", "Ich weiß es nicht (mehr)"],
+                ["en", "I don’t know/can’t remember"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
