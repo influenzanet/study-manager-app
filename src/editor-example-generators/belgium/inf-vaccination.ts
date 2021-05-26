@@ -26,8 +26,8 @@ const vaccination = (): Survey | undefined => {
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["nl-be", ""],
-            ["en", "The purpose of the vaccination questionnaire is to find out more about...."],
+            ["nl-be", "Het doel van deze vaccinatievragenlijst is om onderzoek te voeren naar de bescherming die het vaccin geeft en de vaccinatiestatus van België in kaart brengen. "],
+            ["en", "The purpose of the vaccination questionnaire is to find out more about protection given by the vaccine and monitor vaccination uptake in Belgium."],
             ["fr-be", ""],
             ["de-be", ""],
         ])
@@ -95,7 +95,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Bent u reeds gevaccineerd voor COVID-19?"],
             ["fr-be", "?"],
             ["de-be", "?"],
             ["en", "Have you received a COVID-19 vaccine?"],
@@ -116,7 +116,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "We willen onderzoeken hoeveel bescherming vaccinatie geeft."],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "We would like to be able to work out how much protection the vaccine gives."],
@@ -134,7 +134,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Antwoord ja indien u een COVID-19 vaccin heeft ontvangen (sinds december 2020). "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Report yes, if you received a COVID-19 vaccine (since December 2020)."],
@@ -150,7 +150,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Ja, ik heb al minstens 1 dosis gekregen."],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "Yes, I received at least one COVID-19 vaccine"],
@@ -159,7 +159,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '01', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "No, I was invited and will receive a vaccine soon"],
@@ -168,7 +168,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '02', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "No, I was invited but declined the vaccine"],
@@ -186,7 +186,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '04', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "When invited, I will decline the vaccine"],
@@ -195,7 +195,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "I don't know/can't remember"],
@@ -232,7 +232,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Welk COVID-19 vaccin heeft u ontvangen? "],
             ["fr-be", "?"],
             ["de-be", "?"],
             ["en", "Which COVID-19 vaccine did you receive?"],
@@ -255,45 +255,45 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "AstraZeneca"],
+                ["fr-be", "AstraZeneca"],
+                ["de-be", "AstraZeneca"],
                 ["en", "AstraZeneca"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Pfizer/BioNTech"],
+                ["fr-be", "Pfizer/BioNTech"],
+                ["de-be", "Pfizer/BioNTech"],
                 ["en", "Pfizer/BioNTech"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Moderna"],
+                ["fr-be", "Moderna"],
+                ["de-be", "Moderna"],
                 ["en", "Moderna"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
+                ["fr-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
+                ["de-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
                 ["en", "Janssen Pharmaceutica (Johnson & Johnson)"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "CureVac"],
+                ["fr-be", "CureVac"],
+                ["de-be", "CureVac"],
                 ["en", "CureVac"],
             ])
         },
@@ -316,7 +316,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '99', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Ik weet het niet meer"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "I Don't know/Can't remember"],
@@ -353,7 +353,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Hoeveel dosissen van het vaccin heeft u reeds ontvangen? "],
             ["fr-be", "?"],
             ["de-be", "?"],
             ["en", "How many doses of the vaccine did you receive?"],
@@ -381,7 +381,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "We willen onderzoeken hoeveel bescherming een volledige vaccinatie geeft."],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "We would like to be able to work out how much protection a complete vaccination scheme gives."],
@@ -399,7 +399,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Rapporteer het aantal dosissen die u reeds ontvangen heeft (dit komt overeen met het aantal keer dat u werd gevaccineerd voor COVID-19). "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Report the number of doses you received (which corresponds to the number of time you were vaccinated against COVID-19 )."],
@@ -415,7 +415,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Eén"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "One"],
@@ -424,7 +424,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Twee"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "Two"],
@@ -433,7 +433,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '3', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Meer dan twee"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "More than two"],
@@ -442,7 +442,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '99', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Ik weet het niet meer"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "I Don't know/Can't remember"],
@@ -478,7 +478,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Wanneer heeft u de eerste dosis van het vaccin ontvangen? "],
             ["fr-be", "?"],
             ["de-be", "?"],
             ["en", "When did you receive your first injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
@@ -507,7 +507,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Dit vertelt ons hoe de vaccinatie campgane wordt uitgevoerd. "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
@@ -525,7 +525,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Gelieve zo correct mogelijk te antwoorden. Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie. "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
@@ -592,7 +592,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Wanneer heeft u de tweede dosis van het vaccin ontvangen? "],
             ["fr-be", ""],
             ["de-be", ""],
             ["en", "When did you receive your second injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
@@ -621,7 +621,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Dit vertelt ons hoe de vaccinatie campgane wordt uitgevoerd. "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
@@ -639,7 +639,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Gelieve zo correct mogelijk te antwoorden. Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie. "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
@@ -714,7 +714,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", ""],
+            ["nl-be", "Heeft u ernstige nevenwerkingen ondervonden van deze vaccinatie? Indien ja, selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "?"],
             ["de-be", "?"],
             ["en", "Did you experience any side effects of this vaccination? If yes, select up to 3 options that are most applicable."],
@@ -742,7 +742,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "We willen onderzoeken welke neveneffecten mensen ervaren na een COVID-19 vaccinatie. "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "We want to investigate what are the side effects that people experience from COVID-19 vaccination."],
@@ -760,7 +760,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", ""],
+                    ["nl-be", "Gelieve de neveneffecten aan te duiden die het meest van toepassing zijn voor u. "],
                     ["fr-be", ""],
                     ["de-be", ""],
                     ["en", "Please select up to 3 side effects that you experienced after COVID-19 vaccination."],
@@ -777,7 +777,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ['nl-be', ""],
+                ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "Select up to 3 options that are most applicable"],
@@ -787,119 +787,119 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '0', role: 'option',
             content: new Map([
-                ["nl-be", ""],
+                ["nl-be", "Geen"],
                 ["fr-be", ""],
                 ["de-be", ""],
                 ["en", "None"],
             ])
         },
         {
-            key: '1', role: 'option',
+            key: 'GCS1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Allergische reactie"],
+                ["fr-be", "Réaction allergique"],
+                ["de-be", "Allergische Reaktion"],
                 ["en", "Allergic reaction"],
             ])
         },
         {
-            key: '4', role: 'option',
+            key: 'GCS4', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Hevige allergische reactie (met medische interventie)"],
+                ["fr-be", "Réaction allergique grave (avec intervention médicale)"],
+                ["de-be", "Schwere allergische Reaktion (mit medizinischer Intervention)"],
                 ["en", "Severe allergic reaction (with medical intervention)"],
             ])
         },
         {
-            key: '2', role: 'option',
+            key: 'GCS2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Diarree"],
+                ["fr-be", "Diarrhée"],
+                ["de-be", "Durchfall"],
                 ["en", "Diarrhea"],
             ])
         },
         {
-            key: '3', role: 'option',
+            key: 'GCS3', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Gevoel van koorts (niet gemeten)"],
+                ["fr-be", "Sensation de fièvre (non mesurée)"],
+                ["de-be", "Gefühl von Fieber (nicht gemessen)"],
                 ["en", "Feeling of being feverish (not measured)"],
             ])
         },
         {
-            key: '6', role: 'option',
+            key: 'GCS6', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Koorts boven de 38°c (gemeten)"],
+                ["fr-be", "Fièvre (mesurée et supérieure à 38°C)"],
+                ["de-be", "Fieber (gemessen und über 38°C)"],
                 ["en", "Fever (measured and above 38°C)"],
             ])
         },
         {
-            key: '5', role: 'option',
+            key: 'GCS5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Hoofdpijn"],
+                ["fr-be", "Maux de tête"],
+                ["de-be", "Kopfschmerzen"],
                 ["en", "Headache"],
             ])
         },
         {
-            key: '7', role: 'option',
+            key: 'GCS7', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Kortademigheid"],
+                ["fr-be", "L'essouflement"],
+                ["de-be", "Kurzatmigkeit"],
                 ["en", "Shortness of breath"],
             ])
         },
         {
-            key: '8', role: 'option',
+            key: 'GCS8', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Misselijkheid of braken"],
+                ["fr-be", "Des nausées ou des vommissements"],
+                ["de-be", "Übelkeit oder Erbrechen"],
                 ["en", "Nausea or vomiting"],
             ])
         },
         {
-            key: '9', role: 'option',
+            key: 'GCS9', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Moeheid"],
+                ["fr-be", "La fatigue"],
+                ["de-be", "Müdigkeit"],
                 ["en", "Tiredness"],
             ])
         },
         {
-            key: '10', role: 'option',
+            key: 'GCS10', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Pijn ter hoogte van borst of maag"],
+                ["fr-be", "Des douleurs à la hauteur de la poitrine ou de l'estomac"],
+                ["de-be", "Schmerzen in Höhe der Brust oder des Magens"],
                 ["en", "Chest or stomach pain"],
             ])
         },
         {
-            key: '11', role: 'option',
+            key: 'GCS11', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Pijnlijke en/of gezwollen plek op de arm die geprikt is"],
+                ["fr-be", "Un endroit douloureur et/ou enflé sur le bras qui a été piqué"],
+                ["de-be", "Schmerzhafte und/ oder geschwollene Stelle an dem Arm, an dem geimpft wurde"],
                 ["en", "Painful and/or swollen arm at the vaccination site"],
             ])
         },
@@ -907,24 +907,24 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '12', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Gewrichtspijn"],
+                ["fr-be", "Des douleurs musculaires, articulaires"],
+                ["de-be", "Muskelschmerzen, Gelenkschmerzen"],
                 ["en", "Muscle or joint pain"],
             ])
         },
         {
-            key: '13', role: 'option',
+            key: 'GCS14', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Zwelling of koud aanvoelen van een arm of been"],
+                ["fr-be", "Un gonflement ou une sensation de froid dans un bras ou une jambe"],
+                ["de-be", "Schwellung oder kaltes Gefühl in einem Arm oder Bein"],
                 ["en", "Swelling or cold feeling in arm or leg"],
             ])
         },
         {
-            key: '14', role: 'input',
+            key: 'GCS15', role: 'input',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
