@@ -925,7 +925,7 @@ const q1gNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1', '2')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1016,7 +1016,7 @@ const q1hNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1', '2')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1651,7 +1651,7 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         {
             key: '0', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -7776000) },
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
             content: new Map([

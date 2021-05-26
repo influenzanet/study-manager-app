@@ -22,7 +22,7 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a vaccination against corona since the last survey?"],
-            ["nl", "Heb je sinds de vorige vragenlijst een vaccinatie ontvangen tegen het coronavirus?"],
+            ["nl", "Heb je sinds de vorige vragenlijst een vaccinatie ontvangen tegen het coronavirus? (Vul 'nee' in wanneer je sinds het invullen van de vorige vragenlijst geen nieuwe vaccinatie hebt gehad, maar al wel een of twee keer gevaccineerd bent.)"],
         ]))
     );
 
@@ -150,7 +150,7 @@ const coronavaccineWhen = (parentKey: string, key: string, keyCoronaVaccination:
     editor.addExistingResponseComponent({
         key: '0', role: 'dateInput',
         properties: {
-            min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+            min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -7776000) },
             max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
         },
         content: generateLocStrings(new Map([
