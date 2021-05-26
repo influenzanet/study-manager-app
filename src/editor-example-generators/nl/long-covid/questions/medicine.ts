@@ -43,7 +43,7 @@ const Q1_longsymptoms = (parentKey: string, condition?: Expression, isRequired?:
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten rondom het coronavirus?"],
+            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -84,7 +84,7 @@ const Q2a_longsymptoms = (parentKey: string, condition?: Expression, isRequired?
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden, en hoe vaak? "],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die te maken hebben met het coronavirus, en hoe vaak? "],
         ]),
         responseOptions: [
             {
@@ -371,7 +371,7 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden, en hoe vaak? "],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden om andere reden dan voor de klachten die door het coronavirus komen, en hoe vaak? "],
         ]),
         responseOptions: [
             {
