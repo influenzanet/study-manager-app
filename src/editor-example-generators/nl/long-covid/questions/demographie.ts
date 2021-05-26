@@ -933,10 +933,13 @@ const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "TODO:"],
+            ["nl", "Als je nog aanvullende opmerkingen hebt over de vragenlijst of het onderzoek, kun je die hieronder invullen."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Let op, je krijgt geen persoonlijke reactie op deze opmerkingen. "],
         ]),
         placeholderText: new Map([
-            ["nl", "Placeholder"]
+            ["nl", "Opmerkingen"]
         ])
     });
 }
