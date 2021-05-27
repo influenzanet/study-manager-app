@@ -11809,10 +11809,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-survey-engine@^0.9.10:
-  version "0.9.10"
-  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.9.10.tgz#e4db9324bdcc529a2f6b9cf65110843cd9f77840"
-  integrity sha512-kbTr8s26WdC6ctuerh5ZP6v2AFyPudVGkAsD3B65ibLnhxhjml7QYcCiceOQi7uUCVP5rGPv0kEbaW61Fv/Lsg==
+survey-engine@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-0.10.0.tgz#e9c9cdb2de38c33a9ec824d180b611d0d1321d6e"
+  integrity sha512-xGgbbLPZVeG7N2NbnWVnOx3bRTG0gB8PWupQnwj5KVJJQB9+voXZXK3671qwR1NAiUlVwD3rd2KTnTqH90DK4g==
   dependencies:
     moment "2.24.0"
 
