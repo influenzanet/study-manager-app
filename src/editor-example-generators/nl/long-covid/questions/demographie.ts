@@ -602,6 +602,11 @@ const Q15 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Ik werk als zelfstandige/ ondernemer"],
                 ]),
             }, {
+                key: 'reintegreren', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben aan het re-integreren op mijn werk"],
+                ]),
+            }, {
                 key: '4', role: 'option',
                 content: new Map([
                     ["nl", "Ik ben een scholier of student"],
