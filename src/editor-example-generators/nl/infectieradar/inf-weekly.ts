@@ -788,7 +788,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Please indicate your test result."],
-                    ["nl", "Geef aan voor welke test je een uitslag hebt gehad."],
+                    ["nl", "Geef aan voor welke test je een uitslag hebt gehad. Wanneer je meerdere uitslagen van eenzelfde test hebt gehad, vul dan alleen het resultaat in van de meest recente uitslag (bij negatieve testen) of het resultaat van een positieve uitslag"],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },

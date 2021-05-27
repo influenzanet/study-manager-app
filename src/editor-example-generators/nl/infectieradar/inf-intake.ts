@@ -1570,8 +1570,8 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination in seaseon 2020/2021?"],
-            ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
+            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination in seaseon 2021/2022?"],
+            ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2021/2022)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );
