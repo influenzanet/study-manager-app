@@ -336,6 +336,12 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 ])
             },
             {
+                key: 'brainfog', role: 'option',
+                content: new Map([
+                    ["nl", "Brainfog / hersenmist"],
+                ])
+            },
+            {
                 key: 'oorpijn', role: 'option',
                 content: new Map([
                     ["nl", "Oorpijn"],
@@ -586,6 +592,12 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                 key: 'verwardheid', role: 'option',
                 content: new Map([
                     ["nl", "Verwardheid"],
+                ])
+            },
+            {
+                key: 'brainfog', role: 'option',
+                content: new Map([
+                    ["nl", "Brainfog / hersenmist"],
                 ])
             },
             {
