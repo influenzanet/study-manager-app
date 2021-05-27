@@ -22,7 +22,7 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a vaccination against corona since the last survey?"],
-            ["nl", "Heb je sinds de vorige vragenlijst een vaccinatie ontvangen tegen het coronavirus? (Vul 'nee' in wanneer je sinds het invullen van de vorige vragenlijst geen nieuwe vaccinatie hebt gehad, maar al wel een of twee keer gevaccineerd bent.)"],
+            ["nl", "Heb je sinds de vorige vragenlijst een vaccinatie ontvangen tegen het coronavirus?"],
         ]))
     );
 
@@ -91,14 +91,14 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Yes, I have been vaccinated for the first time against the coronavirus"],
-                ["nl", "Ja, ik heb een eerste vaccinatie ontvangen tegen het coronavirus"],
+                ["nl", "Ja, ik heb sinds de vorige vragenlijst een eerste vaccinatie ontvangen tegen het coronavirus"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Yes, I have been vaccinated for the second time against the coronavirus"],
-                ["nl", "Ja, ik heb een tweede vaccinatie ontvangen tegen het coronavirus"],
+                ["nl", "Ja, ik heb sinds de vorige vragenlijst een tweede vaccinatie ontvangen tegen het coronavirus"],
             ])
         },
     ]);
