@@ -7,6 +7,7 @@ const singleChoiceOptionsSelected = (itemKey: string, ...optionKeys: string[]) =
 const multipleChoiceOptionsSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 const multipleChoiceOptionSelectedAll = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasKeysAll', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
 const multipleChoiceOnlyOtherKeysSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasOnlyKeysOtherThan', itemKey, [responseGroupKey, multipleChoiceKey].join('.'), ...optionKeys)
+const singleChoiceOnlyOtherKeysSelected = (itemKey: string, ...optionKeys: string[]) => expWithArgs('responseHasOnlyKeysOtherThan', itemKey, [responseGroupKey, singleChoiceKey].join('.'), ...optionKeys)
 
 const getDatePickerResponseValue = (itemKey: string): Expression => {
     return {
@@ -35,11 +36,17 @@ const timestampWithOffset = (delta: Duration, reference?: number | Expression) =
 
 const hasParticipantFlag = (key: string, value: string) => expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), key), value);
 
+const or = (...args: any[]) => expWithArgs('or', ...args);
+const and = (...args: any[]) => expWithArgs('and', ...args);
+
 export const CommonExpressions = {
+    or,
+    and,
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     multipleChoiceOptionSelectedAll,
     multipleChoiceOnlyOtherKeysSelected,
+    singleChoiceOnlyOtherKeysSelected,
     getDatePickerResponseValue,
     timestampWithOffset,
     getResponseValueAsNum,
