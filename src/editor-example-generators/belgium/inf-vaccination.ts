@@ -96,8 +96,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Bent u reeds gevaccineerd voor COVID-19?"],
-            ["fr-be", "?"],
-            ["de-be", "?"],
+            ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus ? "],
+            ["de-be", "Erhielten Sie einen COVID-19-Impfstoff? "],
             ["en", "Have you received a COVID-19 vaccine?"],
         ]))
     );
@@ -117,8 +117,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "We willen onderzoeken hoeveel bescherming vaccinatie geeft."],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection offert par le vaccin."],
+                    ["de-be", "Wir würden gerne untersuchen, wieviel Schutz der Impfstoff verleiht."],
                     ["en", "We would like to be able to work out how much protection the vaccine gives."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -135,8 +135,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Antwoord ja indien u een COVID-19 vaccin heeft ontvangen (sinds december 2020). "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Geben Sie 'Ja' an, wenn Sie eine Impfung mit COVID-19-Impfstoff erhielten (seit Dezember 2020)."],
+                    ["de-be", "Répondez oui si vous avez reçu un vaccin contre le coronavirus (depuis décembre 2020)."],
                     ["en", "Report yes, if you received a COVID-19 vaccine (since December 2020)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -151,8 +151,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Ja, ik heb al minstens 1 dosis gekregen."],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Oui, j'ai reçu au moins un vaccin contre le coronavirus. "],
+                ["de-be", "Ja, ich erhielt mindestens einen COVID-19-Impfstoff"],
                 ["en", "Yes, I received at least one COVID-19 vaccine"],
             ])
         },
@@ -160,8 +160,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '01', role: 'option',
             content: new Map([
                 ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
+                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten"],
                 ["en", "No, I was invited and will receive a vaccine soon"],
             ])
         },
@@ -169,26 +169,26 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '02', role: 'option',
             content: new Map([
                 ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
+                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab"],
                 ["en", "No, I was invited but declined the vaccine"],
             ])
         },
         {
             key: '03', role: 'option',
             content: new Map([
-                ["nl-be", ""],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen"],
+                ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
+                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen"],
                 ["en", "When invited, I plan to receive a vaccine"],
             ])
         },
         {
             key: '04', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
+                ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
+                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen"],
                 ["en", "When invited, I will decline the vaccine"],
             ])
         },
@@ -196,8 +196,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Je ne sais pas/je ne me souviens pas."],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern"],
                 ["en", "I don't know/can't remember"],
             ])
         },
@@ -233,8 +233,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Welk COVID-19 vaccin heeft u ontvangen? "],
-            ["fr-be", "?"],
-            ["de-be", "?"],
+            ["fr-be", "Quel vaccin contre le coronavirus avez-vous reçu ? "],
+            ["de-be", "Welchen COVID-19-Impfstoff erhielten Sie? "],
             ["en", "Which COVID-19 vaccine did you receive?"],
         ]))
     );
@@ -317,8 +317,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '99', role: 'option',
             content: new Map([
                 ["nl-be", "Ik weet het niet meer"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Je ne sais pas/je ne me souviens pas."],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern"],
                 ["en", "I Don't know/Can't remember"],
             ])
         },
@@ -354,8 +354,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Hoeveel dosissen van het vaccin heeft u reeds ontvangen? "],
-            ["fr-be", "?"],
-            ["de-be", "?"],
+            ["fr-be", "Combien de doses du vaccin avez-vous reçu ? "],
+            ["de-be", "Wie viele Dosen des Impfstoffs erhielten Sie? "],
             ["en", "How many doses of the vaccine did you receive?"],
         ]))
     );
@@ -382,8 +382,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "We willen onderzoeken hoeveel bescherming een volledige vaccinatie geeft."],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection qu'offre un programme de vaccination complet."],
+                    ["de-be", "Wir möchten gerne untersuchen, wieviel Infektionsschutz ein vollständigen Impfplan Ihnen gibt."],
                     ["en", "We would like to be able to work out how much protection a complete vaccination scheme gives."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -400,8 +400,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Rapporteer het aantal dosissen die u reeds ontvangen heeft (dit komt overeen met het aantal keer dat u werd gevaccineerd voor COVID-19). "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Indiquez le nombre de doses reçues (qui correspond au nombre de fois où vous avez été vacciné(e) contre le coronavirus). "],
+                    ["de-be", "Geben Sie die Anzahl der Dosen an, die Sie erhielten (die der Anzahl der Termine entspricht, an denen Sie gegen COVID-19 geimpft wurden)."],
                     ["en", "Report the number of doses you received (which corresponds to the number of time you were vaccinated against COVID-19 )."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -416,8 +416,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Eén"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Un"],
+                ["de-be", "Eine"],
                 ["en", "One"],
             ])
         },
@@ -425,8 +425,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Twee"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Deux"],
+                ["de-be", "Zwei"],
                 ["en", "Two"],
             ])
         },
@@ -434,8 +434,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Meer dan twee"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Plus de deux"],
+                ["de-be", "Mehr als zwei"],
                 ["en", "More than two"],
             ])
         },
@@ -443,8 +443,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '99', role: 'option',
             content: new Map([
                 ["nl-be", "Ik weet het niet meer"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Je ne sais pas/je ne me souviens pas."],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern"],
                 ["en", "I Don't know/Can't remember"],
             ])
         },
@@ -478,9 +478,9 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wanneer heeft u de eerste dosis van het vaccin ontvangen? "],
-            ["fr-be", "?"],
-            ["de-be", "?"],
+            ["nl-be", "Wanneer heeft u de eerste dosis van het vaccin ontvangen? Indien u de exacte datum niet kent, gelieve een schatting te geven. "],
+            ["fr-be", "Quand avez-vous reçu votre première injection du vaccin contre le coronavirus ? Si vous ne connaissez pas la date exacte, veuillez donner une estimation. "],
+            ["de-be", "Wann erhielten Sie Ihre erste Injektion von Impfstoff gegen COVID-19? Wenn Sie das genaue Datum nicht mehr wissen, schätzen Sie es. "],
             ["en", "When did you receive your first injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
         ]))
     );
@@ -508,8 +508,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Dit vertelt ons hoe de vaccinatie campgane wordt uitgevoerd. "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Le fait de savoir quand les gens sont vaccinés nous permet de savoir si le programme de vaccination est bien exécuté."],
+                    ["de-be", "Wenn wir wissen, wann die Menschen geimpft wurden, sagt das uns, wie gut das Impfprogramm durchgeführt wird"],
                     ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -526,8 +526,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Gelieve zo correct mogelijk te antwoorden. Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie. "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date précise, veuillez donner votre meilleure estimation du mois et de l'année de vaccination. "],
+                    ["de-be", "Bitte versuchen Sie es und beantworten Sie es so genau wie möglich. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung des Monats und des Jahres der Impfung an. "],
                     ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -592,9 +592,9 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wanneer heeft u de tweede dosis van het vaccin ontvangen? "],
-            ["fr-be", ""],
-            ["de-be", ""],
+            ["nl-be", "Wanneer heeft u de tweede dosis van het vaccin ontvangen? Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie."],
+            ["fr-be", "Quand avez-vous reçu votre deuxième injection du vaccin contre le coronavirus ? Si vous ne connaissez pas la date exacte, veuillez donner une estimation. "],
+            ["de-be", "Wann erhielten Sie Ihre zweite Injektion von Impfstoff gegen COVID-19? Wenn Sie das genaue Datum nicht wissen, schätzen Sie es bitte. "],
             ["en", "When did you receive your second injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
         ]))
     );
@@ -622,8 +622,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Dit vertelt ons hoe de vaccinatie campgane wordt uitgevoerd. "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Le fait de savoir quand les gens sont vaccinés nous permet de savoir si le programme de vaccination est bien exécuté."],
+                    ["de-be", "Wenn wir wissen, wann die Menschen geimpft wurden, sagt das uns, wie gut das Impfprogramm durchgeführt wird"],
                     ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -640,8 +640,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Gelieve zo correct mogelijk te antwoorden. Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie. "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date précise, veuillez donner votre meilleure estimation du mois et de l'année de vaccination. "],
+                    ["de-be", "Bitte versuchen Sie es und antworten Sie es so genau wie möglich. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung des Monats und des Jahres der Impfung an. "],
                     ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -715,8 +715,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u ernstige nevenwerkingen ondervonden van deze vaccinatie? Indien ja, selecteer maximaal 3 opties die het meest van toepassing zijn."],
-            ["fr-be", "?"],
-            ["de-be", "?"],
+            ["fr-be", "Avez-vous ressenti des effets secondaires de cette vaccination ? Si oui, sélectionnez jusqu'à 3 options les plus pertinentes."],
+            ["de-be", "Gab es Nebenwirkungen bei dieser Impfung? Wenn ja, wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
             ["en", "Did you experience any side effects of this vaccination? If yes, select up to 3 options that are most applicable."],
         ]))
     );
@@ -743,8 +743,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "We willen onderzoeken welke neveneffecten mensen ervaren na een COVID-19 vaccinatie. "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Nous souhaitons connaître les effets secondaires éventuels de la vaccination contre le coronavirus."],
+                    ["de-be", "Wir möchten die Nebenwirkungen untersuchen, die Menschen bei der COVID-19-Impfung erfahren."],
                     ["en", "We want to investigate what are the side effects that people experience from COVID-19 vaccination."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -761,8 +761,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["nl-be", "Gelieve de neveneffecten aan te duiden die het meest van toepassing zijn voor u. "],
-                    ["fr-be", ""],
-                    ["de-be", ""],
+                    ["fr-be", "Veuillez sélectionner tous les effets secondaires que vous avez ressentis après avoir reçu un vaccin contre le coronavirus."],
+                    ["de-be", "Bitte wählen Sie alle Nebenwirkungen, die Sie nach der COVID-19-Impfung erfuhren."],
                     ["en", "Please select up to 3 side effects that you experienced after COVID-19 vaccination."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -778,8 +778,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         content: generateLocStrings(
             new Map([
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
+                ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
                 ["en", "Select up to 3 options that are most applicable"],
             ])),
     }, rg?.key);
@@ -788,8 +788,8 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '0', role: 'option',
             content: new Map([
                 ["nl-be", "Geen"],
-                ["fr-be", ""],
-                ["de-be", ""],
+                ["fr-be", "Aucun effet secondaire"],
+                ["de-be", "Keine"],
                 ["en", "None"],
             ])
         },
