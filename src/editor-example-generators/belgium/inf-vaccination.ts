@@ -659,7 +659,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     dtype: 'exp', exp: {
                         name: 'getAttribute',
                         data: [
-                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keyDateFirstVaccine, [singleChoiceKey, '1'].join('.')) },
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keyDateFirstVaccine, [responseGroupKey, singleChoiceKey, '1'].join('.')) },
                             { str: 'value', dtype: 'str' }
                         ],
                         returnType: 'int',
