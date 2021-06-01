@@ -1,6 +1,5 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
-import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
@@ -9,6 +8,7 @@ import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
 import { CovidTestGroup } from "../questions/covidTest";
+import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest";
 import { DemographieGroup } from "../questions/demographie";
 import { EQ5DGroup } from '../questions/eq5d';
 import { HADSGroup } from "../questions/hads";
@@ -22,7 +22,10 @@ import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
+import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 import { surveyKeys } from "../studyRules";
+import { HealthGroup as ChildrenHealthGroup } from "../questions/for-children/health";
+import { UnderMinAgeGroup } from "../questions/for-children/underMinAgeInfos";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -45,16 +48,13 @@ export const generateT0 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    const categoryQuestions = new ParticipantCategoryGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(categoryQuestions.getItem());
+    const participantInfos = new ParticipantCategoryGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(participantInfos.getItem());
 
     const isChildParticipant =
         expWithArgs('or',
-            expWithArgs('lt',
-                categoryQuestions.getAgeInYearsExpression(),
-                16
-            ),
-            categoryQuestions.getIsForAKind()
+            participantInfos.isYounger(16),
+            participantInfos.getIsForAKind()
         );
     const isNotChildParticipant = expWithArgs('not',
         isChildParticipant
@@ -112,7 +112,7 @@ export const generateT0 = (): Survey | undefined => {
 
     const demographieGroupEditor = new DemographieGroup(
         adultVersion.key,
-        categoryQuestions.getAgeInYearsExpression(),
+        participantInfos.getAgeInYearsExpression(),
         covidTestGroupEditor.getQ11JaCondition(),
     );
     adultVersion.addItem(demographieGroupEditor.getItem());
@@ -123,17 +123,31 @@ export const generateT0 = (): Survey | undefined => {
     const childVersion = new GroupItemEditor(surveyKey, 'C');
     childVersion.groupEditor.setCondition(isChildParticipant);
 
-    childVersion.addItem(SurveyItemGenerators.display({
-        parentKey: childVersion.key,
-        itemKey: 'info',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ['nl', `Het LongCOVID-onderzoek bij kinderen is helaas nog niet van start gegaan. Volg de informatie op de website [longcovid.rivm.nl](longcovid.rivm.nl) over de start van het onderzoek bij kinderen.`]
-                ])
-            })]
-    }))
+    const minAge = 4;
 
+    // For children under 5
+    const infosForUnderMinAgeGroup = new UnderMinAgeGroup(childVersion.key);
+    infosForUnderMinAgeGroup.groupEditor.setCondition(participantInfos.isYounger(minAge, true));
+    childVersion.addItem(infosForUnderMinAgeGroup.getItem());
+
+    // COVID test group for children
+    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(childVersion.key);
+    childrenCovidTestGroupEditor.groupEditor.setCondition(participantInfos.isOlder(minAge));
+    childVersion.addItem(childrenCovidTestGroupEditor.getItem());
+
+    // COVID vaccination for children
+    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key);
+    childrenVaccinationGroupEditor.groupEditor.setCondition(participantInfos.isOlder(15));
+    childVersion.addItem(childrenVaccinationGroupEditor.getItem());
+
+    // HealthGroup for children
+    const childrenHealthGroupEditor = new ChildrenHealthGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(minAge),
+        olderThan10: participantInfos.isOlder(10),
+    });
+    childVersion.addItem(childrenHealthGroupEditor.getItem());
+
+    // TODO: add further child questions
 
 
     surveyEditor.addSurveyItemToRoot(adultVersion.getItem());

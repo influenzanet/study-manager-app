@@ -487,11 +487,15 @@ interface DisplayProps {
     parentKey: string;
     itemKey: string;
     content: Array<ItemComponent>;
+    condition?: Expression;
 }
 
 const generateDisplay = (props: DisplayProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, 1);
     props.content.forEach(item => simpleEditor.addDisplayComponent(item))
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
     return simpleEditor.getItem();
 }
 
