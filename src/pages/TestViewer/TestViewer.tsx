@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import SurveyView from '../../components/survey/SurveyView/SurveyView';
-import { Box, Button, TextField } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data_types';
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
+import { Checkbox, SelectField, SurveyView, TextField } from 'case-web-ui';
 
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
@@ -16,6 +16,11 @@ const TestViewer: React.FC = () => {
     const [studyName, setStudyName] = useState('covid-19');
     let { instance, surveyKey } = useParams<{ instance: string; surveyKey: string; }>();
     const history = useHistory();
+
+
+    const [pFlagKey, setPFlagKey] = useState('');
+    const [pFlagValue, setPFlagValue] = useState('');
+    const [showKeys, setShowKeys] = useState(false);
 
     // Language settings
     const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -33,6 +38,7 @@ const TestViewer: React.FC = () => {
             setSelectedLanguage(selectedInstanceObj.languageCodes[0]);
         }
         setSelectedSurvey(selected.survey);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [instance, surveyKey]);
 
     console.log(selectedSurvey);
@@ -72,78 +78,38 @@ const TestViewer: React.FC = () => {
                 <div className="col-12 mb-2">
                     {/* instance selector */}
                     <div className="mb-1">Instance:</div>
-                    <div className="btn-group w-100">
-                        <button type="button"
-                            className="btn btn-lightest text-start"
-                            aria-expanded="false">
-                            {instance}
-                        </button>
-                        <button
-                            style={{ maxWidth: 35 }}
-                            type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span className="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul className="dropdown-menu w-100">
-                            {instances.map(i => <li
-                                key={i}
-                                className="dropdown-item cursor-pointer"
-                                onClick={() => history.replace(getSurveyURL(i, availableSurveys.find(obj => obj.instance === i)?.surveys[0].name))}
-                            >
-                                {i}
-                            </li>)}
-                        </ul>
-                    </div>
+                    <SelectField
+                        value={instance}
+                        values={instances.map(i => { return { code: i, label: i } })}
+                        onChange={(event) => {
+                            const i = event.target.value;
+                            history.replace(getSurveyURL(i, availableSurveys.find(obj => obj.instance === i)?.surveys[0].name))
+                        }}
+                    />
                 </div>
                 <div className="col-12 mb-2">
                     {/* survey key selector */}
                     <div className="mb-1">Survey:</div>
-                    <div className="btn-group w-100">
-                        <button type="button" className="btn btn-lightest text-start" aria-expanded="false">
-                            {surveyKey}
-                        </button>
-                        <button type="button"
-                            style={{ maxWidth: 35 }}
-                            className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span className="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul className="dropdown-menu w-100">
-                            {
-                                selectedInstanceObj?.surveys.map(
-                                    survey => <li
-                                        key={survey.name}
-                                        className="dropdown-item cursor-pointer"
-                                        onClick={() => history.replace(getSurveyURL(instance, survey.name))}
-                                    >
-                                        {survey.name}
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </div>
+                    <SelectField
+                        value={surveyKey}
+                        values={selectedInstanceObj?.surveys.map(survey => { return { code: survey.name, label: survey.name } })}
+                        onChange={(event) => {
+                            const value = event.target.value;
+                            history.replace(getSurveyURL(instance, value))
+                        }}
+                    />
                 </div>
                 <div className="col-12">
                     {/* language selector */}
                     <div className="mb-1">Language:</div>
-                    <div className="btn-group w-100">
-                        <button type="button"
-                            className="btn btn-lightest text-start" aria-expanded="false">
-                            {selectedInstanceObj?.languageCodes.find(l => l === selectedLanguage)}
-                        </button>
-                        <button type="button"
-                            style={{ maxWidth: 35 }}
-                            className="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span className="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul className="dropdown-menu w-100">
-                            {selectedInstanceObj?.languageCodes.map(l => <li
-                                key={l}
-                                className="dropdown-item cursor-pointer"
-                                onClick={() => setSelectedLanguage(l)}
-                            >
-                                {l}
-                            </li>)}
-                        </ul>
-                    </div>
+                    <SelectField
+                        value={selectedLanguage}
+                        values={selectedInstanceObj?.languageCodes.map(l => { return { code: l, label: l } })}
+                        onChange={(event) => {
+                            const value = event.target.value;
+                            setSelectedLanguage(value)
+                        }}
+                    />
                 </div>
             </div>
         </div>
@@ -162,6 +128,17 @@ const TestViewer: React.FC = () => {
                     {surveySelector}
                     {survey ? <div>{renderSurveyNameAndDescription(survey)}</div> : null}
 
+                    <div className="py-2a px-2 px-sm-3 bg-grey-1 my-2">
+                        <h5>Participant flags</h5>
+                        <TextField label="Key" value={pFlagKey} onChange={(event) => setPFlagKey(event.target.value)} />
+                        <TextField label="Value" value={pFlagValue} onChange={(event) => setPFlagValue(event.target.value)} />
+                        <Checkbox
+                            id="showKeys"
+                            className="mt-2"
+                            name="showKeys"
+                            checked={showKeys}
+                            label="Show Item Keys" onChange={(value) => setShowKeys(value)} />
+                    </div>
                 </div>
                 <div className="col-12 col-lg-8">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
@@ -176,29 +153,37 @@ const TestViewer: React.FC = () => {
                                 onSubmit={(resp) => {
                                     console.log(resp)
                                 }}
-
-                                submitBtnText={'Verzenden'}
-                                nextBtnText={'Volgende'}
-                                backBtnText={'Terug'}
+                                context={{
+                                    participantFlags: {
+                                        [pFlagKey]: pFlagValue,
+                                    }
+                                }}
+                                submitBtnText={'Submit'}
+                                // submitBtnText={'Verzenden'}
+                                nextBtnText={'Next Page'}
+                                // nextBtnText={'Volgende'}
+                                // backBtnText={'Vorige'}
+                                backBtnText={'Back'}
                                 invalidResponseText={'Please select a valid response.'}
+                                showKeys={showKeys}
                             />
                         </div> : null}
 
                     <Box display="flex" alignItems="center" justifyContent="center">
 
                         <Box textAlign="center" p={2}>
-                            <TextField
-                                label="Study name"
-                                variant="filled"
+                            <div className="bg-primary p-2">
+                                <TextField
+                                    label="Study name"
+                                    value={studyName}
+                                    onChange={(event) => {
+                                        const v = event.target.value as string;
+                                        setStudyName(v);
+                                    }}
+                                >
 
-                                value={studyName}
-                                onChange={(event) => {
-                                    const v = event.target.value as string;
-                                    setStudyName(v);
-                                }}
-                            >
-
-                            </TextField>
+                                </TextField>
+                            </div>
                         </Box>
 
                         <Box textAlign="center" alignContent="center" p={2}>

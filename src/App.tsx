@@ -1,116 +1,28 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, Redirect, Switch,
+    BrowserRouter as Router, Route, Redirect, Switch,
 } from "react-router-dom";
-
-
-import {
-  createMuiTheme,
-  responsiveFontSizes,
-} from '@material-ui/core';
 
 import TestEditor from './pages/TestEditor/TestEditor';
 
 import './App.css';
 import TestViewer from './pages/TestViewer/TestViewer';
+import StudyFileDownloads from './pages/StudyFileDownloads';
 
 const App: React.FC = () => {
-  const InfNetColors = {
-    palette: {
-      primary: {
-        light: '#475d9d',
-        dark: '#000e42',
-        main: '#0f346e',
-      },
-      secondary: {
-        light: '#93e3e2',
-        dark: '#2d8181',
-        main: '#61b1b0',
-        contrastText: '#ffffff',
-      },
-      background: {
-        default: '#f2f2f2',
-      }
-    },
-  };
 
-  const theme = responsiveFontSizes(createMuiTheme(InfNetColors));
-
-  theme.overrides = {
-    MuiSlider: {
-      root: {
-        height: 6,
-        display: "flex",
-        justifyContent: "space-between",
-      },
-      thumb: {
-        height: 16,
-        width: 16,
-        marginTop: -5,
-        marginLeft: -8,
-      },
-      rail: {
-        height: 6,
-        borderRadius: 1000,
-        color: "#9e9e9e",
-      },
-      track: {
-        height: 6,
-        borderRadius: 1000,
-      },
-      mark: {
-        height: 6,
-        width: 6,
-        marginLeft: -3,
-        borderRadius: 1000,
-        backgroundColor: "grey",
-      },
-      markActive: {
-        opacity: 1,
-        backgroundColor: theme.palette.secondary.main,
-        height: 10,
-        width: 10,
-        marginLeft: -5,
-        marginTop: -2,
-      },
-      markLabel: {
-        '&&:nth-of-type(4)': {
-          textAlign: "left",
-          flexGrow: 1,
-          marginLeft: -4,
-          marginRight: 4,
-        },
-        '&&:nth-last-of-type(2)': {
-          textAlign: "right",
-          flexGrow: 1,
-          marginLeft: 4,
-          marginRight: -4,
-        },
-        marginTop: 8,
-        height: 20,
-        position: "static",
-        textAlign: "center",
-        transform: "",
-        flexGrow: 2,
-        flexShrink: 1,
-        flexBasis: 0,
-        // textOverflow: "ellipsis",
-        // overflow: "hidden",
-      },
-    },
-  };
-
-  return (
-    <div>
-      <Router>
-        <Switch>
-          <Route path="/test-editor" component={TestEditor} />
-          <Route path="/preview/:instance/:surveyKey" component={TestViewer} />
-          <Redirect to="/preview/nl/intake"></Redirect>
-        </Switch>
-      </Router>
-    </div>
-  );
+    return (
+        <div>
+            <Router>
+                <Switch>
+                    <Route path="/test-editor" component={TestEditor} />
+                    <Route path="/test-study-download" component={StudyFileDownloads} />
+                    <Route path="/preview/:instance/:surveyKey" component={TestViewer} />
+                    <Redirect to="/preview/nl/intake"></Redirect>
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;

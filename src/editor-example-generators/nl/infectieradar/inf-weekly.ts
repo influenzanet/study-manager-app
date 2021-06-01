@@ -4,8 +4,8 @@ import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/l
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../../../editor-engine/survey-editor/component-editor";
-import { CoronaVaccineQuestions } from "../questions/coronaVaccine";
-import { WeeklyQuestions as DefaultWeekly } from "../../common_question_pool/influenzanet-weekly";
+import { CoronaVaccineQuestions } from "./questions/coronaVaccine";
+import { WeeklyQuestions as DefaultWeekly } from "./questions/tempWeeklyPool";
 
 const responseGroupKey = 'rg';
 const singleChoiceKey = 'scg';
@@ -68,6 +68,66 @@ const generateNLWeekly = (): Survey | undefined => {
     const q1aNL = survey.addNewSurveyItem({ itemKey: 'Q1aNL' }, rootKey);
     if (!q1aNL) { return; }
     survey.updateSurveyItem(q1aNL_def(q1aNL));
+
+    // self test questions
+
+    // 2 title
+    const q2_title = survey.addNewSurveyItem({ itemKey: 'title2' }, rootKey);
+    if (!q2_title) { return; }
+    survey.updateSurveyItem(q2_title_def(q2_title, q1aNL.key));
+
+    // nr of self tests
+    const q1kNL = survey.addNewSurveyItem({ itemKey: 'Q1kNL' }, rootKey);
+    if (!q1kNL) { return; }
+    survey.updateSurveyItem(q1kNL_def(q1kNL, q1aNL.key));
+    // ---------------------------------------------------------
+
+    // Test results positive/negative self test
+    const q1b3NL = survey.addNewSurveyItem({ itemKey: 'Q1b3NL' }, rootKey);
+    if (!q1b3NL) { return; }
+    survey.updateSurveyItem(q1b3NL_def(q1b3NL, q1aNL.key));
+    // ---------------------------------------------------------
+    
+    // Selftest date
+    const q1d3NL = survey.addNewSurveyItem({ itemKey: 'Q1d3NL' }, rootKey);
+    if (!q1d3NL) { return; }
+    survey.updateSurveyItem(q1d3NL_def(q1d3NL, q1aNL.key, q1b3NL.key));
+    // ---------------------------------------------------------
+
+    // Test results self test confirmed
+    const q1jNL = survey.addNewSurveyItem({ itemKey: 'Q1jNL' }, rootKey);
+    if (!q1jNL) { return; }
+    survey.updateSurveyItem(q1jNL_def(q1jNL, q1aNL.key));
+    // ---------------------------------------------------------
+    
+    // questions on nose/throat swab
+    // 3 title
+    const q3_title = survey.addNewSurveyItem({ itemKey: 'title3' }, rootKey);
+    if (!q3_title) { return; }
+    survey.updateSurveyItem(q3_title_def(q3_title, q1aNL.key));
+
+    // nose throat swab date
+    const q1d1NL = survey.addNewSurveyItem({ itemKey: 'Q1d1NL' }, rootKey);
+    if (!q1d1NL) { return; }
+    survey.updateSurveyItem(q1d1NL_def(q1d1NL, q1aNL.key));
+    // ---------------------------------------------------------
+    
+    // Test PCR how long after symptoms
+    const q1cNL = survey.addNewSurveyItem({ itemKey: 'Q1cNL' }, rootKey);
+    if (!q1cNL) { return; }
+    survey.updateSurveyItem(q1cNL_def(q1cNL, q1aNL.key));
+    // ---------------------------------------------------------
+    
+    // Contact GGD
+    const q1eNL = survey.addNewSurveyItem({ itemKey: 'Q1eNL' }, rootKey);
+    if (!q1eNL) { return; }
+    survey.updateSurveyItem(q1eNL_def(q1eNL, q1aNL.key));
+    // ---------------------------------------------------------
+    
+    // Contact CoronaMelder app
+    const q1fNL = survey.addNewSurveyItem({ itemKey: 'Q1fNL' }, rootKey);
+    if (!q1fNL) { return; }
+    survey.updateSurveyItem(q1fNL_def(q1fNL, q1aNL.key));
     // ---------------------------------------------------------
 
     // Tested where
@@ -82,17 +142,23 @@ const generateNLWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(q1hNL_def(q1hNL, q1aNL.key));
     // ---------------------------------------------------------
 
-    // Test results positive/negative
-    const q1bNL = survey.addNewSurveyItem({ itemKey: 'Q1bNL' }, rootKey);
-    if (!q1bNL) { return; }
-    survey.updateSurveyItem(q1bNL_def(q1bNL, q1aNL.key));
+    // Test results positive/negative nose throat swab
+    const q1b1NL = survey.addNewSurveyItem({ itemKey: 'Q1b1NL' }, rootKey);
+    if (!q1b1NL) { return; }
+    survey.updateSurveyItem(q1b1NL_def(q1b1NL, q1aNL.key));
     // ---------------------------------------------------------
 
-    // Test PCR how long after symptoms
-    const q1cNL = survey.addNewSurveyItem({ itemKey: 'Q1cNL' }, rootKey);
-    if (!q1cNL) { return; }
-    survey.updateSurveyItem(q1cNL_def(q1cNL, q1aNL.key));
     // ---------------------------------------------------------
+    const q1iNL = q1i_nl(rootKey, q1aNL.key, true);
+    survey.addExistingSurveyItem(q1iNL, rootKey);
+    // ---------------------------------------------------------
+
+    // questions about blood test
+
+    // 4 title
+    const q4_title = survey.addNewSurveyItem({ itemKey: 'title4' }, rootKey);
+    if (!q4_title) { return; }
+    survey.updateSurveyItem(q4_title_def(q4_title, q1aNL.key));
 
     // Test SERO date
     const q1dNL = survey.addNewSurveyItem({ itemKey: 'Q1dNL' }, rootKey);
@@ -100,18 +166,11 @@ const generateNLWeekly = (): Survey | undefined => {
     survey.updateSurveyItem(q1dNL_def(q1dNL, q1aNL.key));
     // ---------------------------------------------------------
 
-    // Contact GGD
-    const q1eNL = survey.addNewSurveyItem({ itemKey: 'Q1eNL' }, rootKey);
-    if (!q1eNL) { return; }
-    survey.updateSurveyItem(q1eNL_def(q1eNL, q1aNL.key));
+    // Test results positive/negative blood test
+    const q1b2NL = survey.addNewSurveyItem({ itemKey: 'Q1b2NL' }, rootKey);
+    if (!q1b2NL) { return; }
+    survey.updateSurveyItem(q1b2NL_def(q1b2NL, q1aNL.key));
     // ---------------------------------------------------------
-
-    // Contact CoronaMelder app
-    const q1fNL = survey.addNewSurveyItem({ itemKey: 'Q1fNL' }, rootKey);
-    if (!q1fNL) { return; }
-    survey.updateSurveyItem(q1fNL_def(q1fNL, q1aNL.key));
-    // ---------------------------------------------------------
-
 
     // ------> Symptoms group
     const qg1 = survey.addNewSurveyItem({ itemKey: 'q1', isGroup: true }, rootKey);
@@ -342,7 +401,7 @@ const generateNLWeekly = (): Survey | undefined => {
     // console.log(q32Editor.findResponseComponent('rg'));
     // q32Editor.removeResponseComponent('rg.scg');
 
-    console.log(survey.getSurvey());
+    // console.log(survey.getSurvey());
     // console.log(survey.getSurveyJSON());
 
 
@@ -364,6 +423,55 @@ const q1_title_def = (itemSkeleton: SurveyItem): SurveyItem => {
     )
     return editor.getItem();
 }
+
+const q2_title_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q1aNLKey, [responseGroupKey, multipleChoiceKey].join('.'), '3')
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "The following questions are about the self-test"],
+                ["nl", "De volgende vragen gaan over de zelftest"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+
+const q3_title_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q1aNLKey, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "The following questions are about the nose/throat swab"],
+                ["nl", "De volgende vragen gaan over de keel/neus slijmvliestest"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+
+const q4_title_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', q1aNLKey, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'text', content: generateLocStrings(new Map([
+                ["en", "The following questions are about the bloodtest"],
+                ["nl", "De volgende vragen gaan over de bloedtest"],
+            ]))
+        }
+    )
+    return editor.getItem();
+}
+
 
 
 
@@ -650,7 +758,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you receive a corona test result since the last survey? (positive or negative?"],
-            ["nl", "Heb je sinds de vorige vragenlijst een testuitslag (positief of negatief) gehad voor het nieuwe coronavirus?"],
+            ["nl", "Heb je sinds de vorige vragenlijst een testuitslag (positief of negatief) gehad voor het nieuwe coronavirus? Meerdere antwoorden mogelijk"],
         ]))
     );
 
@@ -680,7 +788,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             {
                 content: new Map([
                     ["en", "Please indicate your test result."],
-                    ["nl", "Geef aan voor welke test je een uitslag hebt gehad."],
+                    ["nl", "Geef aan voor welke test je een uitslag hebt gehad. Wanneer je meerdere uitslagen van eenzelfde test hebt gehad, vul dan alleen het resultaat in van de meest recente uitslag (bij negatieve testen) of het resultaat van een positieve uitslag"],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -689,7 +797,7 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
             content: new Map([
@@ -698,11 +806,19 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             ])
         },
         {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Yes, I received the result of a self-test"],
+                ["nl", "Ja, ik heb een testuitslag gehad voor een zelftest"],
+            ])
+        },
+        {
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Yes, I received the result of a throat/nose swap (PCR)"],
-                ["nl", "Ja, ik heb een testuitslag gehad voor een keel/neus slijmvliestest"],
+                ["nl", "Ja, ik heb een testuitslag gehad voor een keel/neus slijmvliestest (PCR/sneltest, geen zelftest)"],
             ])
         },
         {
@@ -725,6 +841,80 @@ const q1aNL_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
+/**
+ * SYMPTOMS: multiple choice question about allergies
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const q1i_nl = (parentKey: string, keyQ1A: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q1iNL'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How many hours after the test did you get the results?"],
+            ["nl", "Hoeveel uur na de test heb je de uitslag gekregen?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyQ1A, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    );
+
+
+    // INFO POPUP
+    // none
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl", "Binnen 1 uur"],
+            ])
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["nl", "Tussen 1 - 4 uur"],
+            ])
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl", "Tussen 4 - 24 uur"],
+            ])
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl", "Tussen 24 - 48 uur"],
+            ])
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl", "Na 48 uur"],
+            ])
+        },
+
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
 const q1gNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
@@ -735,7 +925,7 @@ const q1gNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -767,6 +957,13 @@ const q1gNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
             content: new Map([
                 ["en", "GGD visited my home address"],
                 ["nl", "GGD is langs geweest"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            content: new Map([
+                ["en", "At a specific testing facility for Testen voor Toegang"],
+                ["nl", "Bij een speciale teststraat voor Testen voor Toegang"],
             ])
         },
         {
@@ -819,7 +1016,7 @@ const q1hNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -862,7 +1059,7 @@ const q1bNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1', '2', '3')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -901,6 +1098,384 @@ const q1bNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     return editor.getItem();
 }
 
+const q1b1NL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What was your nose/throat swab test result?"],
+            ["nl", "Wat was de uitslag van de keel/neus slijmvliestest?"],
+            ["fr", " Quel a été votre température mesurée la plus élevée?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Positive, evidence for infection with coronavirus"],
+                ["nl", "Positief, dus WEL besmet (geweest) met het nieuwe coronavirus"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Negative, NO evidence for infection with coronavirus"],
+                ["nl", "Negatief, dus GEEN bewijs voor besmetting met het nieuwe coronavirus"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I prever not to say"],
+                ["nl", "Dit wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q1b2NL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What was your blood-test result?"],
+            ["nl", "Wat was de uitslag van de bloedtest?"],
+            ["fr", " Quel a été votre température mesurée la plus élevée?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Positive, evidence for infection with coronavirus"],
+                ["nl", "Positief, dus WEL besmet (geweest) met het nieuwe coronavirus"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Negative, NO evidence for infection with coronavirus"],
+                ["nl", "Negatief, dus GEEN bewijs voor besmetting met het nieuwe coronavirus"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I prever not to say"],
+                ["nl", "Dit wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q1b3NL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What was your self-test result?"],
+            ["nl", "Wat was de uitslag van de zelftest? Wanneer je meerdere zelftesten hebt gedaan en één daarvan was positief, vul dan hier 'positief' in."],
+            ["fr", " Quel a été votre température mesurée la plus élevée?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Positive, evidence for infection with coronavirus"],
+                ["nl", "Positief, dus WEL besmet (geweest) met het nieuwe coronavirus"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Negative, NO evidence for infection with coronavirus"],
+                ["nl", "Negatief, dus GEEN bewijs voor besmetting met het nieuwe coronavirus"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I prever not to say"],
+                ["nl", "Dit wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q1kNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How many self tests did you take since the last questionnaire?"],
+            ["nl", "Hoeveel zelftesten heb je sinds de vorige vragenlijst gedaan?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "1"],
+                ["nl", "1"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "2"],
+                ["nl", "2"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "3"],
+                ["nl", "3"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "More than 3"],
+                ["nl", "Meer dan 3"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+
+const q1jNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Did you confirm your testresult of the self test?"],
+            ["nl", "Heb je de uitslag van de zelftest laten bevestigen bij een GGD teststraat of ziekenhuis/huisarts?"],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["nl", "Nee"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, the result was the same"],
+                ["nl", "Ja, de uitslag was hetzelfde"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Yes, the result was different"],
+                ["nl", "Ja, de uitslag was anders"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Yes, I'm still waiting for the result"],
+                ["nl", "Ja, ik wacht nog op de uitslag"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "I'm still planning to get my test result confirmed"],
+                ["nl", "Dit ben ik nog van plan"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "I don't want to answer this question"],
+                ["nl", "Dit wil ik niet aangeven"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q1d3NL_def = (itemSkeleton: SurveyItem, q1aNLKey: string, q1b3NLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What was the date of the positive selftest? Please guess if you can't remember the date exactly."],
+            ["nl", "Wat was de datum van de positieve zelftest? Als je de datum niet meer precies weet mag je deze schatten."],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '3')
+    )
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1b3NLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+    )
+    
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
+            },
+            content: new Map([
+                ["en", "Choose date"],
+                ["nl", "Kies de dag"],
+                ["fr", "Sélectionner la date"],
+            ])
+        },
+        //{
+        //    key: '1', role: 'option',
+        //    content: new Map([
+        //        ["en", "I don't know/can't remember"],
+        //        ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
+        //       ["nl", "Ik weet het niet (meer)."],
+        //        ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+        //    ])
+        //},
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
+const q1d1NL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
+    const editor = new ItemEditor(itemSkeleton);
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "What was the date of the nose/throat swab? Please guess if you can't remember the date exactly."],
+            ["nl", "Wat was de datum van de keel/neus slijmvliestest? Als je de datum niet meer precies weet mag je deze schatten."],
+        ]))
+    );
+
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    )
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
+            },
+            content: new Map([
+                ["en", "Choose date"],
+                ["nl", "Kies de dag"],
+                ["fr", "Sélectionner la date"],
+            ])
+        },
+        //{
+        //    key: '1', role: 'option',
+        //    content: new Map([
+        //        ["en", "I don't know/can't remember"],
+        //        ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
+        //       ["nl", "Ik weet het niet (meer)."],
+        //        ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+        //    ])
+        //},
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    editor.addValidation({
+        key: 'r1',
+        type: 'hard',
+        rule: expWithArgs('hasResponse', itemSkeleton.key, responseGroupKey)
+    });
+
+    return editor.getItem();
+}
+
 
 const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
@@ -912,7 +1487,7 @@ const q1cNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
 
@@ -1067,7 +1642,7 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '2')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '2')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1076,7 +1651,7 @@ const q1dNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
         {
             key: '0', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -7776000) },
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
             content: new Map([
@@ -1117,7 +1692,7 @@ const q1eNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1166,7 +1741,7 @@ const q1fNL_def = (itemSkeleton: SurveyItem, q1aNLKey: string): SurveyItem => {
     );
 
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
+        expWithArgs('responseHasKeysAny', [q1aNLKey].join('.'), [responseGroupKey, multipleChoiceKey].join('.'), '1')
     )
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -1244,6 +1819,14 @@ const q10NL_def = (itemSkeleton: SurveyItem): SurveyItem => {
             content: new Map([
                 ["en", "Yes, I took time off work/school"],
                 ["nl", "Ja"],
+
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "Not applicable, I don't have work/school"],
+                ["nl", "Niet van toepassing, ik heb geen werk/school"],
 
             ])
         },
