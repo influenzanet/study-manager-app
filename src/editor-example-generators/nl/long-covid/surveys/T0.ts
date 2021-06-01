@@ -25,7 +25,7 @@ import { VaccinationGroup } from "../questions/vaccination";
 import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 import { surveyKeys } from "../studyRules";
 import { HealthGroup as ChildrenHealthGroup } from "../questions/for-children/health";
-import { UnderMinAgeGroup } from "../questions/for-children/underMinAgeInfos";
+import { IntroGroup as ChildrenGroupIntro } from "../questions/for-children/childGroupIntro";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -126,9 +126,10 @@ export const generateT0 = (): Survey | undefined => {
     const minAge = 4;
 
     // For children under 5
-    const infosForUnderMinAgeGroup = new UnderMinAgeGroup(childVersion.key);
-    infosForUnderMinAgeGroup.groupEditor.setCondition(participantInfos.isYounger(minAge, true));
-    childVersion.addItem(infosForUnderMinAgeGroup.getItem());
+    const introGroup = new ChildrenGroupIntro(childVersion.key, {
+        belowMinAge: participantInfos.isYounger(minAge, true)
+    });
+    childVersion.addItem(introGroup.getItem());
 
     // COVID test group for children
     const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(childVersion.key);
