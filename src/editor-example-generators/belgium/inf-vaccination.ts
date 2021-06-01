@@ -951,6 +951,23 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
+    editor.addValidation({
+        key: 'countRule',
+        type: 'hard',
+        rule: hasLessThanFourSelections
+    });
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["en", "Select up to maximum 3 options"],
+                ["nl-be", "Selecteer maximaal 3 opties"],
+                ["fr-be", "TO ADD"],
+                ["de-be", "TO ADD"],
+            ])),
+            displayCondition: hasMoreThanThree
+        }
+    );
 
     return editor.getItem();
 }
