@@ -24,7 +24,7 @@ import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
 import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 import { surveyKeys } from "../studyRules";
-import { HealthGroup as ChildrenHealthGroup } from "../questions/for-children/health";
+import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
 import { IntroGroup as ChildrenGroupIntro } from "../questions/for-children/childGroupIntro";
 
 
@@ -142,12 +142,12 @@ export const generateT0 = (): Survey | undefined => {
     });
     childVersion.addItem(childrenVaccinationGroupEditor.getItem());
 
-    // HealthGroup for children
-    const childrenHealthGroupEditor = new ChildrenHealthGroup(childVersion.key, {
+    // SymptomsGroup for children
+    const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(childVersion.key, {
         groupCondition: participantInfos.isOlder(minAge),
         olderThan10: participantInfos.isOlder(10),
     });
-    childVersion.addItem(childrenHealthGroupEditor.getItem());
+    childVersion.addItem(childrenSymptomsGroupEditor.getItem());
 
     // TODO: add further child questions
 
