@@ -26,6 +26,7 @@ import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-c
 import { surveyKeys } from "../studyRules";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
 import { IntroGroup as ChildrenGroupIntro } from "../questions/for-children/childGroupIntro";
+import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -148,6 +149,12 @@ export const generateT0 = (): Survey | undefined => {
         olderThan10: participantInfos.isOlder(10),
     });
     childVersion.addItem(childrenSymptomsGroupEditor.getItem());
+
+    // General Health for children
+    const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(minAge),
+    });
+    childVersion.addItem(childrenGeneralHealthGroupEditor.getItem());
 
     // TODO: add further child questions
 

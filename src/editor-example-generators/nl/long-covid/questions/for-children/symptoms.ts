@@ -73,7 +73,7 @@ export class SymptomsGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: health intro for children
+TODO: symptoms intro for children
                         `]
                     ])
                 })]
