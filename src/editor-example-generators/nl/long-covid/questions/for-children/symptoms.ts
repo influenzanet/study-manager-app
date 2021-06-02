@@ -7,6 +7,7 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 import { surveyKeys } from "../../studyRules";
 
 export class SymptomsGroup extends GroupItemEditor {
+    hasDifficultyBreathingExp: Expression;
 
     constructor(parentKey: string, conditions: {
         groupCondition: Expression,
@@ -22,6 +23,9 @@ export class SymptomsGroup extends GroupItemEditor {
         const Q1 = this.Q1("Q1", isRequired);
         const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'geen'
+        );
+        this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+            Q1.key, 'TODO: fix key for diffult breathing'
         );
 
         const hadReportedSymptomsInT0ButNotAnymore = CommonExpressions.and(

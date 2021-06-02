@@ -153,6 +153,8 @@ export const generateT0 = (): Survey | undefined => {
     // General Health for children
     const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(childVersion.key, {
         groupCondition: participantInfos.isOlder(minAge),
+        hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
+        youngerThan8: participantInfos.isYounger(8),
     });
     childVersion.addItem(childrenGeneralHealthGroupEditor.getItem());
 
