@@ -12,6 +12,7 @@ export class HealthGroup extends GroupItemEditor {
         groupCondition: Expression,
         hasDifficultyWithBreathing: Expression,
         youngerThan8: Expression,
+        youngerThan11: Expression,
         between8And12: Expression,
         between13And18: Expression,
     }) {
@@ -73,10 +74,17 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(new Q13Group(this.key, {
             groupCondition: conditions.between13And18,
         }).getItem());
+        this.addPageBreak();
 
         // Sterke kanten en moeilijkheden ---------
-        // TODO: Q14
-        // TODO: Q15
+        this.addItem(new Q14Group(this.key, {
+            groupCondition: conditions.youngerThan11,
+        }).getItem());
+
+        this.addItem(new Q15Group(this.key, {
+            groupCondition: CommonExpressions.not(conditions.youngerThan11)
+        }).getItem());
+        this.addPageBreak();
 
         // Eenzaamheid  ---------
         // TODO: Q16
@@ -1479,6 +1487,172 @@ TODO: Intro text for Q13 group
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "TODO: Q13.3"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+/**
+ * Sterke kanten en moeilijkheden [SDQ-4-16 ingekorte versie] [afnemen bij leeftijd 4-<11jr]
+ */
+class Q14Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q14';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('1', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro text for Q14 group: Sterke kanten en moeilijkheden [SDQ-4-16 ingekorte versie] [afnemen bij leeftijd 4-<11jr]
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q14.1: consider maybe breaking this question into some smaller ones?"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+/**
+ * Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen bij leeftijd 11-<18jr]
+ */
+class Q15Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q15';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('1', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen bij leeftijd 11-<18jr]
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q15.1: consider maybe breaking this question into some smaller ones?"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',

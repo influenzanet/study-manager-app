@@ -38,10 +38,12 @@ const hasParticipantFlag = (key: string, value: string) => expWithArgs('eq', exp
 
 const or = (...args: any[]) => expWithArgs('or', ...args);
 const and = (...args: any[]) => expWithArgs('and', ...args);
+const not = (arg: Expression) => expWithArgs('not', arg);
 
 export const CommonExpressions = {
     or,
     and,
+    not,
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     multipleChoiceOptionSelectedAll,

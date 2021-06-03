@@ -155,6 +155,7 @@ export const generateT0 = (): Survey | undefined => {
         groupCondition: participantInfos.isOlder(minAge),
         hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
         youngerThan8: participantInfos.isYounger(8),
+        youngerThan11: participantInfos.isYounger(11),
         between8And12: participantInfos.isBetweenAges(8, 12, true),
         between13And18: participantInfos.isBetweenAges(13, 18, true),
     });
