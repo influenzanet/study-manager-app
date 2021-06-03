@@ -47,6 +47,7 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.Q7('Q7', isRequired));
         this.addPageBreak();
 
+        // Functioneren ---------
         this.addItem(new Q8Group(this.key, {
             groupCondition: conditions.youngerThan8,
         }).getItem());
@@ -58,24 +59,32 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(new Q10Group(this.key, {
             groupCondition: conditions.between13And18,
         }).getItem());
+        this.addPageBreak();
 
-        // TODO: Q11
-        // TODO: Q12
-        // TODO: Q13
+        // Vermoeidheid ---------
+        /*this.addItem(new Q11Group(this.key, {
+            groupCondition: conditions.youngerThan8,
+        }).getItem());*/
+
+        /*this.addItem(new Q12Group(this.key, {
+            groupCondition: conditions.between8And12,
+        }).getItem());*/
+
+        /*this.addItem(new Q13Group(this.key, {
+            groupCondition: conditions.between13And18,
+        }).getItem());*/
+
+        // Sterke kanten en moeilijkheden ---------
         // TODO: Q14
         // TODO: Q15
+
+        // Eenzaamheid  ---------
         // TODO: Q16
         // TODO: Q17
+
+        // Pijn en verzuim
         // TODO: Q18
         // TODO: Q19
-        // TODO: Q20
-        // TODO: Q21
-        // TODO: Q22
-        // TODO: Q23
-        // TODO: Q24
-        // TODO: Q25
-
-
 
         this.addPageBreak();
     }
