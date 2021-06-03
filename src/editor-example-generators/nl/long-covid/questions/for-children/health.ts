@@ -87,13 +87,23 @@ export class HealthGroup extends GroupItemEditor {
         this.addPageBreak();
 
         // Eenzaamheid  ---------
-        // TODO: Q16
-        // TODO: Q17
+        this.addItem(new Q16Group(this.key, {
+            groupCondition: conditions.youngerThan8,
+        }).getItem());
+
+        this.addItem(new Q17Group(this.key, {
+            groupCondition: CommonExpressions.not(conditions.youngerThan8)
+        }).getItem());
+        this.addPageBreak();
 
         // Pijn en verzuim
-        // TODO: Q18
-        // TODO: Q19
+        this.addItem(new Q18Group(this.key, {
+            groupCondition: conditions.youngerThan8,
+        }).getItem());
 
+        this.addItem(new Q19Group(this.key, {
+            groupCondition: CommonExpressions.not(conditions.youngerThan8)
+        }).getItem());
         this.addPageBreak();
     }
 
@@ -1694,3 +1704,411 @@ TODO: Intro Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen
         });
     }
 }
+
+
+/**
+ * Eenzaamheid [PROMIS Short Form Depressive Symptoms- Proxy] [afnemen bij leeftijd 5-<8jr]
+ */
+class Q16Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q16';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('1', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms- Proxy] [afnemen bij leeftijd 5-<8jr]
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q16.1"]
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+/**
+ * Eenzaamheid [PROMIS Short Form Depressive Symptoms] [afnemen bij leeftijd 8-<18jr]
+ */
+class Q17Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q17';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('1', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms] [afnemen bij leeftijd 8-<18jr]
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q17.1"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+
+
+
+
+/**
+ * Pijn en verzuim [kids-VAS-pain-onder8jaar] [afnemen bij leeftijd <8jr]
+ */
+class Q18Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q18';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('1', isRequired));
+        this.addItem(this.Q2('2', isRequired));
+        this.addItem(this.Q3('3', isRequired));
+        this.addItem(this.Q4('4', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro Pijn en verzuim [kids-VAS-pain-onder8jaar] [afnemen bij leeftijd <8jr]
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericSlider({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Beoordeel je reukvermogen OP DIT MOMENT"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Mijn reukvermogen op dit moment: (geen reukvermogen 0 - uitstekend reukvermogen 100)."],
+            ]),
+            sliderLabel: new Map([
+                ["nl", "Jouw selectie:"],
+            ]),
+            noResponseLabel: new Map([
+                ["nl", "Beweeg de slider om je antwoord te geven"],
+            ]),
+            min: 0,
+            max: 100,
+        });
+    }
+
+    Q2(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Wat is het aantal lesuren per week  dat geroosterd is voor kinderen uit de klas van je kind?"],
+            ]),
+            content: new Map([
+                ['nl', 'hours']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 300
+            }
+        })
+    }
+
+
+    Q3(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft)"],
+            ]),
+            content: new Map([
+                ['nl', 'todo']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 300
+            }
+        })
+    }
+
+    Q4(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Hoeveel schoolverzuim heeft je kind het laatste half jaar ongeveer gehad?"],
+            ]),
+            content: new Map([
+                ['nl', 'todo']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 300
+            }
+        })
+    }
+}
+
+/**
+ * Pijn en verzuim [kids-VAS-pain-vanaf8jaar] [afnemen bij leeftijd 8-<18jr]
+ */
+class Q19Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q19';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('1', isRequired));
+        this.addItem(this.Q2('2', isRequired));
+        this.addItem(this.Q3('3', isRequired));
+        this.addItem(this.Q4('4', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro Pijn en verzuim [kids-VAS-pain-vanaf8jaar] [afnemen bij leeftijd 8-<18jr]
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericSlider({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Beoordeel je reukvermogen OP DIT MOMENT"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Mijn reukvermogen op dit moment: (geen reukvermogen 0 - uitstekend reukvermogen 100)."],
+            ]),
+            sliderLabel: new Map([
+                ["nl", "Jouw selectie:"],
+            ]),
+            noResponseLabel: new Map([
+                ["nl", "Beweeg de slider om je antwoord te geven"],
+            ]),
+            min: 0,
+            max: 100,
+        });
+    }
+
+    Q2(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Wat is het aantal lesuren per week  dat geroosterd is voor kinderen uit de klas van je kind?"],
+            ]),
+            content: new Map([
+                ['nl', 'hours']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 300
+            }
+        })
+    }
+
+
+    Q3(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft)"],
+            ]),
+            content: new Map([
+                ['nl', 'todo']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 300
+            }
+        })
+    }
+
+    Q4(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Hoeveel schoolverzuim heeft je kind het laatste half jaar ongeveer gehad?"],
+            ]),
+            content: new Map([
+                ['nl', 'todo']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 300
+            }
+        })
+    }
+}
+
