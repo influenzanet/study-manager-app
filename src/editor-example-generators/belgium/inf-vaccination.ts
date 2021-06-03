@@ -951,6 +951,13 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
+
+    const hasLessThanFourSelections = expWithArgs(
+        'lt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey]), 4
+    );
+    const hasMoreThanThree = expWithArgs(
+        'gt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey]), 3
+    );
     editor.addValidation({
         key: 'countRule',
         type: 'hard',
@@ -965,7 +972,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ["fr-be", "TO ADD"],
                 ["de-be", "TO ADD"],
             ])),
-            displayCondition: hasMoreThanThree
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'countRule'))
         }
     );
 
