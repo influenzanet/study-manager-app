@@ -953,10 +953,10 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     }
 
     const hasLessThanFourSelections = expWithArgs(
-        'lt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey]), 4
+        'lt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey].join('.')), 4
     );
     const hasMoreThanThree = expWithArgs(
-        'gt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey]), 3
+        'gt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey].join('.')), 3
     );
     editor.addValidation({
         key: 'countRule',
