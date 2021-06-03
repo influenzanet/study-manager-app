@@ -62,17 +62,17 @@ export class HealthGroup extends GroupItemEditor {
         this.addPageBreak();
 
         // Vermoeidheid ---------
-        /*this.addItem(new Q11Group(this.key, {
+        this.addItem(new Q11Group(this.key, {
             groupCondition: conditions.youngerThan8,
-        }).getItem());*/
+        }).getItem());
 
-        /*this.addItem(new Q12Group(this.key, {
+        this.addItem(new Q12Group(this.key, {
             groupCondition: conditions.between8And12,
-        }).getItem());*/
+        }).getItem());
 
-        /*this.addItem(new Q13Group(this.key, {
+        this.addItem(new Q13Group(this.key, {
             groupCondition: conditions.between13And18,
-        }).getItem());*/
+        }).getItem());
 
         // Sterke kanten en moeilijkheden ---------
         // TODO: Q14
@@ -934,6 +934,551 @@ TODO: Intro text for Q10 group
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "TODO: Q10.4"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+/**
+ *
+ */
+class Q11Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q11';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('algemene', isRequired));
+        this.addItem(this.Q2('slaap', isRequired));
+        this.addItem(this.Q3('cognitive', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro text for Q11 group
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q11.1"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q2(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q11.2"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q3(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q11.3"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+
+/**
+ *
+ */
+class Q12Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q12';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('algemene', isRequired));
+        this.addItem(this.Q2('slaap', isRequired));
+        this.addItem(this.Q3('cognitive', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro text for Q12 group
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q12.1"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q2(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q12.2"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q3(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q12.3"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+}
+
+
+/**
+ *
+ */
+class Q13Group extends GroupItemEditor {
+
+    constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
+    }) {
+        const groupKey = 'Q13';
+        super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
+
+        const isRequired = true;
+
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('algemene', isRequired));
+        this.addItem(this.Q2('slaap', isRequired));
+        this.addItem(this.Q3('cognitive', isRequired));
+    }
+
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+TODO: Intro text for Q13 group
+                        `]
+                    ])
+                })]
+        })
+    }
+
+    Q1(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q13.1"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q2(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q13.2"],
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "a"],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q3(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "TODO: Q13.3"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
