@@ -39,13 +39,13 @@ export class SymptomsGroup extends GroupItemEditor {
         )
 
         const Q6 = this.Q6('Q6', hasReportedSymptoms, isRequired);
-        const conditionQ6ziekenhuis = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ziekenhuis');
-        const conditionQ6nee = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'nee');
+        const conditionQ6ziekenhuis = CommonExpressions.multipleChoiceOptionsSelected(Q6.key, 'ziekenhuis');
+        const conditionQ6nee = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(Q6.key, 'nee');
         const Q7 = this.Q7('Q7', conditionQ6ziekenhuis, isRequired)
-        const conditionQ7KIC = CommonExpressions.multipleChoiceOptionsSelected(Q7.key, 'TODO')
+        const conditionQ7KIC = CommonExpressions.multipleChoiceOptionsSelected(Q7.key, 'picu')
 
-        const Q12 = this.Q12('Q12', conditionQ6ziekenhuis, isRequired)
-        const conditionQ12ja = CommonExpressions.multipleChoiceOptionsSelected(Q12.key, 'TODO')
+        const Q12 = this.Q12('Q12', hasReportedSymptoms, isRequired)
+        const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten')
 
         //
         this.addItem(this.groupIntro());
@@ -77,7 +77,8 @@ export class SymptomsGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: symptoms intro for children
+                         De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
+                          de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
@@ -89,7 +90,7 @@ TODO: symptoms intro for children
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "TODO: Q1: Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
+                ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
             ]),
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk."],
@@ -141,19 +142,25 @@ TODO: symptoms intro for children
                 {
                     key: 'kortademig', role: 'option',
                     content: new Map([
-                        ["nl", "Kortademig (snel buiten adem) of benauwd"],
+                        ["nl", "Moeite met ademen of benauwd"],
+                    ])
+                },
+                                {
+                    key: 'hoofdpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Hoofdpijn"],
                     ])
                 },
                 {
                     key: 'spierpijn', role: 'option',
                     content: new Map([
-                        ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
+                        ["nl", "Spierpijn of pijn aan mijn gewrichten (niet door sporten)"],
                     ])
                 },
                 {
                     key: 'beklemming_pijn_op_borst', role: 'option',
                     content: new Map([
-                        ["nl", "Beklemming of pijn op de borst"],
+                        ["nl", "Pijn op de borst"],
                     ])
                 },
                 {
@@ -163,28 +170,15 @@ TODO: symptoms intro for children
                     ])
                 },
                 {
-                    key: 'Hoofdpijn', role: 'option',
-                    content: new Map([
-                        ["nl", "Hoofdpijn"],
-                    ])
-                },
-                {
-                    key: 'long2', role: 'text',
-                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
-                    content: new Map([
-                        ["nl", "Selecteer je klachten"],
-                    ])
-                },
-                {
                     key: 'malaise', role: 'option',
                     content: new Map([
-                        ["nl", "Algehele malaise"],
+                        ["nl", "Niet lekker voelen (algehele malaise)"],
                     ])
                 },
                 {
                     key: 'eetlust', role: 'option',
                     content: new Map([
-                        ["nl", "Verminderde eetlust"],
+                        ["nl", "Minder trek hebben (verminderde eetlust)"],
                     ])
                 },
                 {
@@ -218,7 +212,7 @@ TODO: symptoms intro for children
                     ])
                 },
                 {
-                    key: 'diarree', role: 'option',
+                    key: 'andere-ontlasting', role: 'option',
                     content: new Map([
                         ["nl", "Andere ontlasting (zoals diarree, slijm of veranderd patroon)"],
                     ])
@@ -229,7 +223,6 @@ TODO: symptoms intro for children
                         ["nl", "Buikpijn"],
                     ])
                 },
-
                 {
                     key: 'geen_reuk', role: 'option',
                     content: new Map([
@@ -240,13 +233,6 @@ TODO: symptoms intro for children
                     key: 'geen_smaak', role: 'option',
                     content: new Map([
                         ["nl", "Geen smaak (of sterk verminderd)"],
-                    ])
-                },
-                {
-                    key: 'long', role: 'text',
-                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
-                    content: new Map([
-                        ["nl", "Selecteer je klachten"],
                     ])
                 },
                 {
@@ -262,61 +248,61 @@ TODO: symptoms intro for children
                     ])
                 },
                 {
-                    key: 'wintertenen', role: 'option',
+                    key:  'wintertenen', role: 'option',
                     content: new Map([
                         ["nl", "Wintertenen"],
                     ])
                 },
                 {
-                    key: 'hartkloppingen', role: 'option',
+                    key:  'hartkloppingen', role: 'option',
                     content: new Map([
                         ["nl", "Hartkloppingen"],
                     ])
                 },
                 {
-                    key: 'concentratieproblemen', role: 'option',
+                    key:  'concentratieproblemen', role: 'option',
                     content: new Map([
                         ["nl", "Concentratieproblemen"],
                     ])
                 },
                 {
-                    key: 'drukke_omgeving', role: 'option',
+                    key:  'drukke_omgeving', role: 'option',
                     content: new Map([
                         ["nl", "Moeite met drukke omgeving"],
                     ])
                 },
                 {
-                    key: 'slaapproblemen', role: 'option',
+                    key:  'slaapproblemen', role: 'option',
                     content: new Map([
                         ["nl", "Slaapproblemen"],
                     ])
                 },
                 {
-                    key: 'tintelingen', role: 'option',
+                    key:  'tintelingen', role: 'option',
                     content: new Map([
                         ["nl", "Tintelingen of gevoelloosheid"],
                     ])
                 },
                 {
-                    key: 'verwardheid', role: 'option',
+                    key:  'verwardheid', role: 'option',
                     content: new Map([
                         ["nl", "Verwardheid"],
                     ])
                 },
                 {
-                    key: 'brainfog', role: 'option',
+                    key:  'brainfog', role: 'option',
                     content: new Map([
-                        ["nl", "Brainfog / hersenmist"],
+                        ["nl", "Brainfog/ hersenmist"],
                     ])
                 },
                 {
-                    key: 'oorpijn', role: 'option',
+                    key:  'oorpijn', role: 'option',
                     content: new Map([
                         ["nl", "Oorpijn"],
                     ])
                 },
                 {
-                    key: 'oorsuizen', role: 'option',
+                    key:  'oorsuizen', role: 'option',
                     content: new Map([
                         ["nl", "Oorsuizen"],
                     ])
@@ -348,7 +334,7 @@ TODO: symptoms intro for children
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q2 - Op welke datum begonnen de eerste klachten (je mag de datum ook schatten)?"],
+                ["nl", "Op welke datum begonnen de eerste klachten (je mag de datum ook schatten)?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
@@ -366,7 +352,7 @@ TODO: symptoms intro for children
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q2b - Op welke datum begonnen de eerste klachten (je mag de datum ook schatten)?"],
+                ["nl", "TODO: Q2b - Op welke datum waren de klachten voorbij (je mag de datum ook schatten)? "],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
@@ -383,26 +369,43 @@ TODO: symptoms intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q3"],
+                ["nl", "Denk je dat deze klachten geheel of deels door het coronavirus komen? "],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: 'nee', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Nee"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: 'misschien', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Misschien"],
+                    ])
+                },
+                {
+                    key: 'waarschijnlijk', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, waarschijnlijk wel"],
+                    ])
+                },
+                {
+                    key: 'andere-oorzaak', role: 'input',
+                    content: new Map([
+                        ["nl", "Nee, andere oorzaak namelijk:"],
+                    ])
+                },
+                {
+                    key: 'weet-niet', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
-
 
 
     Q4(itemKey: string, condition: Expression, isRequired: boolean) {
@@ -412,10 +415,10 @@ TODO: symptoms intro for children
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: modify, this is just copy paste... Je hebt hierboven aangegeven dat je afgelopen week klachten had."],
+                ["nl", "De vragen hieronder zijn gericht aan een minderjarige. Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen."],
             ]),
             questionSubText: new Map([
-                ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
+                ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft. "],
             ]),
             scaleOptions: [
                 {
@@ -565,6 +568,7 @@ TODO: symptoms intro for children
             ]
         });
     }
+
 
     Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
@@ -573,10 +577,10 @@ TODO: symptoms intro for children
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: modify, this is just copy paste... Je hebt hierboven aangegeven dat je afgelopen week klachten had."],
+                ["nl", "LET OP: De vragen hieronder zijn voor een ouder/verzorger. Als je deze vragenlijst voor jezelf invult, vraag dan je ouder/verzorger de antwoorden op onderstaande vragen te geven."],
             ]),
             questionSubText: new Map([
-                ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
+                ["nl", "Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft. "],
             ]),
             scaleOptions: [
                 {
@@ -629,11 +633,11 @@ TODO: symptoms intro for children
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "Hoeveel beïnvloeden je klachten je leven?"],
+                        ["nl", "Hoeveel beïnvloeden de klachten van je kind je leven? "],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '0 helemaal geen invloed – 10 zeer veel invloed']
+                                ['nl', '-	0 helemaal geen invloed – 10 zeer veel invloed']
                             ]),
                             className: "fst-italic mb-1"
                         }),
@@ -641,11 +645,11 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'b', content: new Map([
-                        ["nl", "Hoe lang denk je dat je klachten zullen duren?"],
+                        ["nl", "Hoe lang denk je dat de klachten van je kind zullen duren? "],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '0 een zeer korte tijd – 10 mijn hele leven']
+                                ['nl', '0 een zeer korte tijd – 10 het hele leven']
                             ]),
                             className: "fst-italic mb-1"
                         }),
@@ -653,7 +657,7 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'c', content: new Map([
-                        ["nl", "Hoeveel controle vind je dat je hebt over je klachten?"],
+                        ["nl", "Hoeveel controle vind je dat je hebt over de klachten van je kind?"],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
@@ -665,11 +669,11 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'd', content: new Map([
-                        ["nl", "Hoeveel denk je dat een behandeling kan helpen bij je klachten?"],
+                        ["nl", "Hoeveel denk je dat de behandeling van je kind helpt bij de klachten?"],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '0 Helemaal niet -  10 zeer veel']
+                                ['nl', '0 helemaal niet-  10 zeer veel']
                             ]),
                             className: "fst-italic mb-1"
                         }),
@@ -677,11 +681,11 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'e', content: new Map([
-                        ["nl", "Hoe sterk ervaar je klachten?"],
+                        ["nl", "Hoe sterk ervaart je kind klachten?"],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '0 helemaal geen klachten - 10 veel ernstige klachten']
+                                ['nl', '0 helemaal geen klachten - 10 veel ernstige klachten ']
                             ]),
                             className: "fst-italic mb-1"
                         }),
@@ -689,11 +693,11 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'f', content: new Map([
-                        ["nl", "Hoe bezorgd ben je over je klachten?"],
+                        ["nl", "Hoe bezorgd ben je over de klachten van je kind?"],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '0 helemaal niet bezorgd - 10 zeer bezorgd']
+                                ['nl', '0 helemaal niet bezorgd - 10 zeer bezorgd ']
                             ]),
                             className: "fst-italic mb-1"
                         }),
@@ -701,7 +705,7 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'g', content: new Map([
-                        ["nl", "In welke mate vind je dat je je klachten begrijpt?"],
+                        ["nl", "In welke mate vind je dat je de klachten van je kind begrijpt?"],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
@@ -713,7 +717,7 @@ TODO: symptoms intro for children
                 },
                 {
                     key: 'h', content: new Map([
-                        ["nl", "Hoeveel invloed hebben de klachten op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
+                        ["nl", "Hoeveel invloed hebben de klachten van je kind op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
@@ -727,6 +731,7 @@ TODO: symptoms intro for children
         });
     }
 
+
     Q6(itemKey: string, condition: Expression, isRequired: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
@@ -734,7 +739,7 @@ TODO: symptoms intro for children
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q6: Heb je een arts gezien, gesproken of gebeld vanwege je klachten? En zo ja, waar?"],
+                ["nl", "Heb je een dokter gezien, gesproken of gebeld vanwege je klachten? En zo ja, waar? (meerdere antwoorden mogelijk) "],
             ]),
             topDisplayCompoments: [
                 {
@@ -746,38 +751,43 @@ TODO: symptoms intro for children
                 }
             ], responseOptions: [
                 {
-                    key: '0', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                    key: 'nee', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'),
+                    'nee'),
                     content: new Map([
                         ["nl", "Nee, ik heb geen medische hulp gezocht"],
                     ])
                 },
                 {
                     key: '1', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
+                    '5'),
                     content: new Map([
-                        ["nl", "Ja, bij de huisarts of huisarts assistent"],
+                        ["nl", "Ja, bij de huisarts of huisartsenpost"],
                     ])
                 },
                 {
                     key: '2', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
+                    '5'),
                     content: new Map([
-                        ["nl", "Ja, bij de eerste hulp van het ziekenhuis of de huisartsenpost"],
+                        ["nl", "Ja, bij de eerste hulp van het ziekenhuis"],
                     ])
                 },
                 {
-                    key: '3', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                    key: 'ziekenhuis', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
+                    '5'),
                     content: new Map([
                         ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
                     ])
                 },
                 {
-                    key: '4', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '5'),
+                    key: '4', role: 'input',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
+                    '5'),
                     content: new Map([
-                        ["nl", "Ja, ik heb andere medische hulp gezocht"],
+                        ["nl", "Ja, ik heb andere medische hulp gezocht, namelijk"],
                     ])
                 },
                 {
@@ -798,19 +808,25 @@ TODO: symptoms intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q7"],
+                ["nl", "Vink aan wat van toepassing is bij je ziekenhuisopname. Er zijn meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
-                    key: '1', role: 'option',
+                    key: 'picu', role: 'option',
                     content: new Map([
-                        ["nl", "1"],
+                        ["nl", "Ik ben op de Kinder Intensive Care (PICU/IC) opgenomen "],
                     ])
                 },
                 {
                     key: '2', role: 'option',
                     content: new Map([
-                        ["nl", "2"],
+                        ["nl", "Ik ben op de kinderafdeling opgenomen"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik heb zuurstof toegediend gekregen"],
                     ])
                 },
             ],
@@ -824,19 +840,19 @@ TODO: symptoms intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q8"],
+                ["nl", "Waarom was je op de Kinder Intensive Care (PICU/IC) opgenomen?"],
             ]),
             responseOptions: [
                 {
                     key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "1"],
+                        ["nl", "Ik had het inflammatoir syndroom (MIS-C)"],
                     ])
                 },
                 {
                     key: '2', role: 'option',
                     content: new Map([
-                        ["nl", "2"],
+                        ["nl", "Ik had COVID-19"],
                     ])
                 },
             ],
@@ -884,7 +900,7 @@ TODO: symptoms intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: check: Hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
+                ["nl", "Hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
             ]),
             responseOptions: [
                 {
@@ -1047,7 +1063,7 @@ TODO: symptoms intro for children
                     key: '5', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
                     content: new Map([
-                        ["nl", "Ja, medicijnen voor hooikoorts of astma (anti-allergie tablet of drank of allergie-neusspray)"],
+                        ["nl", "Ja, medicijnen voor hooikoorts (anti-allergie tablet of drank of allergie-neusspray) of astma"],
                     ])
                 },
                 {
@@ -1072,10 +1088,10 @@ TODO: symptoms intro for children
                     ])
                 },
                 {
-                    key: '9', role: 'option',
+                    key: '9', role: 'input',
                     disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
                     content: new Map([
-                        ["nl", "Ja, andere medicatie"],
+                        ["nl", "Ja, andere medicatie, namelijk"],
                     ])
                 },
                 {
@@ -1096,19 +1112,37 @@ TODO: symptoms intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q12"],
+                ["nl", "Heb je je in de afgelopen 7 dagen ziek gemeld van school of opleiding? "],
             ]),
             responseOptions: [
                 {
                     key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "1"],
+                        ["nl", "Nee"],
                     ])
                 },
                 {
                     key: '2', role: 'option',
                     content: new Map([
-                        ["nl", "2"],
+                        ["nl", "Nee, maar het had wel effect op mijn dagelijkse bezigheden"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, want met deze klachten/coronauitslag mag ik niet naar school "],
+                    ])
+                },
+                {
+                    key: 'ja-klachten', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, vanwege de klachten"],
+                    ])
+                },
+                {
+                    key: '5', role: 'option',
+                    content: new Map([
+                        ["nl", "Niet van toepassing, ik ga niet naar school of opleiding"],
                     ])
                 },
             ],
@@ -1122,19 +1156,55 @@ TODO: symptoms intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q13"],
+                ["nl", "Hoeveel dagen ben je ziek gemeld van school of opleiding? "],
             ]),
             responseOptions: [
                 {
                     key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "1"],
+                        ["nl", "1 dag"],
                     ])
                 },
                 {
                     key: '2', role: 'option',
                     content: new Map([
-                        ["nl", "2"],
+                        ["nl", "2 dagen"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "3 dagen"],
+                    ])
+                },
+                {
+                    key: '4', role: 'option',
+                    content: new Map([
+                        ["nl", "4 dagen"],
+                    ])
+                },
+                {
+                    key: '5', role: 'option',
+                    content: new Map([
+                        ["nl", "5 dagen"],
+                    ])
+                },
+                {
+                    key: '6', role: 'option',
+                    content: new Map([
+                        ["nl", "6 tot 10 dagen"],
+                    ])
+                },
+                {
+                    key: '7', role: 'option',
+                    content: new Map([
+                        ["nl", "11 tot 15 dagen"],
+                    ])
+                },
+                {
+                    key: '8', role: 'option',
+                    content: new Map([
+                        ["nl", "meer dan 15 dagen"],
                     ])
                 },
             ],
