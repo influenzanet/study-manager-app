@@ -4,6 +4,7 @@ import { SurveyItemGenerators } from "../../../../../editor-engine/utils/questio
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class CovidTestGroup extends GroupItemEditor {
+    q11JaSelectedExp: Expression;
 
     constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
@@ -20,6 +21,10 @@ export class CovidTestGroup extends GroupItemEditor {
         const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'TODO: add correct option key here');
         const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'TODO: add correct option key here');
 
+        const q11 = this.Q11('Q11', conditionQ7Nee, isRequired);
+        this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(
+            q11.key, 'ja'
+        );
 
         this.addItem(q1);
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
@@ -31,7 +36,7 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
         this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
         this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
-        this.addItem(this.Q11('Q11', conditionQ7Nee, isRequired));
+        this.addItem(q11);
 
         this.addPageBreak();
     }
@@ -313,13 +318,13 @@ export class CovidTestGroup extends GroupItemEditor {
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: 'ja', role: 'option',
                     content: new Map([
                         ["nl", "Ja"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: 'nee', role: 'option',
                     content: new Map([
                         ["nl", "Nee"],
                     ])

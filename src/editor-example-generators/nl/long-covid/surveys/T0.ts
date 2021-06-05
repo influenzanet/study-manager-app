@@ -27,6 +27,7 @@ import { surveyKeys } from "../studyRules";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
 import { IntroGroup as ChildrenGroupIntro } from "../questions/for-children/childGroupIntro";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
+import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -121,6 +122,7 @@ export const generateT0 = (): Survey | undefined => {
 
     // ===========================
     // CHILD QUESTIONS BRANCH
+    // -------------------------->
     const childVersion = new GroupItemEditor(surveyKey, 'C');
     childVersion.groupEditor.setCondition(isChildParticipant);
 
@@ -161,13 +163,22 @@ export const generateT0 = (): Survey | undefined => {
     });
     childVersion.addItem(childrenGeneralHealthGroupEditor.getItem());
 
-    // TODO: add further child questions
+    // General Data for children
+    const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(childVersion.key, {
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    childVersion.addItem(childrenGeneralDataGroupEditor.getItem());
+
+    // <--------------------------
+    // END OF CHILD QUESTIONS BRANCH
+    // ===========================
 
 
+    // Add adult and children groups to the survey:
     surveyEditor.addSurveyItemToRoot(adultVersion.getItem());
     surveyEditor.addSurveyItemToRoot(childVersion.getItem());
 
-
+    // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
         ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
     ])));
