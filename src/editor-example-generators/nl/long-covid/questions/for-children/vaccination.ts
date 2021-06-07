@@ -58,9 +58,15 @@ TODO: vaccination intro for children
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "TODO: Q1"],
+                ["nl", "Heb je een vaccinatie tegen het coronavirus gehad? "],
             ]),
             responseOptions: [
+                {
+                    key: 'no', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
                 {
                     key: 'yes', role: 'option',
                     content: new Map([
@@ -68,9 +74,9 @@ TODO: vaccination intro for children
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: 'dontknow', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
