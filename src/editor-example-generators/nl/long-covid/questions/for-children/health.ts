@@ -1556,11 +1556,15 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -1571,21 +1575,52 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "a"],
+                        ["nl", "Het is voor mij moeilijk om meer dan één straat op en neer te lopen"],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Het is voor mij moeilijk om te rennen"],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Het is voor mij moeilijk om te sporten of lichamelijke oefeningen te doen"],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Het is voor mij moeilijk om iets zwaars op te tillen"],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Het is voor mij moeilijk om zelfstandig een bad of douche te nemen"],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Het is voor mij moeilijk om karweitjes rond het huis te doen"],
+                    ])
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "Ik heb wondjes of pijn"],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Ik heb weinig energie"],
                     ])
                 },
             ]
@@ -1598,17 +1633,21 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Over mijn gevoelens (problemen met ... )"],
+                ["nl", "Over mijn gevoelens (problemen met ... )"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -1619,21 +1658,37 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
-                    key: 'a', content: new Map([
-                        ["nl", "a"],
+                    key: 'i', content: new Map([
+                        ["nl", "Ik voel me angstig of bang"],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Ik voel me verdrietig of somber"],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Ik voel me boos"],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Ik heb moeite met slapen"],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Ik maak me zorgen over wat mij zal overkomen"],
                     ])
                 },
             ]
@@ -1652,11 +1707,15 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -1667,21 +1726,37 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
-                    key: 'a', content: new Map([
-                        ["nl", "a"],
+                    key: 'n', content: new Map([
+                        ["nl", "Ik heb problemen om met andere tieners op te schieten"],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Andere tieners willen mijn vriend(in) niet zijn"],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Andere tieners pesten mij"],
+                    ])
+                },
+                {
+                    key: 'q', content: new Map([
+                        ["nl", "Ik kan bepaalde dingen niet die andere tieners van mijn leeftijd wel kunnen"],
+                    ])
+                },
+                {
+                    key: 'r', content: new Map([
+                        ["nl", "Het is moeilijk om mee te kunnen blijven doen met mijn leeftijdsgenoten	"],
                     ])
                 },
             ]
@@ -1694,17 +1769,21 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Over school (problemen met ... )"],
+                ["nl", "Over school (problemen met ... )"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -1715,21 +1794,37 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
-                    key: 'a', content: new Map([
-                        ["nl", "a"],
+                    key: 's', content: new Map([
+                        ["nl", "Het is moeilijk om op te letten tijdens de les"],
+                    ])
+                },
+                {
+                    key: 't', content: new Map([
+                        ["nl", "Ik vergeet dingen"],
+                    ])
+                },
+                {
+                    key: 'u', content: new Map([
+                        ["nl", "Ik heb moeite om mijn huiswerk bij te houden"],
+                    ])
+                },
+                {
+                    key: 'v', content: new Map([
+                        ["nl", "Ik ga niet naar school, omdat ik me niet lekker voel"],
+                    ])
+                },
+                {
+                    key: 'w', content: new Map([
+                        ["nl", "Ik ga niet naar school, omdat ik naar de dokter of het ziekenhuis moet"],
                     ])
                 },
             ]
