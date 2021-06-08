@@ -3143,7 +3143,7 @@ TODO: Intro Pijn en verzuim [kids-VAS-pain-onder8jaar] [afnemen bij leeftijd <8j
             contentBehindInput: true,
             componentProperties: {
                 min: 0,
-                max: 300
+                max: 40
             }
         })
     }
