@@ -2693,7 +2693,13 @@ class Q14Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro text for Q14 group: Sterke kanten en moeilijkheden [SDQ-4-16 ingekorte versie] [afnemen bij leeftijd 4-<11jr]
+De vragen hieronder zijn voor een ouder/verzorger.
+
+Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
+
+Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
+Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste zes maanden.
                         `]
                     ])
                 })]
@@ -2712,36 +2718,33 @@ TODO: Intro text for Q14 group: Sterke kanten en moeilijkheden [SDQ-4-16 ingekor
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: Lola check formatting"],
                 ]))
             }],
             scaleOptions: [
                 {
                     key: '1', content: new Map([
-                        ["nl", "1"],
+                        ["nl", "Niet waar"],
                     ])
                 }, {
                     key: '2', content: new Map([
-                        ["nl", "2"],
+                        ["nl", "Een beetje waar"],
                     ])
                 }, {
                     key: '3', content: new Map([
-                        ["nl", "3"],
-                    ])
-                }, {
-                    key: '4', content: new Map([
-                        ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
+                        ["nl", "Zeker waar"],
                     ])
                 },
             ],
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "a"],
+                        ["nl", "Houdt rekening met gevoelens van anderen"],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Rusteloos, overactief, kan niet lang stilzitten  "],
                     ])
                 },
             ]
@@ -2873,13 +2876,17 @@ TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms- Proxy] [afnemen 
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q16.1"]
+                ["nl", `
+Geef een reactie op elke vraag of uitspraak door per rij een bolletje aan te klikken.
+
+Geef alstublieft antwoord voor de afgelopen 7 dagen.
+`]
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak, 5 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2908,7 +2915,32 @@ TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms- Proxy] [afnemen 
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "a"],
+                        ["nl", "Mijn kind bleef zich maar verdrietig voelen."],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Mijn kind had het gevoel dat alles in zijn/haar leven misging."],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Mijn kind had het gevoel alsof hij/zij niets goed kon doen."],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Mijn kind voelde zich alleen."],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Mijn kind voelde zich verdrietig."],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Plezier hebben was moeilijk voor mijn kind."],
                     ])
                 },
             ]
