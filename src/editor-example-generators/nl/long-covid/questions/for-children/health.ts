@@ -126,39 +126,398 @@ TODO: health intro for children
      *
      */
     Q0(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
             itemKey: itemKey,
+            isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q0"],
+                ["nl", "De  vragen hieronder gaan over de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen."],
             ]),
-            responseOptions: [
+            questionSubText: new Map([
+                ["nl", "Of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek."],
+            ]),
+            scaleOptions: [
                 {
-                    key: 'todo', role: 'option',
-                    content: new Map([
-                        ["nl", "TODO"],
+                    key: '0', content: new Map([
+                        ["nl", "0"],
                     ])
                 },
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ]),
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                }, {
+                    key: '6', content: new Map([
+                        ["nl", "6"],
+                    ])
+                }, {
+                    key: '7', content: new Map([
+                        ["nl", "7"],
+                    ])
+                }, {
+                    key: '8', content: new Map([
+                        ["nl", "8"],
+                    ])
+                }, {
+                    key: '9', content: new Map([
+                        ["nl", "9"],
+                    ])
+                }, {
+                    key: '10', content: new Map([
+                        ["nl", "10"],
+                    ])
+                }
             ],
-            isRequired: isRequired,
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "Hoe ernstig was je vermoeidheid?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', 'Geef aan op een schaal van 0 (niet vermoeid) tot 10 (ernstig vermoeid)']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Hoe ernstig waren je pijnklachten?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', 'Geef aan op een schaal van 0 (geen pijnklachten) tot 10 (ernstige pijnklachten)']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Hoe ernstig waren je concentratiestoornissen?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', 'Geef aan op een schaal van 0 (geen concentratiestoornissen) tot 10 (ernstige concentratiestoornissen)']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Hoe ernstig waren je benauwdheid/kortademigheid?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', 'Geef aan op een schaal van 0 (niet benauwd / kortademig) tot 10 (ernstig benauwd / kortademig)']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+            ]
         });
     }
 
     /**
     *
     */
-    Q1(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+    Q1(itemKey: string, isRequired?: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
+
+        return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "TODO: Q1"],
+                ["nl", "De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind."],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk)."],
             ]),
             responseOptions: [
                 {
-                    key: 'todo', role: 'option',
+                    key: 'long-hoofd', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
                     content: new Map([
-                        ["nl", "TODO"],
+                        ["nl", "Longen en hoofdholten"],
+                    ]),
+                },
+                {
+                    key: 'astma', role: 'option',
+                    content: new Map([
+                        ["nl", "Astma"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'luchtweginfecties', role: 'option',
+                    content: new Map([
+                        ["nl", "Recidiverende luchtweginfecties of recidiverende bronchitis"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'longaandoening', role: 'option',
+                    content: new Map([
+                        ["nl", "Andere chronische longaandoening (brede groep), zoals taaislijmziekte (CF), trilhaarfunctieprobleem (PCD), luchtwegmalacie"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'ontsteking', role: 'option',
+                    content: new Map([
+                        ["nl", "Ontsteking van de neusbijholte, voorhoofdsholte of kaakholten"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'hooikoorts', role: 'option',
+                    content: new Map([
+                        ["nl", "Hooikoortsklachten"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'hart-bloedvaten', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Hart en bloedvaten"],
+                    ]),
+                },
+                {
+                    key: 'hart', role: 'option',
+                    content: new Map([
+                        ["nl", "Aangeboren hartafwijking"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'maag-darmen', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Maag en darmen"],
+                    ]),
+                },
+                {
+                    key: 'chronisch', role: 'option',
+                    content: new Map([
+                        ["nl", "Chronische darmontsteking (ziekte van Crohn of colitis ulcerosa)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'obstipatie', role: 'option',
+                    content: new Map([
+                        ["nl", "Obstipatie"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'buikpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Functionele buikpijn"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'diarree', role: 'option',
+                    content: new Map([
+                        ["nl", "Chronische diarree"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'glutenallergie', role: 'option',
+                    content: new Map([
+                        ["nl", "Glutenallergie (coeliakie)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'galblaas', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Galblaas, lever en nieren"],
+                    ]),
+                },
+                {
+                    key: 'nierziekte', role: 'option',
+                    content: new Map([
+                        ["nl", "Aangeboren nierziekte en/of dialyse"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'andere', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Andere ziektes"],
+                    ]),
+                },
+                {
+                    key: 'suikerziekte', role: 'option',
+                    content: new Map([
+                        ["nl", "Suikerziekte"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'schildklierafwijking', role: 'option',
+                    content: new Map([
+                        ["nl", "Schildklierafwijking"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'stofwisselingsziektes', role: 'option',
+                    content: new Map([
+                        ["nl", "Stofwisselingsziektes (metabole stoornis)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'rug', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Rug en gewrichten"],
+                    ]),
+                },
+                {
+                    key: 'gewrichten', role: 'option',
+                    content: new Map([
+                        ["nl", "Gewrichtsontsteking (reuma)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'zenuwstelsel', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Zenuwstelsel"],
+                    ]),
+                },
+                {
+                    key: 'epilipsie', role: 'option',
+                    content: new Map([
+                        ["nl", "Epilepsie"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'hoofdpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Hoofdpijn of migraine"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'ontwikkelingsachterstand', role: 'option',
+                    content: new Map([
+                        ["nl", "Ontwikkelingsachterstand"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'spierziekte', role: 'option',
+                    content: new Map([
+                        ["nl", "Spierziekte"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'andere2', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Andere lichamelijke of psychische problemen"],
+                    ]),
+                },
+                {
+                    key: 'kanker', role: 'option',
+                    content: new Map([
+                        ["nl", "Kwaadaardige aandoening of kanker"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'eczeem', role: 'option',
+                    content: new Map([
+                        ["nl", "Chronische huidziekte of eczeem"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'letsel', role: 'option',
+                    content: new Map([
+                        ["nl", "Letsel door ongeluk in en om huis sport, school, werk of in het verkeer"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'afweer', role: 'option',
+                    content: new Map([
+                        ["nl", "Afweerstoornis (zoals aangeboren stoornis in de afweer, gebruik afweerremmende medicijnen, enz.)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'transplantatie', role: 'option',
+                    content: new Map([
+                        ["nl", "Ondergaan van transplantatie"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'vermoeidheid', role: 'option',
+                    content: new Map([
+                        ["nl", "Ernstige vermoeidheid, langer dan 3 maanden"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'pijnklachten', role: 'option',
+                    content: new Map([
+                        ["nl", "Ernstige pijnklachten, langer dan 3 maanden"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'concentratiestoornissen', role: 'option',
+                    content: new Map([
+                        ["nl", "Ernstige concentratiestoornissen, langer dan 3 maanden"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'long3', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Vink aan als geen van bovenstaande van toepassing is"],
+                    ]),
+
+                },
+                {
+                    key: 'geen', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, itemKey].join('.'), 'geen'),
+                    content: new Map([
+                        ["nl", "Geen van de bovenstaande"],
                     ])
                 },
             ],
