@@ -559,12 +559,11 @@ TODO: health intro for children
     */
     //TODO there should be a condition that if a key is selected, the numberInput cannot be 0
     //TODO can the input box be directly behind the text and have a text after the box? E.g. Huisarts <box> keer
-    //TODO how to get an umlaut in the text? e.g. di\"etist does not work
     Q3(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
-                min: 1,
-                max: 365
-            };
+            min: 1,
+            max: 365
+        };
         const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
@@ -593,7 +592,7 @@ TODO: health intro for children
                 {
                     key: 'dietist', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Di\"etist"],
+                        ["nl", "Diëtist"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -740,9 +739,9 @@ TODO: health intro for children
     *
     */
     Q7(itemKey: string, isRequired: boolean) {
-    // TODO text above question
-    // De vragen hieronder zijn gericht aan een minderjarige.
-    // Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+        // TODO text above question
+        // De vragen hieronder zijn gericht aan een minderjarige.
+        // Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -845,7 +844,7 @@ Er zijn geen goede of foute antwoorden.
                         `]
                     ])
                 }),
-               ]
+            ]
         })
     }
     //TODO The last sentence of above text should be in separate text box
@@ -1002,7 +1001,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q8n - L4q8r
+    // L4q8n - L4q8r
     Q83(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1070,7 +1069,7 @@ Er zijn geen goede of foute antwoorden.
             ]
         });
     }
-// L4q8s-L4q8w
+    // L4q8s-L4q8w
     Q84(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1195,7 +1194,7 @@ Er zijn geen goede of foute antwoorden.
                 })]
         })
     }
-// L4q9a-L4q9h
+    // L4q9a-L4q9h
     Q1(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1280,7 +1279,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q9j - L4q9m
+    // L4q9j - L4q9m
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1349,7 +1348,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-//L4q9n - L4q9r
+    //L4q9n - L4q9r
     Q3(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1418,7 +1417,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q9s - L4q9w
+    // L4q9s - L4q9w
     Q4(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1543,7 +1542,7 @@ Er zijn geen goede of foute antwoorden.
         })
     }
 
-// L4q10a - L4q10h
+    // L4q10a - L4q10h
     Q1(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1888,7 +1887,7 @@ Er zijn geen goede of foute antwoorden.
         })
     }
 
-// L4q11a -L4q11f
+    // L4q11a -L4q11f
     Q1(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1962,7 +1961,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L411g - L4q11l
+    // L411g - L4q11l
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2036,7 +2035,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q12m - L4q12r
+    // L4q12m - L4q12r
     Q3(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2166,7 +2165,7 @@ Er zijn geen goede of foute antwoorden.
         })
     }
 
-// L4q13a - L4q13f
+    // L4q13a - L4q13f
     Q1(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2234,13 +2233,13 @@ Er zijn geen goede of foute antwoorden.
                 {
                     key: 'f', content: new Map([
                         ["nl", "Ik vind het lastig dingen te beginnen"],
-                     ])
+                    ])
                 },
             ]
         });
     }
 
-// L4q13g - L4q13l
+    // L4q13g - L4q13l
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2314,7 +2313,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q13m - L4q13r
+    // L4q13m - L4q13r
     Q3(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2443,7 +2442,7 @@ Er zijn geen goede of foute antwoorden.
                 })]
         })
     }
-// L4q13a - L4q13f
+    // L4q13a - L4q13f
     Q1(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2517,7 +2516,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q13q - L4q13l
+    // L4q13q - L4q13l
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -2591,7 +2590,7 @@ Er zijn geen goede of foute antwoorden.
         });
     }
 
-// L4q13m-L4q13r
+    // L4q13m-L4q13r
     Q3(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -3246,8 +3245,8 @@ TODO: Intro Pijn en verzuim [kids-VAS-pain-vanaf8jaar] [afnemen bij leeftijd 8-<
             max: 10, // TODO can the min and max have a label in the slider?
         });
     }
-// TODO add text  above the following three questionS
-// De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+    // TODO add text  above the following three questionS
+    // De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,
