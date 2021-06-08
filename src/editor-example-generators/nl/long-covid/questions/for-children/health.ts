@@ -2456,11 +2456,15 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -2471,21 +2475,42 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "a"],
+                        ["nl", "Ik voel me moe"],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Ik voel me lichamelijk zwak (niet sterk)"],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Ik voel me te moe om dingen te doen die ik leuk vind"],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Ik voel me te moe om tijd met mijn vrienden door te brengen"],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Ik vind het lastig dingen af te maken"],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Ik vind het lastig dingen te beginnen"],
                     ])
                 },
             ]
@@ -2499,17 +2524,21 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Slaap/Rust vermoeidheid (problemen met...)"],
+                ["nl", "Slaap/Rust vermoeidheid (problemen met...)"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -2520,21 +2549,42 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
-                    key: 'a', content: new Map([
-                        ["nl", "a"],
+                    key: 'g', content: new Map([
+                        ["nl", "Ik slaap veel"],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Het is moeilijk voor me om ‘s nachts door te slapen"],
+                    ])
+                },
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Ik voel me moe als ik ‘s ochtends wakker word"],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Ik rust veel"],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Ik doe veel dutjes"],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Ik breng veel tijd door in bed"],
                     ])
                 },
             ]
@@ -2554,11 +2604,15 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
                 {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                }, {
                     key: '1', content: new Map([
                         ["nl", "1"],
                     ])
@@ -2569,21 +2623,42 @@ Er zijn geen goede of foute antwoorden.
                 }, {
                     key: '3', content: new Map([
                         ["nl", "3"],
-                    ])
+                    ]),
                 }, {
                     key: '4', content: new Map([
                         ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
                     ])
                 },
             ],
             rows: [
                 {
-                    key: 'a', content: new Map([
-                        ["nl", "a"],
+                    key: 'm', content: new Map([
+                        ["nl", "Ik heb moeite mijn aandacht bij dingen te houden"],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Het is moeilijk voor me te onthouden wat mensen me vertellen"],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Het is moeilijk voor me te onthouden wat ik net gehoord heb"],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Het is moeilijk voor me om snel te denken"],
+                    ])
+                },
+                {
+                    key: 'q', content: new Map([
+                        ["nl", "Ik vind het lastig om te onthouden waar ik net aan dacht"],
+                    ])
+                },
+                {
+                    key: 'r', content: new Map([
+                        ["nl", "Ik vind het lastig om meer dan één ding tegelijk te onthouden"],
                     ])
                 },
             ]
