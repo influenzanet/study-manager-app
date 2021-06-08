@@ -2994,7 +2994,7 @@ TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms] [afnemen bij lee
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", "TODO: 1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak, 5 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -3022,8 +3022,43 @@ TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms] [afnemen bij lee
             ],
             rows: [
                 {
-                    key: 'a', content: new Map([
-                        ["nl", "a"],
+                    key: 'g', content: new Map([
+                        ["nl", "Ik bleef me maar verdrietig voelen."],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Ik voelde me alleen."],
+                    ])
+                },
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Ik had het gevoel dat alles in mijn leven misging."],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Ik had het gevoel alsof ik niets goed kon doen."],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Ik voelde me eenzaam."],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Ik voelde me verdrietig."],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Ik voelde me ongelukkig."],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Plezier hebben was moeilijk voor mij."],
                     ])
                 },
             ]
