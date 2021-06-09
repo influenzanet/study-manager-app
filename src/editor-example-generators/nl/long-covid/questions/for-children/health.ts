@@ -2711,13 +2711,13 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q14.1: consider maybe breaking this question into some smaller ones?"],
+                ["nl", ""],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: Lola check formatting"],
+                    ["nl", ""],
                 ]))
             }],
             scaleOptions: [
@@ -2743,7 +2743,122 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
                 },
                 {
                     key: 'b', content: new Map([
-                        ["nl", "Rusteloos, overactief, kan niet lang stilzitten  "],
+                        ["nl", "Rusteloos, overactief, kan niet lang stilzitten"],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Klaagt vaak over hoofdpijn, buikpijn, of misselijkheid"],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Deelt makkelijk met andere kinderen (bijvoorbeeld speelgoed, snoep, potloden, enz.)"],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Heeft vaak driftbuien of woede-uitbarstingen"],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Nogal op zichzelf, neigt er toe alleen te spelen"],
+                    ])
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "Doorgaans gehoorzaam, doet gewoonlijk wat volwassenen vragen"],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Heeft veel zorgen, lijkt vaak over dingen in te zitten"],
+                    ])
+                },
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Behulpzaam als iemand zich heeft bezeerd, van streek is of zich ziek voelt "],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Constant aan het wiebelen of friemelen  "],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Heeft minstens één goede vriend of vriendin  "],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Vecht vaak met andere kinderen of pest ze  "],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Vaak ongelukkig, in de put of in tranen"],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Wordt over het algemeen aardig gevonden door andere kinderen"],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Gemakkelijk afgeleid, heeft moeite om zich te concentreren"],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Zenuwachtig of zich vastklampend in nieuwe situaties, verliest makkelijk zelfvertrouwen"],
+                    ])
+                },
+                {
+                    key: 'q', content: new Map([
+                        ["nl", "Aardig tegen jongere kinderen"],
+                    ])
+                },
+                {
+                    key: 'r', content: new Map([
+                        ["nl", "Liegt of bedriegt vaak"],
+                    ])
+                },
+                {
+                    key: 's', content: new Map([
+                        ["nl", "Wordt getreiterd of gepest door andere kinderen"],
+                    ])
+                },
+                {
+                    key: 't', content: new Map([
+                        ["nl", "Biedt vaak vrijwillig hulp aan anderen (ouders, leerkrachten, andere kinderen)"],
+                    ])
+                },
+                {
+                    key: 'u', content: new Map([
+                        ["nl", "Denkt na voor iets te doen"],
+                    ])
+                },
+                {
+                    key: 'v', content: new Map([
+                        ["nl", "Pikt dingen thuis, op school of op andere plaatsen"],
+                    ])
+                },
+                {
+                    key: 'w', content: new Map([
+                        ["nl", "Kan beter opschieten met volwassenen dan met andere kinderen"],
+                    ])
+                },
+                {
+                    key: 'x', content: new Map([
+                        ["nl", "Voor heel veel bang, is snel angstig"],
+                    ])
+                },
+                {
+                    key: 'y', content: new Map([
+                        ["nl", "Maakt opdrachten af, kan de aandacht goed vasthouden "],
                     ])
                 },
             ]
@@ -2778,7 +2893,12 @@ class Q15Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen bij leeftijd 11-<18jr]
+                        De vragen hieronder zijn gericht aan een minderjarige. 
+                        Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
+
+                        Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'. 
+                        Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt. 
+                        Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.                        
                         `]
                     ])
                 })]
@@ -2791,42 +2911,154 @@ TODO: Intro Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q15.1: consider maybe breaking this question into some smaller ones?"],
+                ["nl", ""],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", ""],
                 ]))
             }],
             scaleOptions: [
                 {
                     key: '1', content: new Map([
-                        ["nl", "1"],
+                        ["nl", "Niet waar"],
                     ])
                 }, {
                     key: '2', content: new Map([
-                        ["nl", "2"],
+                        ["nl", "Een beetje waar"],
                     ])
                 }, {
                     key: '3', content: new Map([
-                        ["nl", "3"],
-                    ])
-                }, {
-                    key: '4', content: new Map([
-                        ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
+                        ["nl", "Zeker waar"],
                     ])
                 },
             ],
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "a"],
+                        ["nl", "Ik probeer aardig te zijn tegen anderen. Ik houd rekening met hun gevoelens"],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Ik ben rusteloos, ik kan niet lang stilzitten "],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Ik heb vaak hoofdpijn, buikpijn, of ik ben misselijk  "],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Ik deel makkelijk met anderen (snoep, speelgoed, potloden, enz.) "],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Ik word erg boos en ben vaak driftig"],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Ik ben nogal op mijzelf. Ik speel meestal alleen of bemoei mij niet met anderen"],
+                    ])
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "Ik doe meestal wat me wordt opgedragen  	"],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Ik pieker veel  		"],
+                    ])
+                },
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Ik help iemand die zich heeft bezeerd, van streek is of zich ziek voelt "],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Ik zit constant te wiebelen of te friemelen  		"],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Ik heb minstens één goede vriend of vriendin  "],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Ik vecht vaak. Het lukt mij andere mensen te laten doen wat ik wil  "],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Ik ben vaak ongelukkig, in de put of in tranen  "],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Andere jongeren van mijn leeftijd vinden mij over het algemeen aardig   "],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Ik ben snel afgeleid, ik vind het moeilijk om me te concentreren   "],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Ik ben zenuwachtig in nieuwe situaties. Ik verlies makkelijk mijn zelfvertrouwen "],
+                    ])
+                },
+                {
+                    key: 'q', content: new Map([
+                        ["nl", "Ik ben aardig tegen jongere kinderen 		"],
+                    ])
+                },
+                {
+                    key: 'r', content: new Map([
+                        ["nl", "Ik word er vaak van beschuldigd dat ik lieg of bedrieg  "],
+                    ])
+                },
+                {
+                    key: 's', content: new Map([
+                        ["nl", "Andere kinderen of jongeren pesten of treiteren mij  	"],
+                    ])
+                },
+                {
+                    key: 't', content: new Map([
+                        ["nl", "Ik bied vaak anderen aan hun te helpen (ouders, leerkrachten, kinderen)"],
+                    ])
+                },
+                {
+                    key: 'u', content: new Map([
+                        ["nl", "Ik denk na voor ik iets doe  	"],
+                    ])
+                },
+                {
+                    key: 'v', content: new Map([
+                        ["nl", "Ik neem dingen weg die niet van mij zijn thuis, op school of op andere plaatsen"],
+                    ])
+                },
+                {
+                    key: 'w', content: new Map([
+                        ["nl", "Ik kan beter met volwassenen opschieten dan met jongeren van mijn leeftijd "],
+                    ])
+                },
+                {
+                    key: 'x', content: new Map([
+                        ["nl", "Ik ben voor heel veel dingen bang, ik ben snel angstig"],
+                    ])
+                },
+                {
+                    key: 'y', content: new Map([
+                        ["nl", "Ik maak af waar ik mee bezig ben. Ik kan mijn aandacht er goed bij houden "],
                     ])
                 },
             ]
