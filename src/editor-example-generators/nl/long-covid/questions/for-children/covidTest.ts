@@ -50,7 +50,7 @@ export class CovidTestGroup extends GroupItemEditor {
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt lolatest?"],
+                ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt?"],
             ]),
             responseOptions: [
                 {
