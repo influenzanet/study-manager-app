@@ -537,7 +537,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             itemKey: itemKey,
             questionText: new Map([
                 ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
-            ]), // TODO how to make "afgelopen 3 maanden" boldface?
+            ]),
             responseOptions: [
                 {
                     key: 'ja', role: 'option',
@@ -559,8 +559,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
     *
     */
-    //TODO there should be a condition that if a key is selected, the numberInput cannot be 0
-    //TODO can the input box be directly behind the text and have a text after the box? E.g. Huisarts <box> keer
+    //TODO Peter there should be a condition that if a key is selected, the numberInput cannot be 0
     Q3(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
@@ -578,7 +577,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'huisarts', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Huisarts"],
+                        ["nl", "Huisarts. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -586,7 +585,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'kinderarts', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Kinderarts"],
+                        ["nl", "Kinderarts. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -594,7 +593,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'dietist', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Diëtist"],
+                        ["nl", "Diëtist. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -602,7 +601,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'ergotherapeut', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Ergotherapeut"],
+                        ["nl", "Ergotherapeut. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -610,7 +609,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'fysiotherapeut', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Fysiotherapeut"],
+                        ["nl", "Fysiotherapeut. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -618,7 +617,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'homeopaat', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Homeopaat"],
+                        ["nl", "Homeopaat. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -626,7 +625,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'logopedist', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Logopedist"],
+                        ["nl", "Logopedist. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -634,7 +633,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'maatschappelijk-werker', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Maatschappelijk werker"],
+                        ["nl", "Maatschappelijk werker. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -642,7 +641,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'psycholoog', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Psycholoog"],
+                        ["nl", "Psycholoog. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -650,7 +649,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'anders', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Andere zorgverlener of specialist, namelijk"],
+                        ["nl", "Andere zorgverlener of specialist. Aantal keer: "],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -669,7 +668,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             itemKey: itemKey,
             questionText: new Map([
                 ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener anders dan voor corona?"],
-            ]), //TODO **afgelopen 3 maanden** in boldface
+            ]),
             questionSubText: new Map([
                 ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
             ]),
@@ -913,8 +912,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
     *
     */
+
     Q7(itemKey: string, isRequired: boolean) {
-        // TODO text above question
+        // TODO Peter text above question: the following text
         // De vragen hieronder zijn gericht aan een minderjarige.
         // Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         return SurveyItemGenerators.singleChoice({
@@ -1022,8 +1022,9 @@ Er zijn geen goede of foute antwoorden.
             ]
         })
     }
-    //TODO The last sentence of above text should be in separate text box
+    //TODO Peter The last sentence of above text should be in separate text box
     // Hoe vaak heeft je kind in de afgelopen week problemen gehad met:
+    // and this sentence/problem occurs throughout this file
 
     Q81(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
@@ -1037,8 +1038,10 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
+
                     ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
-                ])) // TODO the above text as column names?
+                ])) // TODO Peter the above text as column names? or maybe this is automatic in the final layout?
+                // then ignore this todo
             }],
             scaleOptions: [
                 {
@@ -3068,12 +3071,12 @@ class Q15Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn gericht aan een minderjarige. 
+                        De vragen hieronder zijn gericht aan een minderjarige.
                         Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
 
-                        Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'. 
-                        Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt. 
-                        Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.                        
+                        Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+                        Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
+                        Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
                         `]
                     ])
                 })]
@@ -3532,7 +3535,7 @@ class Q18Group extends GroupItemEditor {
                 ["nl", "Beweeg de slider om je antwoord te geven"],
             ]),
             min: 0,
-            max: 10, // TODO can the min and max have a label in the slider?
+            max: 10, // TODO Peter can the min and max have a label in the slider?
         });
     }
 
@@ -3653,7 +3656,7 @@ class Q19Group extends GroupItemEditor {
             max: 10, // TODO can the min and max have a label in the slider?
         });
     }
-    // TODO add text  above the following three questionS
+    // TODO Peter add text  above the following three questionS
     // De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.numericInput({
