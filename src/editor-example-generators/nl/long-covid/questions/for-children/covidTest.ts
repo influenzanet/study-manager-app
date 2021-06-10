@@ -15,11 +15,11 @@ export class CovidTestGroup extends GroupItemEditor {
         const q1 = this.Q_hadTest('Q1', isRequired);
         const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes');
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
-        const conditionQ5Positive = CommonExpressions.singleChoiceOptionsSelected(q5.key, 'TODO: add correct option key here');
+        const conditionQ5Positive = CommonExpressions.singleChoiceOptionsSelected(q5.key, 'pos');
         const q7 = this.Q7('Q7', isRequired);
-        const conditionQ7Positive = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'TODO: add correct option key here');
-        const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'TODO: add correct option key here');
-        const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'TODO: add correct option key here');
+        const conditionQ7Positive = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test');
+        const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_notest');
+        const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
 
         const q11 = this.Q11('Q11', conditionQ7Nee, isRequired);
         this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(
@@ -40,6 +40,7 @@ export class CovidTestGroup extends GroupItemEditor {
 
         this.addPageBreak();
     }
+
 
     /**
      *
@@ -94,30 +95,71 @@ export class CovidTestGroup extends GroupItemEditor {
      *
      */
     Q3(key: string, condition: Expression, isRequired: boolean) {
+
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q3"],
+                ["nl", "Waar heb je jezelf laten testen op het coronavirus?"],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: '0', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Ziekenhuis of huisarts"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "GGD Teststraat"],
+                    ])
+                },
+                {
+                    key: '2', role: 'option',
+                    content: new Map([
+                        ["nl", "GGD kwam naar mijn huis"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Met een zelftest"],
+                    ])
+                },
+                {
+                    key: '4', role: 'option',
+                    content: new Map([
+                        ["nl", "Op school"],
+                    ])
+                },
+                {
+                    key: '5', role: 'option',
+                    content: new Map([
+                        ["nl", "Op mijn werk"],
+                    ])
+                },
+                {
+                    key: '6', role: 'option',
+                    content: new Map([
+                        ["nl", "In het buitenland"],
+                    ])
+                },
+                {
+                    key: '7', role: 'option',
+                    content: new Map([
+                        ["nl", "Dat weet ik niet (meer)"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
+
+
+
+
 
     /**
      *
@@ -128,25 +170,55 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q5"],
+                ["nl", "Wat is de reden dat je jezelf hebt laten testen op het coronavirus?"],
+            ]),
+
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: '0', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Ik had klachten"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Ik heb contact gehad met iemand die positief getest is op corona"],
+                    ])
+                },
+                {
+                    key: '2', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik mogelijk in contact ben geweest met iemand die positief getest is op corona"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik heb een melding gekregen van de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
+                    ])
+                },
+                {
+                    key: '4', role: 'option',
+                    content: new Map([
+                        ["nl", "In verband met een uitje (bijv. evenement, attractiepark, dierentuin)"],
+                    ])
+                },
+                {
+                    key: '5', role: 'option',
+                    content: new Map([
+                        ["nl", "Vanwege een andere reden"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
+
+
 
     /**
      *
@@ -157,25 +229,32 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q5"],
+                ["nl", "Wat was de uitslag van de test?"],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: 'pos', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Positief, dus WEL besmet (geweest) met het coronavirus"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: 'neg', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Negatief, dus GEEN bewijs voor besmetting met het coronavirus"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik heb de uitslag nog niet"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
+
 
     /**
      *
@@ -186,25 +265,42 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q5"],
+                ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: '0', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Met een PCR of antigeen sneltest"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Met een bloedtest (serologie) "],
+                    ])
+                },
+                {
+                    key: '2', role: 'option',
+                    content: new Map([
+                        ["nl", "Met een zelftest"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
+
+
 
     /**
      *
@@ -214,25 +310,48 @@ export class CovidTestGroup extends GroupItemEditor {
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "TODO: Q7"],
+                ["nl", "Ben je al eerder besmet geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Het gaat hier om een eerdere infectie, meer dan 7 dagen geleden."],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: 'pos_earl_test', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Ja, bevestigd met een positieve test"],
+                    ])
+                },
+                {
+                    key: 'pos_earl_notest', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, ik denk het wel maar er is geen test gedaan"],
+                    ])
+                },
+                {
+                    key: 'pos_earl_maybe_notest', role: 'option',
+                    content: new Map([
+                        ["nl", "Misschien wel, maar er is geen test gedaan"],
                     ])
                 },
                 {
                     key: 'no', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Nee, ik denk het niet"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
+    
+
 
     /**
      *
@@ -243,25 +362,42 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q5"],
+                ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: '0', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Met een PCR of antigeen sneltest"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Met een bloedtest (serologie)"],
+                    ])
+                },
+                {
+                    key: '2', role: 'option',
+                    content: new Map([
+                        ["nl", "Met een zelftest"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
             isRequired: isRequired,
         });
     }
+
+
 
     /**
      *
@@ -272,13 +408,13 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q9 - Wanneer is deze test afgenomen?"],
+                ["nl", "Wanneer is deze test (ongeveer) afgenomen?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -10 } },
+            minRelativeDate: { delta: { days: -500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
@@ -293,13 +429,13 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q10 - Wanneer is deze test afgenomen?"],
+                ["nl", "Wanneer denk je dat je besmet bent met het coronavirus (ongeveer)?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -10 } },
+            minRelativeDate: { delta: { days: -500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
@@ -314,9 +450,15 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q11"],
+                ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze door het coronavirus komen?"],
             ]),
             responseOptions: [
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
                 {
                     key: 'ja', role: 'option',
                     content: new Map([
@@ -324,9 +466,9 @@ export class CovidTestGroup extends GroupItemEditor {
                     ])
                 },
                 {
-                    key: 'nee', role: 'option',
+                    key: 'unknown', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
