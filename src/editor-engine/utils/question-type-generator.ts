@@ -235,6 +235,10 @@ const generateMultipleChoiceQuestion = (props: OptionQuestionProps): SurveyItem 
         simpleEditor.addHasResponseValidation();
     }
 
+    if (props.customValidations) {
+        props.customValidations.forEach(v => simpleEditor.editor.addValidation(v));
+    }
+
     if (props.footnoteText) {
         simpleEditor.addDisplayComponent({
             role: 'footnote', content: generateLocStrings(props.footnoteText), style: [

@@ -1,8 +1,9 @@
 import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
+import { multipleChoiceKey, responseGroupKey } from "../../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
+import { expWithArgs, generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 
 
@@ -116,7 +117,7 @@ export class HealthGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn gericht aan een minderjarige. 
+                        De vragen hieronder zijn gericht aan een minderjarige.
 Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
@@ -559,13 +560,27 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
     *
     */
-    //TODO Peter there should be a condition that if a key is selected, the numberInput cannot be 0
     Q3(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
             max: 365
         };
         const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+
+        const ifOptionSelectedThanNotZero = (optionKey: string) => {
+            return CommonExpressions.not(
+                CommonExpressions.and(
+                    CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), optionKey),
+                    CommonExpressions.not(
+                        CommonExpressions.gt(
+                            CommonExpressions.getResponseValueAsNum([this.key, itemKey].join('.'), [responseGroupKey, multipleChoiceKey, optionKey].join('.')),
+                            0,
+                        )
+                    )
+                )
+            );
+        }
+
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -573,6 +588,22 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             questionText: new Map([
                 ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
             ]),
+            customValidations: [{
+                key: 'numberInputChecks',
+                type: 'hard',
+                rule: CommonExpressions.and(
+                    ifOptionSelectedThanNotZero('huisarts'),
+                    ifOptionSelectedThanNotZero('kinderarts'),
+                    ifOptionSelectedThanNotZero('dietist'),
+                    ifOptionSelectedThanNotZero('ergotherapeut'),
+                    ifOptionSelectedThanNotZero('fysiotherapeut'),
+                    ifOptionSelectedThanNotZero('homeopaat'),
+                    ifOptionSelectedThanNotZero('logopedist'),
+                    ifOptionSelectedThanNotZero('maatschappelijk-werker'),
+                    ifOptionSelectedThanNotZero('psycholoog'),
+                    ifOptionSelectedThanNotZero('anders'),
+                )
+            }],
             responseOptions: [
                 {
                     key: 'huisarts', role: 'numberInput',
@@ -654,6 +685,16 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                     optionProps: inputProperties,
                     style: inputStyle,
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'error',
+                    content: generateLocStrings(new Map([
+                        // TODO: add a text that is displayed when a number is left blank
+                        ["nl", "TODO: hint to fill in numbers"],
+                    ])),
+                    displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'numberInputChecks'))
+                }
             ],
             isRequired: isRequired,
         });
@@ -825,9 +866,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     }
 
 
-   /**
-    *
-    */
+    /**
+     *
+     */
     Q62(itemKey: string, isRequired?: boolean) {
         const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
 
@@ -3272,7 +3313,7 @@ class Q16Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn voor een ouder/verzorger. 
+                        De vragen hieronder zijn voor een ouder/verzorger.
                         `]
                     ])
                 })]
@@ -3384,8 +3425,8 @@ class Q17Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn gericht aan een minderjarige. 
-                        Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.                        
+                        De vragen hieronder zijn gericht aan een minderjarige.
+                        Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
