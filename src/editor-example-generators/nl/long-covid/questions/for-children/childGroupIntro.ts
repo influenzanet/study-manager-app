@@ -42,7 +42,8 @@ Bent u een ouder / verzorger dan kunt u de antwoorden invullen voor / over uw ki
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-[Link to limesurvey](todo)
+Kinderen van 0 t/m 4 jaar kunnen niet meedoen aan dit longcovid onderzoek, maar wel aan een ander onderzoek naar longcovid klachten bij kinderen. 
+Zie voor meer informatie: [https://limesurvey.amc.nl/cru/index.php/717116?lang=nl]
                         `]
                     ])
                 })]
