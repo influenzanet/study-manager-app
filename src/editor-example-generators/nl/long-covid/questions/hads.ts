@@ -15,23 +15,19 @@ export class HADSGroup extends GroupItemEditor {
         this.addItem(Q_instructions(this.key))
         this.addItem(Q_a(this.key, true))
         this.addItem(Q_b(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_c(this.key, true))
         this.addItem(Q_d(this.key, true))
         this.addItem(Q_e(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_f(this.key, true))
         this.addItem(Q_g(this.key, true))
         this.addItem(Q_h(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_i(this.key, true))
         this.addItem(Q_j(this.key, true))
         this.addItem(Q_k(this.key, true))
-        this.addPageBreak();
         this.addItem(Q_l(this.key, true))
         this.addItem(Q_m(this.key, true))
         this.addItem(Q_n(this.key, true))
-        this.addPageBreak();
+       
     }
 }
 
@@ -428,7 +424,7 @@ const Q_j = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: '3', role: 'option',
                 content: new Map([
-                    ["nl", "het interesseert met wel, maar iets minder dan vroeger"],
+                    ["nl", "het interesseert me wel, maar iets minder dan vroeger"],
                 ])
             },
             {

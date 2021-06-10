@@ -1,4 +1,5 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { datePickerKey, responseGroupKey, singleChoiceKey } from "../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
@@ -6,23 +7,28 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 
 export class ParticipantCategoryGroup extends GroupItemEditor {
     private Q_age: SurveyItem;
+    private isAdultVersionCondition: Expression;
 
     constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'CAT';
         super(parentKey, groupKey);
-        this.Q_age = q_age(this.key, true);
-        this.initQuestions();
-    }
+        const qCategory = q_person_def(this.key, true);
+        this.isAdultVersionCondition = CommonExpressions.singleChoiceOptionsSelected(qCategory.key, 'mijzelf');
 
-    initQuestions() {
-        this.addItem(q_person_def(this.key, true));
+        this.addItem(qCategory);
+        this.addPageBreak();
+        this.Q_age = q_age(this.key, this.isAdultVersionCondition, true);
         this.addItem(this.Q_age);
-        this.addItem(q_postal_code(this.key, true));
+        this.addItem(q_postal_code(this.key, this.isAdultVersionCondition, true));
         this.addPageBreak();
     }
 
     getAgeInYearsExpression() {
         return expWithArgs('dateResponseDiffFromNow', this.Q_age.key, [responseGroupKey, datePickerKey].join('.'), 'years', 1)
+    }
+
+    getIsForAKind() {
+        return expWithArgs('not', this.isAdultVersionCondition);
     }
 }
 
@@ -33,7 +39,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Vul je deze lijst in voor jezelf of voor iemand anders (bijvoorbeeld je partner of een kind)?"],
+            ["nl", "Vul je deze lijst in voor jezelf of voor een kind?"],
         ]),
         responseOptions: [
             {
@@ -45,13 +51,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'kind', role: 'option',
                 content: new Map([
-                    ["nl", "Voor een kind"],
-                ])
-            },
-            {
-                key: 'anders', role: 'input',
-                content: new Map([
-                    ["nl", "Anders, namelijk"],
+                    ["nl", "Voor mijn kind van jonger dan 16 jaar oud"],
                 ])
             },
         ],
@@ -59,14 +59,18 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
     });
 }
 
-const q_age = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
     return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
         itemKey: itemKey,
         dateInputMode: 'YM',
+        condition: condition,
         questionText: new Map([
-            ["nl", "Wat is je geboortemaand en jaar?"],
+            ["nl", "Wat is je geboortejaar en maand?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Het gaat hier om geboortejaar en maand van diegene voor wie je de vragenlijst invult."],
         ]),
         minRelativeDate: {
             delta: {
@@ -82,20 +86,21 @@ const q_age = (parentKey: string, isRequired?: boolean, keyOverride?: string): S
     });
 }
 
-const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const q_postal_code = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q3';
     const fullKey = [parentKey, itemKey].join('.');
 
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Wat zijn de 4 cijfers van je postcode?"],
         ]),
         responseOptions: [
             {
-                key: '0', role: 'input',
+                key: 'postcode', role: 'input',
                 // style: [{ key: 'className', value: 'w-100' }],
                 content: new Map([
                     ["nl", "Postcode"],
@@ -105,7 +110,7 @@ const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 ])
             },
             {
-                key: '1', role: 'option',
+                key: 'nietaangeven', role: 'option',
                 content: new Map([
                     ["nl", "Dit wil ik niet aangeven"],
                 ])
@@ -126,8 +131,8 @@ const q_postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: st
                 type: 'hard',
                 rule: expWithArgs('or',
                     expWithArgs('not', expWithArgs('hasResponse', fullKey, responseGroupKey)),
-                    expWithArgs('checkResponseValueWithRegex', fullKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
-                    expWithArgs('responseHasKeysAny', fullKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
+                    expWithArgs('checkResponseValueWithRegex', fullKey, [responseGroupKey, singleChoiceKey, 'postcode'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+                    expWithArgs('responseHasKeysAny', fullKey, [responseGroupKey, singleChoiceKey].join('.'), 'nietaangeven')
                 )
             }
         ]

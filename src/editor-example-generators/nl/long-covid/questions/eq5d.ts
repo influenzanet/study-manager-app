@@ -26,10 +26,13 @@ export class EQ5DGroup extends GroupItemEditor {
     initQuestions() {
         this.addItem(Q_instructions(this.key))
         this.addItem(q_mobility_def(this.key, this.isRequired, this.useCopyRight));
+        this.addPageBreak();
         this.addItem(q_selfcare_def(this.key, this.isRequired, this.useCopyRight));
         this.addPageBreak();
         this.addItem(q_activities_def(this.key, this.isRequired, this.useCopyRight));
+        this.addPageBreak();
         this.addItem(q_pain_def(this.key, this.isRequired, this.useCopyRight));
+        this.addPageBreak();
         this.addItem(q_anxiety_def(this.key, this.isRequired, this.useCopyRight));
         this.addPageBreak();
         this.addItem(q_healthstatus_instructions_def(this.key));
@@ -55,7 +58,7 @@ const Q_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
 ## Kwaliteit van leven
 
-Zet bij iedere groep in de lijst een kruisje in het hokje dat het best past bij jouw gezondheid zoals je die VANDAAG ervaart.
+Vink bij iedere groep in de lijst aan wat het best past bij jouw gezondheid zoals je die VANDAAG ervaart.
     `
 
     return SurveyItemGenerators.display({

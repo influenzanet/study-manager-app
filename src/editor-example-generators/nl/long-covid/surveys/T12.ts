@@ -1,8 +1,8 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
-import { Q_CBS } from "../questions/cbs";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
 import { CovidTestGroup } from "../questions/covidTest";
@@ -24,10 +24,10 @@ export const generateT12 = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Nieuwe vragenlijst LongCOVID: 12 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 12 maanden"],
         ]),
         description: new Map([
-            ["nl", "Een jaar geleden ben je gestart met het LongCOVID onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
+            ["nl", "Een jaar geleden ben je gestart met het LongCOVID-onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
             ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
@@ -50,9 +50,10 @@ export const generateT12 = (): Survey | undefined => {
     const generalHealthGroupEditor = new GeneralHealthGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(generalHealthGroupEditor.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, true));
+    const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(acuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+    surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, hasKortademigCondition, true));
 
-    const ncsiGroupEditor = new NCSIGroup(surveyKey);
+    const ncsiGroupEditor = new NCSIGroup(surveyKey, hasKortademigCondition);
     surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
 
     const satGroupEditor = new SaTGroup(surveyKey);
@@ -69,7 +70,7 @@ export const generateT12 = (): Survey | undefined => {
     const hadsGroup = new HADSGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
 
-    surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
+    // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
     surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
 
@@ -80,7 +81,7 @@ export const generateT12 = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dank voor het invullen.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen.']
     ])));
 
     return surveyEditor.getSurvey();

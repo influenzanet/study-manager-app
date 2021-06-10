@@ -1,5 +1,5 @@
 import { Expression } from "survey-engine/lib/data_types";
-import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/commonExpressions"
+import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/studyServiceExpressions"
 import { datePickerKey, responseGroupKey } from "../../../editor-engine/utils/key-definitions";
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators";
 
@@ -72,26 +72,43 @@ const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "normal", 270
 const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "normal", 360, 30);
 
 const handleT0Submission = (): Expression => {
-    const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-        'T0.A.AH.Q1', 'geen'
-    )
-
-    const hasNoReportedSymptoms = () => expWithArgs('not', hasReportedSymptoms());
-
-    const isChildParticipant = () => expWithArgs(
-        'gt',
-        StudyExpressions.getResponseValueAsNum(
-            "T0.CAT.Q2", [responseGroupKey, datePickerKey].join('.')
+    const adultVersionChecks = {
+        hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+            'T0.A.AH.Q1', 'geen'
         ),
-        StudyExpressions.timestampWithOffset({
-            years: -16,
-        })
+        hasLongTermProblemsDueCorona: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.TEST.Q11", "ja"
+        ),
+        isTestResultUnknown: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.TEST.Q5", "unknown"
+        )
+    }
+    const shouldGetAdultShortSurvey = () => expWithArgs(
+        'and',
+        adultVersionChecks.hasReportedSymptoms(),
+        expWithArgs('not', adultVersionChecks.hasLongTermProblemsDueCorona()),
     )
+
+    const shouldGetAdultT3Survey = () => expWithArgs('not', shouldGetAdultShortSurvey());
+
+    const isChildParticipant = () =>
+        expWithArgs('or',
+            StudyExpressions.singleChoiceOptionsSelected('T0.CAT.Q1', 'kind'),
+            expWithArgs(
+                'gt',
+                StudyExpressions.getResponseValueAsNum(
+                    "T0.CAT.Q2", [responseGroupKey, datePickerKey].join('.')
+                ),
+                StudyExpressions.timestampWithOffset({
+                    years: -16,
+                })
+            )
+        )
 
     const isNotChildParticipant = () => expWithArgs('not', isChildParticipant());
 
     const isInterestedInAdditionalResearch = () => StudyExpressions.singleChoiceOptionsSelected(
-        "T0.DEM.Q18", "ja"
+        "T0.A.DEM.Q20", "ja"
     )
 
     return StudyActions.ifThen(
@@ -101,6 +118,10 @@ const handleT0Submission = (): Expression => {
             StudyActions.ifThen(
                 isInterestedInAdditionalResearch(),
                 [StudyActions.updateParticipantFlag("additionalStudies", "ja"),]
+            ),
+            StudyActions.ifThen(
+                adultVersionChecks.isTestResultUnknown(),
+                [StudyActions.updateParticipantFlag("testResult", "unknown"),]
             ),
             StudyActions.ifThen(
                 isChildParticipant(),
@@ -122,11 +143,11 @@ const handleT0Submission = (): Expression => {
                 [
                     StudyActions.updateParticipantFlag("surveyCategory", "A"),
                     StudyActions.ifThen(
-                        hasReportedSymptoms(),
+                        shouldGetAdultShortSurvey(),
                         [assignShort()]
                     ),
                     StudyActions.ifThen(
-                        hasNoReportedSymptoms(),
+                        shouldGetAdultT3Survey(),
                         [assignT3(),]
                     )
                 ]
@@ -147,6 +168,10 @@ const handleShortSubmission = (): Expression => {
         surveyKeys.short + '.AH.Q1', 'geen'
     )
 
+    const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
+        surveyKeys.short + 'TEST.Q5followup', 'pos', 'neg'
+    );
+
     const shouldAssignShortAgain = () => expWithArgs(
         'and',
         hasReportedSymptoms(),
@@ -164,6 +189,12 @@ const handleShortSubmission = (): Expression => {
         StudyActions.ifThen(
             shouldNotAssignShortAgain(),
             [assignT3()]
+        ),
+        StudyActions.ifThen(
+            hasTestResultAlready(),
+            [
+                StudyActions.updateParticipantFlag('testResult', 'known')
+            ]
         )
     ]
 
@@ -174,11 +205,21 @@ const handleShortSubmission = (): Expression => {
 }
 
 const handleT3Submission = (): Expression => {
+    const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
+        surveyKeys.T3 + 'TEST.Q5followup', 'pos', 'neg'
+    );
+
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T3),
         [
             StudyActions.removeAllSurveys(),
             assignT6(),
+            StudyActions.ifThen(
+                hasTestResultAlready(),
+                [
+                    StudyActions.updateParticipantFlag('testResult', 'known')
+                ]
+            )
         ]
     )
 }

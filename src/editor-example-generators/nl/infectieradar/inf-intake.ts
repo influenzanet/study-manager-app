@@ -1179,9 +1179,9 @@ const q9_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],
-            ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
-            ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2018-2019)"],
+            ["en", "Did you receive a flu vaccine during the last autumn/winter season? (2020/2021)"],
+            ["nl", "Heb je in het afgelopen griepseizoen (2020/2021) een griepprik gehaald?"],
+            ["fr", " Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver? (2020/2021)"],
         ]))
     );
 
@@ -1265,9 +1265,9 @@ const q10_def = (itemSkeleton: SurveyItem): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Are you planning to receive a flu vaccine this autumn/winter season? (2020-2021)"],
-            ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
-            ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
+            ["en", "Are you planning to receive a flu vaccine this autumn/winter season? (2021/2022)"],
+            ["nl", "Ben je van plan om voor dit griepseizoen (2021/2022) een griepprik te halen?"],
+            ["fr", " Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2021/2022)"],
         ]))
     );
 
@@ -1359,9 +1359,9 @@ const q10b_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When were you vaccinated against flu in the season 2020/2021?"],
-            ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
-            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2020-2021)"],
+            ["en", "When were you vaccinated against flu in the season 2021/2022?"],
+            ["nl", "Wanneer ben je dit griepseizoen (2021/2022) gevaccineerd tegen de griep?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison? (2021/2022)"],
         ]))
     );
 
@@ -1570,8 +1570,8 @@ const q10d_def = (itemSkeleton: SurveyItem, q10Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination in seaseon 2020/2021?"],
-            ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2020/2021)?"],
+            ["en", "What were your reasons for NOT getting a seasonal influenza vaccination in seaseon 2021/2022?"],
+            ["nl", "Wat is de reden waarom je jezelf niet laat vaccineren in het komende griepseizoen (2021/2022)?"],
             ["fr", " Quelles étaient vos raisons pour ne pas vous faire vacciner contre la grippe saisonnière cette année?"],
         ]))
     );

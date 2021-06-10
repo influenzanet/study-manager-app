@@ -1,9 +1,16 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { CISexample } from "./images";
 
 export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'CIS';
+
+    const imageContent = `
+<img src="${CISexample}" width="70%"/>
+`
+
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -11,33 +18,53 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
         questionText: new Map([
             ["nl", "Vermoeidheid"],
         ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
-            ]))
-        },
-
-        {
-            role: 'text',
-            style: [{ key: 'variant', value: 'p' }],
-            content: generateLocStrings(new Map([
-                ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
-            ]))
-        },
-        {
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-1 border-bottom border-1 border-grey-5 pt-1 mt-2 fw-bold' }],
-            content: generateLocStrings(new Map([
-                ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
-            ]))
-        }
+        topDisplayCompoments: [
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
+                ]))
+            },
+          
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+                ]))
+            },
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Bijvoorbeeld als u zich wel wat slap voelt, maar niet zo erg slap, kunt u een van de vakjes aanklikken die in de buurt staan van de antwoordmogelijkheid 'ja, dat klopt'. Dus bijvoorbeeld als volgt:"],
+                ]))
+            },
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ['nl', imageContent]
+                ])
+            }),
+            {
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-1 border-bottom border-1 border-grey-5 pt-1 mt-2 fw-bold' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "1 = ja, dat klopt, 7 = nee, dat klopt niet"],
+                ]))
+            },
+            {
+                role: 'text',
+                style: [{ key: 'variant', value: 'p' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "Vink hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+                ]))
+            },
         ],
         scaleOptions: [
             {
                 key: '1', content: new Map([
-                    ["nl", "1"],
+                    ["nl", "1 ja dat klopt"],
                 ])
             }, {
                 key: '2', content: new Map([
@@ -61,7 +88,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ])
             }, {
                 key: '7', content: new Map([
-                    ["nl", "7"],
+                    ["nl", "7 nee dat klopt niet"],
                 ])
             }
         ],
@@ -69,7 +96,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'a', content: new Map([
                     ["nl", "Ik voel me moe"],
-                ])
+                ]), 
             },
             {
                 key: 'b', content: new Map([

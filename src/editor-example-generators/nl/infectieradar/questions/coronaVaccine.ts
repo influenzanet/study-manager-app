@@ -56,7 +56,7 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
             {
                 content: new Map([
                     ["en", "Please indicate whether you are vaccinated."],
-                    ["nl", "Geef aan of je al gevaccineerd bent."],
+                    ["nl", "Geef aan of je sinds het invullen van de vorige vragenlijst een vaccinatie gehad hebt.  Wij onthouden de antwoorden  uit eerdere vragenlijsten en weten dus zo of je al gevaccineerd bent. Vul 'nee' in wanneer je sinds het invullen van de vorige vragenlijst geen nieuwe vaccinatie hebt gehad, maar al wel een of twee keer gevaccineerd bent."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -91,14 +91,14 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Yes, I have been vaccinated for the first time against the coronavirus"],
-                ["nl", "Ja, ik heb een eerste vaccinatie ontvangen tegen het coronavirus"],
+                ["nl", "Ja, ik heb sinds de vorige vragenlijst een eerste vaccinatie ontvangen tegen het coronavirus"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Yes, I have been vaccinated for the second time against the coronavirus"],
-                ["nl", "Ja, ik heb een tweede vaccinatie ontvangen tegen het coronavirus"],
+                ["nl", "Ja, ik heb sinds de vorige vragenlijst een tweede vaccinatie ontvangen tegen het coronavirus"],
             ])
         },
     ]);
@@ -150,7 +150,7 @@ const coronavaccineWhen = (parentKey: string, key: string, keyCoronaVaccination:
     editor.addExistingResponseComponent({
         key: '0', role: 'dateInput',
         properties: {
-            min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -2592000) },
+            min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -7776000) },
             max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
         },
         content: generateLocStrings(new Map([

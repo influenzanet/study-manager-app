@@ -9,17 +9,15 @@ export const Q_IPAQ = (parentKey: string, isRequired?: boolean, keyOverride?: st
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Lichamelijke activiteit"],
-        ]),
-        questionSubText: new Map([
             ["nl", "Hoeveel tijd bracht je gewoonlijk zittend door gedurende een doordeweekse dag in de afgelopen 7 dagen?"],
         ]),
+    
         topDisplayCompoments: [
             {
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Bij deze tijd mag zitten achter een bureau, tijd die zittend wordt doorgebracht met vrienden, zittend lezen, studeren of tv kijken worden gerekend."],
+                    ["nl", "Bij deze tijd mag zitten achter een bureau, tijd die zittend wordt doorgebracht met vrienden, werk, zittend lezen, studeren of tv kijken worden gerekend."],
                 ]))
             },
         ],

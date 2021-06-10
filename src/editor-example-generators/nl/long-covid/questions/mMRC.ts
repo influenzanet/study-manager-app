@@ -1,9 +1,10 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 
-export const Q_mMRC = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+export const Q_mMRC = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'mMRC';
     return SurveyItemGenerators.singleChoice({
+        condition: condition,
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
@@ -11,7 +12,7 @@ export const Q_mMRC = (parentKey: string, isRequired?: boolean, keyOverride?: st
             ["nl", "Kortademigheid"],
         ]),
         questionSubText: new Map([
-            ["nl", "Welke van de onderstaande uitspraken is voor u het meest van toepassing?"],
+            ["nl", "Welke van de onderstaande uitspraken is voor jou op dit moment het meest van toepassing?"],
         ]),
         responseOptions: [{
             key: '1', role: 'option',

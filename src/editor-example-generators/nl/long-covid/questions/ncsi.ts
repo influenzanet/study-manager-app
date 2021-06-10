@@ -1,13 +1,14 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 
 export class NCSIGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, keyOverride?: string) {
+    constructor(parentKey: string, condition: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'NCSI';
         super(parentKey, groupKey);
+        this.groupEditor.setCondition(condition);
         this.initQuestions();
     }
 
@@ -15,7 +16,6 @@ export class NCSIGroup extends GroupItemEditor {
         this.addItem(Q1(this.key, true))
         this.addItem(Q2(this.key, true))
         this.addItem(Q3(this.key, true))
-        this.addPageBreak();
         this.addItem(Q4(this.key, true))
         this.addPageBreak();
     }
@@ -34,7 +34,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             role: 'text',
             style: [{ key: 'className', value: 'mb-2' }],
             content: generateLocStrings(new Map([
-                ["nl", "1 = helemaal niet benauwd / kortademig, 10 = heel erg benauwd/kortademig"],
+                ["nl", "1 = helemaal niet benauwd/kortademig, 10 = heel erg benauwd/kortademig"],
             ]))
         }],
         scaleOptions: [

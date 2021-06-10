@@ -1,7 +1,9 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class VaccinationGroup extends GroupItemEditor {
 
@@ -12,6 +14,10 @@ export class VaccinationGroup extends GroupItemEditor {
     }
 
     initQuestions(isT0: boolean) {
+
+        if (!this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructions(this.key))
+        }
         const vacc = q_vacc_def(this.key, true);
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
         const vacc_num = q_vacc_num_def(this.key, true, condition_vacc_yes);
@@ -28,11 +34,33 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(vacc2_date1);
 
         this.addItem(q_vacc2_date2_def(this.key, true, condition_2vacc, vacc2_date1.key));
-        this.addPageBreak();
-        this.addItem(q_vacc_influenza_def(this.key, true));
-        this.addItem(q_vacc_pneumoc_def(this.key, true));
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(q_vacc_influenza_def(this.key, true));
+            this.addItem(q_vacc_pneumoc_def(this.key, true));
+        }
+        this.addItem(Q_instructions2(this.key))
         this.addPageBreak();
     }
+}
+
+const Q_instructions = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 2 - Vaccinaties**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
 }
 
 const q_vacc_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
@@ -106,6 +134,9 @@ const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         condition: condition,
         questionText: new Map([
             ["nl", "Welk vaccin tegen het coronavirus heb je ontvangen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         responseOptions: [
             {
@@ -311,5 +342,25 @@ const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?:
             },
         ],
         isRequired: isRequired,
+    });
+}
+
+const Q_instructions2 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+###### _Dit is het einde van Onderdeel 2. Onderdeel 3 van deze vragenlijst gaat over gezondheidsklachten en zorggebruik._
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro3',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
     });
 }

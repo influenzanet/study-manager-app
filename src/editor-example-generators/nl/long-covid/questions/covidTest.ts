@@ -1,17 +1,41 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class CovidTestGroup extends GroupItemEditor {
+    Q11JaCondition?: Expression;
 
     constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
         super(parentKey, groupKey);
+        this.Q11JaCondition = undefined;
+
         this.initQuestions(isT0);
     }
 
     initQuestions(isT0: boolean,) {
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(Q_instructionsT0(this.key))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.T6) || this.isPartOfSurvey(surveyKeys.T9) || this.isPartOfSurvey(surveyKeys.T12)) {
+            this.addItem(Q_instructionsT36912(this.key))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
+            const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
+            this.addItem(Q_testFollowUp(this.key, true, followUpCondition))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructionsTshort(this.key))
+        } else {
+            this.addItem(Q_instructions1(this.key))
+        }
+
         const test = q_test_def(this.key, true);
         const condition_test_yes = CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes');
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
@@ -19,13 +43,12 @@ export class CovidTestGroup extends GroupItemEditor {
         const infect_earlier = q_infect_earlier_def(this.key, true);
         const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
-        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_zelftest', 'pos_earl_notest', 'unknown');
+        const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
         this.addItem(test);
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
-        this.addPageBreak();
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
         if (isT0) {
@@ -33,10 +56,145 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
             this.addItem(q_inf_earlier_testdate_def(this.key, true, condition_pos_earl_test));
             this.addItem(q_inf_earlier_date_def(this.key, true, condition_pos_earl_notest));
-            this.addItem(q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten));
+            const Q11 = q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten);
+            this.addItem(Q11);
+            this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
+        }
+
+        if (!this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(Q_instructions2(this.key))
         }
         this.addPageBreak();
     }
+
+    getQ11JaCondition(): Expression | undefined {
+        return this.Q11JaCondition;
+    }
+}
+
+const Q_instructionsT0 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Deze vragenlijst bestaat uit 5 onderdelen:
+
+1. Testen op het coronavirus
+2. Vaccinaties
+3. Gezondheidsklachten en zorggebruik
+4. Algemene gezondheid
+5. Algemene gegevens
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+
+const Q_instructionsT36912 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Deze vragenlijst bestaat uit 4 onderdelen:
+
+1. Testen op het coronavirus
+2. Vaccinaties
+3. Gezondheidsklachten en zorggebruik
+4. Algemene gezondheid
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+const Q_instructionsTshort = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Deze update gaat over testen op het coronavirus en over je gezondheid en zorgebruik.
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+const Q_instructions1 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## **Onderdeel 1 - Testen op het coronavirus**
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro2',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+const Q_testFollowUp = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q5followup';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "In de eerdere vragenlijst gaf je aan de uitslag van je coronatest nog niet te hebben. Heb je inmiddels de uitslag van deze test?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'pos', role: 'option',
+                content: new Map([
+                    ["nl", "Positief, dus WEL besmet (geweest) met het coronavirus"],
+                ])
+            },
+            {
+                key: 'neg', role: 'option',
+                content: new Map([
+                    ["nl", "Negatief, dus GEEN bewijs voor besmetting met het coronavirus"],
+                ])
+            },
+            {
+                key: 'unknown', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb de uitslag nog niet"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
 }
 
 const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
@@ -113,7 +271,7 @@ const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?
             {
                 key: '2', role: 'option',
                 content: new Map([
-                    ["nl", "GGD is langs geweest"],
+                    ["nl", "GGD kwam naar mijn huis"],
                 ])
             },
             {
@@ -191,9 +349,15 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
                 ])
             },
             {
-                key: '4', role: 'input',
+                key: '4', role: 'option',
                 content: new Map([
-                    ["nl", "Vanwege een andere reden, namelijk"],
+                    ["nl", "In verband met een uitje (bijv. evenement, attractiepark, dierentuin)"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Vanwege een andere reden"],
                 ])
             },
         ],
@@ -230,12 +394,6 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
                     ["nl", "Ik heb de uitslag nog niet"],
                 ])
             },
-            {
-                key: 'no-rep', role: 'option',
-                content: new Map([
-                    ["nl", "Dat wil ik niet aangeven"],
-                ])
-            },
         ],
         isRequired: isRequired,
     });
@@ -244,24 +402,27 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
 const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6';
 
-    return SurveyItemGenerators.singleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Met welke test is dit bevestigd?"],
+            ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest) "],
+                    ["nl", "Met een PCR of antigeen sneltest"],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door bloedtest (serologie) "],
+                    ["nl", "Met een bloedtest (serologie) "],
                 ])
             },
             {
@@ -289,10 +450,10 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Denk en/of weet je dat je al eerder besmet bent geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
+            ["nl", "Ben je al eerder besmet geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
         ]),
         questionSubText: new Map([
-            ["nl", "Meer dan 10 dagen geleden."],
+            ["nl", "Het gaat hier om een eerdere infectie, meer dan 7 dagen geleden."],
         ]),
         responseOptions: [
             {
@@ -302,15 +463,15 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
                 ])
             },
             {
-                key: 'pos_earl_zelftest', role: 'option',
+                key: 'pos_earl_notest', role: 'option',
                 content: new Map([
-                    ["nl", "Ja, bevestigd met een zelftest"],
+                    ["nl", "Ja, ik denk het wel maar er is geen test gedaan"],
                 ])
             },
             {
-                key: 'pos_earl_notest', role: 'option',
+                key: 'pos_earl_maybe_notest', role: 'option',
                 content: new Map([
-                    ["nl", "Ja, maar er is geen test gedaan"],
+                    ["nl", "Misschien wel, maar er is geen test gedaan"],
                 ])
             },
             {
@@ -333,24 +494,27 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
 const q_inf_earlier_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q8';
 
-    return SurveyItemGenerators.singleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Met welke test is dit bevestigd?"],
+            ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door neus/keel test (PCR of antigeen sneltest)"],
+                    ["nl", "Met een PCR of antigeen sneltest"],
                 ])
             },
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Bevestigd door bloedtest (serologie)"],
+                    ["nl", "Met een bloedtest (serologie)"],
                 ])
             },
             {
@@ -441,5 +605,25 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
             },
         ],
         isRequired: isRequired,
+    });
+}
+
+const Q_instructions2 = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+###### _Dit is het einde van Onderdeel 1. Onderdeel 2 van deze vragenlijst gaat over vaccinaties._
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro3',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
     });
 }

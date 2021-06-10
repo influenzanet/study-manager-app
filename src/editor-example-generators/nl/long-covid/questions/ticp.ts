@@ -324,6 +324,12 @@ const q_L4q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): 
                 ])
             },
             {
+                key: 'andereproblemen12', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige kortademigheid/benauwdheid, langer dan 3 maanden"],
+                ])
+            },
+            {
                 key: 'geenvandezeText', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([

@@ -28,7 +28,9 @@ export class GroupItemEditor {
     }
 
     addPageBreak() {
-        this.groupEditor.addSurveyItem(generatePageBreak(this.key));
+        if (process.env.REACT_APP_DISABLE_PAGEBREAK !== 'true') {
+            this.groupEditor.addSurveyItem(generatePageBreak(this.key));
+        }
     }
 
     addItem(item: SurveyItem, pageBreakAfter?: boolean) {
