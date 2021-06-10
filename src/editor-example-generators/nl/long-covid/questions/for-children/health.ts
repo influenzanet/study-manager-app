@@ -3,6 +3,7 @@ import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpr
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { multipleChoiceKey, responseGroupKey } from "../../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
+import { generateRandomKey } from "../../../../../editor-engine/utils/randomKeyGenerator";
 import { expWithArgs, generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 
@@ -953,7 +954,6 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
     *
     */
-
     Q7(itemKey: string, isRequired: boolean) {
         // TODO Peter text above question: the following text
         // De vragen hieronder zijn gericht aan een minderjarige.
@@ -1025,6 +1025,7 @@ class Q8Group extends GroupItemEditor {
         const isRequired = true;
 
         this.addItem(this.groupIntro());
+        this.addItem(this.groupIntro2());
         this.addItem(this.Q81('1', isRequired));
         this.addItem(this.Q82('2', isRequired));
         this.addItem(this.Q83('3', isRequired));
@@ -1055,7 +1056,21 @@ Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze ding
 4 als het bijna altijd een probleem is.
 
 Er zijn geen goede of foute antwoorden.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
 
+    groupIntro2() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(6),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
 ### Hoe vaak heeft je kind in de afgelopen week problemen gehad met:
                         `]
                     ])
@@ -3656,6 +3671,7 @@ class Q19Group extends GroupItemEditor {
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('1', isRequired));
+        this.addItem(this.q2PreText());
         this.addItem(this.Q2('2', isRequired));
         this.addItem(this.Q3('3', isRequired));
         this.addItem(this.Q4('4', isRequired));
@@ -3697,8 +3713,22 @@ class Q19Group extends GroupItemEditor {
             max: 10, // TODO can the min and max have a label in the slider?
         });
     }
-    // TODO Peter add text  above the following three questionS
-    // De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+
+    q2PreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'infoQ2',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+### De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+                        `]
+                    ])
+                })]
+        })
+    }
+
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,
