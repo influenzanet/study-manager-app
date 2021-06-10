@@ -165,6 +165,7 @@ export const generateT0 = (): Survey | undefined => {
 
     // General Data for children
     const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(minAge),
         q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
     });
     childVersion.addItem(childrenGeneralDataGroupEditor.getItem());
