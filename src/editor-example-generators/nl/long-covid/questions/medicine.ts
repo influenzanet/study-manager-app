@@ -19,11 +19,15 @@ export class MedicineGroup extends GroupItemEditor {
         this.addPageBreak();
         const Q1_long = gen_Q1_longsymptoms(this.key, true, condition_TestQ11ja);
         this.addItem(Q1_long);
-        this.addItem(
-            Q2a_longsymptoms(this.key,
-                true,
-                CommonExpressions.singleChoiceOptionsSelected(Q1_long.key, 'ja')
-            )
+        const Q2a_longsymptoms = gen_Q2a_longsymptoms(this.key,
+            true,
+            CommonExpressions.singleChoiceOptionsSelected(Q1_long.key, 'ja')
+        );
+        this.addItem(Q2a_longsymptoms);
+        this.addItem(Q2b_longsymptoms(
+            this.key,
+            CommonExpressions.multipleChoiceOptionsSelected(Q2a_longsymptoms.key, '24'),
+            true)
         );
 
         const healthcare_provider = Q1(this.key, true);
@@ -32,7 +36,13 @@ export class MedicineGroup extends GroupItemEditor {
         const condition_use_medicine = CommonExpressions.singleChoiceOptionsSelected(use_medicine.key, 'ja');
 
         this.addItem(healthcare_provider)
-        this.addItem(Q2a(this.key, true, condition_healthcare_provider));
+        const Q2a = gen_Q2a(this.key, true, condition_healthcare_provider)
+        this.addItem(Q2a);
+        this.addItem(Q2b(
+            this.key,
+            CommonExpressions.multipleChoiceOptionsSelected(Q2a.key, '24'),
+            true)
+        );
         this.addPageBreak();
         this.addItem(use_medicine)
         this.addItem(Q4(this.key, true, condition_use_medicine))
@@ -78,7 +88,7 @@ const gen_Q1_longsymptoms = (parentKey: string, isRequired?: boolean, condition?
     });
 }
 
-const Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a_longsymptoms';
 
     const inputProperties = {
@@ -365,7 +375,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
     });
 }
 
-const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a';
 
     const inputProperties = {
@@ -617,6 +627,49 @@ const Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
 }
 
 
+const Q2b = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q2b';
+
+    return SurveyItemGenerators.numericInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
+        ]),
+        content: new Map([
+            ['nl', '']
+        ]),
+        contentBehindInput: true,
+        componentProperties: {
+            min: 0,
+            max: 50
+        }
+    })
+}
+
+const Q2b_longsymptoms = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q2b_longsymptoms';
+
+    return SurveyItemGenerators.numericInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+        ]),
+        content: new Map([
+            ['nl', '']
+        ]),
+        contentBehindInput: true,
+        componentProperties: {
+            min: 0,
+            max: 50
+        }
+    })
+}
 
 
 

@@ -200,9 +200,9 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat is uw voornaamste bezigheid overdag?"],
-            ["fr-be", "Quelle est votre activité principale pendant la journée ?"],
-            ["de-be", "Was ist Ihre wichtigste Beschäftigung tagsüber?"],
+            ["nl-be", "Wat is uw voornaamste bezigheid?"],
+            ["fr-be", "Quelle est votre activité principale ?"],
+            ["de-be", "Was ist Ihre wichtigste Beschäftigung ?"],
             ["en", "What is your main activity?"],
         ]))
     );
@@ -257,7 +257,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             content: new Map([
                 ["nl-be", "Ik werk fulltime in loondienst"],
                 ["fr-be", "Je travaille à plein temps en tant qu’employé(e)"],
-                ["de-be", "Ich arbeit Vollzeit im Arbeitsverhältnis"],
+                ["de-be", "Ich arbeit Vollzeit im Angestelltenverhältnis"],
                 ["en", "Paid employment, full-time"],
             ])
         },
@@ -266,7 +266,7 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
             content: new Map([
                 ["nl-be", "Ik werk parttime in loondienst"],
                 ["fr-be", "Je travaille à temps partiel en tant qu'employé(e)"],
-                ["de-be", "Ich arbeite Teilzeit im Arbeitsverhältnis"],
+                ["de-be", "Ich arbeite Teilzeit im Angestelltenverhältnis"],
                 ["en", "Paid employment, part-time"],
             ])
         },
@@ -1308,7 +1308,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Getuigschrift tweede graad secundair onderwijs"],
                 ["fr-be", "Le certificat d'enseignement secondaire du deuxième degré"],
                 ["de-be", "Zeugnis des zweiten Grades der Sekundarschule"],
-                ["en", "Grade of secondary school until second cycle"],
+                ["en", "Degree of secondary school until second cycle"],
             ])
         },
         {
@@ -1317,7 +1317,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Diploma secundair onderwijs"],
                 ["fr-be", "Le diplôme de l’enseignement secondaire"],
                 ["de-be", "Abschlusszeugnis der Sekundarschule"],
-                ["en", "Grade of secondary school (all three cycles)"],
+                ["en", "Degree of secondary school (all three cycles)"],
             ])
         },
         {
@@ -1326,7 +1326,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Professionele of Academische Bachelor opleiding"],
                 ["fr-be", "Un bachelier professionnel ou académique"],
                 ["de-be", "Professionelle oder Akademische Bachelor-Ausbilung"],
-                ["en", "A professional or academic bachelor grade"],
+                ["en", "A professional or academic bachelor degree"],
             ])
         },
         {
@@ -1335,7 +1335,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Master opleiding of PhD (doctor)"],
                 ["fr-be", "Une maîtrise ou un doctorat (docteur)"],
                 ["de-be", "Master-Ausbildung oder PhD (Dr.)"],
-                ["en", "A master or PhD grade"],
+                ["en", "A master or PhD degree"],
             ])
         },
         {
@@ -1474,9 +1474,9 @@ const people_met = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             key: '13', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '4'),
             content: new Map([
-                ["nl-be", "Meer dan 10 jongvolwassenen tussen de 18 en 30 jaar"],
-                ["fr-be", "Plus de 10 jeunes adultes âgés entre 18 et 30 ans"],
-                ["de-be", "Mehr als 10 junge Erwachsene im Alter von 18 bis 30 Jahren"],
+                ["nl-be", "Meer dan 10 mensen tussen de 18 en 30 jaar"],
+                ["fr-be", "Plus de 10 personnes âgées entre 18 et 30 ans"],
+                ["de-be", "Mehr als 10 Menschen im Alter von 18 bis 30 Jahren"],
                 ["en", "More than 10 people between 18 and 30 years of age"],
             ])
         },
@@ -1672,7 +1672,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     content: new Map([
                         ["nl-be", "0 - 4 jaar"],
                         ["fr-be", "0 - 4 ans"],
-                        ["de-be", "0 - 4 Jahre"],
+                        ["de-be", "0 - 4 Jahr/e"],
                         ["en", "0 - 4 years"],
                     ])
                 },
@@ -1990,7 +1990,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     ["nl-be", "Rapporteer 'ja', als u het vaccin dit seizoen heeft gekregen, meestal in de herfst. Als u zich na het invullen van deze vragenlijst laat vaccineren, rapporteer 'nee' en kies in een volgende vraag voor de optie 'Ik ben van plan om mezelf nog te laten vaccineren'."],
                     ["fr-be", "Indiquez « oui » si vous vous êtes fait vacciner cette saison, généralement au cours de l'automne. Si vous vous faites vacciner après avoir complété ce questionnaire, indiquez « non » et choisissez l'option « Je suis d’avis de me faire vacciner » au niveau d'une question ultérieure."],
-                    ["de-be", "Schreiben Sie 'ja', wenn Sie den Impfstoff in dieser Impfsaison erhalten haben, meistens im Herbst. Wenn Sie sich nach dem Ausfüllen dieser Fragenliste impfen lassen, schreiben Sie bitte 'nein' und wählen Sie in einer folgenden Frage die Alternative 'Ich plane, mich noch impfen zu lassen'."],
+                    ["de-be", "Schreiben Sie 'ja', wenn Sie den Impfstoff in dieser Impfsaison erhalten haben, meistens im Herbst. Wenn Sie sich nach dem Ausfüllen dieser Fragen impfen lassen, schreiben Sie bitte 'nein' und wählen Sie in einer folgenden Frage die Alternative 'Ich plane, mich noch impfen zu lassen'."],
                     ["en", "Mark 'yes' if you have been vaccinated this season; generally this takes place in autumn. If you will be vaccinated after completing this questionnaire, mark 'no' and choose the option 'I am planning to be vaccinated, but haven’t been yet'."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -2132,7 +2132,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
         {
             key: '0', role: 'option',
             content: new Map([
-                ["nl-be", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziek)"],
+                ["nl-be", "Ik behoor tot een risicogroep (zwanger, 60 jaar of ouder, chronische ziekte)"],
                 ["fr-be", "Je fais partie d’un groupe à risque (grossesse, personne âgée de 60 ans ou plus, maladie chronique)"],
                 ["de-be", "Ich gehöre zu einer Risikogruppe (schwanger, 60 Jahre oder älter, chronisch krank)"],
                 ["en", "I belong to a risk group (e.g. pregnant, over 65, underlying health condition, etc)"],
@@ -2142,7 +2142,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '11', role: 'option',
             content: new Map([
                 ["nl-be", "Andere personen in mijn huishouden behoren tot een risicogroep"],
-                ["fr-be", "Les autres personnes de mon ménage font partie d’un groupe à risque."],
+                ["fr-be", "Les autres personnes de mon ménage font partie d’un groupe à risque"],
                 ["de-be", "Andere Personen in meinem Haushalt gehören zu einer Risikogruppe"],
                 ["en", "Other people in my household belong to a risk group"],
             ])
@@ -2150,8 +2150,8 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
         {
             key: '12', role: 'option',
             content: new Map([
-                ["nl-be", "De COVID-19 pandemie moedigde me aan om mezelf te laten vaccineren dit jaar."],
-                ["fr-be", "La pandémie relative au coronavirus m'a encouragé à me faire vacciner cette année."],
+                ["nl-be", "De COVID-19 pandemie moedigde me aan om mezelf te laten vaccineren dit jaar"],
+                ["fr-be", "La pandémie relative au coronavirus m'a encouragé à me faire vacciner cette année"],
                 ["de-be", "Die COVID-19-Pandemie ermutigte mich, mich selbst dieses Jahr impfen zu lassen"],
                 ["en", "The coronavirus pandemic motivated me to get vaccinated this year"],
             ])
@@ -2160,7 +2160,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '1', role: 'option',
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ikzelf griep krijg"],
-                ["fr-be", "La vaccination m'évite de contracter personnellement la grippe."],
+                ["fr-be", "La vaccination m'évite de contracter personnellement la grippe"],
                 ["de-be", "Impfung verhindert, dass ich selbst Grippe bekomme"],
                 ["en", "Vaccination decreases my risk of getting influenza"],
             ])
@@ -2169,8 +2169,8 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '2', role: 'option',
             content: new Map([
                 ["nl-be", "Vaccinatie voorkomt dat ik het griepvirus verspreid naar andere mensen"],
-                ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes."],
-                ["de-be", "Impfung verhindert, dass ich kein Grippevirus auf andere Menschen übertrage"],
+                ["fr-be", "La vaccination m'évite de transmettre le virus de la grippe à d'autres personnes"],
+                ["de-be", "Impfung verhindert, dass ich das Grippevirus auf andere Menschen übertrage"],
                 ["en", "Vaccination decreases the risk of spreading influenza to others"],
             ])
         },
@@ -2178,7 +2178,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '3', role: 'option',
             content: new Map([
                 ["nl-be", "Mijn huisarts heeft me de griepvaccin aangeraden"],
-                ["fr-be", "Mon médecin m'a recommandé le vaccin contre la grippe."],
+                ["fr-be", "Mon médecin m'a recommandé le vaccin contre la grippe"],
                 ["de-be", "Mein Hausarzt hat mir die Grippeimpfung empfohlen"],
                 ["en", "My doctor recommended it"],
             ])
@@ -2187,7 +2187,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '4', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin werd aangeboden op mijn werk/op school"],
-                ["fr-be", "Le vaccin contre la grippe a été proposé au travail/à l'école."],
+                ["fr-be", "Le vaccin contre la grippe a été proposé au travail/à l'école"],
                 ["de-be", "Der Grippeimpfstoff wurde an meinem Arbeitsplatz/in der Schule angeboten"],
                 ["en", "It was recommended in my workplace/school"],
             ])
@@ -2196,7 +2196,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '5', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin is voor mij gemakkelijk beschikbaar"],
-                ["fr-be", "Le vaccin contre la grippe est facilement accessible pour moi."],
+                ["fr-be", "Le vaccin contre la grippe est facilement accessible pour moi"],
                 ["de-be", "Der Grippeimpfstoff ist für mich einfach verfügbar"],
                 ["en", "The vaccine was readily available and vaccine administration was convenient"],
             ])
@@ -2205,7 +2205,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '6', role: 'option',
             content: new Map([
                 ["nl-be", "Het griepvaccin was gratis"],
-                ["fr-be", "Le vaccin contre la grippe était gratuit."],
+                ["fr-be", "Le vaccin contre la grippe était gratuit"],
                 ["de-be", "Der Grippeimpfstoff war gratis"],
                 ["en", "The vaccine was free (no cost)"],
             ])
@@ -2214,7 +2214,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '7', role: 'option',
             content: new Map([
                 ["nl-be", "Ik wil deze winter geen werk/school missen"],
-                ["fr-be", "Je ne veux pas m’absenter du travail / des cours durant cet hiver."],
+                ["fr-be", "Je ne veux pas m’absenter du travail / des cours durant cet hiver"],
                 ["de-be", "Ich möchte in diesem Winter keine Arbeitstunde/keinen Schulunterricht verpassen"],
                 ["en", "I don’t want to miss work/school"],
             ])
@@ -2223,7 +2223,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
             key: '8', role: 'option',
             content: new Map([
                 ["nl-be", "Ik haal het griepvaccin altijd"],
-                ["fr-be", "Je me fais toujours vacciner contre la grippe."],
+                ["fr-be", "Je me fais toujours vacciner contre la grippe"],
                 ["de-be", "Ich nehme den Grippeimpfstoff immer"],
                 ["en", "I always get the vaccine"],
             ])
@@ -2351,7 +2351,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             content: new Map([
                 ["nl-be", "Ik ben van plan om mezelf nog te laten vaccineren"],
                 ["fr-be", "J'ai l'intention de me faire vacciner"],
-                ["de-be", "Ich plane, mich selbst noch impfen zu lassen. "],
+                ["de-be", "Ich plane, mich selbst noch impfen zu lassen"],
                 ["en", "I am planning to be vaccinated, but haven’t been yet"],
             ])
         },
@@ -3525,7 +3525,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
                 ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
-                ["de-be", "Ermüdet und lendenlahm (allgemeines Unwohlsein)"],
+                ["de-be", "Ermüdet und (körperlich) erschöpft (allgemeines Unwohlsein)"],
                 ["en", "Feeling tired or exhausted (malaise)"],
             ])
         },
@@ -3561,7 +3561,7 @@ const previous_covid19_episode_symptoms = (parentKey: string, keyprevious_covid1
             content: new Map([
                 ["nl-be", "Misselijkheid"],
                 ["fr-be", "Des nausées"],
-                ["de-be", "Unpässlichkeit"],
+                ["de-be", "Unwohlsein"],
                 ["en", "Nausea"],
             ])
         },
@@ -4738,7 +4738,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keypre
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
                 ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
-                ["de-be", "Ermüdet und lendenlahm (allgemeines Unwohlsein)"],
+                ["de-be", "Ermüdet und (körperlich) erschöpft (allgemeines Unwohlsein)"],
                 ["en", "Feeling tired or exhausted (malaise)"],
             ])
         },
@@ -4778,7 +4778,7 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keypre
             content: new Map([
                 ["nl-be", "Misselijkheid"],
                 ["fr-be", "Des nausées"],
-                ["de-be", "Unpässlichkeit"],
+                ["de-be", "Unwohlsein"],
                 ["en", "Nausea"],
             ])
         },
