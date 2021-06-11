@@ -692,7 +692,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                     role: 'error',
                     content: generateLocStrings(new Map([
                         // TODO: add a text that is displayed when a number is left blank
-                        ["nl", "TODO: hint to fill in numbers"],
+                        ["nl", "Vul het aantal keer in dat je contact hebt gehad met de zorgverlener"],
                     ])),
                     displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'numberInputChecks'))
                 }
