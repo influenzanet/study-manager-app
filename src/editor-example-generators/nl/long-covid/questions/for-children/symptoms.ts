@@ -77,8 +77,8 @@ export class SymptomsGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                         De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
-                          de antwoorden invullen voor/over uw kind.
+De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
+de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
@@ -147,7 +147,7 @@ export class SymptomsGroup extends GroupItemEditor {
                         ["nl", "Moeite met ademen of benauwd"],
                     ])
                 },
-                                {
+                {
                     key: 'hoofdpijn', role: 'option',
                     content: new Map([
                         ["nl", "Hoofdpijn"],
@@ -250,61 +250,61 @@ export class SymptomsGroup extends GroupItemEditor {
                     ])
                 },
                 {
-                    key:  'wintertenen', role: 'option',
+                    key: 'wintertenen', role: 'option',
                     content: new Map([
                         ["nl", "Wintertenen"],
                     ])
                 },
                 {
-                    key:  'hartkloppingen', role: 'option',
+                    key: 'hartkloppingen', role: 'option',
                     content: new Map([
                         ["nl", "Hartkloppingen"],
                     ])
                 },
                 {
-                    key:  'concentratieproblemen', role: 'option',
+                    key: 'concentratieproblemen', role: 'option',
                     content: new Map([
                         ["nl", "Concentratieproblemen"],
                     ])
                 },
                 {
-                    key:  'drukke_omgeving', role: 'option',
+                    key: 'drukke_omgeving', role: 'option',
                     content: new Map([
                         ["nl", "Moeite met drukke omgeving"],
                     ])
                 },
                 {
-                    key:  'slaapproblemen', role: 'option',
+                    key: 'slaapproblemen', role: 'option',
                     content: new Map([
                         ["nl", "Slaapproblemen"],
                     ])
                 },
                 {
-                    key:  'tintelingen', role: 'option',
+                    key: 'tintelingen', role: 'option',
                     content: new Map([
                         ["nl", "Tintelingen of gevoelloosheid"],
                     ])
                 },
                 {
-                    key:  'verwardheid', role: 'option',
+                    key: 'verwardheid', role: 'option',
                     content: new Map([
                         ["nl", "Verwardheid"],
                     ])
                 },
                 {
-                    key:  'brainfog', role: 'option',
+                    key: 'brainfog', role: 'option',
                     content: new Map([
                         ["nl", "Brainfog/ hersenmist"],
                     ])
                 },
                 {
-                    key:  'oorpijn', role: 'option',
+                    key: 'oorpijn', role: 'option',
                     content: new Map([
                         ["nl", "Oorpijn"],
                     ])
                 },
                 {
-                    key:  'oorsuizen', role: 'option',
+                    key: 'oorsuizen', role: 'option',
                     content: new Map([
                         ["nl", "Oorsuizen"],
                     ])
@@ -389,7 +389,7 @@ export class SymptomsGroup extends GroupItemEditor {
                         ["nl", "Moeite met ademen of benauwd"],
                     ])
                 },
-                                {
+                {
                     key: 'hoofdpijn', role: 'option',
                     content: new Map([
                         ["nl", "Hoofdpijn"],
@@ -492,61 +492,61 @@ export class SymptomsGroup extends GroupItemEditor {
                     ])
                 },
                 {
-                    key:  'wintertenen', role: 'option',
+                    key: 'wintertenen', role: 'option',
                     content: new Map([
                         ["nl", "Wintertenen"],
                     ])
                 },
                 {
-                    key:  'hartkloppingen', role: 'option',
+                    key: 'hartkloppingen', role: 'option',
                     content: new Map([
                         ["nl", "Hartkloppingen"],
                     ])
                 },
                 {
-                    key:  'concentratieproblemen', role: 'option',
+                    key: 'concentratieproblemen', role: 'option',
                     content: new Map([
                         ["nl", "Concentratieproblemen"],
                     ])
                 },
                 {
-                    key:  'drukke_omgeving', role: 'option',
+                    key: 'drukke_omgeving', role: 'option',
                     content: new Map([
                         ["nl", "Moeite met drukke omgeving"],
                     ])
                 },
                 {
-                    key:  'slaapproblemen', role: 'option',
+                    key: 'slaapproblemen', role: 'option',
                     content: new Map([
                         ["nl", "Slaapproblemen"],
                     ])
                 },
                 {
-                    key:  'tintelingen', role: 'option',
+                    key: 'tintelingen', role: 'option',
                     content: new Map([
                         ["nl", "Tintelingen of gevoelloosheid"],
                     ])
                 },
                 {
-                    key:  'verwardheid', role: 'option',
+                    key: 'verwardheid', role: 'option',
                     content: new Map([
                         ["nl", "Verwardheid"],
                     ])
                 },
                 {
-                    key:  'brainfog', role: 'option',
+                    key: 'brainfog', role: 'option',
                     content: new Map([
                         ["nl", "Brainfog/ hersenmist"],
                     ])
                 },
                 {
-                    key:  'oorpijn', role: 'option',
+                    key: 'oorpijn', role: 'option',
                     content: new Map([
                         ["nl", "Oorpijn"],
                     ])
                 },
                 {
-                    key:  'oorsuizen', role: 'option',
+                    key: 'oorsuizen', role: 'option',
                     content: new Map([
                         ["nl", "Oorsuizen"],
                     ])
@@ -997,7 +997,7 @@ export class SymptomsGroup extends GroupItemEditor {
                 {
                     key: 'nee', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'),
-                    'nee'),
+                        'nee'),
                     content: new Map([
                         ["nl", "Nee, ik heb geen medische hulp gezocht"],
                     ])
@@ -1005,7 +1005,7 @@ export class SymptomsGroup extends GroupItemEditor {
                 {
                     key: '1', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
-                    '5'),
+                        '5'),
                     content: new Map([
                         ["nl", "Ja, bij de huisarts of huisartsenpost"],
                     ])
@@ -1013,7 +1013,7 @@ export class SymptomsGroup extends GroupItemEditor {
                 {
                     key: '2', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
-                    '5'),
+                        '5'),
                     content: new Map([
                         ["nl", "Ja, bij de eerste hulp van het ziekenhuis"],
                     ])
@@ -1021,7 +1021,7 @@ export class SymptomsGroup extends GroupItemEditor {
                 {
                     key: 'ziekenhuis', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
-                    '5'),
+                        '5'),
                     content: new Map([
                         ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
                     ])
@@ -1029,7 +1029,7 @@ export class SymptomsGroup extends GroupItemEditor {
                 {
                     key: '4', role: 'input',
                     disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), 'nee',
-                    '5'),
+                        '5'),
                     content: new Map([
                         ["nl", "Ja, ik heb andere medische hulp gezocht, namelijk"],
                     ])

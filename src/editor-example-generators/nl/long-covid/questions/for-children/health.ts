@@ -120,7 +120,7 @@ export class HealthGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn gericht aan een minderjarige.
+De vragen hieronder zijn gericht aan een minderjarige.
 Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
@@ -3327,12 +3327,12 @@ class Q15Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn gericht aan een minderjarige.
-                        Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
+De vragen hieronder zijn gericht aan een minderjarige.
+Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
 
-                        Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
-                        Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
-                        Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
+Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
+Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
                         `]
                     ])
                 })]
@@ -3528,7 +3528,7 @@ class Q16Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn voor een ouder/verzorger.
+De vragen hieronder zijn voor een ouder/verzorger.
                         `]
                     ])
                 })]
@@ -3640,8 +3640,8 @@ class Q17Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn gericht aan een minderjarige.
-                        Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+De vragen hieronder zijn gericht aan een minderjarige.
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
@@ -3766,7 +3766,7 @@ class Q18Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn voor een ouder/verzorger.
+De vragen hieronder zijn voor een ouder/verzorger.
                         `]
                     ])
                 })]
@@ -3885,7 +3885,7 @@ class Q19Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-                        De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf het antwoord op de eerste vraag kiezen.
+De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf het antwoord op de eerste vraag kiezen.
                         `]
                     ])
                 })]
