@@ -25,9 +25,8 @@ export class SymptomsGroup extends GroupItemEditor {
         const hasReportedSymptomsQ1 = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'geen'
         );
-        // TODO: fix key for diffult breathing
         this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
-            Q1.key, 'TODO: fix key for diffult breathing'
+            Q1.key, 'kortademig'
         );
         // TODO: fix expression keys
         const hadReportedSymptomsInT0ButNotAnymore = CommonExpressions.and(

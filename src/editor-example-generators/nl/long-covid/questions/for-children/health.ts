@@ -50,6 +50,12 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
 
+        // TODO: check if position here correct:
+        this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
+        this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
+
+        this.addPageBreak();
+        this.addItem(this.Q7preText());
         this.addItem(this.Q7('Q7', isRequired));
         this.addPageBreak();
 
@@ -743,7 +749,6 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
     *
     */
-    //TODO there should be a condition that if a key is selected, the numberInput cannot be 0
     //TODO can the input box be directly behind the text and have a text after the box? E.g. Huisarts <box> keer
     Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
@@ -959,11 +964,11 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         });
     }
 
-    //TODO Peter dependency to be added for this question: see email
-    Q_promis_proxy(itemKey: string, isRequired: boolean) {
+    Q_promis_proxy(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", `
@@ -980,8 +985,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 content: generateLocStrings(new Map([
 
                     ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
-                ])) // TODO Peter the above text as column names? or maybe this is automatic in the final layout?
-                // then ignore this todo
+                ]))
             }],
             scaleOptions: [
                 {
@@ -1051,12 +1055,11 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         });
     }
 
-
-    //TODO Peter dependency to be added for this question: see email
-    Q_promis(itemKey: string, isRequired: boolean) {
+    Q_promis(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", `
@@ -1076,7 +1079,6 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-
                     ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
                 ]))
             }],
@@ -1148,13 +1150,28 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         });
     }
 
+    Q7preText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(6),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+De vragen hieronder zijn gericht aan een minderjarige.
+
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
+
     /**
     *
     */
     Q7(itemKey: string, isRequired: boolean) {
-        // TODO Peter text above question: the following text
-        // De vragen hieronder zijn gericht aan een minderjarige.
-        // Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -1276,9 +1293,6 @@ Er zijn geen goede of foute antwoorden.
             ]
         })
     }
-    //TODO Peter The last sentence of above text should be in separate text box
-    // Hoe vaak heeft je kind in de afgelopen week problemen gehad met:
-    // and this sentence/problem occurs throughout this file
 
     Q81(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
@@ -1294,8 +1308,7 @@ Er zijn geen goede of foute antwoorden.
                 content: generateLocStrings(new Map([
 
                     ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
-                ])) // TODO Peter the above text as column names? or maybe this is automatic in the final layout?
-                // then ignore this todo
+                ]))
             }],
             scaleOptions: [
                 {
