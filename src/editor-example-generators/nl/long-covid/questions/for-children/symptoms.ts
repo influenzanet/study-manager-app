@@ -12,6 +12,7 @@ export class SymptomsGroup extends GroupItemEditor {
     constructor(parentKey: string, conditions: {
         groupCondition: Expression,
         olderThan10: Expression,
+        q11Ja: Expression,
     }) {
         const groupKey = 'SYM';
         super(parentKey, groupKey);
@@ -20,38 +21,45 @@ export class SymptomsGroup extends GroupItemEditor {
 
         const isRequired = true;
 
-        const Q1 = this.Q1("Q1", isRequired);
-        const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+        const Q1 = this.Q1("Q1", CommonExpressions.not(conditions.q11Ja), isRequired);
+        const hasReportedSymptomsQ1 = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'geen'
         );
+        // TODO: fix key for diffult breathing
         this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'TODO: fix key for diffult breathing'
         );
-
+        // TODO: fix expression keys
         const hadReportedSymptomsInT0ButNotAnymore = CommonExpressions.and(
             CommonExpressions.hasParticipantFlag('todo', 'todo'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
         )
 
+        const Q1_notyes = this.Q1_notyes("Q1_notyes", undefined, isRequired);
+        const hasReportedSymptomsQ1_notyes = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
+            Q1_notyes.key, 'geen'
+        );
+
         const ipqCondtion = CommonExpressions.and(
-            hasReportedSymptoms,
+            hasReportedSymptomsQ1,
             conditions.olderThan10
         )
 
-        const Q6 = this.Q6('Q6', hasReportedSymptoms, isRequired);
+        const Q6 = this.Q6('Q6', hasReportedSymptomsQ1, isRequired);
         const conditionQ6ziekenhuis = CommonExpressions.multipleChoiceOptionsSelected(Q6.key, 'ziekenhuis');
         const conditionQ6nee = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(Q6.key, 'nee');
         const Q7 = this.Q7('Q7', conditionQ6ziekenhuis, isRequired)
         const conditionQ7KIC = CommonExpressions.multipleChoiceOptionsSelected(Q7.key, 'picu')
 
-        const Q12 = this.Q12('Q12', hasReportedSymptoms, isRequired)
+        const Q12 = this.Q12('Q12', hasReportedSymptomsQ1, isRequired)
         const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten')
 
         //
         this.addItem(this.groupIntro());
         this.addItem(Q1);
-        this.addItem(this.Q2('Q2', hasReportedSymptoms, isRequired));
-        this.addItem(this.Q3('Q3', hasReportedSymptoms, isRequired));
+        this.addItem(Q1_notyes);
+        this.addItem(this.Q2('Q2', hasReportedSymptomsQ1, isRequired));
+        this.addItem(this.Q3('Q3', hasReportedSymptomsQ1, isRequired));
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Q2b('Q2b', hadReportedSymptomsInT0ButNotAnymore, isRequired));
         }
@@ -62,7 +70,8 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
         this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
-        this.addItem(this.Q11('Q11', hasReportedSymptoms, isRequired));
+        this.addItem(this.Q11('Q11', hasReportedSymptomsQ1_notyes, isRequired));
+        this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q12);
         this.addItem(this.Q13('Q13', conditionQ12ja, isRequired));
 
@@ -85,12 +94,11 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
-
-    //TODO Peter dependency to be added correctly for this question: see email
-    Q1(key: string, isRequired?: boolean) {
+    Q1(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
+            condition: condition,
             questionText: new Map([
                 ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
             ]),
@@ -328,11 +336,11 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
-    //TODO Peter dependency to be added for this question: see email
-    Q1_notyes(key: string, isRequired?: boolean) {
+    Q1_notyes(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
+            condition: condition,
             questionText: new Map([
                 ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus "],
             ]),

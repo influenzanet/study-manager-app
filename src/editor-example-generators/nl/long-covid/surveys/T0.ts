@@ -149,6 +149,7 @@ export const generateT0 = (): Survey | undefined => {
     const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(childVersion.key, {
         groupCondition: participantInfos.isOlder(minAge),
         olderThan10: participantInfos.isOlder(10),
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
     });
     childVersion.addItem(childrenSymptomsGroupEditor.getItem());
 
