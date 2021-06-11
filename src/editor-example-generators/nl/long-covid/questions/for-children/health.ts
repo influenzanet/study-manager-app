@@ -251,10 +251,15 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind."],
+                ["nl", `Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in
+                 de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk).`
+                 ],
             ]),
             questionSubText: new Map([
-                ["nl", "Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk)."],
+                ["nl", `
+                De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
+                de antwoorden invullen voor/over uw kind.`
+                ]
             ]),
             responseOptions: [
                 {
@@ -692,7 +697,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                     role: 'error',
                     content: generateLocStrings(new Map([
                         // TODO: add a text that is displayed when a number is left blank
-                        ["nl", "TODO: hint to fill in numbers"],
+                        ["nl", "Vul het aantal keer in dat je contact hebt gehad met de zorgverlener"],
                     ])),
                     displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'numberInputChecks'))
                 }
@@ -870,6 +875,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
      *
      */
+    //TODO Peter dependency to be added for this question: see email
     Q62(itemKey: string, isRequired?: boolean) {
         const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
 
@@ -950,6 +956,195 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             isRequired: isRequired,
         });
     }
+
+    //TODO Peter dependency to be added for this question: see email
+    Q_promis_proxy(itemKey: string, isRequired: boolean){
+        return SurveyItemGenerators.simpleLikertGroup({
+                parentKey: this.key,
+                itemKey: itemKey,
+                isRequired: isRequired,
+                questionText: new Map([
+                    ["nl", `
+                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
+                    `],
+                ]),
+                questionSubText: new Map([
+                    ["nl", "De vragen hieronder zijn gericht aan een ouder/verzorger."]
+                ]),
+                topDisplayCompoments: [{
+                    role: 'text',
+                    style: [{ key: 'className', value: 'mb-2' }],
+                    content: generateLocStrings(new Map([
+
+                        ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
+                    ])) // TODO Peter the above text as column names? or maybe this is automatic in the final layout?
+                    // then ignore this todo
+                }],
+                scaleOptions: [
+                    {
+                        key: '1', content: new Map([
+                            ["nl", "1"],
+                        ])
+                    }, {
+                        key: '2', content: new Map([
+                            ["nl", "2"],
+                        ])
+                    }, {
+                        key: '3', content: new Map([
+                            ["nl", "3"],
+                        ]),
+                    }, {
+                        key: '4', content: new Map([
+                            ["nl", "4"],
+                        ])
+                    }, {
+                        key: '5', content: new Map([
+                            ["nl", "5"],
+                        ])
+                    },
+                ],
+                rows: [
+                    {
+                        key: 'a', content: new Map([
+                            ["nl", "Mijn kind was bang dat hij/zij moeite met ademen zou kunnen krijgen."],
+                        ])
+                    },
+                    {
+                        key: 'b', content: new Map([
+                            ["nl", "Mijn kind had een drukkend gevoel op de borst."],
+                        ])
+                    },
+                    {
+                        key: 'c', content: new Map([
+                            ["nl", "Mijn kind piepte bij het ademen."],
+                        ])
+                    },
+                    {
+                        key: 'd', content: new Map([
+                            ["nl", "Mijn kind had moeite met ademen."],
+                        ])
+                    },
+                    {
+                        key: 'e', content: new Map([
+                            ["nl", "Mijn kind had 's nachts moeite met slapen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'f', content: new Map([
+                            ["nl", "Het was moeilijk voor mijn kind om te sporten of te bewegen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'g', content: new Map([
+                            ["nl", "Het was moeilijk voor mijn kind om diep adem te halen."],
+                        ])
+                    },
+                    {
+                        key: 'h', content: new Map([
+                            ["nl", "Mijn kind had last van benauwdheid."],
+                        ])
+                    },
+                ]
+            });
+        }
+
+
+    //TODO Peter dependency to be added for this question: see email
+    Q_promis(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+                parentKey: this.key,
+                itemKey: itemKey,
+                isRequired: isRequired,
+                questionText: new Map([
+                    ["nl", `
+                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
+                    `],
+                ]),
+                questionSubText: new Map([
+                    ["nl", `
+                    De vragen hieronder zijn gericht aan een minderjarige.
+
+                    Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+`
+                    ]
+                ]),
+                topDisplayCompoments: [{
+                    role: 'text',
+                    style: [{ key: 'className', value: 'mb-2' }],
+                    content: generateLocStrings(new Map([
+
+                        ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
+                    ]))
+                }],
+                scaleOptions: [
+                    {
+                        key: '1', content: new Map([
+                            ["nl", "1"],
+                        ])
+                    }, {
+                        key: '2', content: new Map([
+                            ["nl", "2"],
+                        ])
+                    }, {
+                        key: '3', content: new Map([
+                            ["nl", "3"],
+                        ]),
+                    }, {
+                        key: '4', content: new Map([
+                            ["nl", "4"],
+                        ])
+                    }, {
+                        key: '5', content: new Map([
+                            ["nl", "5"],
+                        ])
+                    },
+                ],
+                rows: [
+                    {
+                        key: 'i', content: new Map([
+                            ["nl", "Ik was bang dat ik moeite met ademen zou kunnen krijgen."],
+                        ])
+                    },
+                    {
+                        key: 'j', content: new Map([
+                            ["nl", "Ik had een drukkend gevoel op de borst."],
+                        ])
+                    },
+                    {
+                        key: 'k', content: new Map([
+                            ["nl", "Ik piepte bij het ademen."],
+                        ])
+                    },
+                    {
+                        key: 'l', content: new Map([
+                            ["nl", "Ik had moeite met ademen."],
+                        ])
+                    },
+                    {
+                        key: 'm', content: new Map([
+                            ["nl", "Ik had 's nachts moeite met slapen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'n', content: new Map([
+                            ["nl", "Het was moeilijk voor mij om te sporten of te bewegen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'o', content: new Map([
+                            ["nl", "Het was moeilijk om diep adem te halen."],
+                        ])
+                    },
+                    {
+                        key: 'p', content: new Map([
+                            ["nl", "Ik had last van benauwdheid."],
+                        ])
+                    },
+                ]
+            });
+        }
 
     /**
     *
@@ -1040,10 +1235,11 @@ class Q8Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+### De vragen hieronder zijn voor een ouder/verzorger.
 
-Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
-Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad? Vink het bolletje aan bij:
+##### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
+##### Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -1404,11 +1600,12 @@ class Q9Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+##### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad? Vink het bolletje aan bij:
+##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -1751,11 +1948,12 @@ class Q10Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+#### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad? Vink het bolletje aan bij:
+##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -3621,7 +3819,7 @@ class Q18Group extends GroupItemEditor {
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft)"],
+                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft"],
             ]),
             content: new Map([
                 ['nl', 'uur']
