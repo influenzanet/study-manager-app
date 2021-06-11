@@ -870,6 +870,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
      *
      */
+    //TODO Peter dependency to be added for this question: see email
     Q62(itemKey: string, isRequired?: boolean) {
         const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
 
@@ -950,6 +951,195 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             isRequired: isRequired,
         });
     }
+
+    //TODO Peter dependency to be added for this question: see email
+    Q_promis_proxy(itemKey: string, isRequired: boolean){
+        return SurveyItemGenerators.simpleLikertGroup({
+                parentKey: this.key,
+                itemKey: itemKey,
+                isRequired: isRequired,
+                questionText: new Map([
+                    ["nl", `
+                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
+                    `],
+                ]),
+                questionSubText: new Map([
+                    ["nl", "De vragen hieronder zijn gericht aan een ouder/verzorger."]
+                ]),
+                topDisplayCompoments: [{
+                    role: 'text',
+                    style: [{ key: 'className', value: 'mb-2' }],
+                    content: generateLocStrings(new Map([
+
+                        ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
+                    ])) // TODO Peter the above text as column names? or maybe this is automatic in the final layout?
+                    // then ignore this todo
+                }],
+                scaleOptions: [
+                    {
+                        key: '1', content: new Map([
+                            ["nl", "1"],
+                        ])
+                    }, {
+                        key: '2', content: new Map([
+                            ["nl", "2"],
+                        ])
+                    }, {
+                        key: '3', content: new Map([
+                            ["nl", "3"],
+                        ]),
+                    }, {
+                        key: '4', content: new Map([
+                            ["nl", "4"],
+                        ])
+                    }, {
+                        key: '5', content: new Map([
+                            ["nl", "5"],
+                        ])
+                    },
+                ],
+                rows: [
+                    {
+                        key: 'a', content: new Map([
+                            ["nl", "Mijn kind was bang dat hij/zij moeite met ademen zou kunnen krijgen."],
+                        ])
+                    },
+                    {
+                        key: 'b', content: new Map([
+                            ["nl", "Mijn kind had een drukkend gevoel op de borst."],
+                        ])
+                    },
+                    {
+                        key: 'c', content: new Map([
+                            ["nl", "Mijn kind piepte bij het ademen."],
+                        ])
+                    },
+                    {
+                        key: 'd', content: new Map([
+                            ["nl", "Mijn kind had moeite met ademen."],
+                        ])
+                    },
+                    {
+                        key: 'e', content: new Map([
+                            ["nl", "Mijn kind had 's nachts moeite met slapen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'f', content: new Map([
+                            ["nl", "Het was moeilijk voor mijn kind om te sporten of te bewegen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'g', content: new Map([
+                            ["nl", "Het was moeilijk voor mijn kind om diep adem te halen."],
+                        ])
+                    },
+                    {
+                        key: 'h', content: new Map([
+                            ["nl", "Mijn kind had last van benauwdheid."],
+                        ])
+                    },
+                ]
+            });
+        }
+
+
+    //TODO Peter dependency to be added for this question: see email
+    Q_promis(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+                parentKey: this.key,
+                itemKey: itemKey,
+                isRequired: isRequired,
+                questionText: new Map([
+                    ["nl", `
+                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
+                    `],
+                ]),
+                questionSubText: new Map([
+                    ["nl", `
+                    De vragen hieronder zijn gericht aan een minderjarige.
+
+                    Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+`
+                    ]
+                ]),
+                topDisplayCompoments: [{
+                    role: 'text',
+                    style: [{ key: 'className', value: 'mb-2' }],
+                    content: generateLocStrings(new Map([
+
+                        ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
+                    ]))
+                }],
+                scaleOptions: [
+                    {
+                        key: '1', content: new Map([
+                            ["nl", "1"],
+                        ])
+                    }, {
+                        key: '2', content: new Map([
+                            ["nl", "2"],
+                        ])
+                    }, {
+                        key: '3', content: new Map([
+                            ["nl", "3"],
+                        ]),
+                    }, {
+                        key: '4', content: new Map([
+                            ["nl", "4"],
+                        ])
+                    }, {
+                        key: '5', content: new Map([
+                            ["nl", "5"],
+                        ])
+                    },
+                ],
+                rows: [
+                    {
+                        key: 'i', content: new Map([
+                            ["nl", "Ik was bang dat ik moeite met ademen zou kunnen krijgen."],
+                        ])
+                    },
+                    {
+                        key: 'j', content: new Map([
+                            ["nl", "Ik had een drukkend gevoel op de borst."],
+                        ])
+                    },
+                    {
+                        key: 'k', content: new Map([
+                            ["nl", "Ik piepte bij het ademen."],
+                        ])
+                    },
+                    {
+                        key: 'l', content: new Map([
+                            ["nl", "Ik had moeite met ademen."],
+                        ])
+                    },
+                    {
+                        key: 'm', content: new Map([
+                            ["nl", "Ik had 's nachts moeite met slapen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'n', content: new Map([
+                            ["nl", "Het was moeilijk voor mij om te sporten of te bewegen door benauwdheid."],
+                        ])
+                    },
+                    {
+                        key: 'o', content: new Map([
+                            ["nl", "Het was moeilijk om diep adem te halen."],
+                        ])
+                    },
+                    {
+                        key: 'p', content: new Map([
+                            ["nl", "Ik had last van benauwdheid."],
+                        ])
+                    },
+                ]
+            });
+        }
 
     /**
     *

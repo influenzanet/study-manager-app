@@ -85,12 +85,256 @@ export class SymptomsGroup extends GroupItemEditor {
         })
     }
 
+
+    //TODO Peter dependency to be added correctly for this question: see email
     Q1(key: string, isRequired?: boolean) {
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
                 ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk."],
+            ]),
+            responseOptions: [
+                {
+                    key: 'long1', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Selecteer je klachten"],
+                    ])
+                },
+                {
+                    key: 'koorts', role: 'option',
+                    content: new Map([
+                        ["nl", "Koorts"],
+                    ])
+                },
+                {
+                    key: 'koude_rillingen', role: 'option',
+                    content: new Map([
+                        ["nl", "Koude rillingen"],
+                    ])
+                },
+                {
+                    key: 'loopneus_of_verstopte_neus', role: 'option',
+                    content: new Map([
+                        ["nl", "Loopneus of verstopte neus"],
+                    ])
+                },
+                {
+                    key: 'niezen', role: 'option',
+                    content: new Map([
+                        ["nl", "Niezen"],
+                    ])
+                },
+                {
+                    key: 'keelpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Keelpijn"],
+                    ])
+                },
+                {
+                    key: 'hoesten', role: 'option',
+                    content: new Map([
+                        ["nl", "Hoesten"],
+                    ])
+                },
+                {
+                    key: 'kortademig', role: 'option',
+                    content: new Map([
+                        ["nl", "Moeite met ademen of benauwd"],
+                    ])
+                },
+                                {
+                    key: 'hoofdpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Hoofdpijn"],
+                    ])
+                },
+                {
+                    key: 'spierpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Spierpijn of pijn aan mijn gewrichten (niet door sporten)"],
+                    ])
+                },
+                {
+                    key: 'beklemming_pijn_op_borst', role: 'option',
+                    content: new Map([
+                        ["nl", "Pijn op de borst"],
+                    ])
+                },
+                {
+                    key: 'vermoeidheid', role: 'option',
+                    content: new Map([
+                        ["nl", "Vermoeidheid"],
+                    ])
+                },
+                {
+                    key: 'malaise', role: 'option',
+                    content: new Map([
+                        ["nl", "Niet lekker voelen (algehele malaise)"],
+                    ])
+                },
+                {
+                    key: 'eetlust', role: 'option',
+                    content: new Map([
+                        ["nl", "Minder trek hebben (verminderde eetlust)"],
+                    ])
+                },
+                {
+                    key: 'slijm', role: 'option',
+                    content: new Map([
+                        ["nl", "Slijm uit keel of neus"],
+                    ])
+                },
+                {
+                    key: 'ogen', role: 'option',
+                    content: new Map([
+                        ["nl", "Ontstoken ogen"],
+                    ])
+                },
+                {
+                    key: 'duizeligheid', role: 'option',
+                    content: new Map([
+                        ["nl", "Duizeligheid"],
+                    ])
+                },
+                {
+                    key: 'misselijkheid', role: 'option',
+                    content: new Map([
+                        ["nl", "Misselijkheid"],
+                    ])
+                },
+                {
+                    key: 'overgeven', role: 'option',
+                    content: new Map([
+                        ["nl", "Overgeven"],
+                    ])
+                },
+                {
+                    key: 'andere-ontlasting', role: 'option',
+                    content: new Map([
+                        ["nl", "Andere ontlasting (zoals diarree, slijm of veranderd patroon)"],
+                    ])
+                },
+                {
+                    key: 'buikpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Buikpijn"],
+                    ])
+                },
+                {
+                    key: 'geen_reuk', role: 'option',
+                    content: new Map([
+                        ["nl", "Geen reuk (of sterk verminderd)"],
+                    ])
+                },
+                {
+                    key: 'geen_smaak', role: 'option',
+                    content: new Map([
+                        ["nl", "Geen smaak (of sterk verminderd)"],
+                    ])
+                },
+                {
+                    key: 'bloedneus', role: 'option',
+                    content: new Map([
+                        ["nl", "Bloedneus"],
+                    ])
+                },
+                {
+                    key: 'huiduitslag', role: 'option',
+                    content: new Map([
+                        ["nl", "Huiduitslag"],
+                    ])
+                },
+                {
+                    key:  'wintertenen', role: 'option',
+                    content: new Map([
+                        ["nl", "Wintertenen"],
+                    ])
+                },
+                {
+                    key:  'hartkloppingen', role: 'option',
+                    content: new Map([
+                        ["nl", "Hartkloppingen"],
+                    ])
+                },
+                {
+                    key:  'concentratieproblemen', role: 'option',
+                    content: new Map([
+                        ["nl", "Concentratieproblemen"],
+                    ])
+                },
+                {
+                    key:  'drukke_omgeving', role: 'option',
+                    content: new Map([
+                        ["nl", "Moeite met drukke omgeving"],
+                    ])
+                },
+                {
+                    key:  'slaapproblemen', role: 'option',
+                    content: new Map([
+                        ["nl", "Slaapproblemen"],
+                    ])
+                },
+                {
+                    key:  'tintelingen', role: 'option',
+                    content: new Map([
+                        ["nl", "Tintelingen of gevoelloosheid"],
+                    ])
+                },
+                {
+                    key:  'verwardheid', role: 'option',
+                    content: new Map([
+                        ["nl", "Verwardheid"],
+                    ])
+                },
+                {
+                    key:  'brainfog', role: 'option',
+                    content: new Map([
+                        ["nl", "Brainfog/ hersenmist"],
+                    ])
+                },
+                {
+                    key:  'oorpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Oorpijn"],
+                    ])
+                },
+                {
+                    key:  'oorsuizen', role: 'option',
+                    content: new Map([
+                        ["nl", "Oorsuizen"],
+                    ])
+                },
+                {
+                    key: 'long3', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Vink aan als geen van bovenstaande van toepassing is"],
+                    ])
+                },
+                {
+                    key: 'geen', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), 'geen'),
+                    content: new Map([
+                        ["nl", "Geen van de bovenstaande klachten"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
+
+    //TODO Peter dependency to be added for this question: see email
+    Q1_notyes(key: string, isRequired?: boolean) {
+        return SurveyItemGenerators.multipleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            questionText: new Map([
+                ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus "],
             ]),
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk."],
@@ -1006,6 +1250,114 @@ export class SymptomsGroup extends GroupItemEditor {
             itemKey: itemKey,
             questionText: new Map([
                 ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus? En zo ja, welke?"],
+            ]),
+            topDisplayCompoments: [
+                {
+                    role: 'text',
+                    style: [{ key: 'className', value: 'mb-2' }],
+                    content: generateLocStrings(new Map([
+                        ["nl", "Meerdere antwoorden mogelijk"],
+                    ]))
+                }
+            ],
+            responseOptions: [
+                {
+                    key: '0', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Nee, ik heb geen medicijnen gebruikt"],
+                    ])
+                },
+                {
+                    key: '1', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, pijnstillers zoals paracetamol, diclofenac of ibuprofen"],
+                    ])
+                },
+                {
+                    key: '2', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
+                    ])
+                },
+                {
+                    key: 'afweerremmers', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, afweerremmende medicatie zoals prednison of dexamethason"],
+                    ])
+                },
+                {
+                    key: '4', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, antibiotica"],
+                    ])
+                },
+                {
+                    key: '5', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, medicijnen voor hooikoorts (anti-allergie tablet of drank of allergie-neusspray) of astma"],
+                    ])
+                },
+                {
+                    key: '6', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, homeopathische middelen"],
+                    ])
+                },
+                {
+                    key: '7', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
+                    ])
+                },
+                {
+                    key: '8', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, vitamines (bijvoorbeeld vitamine C of vitamine D)"],
+                    ])
+                },
+                {
+                    key: '9', role: 'input',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Ja, andere medicatie, namelijk"],
+                    ])
+                },
+                {
+                    key: '10', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    content: new Map([
+                        ["nl", "Dit wil ik niet aangeven"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
+
+    Q11_yes(itemKey: string, condition: Expression, isRequired?: boolean) {
+        const parentKey = this.key;
+        return SurveyItemGenerators.multipleChoice({
+            parentKey: parentKey,
+            condition: condition,
+            itemKey: itemKey,
+            questionText: new Map([
+                ["nl", "Heb je vanwege je klachten medicijnen gebruikt? En zo ja, welke?"],
             ]),
             topDisplayCompoments: [
                 {
