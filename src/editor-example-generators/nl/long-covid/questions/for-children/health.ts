@@ -251,10 +251,15 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind."],
+                ["nl", `Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in
+                 de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk).`
+                 ],
             ]),
             questionSubText: new Map([
-                ["nl", "Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk)."],
+                ["nl", `
+                De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
+                de antwoorden invullen voor/over uw kind.`
+                ]
             ]),
             responseOptions: [
                 {
@@ -1230,10 +1235,11 @@ class Q8Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+### De vragen hieronder zijn voor een ouder/verzorger.
 
-Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
-Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad? Vink het bolletje aan bij:
+##### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
+##### Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -1594,11 +1600,12 @@ class Q9Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+##### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad? Vink het bolletje aan bij:
+##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -1941,11 +1948,12 @@ class Q10Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+#### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad? Vink het bolletje aan bij:
+##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -3811,7 +3819,7 @@ class Q18Group extends GroupItemEditor {
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft)"],
+                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft"],
             ]),
             content: new Map([
                 ['nl', 'uur']
