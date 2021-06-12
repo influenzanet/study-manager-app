@@ -26,6 +26,42 @@ const timestampFromStudyStart = (daysDelta: number) => {
     );
 }
 
+const getAgeInYearsExpression = (questionRef: string) => {
+    return expWithArgs('dateResponseDiffFromNow', questionRef, [responseGroupKey, datePickerKey].join('.'), 'years', 1);
+}
+
+const isOlder = (questionRef: string, age: number, allowEqual?: boolean) => {
+    return expWithArgs(
+        allowEqual ? 'gte' : 'gt',
+        getAgeInYearsExpression(questionRef),
+        age,
+    )
+}
+
+const isYounger = (questionRef: string, age: number, allowEqual?: boolean) => {
+    return expWithArgs(
+        allowEqual ? 'lte' : 'lt',
+        getAgeInYearsExpression(questionRef),
+        age,
+    )
+}
+
+const isBetweenAges = (questionRef: string, minAge: number, maxAge: number, allowEqual?: boolean): Expression => {
+    return expWithArgs(
+        'and',
+        expWithArgs(
+            allowEqual ? 'gte' : 'gt',
+            getAgeInYearsExpression(questionRef),
+            minAge,
+        ),
+        expWithArgs(
+            allowEqual ? 'lte' : 'lt',
+            getAgeInYearsExpression(questionRef),
+            maxAge,
+        )
+    );
+}
+
 const assignSurveyFromStudyStart = (
     surveyKey: string,
     category: "prio" | "normal" | "optional",
@@ -103,29 +139,53 @@ const handleT0Submission = (): Expression => {
                     years: -16,
                 })
             )
-        )
-
-    const isNotChildParticipant = () => expWithArgs('not', isChildParticipant());
+        );
 
     const isInterestedInAdditionalResearch = () => StudyExpressions.singleChoiceOptionsSelected(
         "T0.A.DEM.Q20", "ja"
+    )
+
+    // Expressions for age categories:
+    const ageQuestionKey = 'T0.CAT.Q2';
+    const handleAgeCategories = StudyActions.do(
+        StudyActions.if(
+            isYounger(ageQuestionKey, 8),
+            StudyActions.updateParticipantFlag("<8", "true"),
+            StudyActions.updateParticipantFlag("<8", "false"),
+        ),
+        StudyActions.if(
+            isYounger(ageQuestionKey, 11),
+            StudyActions.updateParticipantFlag("<11", "true"),
+            StudyActions.updateParticipantFlag("<11", "false"),
+        ),
+        StudyActions.if(
+            isBetweenAges(ageQuestionKey, 8, 12, true),
+            StudyActions.updateParticipantFlag("8-12", "true"),
+            StudyActions.updateParticipantFlag("8-12", "false"),
+        ),
+        StudyActions.if(
+            isOlder(ageQuestionKey, 13, true),
+            StudyActions.updateParticipantFlag("8-12", "true"),
+            StudyActions.updateParticipantFlag("8-12", "false"),
+        ),
     )
 
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T0),
         [
             StudyActions.removeAllSurveys(),
-            StudyActions.ifThen(
+            StudyActions.if(
                 isInterestedInAdditionalResearch(),
-                [StudyActions.updateParticipantFlag("additionalStudies", "ja"),]
+                StudyActions.updateParticipantFlag("additionalStudies", "ja")
             ),
-            StudyActions.ifThen(
+            StudyActions.if(
                 adultVersionChecks.isTestResultUnknown(),
-                [StudyActions.updateParticipantFlag("testResult", "unknown"),]
+                StudyActions.updateParticipantFlag("testResult", "unknown")
             ),
-            StudyActions.ifThen(
+            StudyActions.if(
                 isChildParticipant(),
-                [
+                StudyActions.do(
+                    handleAgeCategories,
                     StudyActions.finishParticipation(),
                     /*StudyActions.updateParticipantFlag("surveyCategory", "C"),
                     StudyActions.ifThen(
@@ -136,11 +196,10 @@ const handleT0Submission = (): Expression => {
                         hasNoReportedSymptoms(),
                         [assignT3c()]
                     )*/
-                ]
-            ),
-            StudyActions.ifThen(
-                isNotChildParticipant(),
-                [
+
+                ),
+                // else: (adult participant)
+                StudyActions.do(
                     StudyActions.updateParticipantFlag("surveyCategory", "A"),
                     StudyActions.ifThen(
                         shouldGetAdultShortSurvey(),
@@ -150,10 +209,8 @@ const handleT0Submission = (): Expression => {
                         shouldGetAdultT3Survey(),
                         [assignT3(),]
                     )
-                ]
+                )
             ),
-
-
         ]
     )
 }
