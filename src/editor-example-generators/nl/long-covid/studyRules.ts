@@ -97,15 +97,16 @@ const assignShortC = () => StudyActions.addNewSurvey(
     StudyExpressions.timestampWithOffset({
         days: 14
     }));
+
 const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 30);
 const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 30);
 const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 30);
 const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 30);
 
-const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "normal", 90, 30);
-const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "normal", 180, 30);
-const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "normal", 270, 30);
-const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "normal", 360, 30);
+const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "prio", 90, 30);
+const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 30);
+const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 30);
+const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 30);
 
 const handleT0Submission = (): Expression => {
     const adultVersionChecks = {
@@ -127,6 +128,7 @@ const handleT0Submission = (): Expression => {
 
     const shouldGetAdultT3Survey = () => expWithArgs('not', shouldGetAdultShortSurvey());
 
+    // TODO: is this still correct?
     const isChildParticipant = () =>
         expWithArgs('or',
             StudyExpressions.singleChoiceOptionsSelected('T0.CAT.Q1', 'kind'),
@@ -184,10 +186,13 @@ const handleT0Submission = (): Expression => {
             ),
             StudyActions.if(
                 isChildParticipant(),
+                // Logic for child participants:
+                // TODO: how to update rules?
                 StudyActions.do(
                     handleAgeCategories,
+                    StudyActions.updateParticipantFlag("surveyCategory", "C"),
                     StudyActions.finishParticipation(),
-                    /*StudyActions.updateParticipantFlag("surveyCategory", "C"),
+                    /*
                     StudyActions.ifThen(
                         hasReportedSymptoms(),
                         [assignShortC()]
@@ -198,7 +203,7 @@ const handleT0Submission = (): Expression => {
                     )*/
 
                 ),
-                // else: (adult participant)
+                // else: (adult participants)
                 StudyActions.do(
                     StudyActions.updateParticipantFlag("surveyCategory", "A"),
                     StudyActions.ifThen(
@@ -257,6 +262,54 @@ const handleShortSubmission = (): Expression => {
 
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.short),
+        performActions(),
+    )
+}
+
+
+// TODO: check and update logic
+const handleShortCSubmission = (): Expression => {
+    const isStudyInitialPhase = () => expWithArgs('lt',
+        StudyExpressions.timestampWithOffset({ days: -83 }),
+        StudyExpressions.getStudyEntryTime(),
+    )
+
+    const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+        surveyKeys.short + '.AH.Q1', 'geen'
+    )
+
+    const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
+        surveyKeys.short + 'TEST.Q5followup', 'pos', 'neg'
+    );
+
+    const shouldAssignShortAgain = () => expWithArgs(
+        'and',
+        hasReportedSymptoms(),
+        isStudyInitialPhase(),
+    );
+
+    const shouldNotAssignShortAgain = () => expWithArgs('not', shouldAssignShortAgain());
+
+    const performActions = () => [
+        StudyActions.removeAllSurveys(),
+        StudyActions.ifThen(
+            shouldAssignShortAgain(),
+            [assignShort()]
+        ),
+        StudyActions.ifThen(
+            shouldNotAssignShortAgain(),
+            [assignT3()]
+        ),
+        StudyActions.ifThen(
+            hasTestResultAlready(),
+            [
+                StudyActions.updateParticipantFlag('testResult', 'known')
+            ]
+        )
+    ]
+
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.shortC),
         performActions(),
     )
 }
@@ -364,6 +417,7 @@ const handleSubmissionEvent = () => StudyActions.ifThen(
     [
         handleT0Submission(),
         handleShortSubmission(),
+        handleShortCSubmission(),
         handleT3Submission(),
         handleT3cSubmission(),
         handleT6Submission(),
