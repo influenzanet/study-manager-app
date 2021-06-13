@@ -10,14 +10,17 @@ export class SymptomsGroup extends GroupItemEditor {
     hasDifficultyBreathingExp: Expression;
 
     constructor(parentKey: string, conditions: {
-        groupCondition: Expression,
+        groupCondition?: Expression,
         olderThan10: Expression,
         q11Ja: Expression,
     }) {
         const groupKey = 'SYM';
         super(parentKey, groupKey);
 
-        this.groupEditor.setCondition(conditions.groupCondition);
+        if (conditions.groupCondition !== undefined) {
+            this.groupEditor.setCondition(conditions.groupCondition);
+        }
+
 
         const isRequired = true;
 

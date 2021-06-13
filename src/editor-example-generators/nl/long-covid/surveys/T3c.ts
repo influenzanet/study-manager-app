@@ -2,10 +2,11 @@ import { Survey } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
-import { EQ5DProxyGroup } from "../questions/for-children/eq5dProxy";
 import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
 import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest";
 import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
+import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
+import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
 
 export const generateT3c = (): Survey | undefined => {
     const surveyKey = surveyKeys.T3c;
@@ -35,15 +36,22 @@ export const generateT3c = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(childrenVaccinationGroupEditor.getItem());
 
 
-
-    // *******************************
-    // Questions
-    // *******************************
-    // EQ5D group
-    const eq5dGroupEditor = new EQ5DProxyGroup(surveyKey, {
-        olderThan7: CommonExpressions.hasParticipantFlag('<8', 'false')
+    // SymptomsGroup for children
+    const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(surveyKey, {
+        olderThan10: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'false'),
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
     });
-    surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
+    surveyEditor.addSurveyItemToRoot(childrenSymptomsGroupEditor.getItem());
+
+    // General Health for children
+    const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(surveyKey, {
+        hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
+        youngerThan8: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'true'),
+        youngerThan11: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'true'),
+        between8And12: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.between8and12, 'true'),
+        between13And18: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
+    });
+    surveyEditor.addSurveyItemToRoot(childrenGeneralHealthGroupEditor.getItem());
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

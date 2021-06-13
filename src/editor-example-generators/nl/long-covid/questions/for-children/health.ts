@@ -11,7 +11,7 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 export class HealthGroup extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
-        groupCondition: Expression,
+        groupCondition?: Expression,
         hasDifficultyWithBreathing: Expression,
         youngerThan8: Expression,
         youngerThan11: Expression,
@@ -21,7 +21,9 @@ export class HealthGroup extends GroupItemEditor {
         const groupKey = 'HEALTH';
         super(parentKey, groupKey);
 
-        this.groupEditor.setCondition(conditions.groupCondition);
+        if (conditions.groupCondition !== undefined) {
+            this.groupEditor.setCondition(conditions.groupCondition);
+        }
 
         const isRequired = true;
 
