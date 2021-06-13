@@ -442,6 +442,56 @@ const handleTimerEvent = (): Expression => {
         )
     };
 
+    const handleShortCExpired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.shortC),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT3c(),
+            ]
+        )
+    };
+
+    const handleT3cExpired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T3c),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT6c(),
+            ]
+        )
+    };
+
+    const handleT6cExpired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T6c),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT9c(),
+            ]
+        )
+    };
+
+    const handleT9cExpired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T9c),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT12c(),
+            ]
+        )
+    };
+
+    const handleT12cExpired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T12c),
+            [
+                StudyActions.removeAllSurveys(),
+                StudyActions.stopParticipation(),
+            ]
+        )
+    };
+
     return StudyActions.ifThen(
         StudyExpressions.checkEventType('TIMER'),
         [
@@ -451,9 +501,13 @@ const handleTimerEvent = (): Expression => {
             handleT6Expired(),
             handleT9Expired(),
             handleT12Expired(),
+            handleShortCExpired(),
+            handleT3cExpired(),
+            handleT6cExpired(),
+            handleT9cExpired(),
+            handleT12cExpired(),
         ]
     )
-
 }
 
 
