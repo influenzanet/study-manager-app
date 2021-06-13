@@ -1,8 +1,11 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
-import { EQ5DGroup } from "../questions/eq5d";
-import { surveyKeys } from "../studyRules";
+import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
+import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest";
+import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
+import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+
 
 export const generateT12c = (): Survey | undefined => {
     const surveyKey = surveyKeys.T12c;
@@ -25,9 +28,15 @@ export const generateT12c = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    // EQ5D group
-    const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
-    surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
+    // COVID test group for children
+    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(childrenCovidTestGroupEditor.getItem());
+
+    // COVID vaccination for children
+    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(surveyKey, {
+        groupCondition: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older15, 'true'),
+    });
+    surveyEditor.addSurveyItemToRoot(childrenVaccinationGroupEditor.getItem());
 
 
     // Survey End

@@ -108,6 +108,14 @@ const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 
 const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 30);
 const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 30);
 
+export const AgeCategoryFlagName = {
+    younger8: '<8',
+    younger11: '<11',
+    between8and12: '8-12',
+    older12: '12<',
+    older15: '15<',
+}
+
 const handleT0Submission = (): Expression => {
     const adultVersionChecks = {
         hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
@@ -152,23 +160,28 @@ const handleT0Submission = (): Expression => {
     const handleAgeCategories = StudyActions.do(
         StudyActions.if(
             isYounger(ageQuestionKey, 8),
-            StudyActions.updateParticipantFlag("<8", "true"),
-            StudyActions.updateParticipantFlag("<8", "false"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger8, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger8, "false"),
         ),
         StudyActions.if(
             isYounger(ageQuestionKey, 11),
-            StudyActions.updateParticipantFlag("<11", "true"),
-            StudyActions.updateParticipantFlag("<11", "false"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger11, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger11, "false"),
         ),
         StudyActions.if(
             isBetweenAges(ageQuestionKey, 8, 12, true),
-            StudyActions.updateParticipantFlag("8-12", "true"),
-            StudyActions.updateParticipantFlag("8-12", "false"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.between8and12, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.between8and12, "false"),
         ),
         StudyActions.if(
             isOlder(ageQuestionKey, 13, true),
-            StudyActions.updateParticipantFlag("8-12", "true"),
-            StudyActions.updateParticipantFlag("8-12", "false"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.older12, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.older12, "false"),
+        ),
+        StudyActions.if(
+            isOlder(ageQuestionKey, 15),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.older15, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.older15, "false"),
         ),
     )
 

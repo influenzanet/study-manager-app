@@ -3,7 +3,9 @@ import { CommonExpressions } from "../../../../editor-engine/utils/commonExpress
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { EQ5DProxyGroup } from "../questions/for-children/eq5dProxy";
-import { surveyKeys } from "../studyRules";
+import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
+import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest";
+import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 
 export const generateT3c = (): Survey | undefined => {
     const surveyKey = surveyKeys.T3c;
@@ -22,12 +24,17 @@ export const generateT3c = (): Survey | undefined => {
         ])
     })
 
-    /*
-    "<8": "true",
-    "<11": "true",
-    "8-12": "true",
-    "13-18": "true"
-    */
+    // COVID test group for children
+    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(childrenCovidTestGroupEditor.getItem());
+
+    // COVID vaccination for children
+    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(surveyKey, {
+        groupCondition: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older15, 'true'),
+    });
+    surveyEditor.addSurveyItemToRoot(childrenVaccinationGroupEditor.getItem());
+
+
 
     // *******************************
     // Questions
