@@ -346,10 +346,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener?"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Het gaat hierom contact met een zorgverlener om andere reden dan voor de klachten die door het coronavirus komen."],
+            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener om andere reden dan klachten die door het coronavirus komen?"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
