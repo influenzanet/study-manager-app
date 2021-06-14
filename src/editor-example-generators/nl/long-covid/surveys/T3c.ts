@@ -11,7 +11,6 @@ import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-childre
 export const generateT3c = (): Survey | undefined => {
     const surveyKey = surveyKeys.T3c;
 
-    // TODO: add survey name, description and duration text
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([

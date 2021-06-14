@@ -49,7 +49,7 @@ class EQ5Dy extends GroupItemEditor {
         this.addItem(this.Q3('Q3', undefined, isRequired));
         this.addItem(this.Q4('Q4', undefined, isRequired));
         this.addItem(this.Q5('Q5', undefined, isRequired));
-        this.addItem(this.Q6('Q6', isRequired));
+        // this.addItem(this.Q6('Q6', isRequired));
     }
 
     groupIntro() {
@@ -287,7 +287,7 @@ class EQ5DyProxy extends GroupItemEditor {
         this.addItem(this.Q3('Q3', undefined, isRequired));
         this.addItem(this.Q4('Q4', undefined, isRequired));
         this.addItem(this.Q5('Q5', undefined, isRequired));
-        this.addItem(this.Q6('Q6', isRequired));
+        // this.addItem(this.Q6('Q6', isRequired));
     }
 
     groupIntro() {

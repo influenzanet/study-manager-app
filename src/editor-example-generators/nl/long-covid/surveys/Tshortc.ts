@@ -4,11 +4,12 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { EQ5DProxyGroup } from "../questions/for-children/eq5dProxy";
 import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
+import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest";
+import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
 
 export const generateShortC = (): Survey | undefined => {
     const surveyKey = surveyKeys.shortC;
 
-    // TODO: add survey name, description and duration text
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
@@ -26,6 +27,18 @@ export const generateShortC = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
+    // COVID test group for children
+    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(childrenCovidTestGroupEditor.getItem());
+
+    // SymptomsGroup for children
+    const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(surveyKey, {
+        olderThan10: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'false'),
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    surveyEditor.addSurveyItemToRoot(childrenSymptomsGroupEditor.getItem());
+
+    // EQ5D group
     const eq5dGroupEditor = new EQ5DProxyGroup(surveyKey, {
         olderThan7: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'false')
     });
