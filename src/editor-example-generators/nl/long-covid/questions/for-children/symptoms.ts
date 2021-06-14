@@ -21,7 +21,6 @@ export class SymptomsGroup extends GroupItemEditor {
             this.groupEditor.setCondition(conditions.groupCondition);
         }
 
-
         const isRequired = true;
 
         const Q1 = this.Q1("Q1", CommonExpressions.not(conditions.q11Ja), isRequired);
