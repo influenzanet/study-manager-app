@@ -16,13 +16,13 @@ export const generateT12c = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "T12c"],
+            ["en", "Nieuwe vragenlijst LongCOVID-onderzoek: 12 maanden"],
         ]),
         description: new Map([
-            ["en", "..."],
+            ["en", "Twaalf maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid en zorggebruik."],
         ]),
         durationText: new Map([
-            ["en", "..."],
+            ["en", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
         ])
     })
 
