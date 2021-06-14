@@ -20,8 +20,9 @@ export class CovidTestGroup extends GroupItemEditor {
         const conditionQ7Positive = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test');
         const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_notest');
         const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
+        const conditionQ7Ja = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
-        const q11 = this.Q11('Q11', conditionQ7Nee, isRequired);
+        const q11 = this.Q11('Q11', conditionQ7Ja, isRequired);
         this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(
             q11.key, 'ja'
         );
