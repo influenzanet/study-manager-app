@@ -12,13 +12,13 @@ export const generateShortC = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "shortC"],
+            ["en", "Wekelijkse update van klachten LongCOVID-onderzoek"],
         ]),
         description: new Map([
-            ["en", "..."],
+            ["en", "In de vorige vragenlijst heb je aangegeven klachten te hebben. In deze update vragen we je of deze klachten nog steeds aanwezig zijn, en hoe je je voelt."],
         ]),
         durationText: new Map([
-            ["en", "..."],
+            ["en", "Invullen van deze vragenlijst kost ongeveer 5 minuten van je tijd."],
         ])
     })
 
