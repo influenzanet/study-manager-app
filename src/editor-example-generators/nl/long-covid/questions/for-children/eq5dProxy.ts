@@ -3,7 +3,6 @@ import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpr
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
-import { expWithArgs, generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 
 
 export class EQ5DProxyGroup extends GroupItemEditor {
@@ -43,9 +42,17 @@ class EQ5Dy extends GroupItemEditor {
         this.groupEditor.setCondition(conditions.groupCondition);
 
         const isRequired = true;
-        }
 
-        groupIntro() {
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('Q1', undefined, isRequired));
+        this.addItem(this.Q2('Q2', undefined, isRequired));
+        this.addItem(this.Q3('Q3', undefined, isRequired));
+        this.addItem(this.Q4('Q4', undefined, isRequired));
+        this.addItem(this.Q5('Q5', undefined, isRequired));
+        this.addItem(this.Q6('Q6', isRequired));
+    }
+
+    groupIntro() {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'info',
@@ -60,7 +67,7 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         })
     }
 
-    Q1(key: string, condition: Expression, isRequired?: boolean) {
+    Q1(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -92,7 +99,7 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         });
     }
 
-        Q2(key: string, condition: Expression, isRequired?: boolean) {
+    Q2(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -124,7 +131,7 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         });
     }
 
-     Q3(key: string, condition: Expression, isRequired?: boolean) {
+    Q3(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -159,7 +166,7 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         });
     }
 
-     Q4(key: string, condition: Expression, isRequired?: boolean) {
+    Q4(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -191,7 +198,7 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         });
     }
 
-    Q5(key: string, condition: Expression, isRequired?: boolean) {
+    Q5(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -247,7 +254,6 @@ Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VAN
             questionSubText: new Map([
                 ["nl", `
 0 = De slechtste gezondheid die u zich kunt voorstellen
-
 100 = De beste gezondheid die u zich kunt voorstellen
                `],
             ]),
@@ -275,9 +281,16 @@ class EQ5DyProxy extends GroupItemEditor {
         this.groupEditor.setCondition(conditions.groupCondition);
 
         const isRequired = true;
-        }
+        this.addItem(this.groupIntro());
+        this.addItem(this.Q1('Q1', undefined, isRequired));
+        this.addItem(this.Q2('Q2', undefined, isRequired));
+        this.addItem(this.Q3('Q3', undefined, isRequired));
+        this.addItem(this.Q4('Q4', undefined, isRequired));
+        this.addItem(this.Q5('Q5', undefined, isRequired));
+        this.addItem(this.Q6('Q6', isRequired));
+    }
 
-        groupIntro() {
+    groupIntro() {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'info',
@@ -292,7 +305,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         })
     }
 
-    Q1(key: string, condition: Expression, isRequired?: boolean) {
+    Q1(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -324,7 +337,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         });
     }
 
-        Q2(key: string, condition: Expression, isRequired?: boolean) {
+    Q2(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -356,7 +369,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         });
     }
 
-     Q3(key: string, condition: Expression, isRequired?: boolean) {
+    Q3(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -391,7 +404,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         });
     }
 
-     Q4(key: string, condition: Expression, isRequired?: boolean) {
+    Q4(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -423,7 +436,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         });
     }
 
-    Q5(key: string, condition: Expression, isRequired?: boolean) {
+    Q5(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
