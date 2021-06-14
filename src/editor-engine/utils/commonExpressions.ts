@@ -39,11 +39,16 @@ const hasParticipantFlag = (key: string, value: string) => expWithArgs('eq', exp
 const or = (...args: any[]) => expWithArgs('or', ...args);
 const and = (...args: any[]) => expWithArgs('and', ...args);
 const not = (arg: Expression) => expWithArgs('not', arg);
+const lt = (value: Expression | number, reference: Expression | number,) => expWithArgs('lt', value, reference);
+const lte = (value: Expression | number, reference: Expression | number,) => expWithArgs('lte', value, reference);
+const gt = (value: Expression | number, reference: Expression | number,) => expWithArgs('gt', value, reference);
+const gte = (value: Expression | number, reference: Expression | number,) => expWithArgs('gte', value, reference);
 
 export const CommonExpressions = {
     or,
     and,
     not,
+    lt, gt, lte, gte,
     singleChoiceOptionsSelected,
     multipleChoiceOptionsSelected,
     multipleChoiceOptionSelectedAll,

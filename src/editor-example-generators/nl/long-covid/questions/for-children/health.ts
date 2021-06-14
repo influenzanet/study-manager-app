@@ -1,15 +1,17 @@
 import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
+import { multipleChoiceKey, responseGroupKey } from "../../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
+import { generateRandomKey } from "../../../../../editor-engine/utils/randomKeyGenerator";
+import { expWithArgs, generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 
 
 export class HealthGroup extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
-        groupCondition: Expression,
+        groupCondition?: Expression,
         hasDifficultyWithBreathing: Expression,
         youngerThan8: Expression,
         youngerThan11: Expression,
@@ -19,7 +21,9 @@ export class HealthGroup extends GroupItemEditor {
         const groupKey = 'HEALTH';
         super(parentKey, groupKey);
 
-        this.groupEditor.setCondition(conditions.groupCondition);
+        if (conditions.groupCondition !== undefined) {
+            this.groupEditor.setCondition(conditions.groupCondition);
+        }
 
         const isRequired = true;
 
@@ -33,6 +37,8 @@ export class HealthGroup extends GroupItemEditor {
             conditions.hasDifficultyWithBreathing,
             conditions.youngerThan8,
         );
+        const Q6 = this.Q6('Q6', conditionForQ6, isRequired);
+        const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
 
         //
         this.addItem(this.groupIntro());
@@ -43,8 +49,15 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.Q3('Q3', conditionQ2ja, isRequired));
         this.addItem(Q4)
         this.addItem(this.Q5('Q5', conditionQ4ja, isRequired));
-        this.addItem(this.Q6('Q6', conditionForQ6, isRequired));
+        this.addItem(Q6);
+        this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
 
+        // TODO: check if position here correct:
+        this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
+        this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
+
+        this.addPageBreak();
+        this.addItem(this.Q7preText());
         this.addItem(this.Q7('Q7', isRequired));
         this.addPageBreak();
 
@@ -115,7 +128,8 @@ export class HealthGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: health intro for children
+De vragen hieronder zijn gericht aan een minderjarige.
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
@@ -247,10 +261,15 @@ TODO: health intro for children
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind."],
+                ["nl", `Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in
+                 de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk).`
+                ],
             ]),
             questionSubText: new Map([
-                ["nl", "Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk)."],
+                ["nl", `
+                De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
+                de antwoorden invullen voor/over uw kind.`
+                ]
             ]),
             responseOptions: [
                 {
@@ -535,7 +554,7 @@ TODO: health intro for children
             itemKey: itemKey,
             questionText: new Map([
                 ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
-            ]), // TODO how to make "afgelopen 3 maanden" boldface?
+            ]),
             responseOptions: [
                 {
                     key: 'ja', role: 'option',
@@ -557,9 +576,183 @@ TODO: health intro for children
     /**
     *
     */
-    //TODO there should be a condition that if a key is selected, the numberInput cannot be 0
-    //TODO can the input box be directly behind the text and have a text after the box? E.g. Huisarts <box> keer
     Q3(itemKey: string, condition: Expression, isRequired: boolean) {
+        const inputProperties = {
+            min: 1,
+            max: 365
+        };
+        const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+
+        const ifOptionSelectedThanNotZero = (optionKey: string) => {
+            return CommonExpressions.not(
+                CommonExpressions.and(
+                    CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), optionKey),
+                    CommonExpressions.not(
+                        CommonExpressions.gt(
+                            CommonExpressions.getResponseValueAsNum([this.key, itemKey].join('.'), [responseGroupKey, multipleChoiceKey, optionKey].join('.')),
+                            0,
+                        )
+                    )
+                )
+            );
+        }
+
+        return SurveyItemGenerators.multipleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
+            ]),
+            customValidations: [{
+                key: 'numberInputChecks',
+                type: 'hard',
+                rule: CommonExpressions.and(
+                    ifOptionSelectedThanNotZero('huisarts'),
+                    ifOptionSelectedThanNotZero('kinderarts'),
+                    ifOptionSelectedThanNotZero('dietist'),
+                    ifOptionSelectedThanNotZero('ergotherapeut'),
+                    ifOptionSelectedThanNotZero('fysiotherapeut'),
+                    ifOptionSelectedThanNotZero('homeopaat'),
+                    ifOptionSelectedThanNotZero('logopedist'),
+                    ifOptionSelectedThanNotZero('maatschappelijk-werker'),
+                    ifOptionSelectedThanNotZero('psycholoog'),
+                    ifOptionSelectedThanNotZero('anders'),
+                )
+            }],
+            responseOptions: [
+                {
+                    key: 'huisarts', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Huisarts. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'kinderarts', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Kinderarts. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'dietist', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Diëtist. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'ergotherapeut', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Ergotherapeut. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'fysiotherapeut', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Fysiotherapeut. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'homeopaat', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Homeopaat. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'logopedist', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Logopedist. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'maatschappelijk-werker', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Maatschappelijk werker. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'psycholoog', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Psycholoog. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'anders', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Andere zorgverlener of specialist. Aantal keer: "],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'error',
+                    content: generateLocStrings(new Map([
+                        // TODO: add a text that is displayed when a number is left blank
+                        ["nl", "Vul het aantal keer in dat je contact hebt gehad met de zorgverlener"],
+                    ])),
+                    displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'numberInputChecks'))
+                }
+            ],
+            isRequired: isRequired,
+        });
+    }
+
+    /**
+    *
+    */
+    Q4(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            questionText: new Map([
+                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener anders dan voor corona?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ])
+                },
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
+
+
+    /**
+    *
+    */
+    //TODO can the input box be directly behind the text and have a text after the box? E.g. Huisarts <box> keer
+    Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
             max: 365
@@ -570,7 +763,7 @@ TODO: health intro for children
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
+                ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden anders dan voor corona? En hoe vaak?"],
             ]),
             responseOptions: [
                 {
@@ -661,15 +854,13 @@ TODO: health intro for children
     /**
     *
     */
-    Q4(itemKey: string, isRequired: boolean) {
+    Q6(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             questionText: new Map([
-                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener anders dan voor corona?"],
-            ]), //TODO **afgelopen 3 maanden** in boldface
-            questionSubText: new Map([
-                ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
+                ["nl", "Gebruik je op dit moment medicijnen?"],
             ]),
             responseOptions: [
                 {
@@ -689,59 +880,300 @@ TODO: health intro for children
         });
     }
 
+
     /**
-    *
-    */
-    Q5(itemKey: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+     *
+     */
+    Q62(itemKey: string, condition: Expression, isRequired?: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
+
+        return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q5"],
+                ["nl", "Welke medicijnen zijn dit?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Er zijn meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
-                    key: 'todo', role: 'option',
+                    key: 'infectie', role: 'text',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
                     content: new Map([
-                        ["nl", "TODO"],
-                    ])
+                        ["nl", "Medicijnen vanwege een infectie/ontsteking (bijvoorbeeld antibiotica, antivirale middelen)"],
+                    ]),
+                },
+                {
+                    key: 'immunosupr', role: 'option',
+                    content: new Map([
+                        ["nl", "Afweerremmende medicatie/immunosuppressiva (bijvoorbeeld prednison)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'maagbesch', role: 'option',
+                    content: new Map([
+                        ["nl", "Maagbeschermers/maagzuurremmers (bijvoorbeeld omeprazol)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'chemo', role: 'option',
+                    content: new Map([
+                        ["nl", "Chemokuur/chemotherapie"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'hormoon', role: 'option',
+                    content: new Map([
+                        ["nl", "Hormoonbehandeling"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'bloeddruk', role: 'option',
+                    content: new Map([
+                        ["nl", "Bloeddrukverlagers (angiotensine convertering enzyme (ACE)-remmers en angiotensine receptorblokkers (ARB’s))"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'bloedverdun', role: 'option',
+                    content: new Map([
+                        ["nl", "Bloedverdunners (bijvoorbeeld ascal, sintrom, fraxiparine)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'anticonceptie', role: 'option',
+                    content: new Map([
+                        ["nl", "Anticonceptiepil"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'anders', role: 'option',
+                    content: new Map([
+                        ["nl", "Andere medicijnen, namelijk"],
+                    ]),
+                    disabled: optionNoneSelected,
                 },
             ],
             isRequired: isRequired,
         });
     }
 
-    /**
-    *
-    */
-    Q6(itemKey: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+    Q_promis_proxy(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
             itemKey: itemKey,
             condition: condition,
+            isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q6"],
+                ["nl", `
+                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
+                    `],
             ]),
-            responseOptions: [
+            questionSubText: new Map([
+                ["nl", "De vragen hieronder zijn gericht aan een ouder/verzorger."]
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+
+                    ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
+                ]))
+            }],
+            scaleOptions: [
                 {
-                    key: 'todo', role: 'option',
-                    content: new Map([
-                        ["nl", "TODO"],
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ]),
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ])
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
                     ])
                 },
             ],
-            isRequired: isRequired,
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "Mijn kind was bang dat hij/zij moeite met ademen zou kunnen krijgen."],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Mijn kind had een drukkend gevoel op de borst."],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Mijn kind piepte bij het ademen."],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Mijn kind had moeite met ademen."],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Mijn kind had 's nachts moeite met slapen door benauwdheid."],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Het was moeilijk voor mijn kind om te sporten of te bewegen door benauwdheid."],
+                    ])
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "Het was moeilijk voor mijn kind om diep adem te halen."],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Mijn kind had last van benauwdheid."],
+                    ])
+                },
+            ]
         });
+    }
+
+    Q_promis(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", `
+                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
+                    `],
+            ]),
+            questionSubText: new Map([
+                ["nl", `
+                    De vragen hieronder zijn gericht aan een minderjarige.
+
+                    Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+`
+                ]
+            ]),
+            topDisplayCompoments: [{
+                role: 'text',
+                style: [{ key: 'className', value: 'mb-2' }],
+                content: generateLocStrings(new Map([
+                    ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak , 5 = Bijna altijd"],
+                ]))
+            }],
+            scaleOptions: [
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ])
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ]),
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ])
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                },
+            ],
+            rows: [
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Ik was bang dat ik moeite met ademen zou kunnen krijgen."],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Ik had een drukkend gevoel op de borst."],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Ik piepte bij het ademen."],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Ik had moeite met ademen."],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Ik had 's nachts moeite met slapen door benauwdheid."],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Het was moeilijk voor mij om te sporten of te bewegen door benauwdheid."],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Het was moeilijk om diep adem te halen."],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Ik had last van benauwdheid."],
+                    ])
+                },
+            ]
+        });
+    }
+
+    Q7preText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(6),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+De vragen hieronder zijn gericht aan een minderjarige.
+
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+                        `]
+                    ])
+                }),
+            ]
+        })
     }
 
     /**
     *
     */
     Q7(itemKey: string, isRequired: boolean) {
-        // TODO text above question
-        // De vragen hieronder zijn gericht aan een minderjarige.
-        // Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -809,6 +1241,7 @@ class Q8Group extends GroupItemEditor {
         const isRequired = true;
 
         this.addItem(this.groupIntro());
+        this.addItem(this.groupIntro2());
         this.addItem(this.Q81('1', isRequired));
         this.addItem(this.Q82('2', isRequired));
         this.addItem(this.Q83('3', isRequired));
@@ -823,10 +1256,11 @@ class Q8Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+### De vragen hieronder zijn voor een ouder/verzorger.
 
-Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
-Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad? Vink het bolletje aan bij:
+##### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
+##### Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -839,7 +1273,21 @@ Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze ding
 4 als het bijna altijd een probleem is.
 
 Er zijn geen goede of foute antwoorden.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
 
+    groupIntro2() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(6),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
 ### Hoe vaak heeft je kind in de afgelopen week problemen gehad met:
                         `]
                     ])
@@ -847,8 +1295,6 @@ Er zijn geen goede of foute antwoorden.
             ]
         })
     }
-    //TODO The last sentence of above text should be in separate text box
-    // Hoe vaak heeft je kind in de afgelopen week problemen gehad met:
 
     Q81(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
@@ -862,8 +1308,9 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
-                ])) // TODO the above text as column names?
+
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                ]))
             }],
             scaleOptions: [
                 {
@@ -945,7 +1392,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1014,7 +1461,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1082,7 +1529,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1170,11 +1617,12 @@ class Q9Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+##### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad? Vink het bolletje aan bij:
+##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -1207,7 +1655,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1292,7 +1740,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1361,7 +1809,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1430,7 +1878,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1517,11 +1965,12 @@ class Q10Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+#### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad? Vink het bolletje aan bij:
+##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
 
@@ -1549,13 +1998,13 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Over mijn gezondheid en activiteiten (problemen met ... )"],
+                ["nl", "Over mijn gezondheid en activiteiten (problemen met ... )"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1638,7 +2087,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1700,13 +2149,13 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Hoe ik met anderen op kan schieten (problemen met ... )"],
+                ["nl", "Hoe ik met anderen op kan schieten (problemen met ... )"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1774,7 +2223,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1900,7 +2349,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -1974,7 +2423,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2048,7 +2497,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2178,7 +2627,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2252,7 +2701,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2320,13 +2769,13 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Cognitieve vermoeidheid (problemen met...)"],
+                ["nl", "Cognitieve vermoeidheid (problemen met...)"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2449,13 +2898,13 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Algemene vermoeidheid (problemen met...)"],
+                ["nl", "Algemene vermoeidheid (problemen met...)"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2529,7 +2978,7 @@ Er zijn geen goede of foute antwoorden.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2597,13 +3046,13 @@ Er zijn geen goede of foute antwoorden.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Cognitieve vermoeidheid (problemen met...)"],
+                ["nl", "Cognitieve vermoeidheid (problemen met...)"],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
+                    ["nl", "0 = Nooit, 1 = Bijna nooit, 2 = Soms, 3 = Vaak , 4 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2711,13 +3160,13 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q14.1: consider maybe breaking this question into some smaller ones?"],
+                ["nl", ""],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: Lola check formatting"],
+                    ["nl", ""],
                 ]))
             }],
             scaleOptions: [
@@ -2743,7 +3192,122 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
                 },
                 {
                     key: 'b', content: new Map([
-                        ["nl", "Rusteloos, overactief, kan niet lang stilzitten  "],
+                        ["nl", "Rusteloos, overactief, kan niet lang stilzitten"],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Klaagt vaak over hoofdpijn, buikpijn, of misselijkheid"],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Deelt makkelijk met andere kinderen (bijvoorbeeld speelgoed, snoep, potloden, enz.)"],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Heeft vaak driftbuien of woede-uitbarstingen"],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Nogal op zichzelf, neigt er toe alleen te spelen"],
+                    ])
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "Doorgaans gehoorzaam, doet gewoonlijk wat volwassenen vragen"],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Heeft veel zorgen, lijkt vaak over dingen in te zitten"],
+                    ])
+                },
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Behulpzaam als iemand zich heeft bezeerd, van streek is of zich ziek voelt "],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Constant aan het wiebelen of friemelen  "],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Heeft minstens één goede vriend of vriendin  "],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Vecht vaak met andere kinderen of pest ze  "],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Vaak ongelukkig, in de put of in tranen"],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Wordt over het algemeen aardig gevonden door andere kinderen"],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Gemakkelijk afgeleid, heeft moeite om zich te concentreren"],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Zenuwachtig of zich vastklampend in nieuwe situaties, verliest makkelijk zelfvertrouwen"],
+                    ])
+                },
+                {
+                    key: 'q', content: new Map([
+                        ["nl", "Aardig tegen jongere kinderen"],
+                    ])
+                },
+                {
+                    key: 'r', content: new Map([
+                        ["nl", "Liegt of bedriegt vaak"],
+                    ])
+                },
+                {
+                    key: 's', content: new Map([
+                        ["nl", "Wordt getreiterd of gepest door andere kinderen"],
+                    ])
+                },
+                {
+                    key: 't', content: new Map([
+                        ["nl", "Biedt vaak vrijwillig hulp aan anderen (ouders, leerkrachten, andere kinderen)"],
+                    ])
+                },
+                {
+                    key: 'u', content: new Map([
+                        ["nl", "Denkt na voor iets te doen"],
+                    ])
+                },
+                {
+                    key: 'v', content: new Map([
+                        ["nl", "Pikt dingen thuis, op school of op andere plaatsen"],
+                    ])
+                },
+                {
+                    key: 'w', content: new Map([
+                        ["nl", "Kan beter opschieten met volwassenen dan met andere kinderen"],
+                    ])
+                },
+                {
+                    key: 'x', content: new Map([
+                        ["nl", "Voor heel veel bang, is snel angstig"],
+                    ])
+                },
+                {
+                    key: 'y', content: new Map([
+                        ["nl", "Maakt opdrachten af, kan de aandacht goed vasthouden "],
                     ])
                 },
             ]
@@ -2778,7 +3342,12 @@ class Q15Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen bij leeftijd 11-<18jr]
+De vragen hieronder zijn gericht aan een minderjarige.
+Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
+
+Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
+Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
                         `]
                     ])
                 })]
@@ -2791,42 +3360,154 @@ TODO: Intro Sterke kanten en moeilijkheden [SDQ-11-17 ingekorte versie] [afnemen
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q15.1: consider maybe breaking this question into some smaller ones?"],
+                ["nl", ""],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = helemaal niet vervelend, 10 = heel erg heel erg vervelend"],
+                    ["nl", ""],
                 ]))
             }],
             scaleOptions: [
                 {
                     key: '1', content: new Map([
-                        ["nl", "1"],
+                        ["nl", "Niet waar"],
                     ])
                 }, {
                     key: '2', content: new Map([
-                        ["nl", "2"],
+                        ["nl", "Een beetje waar"],
                     ])
                 }, {
                     key: '3', content: new Map([
-                        ["nl", "3"],
-                    ])
-                }, {
-                    key: '4', content: new Map([
-                        ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
+                        ["nl", "Zeker waar"],
                     ])
                 },
             ],
             rows: [
                 {
                     key: 'a', content: new Map([
-                        ["nl", "a"],
+                        ["nl", "Ik probeer aardig te zijn tegen anderen. Ik houd rekening met hun gevoelens"],
+                    ])
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Ik ben rusteloos, ik kan niet lang stilzitten "],
+                    ])
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Ik heb vaak hoofdpijn, buikpijn, of ik ben misselijk  "],
+                    ])
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Ik deel makkelijk met anderen (snoep, speelgoed, potloden, enz.) "],
+                    ])
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Ik word erg boos en ben vaak driftig"],
+                    ])
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Ik ben nogal op mijzelf. Ik speel meestal alleen of bemoei mij niet met anderen"],
+                    ])
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "Ik doe meestal wat me wordt opgedragen  	"],
+                    ])
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Ik pieker veel  		"],
+                    ])
+                },
+                {
+                    key: 'i', content: new Map([
+                        ["nl", "Ik help iemand die zich heeft bezeerd, van streek is of zich ziek voelt "],
+                    ])
+                },
+                {
+                    key: 'j', content: new Map([
+                        ["nl", "Ik zit constant te wiebelen of te friemelen  		"],
+                    ])
+                },
+                {
+                    key: 'k', content: new Map([
+                        ["nl", "Ik heb minstens één goede vriend of vriendin  "],
+                    ])
+                },
+                {
+                    key: 'l', content: new Map([
+                        ["nl", "Ik vecht vaak. Het lukt mij andere mensen te laten doen wat ik wil  "],
+                    ])
+                },
+                {
+                    key: 'm', content: new Map([
+                        ["nl", "Ik ben vaak ongelukkig, in de put of in tranen  "],
+                    ])
+                },
+                {
+                    key: 'n', content: new Map([
+                        ["nl", "Andere jongeren van mijn leeftijd vinden mij over het algemeen aardig   "],
+                    ])
+                },
+                {
+                    key: 'o', content: new Map([
+                        ["nl", "Ik ben snel afgeleid, ik vind het moeilijk om me te concentreren   "],
+                    ])
+                },
+                {
+                    key: 'p', content: new Map([
+                        ["nl", "Ik ben zenuwachtig in nieuwe situaties. Ik verlies makkelijk mijn zelfvertrouwen "],
+                    ])
+                },
+                {
+                    key: 'q', content: new Map([
+                        ["nl", "Ik ben aardig tegen jongere kinderen 		"],
+                    ])
+                },
+                {
+                    key: 'r', content: new Map([
+                        ["nl", "Ik word er vaak van beschuldigd dat ik lieg of bedrieg  "],
+                    ])
+                },
+                {
+                    key: 's', content: new Map([
+                        ["nl", "Andere kinderen of jongeren pesten of treiteren mij  	"],
+                    ])
+                },
+                {
+                    key: 't', content: new Map([
+                        ["nl", "Ik bied vaak anderen aan hun te helpen (ouders, leerkrachten, kinderen)"],
+                    ])
+                },
+                {
+                    key: 'u', content: new Map([
+                        ["nl", "Ik denk na voor ik iets doe  	"],
+                    ])
+                },
+                {
+                    key: 'v', content: new Map([
+                        ["nl", "Ik neem dingen weg die niet van mij zijn thuis, op school of op andere plaatsen"],
+                    ])
+                },
+                {
+                    key: 'w', content: new Map([
+                        ["nl", "Ik kan beter met volwassenen opschieten dan met jongeren van mijn leeftijd "],
+                    ])
+                },
+                {
+                    key: 'x', content: new Map([
+                        ["nl", "Ik ben voor heel veel dingen bang, ik ben snel angstig"],
+                    ])
+                },
+                {
+                    key: 'y', content: new Map([
+                        ["nl", "Ik maak af waar ik mee bezig ben. Ik kan mijn aandacht er goed bij houden "],
                     ])
                 },
             ]
@@ -2862,7 +3543,7 @@ class Q16Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms- Proxy] [afnemen bij leeftijd 5-<8jr]
+De vragen hieronder zijn voor een ouder/verzorger.
                         `]
                     ])
                 })]
@@ -2885,7 +3566,7 @@ Geef alstublieft antwoord voor de afgelopen 7 dagen.
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak, 5 = Bijna altijd"],
+                    ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak, 5 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -2974,7 +3655,8 @@ class Q17Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms] [afnemen bij leeftijd 8-<18jr]
+De vragen hieronder zijn gericht aan een minderjarige.
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
@@ -2987,13 +3669,13 @@ TODO: Intro Eenzaamheid [PROMIS Short Form Depressive Symptoms] [afnemen bij lee
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q17.1"],
+                ["nl", "Geef een reactie op elke vraag of uitspraak door per rij een bolletje aan te klikken. Geef alsjeblieft antwoord voor de afgelopen 7 dagen.."],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: 1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak, 5 = Bijna altijd"],
+                    ["nl", "1 = Nooit, 2 = Bijna nooit, 3 = Soms, 4 = Vaak, 5 = Bijna altijd"],
                 ]))
             }],
             scaleOptions: [
@@ -3099,7 +3781,7 @@ class Q18Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro Pijn en verzuim [kids-VAS-pain-onder8jaar] [afnemen bij leeftijd <8jr]
+De vragen hieronder zijn voor een ouder/verzorger.
                         `]
                     ])
                 })]
@@ -3124,7 +3806,7 @@ TODO: Intro Pijn en verzuim [kids-VAS-pain-onder8jaar] [afnemen bij leeftijd <8j
                 ["nl", "Beweeg de slider om je antwoord te geven"],
             ]),
             min: 0,
-            max: 10, // TODO can the min and max have a label in the slider?
+            max: 10, // TODO Peter can the min and max have a label in the slider?
         });
     }
 
@@ -3154,7 +3836,7 @@ TODO: Intro Pijn en verzuim [kids-VAS-pain-onder8jaar] [afnemen bij leeftijd <8j
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft)"],
+                ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft"],
             ]),
             content: new Map([
                 ['nl', 'uur']
@@ -3204,6 +3886,7 @@ class Q19Group extends GroupItemEditor {
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('1', isRequired));
+        this.addItem(this.q2PreText());
         this.addItem(this.Q2('2', isRequired));
         this.addItem(this.Q3('3', isRequired));
         this.addItem(this.Q4('4', isRequired));
@@ -3217,7 +3900,7 @@ class Q19Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: Intro Pijn en verzuim [kids-VAS-pain-vanaf8jaar] [afnemen bij leeftijd 8-<18jr]
+De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf het antwoord op de eerste vraag kiezen.
                         `]
                     ])
                 })]
@@ -3245,8 +3928,22 @@ TODO: Intro Pijn en verzuim [kids-VAS-pain-vanaf8jaar] [afnemen bij leeftijd 8-<
             max: 10, // TODO can the min and max have a label in the slider?
         });
     }
-    // TODO add text  above the following three questionS
-    // De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+
+    q2PreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'infoQ2',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+### De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+                        `]
+                    ])
+                })]
+        })
+    }
+
     Q2(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,

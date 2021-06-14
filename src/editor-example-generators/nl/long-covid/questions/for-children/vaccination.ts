@@ -46,7 +46,8 @@ export class VaccinationGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-TODO: vaccination intro for children
+De vragen hieronder zijn gericht aan een minderjarige.
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
@@ -58,7 +59,7 @@ TODO: vaccination intro for children
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "Heb je een vaccinatie tegen het coronavirus gehad? "],
+                ["nl", "Heb je een vaccinatie tegen het coronavirus gehad?"],
             ]),
             responseOptions: [
                 {
@@ -79,6 +80,12 @@ TODO: vaccination intro for children
                         ["nl", "Weet ik niet"],
                     ])
                 },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
+                    ])
+                },
             ],
             isRequired: isRequired,
         });
@@ -90,19 +97,19 @@ TODO: vaccination intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q2"],
+                ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je gehad?"],
             ]),
             responseOptions: [
                 {
-                    key: '1', role: 'option',
+                    key: '1vacc', role: 'option',
                     content: new Map([
-                        ["nl", "1"],
+                        ["nl", "1 vaccinatie"],
                     ])
                 },
                 {
-                    key: '2', role: 'option',
+                    key: '2vacc', role: 'option',
                     content: new Map([
-                        ["nl", "2"],
+                        ["nl", "2 vaccinaties"],
                     ])
                 },
             ],
@@ -116,19 +123,58 @@ TODO: vaccination intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q3"],
+                ["nl", "Welk vaccin tegen het coronavirus heb je ontvangen? "],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
-                    key: 'yes', role: 'option',
+                    key: '0', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Onbekend"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Pfizer / BioNTech (Comirnaty)"],
+                    ])
+                },
+                {
+                    key: '2', role: 'option',
+                    content: new Map([
+                        ["nl", "Moderna"],
+                    ])
+                },
+                {
+                    key: '3', role: 'option',
+                    content: new Map([
+                        ["nl", "Universiteit van Oxford / AstraZeneca"],
+                    ])
+                },
+                {
+                    key: '4', role: 'option',
+                    content: new Map([
+                        ["nl", "CureVac"],
+                    ])
+                },
+                {
+                    key: '5', role: 'option',
+                    content: new Map([
+                        ["nl", "Janssen / Johnson&Johnson"],
+                    ])
+                },
+                {
+                    key: '6', role: 'option',
+                    content: new Map([
+                        ["nl", "GSK / Sanofi Pasteur"],
+                    ])
+                },
+                {
+                    key: '7', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
                     ])
                 },
             ],
@@ -142,7 +188,7 @@ TODO: vaccination intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q4"],
+                ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
@@ -160,7 +206,7 @@ TODO: vaccination intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q5"],
+                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
@@ -178,7 +224,7 @@ TODO: vaccination intro for children
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "TODO: Q6"],
+                ["nl", "Op welke datum heb je de laatste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
@@ -198,7 +244,10 @@ TODO: vaccination intro for children
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "TODO: Q7"],
+                ["nl", "Heb je een griepvaccinatie gehad in het najaar van 2020? "],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Kinderen die in aanmerking komen voor de griepprik ontvangen hiervoor elk jaar in oktober een uitnodiging van de huisarts."],
             ]),
             responseOptions: [
                 {
@@ -211,6 +260,18 @@ TODO: vaccination intro for children
                     key: 'no', role: 'option',
                     content: new Map([
                         ["nl", "Nee"],
+                    ])
+                },
+                {
+                    key: 'dontknow', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Dat wil ik niet aangeven"],
                     ])
                 },
             ],
@@ -223,7 +284,7 @@ TODO: vaccination intro for children
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "TODO: Q8"],
+                ["nl", "Ben je gevaccineerd volgens het Rijksvaccinatieprogramma? "],
             ]),
             responseOptions: [
                 {
@@ -233,9 +294,27 @@ TODO: vaccination intro for children
                     ])
                 },
                 {
+                    key: 'yesnotall', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, maar niet alle vaccinaties"],
+                    ])
+                },
+                {
                     key: 'no', role: 'option',
                     content: new Map([
                         ["nl", "Nee"],
+                    ])
+                },
+                {
+                    key: 'dontknow', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Dat wil ik niet aangeven"],
                     ])
                 },
             ],

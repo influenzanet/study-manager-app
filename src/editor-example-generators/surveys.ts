@@ -1,5 +1,6 @@
 import getBelIntake from './belgium/inf-intake';
 import getBelWeekly from './belgium/inf-weekly';
+import getBelVaccination from './belgium/inf-vaccination';
 import getExampleIntake from './nl/infectieradar/inf-intake';
 import getExampleWeekly from './nl/infectieradar/inf-weekly';
 
@@ -51,6 +52,7 @@ const surveys = [
         surveys: [
             { name: "intake", survey: getBelIntake() },
             { name: "weekly", survey: getBelWeekly() },
+            { name: "vaccination", survey: getBelVaccination() },
         ],
         languageCodes: [
             'nl-be',

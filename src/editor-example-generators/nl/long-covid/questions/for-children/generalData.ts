@@ -10,10 +10,13 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 export class GeneralDataGroup extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
+        groupCondition: Expression,
         q11Ja: Expression;
     }, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'GEN';
         super(parentKey, groupKey);
+
+        this.groupEditor.setCondition(conditions.groupCondition);
 
         const isRequired = true;
 
