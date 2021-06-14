@@ -30,9 +30,9 @@ export class SymptomsGroup extends GroupItemEditor {
         this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'kortademig'
         );
-        // TODO: fix expression keys
+        // TODO: check expression keys
         const hadReportedSymptomsInT0ButNotAnymore = CommonExpressions.and(
-            CommonExpressions.hasParticipantFlag('todo', 'todo'),
+            CommonExpressions.hasParticipantFlag('acute_symptoms_T0', 'yes'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
         )
 

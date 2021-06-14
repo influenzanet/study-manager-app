@@ -128,15 +128,34 @@ const handleT0Submission = (): Expression => {
             "T0.A.TEST.Q5", "unknown"
         )
     }
+    const childVersionChecks = {
+        // TODO: check if "keys" match the one for the group/question and the option
+        hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
+            'T0.C.SYM.Q1', 'geen'
+        ),
+        // TODO: check if "keys" match the one for the group/question and the option
+        hasLongTermProblemsDueCorona: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.C.TEST.Q11", "ja"
+        ),
+        // TODO: check if "keys" match the one for the group/question and the option
+        isTestResultUnknown: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.C.TEST.Q5", "unknown"
+        )
+    }
     const shouldGetAdultShortSurvey = () => expWithArgs(
         'and',
         adultVersionChecks.hasReportedSymptoms(),
         expWithArgs('not', adultVersionChecks.hasLongTermProblemsDueCorona()),
     )
 
+    const shouldGetChildShortSurvey = () => expWithArgs(
+        'and',
+        childVersionChecks.hasReportedSymptoms(),
+        expWithArgs('not', childVersionChecks.hasLongTermProblemsDueCorona()),
+    )
+
     const shouldGetAdultT3Survey = () => expWithArgs('not', shouldGetAdultShortSurvey());
 
-    // TODO: is this still correct?
     const isChildParticipant = () =>
         expWithArgs('or',
             StudyExpressions.singleChoiceOptionsSelected('T0.CAT.Q1', 'kind'),
@@ -146,7 +165,7 @@ const handleT0Submission = (): Expression => {
                     "T0.CAT.Q2", [responseGroupKey, datePickerKey].join('.')
                 ),
                 StudyExpressions.timestampWithOffset({
-                    years: -16,
+                    years: -18,
                 })
             )
         );
@@ -194,27 +213,36 @@ const handleT0Submission = (): Expression => {
                 StudyActions.updateParticipantFlag("additionalStudies", "ja")
             ),
             StudyActions.if(
-                adultVersionChecks.isTestResultUnknown(),
+                StudyExpressions.or(
+                    adultVersionChecks.isTestResultUnknown(),
+                    childVersionChecks.isTestResultUnknown()
+                ),
                 StudyActions.updateParticipantFlag("testResult", "unknown")
+            ),
+            StudyActions.if(
+                StudyExpressions.or(
+                    adultVersionChecks.hasReportedSymptoms(),
+                    childVersionChecks.hasReportedSymptoms(),
+                ),
+                // if true:
+                StudyActions.updateParticipantFlag('acute_symptoms_T0', 'yes'),
+                // else:
+                StudyActions.updateParticipantFlag('acute_symptoms_T0', 'no'),
             ),
             StudyActions.if(
                 isChildParticipant(),
                 // Logic for child participants:
-                // TODO: how to update rules?
                 StudyActions.do(
                     handleAgeCategories,
                     StudyActions.updateParticipantFlag("surveyCategory", "C"),
                     StudyActions.finishParticipation(),
-                    /*
-                    StudyActions.ifThen(
-                        hasReportedSymptoms(),
-                        [assignShortC()]
-                    ),
-                    StudyActions.ifThen(
-                        hasNoReportedSymptoms(),
-                        [assignT3c()]
-                    )*/
-
+                    StudyActions.if(
+                        shouldGetChildShortSurvey(),
+                        // if yes:
+                        assignShortC(),
+                        // else:
+                        assignT3c(),
+                    )
                 ),
                 // else: (adult participants)
                 StudyActions.do(
@@ -280,19 +308,20 @@ const handleShortSubmission = (): Expression => {
 }
 
 
-// TODO: check and update logic
 const handleShortCSubmission = (): Expression => {
     const isStudyInitialPhase = () => expWithArgs('lt',
         StudyExpressions.timestampWithOffset({ days: -83 }),
         StudyExpressions.getStudyEntryTime(),
     )
 
+    // TODO: check if keys for short survey are correct:
     const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
-        surveyKeys.short + '.AH.Q1', 'geen'
+        surveyKeys.shortC + '.SYM.Q1', 'geen'
     )
 
+    // TODO: check if keys for short survey are correct:
     const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
-        surveyKeys.short + 'TEST.Q5followup', 'pos', 'neg'
+        surveyKeys.shortC + 'TEST.Q5followup', 'pos', 'neg'
     );
 
     const shouldAssignShortAgain = () => expWithArgs(
@@ -301,17 +330,14 @@ const handleShortCSubmission = (): Expression => {
         isStudyInitialPhase(),
     );
 
-    const shouldNotAssignShortAgain = () => expWithArgs('not', shouldAssignShortAgain());
-
     const performActions = () => [
         StudyActions.removeAllSurveys(),
-        StudyActions.ifThen(
+        StudyActions.if(
             shouldAssignShortAgain(),
-            [assignShort()]
-        ),
-        StudyActions.ifThen(
-            shouldNotAssignShortAgain(),
-            [assignT3()]
+            // if true:
+            assignShortC(),
+            // else:
+            assignT3()
         ),
         StudyActions.ifThen(
             hasTestResultAlready(),

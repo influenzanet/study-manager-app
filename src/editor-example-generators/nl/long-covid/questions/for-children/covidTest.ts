@@ -2,6 +2,7 @@ import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../../studyRules";
 
 export class CovidTestGroup extends GroupItemEditor {
     q11JaSelectedExp: Expression;
@@ -27,6 +28,12 @@ export class CovidTestGroup extends GroupItemEditor {
             q11.key, 'ja'
         );
 
+        // TODO: sort this at the place it should be
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
+            const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
+            this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
+        }
+
         this.addItem(q1);
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
         this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired));
@@ -42,6 +49,42 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addPageBreak();
     }
 
+
+    /**
+     *
+     */
+    // TODO: update texts if necessary
+    Q_testFollowUp(key: string, condition: Expression, isRequired?: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "In de eerdere vragenlijst gaf je aan de uitslag van je coronatest nog niet te hebben. Heb je inmiddels de uitslag van deze test?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'pos', role: 'option',
+                    content: new Map([
+                        ["nl", "Positief, dus WEL besmet (geweest) met het coronavirus"],
+                    ])
+                },
+                {
+                    key: 'neg', role: 'option',
+                    content: new Map([
+                        ["nl", "Negatief, dus GEEN bewijs voor besmetting met het coronavirus"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik heb de uitslag nog niet"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
 
     /**
      *
@@ -351,7 +394,7 @@ export class CovidTestGroup extends GroupItemEditor {
             isRequired: isRequired,
         });
     }
-    
+
 
 
     /**
