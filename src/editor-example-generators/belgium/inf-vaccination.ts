@@ -26,7 +26,7 @@ const vaccination = (): Survey | undefined => {
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["nl-be", "Het doel van deze vaccinatievragenlijst is om onderzoek te voeren naar de bescherming die het vaccin geeft en de vaccinatiestatus van België in kaart brengen. "],
+            ["nl-be", "Het doel van deze vaccinatievragenlijst is om onderzoek te voeren naar de bescherming die het vaccin geeft en de vaccinatiestatus van België in kaart te brengen. "],
             ["en", "The purpose of the vaccination questionnaire is to find out more about protection given by the vaccine and monitor vaccination uptake in Belgium."],
             ["fr-be", ""],
             ["de-be", ""],
@@ -34,10 +34,10 @@ const vaccination = (): Survey | undefined => {
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["nl-be", "Dit zal ongeveer 2-5 minuten tijd in beslag nemen."],
-            ["en", "It takes approximately 2-5 minutes to complete this questionnaire."],
-            ["fr-be", "Comptez environ 2-5 minutes pour compléter le questionnaire préliminaire."],
-            ["de-be", "Es dauert etwa 2-5 Minuten, um diesen Fragebogen auszufüllen."],
+            ["nl-be", "Dit zal ongeveer 2-4 minuten tijd in beslag nemen."],
+            ["en", "It takes approximately 2-4 minutes to complete this questionnaire."],
+            ["fr-be", "Comptez environ 2-4 minutes pour compléter le questionnaire préliminaire."],
+            ["de-be", "Es dauert etwa 2-4 Minuten, um diesen Fragebogen auszufüllen."],
         ])
     ));
 
@@ -58,6 +58,11 @@ const vaccination = (): Survey | undefined => {
 
     const Q_vacStart = vacStart(rootKey, true);
     survey.addExistingSurveyItem(Q_vacStart, rootKey);
+
+    // // -------> VACCINATION GROUP
+    // const hasVacGroup = hasVacGroup(rootKey, Q_vacStart.key);
+    // survey.addExistingSurveyItem(hasVacGroup, rootKey);
+    // const hasVacGroupKey = hasVacGroup.key;
 
     const Q_vac = vac(rootKey, true);
     survey.addExistingSurveyItem(Q_vac, rootKey);
@@ -110,7 +115,9 @@ export default vaccination;
         ]))
     );
 
-    // INFO POPUP
+    // CONDITION
+    const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
+    editor.setCondition(hadCompletedVaccSurvey);
  
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -157,7 +164,24 @@ export default vaccination;
     return editor.getItem();
 }
 
+/**
+ * GROUP DEPENDING VACCINATION SURVEY ROUND
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyVacQuestion reference to the vac survey
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'HV'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
 
+    editor.setCondition(
+        expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+    );
+    editor.setSelectionMethod({ name: 'sequential' });
+    return editor.getItem();
+}
 /**
  * VAC: single choice question about vaccination status
  *
@@ -237,46 +261,46 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '01', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen"],
+                ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen."],
                 ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
-                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten"],
-                ["en", "No, I was invited and will receive a vaccine soon"],
+                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten."],
+                ["en", "No, I was invited and will receive a vaccine soon."],
             ])
         },
         {
             key: '02', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd"],
+                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd."],
                 ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
-                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab"],
-                ["en", "No, I was invited but declined the vaccine"],
+                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab."],
+                ["en", "No, I was invited but declined the vaccine."],
             ])
         },
         {
             key: '03', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen"],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen."],
                 ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen"],
-                ["en", "When invited, I plan to receive a vaccine"],
+                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen."],
+                ["en", "When invited, I plan to receive a vaccine."],
             ])
         },
         {
             key: '04', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren."],
                 ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen"],
-                ["en", "When invited, I will decline the vaccine"],
+                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen."],
+                ["en", "When invited, I will decline the vaccine."],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
+                ["nl-be", "ik wens niet te antwoorden."],
                 ["fr-be", "Je ne sais pas/je ne me souviens pas."],
-                ["de-be", "Ich weiß nicht/kann mich nicht erinnern"],
-                ["en", "I don't know/can't remember"],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
+                ["en", "I don't know/can't remember."],
             ])
         },
     ]);
