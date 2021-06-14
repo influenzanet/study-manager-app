@@ -63,15 +63,21 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             ]),
             responseOptions: [
                 {
+                    key: 'no', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
+                {
                     key: 'yes', role: 'option',
                     content: new Map([
                         ["nl", "Ja"],
                     ])
                 },
                 {
-                    key: 'no', role: 'option',
+                    key: 'dontknow', role: 'option',
                     content: new Map([
-                        ["nl", "Nee"],
+                        ["nl", "Weet ik niet"],
                     ])
                 },
                 {
