@@ -70,6 +70,8 @@ export class GeneralDataGroup extends GroupItemEditor {
 
         this.addItem(this.Q11('Q11', isRequired));
         this.addItem(this.Q12('Q12', isRequired));
+        this.addItem(this.Q12('Q13', isRequired));
+        this.addItem(this.Q12('Q14', isRequired));
         this.addPageBreak();
     }
 
@@ -113,19 +115,19 @@ De volgende vragen gaan over je school
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Wat is je geslacht?"],
+                ["nl", "Wat is je geslacht?"],
             ]),
             responseOptions: [
                 {
                     key: 'M', role: 'option',
                     content: new Map([
-                        ["nl", "Man"],
+                        ["nl", "Jongen"],
                     ])
                 },
                 {
                     key: 'F', role: 'option',
                     content: new Map([
-                        ["nl", "Vrouw"],
+                        ["nl", "Meisje"],
                     ])
                 },
                 {
@@ -152,7 +154,7 @@ De volgende vragen gaan over je school
             contentBehindInput: true,
             componentProperties: {
                 min: 0,
-                max: 300
+                max: 100
             }
         })
     }
@@ -171,7 +173,7 @@ De volgende vragen gaan over je school
             contentBehindInput: true,
             componentProperties: {
                 min: 0,
-                max: 250
+                max: 200
             }
         })
     }
@@ -710,7 +712,7 @@ De volgende vragen gaan over je school
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Hoe heb je over het LongCOVID-onderzoek gehoord?"],
+                ["nl", "Hoe heb je over het LongCOVID-onderzoek gehoord?"],
             ]),
             topDisplayCompoments: [
                 ComponentGenerators.text({
@@ -724,7 +726,7 @@ De volgende vragen gaan over je school
                 {
                     key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Uitnodiging via e-mail na deelname aan ander RIVM onderzoek (b.v. CONTEST)"],
+                        ["nl", "Uitnodiging via e-mail na deelname aan CONTEST onderzoek door ouders/verzorgers"],
                     ]),
                 },
                 {
@@ -753,9 +755,15 @@ De volgende vragen gaan over je school
                         ["nl", "Via google of een andere internet zoekmachine"],
                     ]),
                 }, {
-                    key: '7', role: 'input',
+                    key: '7', role: 'option',
                     content: new Map([
-                        ["nl", "Anders, namelijk:"],
+                        ["nl", "Via PoCoCoChi"],
+                    ]),
+                },
+                {
+                    key: '8', role: 'input',
+                    content: new Map([
+                        ["nl", "Anders, namelijk"],
                     ]),
                 },
             ]
@@ -781,6 +789,53 @@ De volgende vragen gaan over je school
                     key: 'nee', role: 'option',
                     content: new Map([
                         ["nl", "Nee"],
+                    ]),
+                },
+            ]
+        });
+    }
+
+    //TODO Peter: comment field without having to select choice?
+    Q13(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            questionText: new Map([
+                ["nl", "Als je nog aanvullende opmerkingen hebt over de vragenlijst of het onderzoek, kun je die hieronder invullen."],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Let op je krijgt geen persoonlijke reactie op deze opmerkingen."],
+            ]),
+            responseOptions: [
+                {
+                    key: 'opmerkingen', role: 'input',
+                    content: new Map([
+                        ["nl", ""],
+                    ]),
+                },
+            ]
+        });
+    }
+
+    //TODO Peter textboxes to fill in phone number and email without having to select choices?
+    Q14(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            questionText: new Map([
+                ["nl", "Als je dat wilt kun je hieronder je telefoonnummer opgeven en een extra emailadres zodat we je beter kunnen bereiken om te vragen of je de volgende vragenlijst in wilt vullen. "],
+            ]),
+            responseOptions: [
+                {
+                    key: 'telefoon', role: 'input',
+                    content: new Map([
+                        ["nl", "Telefoonnummer:"],
+                    ]),
+                },
+                {
+                    key: 'email', role: 'input',
+                    content: new Map([
+                        ["nl", "Eventueel extra e-mailadres: "],
                     ]),
                 },
             ]
