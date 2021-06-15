@@ -1477,9 +1477,9 @@ const Q19 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Uitnodiging via de e-mail na contact met de GGD voor bron en contactonderzoek"],
                 ]),
             }, {
-                key: '3', role: 'option',
+                key: '3', role: 'input',
                 content: new Map([
-                    ["nl", "Uitnodiging per brief"],
+                    ["nl", "Uitnodiging per brief, vul hier je onderzoekscode in:"],
                 ]),
             }, {
                 key: '4', role: 'input',

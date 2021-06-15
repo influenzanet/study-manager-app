@@ -11,8 +11,11 @@ export class CovidTestGroup extends GroupItemEditor {
         const groupKey = keyOverride ? keyOverride : 'TEST';
         super(parentKey, groupKey);
 
-        const isRequired = true;
-
+        const isRequired = true
+ if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
+    const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
+    this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
+}
         const q1 = this.Q_hadTest('Q1', isRequired);
         const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes');
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
@@ -27,12 +30,6 @@ export class CovidTestGroup extends GroupItemEditor {
         this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(
             q11.key, 'ja'
         );
-
-        // TODO: sort this at the place it should be
-        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
-            const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
-            this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
-        }
 
         this.addItem(q1);
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
@@ -50,10 +47,7 @@ export class CovidTestGroup extends GroupItemEditor {
     }
 
 
-    /**
-     *
-     */
-    // TODO: update texts if necessary
+    
     Q_testFollowUp(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -135,9 +129,7 @@ export class CovidTestGroup extends GroupItemEditor {
         });
     }
 
-    /**
-     *
-     */
+  
     Q3(key: string, condition: Expression, isRequired: boolean) {
 
         return SurveyItemGenerators.singleChoice({
