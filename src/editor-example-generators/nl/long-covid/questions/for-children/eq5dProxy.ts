@@ -1,8 +1,11 @@
 import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
-import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
+import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
+import { ItemEditor } from "../../../../../editor-engine/survey-editor/item-editor";
+import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
+import { SimpleQuestionEditor } from "../../../../../editor-engine/utils/simple-question-editor";
 
 
 export class EQ5DProxyGroup extends GroupItemEditor {
@@ -31,6 +34,21 @@ export class EQ5DProxyGroup extends GroupItemEditor {
 
 }
 
+
+const copyRightText = new Map([
+    ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
+    ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation."],
+]);
+
+
+const eq5dCopyright = {
+    role: 'footnote', content: generateLocStrings(copyRightText), style: [
+        { key: 'className', value: 'fs-small fst-italic text-center' }
+    ]
+};
+
+
+
 class EQ5Dy extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
@@ -49,6 +67,8 @@ class EQ5Dy extends GroupItemEditor {
         this.addItem(this.Q3('Q3', undefined, isRequired));
         this.addItem(this.Q4('Q4', undefined, isRequired));
         this.addItem(this.Q5('Q5', undefined, isRequired));
+        this.addItem(this.Q_healthstatus_instructions_def());
+        this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
         // this.addItem(this.Q6('Q6', isRequired));
     }
 
@@ -230,6 +250,7 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         });
     }
 
+    // TODO: remove Q6 because unused
     Q6(itemKey: string, isRequired: boolean) {
         const inputProperties = {
             min: 0,
@@ -267,6 +288,116 @@ Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VAN
             max: 100,
         });
     }
+
+    Q_healthstatus_instructions_def() {
+        const defaultKey = 'HEALTH_INS'
+        const itemKey = [this.key, defaultKey].join('.');
+        const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+        editor.addDisplayComponent(
+            {
+                role: 'bullets', items: [
+                    {
+                        role: 'text', content: generateLocStrings(new Map([
+                            ["en", "We would like to know how good or bad your health is TODAY."],
+                            ["nl", "We willen weten hoe goed of slecht uw gezondheid VANDAAG is."],
+                        ])),
+                        style: [{ key: 'variant', value: 'li' }]
+                    },
+                    {
+                        role: 'text', content: generateLocStrings(new Map([
+                            ["en", "This scale is numbered from 0 to 100."],
+                            ["nl", "Deze meetschaal loopt van 0 tot 100."],
+                        ])),
+                        style: [{ key: 'variant', value: 'li' }]
+                    },
+                    {
+                        role: 'text',
+                        style: [{ key: 'variant', value: 'li' }],
+                        items: [
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "100 means the "],
+                                    ["nl", "100 staat voor de "],
+                                ]))
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "best"],
+                                    ["nl", "beste"],
+                                ])),
+                                style: [{ key: 'className', value: 'text-decoration-underline' }]
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", " health you can imagine."],
+                                    ["nl", " gezondheid die u zich kunt voorstellen."],
+                                ]))
+                            },
+                        ],
+                    },
+                    {
+                        role: 'text',
+                        items: [
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "0 means the "],
+                                    ["nl", "0 staat voor de "],
+                                ]))
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "worst"],
+                                    ["nl", "slechtste"],
+                                ])),
+                                style: [{ key: 'className', value: 'text-decoration-underline' }]
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", " health you can imagine."],
+                                    ["en", " gezondheid die u zich kunt voorstellen."],
+                                ]))
+                            },
+                        ],
+                    },
+                ]
+            }
+        )
+        return editor.getItem();
+    }
+
+    Q_healthstatus_def(itemKey: string, isRequired?: boolean, useCopyRight?: boolean) {
+        const simpleEditor = new SimpleQuestionEditor(this.key, itemKey, 1);
+
+        // role: 'eq5d-health-indicator'
+        const rg_inner = initEQ5DHealthIndicatorQuestion({
+            key: '0',
+            role: 'eq5d-health-indicator',
+            instructionText: new Map([
+                ["en", "Please indicate on the scale how your health is TODAY."],
+                ["nl", "Klik op de meetschaal om aan te geven hoe uw gezondheid VANDAAG is."],
+            ]),
+            valueBoxText: new Map([
+                ["en", "YOUR HEALTH TODAY ="],
+                ["nl", "UW GEZONDHEID VANDAAG ="],
+            ]),
+            minHealthText: new Map([
+                ["en", "The worst health you can imagine"],
+                ["nl", "De slechste gezondheid die u zich kunt voorstellen"],
+            ]),
+            maxHealthText: new Map([
+                ["en", "The best health you can imagine"],
+                ["nl", "De beste gezondheid die u zich kunt voorstellen"],
+            ]),
+        });
+        simpleEditor.setResponseGroupWithContent(rg_inner);
+
+        if (isRequired) {
+            simpleEditor.addHasResponseValidation();
+        }
+
+        if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
+        return simpleEditor.getItem();
+    }
 }
 
 
@@ -287,6 +418,8 @@ class EQ5DyProxy extends GroupItemEditor {
         this.addItem(this.Q3('Q3', undefined, isRequired));
         this.addItem(this.Q4('Q4', undefined, isRequired));
         this.addItem(this.Q5('Q5', undefined, isRequired));
+        this.addItem(this.Q_healthstatus_instructions_def());
+        this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
         // this.addItem(this.Q6('Q6', isRequired));
     }
 
@@ -468,6 +601,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         });
     }
 
+    // TODO: remove Q6, because unused
     Q6(itemKey: string, isRequired: boolean) {
         const inputProperties = {
             min: 0,
@@ -507,5 +641,115 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
             min: 0,
             max: 100,
         });
+    }
+
+    Q_healthstatus_instructions_def() {
+        const defaultKey = 'HEALTH_INS'
+        const itemKey = [this.key, defaultKey].join('.');
+        const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+        editor.addDisplayComponent(
+            {
+                role: 'bullets', items: [
+                    {
+                        role: 'text', content: generateLocStrings(new Map([
+                            ["en", "We would like to know how good or bad your health is TODAY."],
+                            ["nl", "We willen weten hoe goed of slecht uw gezondheid VANDAAG is."],
+                        ])),
+                        style: [{ key: 'variant', value: 'li' }]
+                    },
+                    {
+                        role: 'text', content: generateLocStrings(new Map([
+                            ["en", "This scale is numbered from 0 to 100."],
+                            ["nl", "Deze meetschaal loopt van 0 tot 100."],
+                        ])),
+                        style: [{ key: 'variant', value: 'li' }]
+                    },
+                    {
+                        role: 'text',
+                        style: [{ key: 'variant', value: 'li' }],
+                        items: [
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "100 means the "],
+                                    ["nl", "100 staat voor de "],
+                                ]))
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "best"],
+                                    ["nl", "beste"],
+                                ])),
+                                style: [{ key: 'className', value: 'text-decoration-underline' }]
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", " health you can imagine."],
+                                    ["nl", " gezondheid die u zich kunt voorstellen."],
+                                ]))
+                            },
+                        ],
+                    },
+                    {
+                        role: 'text',
+                        items: [
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "0 means the "],
+                                    ["nl", "0 staat voor de "],
+                                ]))
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", "worst"],
+                                    ["nl", "slechtste"],
+                                ])),
+                                style: [{ key: 'className', value: 'text-decoration-underline' }]
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["en", " health you can imagine."],
+                                    ["en", " gezondheid die u zich kunt voorstellen."],
+                                ]))
+                            },
+                        ],
+                    },
+                ]
+            }
+        )
+        return editor.getItem();
+    }
+
+    Q_healthstatus_def(itemKey: string, isRequired?: boolean, useCopyRight?: boolean) {
+        const simpleEditor = new SimpleQuestionEditor(this.key, itemKey, 1);
+
+        // role: 'eq5d-health-indicator'
+        const rg_inner = initEQ5DHealthIndicatorQuestion({
+            key: '0',
+            role: 'eq5d-health-indicator',
+            instructionText: new Map([
+                ["en", "Please indicate on the scale how your health is TODAY."],
+                ["nl", "Klik op de meetschaal om aan te geven hoe uw gezondheid VANDAAG is."],
+            ]),
+            valueBoxText: new Map([
+                ["en", "YOUR HEALTH TODAY ="],
+                ["nl", "UW GEZONDHEID VANDAAG ="],
+            ]),
+            minHealthText: new Map([
+                ["en", "The worst health you can imagine"],
+                ["nl", "De slechste gezondheid die u zich kunt voorstellen"],
+            ]),
+            maxHealthText: new Map([
+                ["en", "The best health you can imagine"],
+                ["nl", "De beste gezondheid die u zich kunt voorstellen"],
+            ]),
+        });
+        simpleEditor.setResponseGroupWithContent(rg_inner);
+
+        if (isRequired) {
+            simpleEditor.addHasResponseValidation();
+        }
+
+        if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
+        return simpleEditor.getItem();
     }
 }
