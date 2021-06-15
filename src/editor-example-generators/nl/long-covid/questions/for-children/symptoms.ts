@@ -23,7 +23,7 @@ export class SymptomsGroup extends GroupItemEditor {
 
         const isRequired = true;
 
-        const Q1 = this.Q1("Q1", CommonExpressions.not(conditions.q11Ja), isRequired);
+        const Q1 = this.Q1("Q1", undefined, isRequired);
         const hasReportedSymptomsQ1 = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'geen'
         );
@@ -35,12 +35,7 @@ export class SymptomsGroup extends GroupItemEditor {
             CommonExpressions.hasParticipantFlag('acute_symptoms_T0', 'yes'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
         )
-
-        const Q1_notyes = this.Q1_notyes("Q1_notyes", undefined, isRequired);
-        const hasReportedSymptomsQ1_notyes = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
-            Q1_notyes.key, 'geen'
-        );
-
+      
         const ipqCondtion = CommonExpressions.and(
             hasReportedSymptomsQ1,
             conditions.olderThan10
@@ -52,13 +47,17 @@ export class SymptomsGroup extends GroupItemEditor {
         const Q7 = this.Q7('Q7', conditionQ6ziekenhuis, isRequired)
         const conditionQ7KIC = CommonExpressions.multipleChoiceOptionsSelected(Q7.key, 'picu')
 
+        const hasReportedSymptomsQ1AndPossibleCovid = CommonExpressions.and(
+            hasReportedSymptomsQ1,
+            conditions.q11Ja
+        )
+
         const Q12 = this.Q12('Q12', hasReportedSymptomsQ1, isRequired)
         const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten')
 
-        //
         this.addItem(this.groupIntro());
+        this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired));
         this.addItem(Q1);
-        this.addItem(Q1_notyes);
         this.addItem(this.Q2('Q2', hasReportedSymptomsQ1, isRequired));
         this.addItem(this.Q3('Q3', hasReportedSymptomsQ1, isRequired));
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
@@ -71,7 +70,7 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
         this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
-        this.addItem(this.Q11('Q11', hasReportedSymptomsQ1_notyes, isRequired));
+        this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired));
         this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q12);
         this.addItem(this.Q13('Q13', conditionQ12ja, isRequired));
@@ -95,7 +94,7 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
-    Q1(key: string, condition: Expression, isRequired?: boolean) {
+    Q1(key: string, condition: Expression | undefined, isRequired?: boolean) {
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -1251,7 +1250,7 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
-    Q11(itemKey: string, condition: Expression, isRequired?: boolean) {
+    Q11(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
             parentKey: parentKey,
@@ -1359,7 +1358,7 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
-    Q11_yes(itemKey: string, condition: Expression, isRequired?: boolean) {
+    Q11_yes(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
             parentKey: parentKey,
