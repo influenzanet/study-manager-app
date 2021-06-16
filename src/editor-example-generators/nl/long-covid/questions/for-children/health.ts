@@ -12,6 +12,7 @@ export class HealthGroup extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
         groupCondition?: Expression,
+        testQ11ja?: Expression,
         hasDifficultyWithBreathing: Expression,
         youngerThan8: Expression,
         youngerThan11: Expression,
@@ -27,7 +28,7 @@ export class HealthGroup extends GroupItemEditor {
 
         const isRequired = true;
 
-        const Q2 = this.Q2('Q2', isRequired);
+        const Q2 = this.Q2('Q2', conditions.testQ11ja, isRequired);
         const conditionQ2ja = CommonExpressions.singleChoiceOptionsSelected(Q2.key, 'ja');
 
         const Q4 = this.Q4('Q4', isRequired);
@@ -44,18 +45,12 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.groupIntro());
         this.addItem(this.Q0('Q0', isRequired));
         this.addItem(this.Q1('Q1', isRequired));
-        //TODO Peter: Q2 should only show for longsymptoms: TEST.Q11 = 'ja'
         this.addItem(Q2);
         this.addItem(this.Q3('Q3', conditionQ2ja, isRequired));
-        // TODO Peter: add Q3b_longsymptoms here (added below)
+        this.addItem(this.Q3b_longsymptoms('Q3b_longsymptoms', conditionQ2ja, isRequired));
         this.addItem(Q4)
         this.addItem(this.Q5('Q5', conditionQ4ja, isRequired));
-          //TODO Peter: tried this but doesn't work   
-        // this.addItem(Q5b(
-        //     this.key,
-        //     CommonExpressions.multipleChoiceOptionsSelected(Q4.key, '24'),
-        //     true)
-        // );
+        this.addItem(this.Q5b('Q5b', CommonExpressions.multipleChoiceOptionsSelected(Q4.key, '24'), true));
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
@@ -550,11 +545,11 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     /**
     *
     */
-    // TODO add intro text
-    Q2(itemKey: string, isRequired: boolean) {
+    Q2(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             questionText: new Map([
                 ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
             ]),
@@ -712,7 +707,6 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     role: 'error',
                     content: generateLocStrings(new Map([
-                        // TODO: add a text that is displayed when a number is left blank
                         ["nl", "Vul het aantal keer in dat je contact hebt gehad met de zorgverlener"],
                     ])),
                     displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'numberInputChecks'))
@@ -722,27 +716,26 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         });
     }
 
-    // const Q3b_longsymptoms = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    //     const itemKey = keyOverride ? keyOverride : 'Q2b_longsymptoms';
-    
-    //     return SurveyItemGenerators.numericInput({
-    //         parentKey: parentKey,
-    //         itemKey: itemKey,
-    //         isRequired: isRequired,
-    //         condition: condition,
-    //         questionText: new Map([
-    //             ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
-    //         ]),
-    //         content: new Map([
-    //             ['nl', '']
-    //         ]),
-    //         contentBehindInput: true,
-    //         componentProperties: {
-    //             min: 0,
-    //             max: 50
-    //         }
-    //     })
-    // }
+    Q3b_longsymptoms(itemKey: string, condition: Expression, isRequired?: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+            ]),
+            content: new Map([
+                ['nl', '']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 50
+            }
+
+        })
+    }
     /**
     *
     */
@@ -878,27 +871,25 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         });
     }
 
-//   Q5b = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-//         const itemKey = keyOverride ? keyOverride : 'Q4b';
-    
-//         return SurveyItemGenerators.numericInput({
-//             parentKey: parentKey,
-//             itemKey: itemKey,
-//             isRequired: isRequired,
-//             condition: condition,
-//             questionText: new Map([
-//                 ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
-//             ]),
-//             content: new Map([
-//                 ['nl', '']
-//             ]),
-//             contentBehindInput: true,
-//             componentProperties: {
-//                 min: 0,
-//                 max: 50
-//             }
-//         })
-//     }
+    Q5b(itemKey: string, condition: Expression, isRequired?: boolean) {
+        return SurveyItemGenerators.numericInput({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
+            ]),
+            content: new Map([
+                ['nl', '']
+            ]),
+            contentBehindInput: true,
+            componentProperties: {
+                min: 0,
+                max: 50
+            }
+        })
+    }
 
     /**
     *

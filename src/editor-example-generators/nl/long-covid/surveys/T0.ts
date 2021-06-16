@@ -156,6 +156,7 @@ export const generateT0 = (): Survey | undefined => {
     // General Health for children
     const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(childVersion.key, {
         groupCondition: participantInfos.isOlder(minAge),
+        testQ11ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
         hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
         youngerThan8: participantInfos.isYounger(8),
         youngerThan11: participantInfos.isYounger(11),
