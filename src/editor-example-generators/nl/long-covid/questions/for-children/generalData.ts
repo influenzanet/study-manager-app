@@ -58,13 +58,13 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addPageBreak();
 
         this.addItem(this.InfoText2());
-        this.addItem(this.Q_minderschool('Q_minderschool', isRequired));
+        this.addItem(this.Q_minderschool('Q_minderschool', conditions.q11Ja, isRequired));
         // FIXME PETER I get error that 2 arguments expected but three given
         //this.addItem(this.Q_verzuim('Q_verzuim', conditionVerzuim, isRequired));
         //this.addItem(this.Q_langafwezig('Q_langafwezig', conditionVerzuim, isRequired));
         this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
-        this.addItem(this.Q_zorgenschool('Q_zorgenschool', isRequired));
-        this.addItem(this.Q_lotgenoten('Q_lotgenoten', isRequired));
+        this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
+        this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
         this.addPageBreak();
 
         this.addItem(this.Q11('Q11', isRequired));
@@ -456,11 +456,12 @@ De volgende vragen gaan over je school
     // The following questions should be grouped
 
     // De volgende vragen gaan over je school
-    Q_minderschool(itemKey: string, isRequired: boolean) {
+    Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             isRequired: isRequired,
+            condition: condition,
             questionText: new Map([
                 ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder lesuren op school/opleiding kunnen volgen dan je normaalgesproken deed?"],
             ]),
@@ -612,10 +613,11 @@ De volgende vragen gaan over je school
         });
     }
 
-    Q_zorgenschool(itemKey: string, isRequired: boolean) {
+    Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
@@ -655,10 +657,11 @@ De volgende vragen gaan over je school
         });
     }
 
-    Q_lotgenoten(itemKey: string, isRequired: boolean) {
+    Q_lotgenoten(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Heb je contact met andere (ouders van) kinderen met langdurige klachten door het coronavirus? "],
