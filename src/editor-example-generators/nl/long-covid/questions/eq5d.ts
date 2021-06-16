@@ -23,6 +23,7 @@ export class EQ5DGroup extends GroupItemEditor {
         this.initQuestions();
     }
 
+    // TODO Peter: fix pagebreaks, add copyright message
     initQuestions() {
         this.addItem(Q_instructions(this.key))
         this.addItem(q_mobility_def(this.key, this.isRequired, this.useCopyRight));

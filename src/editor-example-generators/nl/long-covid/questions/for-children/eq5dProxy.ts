@@ -63,13 +63,21 @@ class EQ5Dy extends GroupItemEditor {
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q2('Q2', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q3('Q3', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q4('Q4', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q5('Q5', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q_healthstatus_instructions_def());
         this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
         // this.addItem(this.Q6('Q6', isRequired));
+    }
+    useCopyRight(arg0: string, undefined: undefined, isRequired: boolean, useCopyRight: any): import("survey-engine/lib/data_types").SurveyItem {
+        throw new Error("Method not implemented.");
     }
 
     groupIntro() {
@@ -653,14 +661,14 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                     {
                         role: 'text', content: generateLocStrings(new Map([
                             ["en", "We would like to know how good or bad your health is TODAY."],
-                            ["nl", "We willen weten hoe goed of slecht uw gezondheid VANDAAG is."],
+                            ["nl", "We willen weten hoe goed of slecht je gezondheid VANDAAG is."],
                         ])),
                         style: [{ key: 'variant', value: 'li' }]
                     },
                     {
                         role: 'text', content: generateLocStrings(new Map([
                             ["en", "This scale is numbered from 0 to 100."],
-                            ["nl", "Deze meetschaal loopt van 0 tot 100."],
+                            ["nl", "Daarvoor hebben we deze genummerde lijn van 0 tot en met 100 getekend."],
                         ])),
                         style: [{ key: 'variant', value: 'li' }]
                     },
@@ -671,7 +679,7 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                             {
                                 role: 'part', content: generateLocStrings(new Map([
                                     ["en", "100 means the "],
-                                    ["nl", "100 staat voor de "],
+                                    ["nl", "100 geeft de "],
                                 ]))
                             },
                             {
@@ -684,7 +692,7 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                             {
                                 role: 'part', content: generateLocStrings(new Map([
                                     ["en", " health you can imagine."],
-                                    ["nl", " gezondheid die u zich kunt voorstellen."],
+                                    ["nl", " gezondheid die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
@@ -695,7 +703,7 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                             {
                                 role: 'part', content: generateLocStrings(new Map([
                                     ["en", "0 means the "],
-                                    ["nl", "0 staat voor de "],
+                                    ["nl", "0 geeft de "],
                                 ]))
                             },
                             {
@@ -708,7 +716,7 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                             {
                                 role: 'part', content: generateLocStrings(new Map([
                                     ["en", " health you can imagine."],
-                                    ["en", " gezondheid die u zich kunt voorstellen."],
+                                    ["en", " gezondheid die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
@@ -728,19 +736,19 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
             role: 'eq5d-health-indicator',
             instructionText: new Map([
                 ["en", "Please indicate on the scale how your health is TODAY."],
-                ["nl", "Klik op de meetschaal om aan te geven hoe uw gezondheid VANDAAG is."],
+                ["nl", "Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VANDAAG is."],
             ]),
             valueBoxText: new Map([
                 ["en", "YOUR HEALTH TODAY ="],
-                ["nl", "UW GEZONDHEID VANDAAG ="],
+                ["nl", "Hoe goed is je gezondheid VANDAAG? "],
             ]),
             minHealthText: new Map([
                 ["en", "The worst health you can imagine"],
-                ["nl", "De slechste gezondheid die u zich kunt voorstellen"],
+                ["nl", "De slechste gezondheid die je je voor kunt stellen"],
             ]),
             maxHealthText: new Map([
                 ["en", "The best health you can imagine"],
-                ["nl", "De beste gezondheid die u zich kunt voorstellen"],
+                ["nl", "De beste gezondheid die je je voor kunt stellen"],
             ]),
         });
         simpleEditor.setResponseGroupWithContent(rg_inner);
