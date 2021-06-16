@@ -1653,11 +1653,11 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                 content: new Map([
                     /*["en", "Report yes, if you received the vaccine this season, usually in the autumn."],*/
                     ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2019-2020."],
-                    ["nl", "Zeg ja wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
-                    ["nl-be", "Antwoord ja als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
-                    ["fr", "Répondez oui si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
+                    ["nl", "Zeg 'ja' wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
+                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
+                    ["fr", "Répondez « oui » si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
                     ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im vorigen Jahr erhalten haben (im Herbst/Winter von 2019-2020)"],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2019-2020)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1856,7 +1856,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2020-2021) ?"],
             ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021 ?"],
-            ["de-be", "Wann wurden Sie in der heutigen Grippesaison (2020/2021) gegen Grippe geimpft?"],
+            ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2020/2021) gegen Grippe geimpft?"],
         ]))
     );
 
@@ -3262,7 +3262,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
             ["nl", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["nl-be", "Dank je wel. Dit was de laatste vraag. Na het opslaan (druk « verzenden ») kun je verder met het melden of je wel of geen klachten had in de afgelopen week."],
             ["fr-be", "Merci. C'était la dernière question. Après avoir sauvegardé vos réponses (cliquez sur « envoyer »), vous pouvez aller à la page qui vous permettra d'indiquer si vous avez eu des plaintes / ressenti des symptômes au cours de la semaine écoulée."],
-            ["de-be", "Vielen Dank! Das war die letzte Frage. Nach dem Abspeichern können Sie mit dem Melden der eventuellen Beschwerden, die Sie in der vergangenen Woche hatten, weitermachen."],
+            ["de-be", "Vielen Dank! Das war die letzte Frage. Falls Sie neue Beschwerden haben, können Sie nach dem Abspeichern die Fragen erneut beantworten."],
         ]))
     );
 

@@ -58,15 +58,79 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q12(this.key, q12Condition, true));
 
         this.addItem(Q13(this.key, true))
+
+        const Q14a = gen_Q14a(this.key, testQ11jaCondition, true);
+        this.addItem(Q14a)
         const PaidJob = Q14(this.key, true);
         this.addItem(PaidJob)
 
         this.addItem(Q15(this.key, true))
 
-        const qWorkcondition = CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1');
+        const qWorkcondition = CommonExpressions.or(
+            CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1'),
+            CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
+        )
+
         this.addItem(Q16(this.key, qWorkcondition, true))
         this.addItem(Q17(this.key, qWorkcondition, true))
         this.addItem(Q18(this.key, qWorkcondition, true))
+
+        const q11AndQ14aCondition = CommonExpressions.and(
+            testQ11jaCondition,
+            CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
+        ) // TODO: or CommonExpressions.singleChoiceOptionsSelected(Q14.key, 'ja')
+
+
+        const Q_minderwerk = gen_Q_minderwerk(this.key, q11AndQ14aCondition, true);
+        this.addItem(Q_minderwerk);
+        const Q_arbo = gen_Q_arbo(this.key, q11AndQ14aCondition, true);
+        this.addItem(Q_arbo);
+
+        // TODO:
+        const conditionOnMinderwerk = CommonExpressions.singleChoiceOnlyOtherKeysSelected(
+            Q_minderwerk.key, '1'
+        )
+        const Q_verzuim = gen_Q_verzuim(this.key, conditionOnMinderwerk, true);
+        this.addItem(Q_verzuim);
+        const Q_langafwezig = gen_Q_langafwezig(this.key, conditionOnMinderwerk, true);
+        this.addItem(Q_langafwezig);
+
+        const conditionOnLangafwezig = CommonExpressions.singleChoiceOptionsSelected(
+            Q_langafwezig.key, 'ja'
+        );
+        const Q_datumziek = gen_Q_datumziek(this.key, conditionOnLangafwezig, true);
+        this.addItem(Q_datumziek);
+
+        const Q_steunwerkgever = gen_Q_steunwerkgever(this.key, q11AndQ14aCondition, true);
+        this.addItem(Q_steunwerkgever);
+
+        const Q_zorgenwerk = gen_Q_zorgenwerk(this.key, q11AndQ14aCondition, true);
+        this.addItem(Q_zorgenwerk);
+
+
+        const Q_lotgenoten = gen_Q_lotgenoten(this.key, testQ11jaCondition, true);
+        this.addItem(Q_lotgenoten);
+
+        const Q_steunsociaal = gen_Q_steunsociaal(this.key, testQ11jaCondition, true);
+        this.addItem(Q_steunsociaal);
+
+        const Q_hulp = gen_Q_hulp(this.key, testQ11jaCondition, true);
+        this.addItem(Q_hulp);
+
+        const conditionQHulp = CommonExpressions.singleChoiceOptionsSelected(
+            Q_hulp.key, 'ja'
+        )
+
+        const Q_welkehulp = gen_Q_welkehulp(this.key, conditionQHulp, true);
+        this.addItem(Q_welkehulp);
+
+        const Q_wekenhulp = gen_Q_wekenhulp(this.key, conditionQHulp, true);
+        this.addItem(Q_wekenhulp);
+
+        const Q_urenhulp = gen_Q_urenhulp(this.key, conditionQHulp, true);
+        this.addItem(Q_urenhulp);
+
+
         this.addItem(Q19(this.key, true))
         this.addItem(Q20(this.key, true))
         this.addItem(Q21(this.key, true))
@@ -545,6 +609,34 @@ const Q13 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     });
 }
 
+const gen_Q14a = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q14a';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Had je betaald werk op het moment dat je besmet raakte met het coronavirus?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+        ]
+    });
+}
+
 const Q14 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q14';
     return SurveyItemGenerators.singleChoice({
@@ -600,6 +692,11 @@ const Q15 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 key: '3', role: 'option',
                 content: new Map([
                     ["nl", "Ik werk als zelfstandige/ ondernemer"],
+                ]),
+            }, {
+                key: 'reintegreren', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben aan het re-integreren op mijn werk"],
                 ]),
             }, {
                 key: '4', role: 'option',
@@ -721,7 +818,7 @@ const Q17 = (parentKey: string, condition: Expression, isRequired?: boolean, key
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Hoeveel uur per week werk je (normaal)?"],
+            ["nl", "Hoeveel uur per week werk je normaalgesproken?"],
         ]),
         questionSubText: new Map([
             ["nl", "Tel alleen de uren waarvoor je betaald wordt"],
@@ -788,7 +885,7 @@ const Q18 = (parentKey: string, condition: Expression, isRequired?: boolean, key
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Op hoeveel dagen in de week werk je (normaal)?"],
+            ["nl", "Op hoeveel dagen in de week werk je normaalgesproken?"],
         ]),
         responseOptions: [
             {
@@ -838,6 +935,518 @@ const Q18 = (parentKey: string, condition: Expression, isRequired?: boolean, key
     });
 }
 
+
+const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'minderwerk';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder kunnen werken dan je normaalgesproken deed?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Mijn werktijden zijn onveranderd"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk af en toe minder"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk structureel minder"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben volledig ziekgemeld"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben geen werk meer door de langdurige klachten"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb geen werk meer om andere reden"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_arbo = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'arbo';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Bepaal je je werktijden of werkdruk in overleg met een arts (bijvoorbeeld ARBO arts, huisarts of specialist)?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_verzuim = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'verzuim';
+    const inputProperties = {
+        min: 1,
+        max: 500
+    };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder kunnen werken door langdurige gezondheidsklachten (tel het aantal werkdagen)?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Je mag het antwoord ook inschatten."],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal dagen helemaal niet kunnen werken: "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '2', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal dagen minder kunnen werken: "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+        ],
+    });
+}
+
+
+const gen_Q_langafwezig = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'langafwezig';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van je werk doordat je ziek was?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Het gaat om een aaneengesloten periode van werkverzuim."],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_datumziek = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'datumziek';
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Wanneer heb je jezelf ziek gemeld?"],
+        ]),
+        isRequired: isRequired,
+        dateInputMode: 'YMD',
+        inputLabelText: new Map([
+            ["nl", "Kies hier de datum"],
+        ]),
+        placeholderText: new Map([
+            ["nl", "Datum"],
+        ]),
+    });
+}
+
+
+const gen_Q_steunwerkgever = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'steunwerkgever';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Voel je je gesteund door je werkgever in het omgaan met je langdurige klachten?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, ik voel me gesteund"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, ik voel me redelijk gesteund"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nee, ik voel me weinig of niet gesteund"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Nee, ik voel me niet serieus genomen"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Niet van toepassing, eigen bedrijf /zzp"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Niet van toepassing, overig"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_zorgenwerk = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'zorgenwerk';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Maak je je zorgen over je inkomen werk en carrière in het komende jaar door de langdurige gezondheidsklachten?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ernstige zorgen"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Redelijk veel zorgen"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Weinig zorgen"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Geen zorgen, ik ben redelijk positief"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Geen zorgen, ik ben positief"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_lotgenoten = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'lotgenoten';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Heb je contact met andere personen met langdurige klachten door het coronavirus?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, vaak"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, af en toe"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ken wel andere mensen met langdurige klachten maar spreek er niet over"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ken geen andere mensen met langdurige klachten, maar heb wel behoefte aan contact"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ken geen andere mensen met langdurige klachten, en heb ook geen behoefte aan contact"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_steunsociaal = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'steunsociaal';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Voel je je gesteund in het omgaan met je langdurige klachten in je directe sociale omgeving (familie, vrienden en collega’s)?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, ik voel me gesteund"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, ik voel me redelijk gesteund"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Nee, ik voel me weinig of niet gesteund"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Nee, ik voel me niet serieus genomen"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Niet van toepassing"],
+                ])
+            },
+        ],
+    });
+}
+
+
+const gen_Q_hulp = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'hulp';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Heb je in de afgelopen 3 maanden hulp gekregen van een familielid of een bekende vanwege je langdurige gezondheidsklachten?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_welkehulp = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'welkehulp';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Wat voor hulp van familieleden of bekenden heb je gehad in de afgelopen 3 maanden?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: 'huishouden', role: 'option',
+                content: new Map([
+                    ["nl", "Huishoudelijke hulp (voorbeeld: stofzuigen, bed opmaken, boodschappen doen, klaarmaken van eten en drinken, verzorgen van kinderen)"],
+                ])
+            },
+            {
+                key: 'verzorging', role: 'option',
+                content: new Map([
+                    ["nl", "Verzorging van uzelf (voorbeeld: hulp bij douchen of aankleden, hulp bij het eten en drinken of het geven van medicijnen)"],
+                ])
+            },
+            {
+                key: 'praktisch', role: 'option',
+                content: new Map([
+                    ["nl", "Praktische hulp (voorbeeld: ondersteuning bij wandelen, het maken van uitstapjes of bezoekjes aan bekenden, bezoeken aan de huisarts of het ziekenhuis, het regelen van hulp of het regelen van financiële zaken)"],
+                ])
+            },
+        ],
+    });
+}
+
+const gen_Q_wekenhulp = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'wekenhulp';
+    const inputProperties = {
+        min: 1,
+        max: 13
+    };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoeveel weken heb je deze hulp gehad? Tel alle weken in de afgelopen 3 maanden bij elkaar op."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Let op: een periode van 3 maanden telt 13 weken."],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal weken huishoudelijke hulp: "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '2', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal weken hulp bij verzorging van jezelf:"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '3', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal weken praktische hulp: "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+        ],
+    });
+}
+
+const gen_Q_urenhulp = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'urenhulp';
+    const inputProperties = {
+        min: 1,
+        max: 168
+    };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoeveel uur hulp kreeg je in deze weken gemiddeld?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: '1', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal uur huishoudelijke hulp in de week:"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '2', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal uur hulp bij verzorging van jezelf in de week:"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+            {
+                key: '3', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal uur praktische hulp in de week: "],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+        ],
+    });
+}
+
+
 const Q19 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q19';
     return SurveyItemGenerators.multipleChoice({
@@ -845,7 +1454,7 @@ const Q19 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Hoe heb je over het LongCOVID onderzoek gehoord?"],
+            ["nl", "Hoe heb je over het LongCOVID-onderzoek gehoord?"],
         ]),
         topDisplayCompoments: [
             ComponentGenerators.text({
@@ -868,9 +1477,9 @@ const Q19 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Uitnodiging via de e-mail na contact met de GGD voor bron en contactonderzoek"],
                 ]),
             }, {
-                key: '3', role: 'option',
+                key: '3', role: 'input',
                 content: new Map([
-                    ["nl", "Uitnodiging per brief"],
+                    ["nl", "Uitnodiging per brief, vul hier je onderzoekscode in:"],
                 ]),
             }, {
                 key: '4', role: 'input',

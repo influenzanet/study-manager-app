@@ -5,7 +5,7 @@ import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
-import { SelectField, SurveyView, TextField } from 'case-web-ui';
+import { Checkbox, SelectField, SurveyView, TextField } from 'case-web-ui';
 
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
@@ -20,6 +20,7 @@ const TestViewer: React.FC = () => {
 
     const [pFlagKey, setPFlagKey] = useState('');
     const [pFlagValue, setPFlagValue] = useState('');
+    const [showKeys, setShowKeys] = useState(false);
 
     // Language settings
     const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -131,6 +132,12 @@ const TestViewer: React.FC = () => {
                         <h5>Participant flags</h5>
                         <TextField label="Key" value={pFlagKey} onChange={(event) => setPFlagKey(event.target.value)} />
                         <TextField label="Value" value={pFlagValue} onChange={(event) => setPFlagValue(event.target.value)} />
+                        <Checkbox
+                            id="showKeys"
+                            className="mt-2"
+                            name="showKeys"
+                            checked={showKeys}
+                            label="Show Item Keys" onChange={(value) => setShowKeys(value)} />
                     </div>
                 </div>
                 <div className="col-12 col-lg-8">
@@ -158,6 +165,7 @@ const TestViewer: React.FC = () => {
                                 // backBtnText={'Vorige'}
                                 backBtnText={'Back'}
                                 invalidResponseText={'Please select a valid response.'}
+                                showKeys={showKeys}
                             />
                         </div> : null}
 

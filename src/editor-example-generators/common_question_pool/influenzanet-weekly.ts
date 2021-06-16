@@ -303,7 +303,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ["fr", "Lors de votre dernière visite, vous aviez déclaré être toujours malade. Est-ce que les symptômes que vous rapportez aujourd'hui font partie du même épisode de maladie ?"],
             ["nl-be", "In uw laatste vragenlijst gaf u aan nog steeds ziek te zijn. Behoren de symptomen die u nu meldt tot dezelfde klachtenperiode als de symptomen die u de vorige keer al gemeld heeft?"],
             ["fr-be", "Lorsque vous avez complété le précédent questionnaire, vous avez indiqué que vous étiez toujours malade. Les symptômes que vous signalez actuellement font-ils partie de la même période que les symptômes que vous aviez déjà signalés la dernière fois ?"],
-            ["de-be", "In Ihrer letzten Fragenliste gaben Sie an, noch immer krank zu sein. Gehören die Symptome, die Sie nun melden, zu demselben Beschwerdezeitraum wie die Symptome, die Sie das letzte Mal schon gemeldet haben?"],
+            ["de-be", "In Ihrer letzten Fragen gaben Sie an, noch immer krank zu sein. Gehören die Symptome, die Sie nun melden, zu demselben Beschwerdezeitraum wie die Symptome, die Sie das letzte Mal schon gemeldet haben?"],
             ["en", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
         ]))
     );
@@ -334,7 +334,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["nl", "Om te bepalen of je klachten worden veroorzaakt door (mogelijk) een nieuwe of dezelfde infectie als de vorige keer."],
                     ["nl-be", "Om het invullen van de rest van de vragenlijst te versnellen."],
                     ["fr-be", "Pour accélérer le remplissage du reste du questionnaire."],
-                    ["de-be", "Um das Ausfüllen der restlichen Fragenliste zu beschleunigen."],
+                    ["de-be", "Um das Ausfüllen der restlichen Fragen zu beschleunigen."],
                     ["en", "To speed up the completion of the rest of the questionnaire."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
@@ -355,7 +355,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 content: new Map([
                     /* ["en", "If you believe that the symptoms you have reported today are caused by the same bout of illness as your previous symptoms, please tick “yes”."], */
                     /* ["fr", "Si vous pensez que les symptômes que vous avez déclarés aujourd'hui sont causés par le même épisode de maladie que vos symptômes précédents, s'il vous plaît cochez «oui» . Pour gagner du temps, nous avons rempli les informations que vous nous avez déjà fournies sur votre maladie.  S'il vous plaît, vérifiez qu'elles sont toujours correctes ou faites les modifications nécessaires si, par exemple, vous avez consulté un médecin ou pris plus de temps hors travail depuis la dernière fois que vous avez répondu au questionnaire."], */
-                    ["nl", "Als je denkt dat de klachten die je vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'"],                    
+                    ["nl", "Als je denkt dat de klachten die je vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'"],
                     ["nl-be", "Als u denkt dat de klachten die u vandaag raporteert nog worden veroorzaakt door dezelfde infectie/probleem (dezelfde klachtenperiode), beantwoord dan de vraag met 'Ja'."],
                     ["fr-be", "Si vous pensez que les plaintes que vous signalez aujourd'hui sont toujours causées par la même infection ou le même problème (même période durant laquelle les plaintes ont été observées), répondez alors oui à la question."],
                     ["de-be", "Wenn Sie der Meinung sind, dass die Beschwerden, über die Sie heute berichten, durch dieselbe Infektion / dasselbe Problem (in derselben Beschwerdezeit) verursacht werden, dann beantworten Sie die Frage mit Ja."],
@@ -828,7 +828,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'a';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -911,8 +911,17 @@ const feverStart = (parentKey: string, isRequired?: boolean, keyOverride?: strin
         {
             key: '1', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
-                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
+                min: {
+                    dtype: 'exp', exp: {
+                        name: 'getAttribute',
+                        data: [
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomStart, [responseGroupKey, '0'].join('.')) },
+                            { str: 'value', dtype: 'str' }
+                        ],
+                        returnType: 'int',
+                    }
+                },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
             },
             content: new Map([
                 /* ["en", "Choose date"], */
@@ -1407,7 +1416,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
 }
 
 
-const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, keySymptomStart: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q6';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
@@ -1419,7 +1428,7 @@ const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, isReq
     );
 
     // Fever Start
-    editor.addSurveyItem(feverStart(itemKey, isRequired));
+    editor.addSurveyItem(feverStart(itemKey, keySymptomStart, isRequired));
 
     // Developed Suddenly
     editor.addSurveyItem(feverDevelopedSuddenly(itemKey, isRequired));

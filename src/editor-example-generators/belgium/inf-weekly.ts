@@ -19,7 +19,7 @@ const weekly = (): Survey | undefined => {
         new Map([
             ["nl-be", "Wekelijkse vragenlijst"],
             ["fr-be", "Questionnaire hebdomadaire"],
-            ["de-be", "Wöchentliche Fragenliste"],
+            ["de-be", "Wöchentliche Fragen"],
             ["en", "Weekly questionnaire"],
         ])
     ));
@@ -126,7 +126,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptomsSuddenlyDeveloped, hasSymptomGroupKey);
 
     // // ----> fever group  - 4 questions
-    const feverGroup = InfluenzanetWeekly.feverGroup.all(hasSymptomGroupKey, Q_symptoms.key, true);
+    const feverGroup = InfluenzanetWeekly.feverGroup.all(hasSymptomGroupKey, Q_symptoms.key, Q_symptomStart.key, true);
     survey.addExistingSurveyItem(feverGroup, hasSymptomGroupKey);
 
     // // Q_BE_7 visited medical service --------------------------------------
@@ -219,7 +219,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["nl-be", "Had u sinds de vorige vragenlijst één of meerdere van deze klachten/symptomen (of in de afgelopen 7 dagen indien dit uw eerste bezoek is)?"],
             ["fr-be", "Depuis le dernier questionnaire, avez-vous ressenti un ou plusieurs des troubles médicaux / des symptômes détaillés ci-dessous ?"],
-            ["de-be", "Hatten Sie seit der vorigen Fragenliste eines oder mehrere dieser Beschwerden/Symptome (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
+            ["de-be", "Hatten Sie seit der letzten Fragen eines oder mehrere dieser Beschwerden/Symptome (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
             ["en", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
         ]))
     );
@@ -397,7 +397,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["nl-be", "Vermoeid en lamlendig (algehele malaise)"],
                 ["fr-be", "Une sensation de fatigue et de léthargie (malaise général)"],
-                ["de-be", "Ermüdet und lendenlahm (allgemeines Unwohlsein)"],
+                ["de-be", "Ermüdet und (körperlich) erschöpft (allgemeines Unwohlsein)"],
                 ["en", "Feeling tired or exhausted (malaise)"],
             ])
         },
@@ -437,7 +437,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             content: new Map([
                 ["nl-be", "Misselijkheid"],
                 ["fr-be", "Des nausées"],
-                ["de-be", "Unpässlichkeit"],
+                ["de-be", "Unwohlsein"],
                 ["en", "Nausea"],
             ])
         },
@@ -660,7 +660,7 @@ const covidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string
         generateTitleComponent(new Map([
             ["nl-be", "Heeft u sinds de vorige vragenlijst een COVID-19 test laten uitvoeren (of in de afgelopen 7 dagen indien dit uw eerste bezoek is)?"],
             ["fr-be", "Avez-vous passé un test de dépistage du coronavirus depuis le dernier questionnaire (ou au cours des 7 derniers jours s'il s'agit de votre première visite) ?"],
-            ["de-be", "Haben Sie seit der vorigen Fragenliste einen COVID-19-Test durchführen lassen (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
+            ["de-be", "Haben Sie seit der letzten Fragen einen COVID-19-Test durchführen lassen (oder in den vergangenen 7 Tagen, wenn dieser Ihr erster Besuch ist)?"],
             ["en", "Have you been tested for coronavirus since the last questionnaire (or within the past 7 days if this is your first visit)?"],
         ]))
     );
@@ -928,7 +928,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
         {
             key: '0', role: 'dateInput',
             optionProps: {
-                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -21427200) },
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
                 max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
             },
             description: new Map([
@@ -3318,7 +3318,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
                 ["nl-be", "Ja, pijnstillers zoals paracetamol, aspirine of ibuprofen"],
                 ["fr-be", "Oui, des analgésiques tels que le paracétamol, l'aspirine ou l'ibuprofène"],
                 ["de-be", "Ja, Schmerzmittel wie Paracetamol, Aspirin oder Ibuprofen"],
-                ["en", "yes, pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
+                ["en", "Yes, pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
             ])
         },
         {
@@ -3329,7 +3329,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
                 ["nl-be", "Ja, middelen om de neus vrij te maken (neusspray, enz.)"],
                 ["fr-be", "Oui, des produits pour dégager le nez (un spray nasal, etc.)"],
                 ["de-be", "Ja, Mittel, um die Nase frei zu machen (Nasenspray usw.)"],
-                ["en", "yes, nasal decongestants (nose spray, etc.)"],
+                ["en", "Yes, nasal decongestants (nose spray, etc.)"],
             ])
         },
         {
@@ -4125,7 +4125,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Ja, een test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
                 ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
                 ["de-be", "Ja, ein Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
-                ["en", "Yes, a PCR test (virus search, or a swab in nose or mouth, or a sputum or saliva sample)"],
+                ["en", "Yes, a test based on a swab in nose or mouth, or a sputum or saliva sample"],
             ])
         },
         {
@@ -4139,8 +4139,18 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             ])
         },
         {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4'),
+            content: new Map([
+                ["nl-be", "Ja, een sneltest (antigeentest) (met een wattenstaafje in mijn neus of mond, en met een resultaat beschikbaar binnen het uur)"],
+                ["fr-be", "Oui, un test antigénique rapide (sur un écouvillon introduit dans le nez ou la bouche, permettant d'obtenir un résultat en moins d'une heure)"],
+                ["de-be", "Ja, ein Antigen-Schnelltest (mit einem Wattestäbchen in Nase oder Mund mit einem Ergebnis, das in unter einer Stunde verfügbar ist)"],
+                ["en", "Yes, a rapid antigen detection test (on a swab in nose or mouth, with a result available in less than an hour)"],
+            ])
+        },
+        {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '4'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '4', '5'),
             content: new Map([
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
@@ -4150,7 +4160,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '3'),
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '3', '5'),
             content: new Map([
                 ["nl-be", "Nee, ik zal geen test laten uitvoeren"],
                 ["fr-be", "Non, je ne me ferai pas tester"],
@@ -4315,7 +4325,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
         style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
         content: generateLocStrings(
             new Map([
-                ["nl-be", "Wegwerktissues gebruiken"],
+                ["nl-be", "Wegwerptissues gebruiken"],
                 ["fr-be", "Utiliser des mouchoirs jetables"],
                 ["de-be", "Einwegtaschentücher verwenden"],
                 ['en', 'Use a disposable tissue'],
