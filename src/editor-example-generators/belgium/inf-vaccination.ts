@@ -60,9 +60,9 @@ const vaccination = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_vacStart, rootKey);
 
     // // -------> VACCINATION GROUP
-    // const hasVacGroup = hasVacGroup(rootKey, Q_vacStart.key);
-    // survey.addExistingSurveyItem(hasVacGroup, rootKey);
-    // const hasVacGroupKey = hasVacGroup.key;
+    const hasVaccineGroup = hasVacGroup(rootKey, Q_vacStart.key);
+    survey.addExistingSurveyItem(hasVaccineGroup, rootKey);
+    const hasVaccineGroupKey = hasVaccineGroup.key;
 
     const Q_vac = vac(rootKey, true);
     survey.addExistingSurveyItem(Q_vac, rootKey);
@@ -100,7 +100,7 @@ export default vaccination;
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q0'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -118,7 +118,7 @@ export default vaccination;
     // CONDITION
     const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
     editor.setCondition(hadCompletedVaccSurvey);
- 
+
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
@@ -171,7 +171,7 @@ export default vaccination;
  * @param keyVacQuestion reference to the vac survey
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: string): SurveyItem => {
+const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: string): SurveyItem => {
     const defaultKey = 'HV'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
@@ -326,7 +326,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -447,7 +447,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineShots = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccineShots = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35c'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -572,7 +572,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const dateFirstVaccine = (parentKey: string, keyvac?: string, keyvaccineShots?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const dateFirstVaccine = (parentKey: string, keyvac?: string, keyvaccineShots?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35d'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -637,34 +637,34 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ])
     );
 
-        // RESPONSE PART
-        const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-        const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-            {
-                key: '1', role: 'dateInput',
-                optionProps: {
-                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -86400*365) },
-                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
-                },
-                description: new Map([
-                    ["nl-be", "Kies een datum"],
-                    ["fr-be", "Choisissez la date"],
-                    ["de-be", "Datum auswählen"],
-                    ["en", "Choose date"],
-                ]),
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -86400 * 365) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
             },
-            {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl-be", "Ik weet het niet (meer)"],
-                    ["fr-be", "Je ne sais pas (plus)"],
-                    ["de-be", "Ich weiß es nicht (mehr)"],
-                    ["en", "I don’t know/can’t remember"],
-    
-                ])
-            },
-        ]);
-        editor.addExistingResponseComponent(rg_inner, rg?.key);
+            description: new Map([
+                ["nl-be", "Kies een datum"],
+                ["fr-be", "Choisissez la date"],
+                ["de-be", "Datum auswählen"],
+                ["en", "Choose date"],
+            ]),
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik weet het niet (meer)"],
+                ["fr-be", "Je ne sais pas (plus)"],
+                ["de-be", "Ich weiß es nicht (mehr)"],
+                ["en", "I don’t know/can’t remember"],
+
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
@@ -686,7 +686,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?: string, keyDateFirstVaccine?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?: string, keyDateFirstVaccine?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -810,7 +810,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35f'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -828,7 +828,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1','01','03')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1', '01', '03')
         );
     }
 
@@ -1085,7 +1085,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35g'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1103,7 +1103,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'),'02','04')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '02', '04')
         );
     }
 
@@ -1324,7 +1324,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35h'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
