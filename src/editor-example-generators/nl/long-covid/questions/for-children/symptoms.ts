@@ -1294,6 +1294,7 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
+    //TODO Peter: if either 0 or 10 is selected all other options should be disabled and vice versa
     Q11(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
@@ -1402,6 +1403,7 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
+    //TODO Peter: if either 0 or 10 is selected all other options should be disabled and vice versa
     Q11_yes(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
