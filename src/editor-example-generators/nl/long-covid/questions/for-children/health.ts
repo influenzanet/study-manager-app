@@ -44,15 +44,21 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.groupIntro());
         this.addItem(this.Q0('Q0', isRequired));
         this.addItem(this.Q1('Q1', isRequired));
+        //TODO Peter: Q2 should only show for longsymptoms: TEST.Q11 = 'ja'
         this.addItem(Q2);
-
         this.addItem(this.Q3('Q3', conditionQ2ja, isRequired));
+        // TODO Peter: add Q3b_longsymptoms here (added below)
         this.addItem(Q4)
         this.addItem(this.Q5('Q5', conditionQ4ja, isRequired));
+          //TODO Peter: tried this but doesn't work   
+        // this.addItem(Q5b(
+        //     this.key,
+        //     CommonExpressions.multipleChoiceOptionsSelected(Q4.key, '24'),
+        //     true)
+        // );
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
-
-        // TODO: check if position here correct:
+        this.addPageBreak();
         this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
         this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
 
@@ -262,14 +268,11 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             itemKey: itemKey,
             questionText: new Map([
                 ["nl", `Welke lichamelijke en psychische problemen heb je? Kruis aan welke problemen je nu hebt of in
-                 de afgelopen 12 maanden hebt gehad (meerdere antwoorden mogelijk).`
+                 de afgelopen 12 maanden hebt gehad.`
                 ],
             ]),
             questionSubText: new Map([
-                ["nl", `
-                De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
-                de antwoorden invullen voor/over uw kind.`
-                ]
+                ["nl", "Meerdere antwoorden mogelijk."],
             ]),
             responseOptions: [
                 {
@@ -555,6 +558,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             questionText: new Map([
                 ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
             ]),
+            questionSubText: new Map([
+                ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
+            ]),
             responseOptions: [
                 {
                     key: 'ja', role: 'option',
@@ -696,7 +702,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'anders', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Andere zorgverlener of specialist. Aantal keer: "],
+                        ["nl", "Andere zorgverlener, namelijk: "],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -716,6 +722,27 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         });
     }
 
+    // const Q3b_longsymptoms = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    //     const itemKey = keyOverride ? keyOverride : 'Q2b_longsymptoms';
+    
+    //     return SurveyItemGenerators.numericInput({
+    //         parentKey: parentKey,
+    //         itemKey: itemKey,
+    //         isRequired: isRequired,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+    //         ]),
+    //         content: new Map([
+    //             ['nl', '']
+    //         ]),
+    //         contentBehindInput: true,
+    //         componentProperties: {
+    //             min: 0,
+    //             max: 50
+    //         }
+    //     })
+    // }
     /**
     *
     */
@@ -841,7 +868,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 {
                     key: 'anders', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Andere zorgverlener of specialist, namelijk"],
+                        ["nl", "Andere zorgverlener, namelijk"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -850,6 +877,28 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             isRequired: isRequired,
         });
     }
+
+//   Q5b = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+//         const itemKey = keyOverride ? keyOverride : 'Q4b';
+    
+//         return SurveyItemGenerators.numericInput({
+//             parentKey: parentKey,
+//             itemKey: itemKey,
+//             isRequired: isRequired,
+//             condition: condition,
+//             questionText: new Map([
+//                 ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
+//             ]),
+//             content: new Map([
+//                 ['nl', '']
+//             ]),
+//             contentBehindInput: true,
+//             componentProperties: {
+//                 min: 0,
+//                 max: 50
+//             }
+//         })
+//     }
 
     /**
     *
@@ -973,10 +1022,8 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", `
-                    Beantwoord elke vraag of stelling door één bolletje aan te klikken.
-                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
-                    `],
+                ["nl", `Beantwoord elke vraag of stelling door één bolletje aan te klikken.
+                    Geef alsjeblieft antwoord voor de afgelopen 7 dagen.`],
             ]),
             questionSubText: new Map([
                 ["nl", "De vragen hieronder zijn gericht aan een ouder/verzorger."]
@@ -1174,7 +1221,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
     *
     */
     Q7(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
@@ -1256,20 +1303,15 @@ class Q8Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### De vragen hieronder zijn voor een ouder/verzorger.
+## De vragen hieronder zijn voor een ouder/verzorger.
 
-##### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
-##### Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad?
-##### Vink het bolletje aan bij:
+###### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind. Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad?
+###### Vink het bolletje aan bij:
 
 0 als het nooit een probleem is,
-
 1 als het bijna nooit een probleem is,
-
 2 als het soms een probleem is,
-
 3 als het vaak een probleem is,
-
 4 als het bijna altijd een probleem is.
 
 Er zijn geen goede of foute antwoorden.
@@ -3768,6 +3810,7 @@ class Q18Group extends GroupItemEditor {
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('1', isRequired));
+        this.addPageBreak();
         this.addItem(this.Q2('2', isRequired));
         this.addItem(this.Q3('3', isRequired));
         this.addItem(this.Q4('4', isRequired));
@@ -3794,7 +3837,7 @@ De vragen hieronder zijn voor een ouder/verzorger.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Hoe veel pijn heeft uw kind gehad de afgelopen week ? Plaats het blokje op de lijn waar die het best de ernst de pijn van uw kind weergeeft ."],
+                ["nl", "Hoe veel pijn heeft uw kind gehad de afgelopen week ? Plaats het bolletje op de lijn waar die het best de ernst de pijn van uw kind weergeeft ."],
             ]),
             questionSubText: new Map([
                 ["nl", "0 = geen pijn, 10 = veel pijn"],
@@ -3913,7 +3956,7 @@ De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt me
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Deze vraag gaat over of je de afgelopen week pijn hebt gehad: Plaats het blokje op de lijn waar die het best de ernst van jouw pijn weergeeft. Hoe veel pijn heb je gehad de afgelopen week?"],
+                ["nl", "Deze vraag gaat over of je de afgelopen week pijn hebt gehad: Plaats het bolletje op de lijn waar die het best de ernst van jouw pijn weergeeft. Hoe veel pijn heb je gehad de afgelopen week?"],
             ]),
             questionSubText: new Map([
                 ["nl", "0 = geen pijn, 10 = veel pijn"],

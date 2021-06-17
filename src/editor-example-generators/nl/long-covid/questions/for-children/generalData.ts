@@ -54,6 +54,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', Q7GreaterThanOne, isRequired));
         this.addItem(this.Q9('Q9', isRequired));
+        // TODO Q10 should not be required
         this.addItem(this.Q10('Q10', isRequired));
         this.addPageBreak();
 
@@ -82,8 +83,7 @@ export class GeneralDataGroup extends GroupItemEditor {
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
-                        ['nl', `
-                         De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
+                        ['nl', `De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
                           de antwoorden invullen voor/over uw kind.
 
                           In dit onderdeel stellen wij je enkele algemene vragen over jezelf en je achtergrond.
@@ -262,7 +262,7 @@ De volgende vragen gaan over je school
                 ["nl", "Met hoeveel andere mensen woon je samen?"],
             ]),
             questionSubText: new Map([
-                ["nl", "jezelf meegeteld en inclusief kinderen, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],
+                ["nl", "Jezelf meegeteld en inclusief kinderen, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],
             ]),
             content: new Map([
                 ['nl', 'Nr.:']
@@ -362,7 +362,7 @@ De volgende vragen gaan over je school
                 {
                     key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Basisonderwijs of lager onderwijs"],
+                        ["nl", "Geen onderwijs, basisonderwijs of lager onderwijs"],
                     ]),
                 },
                 {
@@ -395,12 +395,7 @@ De volgende vragen gaan over je school
                     content: new Map([
                         ["nl", "Universiteit"],
                     ]),
-                }, {
-                    key: '8', role: 'option',
-                    content: new Map([
-                        ["nl", "Anders"],
-                    ]),
-                },
+                }, 
             ]
         });
     }
@@ -417,7 +412,7 @@ De volgende vragen gaan over je school
                 {
                     key: '1', role: 'option',
                     content: new Map([
-                        ["nl", "Basisonderwijs of lager onderwijs"],
+                        ["nl", "Geen onderwijs, basisonderwijs of lager onderwijs"],
                     ]),
                 },
                 {
@@ -453,7 +448,7 @@ De volgende vragen gaan over je school
                 }, {
                     key: '8', role: 'option',
                     content: new Map([
-                        ["nl", "Anders"],
+                        ["nl", "Onbekend"],
                     ]),
                 },
             ]
@@ -735,9 +730,9 @@ De volgende vragen gaan over je school
                         ["nl", "Uitnodiging via de e-mail na contact met de GGD voor bron en contactonderzoek"],
                     ]),
                 }, {
-                    key: '3', role: 'option',
+                    key: '3', role: 'input',
                     content: new Map([
-                        ["nl", "Uitnodiging per brief"],
+                        ["nl", "Uitnodiging per brief, mijn onderzoekscode is:"],
                     ]),
                 }, {
                     key: '4', role: 'input',
