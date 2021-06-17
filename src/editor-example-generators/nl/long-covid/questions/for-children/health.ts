@@ -6,6 +6,7 @@ import { SurveyItemGenerators } from "../../../../../editor-engine/utils/questio
 import { generateRandomKey } from "../../../../../editor-engine/utils/randomKeyGenerator";
 import { expWithArgs, generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../../studyRules";
 
 
 export class HealthGroup extends GroupItemEditor {
@@ -28,7 +29,11 @@ export class HealthGroup extends GroupItemEditor {
 
         const isRequired = true;
 
-        const Q2 = this.Q2('Q2', conditions.testQ11ja, isRequired);
+        // If Q2 is not part of T0, has no condition
+        let Q2 = this.Q2('Q2', undefined, isRequired);
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            Q2 = this.Q2('Q2', conditions.testQ11ja, isRequired);
+        }
         const conditionQ2ja = CommonExpressions.singleChoiceOptionsSelected(Q2.key, 'ja');
 
         const Q4 = this.Q4('Q4', isRequired);
