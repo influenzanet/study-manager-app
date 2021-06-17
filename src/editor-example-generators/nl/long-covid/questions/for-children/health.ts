@@ -1968,7 +1968,15 @@ Er zijn geen goede of foute antwoorden.
 ### Hoe vaak heb je in de afgelopen week problemen gehad met:
                         `]
                     ])
-                })]
+                }),
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
+            ]
         })
     }
     // L4q9a-L4q9h
@@ -2943,7 +2951,13 @@ Er zijn geen goede of foute antwoorden.
 ### Hoezeer is dit voor jou in de afgelopen week een probleem geweest:
                         `]
                     ])
-                })]
+                }), {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }],
         })
     }
 
@@ -3690,7 +3704,14 @@ Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je ni
 Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
                         `]
                     ])
-                })]
+                }),
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "© Robert Goodman, 2005"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }]
         })
     }
 
