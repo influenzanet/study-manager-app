@@ -258,45 +258,6 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
         });
     }
 
-    // TODO: remove Q6 because unused
-    Q6(itemKey: string, isRequired: boolean) {
-        const inputProperties = {
-            min: 0,
-            max: 100
-        };
-        const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
-        return SurveyItemGenerators.numericSlider({
-            parentKey: this.key,
-            itemKey: itemKey,
-            isRequired: isRequired,
-            questionText: new Map([
-                ["nl", `
-We willen weten hoe goed of slecht de gezondheid van je kind VANDAAG is.
-
-Deze meetschaal loopt van 0 tot 100.
-
-100 staat voor de beste gezondheid die je je kunt voorstellen. 0 staat voor de slechtste gezondheid die je je kunt voorstellen.
-
-Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VANDAAG is.
-                `],
-            ]),
-            questionSubText: new Map([
-                ["nl", `
-0 = De slechtste gezondheid die u zich kunt voorstellen
-100 = De beste gezondheid die u zich kunt voorstellen
-               `],
-            ]),
-            sliderLabel: new Map([
-                ["nl", "Uw gezondheid vandaag"],
-            ]),
-            noResponseLabel: new Map([
-                ["nl", "Beweeg de slider om je antwoord te geven"],
-            ]),
-            min: 0,
-            max: 100,
-        });
-    }
-
     Q_healthstatus_instructions_def() {
         const defaultKey = 'HEALTH_INS'
         const itemKey = [this.key, defaultKey].join('.');
@@ -306,8 +267,8 @@ Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VAN
                 role: 'bullets', items: [
                     {
                         role: 'text', content: generateLocStrings(new Map([
-                            ["en", "We would like to know how good or bad your health is TODAY."],
-                            ["nl", "We willen weten hoe goed of slecht uw gezondheid VANDAAG is."],
+                            ["en", "We would like to know how good or bad the health of your child is TODAY"],
+                            ["nl", "We willen weten hoe goed of slecht de gezondheid van je kind VANDAAG is."],
                         ])),
                         style: [{ key: 'variant', value: 'li' }]
                     },
@@ -324,21 +285,10 @@ Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VAN
                         items: [
                             {
                                 role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "100 means the "],
-                                    ["nl", "100 staat voor de "],
-                                ]))
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "best"],
-                                    ["nl", "beste"],
-                                ])),
-                                style: [{ key: 'className', value: 'text-decoration-underline' }]
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", " health you can imagine."],
-                                    ["nl", " gezondheid die u zich kunt voorstellen."],
+                                    ["en", `
+100 represents the best health you can imagine. 0 represents the worst health you can imagine.
+                                    `],
+                                    ["nl", "100 staat voor de beste gezondheid die je je kunt voorstellen. 0 staat voor de slechtste gezondheid die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
@@ -348,21 +298,8 @@ Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VAN
                         items: [
                             {
                                 role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "0 means the "],
-                                    ["nl", "0 staat voor de "],
-                                ]))
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "worst"],
-                                    ["nl", "slechtste"],
-                                ])),
-                                style: [{ key: 'className', value: 'text-decoration-underline' }]
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", " health you can imagine."],
-                                    ["en", " gezondheid die u zich kunt voorstellen."],
+                                    ["en", "Mark an X on the scale to indicate what the health of your child is TODAY"],
+                                    ["nl", "Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VANDAAG is."],
                                 ]))
                             },
                         ],
@@ -381,12 +318,12 @@ Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VAN
             key: '0',
             role: 'eq5d-health-indicator',
             instructionText: new Map([
-                ["en", "Please indicate on the scale how your health is TODAY."],
-                ["nl", "Klik op de meetschaal om aan te geven hoe uw gezondheid VANDAAG is."],
+                ["en", "Mark an X on the scale to indicate what the health of your child is TODAY"],
+                ["nl", "Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VANDAAG is."],
             ]),
             valueBoxText: new Map([
-                ["en", "YOUR HEALTH TODAY ="],
-                ["nl", "UW GEZONDHEID VANDAAG ="],
+                ["en", "THE HEALTH OF YOUR CHILD TODAY ="],
+                ["nl", "DE GEZONDHEID VAN JE KIND VANDAAG ="],
             ]),
             minHealthText: new Map([
                 ["en", "The worst health you can imagine"],
@@ -609,48 +546,6 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
         });
     }
 
-    // TODO: remove Q6, because unused
-    Q6(itemKey: string, isRequired: boolean) {
-        const inputProperties = {
-            min: 0,
-            max: 100
-        };
-        const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
-        return SurveyItemGenerators.numericSlider({
-            parentKey: this.key,
-            itemKey: itemKey,
-            isRequired: isRequired,
-            questionText: new Map([
-                ["nl", `
-We willen weten hoe goed of slecht je gezondheid VANDAAG is.
-
-Daarvoor hebben we deze genummerde lijn van 0 tot en met 100 getekend.
-
-100 geeft de beste gezondheid aan die je je kunt voorstellen.
-
-0 de slechtste gezondheid aangeeft die je je kunt voorstellen.
-
-Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VANDAAG is.
-                `],
-            ]),
-            questionSubText: new Map([
-                ["nl", `
-0 = De slechtste gezondheid die je je voor kunt stellen
-
-100 = De beste gezondheid die je je voor kunt stellen
-               `],
-            ]),
-            sliderLabel: new Map([
-                ["nl", "Hoe goed is je gezondheid VANDAAG?"],
-            ]),
-            noResponseLabel: new Map([
-                ["nl", "Beweeg de slider om je antwoord te geven"],
-            ]),
-            min: 0,
-            max: 100,
-        });
-    }
-
     Q_healthstatus_instructions_def() {
         const defaultKey = 'HEALTH_INS'
         const itemKey = [this.key, defaultKey].join('.');
@@ -667,8 +562,15 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                     },
                     {
                         role: 'text', content: generateLocStrings(new Map([
-                            ["en", "This scale is numbered from 0 to 100."],
+                            ["en", "For that reason we have drawn this numbered line from 0 to 100."],
                             ["nl", "Daarvoor hebben we deze genummerde lijn van 0 tot en met 100 getekend."],
+                        ])),
+                        style: [{ key: 'variant', value: 'li' }]
+                    },
+                    {
+                        role: 'text', content: generateLocStrings(new Map([
+                            ["en", "100 indicates the best health you can imagine"],
+                            ["nl", "100 geeft de beste gezondheid aan die je je kunt voorstellen."],
                         ])),
                         style: [{ key: 'variant', value: 'li' }]
                     },
@@ -678,45 +580,8 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
                         items: [
                             {
                                 role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "100 means the "],
-                                    ["nl", "100 geeft de "],
-                                ]))
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "best"],
-                                    ["nl", "beste"],
-                                ])),
-                                style: [{ key: 'className', value: 'text-decoration-underline' }]
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", " health you can imagine."],
-                                    ["nl", " gezondheid die je je kunt voorstellen."],
-                                ]))
-                            },
-                        ],
-                    },
-                    {
-                        role: 'text',
-                        items: [
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "0 means the "],
-                                    ["nl", "0 geeft de "],
-                                ]))
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "worst"],
-                                    ["nl", "slechtste"],
-                                ])),
-                                style: [{ key: 'className', value: 'text-decoration-underline' }]
-                            },
-                            {
-                                role: 'part', content: generateLocStrings(new Map([
-                                    ["en", " health you can imagine."],
-                                    ["en", " gezondheid die je je kunt voorstellen."],
+                                    ["en", "0 indicates the worst health you can imagine"],
+                                    ["nl", "0 de slechtste gezondheid aangeeft die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
@@ -735,16 +600,16 @@ Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VAN
             key: '0',
             role: 'eq5d-health-indicator',
             instructionText: new Map([
-                ["en", "Please indicate on the scale how your health is TODAY."],
+                ["en", "Please indicate on the numbered line how good or bad your health is TODAY."],
                 ["nl", "Tik op de genummerde lijn om aan te geven hoe goed of slecht jouw gezondheid VANDAAG is."],
             ]),
             valueBoxText: new Map([
-                ["en", "YOUR HEALTH TODAY ="],
-                ["nl", "Hoe goed is je gezondheid VANDAAG? "],
+                ["en", "How good is your health TODAY?"],
+                ["nl", "Hoe goed is je gezondheid VANDAAG?"],
             ]),
             minHealthText: new Map([
                 ["en", "The worst health you can imagine"],
-                ["nl", "De slechste gezondheid die je je voor kunt stellen"],
+                ["nl", "De slechtste gezondheid die je je voor kunt stellen"],
             ]),
             maxHealthText: new Map([
                 ["en", "The best health you can imagine"],
