@@ -54,25 +54,23 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', Q7GreaterThanOne, isRequired));
         this.addItem(this.Q9('Q9', isRequired));
-        // TODO Q10 should not be required
-        this.addItem(this.Q10('Q10', isRequired));
+        this.addItem(this.Q10('Q10', false)); // not required
         this.addPageBreak();
 
-        //FIXME PETER does this group of questions need to be a separate group? It should have a separate groupIntro2
-        // this.addItem(this.groupIntro2());
-        this.addItem(this.Q_minderschool('Q_minderschool', isRequired));
+        this.addItem(this.InfoText2());
+        this.addItem(this.Q_minderschool('Q_minderschool', conditions.q11Ja, isRequired));
         // FIXME PETER I get error that 2 arguments expected but three given
         //this.addItem(this.Q_verzuim('Q_verzuim', conditionVerzuim, isRequired));
         //this.addItem(this.Q_langafwezig('Q_langafwezig', conditionVerzuim, isRequired));
         this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
-        this.addItem(this.Q_zorgenschool('Q_zorgenschool', isRequired));
-        this.addItem(this.Q_lotgenoten('Q_lotgenoten', isRequired));
+        this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
+        this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
         this.addPageBreak();
 
         this.addItem(this.Q11('Q11', isRequired));
         this.addItem(this.Q12('Q12', isRequired));
-        this.addItem(this.Q12('Q13', isRequired));
-        this.addItem(this.Q12('Q14', isRequired));
+        this.addItem(this.Q13('Q13', false));
+        this.addItem(this.Q14('Q14', false));
         this.addPageBreak();
     }
 
@@ -93,10 +91,10 @@ export class GeneralDataGroup extends GroupItemEditor {
         })
     }
 
-     groupIntro2() {
+    InfoText2() {
         return SurveyItemGenerators.display({
             parentKey: this.key,
-            itemKey: 'info',
+            itemKey: 'InfoText2',
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -395,7 +393,7 @@ De volgende vragen gaan over je school
                     content: new Map([
                         ["nl", "Universiteit"],
                     ]),
-                }, 
+                },
             ]
         });
     }
@@ -458,11 +456,12 @@ De volgende vragen gaan over je school
     // The following questions should be grouped
 
     // De volgende vragen gaan over je school
-    Q_minderschool(itemKey: string, isRequired: boolean) {
+    Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             isRequired: isRequired,
+            condition: condition,
             questionText: new Map([
                 ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder lesuren op school/opleiding kunnen volgen dan je normaalgesproken deed?"],
             ]),
@@ -614,10 +613,11 @@ De volgende vragen gaan over je school
         });
     }
 
-    Q_zorgenschool(itemKey: string, isRequired: boolean) {
+    Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
@@ -657,10 +657,11 @@ De volgende vragen gaan over je school
         });
     }
 
-    Q_lotgenoten(itemKey: string, isRequired: boolean) {
+    Q_lotgenoten(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Heb je contact met andere (ouders van) kinderen met langdurige klachten door het coronavirus? "],
@@ -790,33 +791,26 @@ De volgende vragen gaan over je school
         });
     }
 
-    //TODO Peter: comment field without having to select choice?
     Q13(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.multilineTextInput({
             parentKey: this.key,
             itemKey: itemKey,
+            isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Als je nog aanvullende opmerkingen hebt over de vragenlijst of het onderzoek, kun je die hieronder invullen."],
             ]),
             questionSubText: new Map([
                 ["nl", "Let op je krijgt geen persoonlijke reactie op deze opmerkingen."],
             ]),
-            responseOptions: [
-                {
-                    key: 'opmerkingen', role: 'input',
-                    content: new Map([
-                        ["nl", ""],
-                    ]),
-                },
-            ]
         });
     }
 
-    //TODO Peter textboxes to fill in phone number and email without having to select choices?
+    //TODO Tessa / Ka Yin: is it maybe good this way?
     Q14(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Als je dat wilt kun je hieronder je telefoonnummer opgeven en een extra emailadres zodat we je beter kunnen bereiken om te vragen of je de volgende vragenlijst in wilt vullen. "],
             ]),
