@@ -129,15 +129,12 @@ const handleT0Submission = (): Expression => {
         )
     }
     const childVersionChecks = {
-        // TODO: check if "keys" match the one for the group/question and the option
         hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
             'T0.C.SYM.Q1', 'geen'
         ),
-        // TODO: check if "keys" match the one for the group/question and the option
         hasLongTermProblemsDueCorona: () => StudyExpressions.singleChoiceOptionsSelected(
             "T0.C.TEST.Q11", "ja"
         ),
-        // TODO: check if "keys" match the one for the group/question and the option
         isTestResultUnknown: () => StudyExpressions.singleChoiceOptionsSelected(
             "T0.C.TEST.Q5", "unknown"
         )
@@ -314,12 +311,10 @@ const handleShortCSubmission = (): Expression => {
         StudyExpressions.getStudyEntryTime(),
     )
 
-    // TODO: check if keys for short survey are correct:
     const hasReportedSymptoms = () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
         surveyKeys.shortC + '.SYM.Q1', 'geen'
     )
 
-    // TODO: check if keys for short survey are correct:
     const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
         surveyKeys.shortC + 'TEST.Q5followup', 'pos', 'neg'
     );
