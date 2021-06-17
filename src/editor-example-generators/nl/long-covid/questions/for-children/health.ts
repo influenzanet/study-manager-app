@@ -15,6 +15,7 @@ export class HealthGroup extends GroupItemEditor {
         groupCondition?: Expression,
         testQ11ja?: Expression,
         hasDifficultyWithBreathing: Expression,
+        hasReportedSymptomsQ1: Expression,
         youngerThan8: Expression,
         youngerThan11: Expression,
         between8And12: Expression,
@@ -130,9 +131,8 @@ export class HealthGroup extends GroupItemEditor {
         }).getItem());
         this.addPageBreak();
 
-        //TODO Peter how to fix: hasReportedSymptomsQ1 is defined in symptoms
         this.addItem(this.Q5ipqpreText());
-        //this.addItem(this.Q5ipq('Q5ipq', hasReportedSymptomsQ1, isRequired));
+        this.addItem(this.Q5ipq('Q5ipq', conditions.hasReportedSymptomsQ1, isRequired));
         this.addPageBreak();
     }
 

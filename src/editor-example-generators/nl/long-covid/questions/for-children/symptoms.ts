@@ -9,6 +9,7 @@ import { generateRandomKey } from "../../../../../editor-engine/utils/randomKeyG
 
 export class SymptomsGroup extends GroupItemEditor {
     hasDifficultyBreathingExp: Expression;
+    hasAnyReportedSymptoms: Expression;
 
     constructor(parentKey: string, conditions: {
         groupCondition?: Expression,
@@ -28,6 +29,7 @@ export class SymptomsGroup extends GroupItemEditor {
         const hasReportedSymptomsQ1 = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'geen'
         );
+        this.hasAnyReportedSymptoms = hasReportedSymptomsQ1;
         this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOptionsSelected(
             Q1.key, 'kortademig'
         );
@@ -72,8 +74,8 @@ export class SymptomsGroup extends GroupItemEditor {
         }
         this.addPageBreak();
         if (!this.isPartOfSurvey(surveyKeys.shortC)) {
-        this.addItem(this.Q4ipqpreText());
-        this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
+            this.addItem(this.Q4ipqpreText());
+            this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
         }
         this.addPageBreak();
         this.addItem(Q6);
