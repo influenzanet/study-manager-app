@@ -47,7 +47,7 @@ export class CovidTestGroup extends GroupItemEditor {
     }
 
 
-    
+
     Q_testFollowUp(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -129,7 +129,7 @@ export class CovidTestGroup extends GroupItemEditor {
         });
     }
 
-  
+
     Q3(key: string, condition: Expression, isRequired: boolean) {
 
         return SurveyItemGenerators.singleChoice({
@@ -296,6 +296,8 @@ export class CovidTestGroup extends GroupItemEditor {
      *
      */
     Q6(key: string, condition: Expression, isRequired: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, key].join('.'), '3');
+
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -309,24 +311,28 @@ export class CovidTestGroup extends GroupItemEditor {
             responseOptions: [
                 {
                     key: '0', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Met een PCR of antigeen sneltest"],
                     ])
                 },
                 {
                     key: '1', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Met een bloedtest (serologie) "],
                     ])
                 },
                 {
                     key: '2', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Met een zelftest"],
                     ])
                 },
                 {
                     key: '3', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),
                     content: new Map([
                         ["nl", "Weet ik niet"],
                     ])
@@ -393,6 +399,8 @@ export class CovidTestGroup extends GroupItemEditor {
      *
      */
     Q8(key: string, condition: Expression, isRequired: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, key].join('.'), '3');
+
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -406,24 +414,28 @@ export class CovidTestGroup extends GroupItemEditor {
             responseOptions: [
                 {
                     key: '0', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Met een PCR of antigeen sneltest"],
                     ])
                 },
                 {
                     key: '1', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Met een bloedtest (serologie)"],
                     ])
                 },
                 {
                     key: '2', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Met een zelftest"],
                     ])
                 },
                 {
                     key: '3', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),
                     content: new Map([
                         ["nl", "Weet ik niet"],
                     ])

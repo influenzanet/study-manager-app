@@ -5,6 +5,7 @@ import { SurveyItemGenerators } from "../../../../../editor-engine/utils/questio
 import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../../studyRules";
+import { generateRandomKey } from "../../../../../editor-engine/utils/randomKeyGenerator";
 
 export class SymptomsGroup extends GroupItemEditor {
     hasDifficultyBreathingExp: Expression;
@@ -69,8 +70,10 @@ export class SymptomsGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Q2b('Q2b', CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'), isRequired));
         }
+        this.addPageBreak();
+        this.addItem(this.Q4ipqpreText());
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
-        this.addItem(this.Q5('Q5', hasReportedSymptomsQ1, isRequired));
+        this.addPageBreak();
         this.addItem(Q6);
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
@@ -699,7 +702,25 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
+    Q4ipqpreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Klachtenperceptie
 
+**LET OP: De vragen hieronder zijn gericht aan een minderjarige.**
+
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
     Q4(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -707,15 +728,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                // toDo Ka Yin: deze lijst vragen zou naar nieuw scherm moeten, en dan de tekst hieronder bovenaan dat scherm (onder titelkopje dat daar nog toegevoegd moet)
                 ["nl", `
-                **LET OP: De vragen hieronder zijn gericht aan een minderjarige.** 
-                
-                Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
+Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft.
                 `],
-            ]),
-            questionSubText: new Map([
-                ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft. "],
             ]),
             scaleOptions: [
                 {
@@ -865,176 +880,6 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             ]
         });
     }
-
-
-    Q5(itemKey: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.simpleLikertGroup({
-            parentKey: this.key,
-            itemKey: itemKey,
-            condition: condition,
-            isRequired: isRequired,
-            questionText: new Map([
-                // toDo Ka Yin: deze lijst vragen zou naar nieuw scherm moeten, en dan de tekst hieronder bovenaan dat scherm (onder titelkopje dat daar nog toegevoegd moet)
-                // extra punt: dit hoofdstuk hieronder met IPQ ouder-vragen zou bij voorkeur op een andere plaats in de vragenlijst afgenomen moeten worden, zodat pubers niet 2x bijna hetzelfde hoofdstuk achter elkaar langs
-                // zien komen (eerst die van henzelf en dan voor hun ouders). Voorstel om deze vragen voor de ouders bijna helemaal achteraan te doen als voorlaatste dus, kan dat? 
-                ["nl", `
-                **LET OP: De vragen hieronder zijn voor een ouder/verzorger.**
-                
-                Als je deze vragenlijst voor jezelf invult, **vraag dan je ouder/verzorger de antwoorden op onderstaande vragen te geven.**
-                `],
-            ]),
-            questionSubText: new Map([
-                ["nl", "Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft. "],
-            ]),
-            scaleOptions: [
-                {
-                    key: '0', content: new Map([
-                        ["nl", "0"],
-                    ])
-                },
-                {
-                    key: '1', content: new Map([
-                        ["nl", "1"],
-                    ]),
-                }, {
-                    key: '2', content: new Map([
-                        ["nl", "2"],
-                    ])
-                }, {
-                    key: '3', content: new Map([
-                        ["nl", "3"],
-                    ])
-                }, {
-                    key: '4', content: new Map([
-                        ["nl", "4"],
-                    ]),
-                }, {
-                    key: '5', content: new Map([
-                        ["nl", "5"],
-                    ])
-                }, {
-                    key: '6', content: new Map([
-                        ["nl", "6"],
-                    ])
-                }, {
-                    key: '7', content: new Map([
-                        ["nl", "7"],
-                    ])
-                }, {
-                    key: '8', content: new Map([
-                        ["nl", "8"],
-                    ])
-                }, {
-                    key: '9', content: new Map([
-                        ["nl", "9"],
-                    ])
-                }, {
-                    key: '10', content: new Map([
-                        ["nl", "10"],
-                    ])
-                }
-            ],
-            rows: [
-                {
-                    key: 'a', content: new Map([
-                        ["nl", "Hoeveel beïnvloeden de klachten van je kind je leven? "],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '-	0 helemaal geen invloed – 10 zeer veel invloed']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'b', content: new Map([
-                        ["nl", "Hoe lang denk je dat de klachten van je kind zullen duren? "],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 een zeer korte tijd – 10 het hele leven']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'c', content: new Map([
-                        ["nl", "Hoeveel controle vind je dat je hebt over de klachten van je kind?"],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 helemaal geen controle - 10 zeer veel controle']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'd', content: new Map([
-                        ["nl", "Hoeveel denk je dat de behandeling van je kind helpt bij de klachten?"],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 helemaal niet-  10 zeer veel']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'e', content: new Map([
-                        ["nl", "Hoe sterk ervaart je kind klachten?"],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 helemaal geen klachten - 10 veel ernstige klachten ']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'f', content: new Map([
-                        ["nl", "Hoe bezorgd ben je over de klachten van je kind?"],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 helemaal niet bezorgd - 10 zeer bezorgd ']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'g', content: new Map([
-                        ["nl", "In welke mate vind je dat je de klachten van je kind begrijpt?"],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 helemaal geen begrip - 10 zeer veel begrip']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-                {
-                    key: 'h', content: new Map([
-                        ["nl", "Hoeveel invloed hebben de klachten van je kind op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
-                    ]), descriptions: [
-                        ComponentGenerators.text({
-                            content: new Map([
-                                ['nl', '0 helemaal geen invloed - 10 zeer veel invloed']
-                            ]),
-                            className: "fst-italic mb-1"
-                        }),
-                    ]
-                },
-            ]
-        });
-    }
-
 
     Q6(itemKey: string, condition: Expression, isRequired: boolean) {
         const parentKey = this.key;
@@ -1308,6 +1153,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         })
     }
 
+    //TODO Peter: if either 0 or 10 is selected all other options should be disabled and vice versa
     Q11(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
@@ -1416,6 +1262,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         })
     }
 
+    //TODO Peter: if either 0 or 10 is selected all other options should be disabled and vice versa
     Q11_yes(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({
