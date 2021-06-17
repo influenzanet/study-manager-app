@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
@@ -30,7 +30,7 @@ export class SymptomsGroup extends GroupItemEditor {
         this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'kortademig'
         );
-        // TODO: check expression keys
+        // TODO Peter:Keys seem correct, but question Q2a is not showing under the right condition
         const hadReportedSymptomsInT0ButNotAnymore = CommonExpressions.and(
             CommonExpressions.hasParticipantFlag('acute_symptoms_T0', 'yes'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
@@ -53,23 +53,30 @@ export class SymptomsGroup extends GroupItemEditor {
         )
 
         const Q12 = this.Q12('Q12', hasReportedSymptomsQ1, isRequired)
-        const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten')
+        const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten' || Q12.key, '3')
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired));
         this.addItem(Q1);
-        this.addItem(this.Q2('Q2', hasReportedSymptomsQ1, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.shortC)) {
+            this.addItem(this.Qklachtenperiode('Qklachtenperiode', hasReportedSymptomsQ1, isRequired));
+        }
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q2('Q2', hasReportedSymptomsQ1, isRequired));
+        }
         this.addItem(this.Q3('Q3', hasReportedSymptomsQ1, isRequired));
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Q2b('Q2b', hadReportedSymptomsInT0ButNotAnymore, isRequired));
         }
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
-        this.addItem(this.Q5('Q5', ipqCondtion, isRequired));
+        this.addItem(this.Q5('Q5', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q6);
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
-        this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
+        }
         this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired));
         this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q12);
@@ -578,6 +585,37 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
+    Qklachtenperiode(itemKey: string, condition: Expression, isRequired?: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Horen de klachten die je nu meldt bij dezelfde klachtenperiode als die in de vorige vragenlijst?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, dit is een aaneengesloten klachtenperiode"],
+                    ])
+                },
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee, dit zijn nieuwe of andere klachten dan die ik hiervoor had"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik weet het niet"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
 
     Q2(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.dateInput({
@@ -604,7 +642,7 @@ de antwoorden invullen voor/over uw kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "TODO: Q2b - Op welke datum waren de klachten voorbij (je mag de datum ook schatten)? "],
+                ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)? "],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
@@ -1087,7 +1125,7 @@ de antwoorden invullen voor/over uw kind.
     }
 
     Q8(key: string, condition: Expression, isRequired?: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
@@ -1105,6 +1143,12 @@ de antwoorden invullen voor/over uw kind.
                     key: '2', role: 'option',
                     content: new Map([
                         ["nl", "Ik had COVID-19"],
+                    ])
+                },
+                {
+                    key: '3', role: 'input',
+                    content: new Map([
+                        ["nl", "Anders, namelijk:"],
                     ])
                 },
             ],

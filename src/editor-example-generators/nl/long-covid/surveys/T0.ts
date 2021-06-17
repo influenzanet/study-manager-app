@@ -141,7 +141,7 @@ export const generateT0 = (): Survey | undefined => {
 
     // COVID vaccination for children
     const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key, {
-        groupCondition: participantInfos.isOlder(15),
+        groupCondition: participantInfos.isOlder(11),
     });
     childVersion.addItem(childrenVaccinationGroupEditor.getItem());
 
@@ -156,6 +156,7 @@ export const generateT0 = (): Survey | undefined => {
     // General Health for children
     const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(childVersion.key, {
         groupCondition: participantInfos.isOlder(minAge),
+        testQ11ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
         hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
         youngerThan8: participantInfos.isYounger(8),
         youngerThan11: participantInfos.isYounger(11),
@@ -182,8 +183,8 @@ export const generateT0 = (): Survey | undefined => {
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
-    ])));
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat. Voor het onderzoek is het heel belangrijk dat je de vragenlijsten blijft invullen, ook als je geen klachten (meer) hebt door corona.']
+    ]), participantInfos.isOlder(minAge)));
 
     return surveyEditor.getSurvey();
 }

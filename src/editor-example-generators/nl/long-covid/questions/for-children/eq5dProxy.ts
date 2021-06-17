@@ -63,13 +63,21 @@ class EQ5Dy extends GroupItemEditor {
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q2('Q2', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q3('Q3', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q4('Q4', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q5('Q5', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q_healthstatus_instructions_def());
         this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
         // this.addItem(this.Q6('Q6', isRequired));
+    }
+    useCopyRight(arg0: string, undefined: undefined, isRequired: boolean, useCopyRight: any): import("survey-engine/lib/data_types").SurveyItem {
+        throw new Error("Method not implemented.");
     }
 
     groupIntro() {
