@@ -1153,9 +1153,10 @@ Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vr
         })
     }
 
-    //TODO Peter: if either 0 or 10 is selected all other options should be disabled and vice versa
     Q11(itemKey: string, condition: Expression | undefined, isRequired?: boolean) {
         const parentKey = this.key;
+        const notOptionNoneSelected = CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0', '10');
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0', '10');
         return SurveyItemGenerators.multipleChoice({
             parentKey: parentKey,
             condition: condition,
@@ -1175,84 +1176,90 @@ Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vr
             responseOptions: [
                 {
                     key: '0', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: CommonExpressions.or(
+                        CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '10'),
+                        notOptionNoneSelected,
+                    ),
                     content: new Map([
                         ["nl", "Nee, ik heb geen medicijnen gebruikt"],
                     ])
                 },
                 {
                     key: '1', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, pijnstillers zoals paracetamol, diclofenac of ibuprofen"],
                     ])
                 },
                 {
                     key: '2', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
                     ])
                 },
                 {
                     key: '3', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
                     ])
                 },
                 {
                     key: 'afweerremmers', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, afweerremmende medicatie zoals prednison of dexamethason"],
                     ])
                 },
                 {
                     key: '4', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, antibiotica"],
                     ])
                 },
                 {
                     key: '5', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, medicijnen voor hooikoorts (anti-allergie tablet of drank of allergie-neusspray) of astma"],
                     ])
                 },
                 {
                     key: '6', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, homeopathische middelen"],
                     ])
                 },
                 {
                     key: '7', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
                     ])
                 },
                 {
                     key: '8', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, vitamines (bijvoorbeeld vitamine C of vitamine D)"],
                     ])
                 },
                 {
                     key: '9', role: 'input',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ja, andere medicatie, namelijk"],
                     ])
                 },
                 {
                     key: '10', role: 'option',
-                    disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                    disabled: CommonExpressions.or(
+                        CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '0'),
+                        notOptionNoneSelected,
+                    ),
                     content: new Map([
                         ["nl", "Dit wil ik niet aangeven"],
                     ])
