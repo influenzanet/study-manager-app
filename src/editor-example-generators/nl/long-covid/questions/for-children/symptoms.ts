@@ -5,6 +5,7 @@ import { SurveyItemGenerators } from "../../../../../editor-engine/utils/questio
 import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../../studyRules";
+import { generateRandomKey } from "../../../../../editor-engine/utils/randomKeyGenerator";
 
 export class SymptomsGroup extends GroupItemEditor {
     hasDifficultyBreathingExp: Expression;
@@ -73,7 +74,7 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(this.Q4ipqpreText());
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
         this.addPageBreak();
-        this.addItem(this.Q5('Q5', hasReportedSymptomsQ1, isRequired));
+        //this.addItem(this.Q5('Q5', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q6);
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
