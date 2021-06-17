@@ -71,8 +71,10 @@ export class SymptomsGroup extends GroupItemEditor {
             this.addItem(this.Q2b('Q2b', CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'), isRequired));
         }
         this.addPageBreak();
+        if (!this.isPartOfSurvey(surveyKeys.shortC)) {
         this.addItem(this.Q4ipqpreText());
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
+        }
         this.addPageBreak();
         this.addItem(Q6);
         this.addItem(Q7);

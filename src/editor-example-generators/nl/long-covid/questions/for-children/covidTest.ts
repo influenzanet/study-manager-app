@@ -37,7 +37,9 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(this.Q4('Q4', conditionQ1Ja, isRequired));
         this.addItem(q5);
         this.addItem(this.Q6('Q6', conditionQ5Positive, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(q7);
+        }
         this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
         this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
         this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
