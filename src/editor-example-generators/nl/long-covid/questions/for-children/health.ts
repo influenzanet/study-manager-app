@@ -46,6 +46,7 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.Q0('Q0', isRequired));
         this.addItem(this.Q1('Q1', isRequired));
         this.addPageBreak();
+        this.addItem(this.groupIntroQ2());
         this.addItem(Q2);
         this.addItem(this.Q3('Q3', conditionQ2ja, isRequired));
         this.addItem(this.Q3b_longsymptoms('Q3b_longsymptoms', conditionQ2ja, isRequired));
@@ -135,6 +136,28 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                         `]
                     ])
                 })]
+        })
+    }
+
+    groupIntroQ2() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Zorggebruik en medicijngebruik
+
+De vragen hieronder zijn gericht aan een minderjarige.
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+
+Dit deel van de vragenlijst is bedoeld om in kaart te brengen met welke zorg- of hulpverleners je in de **afgelopen 3
+maanden** contact hebt gehad (niet voor corona maar om andere redenen).
+                        `]
+                    ])
+                }),
+            ]
         })
     }
 
