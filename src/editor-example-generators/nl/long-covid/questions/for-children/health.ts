@@ -312,7 +312,14 @@ Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaan
                         }),
                     ]
                 },
-            ]
+            ],
+            bottomDisplayCompoments: [{
+                role: 'footnote', content: generateLocStrings(new Map([
+                    ["nl", "© A.A. Kaptein, I.M. van Korlaar, M. Scharloo. Medische Psychologie, LUMC, 2004."]
+                ])), style: [
+                    { key: 'className', value: 'fs-small fst-italic text-center' }
+                ]
+            }]
         });
     }
 

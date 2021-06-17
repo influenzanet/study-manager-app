@@ -709,7 +709,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     Q4ipqpreText() {
         return SurveyItemGenerators.display({
             parentKey: this.key,
-            itemKey: generateRandomKey(61),
+            itemKey: generateRandomKey(8),
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -881,6 +881,15 @@ Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vr
                         }),
                     ]
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "© A.A. Kaptein, I.M. van Korlaar, M. Scharloo. Medische Psychologie, LUMC, 2004."]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
             ]
         });
     }
