@@ -589,6 +589,7 @@ de antwoorden invullen voor/over uw kind.
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             questionText: new Map([
                 ["nl", "Horen de klachten die je nu meldt bij dezelfde klachtenperiode als die in de vorige vragenlijst?"],
             ]),
