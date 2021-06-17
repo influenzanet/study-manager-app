@@ -61,6 +61,7 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
+        this.addItem(this.QpromispreText());
         this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
         this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
 
@@ -1072,6 +1073,22 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
             ],
             isRequired: isRequired,
         });
+    }
+
+    QpromispreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Benauwdheid
+                        `]
+                    ])
+                }),
+            ]
+        })
     }
 
     Q_promis_proxy(itemKey: string, condition: Expression, isRequired: boolean) {
