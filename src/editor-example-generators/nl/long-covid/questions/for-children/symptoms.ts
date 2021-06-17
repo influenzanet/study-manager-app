@@ -69,7 +69,10 @@ export class SymptomsGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Q2b('Q2b', CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'), isRequired));
         }
+        this.addPageBreak();
+        this.addItem(this.Q4ipqpreText());
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q5('Q5', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q6);
         this.addItem(Q7);
@@ -699,7 +702,25 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
+    Q4ipqpreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Klachtenperceptie
 
+**LET OP: De vragen hieronder zijn gericht aan een minderjarige.**
+
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
     Q4(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -707,15 +728,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                // toDo Ka Yin: deze lijst vragen zou naar nieuw scherm moeten, en dan de tekst hieronder bovenaan dat scherm (onder titelkopje dat daar nog toegevoegd moet)
                 ["nl", `
-                **LET OP: De vragen hieronder zijn gericht aan een minderjarige.**
-
-                Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
+Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft.
                 `],
-            ]),
-            questionSubText: new Map([
-                ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft. "],
             ]),
             scaleOptions: [
                 {
