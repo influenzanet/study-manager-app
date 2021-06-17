@@ -42,8 +42,6 @@ export class GeneralDataGroup extends GroupItemEditor {
             Q_langafwezig.key, 'ja'
         )
 
-
-        // TODO: use q11ja expression - question was missing in Word file
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', isRequired));
         this.addItem(this.Q2('Q2', isRequired));
