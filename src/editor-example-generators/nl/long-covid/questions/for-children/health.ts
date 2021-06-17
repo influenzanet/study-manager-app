@@ -3870,21 +3870,31 @@ De vragen hieronder zijn voor een ouder/verzorger.
 
 
     Q3(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.numericInput({
+        return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Aantal lesuren in de afgelopen 2 (!) weken dat je kind gevolgd heeft"],
             ]),
-            content: new Map([
-                ['nl', 'uur']
-            ]),
-            contentBehindInput: true,
-            componentProperties: {
-                min: 0,
-                max: 80
-            }
+            responseOptions: [
+                {
+                    key: 'uur', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Uur:"],
+                    ]),
+                    optionProps: {
+                        min: 0,
+                        max: 80
+                    },
+                },
+                ComponentGenerators.option({
+                    key: 'na',
+                    content: new Map([
+                        ['nl', 'TODO: text for Not applicable ...']
+                    ]),
+                })
+            ],
         })
     }
 
