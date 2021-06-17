@@ -25,25 +25,22 @@ export class GeneralDataGroup extends GroupItemEditor {
             Q7.key, [responseGroupKey, numericInputKey].join('.')
         ), 1);
 
-        const Q_verzuim = this.Q_verzuim('Q_verzuim', isRequired)
-        const conditionVerzuim1 = CommonExpressions.singleChoiceOptionsSelected(
-            Q_verzuim.key, 'onveranderd'
-        );
-        const conditionVerzuim2 = CommonExpressions.singleChoiceOptionsSelected(
-            Q_verzuim.key, 'niet'
-        );
-        const conditionVerzuim = CommonExpressions.and(
-            conditionVerzuim1,
-            conditionVerzuim2
-        )
 
-        const Q_langafwezig = this.Q_langafwezig('Q_langafwezig', isRequired)
+        const Q_minderschool = this.Q_minderschool('Q_minderschool', conditions.q11Ja, isRequired)
+        const Q_verzuim = this.Q_verzuim('Q_verzuim',
+            CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+                'onveranderd', 'niet'
+            ), isRequired)
+
+        const Q_langafwezig = this.Q_langafwezig('Q_langafwezig',
+            CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+                'onveranderd', 'niet'
+            ),
+            isRequired);
         const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
             Q_langafwezig.key, 'ja'
         )
 
-
-        // TODO: use q11ja expression - question was missing in Word file
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', isRequired));
         this.addItem(this.Q2('Q2', isRequired));
@@ -58,10 +55,9 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addPageBreak();
 
         this.addItem(this.InfoText2());
-        this.addItem(this.Q_minderschool('Q_minderschool', conditions.q11Ja, isRequired));
-        // FIXME PETER I get error that 2 arguments expected but three given
-        //this.addItem(this.Q_verzuim('Q_verzuim', conditionVerzuim, isRequired));
-        //this.addItem(this.Q_langafwezig('Q_langafwezig', conditionVerzuim, isRequired));
+        this.addItem(Q_minderschool);
+        this.addItem(Q_verzuim);
+        this.addItem(Q_langafwezig);
         this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
         this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
         this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
@@ -506,8 +502,7 @@ De volgende vragen gaan over je school
         });
     }
 
-    // if (Q_minderschool != onveranderd) OR (Q_minderschool != niet)
-    Q_verzuim(itemKey: string, isRequired: boolean) {
+    Q_verzuim(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 0,
             max: 20
@@ -516,6 +511,7 @@ De volgende vragen gaan over je school
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
@@ -545,10 +541,11 @@ De volgende vragen gaan over je school
     }
 
     // if Q_minderschool != onveranderd OR Q_minderschool != niet
-    Q_langafwezig(itemKey: string, isRequired: boolean) {
+    Q_langafwezig(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
+            condition: condition,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],

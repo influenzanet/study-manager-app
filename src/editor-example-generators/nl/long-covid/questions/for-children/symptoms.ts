@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
@@ -30,11 +30,12 @@ export class SymptomsGroup extends GroupItemEditor {
         this.hasDifficultyBreathingExp = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q1.key, 'kortademig'
         );
-        // TODO Peter:Keys seem correct, but question Q2a is not showing under the right condition
+        /*
+            Commented, in case we discover that need this later - for now, Short is only asked of people had symptoms
         const hadReportedSymptomsInT0ButNotAnymore = CommonExpressions.and(
             CommonExpressions.hasParticipantFlag('acute_symptoms_T0', 'yes'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
-        )
+        )*/
 
         const ipqCondtion = CommonExpressions.and(
             hasReportedSymptomsQ1,
@@ -66,7 +67,7 @@ export class SymptomsGroup extends GroupItemEditor {
         }
         this.addItem(this.Q3('Q3', hasReportedSymptomsQ1, isRequired));
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
-            this.addItem(this.Q2b('Q2b', hadReportedSymptomsInT0ButNotAnymore, isRequired));
+            this.addItem(this.Q2b('Q2b', CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'), isRequired));
         }
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
         this.addItem(this.Q5('Q5', hasReportedSymptomsQ1, isRequired));

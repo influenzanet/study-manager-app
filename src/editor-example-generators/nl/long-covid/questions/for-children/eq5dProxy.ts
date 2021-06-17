@@ -74,10 +74,7 @@ class EQ5Dy extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(this.Q_healthstatus_instructions_def());
         this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
-        // this.addItem(this.Q6('Q6', isRequired));
-    }
-    useCopyRight(arg0: string, undefined: undefined, isRequired: boolean, useCopyRight: any): import("survey-engine/lib/data_types").SurveyItem {
-        throw new Error("Method not implemented.");
+
     }
 
     groupIntro() {
@@ -123,6 +120,9 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                     ])
                 },
             ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
+            ],
             isRequired: isRequired,
         });
     }
@@ -154,6 +154,9 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                         ["nl", "Mijn kind heeft veel problemen met wassen of aankleden"],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
             ],
             isRequired: isRequired,
         });
@@ -190,6 +193,9 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                     ])
                 },
             ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
+            ],
             isRequired: isRequired,
         });
     }
@@ -222,6 +228,9 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                     ])
                 },
             ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
+            ],
             isRequired: isRequired,
         });
     }
@@ -253,6 +262,9 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                         ["nl", "Mijn kind is erg angstig of somber"],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
             ],
             isRequired: isRequired,
         });
@@ -359,9 +371,13 @@ class EQ5DyProxy extends GroupItemEditor {
         const isRequired = true;
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q2('Q2', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q3('Q3', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q4('Q4', undefined, isRequired));
+        this.addPageBreak();
         this.addItem(this.Q5('Q5', undefined, isRequired));
         this.addItem(this.Q_healthstatus_instructions_def());
         this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
@@ -411,6 +427,9 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                     ])
                 },
             ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
+            ],
             isRequired: isRequired,
         });
     }
@@ -442,6 +461,9 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         ["nl", "Ik heb veel problemen met wassen of aankleden"],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
             ],
             isRequired: isRequired,
         });
@@ -478,6 +500,9 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                     ])
                 },
             ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
+            ],
             isRequired: isRequired,
         });
     }
@@ -510,6 +535,9 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                     ])
                 },
             ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
+            ],
             isRequired: isRequired,
         });
     }
@@ -541,6 +569,9 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         ["nl", "Ik ben erg bezorgd, verdrietig of ongelukkig"],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                eq5dCopyright,
             ],
             isRequired: isRequired,
         });
