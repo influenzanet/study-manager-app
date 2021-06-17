@@ -295,6 +295,7 @@ export class CovidTestGroup extends GroupItemEditor {
     /**
      *
      */
+    //TODO Peter: if 0, 1, or 2 are selected then 3 disabled, and if 3 selected, 0, 1, and 2 disabled
     Q6(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
@@ -393,6 +394,7 @@ export class CovidTestGroup extends GroupItemEditor {
     /**
      *
      */
+    //TODO Peter: if 0, 1, or 2 are selected then 3 disabled, and if 3 selected, 0, 1, and 2 disabled
     Q8(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
