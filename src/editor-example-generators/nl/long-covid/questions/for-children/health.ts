@@ -800,12 +800,13 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
     /**
     *
     */
-    Q5(itemKey: string, condition: Expression, isRequired: boolean) {
+     Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
             max: 365
         };
         const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+
         const ifOptionSelectedThanNotZero = (optionKey: string) => {
             return CommonExpressions.not(
                 CommonExpressions.and(
@@ -818,6 +819,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                     )
                 )
             );
+        }
 
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
@@ -826,15 +828,6 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
             questionText: new Map([
                 ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden anders dan voor corona? En hoe vaak?"],
             ]),
-            responseOptions: [
-                {
-                    key: 'huisarts', role: 'numberInput',
-                    content: new Map([
-                        ["nl", "Huisarts"],
-                    ]),
-                    optionProps: inputProperties,
-                    style: inputStyle,
-                },
             customValidations: [{
                 key: 'numberInputChecks',
                 type: 'hard',
@@ -851,10 +844,19 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                     ifOptionSelectedThanNotZero('anders'),
                 )
             }],
+            responseOptions: [
+                {
+                    key: 'huisarts', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Huisarts. Aantal keer:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
                 {
                     key: 'kinderarts', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Kinderarts"],
+                        ["nl", "Kinderarts. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -862,7 +864,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'dietist', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Diëtist"],
+                        ["nl", "Diëtist. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -870,7 +872,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'ergotherapeut', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Ergotherapeut"],
+                        ["nl", "Ergotherapeut. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -878,7 +880,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'fysiotherapeut', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Fysiotherapeut"],
+                        ["nl", "Fysiotherapeut. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -886,7 +888,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'homeopaat', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Homeopaat"],
+                        ["nl", "Homeopaat. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -894,7 +896,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'logopedist', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Logopedist"],
+                        ["nl", "Logopedist. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -902,7 +904,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'maatschappelijk-werker', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Maatschappelijk werker"],
+                        ["nl", "Maatschappelijk werker. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -910,7 +912,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'psycholoog', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Psycholoog"],
+                        ["nl", "Psycholoog. Aantal keer:"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -918,7 +920,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                 {
                     key: 'anders', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Andere zorgverlener, namelijk"],
+                        ["nl", "Andere zorgverlener, namelijk: "],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
