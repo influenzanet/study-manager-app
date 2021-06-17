@@ -39,11 +39,7 @@ export class HealthGroup extends GroupItemEditor {
         const Q4 = this.Q4('Q4', isRequired);
         const conditionQ4ja = CommonExpressions.singleChoiceOptionsSelected(Q4.key, 'ja');
 
-        const conditionForQ6 = CommonExpressions.and(
-            conditions.hasDifficultyWithBreathing,
-            conditions.youngerThan8,
-        );
-        const Q6 = this.Q6('Q6', conditionForQ6, isRequired);
+        const Q6 = this.Q6('Q6', conditions.hasDifficultyWithBreathing, isRequired);
         const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
 
         //
@@ -62,8 +58,14 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
         this.addItem(this.QpromispreText());
-        this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
-        this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
+        this.addItem(this.Q_promis('Q_promis', CommonExpressions.and(
+            conditions.hasDifficultyWithBreathing,
+            CommonExpressions.not(conditions.youngerThan8),
+        ), isRequired));
+        this.addItem(this.Q_promis_proxy('Q_promis_proxy', CommonExpressions.and(
+            conditions.hasDifficultyWithBreathing,
+            conditions.youngerThan8,
+        ), isRequired));
 
         this.addPageBreak();
         this.addItem(this.Q7preText());
@@ -994,7 +996,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
     /**
     *
     */
-     Q5(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
             max: 365
