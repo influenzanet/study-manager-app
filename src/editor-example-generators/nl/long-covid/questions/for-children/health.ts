@@ -4194,9 +4194,6 @@ Als je deze vragenlijst voor jezelf invult, **vraag dan je ouder/verzorger de an
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                // toDo Ka Yin: deze lijst vragen zou naar nieuw scherm moeten, en dan de tekst hieronder bovenaan dat scherm (onder titelkopje dat daar nog toegevoegd moet)
-                // extra punt: dit hoofdstuk hieronder met IPQ ouder-vragen zou bij voorkeur op een andere plaats in de vragenlijst afgenomen moeten worden, zodat pubers niet 2x bijna hetzelfde hoofdstuk achter elkaar langs
-                // zien komen (eerst die van henzelf en dan voor hun ouders). Voorstel om deze vragen voor de ouders bijna helemaal achteraan te doen als voorlaatste dus, kan dat?
                 ["nl", `
 Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft.
                 `],
