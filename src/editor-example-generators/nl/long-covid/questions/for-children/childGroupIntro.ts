@@ -24,9 +24,9 @@ export class IntroGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-# De vragen hieronder zijn gericht aan een minderjarige.
+**De vragen hieronder zijn gericht aan een minderjarige.**
 
-Bent u een ouder / verzorger dan kunt u de antwoorden invullen voor / over uw kind.
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         `]
                     ])
                 })]
@@ -42,7 +42,8 @@ Bent u een ouder / verzorger dan kunt u de antwoorden invullen voor / over uw ki
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-Kinderen van 0 t/m 4 jaar kunnen niet meedoen aan dit longcovid onderzoek, maar wel aan een ander onderzoek naar longcovid klachten bij kinderen. 
+Kinderen van 0 t/m 4 jaar kunnen **niet** meedoen aan dit longcovid onderzoek, maar wel aan een ander onderzoek naar longcovid klachten bij kinderen. 
+
 Zie voor meer informatie: [https://limesurvey.amc.nl/cru/index.php/717116?lang=nl]
                         `]
                     ])

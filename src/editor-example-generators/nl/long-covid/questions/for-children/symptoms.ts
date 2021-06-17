@@ -87,8 +87,9 @@ export class SymptomsGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
-de antwoorden invullen voor/over uw kind.
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         `]
                     ])
                 })]
@@ -668,7 +669,12 @@ de antwoorden invullen voor/over uw kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "De vragen hieronder zijn gericht aan een minderjarige. Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen."],
+                // toDo Ka Yin: deze lijst vragen zou naar nieuw scherm moeten, en dan de tekst hieronder bovenaan dat scherm (onder titelkopje dat daar nog toegevoegd moet)
+                ["nl", `
+                **LET OP: De vragen hieronder zijn gericht aan een minderjarige.** 
+                
+                Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
+                `],
             ]),
             questionSubText: new Map([
                 ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft. "],
@@ -830,7 +836,14 @@ de antwoorden invullen voor/over uw kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "LET OP: De vragen hieronder zijn voor een ouder/verzorger. Als je deze vragenlijst voor jezelf invult, vraag dan je ouder/verzorger de antwoorden op onderstaande vragen te geven."],
+                // toDo Ka Yin: deze lijst vragen zou naar nieuw scherm moeten, en dan de tekst hieronder bovenaan dat scherm (onder titelkopje dat daar nog toegevoegd moet)
+                // extra punt: dit hoofdstuk hieronder met IPQ ouder-vragen zou bij voorkeur op een andere plaats in de vragenlijst afgenomen moeten worden, zodat pubers niet 2x bijna hetzelfde hoofdstuk achter elkaar langs
+                // zien komen (eerst die van henzelf en dan voor hun ouders). Voorstel om deze vragen voor de ouders bijna helemaal achteraan te doen als voorlaatste dus, kan dat? 
+                ["nl", `
+                **LET OP: De vragen hieronder zijn voor een ouder/verzorger.**
+                
+                Als je deze vragenlijst voor jezelf invult, **vraag dan je ouder/verzorger de antwoorden op onderstaande vragen te geven.**
+                `],
             ]),
             questionSubText: new Map([
                 ["nl", "Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft. "],

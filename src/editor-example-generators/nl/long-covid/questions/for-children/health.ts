@@ -128,8 +128,9 @@ export class HealthGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn gericht aan een minderjarige.
-Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         `]
                     ])
                 })]
@@ -267,8 +268,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             ]),
             questionSubText: new Map([
                 ["nl", `
-                De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
-                de antwoorden invullen voor/over uw kind.`
+                **De vragen hieronder zijn gericht aan een minderjarige.**
+                
+                Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.`
                 ]
             ]),
             responseOptions: [
@@ -979,7 +981,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                     `],
             ]),
             questionSubText: new Map([
-                ["nl", "De vragen hieronder zijn gericht aan een ouder/verzorger."]
+                ["nl", `
+                **De vragen hieronder zijn gericht aan een ouder/verzorger.**
+                `]
             ]),
             topDisplayCompoments: [{
                 role: 'text',
@@ -1071,9 +1075,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             ]),
             questionSubText: new Map([
                 ["nl", `
-                    De vragen hieronder zijn gericht aan een minderjarige.
+                    **De vragen hieronder zijn gericht aan een minderjarige.**
 
-                    Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+                    Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
 `
                 ]
             ]),
@@ -1160,9 +1164,9 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn gericht aan een minderjarige.
+**De vragen hieronder zijn gericht aan een minderjarige.**
 
-Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         `]
                     ])
                 }),
@@ -1256,21 +1260,21 @@ class Q8Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### De vragen hieronder zijn voor een ouder/verzorger.
+**De vragen hieronder zijn voor een ouder/verzorger.**
 
-##### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
-##### Kun je ons vertellen hoe vaak je kind in de afgelopen week met elk van deze dingen problemen heeft gehad?
+#### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor **je kind.**
+##### Kun je ons vertellen **hoe vaak** je kind in de **afgelopen week** met elk van deze dingen **problemen** heeft gehad?
 ##### Vink het bolletje aan bij:
 
-0 als het nooit een probleem is,
+0 als het **nooit** een probleem is,
 
-1 als het bijna nooit een probleem is,
+1 als het **bijna nooit** een probleem is,
 
-2 als het soms een probleem is,
+2 als het **soms** een probleem is,
 
-3 als het vaak een probleem is,
+3 als het **vaak** een probleem is,
 
-4 als het bijna altijd een probleem is.
+4 als het **bijna altijd** een probleem is.
 
 Er zijn geen goede of foute antwoorden.
                         `]
@@ -1617,22 +1621,24 @@ class Q9Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+**LET OP: de vragen hieronder zijn voor een minderjarige.**
 
-##### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
 
-##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+#### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+
+##### Kun je ons vertellen **hoe vaak** je in de **afgelopen week** met elk van deze dingen problemen hebt gehad?
 ##### Vink het bolletje aan bij:
 
-0 als het nooit een probleem is,
+0 als het **nooit** een probleem is,
 
-1 als het bijna nooit een probleem is,
+1 als het **bijna nooit** een probleem is,
 
-2 als het soms een probleem is,
+2 als het **soms** een probleem is,
 
-3 als het vaak een probleem is,
+3 als het **vaak** een probleem is,
 
-4 als het bijna altijd een probleem is.
+4 als het **bijna altijd** een probleem is.
 
 Er zijn geen goede of foute antwoorden.
 
@@ -1965,22 +1971,24 @@ class Q10Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### LET OP: De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+**LET OP: de vragen hieronder zijn voor een minderjarige.**
+
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
 
 #### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-##### Kun je ons vertellen hoe vaak je in de afgelopen week met elk van deze dingen problemen hebt gehad?
+##### Kun je ons vertellen **hoe vaak** je in de **afgelopen week** met elk van deze dingen problemen hebt gehad?
 ##### Vink het bolletje aan bij:
 
-0 als het nooit een probleem is,
+0 als het **nooit** een probleem is,
 
-1 als het bijna nooit een probleem is,
+1 als het **bijna nooit** een probleem is,
 
-2 als het soms een probleem is,
+2 als het **soms** een probleem is,
 
-3 als het vaak een probleem is,
+3 als het **vaak** een probleem is,
 
-4 als het bijna altijd een probleem is.
+4 als het **bijna altijd** een probleem is.
 
 Er zijn geen goede of foute antwoorden.
 
@@ -2309,23 +2317,23 @@ class Q11Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+**De vragen hieronder zijn voor een ouder/verzorger.**
 
-Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor je kind.
+### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor **je kind.**
 
-Kun je ons vertellen hoezeer je kind in de afgelopen week met elk van deze dingen een probleem heeft gehad?
+#### Kun je ons vertellen **hoezeer je kind** in de **afgelopen week** met elk van deze dingen **een probleem** heeft gehad?
 
-Klik het bolletje aan bij het antwoord dat het beste van toepassing is. Je kunt kiezen uit:
+#### Klik het bolletje aan bij het antwoord dat het beste van toepassing is. Je kunt kiezen uit:
 
-0 als het nooit een probleem is
+0 als het **nooit** een probleem is
 
-1 als het bijna nooit een probleem is
+1 als het **bijna** nooit een probleem is
 
-2 als het soms een probleem is
+2 als het **soms** een probleem is
 
-3 als het vaak een probleem is
+3 als het **vaak** een probleem is
 
-4 als het bijna altijd een probleem is
+4 als het **bijna altijd** een probleem is
 
 Er zijn geen goede of foute antwoorden.
 
@@ -2589,21 +2597,23 @@ class Q12Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+**LET OP: de vragen hieronder zijn voor een minderjarige.**
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
 
-Kun je ons vertellen hoezeer elk ding voor jou een probleem is geweest in de afgelopen week, door op het bolletje te klikken bij:
+### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-0 als het nooit een probleem is
+##### Kun je ons vertellen **hoezeer** elk ding voor jou **een probleem** is geweest in de **afgelopen week**, door op het bolletje te klikken bij:
 
-1 als het bijna nooit een probleem is
+0 als het **nooit** een probleem is
 
-2 als het soms een probleem is
+1 als het **bijna nooit** een probleem is
 
-3 als het vaak een probleem is
+2 als het **soms** een probleem is
 
-4 als het bijna altijd een probleem is
+3 als het **vaak** een probleem is
+
+4 als het **bijna altijd** een probleem is
 
 Er zijn geen goede of foute antwoorden.
 
@@ -2867,21 +2877,23 @@ class Q13Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf de antwoorden kiezen.
+**LET OP: de vragen hieronder zijn voor een minderjarige.**
 
-Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
 
-Kun je ons vertellen hoezeer elk ding voor jou een probleem is geweest in de afgelopen week, door op het bolletje te klikken bij:
+### Op deze pagina staat een lijst van dingen die een probleem voor jou kunnen zijn.
 
-0 als het nooit een probleem is
+#### Kun je ons vertellen **hoezeer** elk ding voor jou **een probleem** is geweest in de **afgelopen week**, door op het bolletje te klikken bij:
 
-1 als het bijna nooit een probleem is
+0 als het **nooit** een probleem is
 
-2 als het soms een probleem is
+1 als het **bijna nooit** een probleem is
 
-3 als het vaak een probleem is
+2 als het **soms** een probleem is
 
-4 als het bijna altijd een probleem is
+3 als het **vaak** een probleem is
+
+4 als het **bijna altijd** een probleem is
 
 Er zijn geen goede of foute antwoorden.
 
@@ -3141,11 +3153,9 @@ class Q14Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+**De vragen hieronder zijn voor een ouder/verzorger.**
 
-Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
-
-Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+#### Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
 Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
 Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste zes maanden.
                         `]
@@ -3342,10 +3352,11 @@ class Q15Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn gericht aan een minderjarige.
-Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
+**LET OP: de vragen hieronder zijn gericht aan een minderjarige.**
 
-Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
+
+#### Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
 Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
 Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
                         `]
@@ -3543,7 +3554,7 @@ class Q16Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+**De vragen hieronder zijn voor een ouder/verzorger.**
                         `]
                     ])
                 })]
@@ -3655,8 +3666,9 @@ class Q17Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn gericht aan een minderjarige.
-Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         `]
                     ])
                 })]
@@ -3669,7 +3681,7 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Geef een reactie op elke vraag of uitspraak door per rij een bolletje aan te klikken. Geef alsjeblieft antwoord voor de afgelopen 7 dagen.."],
+                ["nl", "Geef een reactie op elke vraag of uitspraak door per rij een bolletje aan te klikken. Geef alsjeblieft antwoord voor de afgelopen 7 dagen."],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
@@ -3781,7 +3793,7 @@ class Q18Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een ouder/verzorger.
+**De vragen hieronder zijn voor een ouder/verzorger.**
                         `]
                     ])
                 })]
@@ -3794,7 +3806,7 @@ De vragen hieronder zijn voor een ouder/verzorger.
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Hoe veel pijn heeft uw kind gehad de afgelopen week ? Plaats het blokje op de lijn waar die het best de ernst de pijn van uw kind weergeeft ."],
+                ["nl", "Hoe veel pijn heeft je kind gehad de afgelopen week? Plaats het blokje op de lijn waar die het best de ernst de pijn van je kind weergeeft."],
             ]),
             questionSubText: new Map([
                 ["nl", "0 = geen pijn, 10 = veel pijn"],
@@ -3900,7 +3912,9 @@ class Q19Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn voor een minderjarige. Als een ouder/verzorger helpt met invullen laat dan je kind zelf het antwoord op de eerste vraag kiezen.
+**LET OP: de vragen hieronder zijn voor een minderjarige.**
+
+Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord op de EERSTE vraag kiezen.**
                         `]
                     ])
                 })]
