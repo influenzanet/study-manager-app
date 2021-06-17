@@ -3958,7 +3958,7 @@ class Q18Group extends GroupItemEditor {
                 ["nl", "Beweeg de slider om je antwoord te geven"],
             ]),
             min: 0,
-            max: 10, // TODO Peter can the min and max have a label in the slider?
+            max: 10,
         });
     }
 
