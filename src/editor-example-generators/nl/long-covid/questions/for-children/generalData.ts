@@ -78,6 +78,8 @@ export class GeneralDataGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+# Algemene gegevens
+
 De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
 de antwoorden invullen voor/over uw kind.
 

@@ -3240,13 +3240,11 @@ class Q14Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Sterke kanten en moeilijkheden
+
 De vragen hieronder zijn voor een ouder/verzorger.
 
 Als een ouder/verzorger helpt met invullen laat dan uw kind zelf de antwoorden kiezen.
-
-Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
-Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
-Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste zes maanden.
                         `]
                     ])
                 })]
@@ -3265,7 +3263,11 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", ""],
+                    ["nl", `
+Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
+Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
+Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste zes maanden.
+                    `],
                 ]))
             }],
             scaleOptions: [
