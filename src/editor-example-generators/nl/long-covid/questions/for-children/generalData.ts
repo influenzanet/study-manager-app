@@ -80,10 +80,11 @@ export class GeneralDataGroup extends GroupItemEditor {
                         ['nl', `
 # Algemene gegevens
 
-De vragen hieronder zijn gericht aan een minderjarige. Bent u een ouder/verzorger dan kunt u
-de antwoorden invullen voor/over uw kind.
+**De vragen hieronder zijn gericht aan een minderjarige.**
 
-In dit onderdeel stellen wij je enkele algemene vragen over jezelf en je achtergrond.
+Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+
+#### In dit onderdeel stellen wij je enkele algemene vragen over jezelf en je achtergrond.
                         `]
                     ])
                 })]

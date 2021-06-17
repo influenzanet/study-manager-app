@@ -46,8 +46,9 @@ export class VaccinationGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-De vragen hieronder zijn gericht aan een minderjarige.
-Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         `]
                     ])
                 })]
