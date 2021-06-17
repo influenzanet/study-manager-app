@@ -35,7 +35,7 @@ export class SymptomsGroup extends GroupItemEditor {
             CommonExpressions.hasParticipantFlag('acute_symptoms_T0', 'yes'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
         )
-      
+
         const ipqCondtion = CommonExpressions.and(
             hasReportedSymptomsQ1,
             conditions.olderThan10
@@ -889,7 +889,7 @@ de antwoorden invullen voor/over uw kind.
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '-	0 helemaal geen invloed – 10 zeer veel invloed']
+                                ['nl', '0 helemaal geen invloed – 10 zeer veel invloed']
                             ]),
                             className: "fst-italic mb-1"
                         }),

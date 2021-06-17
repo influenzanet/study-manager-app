@@ -47,7 +47,7 @@ export class CovidTestGroup extends GroupItemEditor {
     }
 
 
-    
+
     Q_testFollowUp(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -129,7 +129,7 @@ export class CovidTestGroup extends GroupItemEditor {
         });
     }
 
-  
+
     Q3(key: string, condition: Expression, isRequired: boolean) {
 
         return SurveyItemGenerators.singleChoice({
@@ -327,6 +327,7 @@ export class CovidTestGroup extends GroupItemEditor {
                 },
                 {
                     key: '3', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),
                     content: new Map([
                         ["nl", "Weet ik niet"],
                     ])
@@ -424,6 +425,7 @@ export class CovidTestGroup extends GroupItemEditor {
                 },
                 {
                     key: '3', role: 'option',
+                    disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),
                     content: new Map([
                         ["nl", "Weet ik niet"],
                     ])

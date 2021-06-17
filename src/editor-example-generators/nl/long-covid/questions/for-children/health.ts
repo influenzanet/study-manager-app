@@ -44,6 +44,7 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.groupIntro());
         this.addItem(this.Q0('Q0', isRequired));
         this.addItem(this.Q1('Q1', isRequired));
+        this.addPageBreak();
         this.addItem(Q2);
 
         this.addItem(this.Q3('Q3', conditionQ2ja, isRequired));
