@@ -111,6 +111,8 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     }
 
     Q1(key: string, condition: Expression | undefined, isRequired?: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, key].join('.'), 'geen');
+
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -131,204 +133,238 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 },
                 {
                     key: 'koorts', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Koorts"],
                     ])
                 },
                 {
                     key: 'koude_rillingen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Koude rillingen"],
                     ])
                 },
                 {
                     key: 'loopneus_of_verstopte_neus', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Loopneus of verstopte neus"],
                     ])
                 },
                 {
                     key: 'niezen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Niezen"],
                     ])
                 },
                 {
                     key: 'keelpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Keelpijn"],
                     ])
                 },
                 {
                     key: 'hoesten', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Hoesten"],
                     ])
                 },
                 {
                     key: 'kortademig', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Moeite met ademen of benauwd"],
                     ])
                 },
                 {
                     key: 'hoofdpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Hoofdpijn"],
                     ])
                 },
                 {
                     key: 'spierpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Spierpijn of pijn aan mijn gewrichten (niet door sporten)"],
                     ])
                 },
                 {
                     key: 'beklemming_pijn_op_borst', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Pijn op de borst"],
                     ])
                 },
                 {
                     key: 'vermoeidheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Vermoeidheid"],
                     ])
                 },
                 {
                     key: 'malaise', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Niet lekker voelen (algehele malaise)"],
                     ])
                 },
                 {
                     key: 'eetlust', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Minder trek hebben (verminderde eetlust)"],
                     ])
                 },
                 {
                     key: 'slijm', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Slijm uit keel of neus"],
                     ])
                 },
                 {
                     key: 'ogen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ontstoken ogen"],
                     ])
                 },
                 {
                     key: 'duizeligheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Duizeligheid"],
                     ])
                 },
                 {
                     key: 'misselijkheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Misselijkheid"],
                     ])
                 },
                 {
                     key: 'overgeven', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Overgeven"],
                     ])
                 },
                 {
                     key: 'andere-ontlasting', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Andere ontlasting (zoals diarree, slijm of veranderd patroon)"],
                     ])
                 },
                 {
                     key: 'buikpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Buikpijn"],
                     ])
                 },
                 {
                     key: 'geen_reuk', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Geen reuk (of sterk verminderd)"],
                     ])
                 },
                 {
                     key: 'geen_smaak', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Geen smaak (of sterk verminderd)"],
                     ])
                 },
                 {
                     key: 'bloedneus', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Bloedneus"],
                     ])
                 },
                 {
                     key: 'huiduitslag', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Huiduitslag"],
                     ])
                 },
                 {
                     key: 'wintertenen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Wintertenen"],
                     ])
                 },
                 {
                     key: 'hartkloppingen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Hartkloppingen"],
                     ])
                 },
                 {
                     key: 'concentratieproblemen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Concentratieproblemen"],
                     ])
                 },
                 {
                     key: 'drukke_omgeving', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Moeite met drukke omgeving"],
                     ])
                 },
                 {
                     key: 'slaapproblemen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Slaapproblemen"],
                     ])
                 },
                 {
                     key: 'tintelingen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Tintelingen of gevoelloosheid"],
                     ])
                 },
                 {
                     key: 'verwardheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Verwardheid"],
                     ])
                 },
                 {
                     key: 'brainfog', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Brainfog/ hersenmist"],
                     ])
                 },
                 {
                     key: 'oorpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Oorpijn"],
                     ])
                 },
                 {
                     key: 'oorsuizen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Oorsuizen"],
                     ])
@@ -353,6 +389,8 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     }
 
     Q1_notyes(key: string, condition?: Expression, isRequired?: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, key].join('.'), 'geen');
+
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -373,204 +411,238 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 },
                 {
                     key: 'koorts', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Koorts"],
                     ])
                 },
                 {
                     key: 'koude_rillingen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Koude rillingen"],
                     ])
                 },
                 {
                     key: 'loopneus_of_verstopte_neus', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Loopneus of verstopte neus"],
                     ])
                 },
                 {
                     key: 'niezen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Niezen"],
                     ])
                 },
                 {
                     key: 'keelpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Keelpijn"],
                     ])
                 },
                 {
                     key: 'hoesten', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Hoesten"],
                     ])
                 },
                 {
                     key: 'kortademig', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Moeite met ademen of benauwd"],
                     ])
                 },
                 {
                     key: 'hoofdpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Hoofdpijn"],
                     ])
                 },
                 {
                     key: 'spierpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Spierpijn of pijn aan mijn gewrichten (niet door sporten)"],
                     ])
                 },
                 {
                     key: 'beklemming_pijn_op_borst', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Pijn op de borst"],
                     ])
                 },
                 {
                     key: 'vermoeidheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Vermoeidheid"],
                     ])
                 },
                 {
                     key: 'malaise', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Niet lekker voelen (algehele malaise)"],
                     ])
                 },
                 {
                     key: 'eetlust', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Minder trek hebben (verminderde eetlust)"],
                     ])
                 },
                 {
                     key: 'slijm', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Slijm uit keel of neus"],
                     ])
                 },
                 {
                     key: 'ogen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Ontstoken ogen"],
                     ])
                 },
                 {
                     key: 'duizeligheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Duizeligheid"],
                     ])
                 },
                 {
                     key: 'misselijkheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Misselijkheid"],
                     ])
                 },
                 {
                     key: 'overgeven', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Overgeven"],
                     ])
                 },
                 {
                     key: 'andere-ontlasting', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Andere ontlasting (zoals diarree, slijm of veranderd patroon)"],
                     ])
                 },
                 {
                     key: 'buikpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Buikpijn"],
                     ])
                 },
                 {
                     key: 'geen_reuk', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Geen reuk (of sterk verminderd)"],
                     ])
                 },
                 {
                     key: 'geen_smaak', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Geen smaak (of sterk verminderd)"],
                     ])
                 },
                 {
                     key: 'bloedneus', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Bloedneus"],
                     ])
                 },
                 {
                     key: 'huiduitslag', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Huiduitslag"],
                     ])
                 },
                 {
                     key: 'wintertenen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Wintertenen"],
                     ])
                 },
                 {
                     key: 'hartkloppingen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Hartkloppingen"],
                     ])
                 },
                 {
                     key: 'concentratieproblemen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Concentratieproblemen"],
                     ])
                 },
                 {
                     key: 'drukke_omgeving', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Moeite met drukke omgeving"],
                     ])
                 },
                 {
                     key: 'slaapproblemen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Slaapproblemen"],
                     ])
                 },
                 {
                     key: 'tintelingen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Tintelingen of gevoelloosheid"],
                     ])
                 },
                 {
                     key: 'verwardheid', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Verwardheid"],
                     ])
                 },
                 {
                     key: 'brainfog', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Brainfog/ hersenmist"],
                     ])
                 },
                 {
                     key: 'oorpijn', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Oorpijn"],
                     ])
                 },
                 {
                     key: 'oorsuizen', role: 'option',
+                    disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Oorsuizen"],
                     ])
