@@ -800,13 +800,25 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
     /**
     *
     */
-    //TODO can the input box be directly behind the text and have a text after the box? E.g. Huisarts <box> keer
     Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
             max: 365
         };
         const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+        const ifOptionSelectedThanNotZero = (optionKey: string) => {
+            return CommonExpressions.not(
+                CommonExpressions.and(
+                    CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), optionKey),
+                    CommonExpressions.not(
+                        CommonExpressions.gt(
+                            CommonExpressions.getResponseValueAsNum([this.key, itemKey].join('.'), [responseGroupKey, multipleChoiceKey, optionKey].join('.')),
+                            0,
+                        )
+                    )
+                )
+            );
+
         return SurveyItemGenerators.multipleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -823,6 +835,22 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                     optionProps: inputProperties,
                     style: inputStyle,
                 },
+            customValidations: [{
+                key: 'numberInputChecks',
+                type: 'hard',
+                rule: CommonExpressions.and(
+                    ifOptionSelectedThanNotZero('huisarts'),
+                    ifOptionSelectedThanNotZero('kinderarts'),
+                    ifOptionSelectedThanNotZero('dietist'),
+                    ifOptionSelectedThanNotZero('ergotherapeut'),
+                    ifOptionSelectedThanNotZero('fysiotherapeut'),
+                    ifOptionSelectedThanNotZero('homeopaat'),
+                    ifOptionSelectedThanNotZero('logopedist'),
+                    ifOptionSelectedThanNotZero('maatschappelijk-werker'),
+                    ifOptionSelectedThanNotZero('psycholoog'),
+                    ifOptionSelectedThanNotZero('anders'),
+                )
+            }],
                 {
                     key: 'kinderarts', role: 'numberInput',
                     content: new Map([
@@ -895,6 +923,15 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                     optionProps: inputProperties,
                     style: inputStyle,
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'error',
+                    content: generateLocStrings(new Map([
+                        ["nl", "Vul het aantal keer in dat je contact hebt gehad met de zorgverlener"],
+                    ])),
+                    displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'numberInputChecks'))
+                }
             ],
             isRequired: isRequired,
         });
