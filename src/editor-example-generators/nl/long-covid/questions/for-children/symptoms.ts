@@ -35,7 +35,7 @@ export class SymptomsGroup extends GroupItemEditor {
             CommonExpressions.hasParticipantFlag('acute_symptoms_T0', 'yes'),
             CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'),
         )
-      
+
         const ipqCondtion = CommonExpressions.and(
             hasReportedSymptomsQ1,
             conditions.olderThan10
@@ -58,12 +58,11 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(this.groupIntro());
         this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired));
         this.addItem(Q1);
-        // TODO Peter, check this question and condition, something not working?
-        // if (this.isPartOfSurvey(surveyKeys.shortC)) {
-        //     this.addItem(this.Qklachtenperiode('Qklachtenperiode', hasReportedSymptomsQ1, isRequired));
-        // }
+        if (this.isPartOfSurvey(surveyKeys.shortC)) {
+            this.addItem(this.Qklachtenperiode('Qklachtenperiode', hasReportedSymptomsQ1, isRequired));
+        }
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(this.Q2('Q2', hasReportedSymptomsQ1, isRequired));
+            this.addItem(this.Q2('Q2', hasReportedSymptomsQ1, isRequired));
         }
         this.addItem(this.Q3('Q3', hasReportedSymptomsQ1, isRequired));
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
@@ -76,7 +75,7 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
+            this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
         }
         this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired));
         this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
@@ -586,39 +585,37 @@ de antwoorden invullen voor/over uw kind.
         })
     }
 
-    // Qklachtenperiode = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    //     const itemKey = keyOverride ? keyOverride : 'Qklachtenperiode';
-    
-    //     return SurveyItemGenerators.singleChoice({
-    //         parentKey: parentKey,
-    //         itemKey: itemKey,
-    //         questionText: new Map([
-    //             ["nl", "Horen de klachten die je nu meldt bij dezelfde klachtenperiode als die in de vorige vragenlijst?"],
-    //         ]),
-    //         responseOptions: [
-    //             {
-    //                 key: 'ja', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Ja, dit is een aaneengesloten klachtenperiode"],
-    //                 ])
-    //             },
-    //             {
-    //                 key: 'nee', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Nee, dit zijn nieuwe of andere klachten dan die ik hiervoor had"],
-    //                 ])
-    //             },
-    //             {
-    //                 key: 'unknown', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Ik weet het niet"],
-    //                 ])
-    //             },
-    //         ],
-    //         isRequired: isRequired,
-    //     })
-    // }
-    
+    Qklachtenperiode(itemKey: string, condition: Expression, isRequired?: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            questionText: new Map([
+                ["nl", "Horen de klachten die je nu meldt bij dezelfde klachtenperiode als die in de vorige vragenlijst?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, dit is een aaneengesloten klachtenperiode"],
+                    ])
+                },
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee, dit zijn nieuwe of andere klachten dan die ik hiervoor had"],
+                    ])
+                },
+                {
+                    key: 'unknown', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik weet het niet"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
+
     Q2(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.dateInput({
             parentKey: this.key,
