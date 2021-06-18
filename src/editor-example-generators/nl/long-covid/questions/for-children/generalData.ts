@@ -53,7 +53,9 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q9('Q9', isRequired));
         this.addItem(this.Q10('Q10', false)); // not required
         this.addPageBreak();
-
+        
+        // TODO Peter: if this chapter (Q_minderschool,Q_verzuim,Q_langafwezig etc) is not shown, Q_minderschoolpreText and InfoText2 should not be shown either 
+        this.addItem(this.Q_minderschoolpreText()); 
         this.addItem(this.InfoText2());
         this.addItem(Q_minderschool);
         this.addItem(Q_verzuim);
@@ -63,6 +65,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
         this.addPageBreak();
 
+        this.addItem(this.Q11preText());
         this.addItem(this.Q11('Q11', isRequired));
         this.addItem(this.Q12('Q12', isRequired));
         this.addItem(this.Q13('Q13', false));
@@ -79,7 +82,7 @@ export class GeneralDataGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-# Algemene gegevens
+## Algemene gegevens
 
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
@@ -454,9 +457,28 @@ De volgende vragen gaan over je school
         });
     }
 
-    // The following questions should be grouped
+    // The following questions should be grouped (kvdw: is already done I think?)
+    Q_minderschoolpreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'headingQ2',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## School en lotgenoten
 
-    // De volgende vragen gaan over je school
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
+
+    
     Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -703,6 +725,25 @@ De volgende vragen gaan over je school
         });
     }
 
+    Q11preText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'headingQ11',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Herkomst, aanvullend onderzoek en contactgegevens
+
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
 
     Q11(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.multipleChoice({

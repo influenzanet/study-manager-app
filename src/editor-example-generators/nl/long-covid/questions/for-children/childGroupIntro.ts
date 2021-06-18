@@ -26,6 +26,8 @@ export class IntroGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Testen op het coronavirus
+
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
 Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
