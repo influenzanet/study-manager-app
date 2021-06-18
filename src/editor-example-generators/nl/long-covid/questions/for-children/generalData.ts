@@ -53,10 +53,9 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q9('Q9', isRequired));
         this.addItem(this.Q10('Q10', false)); // not required
         this.addPageBreak();
-        
-        // TODO Peter: if this chapter (Q_minderschool,Q_verzuim,Q_langafwezig etc) is not shown, Q_minderschoolpreText and InfoText2 should not be shown either 
-        this.addItem(this.Q_minderschoolpreText()); 
-        this.addItem(this.InfoText2());
+
+        this.addItem(this.Q_minderschoolpreText(conditions.q11Ja));
+        this.addItem(this.InfoText2(conditions.q11Ja));
         this.addItem(Q_minderschool);
         this.addItem(Q_verzuim);
         this.addItem(Q_langafwezig);
@@ -69,7 +68,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q11('Q11', isRequired));
         this.addItem(this.Q12('Q12', isRequired));
         this.addItem(this.Q13('Q13', false));
-    // TODO add this later
+        // TODO add this later
         // this.addItem(this.Q14('Q14', false));
         this.addPageBreak();
     }
@@ -95,10 +94,11 @@ Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
         })
     }
 
-    InfoText2() {
+    InfoText2(condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'InfoText2',
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -458,10 +458,11 @@ De volgende vragen gaan over je school
     }
 
     // The following questions should be grouped (kvdw: is already done I think?)
-    Q_minderschoolpreText() {
+    Q_minderschoolpreText(condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'headingQ2',
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -478,7 +479,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         })
     }
 
-    
+
     Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
