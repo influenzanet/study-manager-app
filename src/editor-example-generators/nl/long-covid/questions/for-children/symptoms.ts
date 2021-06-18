@@ -71,9 +71,11 @@ export class SymptomsGroup extends GroupItemEditor {
             this.addItem(this.Q2b('Q2b', CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'), isRequired));
         }
         this.addPageBreak();
+        // todo: only show Q4ipqpreText if ipqCondtion is met, i.e. if the Q4 is shown
         this.addItem(this.Q4ipqpreText());
         this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
         this.addPageBreak();
+        this.addItem(this.Q6gz2preText());
         this.addItem(Q6);
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
@@ -97,6 +99,8 @@ export class SymptomsGroup extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Gezondheidsklachten en zorggebruik (1)
+
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
 Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
@@ -880,7 +884,25 @@ Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vr
             ]
         });
     }
+    Q6gz2preText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Gezondheidsklachten en zorggebruik (2)
 
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
     Q6(itemKey: string, condition: Expression, isRequired: boolean) {
         const parentKey = this.key;
         return SurveyItemGenerators.multipleChoice({

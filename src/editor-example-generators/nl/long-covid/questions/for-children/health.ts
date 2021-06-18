@@ -49,6 +49,8 @@ export class HealthGroup extends GroupItemEditor {
         //
         this.addItem(this.groupIntro());
         this.addItem(this.Q0('Q0', isRequired));
+        this.addPageBreak();
+        this.addItem(this.Q1TICppreText());
         this.addItem(this.Q1('Q1', isRequired));
         this.addPageBreak();
         this.addItem(this.groupIntroQ2());
@@ -62,7 +64,11 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
         this.addItem(this.QpromispreText());
+        // TODO Peter: make this Q_promispreText2 conditional with the same condition as Q_promis_proxy
+        // this.addItem(this.Q_promispreText2('Q_promispreText2',CommonExpressions.not(conditionForQ6), isRequired));
         this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
+        // TODO Peter: make this Q_promis_proxypreText conditional with the same condition as Q_promis_proxy
+        // this.addItem(this.Q_promis_proxypreText('Q_promis_proxypreText',conditionForQ6, isRequired));
         this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
 
         this.addPageBreak();
@@ -322,6 +328,8 @@ Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaan
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Voorgeschiedenis
+
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
 Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
@@ -341,8 +349,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ['nl', `
 ## Zorggebruik en medicijngebruik
 
-De vragen hieronder zijn gericht aan een minderjarige.
-Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
 
 Dit deel van de vragenlijst is bedoeld om in kaart te brengen met welke zorg- of hulpverleners je in de **afgelopen 3
 maanden** contact hebt gehad (niet voor corona maar om andere redenen).
@@ -472,6 +481,26 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
     /**
     *
     */
+     Q1TICppreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Gezondheid
+
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
+
     Q1(itemKey: string, isRequired?: boolean) {
         const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
 
@@ -485,10 +514,6 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
             ]),
             questionSubText: new Map([
                 ["nl", `
- **De vragen hieronder zijn gericht aan een minderjarige.**
-
- Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
-
  Meerdere antwoorden mogelijk.
  `]
             ]),
@@ -1277,13 +1302,28 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                     content: new Map([
                         ['nl', `
 ## Benauwdheid
+
                         `]
                     ])
                 }),
             ]
         })
     }
-
+    Q_promis_proxypreText() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(6),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+**De vragen hieronder zijn voor een ouder/verzorger.**
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
     Q_promis_proxy(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1293,11 +1333,6 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
             questionText: new Map([
                 ["nl", `Beantwoord elke vraag of stelling door één bolletje aan te klikken.
                     Geef alsjeblieft antwoord voor de afgelopen 7 dagen.`],
-            ]),
-            questionSubText: new Map([
-                ["nl", `
-                **De vragen hieronder zijn gericht aan een ouder/verzorger.**
-                `]
             ]),
             topDisplayCompoments: [{
                 role: 'text',
@@ -1374,7 +1409,22 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
             ]
         });
     }
+    Q_promispreText2() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(6),
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+**De vragen hieronder zijn gericht aan een minderjarige.**
 
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.                        `]
+                    ])
+                }),
+            ]
+        })
+    }
     Q_promis(itemKey: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.simpleLikertGroup({
             parentKey: this.key,
@@ -1386,14 +1436,6 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
                     Beantwoord elke vraag of stelling door één bolletje aan te klikken.
                     Geef alsjeblieft antwoord voor de afgelopen 7 dagen.
                     `],
-            ]),
-            questionSubText: new Map([
-                ["nl", `
-**De vragen hieronder zijn gericht aan een minderjarige.**
-
-Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
-`
-                ]
             ]),
             topDisplayCompoments: [{
                 role: 'text',
@@ -1478,6 +1520,8 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Reuk- en smaakvermogen
+
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
 Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
@@ -1574,6 +1618,8 @@ class Q8Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Functioneren
+
 **De vragen hieronder zijn voor een ouder/verzorger.**
 
 #### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor **je kind.**
@@ -1935,6 +1981,8 @@ class Q9Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Functioneren
+
 **LET OP: de vragen hieronder zijn voor een minderjarige.**
 
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
@@ -2285,6 +2333,8 @@ class Q10Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Functioneren
+
 **LET OP: de vragen hieronder zijn voor een minderjarige.**
 
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
@@ -2631,6 +2681,8 @@ class Q11Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Vermoeidheid
+
 **De vragen hieronder zijn voor een ouder/verzorger.**
 
 ### Op deze pagina staat een lijst van dingen die een probleem kunnen zijn voor **je kind.**
@@ -2911,6 +2963,8 @@ class Q12Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Vermoeidheid
+
 **LET OP: de vragen hieronder zijn voor een minderjarige.**
 
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
@@ -3191,6 +3245,8 @@ class Q13Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Vermoeidheid
+
 **LET OP: de vragen hieronder zijn voor een minderjarige.**
 
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
@@ -3470,10 +3526,6 @@ class Q14Group extends GroupItemEditor {
 ## Sterke kanten en moeilijkheden
 
 **De vragen hieronder zijn voor een ouder/verzorger.**
-
-#### Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
-Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
-Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste zes maanden.
                         `]
                     ])
                 })]
@@ -3486,14 +3538,13 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", ""],
+                ["nl", "Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'."],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
                     ["nl", `
-Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
 Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
 Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste zes maanden.
                     `],
@@ -3672,13 +3723,11 @@ class Q15Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Sterke kanten en moeilijkheden
+
 **LET OP: de vragen hieronder zijn gericht aan een minderjarige.**
 
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
-
-#### Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'.
-Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt.
-Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
                         `]
                     ])
                 })]
@@ -3691,13 +3740,16 @@ Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maand
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", ""],
+                ["nl", "Wil je alsjeblieft bij iedere vraag een antwoord kiezen door op het bolletje te klikken bij 'Niet waar', 'Een beetje waar' of 'Zeker waar'."],
             ]),
             topDisplayCompoments: [{
                 role: 'text',
                 style: [{ key: 'className', value: 'mb-2' }],
                 content: generateLocStrings(new Map([
-                    ["nl", ""],
+                    ["nl", `
+Het is belangrijk dat je alle vragen zo goed mogelijk beantwoordt, ook als je niet helemaal zeker bent of als je de vraag raar vindt. 
+Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maanden is geweest.
+                    `],
                 ]))
             }],
             scaleOptions: [
@@ -3874,6 +3926,8 @@ class Q16Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Eenzaamheid
+
 **De vragen hieronder zijn voor een ouder/verzorger.**
                         `]
                     ])
@@ -3986,6 +4040,8 @@ class Q17Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Eenzaamheid
+
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
 Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
@@ -4100,7 +4156,6 @@ class Q18Group extends GroupItemEditor {
 
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('1', isRequired));
-        this.addPageBreak();
         this.addItem(this.Q2('2', isRequired));
         this.addItem(this.Q3('3', isRequired));
         this.addItem(this.Q4('4', isRequired));
@@ -4114,6 +4169,8 @@ class Q18Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Pijn en verzuim
+
 **De vragen hieronder zijn voor een ouder/verzorger.**
                         `]
                     ])
@@ -4185,7 +4242,7 @@ class Q18Group extends GroupItemEditor {
                 ComponentGenerators.option({
                     key: 'na',
                     content: new Map([
-                        ['nl', 'TODO: text for Not applicable ...']
+                        ['nl', 'er was geen school vanwege schoolvakantie']
                     ]),
                 })
             ],
@@ -4243,6 +4300,8 @@ class Q19Group extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Pijn en verzuim
+
 **LET OP: de vragen hieronder zijn voor een minderjarige.**
 
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord op de EERSTE vraag kiezen.**
@@ -4315,7 +4374,7 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Aantal lesuren dat je gevolgd hebt in de afgelopen 2 weken:"],
+                ["nl", "Aantal lesuren dat je gevolgd hebt in de afgelopen 2 (!) weken:"],
             ]),
             content: new Map([
                 ['nl', 'uur']
@@ -4327,6 +4386,27 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
             }
         })
     }
+    // TODO Peter: apply these responsoptions for Q3 instead of the above
+//     responseOptions: [
+//         {
+//             key: 'uur', role: 'numberInput',
+//             content: new Map([
+//                 ["nl", "Uur:"],
+//             ]),
+//             optionProps: {
+//                 min: 0,
+//                 max: 80
+//             },
+//         },
+//         ComponentGenerators.option({
+//             key: 'na',
+//             content: new Map([
+//                 ['nl', 'ik had geen school vanwege schoolvakantie']
+//             ]),
+//         })
+//     ],
+// })
+// }
 
     Q4(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.numericInput({
