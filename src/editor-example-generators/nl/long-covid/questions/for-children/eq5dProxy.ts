@@ -19,13 +19,13 @@ export class EQ5DProxyGroup extends GroupItemEditor {
 
         this.addItem(
             new EQ5Dy(this.key, {
-                groupCondition: conditions.olderThan7,
+                groupCondition: CommonExpressions.not(conditions.olderThan7),
             }).getItem()
         );
 
         this.addItem(
             new EQ5DyProxy(this.key, {
-                groupCondition: CommonExpressions.not(conditions.olderThan7),
+                groupCondition: conditions.olderThan7,
             }).getItem()
         )
         this.addPageBreak();

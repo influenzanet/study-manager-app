@@ -158,6 +158,7 @@ export const generateT0 = (): Survey | undefined => {
         groupCondition: participantInfos.isOlder(minAge),
         testQ11ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
         hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
+        hasReportedSymptomsQ1: childrenSymptomsGroupEditor.hasAnyReportedSymptoms,
         youngerThan8: participantInfos.isYounger(8),
         youngerThan11: participantInfos.isYounger(11),
         between8And12: participantInfos.isBetweenAges(8, 12, true),

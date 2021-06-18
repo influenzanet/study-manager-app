@@ -69,7 +69,8 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q11('Q11', isRequired));
         this.addItem(this.Q12('Q12', isRequired));
         this.addItem(this.Q13('Q13', false));
-        this.addItem(this.Q14('Q14', false));
+    // TODO add this later
+        // this.addItem(this.Q14('Q14', false));
         this.addPageBreak();
     }
 
@@ -847,30 +848,30 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    //TODO Tessa / Ka Yin: is it maybe good this way?
-    Q14(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.multipleChoice({
-            parentKey: this.key,
-            itemKey: itemKey,
-            isRequired: isRequired,
-            questionText: new Map([
-                ["nl", "Als je dat wilt kun je hieronder je telefoonnummer opgeven en een extra emailadres zodat we je beter kunnen bereiken om te vragen of je de volgende vragenlijst in wilt vullen. "],
-            ]),
-            responseOptions: [
-                {
-                    key: 'telefoon', role: 'input',
-                    content: new Map([
-                        ["nl", "Telefoonnummer:"],
-                    ]),
-                },
-                {
-                    key: 'email', role: 'input',
-                    content: new Map([
-                        ["nl", "Eventueel extra e-mailadres: "],
-                    ]),
-                },
-            ]
-        });
-    }
+    //TODO add this later
+    // Q14(itemKey: string, isRequired: boolean) {
+    //     return SurveyItemGenerators.multipleChoice({
+    //         parentKey: this.key,
+    //         itemKey: itemKey,
+    //         isRequired: isRequired,
+    //         questionText: new Map([
+    //             ["nl", "Als je dat wilt kun je hieronder je telefoonnummer opgeven en een extra emailadres zodat we je beter kunnen bereiken om te vragen of je de volgende vragenlijst in wilt vullen. "],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: 'telefoon', role: 'input',
+    //                 content: new Map([
+    //                     ["nl", "Telefoonnummer:"],
+    //                 ]),
+    //             },
+    //             {
+    //                 key: 'email', role: 'input',
+    //                 content: new Map([
+    //                     ["nl", "Eventueel extra e-mailadres: "],
+    //                 ]),
+    //             },
+    //         ]
+    //     });
+    // }
 
 }

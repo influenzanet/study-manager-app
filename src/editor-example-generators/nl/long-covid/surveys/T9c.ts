@@ -48,6 +48,7 @@ export const generateT9c = (): Survey | undefined => {
     // General Health for children
     const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(surveyKey, {
         hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
+        hasReportedSymptomsQ1: childrenSymptomsGroupEditor.hasAnyReportedSymptoms,
         youngerThan8: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'true'),
         youngerThan11: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'true'),
         between8And12: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.between8and12, 'true'),

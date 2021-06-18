@@ -15,6 +15,7 @@ export class HealthGroup extends GroupItemEditor {
         groupCondition?: Expression,
         testQ11ja?: Expression,
         hasDifficultyWithBreathing: Expression,
+        hasReportedSymptomsQ1: Expression,
         youngerThan8: Expression,
         youngerThan11: Expression,
         between8And12: Expression,
@@ -39,11 +40,7 @@ export class HealthGroup extends GroupItemEditor {
         const Q4 = this.Q4('Q4', isRequired);
         const conditionQ4ja = CommonExpressions.singleChoiceOptionsSelected(Q4.key, 'ja');
 
-        const conditionForQ6 = CommonExpressions.and(
-            conditions.hasDifficultyWithBreathing,
-            conditions.youngerThan8,
-        );
-        const Q6 = this.Q6('Q6', conditionForQ6, isRequired);
+        const Q6 = this.Q6('Q6', conditions.hasDifficultyWithBreathing, isRequired);
         const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
 
         //
@@ -64,12 +61,23 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
         this.addItem(this.QpromispreText());
+
         // TODO Peter: make this Q_promispreText2 conditional with the same condition as Q_promis_proxy
         // this.addItem(this.Q_promispreText2('Q_promispreText2',CommonExpressions.not(conditionForQ6), isRequired));
-        this.addItem(this.Q_promis('Q_promis', CommonExpressions.not(conditionForQ6), isRequired));
+        
         // TODO Peter: make this Q_promis_proxypreText conditional with the same condition as Q_promis_proxy
         // this.addItem(this.Q_promis_proxypreText('Q_promis_proxypreText',conditionForQ6, isRequired));
-        this.addItem(this.Q_promis_proxy('Q_promis_proxy', conditionForQ6, isRequired));
+       
+
+        this.addItem(this.Q_promis('Q_promis', CommonExpressions.and(
+            conditions.hasDifficultyWithBreathing,
+            CommonExpressions.not(conditions.youngerThan8),
+        ), isRequired));
+        this.addItem(this.Q_promis_proxy('Q_promis_proxy', CommonExpressions.and(
+            conditions.hasDifficultyWithBreathing,
+            conditions.youngerThan8,
+        ), isRequired));
+
 
         this.addPageBreak();
         this.addItem(this.Q7preText());
@@ -134,9 +142,8 @@ export class HealthGroup extends GroupItemEditor {
         }).getItem());
         this.addPageBreak();
 
-        //TODO Peter how to fix: hasReportedSymptomsQ1 is defined in symptoms
         this.addItem(this.Q5ipqpreText());
-        //this.addItem(this.Q5ipq('Q5ipq', hasReportedSymptomsQ1, isRequired));
+        this.addItem(this.Q5ipq('Q5ipq', conditions.hasReportedSymptomsQ1, isRequired));
         this.addPageBreak();
     }
 
@@ -316,7 +323,14 @@ Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaan
                         }),
                     ]
                 },
-            ]
+            ],
+            bottomDisplayCompoments: [{
+                role: 'footnote', content: generateLocStrings(new Map([
+                    ["nl", "© A.A. Kaptein, I.M. van Korlaar, M. Scharloo. Medische Psychologie, LUMC, 2004."]
+                ])), style: [
+                    { key: 'className', value: 'fs-small fst-italic text-center' }
+                ]
+            }]
         });
     }
 
@@ -1019,7 +1033,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     /**
     *
     */
-     Q5(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q5(itemKey: string, condition: Expression, isRequired: boolean) {
         const inputProperties = {
             min: 1,
             max: 365
@@ -2007,7 +2021,15 @@ Er zijn geen goede of foute antwoorden.
 ### Hoe vaak heb je in de afgelopen week problemen gehad met:
                         `]
                     ])
-                })]
+                }),
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
+            ]
         })
     }
     // L4q9a-L4q9h
@@ -2988,7 +3010,13 @@ Er zijn geen goede of foute antwoorden.
 ### Hoezeer is dit voor jou in de afgelopen week een probleem geweest:
                         `]
                     ])
-                })]
+                }), {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }],
         })
     }
 
@@ -3730,7 +3758,14 @@ class Q15Group extends GroupItemEditor {
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
                         `]
                     ])
-                })]
+                }),
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "© Robert Goodman, 2005"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }]
         })
     }
 
