@@ -28,8 +28,8 @@ const vaccination = (): Survey | undefined => {
         new Map([
             ["nl-be", "Het doel van deze vaccinatievragenlijst is om onderzoek te voeren naar de bescherming die het vaccin geeft en de vaccinatiestatus van België in kaart te brengen. "],
             ["en", "The purpose of the vaccination questionnaire is to find out more about protection given by the vaccine and monitor vaccination uptake in Belgium."],
-            ["fr-be", ""],
-            ["de-be", ""],
+            ["fr-be", "Le but de ce questionnaire relatif à la vaccination est d'examiner la protection conférée par le vaccin, et de cartographier la couverture vaccinale en Belgique. "],
+            ["de-be", "Der Zweck des Fragebogens zur Impfung ist die Untersuchung des Schutzes, der von dem Impfstoff geboten wird, sowie die Überwachung des Impfgrades in Belgien. "],
         ])
     ));
     survey.setSurveyDuration(generateLocStrings(
