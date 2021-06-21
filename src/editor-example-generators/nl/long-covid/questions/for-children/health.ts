@@ -60,7 +60,7 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
-        this.addItem(this.QpromispreText());
+        this.addItem(this.QpromispreText(conditions.hasDifficultyWithBreathing));
 
         this.addItem(this.Q_promispreText2(CommonExpressions.and(
             conditions.hasDifficultyWithBreathing,
@@ -1120,10 +1120,11 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    QpromispreText() {
+    QpromispreText(condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(61),
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
