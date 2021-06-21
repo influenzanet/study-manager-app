@@ -20,8 +20,8 @@ export class VaccinationGroup extends GroupItemEditor {
         const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(Q1.key, 'yes');
 
         const Q2 = this.Q2('Q2', conditionQ1Ja, isRequired)
-        const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1');
-        const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2');
+        const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1vacc');
+        const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2vacc');
 
         const Q5 = this.Q5('Q5', condition2Vac, isRequired);
         const dateForFirstVac = CommonExpressions.getDatePickerResponseValue(Q5.key);
@@ -79,12 +79,6 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 },
                 {
                     key: 'dontknow', role: 'option',
-                    content: new Map([
-                        ["nl", "Weet ik niet"],
-                    ])
-                },
-                {
-                    key: 'unknown', role: 'option',
                     content: new Map([
                         ["nl", "Weet ik niet"],
                     ])

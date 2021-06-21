@@ -1373,7 +1373,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in je reuk- of smaakvermogen? (Selecteer alles dat van toepassing is)"],
+                ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in je reuk- of smaakvermogen?"],
+            ]),
+            questionSubText: new Map([
+                ["nl",  "Meerdere antwoorden mogelijk"]
             ]),
             responseOptions: [
                 {
