@@ -4217,46 +4217,34 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
         })
     }
 
-
     Q3(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.numericInput({
+        return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", "Aantal lesuren dat je gevolgd hebt in de afgelopen 2 (!) weken:"],
             ]),
-            content: new Map([
-                ['nl', 'uur']
-            ]),
-            contentBehindInput: true,
-            componentProperties: {
-                min: 0,
-                max: 80
-            }
+            responseOptions: [
+                {
+                    key: 'uur', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Uur:"],
+                    ]),
+                    optionProps: {
+                        min: 0,
+                        max: 80
+                    },
+                },
+                ComponentGenerators.option({
+                    key: 'na',
+                    content: new Map([
+                        ['nl', 'Ik had geen school vanwege schoolvakantie']
+                    ]),
+                })
+            ],
         })
     }
-    // TODO Peter: apply these responsoptions for Q3 instead of the above
-//     responseOptions: [
-//         {
-//             key: 'uur', role: 'numberInput',
-//             content: new Map([
-//                 ["nl", "Uur:"],
-//             ]),
-//             optionProps: {
-//                 min: 0,
-//                 max: 80
-//             },
-//         },
-//         ComponentGenerators.option({
-//             key: 'na',
-//             content: new Map([
-//                 ['nl', 'ik had geen school vanwege schoolvakantie']
-//             ]),
-//         })
-//     ],
-// })
-// }
 
     Q4(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.numericInput({
