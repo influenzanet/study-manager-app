@@ -815,8 +815,10 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", `
-Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft.
-                `],
+Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen.`],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft."],
             ]),
             scaleOptions: [
                 {
@@ -1005,8 +1007,10 @@ Als je deze vragenlijst voor jezelf invult, **vraag dan je ouder/verzorger de an
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", `
-Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft.
-                `],
+Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen.`],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft."],
             ]),
             scaleOptions: [
                 {
@@ -1583,7 +1587,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             condition: condition,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "Heb je vanwege je klachten medicijnen gebruikt? En zo ja, welke?"],
+                ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de afgelopen 7 dagen? En zo ja, welke?"],
             ]),
             topDisplayCompoments: [
                 {
