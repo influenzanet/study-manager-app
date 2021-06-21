@@ -37,8 +37,14 @@ export class HealthGroup extends GroupItemEditor {
         }
         const conditionQ2ja = CommonExpressions.singleChoiceOptionsSelected(Q2.key, 'ja');
 
+        const Q3 = this.Q3('Q3', conditionQ2ja, isRequired);
+        const conditionQ3anders = CommonExpressions.multipleChoiceOptionsSelected(Q3.key, 'anders');
+
         const Q4 = this.Q4('Q4', isRequired);
         const conditionQ4ja = CommonExpressions.singleChoiceOptionsSelected(Q4.key, 'ja');
+
+        const Q5 = this.Q5('Q5', conditionQ4ja, isRequired);
+        const conditionQ5anders = CommonExpressions.multipleChoiceOptionsSelected(Q5.key, 'anders');
 
         const Q6 = this.Q6('Q6', isRequired);
         const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
@@ -52,11 +58,11 @@ export class HealthGroup extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(this.groupIntroQ2());
         this.addItem(Q2);
-        this.addItem(this.Q3('Q3', conditionQ2ja, isRequired));
-        this.addItem(this.Q3b_longsymptoms('Q3b_longsymptoms', conditionQ2ja, isRequired));
+        this.addItem(Q3);
+        this.addItem(this.Q3b_longsymptoms('Q3b_longsymptoms', conditionQ3anders, isRequired));
         this.addItem(Q4)
-        this.addItem(this.Q5('Q5', conditionQ4ja, isRequired));
-        this.addItem(this.Q5b('Q5b', CommonExpressions.multipleChoiceOptionsSelected(Q4.key, '24'), true));
+        this.addItem(Q5);
+        this.addItem(this.Q5b('Q5b', conditionQ5anders, true));
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         this.addPageBreak();
@@ -308,7 +314,7 @@ maanden** contact hebt gehad (niet voor corona maar om andere redenen).
     /**
     *
     */
-     Q1TICppreText() {
+    Q1TICppreText() {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(61),
@@ -789,7 +795,6 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    // TODO: Q3b_longsymptoms should only show if Q3 'anders' is selected.
     Q3b_longsymptoms(itemKey: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,
@@ -984,7 +989,6 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    // TODO: Q5b should only show if Q5 'anders' is selected.
     Q5b(itemKey: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,
