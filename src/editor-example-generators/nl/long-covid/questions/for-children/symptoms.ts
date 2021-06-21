@@ -84,7 +84,7 @@ export class SymptomsGroup extends GroupItemEditor {
             this.addItem(this.Q5ipq('Q5ipq', hasReportedSymptomsQ1, isRequired));
         }
         this.addPageBreak();
-        this.addItem(this.Q6gz2preText());
+        this.addItem(this.Q6gz2preText(hasReportedSymptomsQ1));
         this.addItem(Q6);
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
@@ -1165,10 +1165,11 @@ Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaan
     }
 
 
-    Q6gz2preText() {
+    Q6gz2preText(condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(61),
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([

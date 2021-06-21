@@ -62,17 +62,21 @@ export class HealthGroup extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(this.QpromispreText());
 
-        // TODO Peter: make this Q_promispreText2 conditional with the same condition as Q_promis_proxy
-        // this.addItem(this.Q_promispreText2('Q_promispreText2',CommonExpressions.not(conditionForQ6), isRequired));
-
-        // TODO Peter: make this Q_promis_proxypreText conditional with the same condition as Q_promis_proxy
-        // this.addItem(this.Q_promis_proxypreText('Q_promis_proxypreText',conditionForQ6, isRequired));
-
+        this.addItem(this.Q_promispreText2(CommonExpressions.and(
+            conditions.hasDifficultyWithBreathing,
+            CommonExpressions.not(conditions.youngerThan8),
+        )));
 
         this.addItem(this.Q_promis('Q_promis', CommonExpressions.and(
             conditions.hasDifficultyWithBreathing,
             CommonExpressions.not(conditions.youngerThan8),
         ), isRequired));
+
+        this.addItem(this.Q_promis_proxypreText(CommonExpressions.and(
+            conditions.hasDifficultyWithBreathing,
+            conditions.youngerThan8,
+        )));
+
         this.addItem(this.Q_promis_proxy('Q_promis_proxy', CommonExpressions.and(
             conditions.hasDifficultyWithBreathing,
             conditions.youngerThan8,
@@ -1132,10 +1136,11 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             ]
         })
     }
-    Q_promis_proxypreText() {
+    Q_promis_proxypreText(condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(6),
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -1232,10 +1237,11 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             ]
         });
     }
-    Q_promispreText2() {
+    Q_promispreText2(condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(6),
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -4173,7 +4179,7 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
                 ["nl", "Beweeg de slider om je antwoord te geven"],
             ]),
             min: 0,
-            max: 10, // TODO can the min and max have a label in the slider?
+            max: 10,
         });
     }
 
