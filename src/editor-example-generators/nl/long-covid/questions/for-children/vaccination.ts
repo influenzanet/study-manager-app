@@ -83,12 +83,6 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "Weet ik niet"],
                     ])
                 },
-                {
-                    key: 'unknown', role: 'option',
-                    content: new Map([
-                        ["nl", "Weet ik niet"],
-                    ])
-                },
             ],
             isRequired: isRequired,
         });
