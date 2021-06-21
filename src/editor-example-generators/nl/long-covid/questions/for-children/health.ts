@@ -4191,7 +4191,7 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+### De volgende vragen gaan over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
                         `]
                     ])
                 })]
