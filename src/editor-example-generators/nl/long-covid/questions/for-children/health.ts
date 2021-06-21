@@ -693,7 +693,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     ifOptionSelectedThanNotZero('logopedist'),
                     ifOptionSelectedThanNotZero('maatschappelijk-werker'),
                     ifOptionSelectedThanNotZero('psycholoog'),
-                    ifOptionSelectedThanNotZero('anders'),
+                    // ifOptionSelectedThanNotZero('anders'),
                 )
             }],
             responseOptions: [
@@ -770,12 +770,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     style: inputStyle,
                 },
                 {
-                    key: 'anders', role: 'numberInput',
+                    key: 'anders', role: 'input',
                     content: new Map([
-                        ["nl", "Andere zorgverlener, namelijk: "],
+                        ["nl", "Andere zorgverlener, namelijk (type zorgverlener): "],
                     ]),
-                    optionProps: inputProperties,
-                    style: inputStyle,
                 },
             ],
             bottomDisplayCompoments: [
@@ -791,6 +789,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
+    // TODO: Q3b_longsymptoms should only show if Q3 'anders' is selected.
     Q3b_longsymptoms(itemKey: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,
@@ -887,7 +886,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     ifOptionSelectedThanNotZero('logopedist'),
                     ifOptionSelectedThanNotZero('maatschappelijk-werker'),
                     ifOptionSelectedThanNotZero('psycholoog'),
-                    ifOptionSelectedThanNotZero('anders'),
+                    // ifOptionSelectedThanNotZero('anders'),
                 )
             }],
             responseOptions: [
@@ -964,9 +963,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     style: inputStyle,
                 },
                 {
-                    key: 'anders', role: 'numberInput',
+                    key: 'anders', role: 'input',
                     content: new Map([
-                        ["nl", "Andere zorgverlener, namelijk: "],
+                        ["nl", "Andere zorgverlener, namelijk (type zorgverlener): "],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -985,6 +984,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
+    // TODO: Q5b should only show if Q5 'anders' is selected.
     Q5b(itemKey: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.numericInput({
             parentKey: this.key,
