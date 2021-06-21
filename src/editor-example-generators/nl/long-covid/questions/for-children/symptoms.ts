@@ -1472,15 +1472,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             questionText: new Map([
                 ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus? En zo ja, welke?"],
             ]),
-            topDisplayCompoments: [
-                {
-                    role: 'text',
-                    style: [{ key: 'className', value: 'mb-2' }],
-                    content: generateLocStrings(new Map([
-                        ["nl", "Meerdere antwoorden mogelijk"],
-                    ]))
-                }
-            ],
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk"],
+            ]),
             responseOptions: [
                 {
                     key: '0', role: 'option',
@@ -1589,15 +1583,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             questionText: new Map([
                 ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de afgelopen 7 dagen? En zo ja, welke?"],
             ]),
-            topDisplayCompoments: [
-                {
-                    role: 'text',
-                    style: [{ key: 'className', value: 'mb-2' }],
-                    content: generateLocStrings(new Map([
-                        ["nl", "Meerdere antwoorden mogelijk"],
-                    ]))
-                }
-            ],
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk"],
+            ]),
             responseOptions: [
                 {
                     key: '0', role: 'option',
