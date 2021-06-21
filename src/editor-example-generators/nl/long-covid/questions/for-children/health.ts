@@ -40,7 +40,7 @@ export class HealthGroup extends GroupItemEditor {
         const Q4 = this.Q4('Q4', isRequired);
         const conditionQ4ja = CommonExpressions.singleChoiceOptionsSelected(Q4.key, 'ja');
 
-        const Q6 = this.Q6('Q6', conditions.hasDifficultyWithBreathing, isRequired);
+        const Q6 = this.Q6('Q6', isRequired);
         const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
 
         //
@@ -1008,11 +1008,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     /**
     *
     */
-    Q6(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q6(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
-            condition: condition,
             questionText: new Map([
                 ["nl", "Gebruik je op dit moment medicijnen?"],
             ]),
