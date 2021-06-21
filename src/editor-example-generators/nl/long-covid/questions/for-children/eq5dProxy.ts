@@ -339,11 +339,11 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
             ]),
             minHealthText: new Map([
                 ["en", "The worst health you can imagine"],
-                ["nl", "De slechste gezondheid die u zich kunt voorstellen"],
+                ["nl", "De slechste gezondheid die je je kunt voorstellen"],
             ]),
             maxHealthText: new Map([
                 ["en", "The best health you can imagine"],
-                ["nl", "De beste gezondheid die u zich kunt voorstellen"],
+                ["nl", "De beste gezondheid die je je kunt voorstellen"],
             ]),
         });
         simpleEditor.setResponseGroupWithContent(rg_inner);
