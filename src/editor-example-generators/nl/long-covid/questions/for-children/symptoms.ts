@@ -74,7 +74,6 @@ export class SymptomsGroup extends GroupItemEditor {
         }
         this.addPageBreak();
 
-        // todo: only show Q4ipqpreText if ipqCondtion is met, i.e. if the Q4 is shown, or is this already done now?
         if (!this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Q4ipqpreText('Q4ipqpreText', ipqCondtion));
             this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
