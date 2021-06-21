@@ -73,14 +73,18 @@ export class SymptomsGroup extends GroupItemEditor {
             this.addItem(this.Q2b('Q2b', CommonExpressions.multipleChoiceOptionsSelected(Q1.key, 'geen'), isRequired));
         }
         this.addPageBreak();
-      
-        // todo: only show Q4ipqpreText if ipqCondtion is met, i.e. if the Q4 is shown, or is this already done now?
+
         if (!this.isPartOfSurvey(surveyKeys.shortC)) {
-            this.addItem(this.Q4ipqpreText());
+            this.addItem(this.Q4ipqpreText('Q4ipqpreText', ipqCondtion));
             this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
         }
         this.addPageBreak();
-        this.addItem(this.Q6gz2preText());
+        if (!this.isPartOfSurvey(surveyKeys.shortC)) {
+            this.addItem(this.Q5ipqpreText('Q5ipqpreText', hasReportedSymptomsQ1));
+            this.addItem(this.Q5ipq('Q5ipq', hasReportedSymptomsQ1, isRequired));
+        }
+        this.addPageBreak();
+        this.addItem(this.Q6gz2preText(hasReportedSymptomsQ1));
         this.addItem(Q6);
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
@@ -783,10 +787,11 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q4ipqpreText() {
+    Q4ipqpreText(itemKey: string, condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(8),
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
@@ -970,10 +975,201 @@ Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vr
             ]
         });
     }
-    Q6gz2preText() {
+
+    Q5ipqpreText(itemKey: string, condition: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: generateRandomKey(61),
+            condition: condition,
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Klachtenperceptie (ouder/verzorger)
+
+**LET OP: De vragen hieronder zijn voor een ouder/verzorger.**
+
+Als je deze vragenlijst voor jezelf invult, **vraag dan je ouder/verzorger de antwoorden op onderstaande vragen te geven.**
+                        `]
+                    ])
+                }),
+            ]
+        })
+    }
+
+    Q5ipq(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.simpleLikertGroup({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", `
+Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft.
+                `],
+            ]),
+            scaleOptions: [
+                {
+                    key: '0', content: new Map([
+                        ["nl", "0"],
+                    ])
+                },
+                {
+                    key: '1', content: new Map([
+                        ["nl", "1"],
+                    ]),
+                }, {
+                    key: '2', content: new Map([
+                        ["nl", "2"],
+                    ])
+                }, {
+                    key: '3', content: new Map([
+                        ["nl", "3"],
+                    ])
+                }, {
+                    key: '4', content: new Map([
+                        ["nl", "4"],
+                    ]),
+                }, {
+                    key: '5', content: new Map([
+                        ["nl", "5"],
+                    ])
+                }, {
+                    key: '6', content: new Map([
+                        ["nl", "6"],
+                    ])
+                }, {
+                    key: '7', content: new Map([
+                        ["nl", "7"],
+                    ])
+                }, {
+                    key: '8', content: new Map([
+                        ["nl", "8"],
+                    ])
+                }, {
+                    key: '9', content: new Map([
+                        ["nl", "9"],
+                    ])
+                }, {
+                    key: '10', content: new Map([
+                        ["nl", "10"],
+                    ])
+                }
+            ],
+            rows: [
+                {
+                    key: 'a', content: new Map([
+                        ["nl", "Hoeveel beïnvloeden de klachten van je kind je leven? "],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal geen invloed – 10 zeer veel invloed']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'b', content: new Map([
+                        ["nl", "Hoe lang denk je dat de klachten van je kind zullen duren? "],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 een zeer korte tijd – 10 het hele leven']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'c', content: new Map([
+                        ["nl", "Hoeveel controle vind je dat je hebt over de klachten van je kind?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal geen controle - 10 zeer veel controle']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'd', content: new Map([
+                        ["nl", "Hoeveel denk je dat de behandeling van je kind helpt bij de klachten?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal niet-  10 zeer veel']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'e', content: new Map([
+                        ["nl", "Hoe sterk ervaart je kind klachten?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal geen klachten - 10 veel ernstige klachten ']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'f', content: new Map([
+                        ["nl", "Hoe bezorgd ben je over de klachten van je kind?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal niet bezorgd - 10 zeer bezorgd ']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'g', content: new Map([
+                        ["nl", "In welke mate vind je dat je de klachten van je kind begrijpt?"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal geen begrip - 10 zeer veel begrip']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+                {
+                    key: 'h', content: new Map([
+                        ["nl", "Hoeveel invloed hebben de klachten van je kind op je stemming? (Bijvoorbeeld: maakt de ziekte je boos, bang, van streek of somber?)"],
+                    ]), descriptions: [
+                        ComponentGenerators.text({
+                            content: new Map([
+                                ['nl', '0 helemaal geen invloed - 10 zeer veel invloed']
+                            ]),
+                            className: "fst-italic mb-1"
+                        }),
+                    ]
+                },
+            ],
+            bottomDisplayCompoments: [{
+                role: 'footnote', content: generateLocStrings(new Map([
+                    ["nl", "© A.A. Kaptein, I.M. van Korlaar, M. Scharloo. Medische Psychologie, LUMC, 2004."]
+                ])), style: [
+                    { key: 'className', value: 'fs-small fst-italic text-center' }
+                ]
+            }]
+        });
+    }
+
+
+    Q6gz2preText(condition: Expression) {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: generateRandomKey(61),
+            condition: condition,
             content: [
                 ComponentGenerators.markdown({
                     content: new Map([
