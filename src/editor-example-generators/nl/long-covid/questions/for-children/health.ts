@@ -40,8 +40,7 @@ export class HealthGroup extends GroupItemEditor {
         const Q4 = this.Q4('Q4', isRequired);
         const conditionQ4ja = CommonExpressions.singleChoiceOptionsSelected(Q4.key, 'ja');
 
-        //TODO: Q6 should show always, and not depend on hasDifficultyWithBreating
-        const Q6 = this.Q6('Q6', conditions.hasDifficultyWithBreathing, isRequired);
+        const Q6 = this.Q6('Q6', isRequired);
         const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
 
         //
@@ -1009,11 +1008,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     /**
     *
     */
- Q6(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q6(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
-            condition: condition,
             questionText: new Map([
                 ["nl", "Gebruik je op dit moment medicijnen?"],
             ]),
@@ -4193,7 +4191,7 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### De volgende vragen vraag gaat over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+### De volgende vragen gaan over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
                         `]
                     ])
                 })]
