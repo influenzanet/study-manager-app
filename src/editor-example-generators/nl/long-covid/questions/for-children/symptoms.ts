@@ -127,7 +127,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de afgelopen week."],
+                ["nl", "Kruis bij elke klacht hieronder aan of je hier last van hebt gehad in de afgelopen week."],
             ]),
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk."],
@@ -405,7 +405,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Kruis bij elke klacht hieronder aan, of je hier last van hebt gehad in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus "],
+                ["nl", "Kruis bij elke klacht hieronder aan of je hier last van hebt gehad in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus "],
             ]),
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk."],
