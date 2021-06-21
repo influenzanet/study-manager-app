@@ -1376,7 +1376,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in je reuk- of smaakvermogen?"],
             ]),
             questionSubText: new Map([
-                ["nl",  "Meerdere antwoorden mogelijk"]
+                ["nl", "Meerdere antwoorden mogelijk"]
             ]),
             responseOptions: [
                 {
@@ -1843,14 +1843,7 @@ Er zijn geen goede of foute antwoorden.
 ### Hoe vaak heb je in de afgelopen week problemen gehad met:
                         `]
                     ])
-                }),
-                {
-                    role: 'footnote', content: generateLocStrings(new Map([
-                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
-                    ])), style: [
-                        { key: 'className', value: 'fs-small fst-italic text-center' }
-                    ]
-                }
+                })
             ]
         })
     }
@@ -2142,6 +2135,15 @@ Er zijn geen goede of foute antwoorden.
                         ["nl", "Ik ga niet naar school, omdat ik naar de dokter of het ziekenhuis moet"],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
             ]
         });
     }
@@ -2832,13 +2834,7 @@ Er zijn geen goede of foute antwoorden.
 ### Hoezeer is dit voor jou in de afgelopen week een probleem geweest:
                         `]
                     ])
-                }), {
-                    role: 'footnote', content: generateLocStrings(new Map([
-                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
-                    ])), style: [
-                        { key: 'className', value: 'fs-small fst-italic text-center' }
-                    ]
-                }],
+                })],
         })
     }
 
@@ -3060,6 +3056,15 @@ Er zijn geen goede of foute antwoorden.
                         ["nl", "Ik vind het lastig om meer dan één ding tegelijk te onthouden "],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "Copyright © 1998 Dr J.W.Varni"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
             ]
         });
     }
@@ -3580,14 +3585,7 @@ class Q15Group extends GroupItemEditor {
 Als een ouder/verzorger helpt met invullen **laat dan je kind zelf de antwoorden kiezen.**
                         `]
                     ])
-                }),
-                {
-                    role: 'footnote', content: generateLocStrings(new Map([
-                        ["nl", "© Robert Goodman, 2005"]
-                    ])), style: [
-                        { key: 'className', value: 'fs-small fst-italic text-center' }
-                    ]
-                }]
+                })]
         })
     }
 
@@ -3750,6 +3748,15 @@ Wil je alsjeblieft bij je antwoorden denken hoe dat bij jou de laatste zes maand
                         ["nl", "Ik maak af waar ik mee bezig ben. Ik kan mijn aandacht er goed bij houden "],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "© Robert Goodman, 2005"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
             ]
         });
     }
