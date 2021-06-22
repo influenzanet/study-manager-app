@@ -85,7 +85,7 @@ export class GeneralDataGroup extends GroupItemEditor {
 
 **De vragen hieronder zijn gericht aan een minderjarige.**
 
-Bent u een ouder/verzorger dan kunt u de antwoorden invullen voor/over uw kind.
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
 
 #### In dit onderdeel stellen wij je enkele algemene vragen over jezelf en je achtergrond.
                         `]
@@ -264,7 +264,7 @@ De volgende vragen gaan over je school
                 ["nl", "Met hoeveel andere mensen woon je samen?"],
             ]),
             questionSubText: new Map([
-                ["nl", "Jezelf meegeteld en inclusief kinderen, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],
+                ["nl", "Jezelf meegeteld, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],
             ]),
             content: new Map([
                 ['nl', 'Nr.:']
@@ -590,31 +590,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     content: new Map([
                         ["nl", "Ja"],
                     ]),
-                },
-                {
-                    key: 'structureel', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik volg structureel minder lessen"],
-                    ]),
-                },
-                {
-                    key: 'volledig', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik ben volledig ziekgemeld"],
-                    ]),
-                },
-                {
-                    key: 'gestopt', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik ben gestopt met school/opleiding door de langdurige klachten"],
-                    ]),
-                },
-                {
-                    key: 'niet', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik ga niet naar school/opleiding om andere reden"],
-                    ]),
-                },
+                }
             ]
         });
     }
@@ -734,7 +710,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-## Herkomst, aanvullend onderzoek en contactgegevens
+## Herkomst en aanvullend onderzoek
 
 **De vragen hieronder zijn gericht aan een minderjarige.**
 

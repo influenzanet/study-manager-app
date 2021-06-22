@@ -1272,7 +1272,7 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 14 dagen? En zo ja, welke?"],
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 7 dagen? En zo ja, welke?"],
         ]),
         topDisplayCompoments: [
             {

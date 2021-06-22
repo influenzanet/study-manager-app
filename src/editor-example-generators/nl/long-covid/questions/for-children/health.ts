@@ -187,7 +187,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
 Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
 
 Dit deel van de vragenlijst is bedoeld om in kaart te brengen met welke zorg- of hulpverleners je in de **afgelopen 3
-maanden** contact hebt gehad (niet voor corona maar om andere redenen).
+maanden** contact hebt gehad.
                         `]
                     ])
                 }),
@@ -1056,7 +1056,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             ]),
             responseOptions: [
                 {
-                    key: 'infectie', role: 'text',
+                    key: 'infectie', role: 'option',
                     style: [{ key: 'className', value: 'fw-bold mb-2' }],
                     content: new Map([
                         ["nl", "Medicijnen vanwege een infectie/ontsteking (bijvoorbeeld antibiotica, antivirale middelen)"],
@@ -4205,7 +4205,7 @@ Als een ouder/verzorger helpt met invullen **laat dan je kind zelf het antwoord 
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-### De volgende vragen gaan over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
+#### De volgende vragen gaan over de afgelopen twee weken, en kunnen zonodig ook door de ouder/verzorger worden ingevuld:
                         `]
                     ])
                 })]

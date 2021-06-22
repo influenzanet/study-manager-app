@@ -83,7 +83,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'kind', role: 'option',
                 content: new Map([
-                    ["nl", "Voor mijn kind van jonger dan 16 jaar oud"],
+                    ["nl", "Voor mijn kind"],
                 ])
             },
         ],

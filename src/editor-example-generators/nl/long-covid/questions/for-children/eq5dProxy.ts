@@ -85,6 +85,7 @@ class EQ5Dy extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Kwaliteit van leven
 Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best past bij de gezondheid van je kind zoals je die VANDAAG ervaart.
 `]
                     ])
@@ -392,6 +393,8 @@ class EQ5DyProxy extends GroupItemEditor {
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
+## Kwaliteit van leven
+
 Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VANDAAG.
 `]
                     ])

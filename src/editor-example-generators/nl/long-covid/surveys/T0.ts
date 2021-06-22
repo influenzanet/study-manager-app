@@ -55,7 +55,7 @@ export const generateT0 = (): Survey | undefined => {
 
     const isChildParticipant =
         expWithArgs('or',
-            participantInfos.isYounger(16),
+            participantInfos.isYounger(18),
             participantInfos.getIsForAKind()
         );
     const isNotChildParticipant = expWithArgs('not',
