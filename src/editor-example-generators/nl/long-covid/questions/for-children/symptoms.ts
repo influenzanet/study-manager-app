@@ -909,7 +909,7 @@ Je hebt hierboven aangegeven dat je afgelopen week klachten had. Onderstaande vr
                     ]), descriptions: [
                         ComponentGenerators.text({
                             content: new Map([
-                                ['nl', '0 Helemaal niet -  10 zeer veel']
+                                ['nl', '0 helemaal niet -  10 zeer veel']
                             ]),
                             className: "fst-italic mb-1"
                         }),
@@ -1005,7 +1005,7 @@ Als je deze vragenlijst voor jezelf invult, **vraag dan je ouder/verzorger de an
             isRequired: isRequired,
             questionText: new Map([
                 ["nl", `
-Je hebt hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen.`],
+Je (en/of je kind) hebben hierboven aangegeven dat je kind afgelopen week klachten had. Onderstaande vragen gaan over alle klachten van je kind die eerder zijn aangegeven, of ze nu wel of niet door het coronavirus komen.`],
             ]),
             questionSubText: new Map([
                 ["nl", "Klik alsjeblieft bij elke vraag het getal aan dat je mening het beste weergeeft."],
@@ -1333,7 +1333,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Hoe lang was je opgenomen in het ziekenhuis"],
+                ["nl", "Hoe lang was je opgenomen in het ziekenhuis?"],
             ]),
             responseOptions: [
                 {
