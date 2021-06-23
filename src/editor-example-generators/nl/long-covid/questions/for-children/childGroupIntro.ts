@@ -48,7 +48,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ['nl', `
 Kinderen van 0 t/m 4 jaar kunnen **niet** meedoen aan dit LongCOVID-onderzoek, maar wel aan een ander onderzoek naar longcovid klachten bij kinderen. 
 
-Zie voor meer informatie: [https://limesurvey.amc.nl/cru/index.php/717116?lang=nl]
+Klik [hier](https://limesurvey.amc.nl/cru/index.php/717116?lang=nl) voor meer informatie. 
                         `]
                     ])
                 })]
