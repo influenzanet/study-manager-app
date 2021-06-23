@@ -232,7 +232,6 @@ const handleT0Submission = (): Expression => {
                 StudyActions.do(
                     handleAgeCategories,
                     StudyActions.updateParticipantFlag("surveyCategory", "C"),
-                    StudyActions.finishParticipation(),
                     StudyActions.if(
                         shouldGetChildShortSurvey(),
                         // if yes:
