@@ -3546,6 +3546,15 @@ Wil je alsjeblieft je antwoorden baseren op het gedrag van het kind de laatste z
                         ["nl", "Maakt opdrachten af, kan de aandacht goed vasthouden "],
                     ])
                 },
+            ],
+            bottomDisplayCompoments: [
+                {
+                    role: 'footnote', content: generateLocStrings(new Map([
+                        ["nl", "© Robert Goodman, 2005"]
+                    ])), style: [
+                        { key: 'className', value: 'fs-small fst-italic text-center' }
+                    ]
+                }
             ]
         });
     }
