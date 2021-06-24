@@ -34,10 +34,10 @@ const vaccination = (): Survey | undefined => {
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["nl-be", "Dit zal ongeveer 2-4 minuten tijd in beslag nemen."],
-            ["en", "It takes approximately 2-4 minutes to complete this questionnaire."],
-            ["fr-be", "Comptez environ 2-4 minutes pour compléter le questionnaire préliminaire."],
-            ["de-be", "Es dauert etwa 2-4 Minuten, um diesen Fragebogen auszufüllen."],
+            ["nl-be", "Dit zal ongeveer 2 minuten tijd in beslag nemen."],
+            ["en", "It takes approximately 2 minutes to complete this questionnaire."],
+            ["fr-be", "Comptez environ 2 minutes pour compléter le questionnaire préliminaire."],
+            ["de-be", "Es dauert etwa 2 Minuten, um diesen Fragebogen auszufüllen."],
         ])
     ));
 
@@ -64,29 +64,29 @@ const vaccination = (): Survey | undefined => {
     survey.addExistingSurveyItem(hasVaccineGroup, rootKey);
     const hasVaccineGroupKey = hasVaccineGroup.key;
 
-    const Q_vac = vac(rootKey, true);
-    survey.addExistingSurveyItem(Q_vac, rootKey);
+    const Q_vac = vac(hasVaccineGroupKey, true);
+    survey.addExistingSurveyItem(Q_vac, hasVaccineGroupKey);
 
-    const Q_vaccineBrand = vaccineBrand(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineBrand, rootKey);
+    const Q_vaccineBrand = vaccineBrand(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineBrand, hasVaccineGroupKey);
 
-    const Q_vaccineShots = vaccineShots(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineShots, rootKey);
+    const Q_vaccineShots = vaccineShots(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineShots, hasVaccineGroupKey);
 
-    const Q_dateFirstVaccine = dateFirstVaccine(rootKey, Q_vac.key, Q_vaccineShots.key, true);
-    survey.addExistingSurveyItem(Q_dateFirstVaccine, rootKey);
+    const Q_dateFirstVaccine = dateFirstVaccine(hasVaccineGroupKey, Q_vac.key, Q_vaccineShots.key, true);
+    survey.addExistingSurveyItem(Q_dateFirstVaccine, hasVaccineGroupKey);
 
-    const Q_dateSecondVaccine = dateSecondVaccine(rootKey, Q_vac.key, Q_vaccineShots.key, Q_dateFirstVaccine.key, true);
-    survey.addExistingSurveyItem(Q_dateSecondVaccine, rootKey);
+    const Q_dateSecondVaccine = dateSecondVaccine(hasVaccineGroupKey, Q_vac.key, Q_vaccineShots.key, Q_dateFirstVaccine.key, true);
+    survey.addExistingSurveyItem(Q_dateSecondVaccine, hasVaccineGroupKey);
 
-    const Q_vaccinePro = vaccinePro(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccinePro, rootKey);
+    const Q_vaccinePro = vaccinePro(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccinePro, hasVaccineGroupKey);
 
-    const Q_vaccineContra = vaccineContra(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineContra, rootKey);
+    const Q_vaccineContra = vaccineContra(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineContra, hasVaccineGroupKey);
 
-    const Q_sideEffects = sideEffects(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_sideEffects, rootKey);
+    const Q_sideEffects = sideEffects(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_sideEffects, hasVaccineGroupKey);
 
     return survey.getSurvey();
 }
@@ -108,7 +108,7 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Vier weken geleden vulde u een vragenlijst in over uw COVID-19 vaccinatie. Met deze nieuwe vragenlijst willen we veranderingen hierin verder opvolgen. Duid de optie aan die van toepassing is voor u.   "],
+            ["nl-be", "Vier weken geleden vulde u een vragenlijst in over uw COVID-19 vaccinatie. Met deze nieuwe vragenlijst willen we veranderingen hierin verder opvolgen. Duid de optie aan die voor u van toepassing is.   "],
             ["fr-be", "Il y a quatre semaines, vous avez reçu un questionnaire relatif à la vaccination contre le coronavirus. Ce nouveau questionnaire a pour but de contrôler tout changement ultérieur de votre statut vaccinal. Sélectionnez l'option qui vous concerne."],
             ["de-be", "Vor vier Wochen erhielten Sie einen Fragebogen zur COVID-19-Impfung.  Dieser neue Fragebogen dient zur Überwachung eventueller weiterer Änderungen an Ihrem Impfstatus. Bitte wählen Sie die Option, die auf Sie zutrifft."],
             ["en", "Four weeks ago you received a questionnaire about COVID-19 vaccination.  This new questionnaire is to monitor any further changes to your vaccination status. Select the option that applies to you."],
@@ -116,8 +116,8 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
     );
 
     // CONDITION
-    const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
-    editor.setCondition(hadCompletedVaccSurvey);
+    //const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
+    //editor.setCondition(hadCompletedVaccSurvey);
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -168,7 +168,7 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
  * GROUP DEPENDING VACCINATION SURVEY ROUND
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
- * @param keyVacQuestion reference to the vac survey
+ * @param keyVacStart reference to the vac survey
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
 const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: string): SurveyItem => {
