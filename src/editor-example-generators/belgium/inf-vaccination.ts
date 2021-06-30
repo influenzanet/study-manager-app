@@ -177,7 +177,7 @@ const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: strin
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
 
     editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+        expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, singleChoiceKey].join('.'), '2')
     );
     editor.setSelectionMethod({ name: 'sequential' });
     return editor.getItem();
