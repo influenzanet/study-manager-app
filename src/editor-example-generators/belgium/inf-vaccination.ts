@@ -297,7 +297,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", "ik wens niet te antwoorden."],
+                ["nl-be", "Ik wens niet te antwoorden."],
                 ["fr-be", "Je ne sais pas/je ne me souviens pas."],
                 ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
                 ["en", "I don't know/can't remember."],
