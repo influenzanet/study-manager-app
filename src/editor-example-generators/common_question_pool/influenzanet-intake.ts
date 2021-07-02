@@ -3515,6 +3515,149 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     return editor.getItem();
 }
 
+
+/**
+ * About Platform: multiple choice question about where the participant found out about the platform
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const about_platform = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q17'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Waar heeft u over het platform gehoord?"],
+            ["fr-be", "Où avez-vous entendu parler de la plateforme ?"],
+            ["de-be", "Wo haben Sie von der Plattform gehört?"],
+            ["en", "Where did you first hear about the platform?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten hoe u infectieradar.be gevonden heeft."],
+                    ["fr-be", "Nous voulons savoir comment vous avez connu notre site Internet infectieradar.be."],
+                    ["de-be", "Wir möchten wissen, wie Sie infectieradar.be gefunden haben."],
+                    ["en", "We would like to know how you found out about our website infectieradar.be."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ['fr-be', 'Plusieurs réponses sont possibles'],
+                ['de-be', 'Mehrere Antworten möglich'],
+                ['en', 'Select all options that apply'],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Op radio of televisie"],
+                ["fr-be", "À la radio ou à la télévision"],
+                ["de-be", "Im Rundfunk oder Fernsehen"],
+                ["en", "Radio or television"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "In de krant of magazine"],
+                ["fr-be", "Dans un journal ou un magazine"],
+                ["de-be", "In der Zeitung oder Zeitschrift"],
+                ["en", "In the newspaper or in a magazine"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Via internet (website, nieuwswebsite, zoekmachine)"],
+                ["fr-be", "Par le biais d’Internet (un site Internet, un site Internet d'information, un moteur de recherche)"],
+                ["de-be", "Über das Internet (Website, News-Website, Suchmaschine)"],
+                ["en", "The internet (a website, link, a search engine)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Via een poster"],
+                ["fr-be", "Par une affiche"],
+                ["de-be", "Von einem Plakat"],
+                ["en", "By poster"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Via vrienden en/of familie"],
+                ["fr-be", "Par l'intermédiaire des amis et/ou de la famille"],
+                ["de-be", "Über Freunde und/oder Familie"],
+                ["en", "Via family or friends"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Via school of werk"],
+                ["fr-be", "Par le biais de l'école ou du travail"],
+                ["de-be", "Über die Schule oder die Arbeit"],
+                ["en", "Via school or work"],
+            ])
+        },
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
+                ["de-be", "Andere"],
+                ["en", "Other"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
 const surveyEnd = (parentKey: string): SurveyItem => {
     const defaultKey = 'surveyEnd'
     const itemKey = [parentKey, defaultKey].join('.');
