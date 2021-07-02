@@ -652,6 +652,150 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
 }
 
 /**
+ * WORK TYPE: single choice question about main type of work
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const work_type = (parentKey: string, keyMainActivity?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q4c'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Welk soort werk doet u?"],
+            ["fr-be", "Quel type de travail effectuez-vous ?"],
+            ["de-be", "Welche Art von Arbeit leisten Sie?"],
+            ["en", "Which of the following descriptions most closely matches with your main occupation?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyMainActivity) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om na te gaan hoe representatief onze cohort (groep deelnemers aan deze studie) is in vergelijking met de bevolking, en om te bepalen of de kans op het krijgen van COVID-19 of griep verschillend is voor mensen met verschillende beroepen."],
+                    ["fr-be", "Afin d’examiner dans quelle mesure notre cohorte (le groupe de participants à cette étude) est représentative de la population, et afin de déterminer si le risque de contracter le coronavirus ou la grippe est différent pour les personnes exerçant des professions différentes."],
+                    ["de-be", "Um zu überprüfen, wie repräsentativ unsere Kohorte (Gruppe der Teilnehmer an dieser Studie) im Vergleich mit der Bevölkerung ist, und um zu bestimmen, ob sich die Möglichkeiten der Ansteckung mit COVID-19 oder Grippe bei Menschen mit verschiedenen Berufen unterscheiden."],
+                    ["en", "In order to examine to what degree our cohort (the group of participants in this study) is representative of the population, and to examine whether the risk of contracting the coronavirus or influenza varies based on a person's profession."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Kruis het vakje aan dat het meest overeenkomt met uw hoofdberoep."],
+                    ["fr-be", "Cochez la case qui correspond le mieux à votre activité ou à votre profession principale."],
+                    ["de-be", "Kreuzen Sie das Kästchen an, das am meisten mit Ihrem Hauptberuf übereinstimmt."],
+                    ["en", "Check the box that best matches your main activity or profession."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Professioneel (bijv. manager, arts, leraar, verpleegkundige, ingenieur)"],
+                ["fr-be", "Professionnel (par exemple gestionnaire, médecin, enseignant, infirmière, ingénieur)"],
+                ["de-be", "Fachkraft (z. B. Manager, Arzt, Lehrer, Krankenschwester, Ingenieur)"],
+                ["en", "Professional (e.g. manager, doctor, teacher, nurse, engineer)"],
+                ["it", "Professional (e.g. manager, doctor, teacher, nurse, engineer)"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe administratief werk (administratie, financieel assistent, receptionist, etc.)"],
+                ["fr-be", "J’effectue un travail administratif (administration, assistant financier, réceptionniste, etc.)"],
+                ["de-be", "Ich leiste Verwaltungsarbeiten (Verwaltung, finanzieller Assistent, Empfang usw.)"],
+                ["en", "Office work (e.g. admin, finance assistant, receptionist, etc)"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Detailhandel, verkoop, catering en horeca en vrije tijd (bijv. winkelbediende, ober, barpersoneel, gymleraar etc)"],
+                ["fr-be", "Commerce de détail, vente, restauration et hôtellerie et loisirs (par exemple, vendeur, serveur, personnel de bar, instructeur de gym, etc.)"],
+                ["de-be", "Einzelhandel, Verkauf, Gastronomie und Gastgewerbe und Freizeit (z. B. Verkäufer, Kellner, Barpersonal, Fitnesstrainer usw.)"],
+                ["en", "Retail, sales, catering and hospitality and leisure (e.g. shop assistant, waiter, bar-staff, gym instructor etc)"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe technisch werk (uitvoerend in techniek/bouw/productie)"],
+                ["fr-be", "J’effectue un travail technique (dans le domaine de l'ingénierie, de la construction et de la production)"],
+                ["de-be", "Ich leiste technische Arbeit (ausführend in Technik/Bau/Produktion)"],
+                ["en", "Skilled manual worker (e.g. mechanic, electrician, technician)"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik doe ander uitvoerend werk"],
+                ["fr-be", "Je fais d'autres travaux d’exécution"],
+                ["de-be", "Ich leiste andere ausführende Arbeiten"],
+                ["en", "Other manual work (e.g. cleaning, security, driver)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Andere, valt niet in bovengenoemde opties"],
+                ["fr-be", "Un autre type de travail, mon travail ne fait pas partie des options susmentionnées"],
+                ["de-be", "Andere, fällt nicht unter die oben genannten Alternativen"],
+                ["en", "Other"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
  * HIGHEST EDUCATION: single choice about what is the highest level of formal education
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -3399,6 +3543,7 @@ export const IntakeQuestions = {
     postalCode: postal_code,
     mainActivity: main_activity,
     postalCodeWork: postal_code_work,
+    workType: work_type,
     highestEducation: highest_education,
     peopleMet: people_met,
     ageGroups: age_groups,
