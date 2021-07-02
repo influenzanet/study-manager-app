@@ -531,6 +531,127 @@ const main_activity = (parentKey: string, isRequired?: boolean, keyOverride?: st
 }
 
 /**
+ * LOCATION WORK (postal code): Simple input field to enter 4 numeric digits, embedded into a single choice for opt-out
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyMainActivity full key of the question about main activity, if set, dependency is applied
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q4b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Wat is de postcode van de plek waar u het meeste van uw (werk)tijd doorbrengt (voorbeeld: werkplek/school/universiteit)?"],
+            ["fr-be", "Quel est le code postal du lieu où vous passez la plupart de votre temps (de travail) (exemple : le lieu de travail/l’école/l’université) ?"],
+            ["de-be", "Was ist die Postleitzahl, wo Sie den Großteil Ihrer (Arbeits-)Zeit verbringen (zum Beispiel: Arbeitsplatz/Schule/Universität)?"],
+            ["en", "What is the postal code of your school/college/workplace (where you spend the majority of your working/studying time)?"],
+        ]))
+    );
+
+    // CONDITION
+    if (keyMainActivity) {
+        editor.setCondition(
+            expWithArgs('responseHasKeysAny', keyMainActivity, [responseGroupKey, singleChoiceKey].join('.'), '0', '1', '2', '3')
+        );
+    }
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om te bepalen hoe ver u zich op regelmatige basis verplaatst."],
+                    ["fr-be", "En vue de pouvoir déterminer la distance que vous parcourez régulièrement lors de vos déplacements."],
+                    ["de-be", "Um zu bestimmen, wie weit Sie sich auf regelmäßiger Basis (fort-)bewegen."],
+                    ["en", "To be able to determine the distance you regularly travel during your movements."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'input',
+            // style: [{ key: 'className', value: 'w-100' }],
+            content: new Map([
+                ["nl-be", "Postcode"],
+                ["fr-be", "Code postal"],
+                ["de-be", "Postleitzahl"],
+                ["en", "Postal code"],
+            ]),
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Dit wil ik niet aangeven"],
+                ["fr-be", "Je préfère ne pas répondre à cette question"],
+                ["de-be", "Das weiß ich nicht"],
+                ["en", "I don’t know/can’t remember"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Niet van toepassing/ik heb geen vaste werkplek"],
+                ["fr-be", "Non applicable/je n'ai pas de lieu de travail fixe"],
+                ["de-be", "Entfällt/ich habe keinen festen Arbeitsplatz"],
+                ["en", "Not applicable (e.g. don’t have a fixed workplace)"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+    editor.addValidation({
+        key: 'r2',
+        type: 'hard',
+        rule: expWithArgs('or',
+            expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+            expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
+        )
+    });
+
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["nl-be", "Voer de vier cijfers van de postcode in"],
+                ["fr-be", "4 chiffres"],
+                ["de-be", "4 Ziffern"],
+                ["en", "Please enter the four digits of your postal code"],
+            ])),
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
+        }
+    );
+    return editor.getItem();
+}
+
+/**
  * HIGHEST EDUCATION: single choice about what is the highest level of formal education
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -3277,6 +3398,7 @@ export const IntakeQuestions = {
     dateOfBirth: date_of_birth,
     postalCode: postal_code,
     mainActivity: main_activity,
+    postalCodeWork: postal_code_work,
     highestEducation: highest_education,
     peopleMet: people_met,
     ageGroups: age_groups,
