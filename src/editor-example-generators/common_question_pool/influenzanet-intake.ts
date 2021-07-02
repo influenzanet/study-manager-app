@@ -3517,13 +3517,13 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
 
 
 /**
- * About Platform: multiple choice question about where the participant found out about the platform
+ * Find out about Platform: multiple choice question about where the participant found out about the platform
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const about_platform = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const find_out_about_platform = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q17'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -3706,5 +3706,6 @@ export const IntakeQuestions = {
     allergies: allergies,
     specialDiet: special_diet,
     pets: pets,
+    findPlatform: find_out_about_platform,
     surveyEnd,
 };
