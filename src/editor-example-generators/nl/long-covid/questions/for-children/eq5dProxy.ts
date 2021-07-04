@@ -86,7 +86,8 @@ class EQ5Dy extends GroupItemEditor {
                     content: new Map([
                         ['nl', `
 ## Kwaliteit van leven
-Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best past bij de gezondheid van je kind zoals je die VANDAAG ervaart.
+(Het doel van deze vragenlijst is te onderzoeken hoe een verzorger, of iemand die het kind goed kent (d.w.z. een derde), de gezondheid van het kind zou beoordelen. De derde moet niet namens het kind antwoorden, maar zelf de gezondheid van het kind beoordelen, zoals de derde deze ziet)
+Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezondheid van het kind **VANDAAG** zou beschrijven.
 `]
                     ])
                 })]
@@ -99,25 +100,25 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Mobiliteit (lopen)"],
+                ["nl", "Beweging (lopen)"],
             ]),
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft geen problemen met lopen"],
+                        ["nl", "Hij/zij heeft geen problemen met lopen"],
                     ])
                 },
                 {
                     key: 'beetje', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft een beetje problemen met lopen"],
+                        ["nl", "Hij/zij heeft een beetje problemen met lopen"],
                     ])
                 },
                 {
                     key: 'veel', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft veel problemen met lopen"],
+                        ["nl", "Hij/zij heeft veel problemen met lopen"],
                     ])
                 },
             ],
@@ -134,25 +135,25 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Zelfzorg"],
+                ["nl", "Voor zichzelf zorgen"],
             ]),
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft geen problemen met wassen of aankleden"],
+                        ["nl", "Hij/zij heeft geen problemen met wassen of aankleden"],
                     ])
                 },
                 {
                     key: 'beetje', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft een beetje problemen met wassen of aankleden"],
+                        ["nl", "Hij/zij heeft een beetje problemen met wassen of aankleden"],
                     ])
                 },
                 {
                     key: 'veel', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft veel problemen met wassen of aankleden"],
+                        ["nl", "Hij/zij heeft veel problemen met wassen of aankleden"],
                     ])
                 },
             ],
@@ -172,25 +173,25 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                 ["nl", "Dagelijkse activiteiten"],
             ]),
             questionSubText: new Map([
-                ["nl", "bijv. school, hobby’s, sport, spelen, dingen doen met familie of vrienden"]
+                ["nl", "bijvoorbeeld naar school gaan, hobby’s, sporten, spelen, naar familie of vrienden gaan"]
             ]),
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft geen problemen met zijn/haar dagelijkse activiteiten"],
+                        ["nl", "Hij/zij heeft geen problemen met zijn/haar dagelijkse activiteiten"],
                     ])
                 },
                 {
                     key: 'beetje', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft een beetje problemen met zijn/haar dagelijkse activiteiten"],
+                        ["nl", "Hij/zij heeft een beetje problemen met zijn/haar dagelijkse activiteiten"],
                     ])
                 },
                 {
                     key: 'veel', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft veel problemen met zijn/haar dagelijkse activiteiten"],
+                        ["nl", "Hij/zij heeft veel problemen met zijn/haar dagelijkse activiteiten"],
                     ])
                 },
             ],
@@ -207,25 +208,25 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Pijn/ongemak"],
+                ["nl", "Pijn of andere klachten"],
             ]),
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft geen pijn of andere klachten"],
+                        ["nl", "Hij/zij heeft geen pijn of andere klachten"],
                     ])
                 },
                 {
                     key: 'beetje', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft een beetje pijn of andere klachten"],
+                        ["nl", "Hij/zij heeft een beetje pijn of andere klachten"],
                     ])
                 },
                 {
                     key: 'veel', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind heeft veel pijn of andere klachten"],
+                        ["nl", "Hij/zij heeft veel pijn of andere klachten"],
                     ])
                 },
             ],
@@ -242,25 +243,25 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Angst/somberheid"],
+                ["nl", "Bezorgd, verdrietig of ongelukkig"],
             ]),
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind is niet angstig of somber"],
+                        ["nl", "Hij/zij is niet bezorgd, verdrietig of ongelukkig"],
                     ])
                 },
                 {
                     key: 'beetje', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind is een beetje angstig of somber"],
+                        ["nl", "Hij/zij is een beetje bezorgd, verdrietig of ongelukkig"],
                     ])
                 },
                 {
                     key: 'veel', role: 'option',
                     content: new Map([
-                        ["nl", "Mijn kind is erg angstig of somber"],
+                        ["nl", "Hij/zij is erg bezorgd, verdrietig of ongelukkig"],
                     ])
                 },
             ],
@@ -281,14 +282,14 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                     {
                         role: 'text', content: generateLocStrings(new Map([
                             ["en", "We would like to know how good or bad the health of your child is TODAY"],
-                            ["nl", "We willen weten hoe goed of slecht de gezondheid van je kind VANDAAG is."],
+                            ["nl", "We willen weten hoe goed of slecht je denkt dat de gezondheid van het kind VANDAAG is."],
                         ])),
                         style: [{ key: 'variant', value: 'li' }]
                     },
                     {
                         role: 'text', content: generateLocStrings(new Map([
                             ["en", "This scale is numbered from 0 to 100."],
-                            ["nl", "Deze meetschaal loopt van 0 tot 100."],
+                            ["nl", "Deze lijn is genummerd van 0 tot en met 100."],
                         ])),
                         style: [{ key: 'variant', value: 'li' }]
                     },
@@ -301,18 +302,19 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
                                     ["en", `
 100 represents the best health you can imagine. 0 represents the worst health you can imagine.
                                     `],
-                                    ["nl", "100 staat voor de beste gezondheid die je je kunt voorstellen. 0 staat voor de slechtste gezondheid die je je kunt voorstellen."],
+                                    ["nl", "100 geeft de beste gezondheid aan die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
                     },
                     {
                         role: 'text',
+                        style: [{ key: 'variant', value: 'li' }],
                         items: [
                             {
                                 role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "Mark an X on the scale to indicate what the health of your child is TODAY"],
-                                    ["nl", "Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VANDAAG is."],
+                                    ["en", "0 indicates the worst health you can imagine."],
+                                    ["nl", "0 geeft de slechtste gezondheid aan die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
@@ -332,15 +334,15 @@ Zet bij iedere groep in de lijst hieronder een kruisje in het hokje dat het best
             role: 'eq5d-health-indicator',
             instructionText: new Map([
                 ["en", "Mark an X on the scale to indicate what the health of your child is TODAY"],
-                ["nl", "Markeer een X op de meetschaal om aan te geven hoe de gezondheid van je kind VANDAAG is."],
+                ["nl", "Tik op de genummerde lijn om aan te geven hoe goed of slecht jij denkt dat de gezondheid van het kind VANDAAG is."],
             ]),
             valueBoxText: new Map([
                 ["en", "THE HEALTH OF YOUR CHILD TODAY ="],
-                ["nl", "DE GEZONDHEID VAN JE KIND VANDAAG ="],
+                ["nl", "Hoe goed is de gezondheid van het kind VANDAAG?"],
             ]),
             minHealthText: new Map([
                 ["en", "The worst health you can imagine"],
-                ["nl", "De slechste gezondheid die je je kunt voorstellen"],
+                ["nl", "De slechtste gezondheid die je je kunt voorstellen"],
             ]),
             maxHealthText: new Map([
                 ["en", "The best health you can imagine"],
