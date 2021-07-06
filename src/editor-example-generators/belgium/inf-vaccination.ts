@@ -1,11 +1,9 @@
-import { Survey, SurveyItem, SurveyGroupItem } from "survey-engine/lib/data_types";
+import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
-import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, initDropdownGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { initMultipleChoiceGroup, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
-import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
-import { initLikertScaleItem } from "../../editor-engine/utils/question-type-generator";
-import { likertScaleKey } from "../common_question_pool/key-definitions";
+import { multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
 const vaccination = (): Survey | undefined => {
     const surveyKey = 'vaccination';
