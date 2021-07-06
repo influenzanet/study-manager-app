@@ -116,8 +116,8 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
     );
 
     // CONDITION
-    //const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
-    //editor.setCondition(hadCompletedVaccSurvey);
+    const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
+    editor.setCondition(hadCompletedVaccSurvey);
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
@@ -177,7 +177,10 @@ const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: strin
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
 
     editor.setCondition(
-        expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, singleChoiceKey].join('.'), '2')
+        expWithArgs('or',
+            expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, singleChoiceKey].join('.'), '2'),
+            expWithArgs('not',expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1")),
+        )
     );
     editor.setSelectionMethod({ name: 'sequential' });
     return editor.getItem();
