@@ -27,7 +27,12 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
     );
 
     // CONDITION
-    // None
+    editor.setCondition(
+        CommonExpressions.and(
+            expWithArgs('not', CommonExpressions.hasParticipantFlag("21-vacc", "full")),
+            expWithArgs('not', CommonExpressions.hasParticipantFlag("21-vacc", "never"))
+        )
+    )
 
     // INFO POPUP
     editor.setHelpGroupComponent(
