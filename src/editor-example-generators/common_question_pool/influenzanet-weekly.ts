@@ -22,6 +22,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you have any general symptoms such as"],
+            ["it", "Did you have any general symptoms such as"],
             ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten? (chronische klachten hoeven hier niet gemeld te worden)"],
         ]))
     );
@@ -38,6 +39,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
         {
             key: '0', role: 'option', content: new Map([
                 ["en", "No symptoms"],
+                ["it", "No symptoms"],
                 ["nl", "Nee, geen van deze klachten"],
             ])
         },
@@ -46,6 +48,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Fever"],
+                ["it", "Fever"],
                 ["nl", "Koorts"],
             ])
         },
@@ -54,6 +57,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chills"],
+                ["it", "Chills"],
                 ["nl", "Koude rillingen"],
             ])
         },
@@ -62,6 +66,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Runny or blocked nose"],
+                ["it", "Runny or blocked nose"],
                 ["nl", "Loopneus of verstopte neus"],
             ])
         },
@@ -70,6 +75,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sneezing"],
+                ["it", "Sneezing"],
                 ['nl', "Niezen"],
             ])
         },
@@ -78,6 +84,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sore throat"],
+                ["it", "Sore throat"],
                 ["nl", "Zere keel"],
             ])
         },
@@ -86,6 +93,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Cough"],
+                ["it", "Cough"],
                 ["nl", "Hoesten"],
             ])
         },
@@ -94,6 +102,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Shortness of breath"],
+                ["it", "Shortness of breath"],
                 ["nl", "Kortademig (snel buiten adem)"],
             ])
         },
@@ -102,6 +111,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Headache"],
+                ["it", "Headache"],
                 ["nl", "Hoofdpijn"],
             ])
         },
@@ -110,6 +120,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Muscle/joint pain"],
+                ["it", "Muscle/joint pain"],
                 ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
             ])
         },
@@ -118,6 +129,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chest pain"],
+                ["it", "Chest pain"],
                 ["nl", "Pijn op de borst"],
             ])
         },
@@ -126,6 +138,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Feeling tired or exhausted (malaise)"],
+                ["it", "Feeling tired or exhausted (malaise)"],
                 ["nl", "Vermoeid en lamlendig (algehele malaise)"],
             ])
         },
@@ -134,6 +147,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of appetite"],
+                ["it", "Loss of appetite"],
                 ["nl", "Verminderde eetlust"],
             ])
         },
@@ -142,6 +156,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Coloured sputum/phlegm"],
+                ["it", "Coloured sputum/phlegm"],
                 ["nl", "Verkleurd slijm"],
             ])
         },
@@ -150,6 +165,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Watery, bloodshot eyes"],
+                ["it", "Watery, bloodshot eyes"],
                 ["nl", "Waterige of bloeddoorlopen ogen"],
             ])
         },
@@ -158,6 +174,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nausea"],
+                ["it", "Nausea"],
                 ["nl", "Misselijkheid"],
             ])
         },
@@ -166,6 +183,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Vomiting"],
+                ["it", "Vomiting"],
                 ["nl", "Overgeven"],
             ])
         },
@@ -174,6 +192,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Diarrhoea (at least three times a day)"],
+                ["it", "Diarrhoea (at least three times a day)"],
                 ["nl", "Diarree (minstens 3 keer per dag)"],
             ])
         },
@@ -182,6 +201,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Stomach ache"],
+                ["it", "Stomach ache"],
                 ["nl", "Buikpijn"],
             ])
         },
@@ -192,6 +212,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of smell"],
+                ["it", "Loss of smell"],
                 ["nl", "Geen reuk"],
             ])
         },
@@ -200,6 +221,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of taste"],
+                ["it", "Loss of taste"],
                 ["nl", "Geen smaak"],
             ])
         },
@@ -208,6 +230,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nose bleed"],
+                ["it", "Nose bleed"],
                 ["nl", "Bloedneus"],
             ])
         },
@@ -216,6 +239,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Rash"],
+                ["it", "Rash"],
                 ["nl", "Huiduitslag"],
             ])
         },
@@ -224,9 +248,11 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
+                ["it", "Other"],
             ]),
             description: new Map([
                 ["en", "Enter symptom"],
+                ["it", "Enter symptom"],
             ]),
         },
     ]);
@@ -305,6 +331,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ["fr-be", "Lorsque vous avez complété le précédent questionnaire, vous avez indiqué que vous étiez toujours malade. Les symptômes que vous signalez actuellement font-ils partie de la même période que les symptômes que vous aviez déjà signalés la dernière fois ?"],
             ["de-be", "In Ihrer letzten Fragen gaben Sie an, noch immer krank zu sein. Gehören die Symptome, die Sie nun melden, zu demselben Beschwerdezeitraum wie die Symptome, die Sie das letzte Mal schon gemeldet haben?"],
             ["en", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
+            ["it", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
         ]))
     );
 
@@ -324,6 +351,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -336,6 +364,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Pour accélérer le remplissage du reste du questionnaire."],
                     ["de-be", "Um das Ausfüllen der restlichen Fragen zu beschleunigen."],
                     ["en", "To speed up the completion of the rest of the questionnaire."],
+                    ["it", "To speed up the completion of the rest of the questionnaire."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -348,6 +377,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -360,6 +390,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Si vous pensez que les plaintes que vous signalez aujourd'hui sont toujours causées par la même infection ou le même problème (même période durant laquelle les plaintes ont été observées), répondez alors oui à la question."],
                     ["de-be", "Wenn Sie der Meinung sind, dass die Beschwerden, über die Sie heute berichten, durch dieselbe Infektion / dasselbe Problem (in derselben Beschwerdezeit) verursacht werden, dann beantworten Sie die Frage mit Ja."],
                     ["en", "If you think that the complaints you are indicating today are caused by the same infection or the same problem (the same period during which you experienced the complaints), answer 'yes'."],
+                    ["it", "If you think that the complaints you are indicating today are caused by the same infection or the same problem (the same period during which you experienced the complaints), answer 'yes'."],
                 ]),
             },
         ])
@@ -378,6 +409,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
+                ["it", "Yes"],
             ])
         },
         {
@@ -390,6 +422,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -402,6 +435,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "I don’t know/can’t remember"],
             ])
         },
     ]);
@@ -444,6 +478,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             ["fr-be", "Quel jour les premiers symptômes sont-ils apparus ? Si vous ne vous souvenez plus de la date exacte, sélectionnez une date approximative."],
             ["de-be", "An welchem Tag erschienen die ersten Symptome? Wenn Sie das genaue Datum nicht mehr wissen, dann wählen Sie einfach ein geschätztes Datum."],
             ["en", "On what day did you begin feeling the first symptoms? If you do not recall the exact date, please give an approximate date."],
+            ["it", "On what day did you begin feeling the first symptoms? If you do not recall the exact date, please give an approximate date."],
         ]))
     );
 
@@ -465,6 +500,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -477,6 +513,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Cette question nous aide à déterminer combien de personnes ressentent des symptômes par jour/semaine."],
                     ["de-be", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag/week. "],
                     ["en", "This question will help us to determine how many people are experiencing symptoms per day/week."],
+                    ["it", "This question will help us to determine how many people are experiencing symptoms per day/week."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -489,6 +526,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -501,6 +539,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Veuillez répondre de la manière la plus précise possible."],
                     ["de-be", "Bitte so genau wie möglich."],
                     ["en", "Answer as precisely as possible."],
+                    ["it", "Answer as precisely as possible."],
                 ]),
             },
         ])
@@ -522,6 +561,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             ["fr-be", "Choisissez une date."],
             ["de-be", "Wählen Sie das Datum"],
             ["en", "Choose date"],
+            ["it", "Choose date"],
         ]))
     }, rg?.key);
 
@@ -562,6 +602,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
             ["fr-be", "Quel jour vos symptômes / vos troubles médicaux avaient-ils à nouveau disparu ?"],
             ["de-be", "An welchem Tag waren Ihre Symptome/Beschwerden wieder verschwunden?"],
             ["en", "When did your symptoms end?"],
+            ["it", "When did your symptoms end?"],
         ]))
     );
 
@@ -580,6 +621,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -592,6 +634,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Sur la base du premier et du dernier jour des plaintes, nous pouvons calculer depuis combien de temps vous souffrez de (ces) plaintes."],
                     ["de-be", "Auf der Grundlage des ersten und letzten Tages der Beschwerden können wir ausrechnen, wie lange Sie an (diesen) Beschwerden litten."],
                     ["en", "We can use the first and last dates of the complaints to calculate how long your complaints lasted. "],
+                    ["it", "We can use the first and last dates of the complaints to calculate how long your complaints lasted. "],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -604,6 +647,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -616,6 +660,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Veuillez fournir la réponse la plus précise possible."],
                     ["de-be", "Mehrere Antworten sind möglich."],
                     ["en", "Answer as precisely as possible."],
+                    ["it", "Answer as precisely as possible."],
                 ]),
             },
         ])
@@ -647,6 +692,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
                 ["en", "Choose date"],
+                ["it", "Choose date"],
             ])
         },
         //{
@@ -668,6 +714,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                 ["fr-be", "Je suis encore malade"],
                 ["de-be", "Ich habe immer noch Beschwerden"],
                 ["en", "I am still ill"],
+                ["it", "I am still ill"],
             ])
         },
     ]);
@@ -708,6 +755,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
             ["fr-be", "Avez-vous ressenti ces symptômes / troubles médicaux de manière soudaine (en quelques heures) ?"],
             ["de-be", "Kamen Ihre Symptome/Beschwerden plötzlich? (innerhalb einiger Stunden)"],
             ["en", "Did your symptoms develop suddenly over a few hours?"],
+            ["it", "Did your symptoms develop suddenly over a few hours?"],
         ]))
     );
 
@@ -726,6 +774,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -738,6 +787,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "L'apparition soudaine des symptômes (en quelques heures) est liée au coronavirus et à la grippe."],
                     ["de-be", "Dass Beschwerden plötzlich (in ein paar Stunden) anfangen, hängt mit COVID-19 und Grippe zusammen."],
                     ["en", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
+                    ["it", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -750,6 +800,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -762,6 +813,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "Répondez Oui lorsque les symptômes sont apparus en quelques heures, plutôt qu'une apparition progressive étalée sur plusieurs jours."],
                     ["de-be", "Beantworten Sie die Frage mit Ja, wenn die Beschwerden innerhalb von einigen Stunden begannen, statt mit einer allmählichen Entwicklung über eine Anzahl von Tagen hinweg."],
                     ["en", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
+                    ["it", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -781,6 +833,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
+                ["it", "Yes"],
             ])
         },
         {
@@ -790,6 +843,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -802,6 +856,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "I don’t know/can’t remember"],
 
             ])
         },
@@ -844,6 +899,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
             ["fr-be", "Quel jour avez-vous ressenti de la fièvre ? Si vous ne vous souvenez plus de la date exacte, sélectionnez une date approximative."],
             ["de-be", "An welchem Tag kam das Fieber? Wenn Sie den Tag nicht genau wissen, dann wählen Sie einfach ein geschätztes Datum"],
             ["en", "On what day did your fever start? If you do not recall the exact date, please give an approximate date."],
+            ["it", "On what day did your fever start? If you do not recall the exact date, please give an approximate date."],
 
         ]))
     )
@@ -863,6 +919,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -875,6 +932,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "La fièvre est importante pour le diagnostic, c'est pourquoi nous aimerions savoir quand la fièvre a commencé."],
                     ["de-be", "Fieber ist für eine Diagnose nötig, darum möchten wir gerne wissen, wann das Fieber anfing."],
                     ["en", "Fever is an important diagnostic symptom, so we would like to know when the fever appeared."],
+                    ["it", "Fever is an important diagnostic symptom, so we would like to know when the fever appeared."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -887,6 +945,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -899,6 +958,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "Veuillez fournir la réponse la plus précise possible."],
                     ["de-be", "Bitte antworten Sie so genau wie möglich."],
                     ["en", "Answer as precisely as possible."],
+                    ["it", "Answer as precisely as possible."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -931,6 +991,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
                 ["en", "Choose date"],
+                ["it", "Choose date"],
             ])
         },
         {
@@ -943,6 +1004,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "I don’t know/can’t remember"],
 
             ])
         },
@@ -985,6 +1047,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
             ["fr-be", "La fièvre est-elle apparue de manière soudaine (en quelques heures) ?"],
             ["de-be", "Kam das Fieber plötzlich? (innerhalb von ein paar Stunden)"],
             ["en", "Did your fever develop suddenly over a few hours?"],
+            ["it", "Did your fever develop suddenly over a few hours?"],
         ]))
     );
 
@@ -1003,6 +1066,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1015,6 +1079,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "L'apparition soudaine des symptômes (en quelques heures) est liée au coronavirus et à la grippe."],
                     ["de-be", "Dass Beschwerden plötzlich (in ein paar Stunden) auftreten, hängt mit COVID-19 und Grippe zusammen."],
                     ["en", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
+                    ["it", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1027,6 +1092,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1039,6 +1105,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Répondez Oui lorsque les symptômes sont apparus en quelques heures, plutôt qu'une apparition progressive étalée sur plusieurs jours."],
                     ["de-be", "Beantwoord de vraag met Ja wanneer de klachten binnen enkele uren kwamen opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
                     ["en", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
+                    ["it", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
                 ]),
             },
         ])
@@ -1057,6 +1124,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
+                ["it", "Yes"],
             ])
         },
         {
@@ -1069,6 +1137,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -1081,6 +1150,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "I don’t know/can’t remember"],
             ])
         },
     ]);
@@ -1121,6 +1191,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
             ["fr-be", "Avez-vous pris votre température après l'apparition des symptômes ?"],
             ["de-be", "Haben Sie Ihre Temperatur nach dem Erscheinen der Symptome gemessen?"],
             ["en", "Did you take your temperature?"],
+            ["it", "Did you take your temperature?"],
         ]))
     );
 
@@ -1139,6 +1210,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1151,12 +1223,14 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Si vous avez mesuré votre température, nous aimerions connaître la température corporelle la plus élevée mesurée."],
                     ["de-be", "Wenn Sie das Fieber gemessen haben, möchten wir gerne die höchste gemessene Temperatur wissen."],
                     ["en", "If you have taken your temperature, we would like to know the highest body temperature you have measured."],
+                    ["it", "If you have taken your temperature, we would like to know the highest body temperature you have measured."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
@@ -1165,6 +1239,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
             {
                 content: new Map([
                     ["en", "Answer yes, if you took your temperature using a thermometer."],
+                    ["it", "Answer yes, if you took your temperature using a thermometer."],
                     ["nl", "Beantwoord deze vraag met Ja wanneer je de temperatuur hebt gemeten met een thermometer."],
                     ["fr", "Cochez «oui» si vous avez pris votre température à l'aide d'un thermomètre."],
                 ]),
@@ -1186,6 +1261,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
+                ["it", "Yes"],
             ])
         },
         {
@@ -1198,6 +1274,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -1210,6 +1287,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "I don’t know/can’t remember"],
             ])
         },
     ]);
@@ -1252,6 +1330,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
             ["fr-be", "Après avoir pris votre température corporelle, quelle était la valeur maximale mesurée ?"],
             ["de-be", "Was ist Ihre höchste gemessene Körpertemperatur?"],
             ["en", "What was your highest temperature measured?"],
+            ["it", "What was your highest temperature measured?"],
         ]))
     );
 
@@ -1272,6 +1351,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1284,6 +1364,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                     ["fr-be", "Certaines maladies infectieuses provoquent une température élevée."],
                     ["de-be", "Bestimmte Infektionskrankheiten verursachen eine hohe Temperatur."],
                     ["en", "Certain infectious diseases cause a raised temperature."],
+                    ["it", "Certain infectious diseases cause a raised temperature."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1296,6 +1377,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1308,6 +1390,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                     ["fr-be", "Veuillez indiquer la température la plus élevée que vous avez mesurée pendant la période liée à vos symptômes."],
                     ["de-be", "Geben Sie die höchste Temperatur an, die Sie während der Zeit Ihre Beschwerden gemessen haben."],
                     ["en", "Please indicate the highest temperature you measured during the period in which you experienced your symptoms."],
+                    ["it", "Please indicate the highest temperature you measured during the period in which you experienced your symptoms."],
                 ]),
             },
         ])
@@ -1326,6 +1409,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "En dessous de 37,0°C"],
                 ["de-be", "Unter 37,0°C"],
                 ["en", "Below 37.0°C"],
+                ["it", "Below 37.0°C"],
             ])
         },
         {
@@ -1338,6 +1422,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "37,0°C - 37,4°C"],
                 ["de-be", "37,0°C - 37,4°C"],
                 ["en", "37.0°C - 37.4°C"],
+                ["it", "37.0°C - 37.4°C"],
 
             ])
         },
@@ -1351,6 +1436,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "37,5°C - 37,9°C"],
                 ["de-be", "37,5°C - 37,9°C"],
                 ["en", "37.5°C - 37.9°C"],
+                ["it", "37.5°C - 37.9°C"],
             ])
         },
         {
@@ -1363,6 +1449,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "38,0°C - 38,9°C"],
                 ["de-be", "38,0°C - 38,9°C"],
                 ["en", "38.0°C - 38.9°C"],
+                ["it", "38.0°C - 38.9°C"],
             ])
         },
         {
@@ -1375,6 +1462,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "39,0°C - 39,9°C"],
                 ["de-be", "39,0°C - 39,9°C"],
                 ["en", "39.0°C - 39.9°C"],
+                ["it", "39.0°C - 39.9°C"],
             ])
         }, {
             key: '6', role: 'option',
@@ -1386,6 +1474,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "40,0°C ou plus"],
                 ["de-be", "40,0°C oder mehr"],
                 ["en", "40.0°C or more"],
+                ["it", "40.0°C or more"],
             ])
         },
         {
@@ -1398,6 +1487,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Das weiß ich nicht (mehr)"],
                 ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
             ])
         },
     ]);
@@ -1461,6 +1551,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
+            ["it", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
             ["nl", "Heb je een arts gezien of gesproken vanwege je klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
             ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
             ["nl-be", "Heeft u medische hulp gezocht vanwege uw symptomen/klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
@@ -1476,6 +1567,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["it", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                     ["nl-be", "Waarom vragen we dit?"],
@@ -1485,6 +1577,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "To find out whether people contact the health services because of their symptoms."],
+                    ["it", "To find out whether people contact the health services because of their symptoms."],
                     ["nl", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
                     ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
                     ["nl-be", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
@@ -1494,6 +1587,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
@@ -1502,6 +1596,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
+                    ["it", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
                     ["nl", "Selecteer alle relevante vormen van medische hulp die je hebt bezocht. Wanneer je nog niet bent geweest maar wel een afspraak heeft gemaakt, selecteer dan de laatste optie."],
                     ["fr", "Merci de cocher toutes les réponses qui s'appliquent . Si vous avez rendez-vous prochainement, merci de cocher l'option finale."],
                 ]),
@@ -1517,6 +1612,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "No"],
+                ["it", "No"],
                 ["nl", "Nee, ik heb geen medische hulp gezocht"],
                 ["fr", "Non"],
             ])
@@ -1526,6 +1622,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "GP or GP's practice nurse"],
+                ["it", "GP or GP's practice nurse"],
                 ["nl", "Ja, bij de huisarts of huisartsassistent"],
                 ["fr", "Médecin généraliste"],
             ])
@@ -1535,6 +1632,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Hospital accident & emergency department / out of hours service"],
+                ["it", "Hospital accident & emergency department / out of hours service"],
                 ["nl", "Ja, bij de eerste hulp van het ziekenhuis of de huisartsenpost"],
                 ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
             ])
@@ -1544,6 +1642,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Hospital admission"],
+                ["it", "Hospital admission"],
                 ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
                 ["fr", "Consultation ambulatoire à l'hôpital"],
             ])
@@ -1553,6 +1652,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Other medical services"],
+                ["it", "Other medical services"],
                 ["nl", "Ja, ik heb andere medische hulp gezocht"],
                 ["fr", "Autre service médical"],
             ])
@@ -1562,6 +1662,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "No, but I have an appointment scheduled"],
+                ["it", "No, but I have an appointment scheduled"],
                 ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
                 ["fr", "Non, mais j'ai rendez-vous prochainement"],
             ])
@@ -1600,6 +1701,7 @@ const visitedGP = (parentKey: string, keyVisitedMedicalServ: string, isRequired?
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you visit the GP practice for your consult with the GP?"],
+            ["it", "Did you visit the GP practice for your consult with the GP?"],
             ["nl", "Heb je de huisartspraktijk bezocht voor het gesprek met de huisarts/huisartsassistent?"],
         ]))
     );
@@ -1615,6 +1717,7 @@ const visitedGP = (parentKey: string, keyVisitedMedicalServ: string, isRequired?
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
@@ -1622,6 +1725,7 @@ const visitedGP = (parentKey: string, keyVisitedMedicalServ: string, isRequired?
             {
                 content: new Map([
                     ["en", "Select the most relevant option"],
+                    ["it", "Select the most relevant option"],
                     ["nl", "Geef aan of je ook de huisartspraktijk hebt bezocht."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
@@ -1636,6 +1740,7 @@ const visitedGP = (parentKey: string, keyVisitedMedicalServ: string, isRequired?
             key: '0', role: 'option',
             content: new Map([
                 ["en", "No, the consult happend by phone or video-connection (video consult)"],
+                ["it", "No, the consult happend by phone or video-connection (video consult)"],
                 ["nl", "Nee, ik heb de huisarts/huisartsassistent alleen gesproken per telefoon/video verbinding (video-consult)"],
             ])
         },
@@ -1644,6 +1749,7 @@ const visitedGP = (parentKey: string, keyVisitedMedicalServ: string, isRequired?
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, I went to the GP practice to consult the GP"],
+                ["it", "Yes, I went to the GP practice to consult the GP"],
                 ["nl", "Ja, ik ben naar de huisartspraktijk gegaan, en heb daar met de huisarts/huisartsassistent gesproken"],
             ])
         },
@@ -1681,6 +1787,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
+            ["it", "How soon after your symptoms appeared did you first VISIT a medical service?"],
             ["nl", "Waar en hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
             ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
@@ -1697,6 +1804,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["it", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
@@ -1705,6 +1813,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 content: new Map([
                     ["en", "To find out how quickly people with symptoms are seen by the health services."],
+                    ["it", "To find out how quickly people with symptoms are seen by the health services."],
                     ["nl", "Om uit te zoeken hoe snel mensen met klachten worden gezien door een medische hulpdienst/specialist."],
                     ["fr", "Pour savoir à quelle vitesse les personnes présentant des symptômes sont vus par les services de santé."],
                 ]),
@@ -1713,6 +1822,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
@@ -1721,6 +1831,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
+                    ["it", "Only record the time until your FIRST contact with the health services."],
                     ["nl", "Geef alleen het aantal dagen van het begin van de klachten tot je EERSTE bezoek aan de desbetreffende medische hulpverlener/specialist."],
                     ["fr", "En saisissant le temps séparant l'apparition de vos symptômes et votre PREMIER contact avec les services de santé."],
                 ]),
@@ -1735,6 +1846,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
         content: generateLocStrings(
             new Map([
                 ['en', 'Select the correct number of days'],
+                ['it', 'Select the correct number of days'],
                 ['nl', 'Selecteer het juiste aantal dagen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
@@ -1744,6 +1856,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '0', role: 'option', content: new Map([
                     ["en", "Same day"],
+                    ["it", "Same day"],
                     ["nl", "Op dezelfde dag als de eerste klachten"],
                     ["fr", "Jour même"],
                 ]),
@@ -1751,6 +1864,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '1', role: 'option', content: new Map([
                     ["en", "1 day"],
+                    ["it", "1 day"],
                     ["nl", "1 dag"],
                     ["fr", "1 jour"],
                 ]),
@@ -1758,6 +1872,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '2', role: 'option', content: new Map([
                     ["en", "2 days"],
+                    ["it", "2 days"],
                     ["nl", "2 dagen"],
                     ["fr", "2 jours"],
 
@@ -1766,6 +1881,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '3', role: 'option', content: new Map([
                     ["en", "3 days"],
+                    ["it", "3 days"],
                     ["nl", "3 dagen"],
                     ["fr", "3 jours"],
                 ]),
@@ -1773,6 +1889,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '4', role: 'option', content: new Map([
                     ["en", "4 days"],
+                    ["it", "4 days"],
                     ["nl", "4 dagen"],
                     ["fr", "4 jours"],
                 ]),
@@ -1780,6 +1897,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '5', role: 'option', content: new Map([
                     ["en", "5 days"],
+                    ["it", "5 days"],
                     ["nl", "5 dagen"],
                     ["fr", "5 jours"],
                 ]),
@@ -1787,6 +1905,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '6', role: 'option', content: new Map([
                     ["en", "6 days"],
+                    ["it", "6 days"],
                     ["nl", "6 dagen"],
                     ["fr", "6 jours"],
                 ]),
@@ -1794,6 +1913,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '7', role: 'option', content: new Map([
                     ["en", "7 days"],
+                    ["it", "7 days"],
                     ["nl", "7 dagen"],
                     ["fr", "7 jours"],
                 ]),
@@ -1801,6 +1921,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '8', role: 'option', content: new Map([
                     ["en", "8 days"],
+                    ["it", "8 days"],
                     ["nl", "8 dagen"],
                     ["fr", "8 jours"],
                 ]),
@@ -1808,6 +1929,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '9', role: 'option', content: new Map([
                     ["en", "9 days"],
+                    ["it", "9 days"],
                     ["nl", "9 dagen"],
                     ["fr", "9 jours"],
                 ]),
@@ -1815,6 +1937,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '10', role: 'option', content: new Map([
                     ["en", "10 days"],
+                    ["it", "10 days"],
                     ["nl", "10 dagen"],
                     ["fr", "10 jours"],
                 ]),
@@ -1822,6 +1945,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '11', role: 'option', content: new Map([
                     ["en", "11 days"],
+                    ["it", "11 days"],
                     ["nl", "11 dagen"],
                     ["fr", "11 jours"],
                 ]),
@@ -1829,6 +1953,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '12', role: 'option', content: new Map([
                     ["en", "12 days"],
+                    ["it", "12 days"],
                     ["nl", "12 dagen"],
                     ["fr", "12 jours"],
                 ]),
@@ -1836,6 +1961,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '13', role: 'option', content: new Map([
                     ["en", "13 days"],
+                    ["it", "13 days"],
                     ["nl", "13 dagen"],
                     ["fr", "13 jours"],
                 ]),
@@ -1843,6 +1969,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '14', role: 'option', content: new Map([
                     ["en", "14 days"],
+                    ["it", "14 days"],
                     ["nl", "14 dagen"],
                     ["fr", "14 jours"],
                 ]),
@@ -1850,6 +1977,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '15', role: 'option', content: new Map([
                     ["en", "More than 14 days"],
+                    ["it", "More than 14 days"],
                     ["nl", "meer dan 14 dagen"],
                     ["fr", "Plus de 14 jours"],
                 ]),
@@ -1857,6 +1985,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             {
                 key: '16', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
+                    ["it", "I don't know/can't remember"],
                     ["nl", "Dat weet ik niet (meer)"],
                     ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ]),
@@ -1870,6 +1999,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
                 {
                     key: 'col0', role: 'text', content: new Map([
                         ["en", "Medical Service"],
+                        ["it", "Medical Service"],
                         ["nl", "Medische hulpverlener"],
                         ["fr", "Service médical"],
                     ]),
@@ -1884,6 +2014,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP or GP'r practice nurse"],
+                        ["it", "GP or GP'r practice nurse"],
                         ["nl", "Huisarts of huisartsassistent"],
                         ["fr", "Médecin généraliste"],
                     ]),
@@ -1897,6 +2028,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Hospital accident & department/out of hours service"],
+                        ["it", "Hospital accident & department/out of hours service"],
                         ["nl", "Eerste hulp van het ziekenhuis of huisartsenpost"],
                         ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
                     ]),
@@ -1910,6 +2042,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Hospital admission"],
+                        ["it", "Hospital admission"],
                         ["nl", "Ziekenhuisopname"],
                         ["fr", "Consultation ambulatoire à l'hôpital"],
                     ]),
@@ -1923,6 +2056,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Other medical services"],
+                        ["it", "Other medical services"],
                         ["nl", "Andere medische hulp."],
                         ["fr", "Autre service médical"],
                     ]),
@@ -1964,6 +2098,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you take medication for these symptoms?"],
+            ["it", "Did you take medication for these symptoms?"],
             ["nl", "Heb je vanwege je klachten medicijnen gebruikt? En zo ja, welke?"],
             ["fr", "Avez-vous pris des médicaments pour ces symptômes?"],
         ]))
@@ -1978,6 +2113,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
+                    ["it", "Why are we asking this?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
@@ -1986,6 +2122,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "To find out who gets treated, and how effective treatment is."],
+                    ["it", "To find out who gets treated, and how effective treatment is."],
                     ["nl", "Om uit te zoeken wie er medicatie neemt, en hoe effectief deze behandeling is."],
                     ["fr", "Pour savoir qui se fait soigner, et si le traitement est efficace."],
                 ]),
@@ -1994,6 +2131,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre ?"],
                 ]),
@@ -2002,6 +2140,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "Only record those medications that you used because of this illness. If you are on other medications because of a pre-existing illness then do not record these."],
+                    ["it", "Only record those medications that you used because of this illness. If you are on other medications because of a pre-existing illness then do not record these."],
                     ["nl", "Geef alleen de medicatie aan die je gebruikt in verband met je gemelde klachten. Medicatie die je gebruikt voor een al bestaande aandoening hoef je niet te noemen."],
                     ["fr", "Ne saisissez que les médicaments que vous pris en raison de cette épisode de maladie. Si vous avez pris d'autres médicaments pour une maladie préexistante, alors ne les enregistrez pas."],
                 ]),
@@ -2017,6 +2156,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
+                ['it', 'Select all options that apply'],
                 ['nl', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
@@ -2029,6 +2169,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '6'),
             content: new Map([
                 ["en", "No medication"],
+                ["it", "No medication"],
                 ["nl", "Nee, ik heb geen medicijnen gebruikt"],
                 ["fr", "Aucun médicament"],
             ])
@@ -2039,6 +2180,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
+                ["it", "Pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
                 ["nl", "Ja, pijnstillers zoals paracetamol, aspirine of ibuprofen"],
                 ["fr", "Médicaments contre la douleur ou la fièvre (p. ex. Paracetamol, Dafalgan, Ibuprofen, Aspirin, Pretuval, etc)"],
             ])
@@ -2049,6 +2191,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Cough medication (e.g. expectorants)"],
+                ["it", "Cough medication (e.g. expectorants)"],
                 ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
                 ["fr", "Médicaments contre la toux (p. ex. expectorants)"],
             ])
@@ -2059,6 +2202,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Hayfever medication"],
+                ["it", "Hayfever medication"],
                 ["nl", "Ja, medicatie tegen hooikoorts"],
 
             ])
@@ -2069,6 +2213,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Antivirals (Tamiflu, Relenza)"],
+                ["it", "Antivirals (Tamiflu, Relenza)"],
                 ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
                 ["fr", "Antiviraux (par ex. Tamiflu)"],
             ])
@@ -2079,6 +2224,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Antibiotics"],
+                ["it", "Antibiotics"],
                 ["nl", "Ja, antibiotica"],
                 ["fr", "Antibiotiques"],
             ])
@@ -2089,6 +2235,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Homeopathy"],
+                ["it", "Homeopathy"],
                 ["nl", "Ja, homeopathische middelen"],
                 ["fr", "Homéopathie"],
             ])
@@ -2099,6 +2246,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Alternative medicine (essential oil, phytotherapy, etc.)"],
+                ["it", "Alternative medicine (essential oil, phytotherapy, etc.)"],
                 ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
                 ["fr", "Médecines douces (huiles essentielles, phytothérapie, etc.)"],
             ])
@@ -2109,6 +2257,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Other"],
+                ["it", "Other"],
                 ["nl", "Ja, andere medicatie"],
                 ["fr", "Autre"],
             ])
@@ -2119,6 +2268,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
                 ["nl", "Dit wil ik niet aangeven"],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
             ])
@@ -2158,6 +2308,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How long after the onset of symptoms / medical problems did you start taking antiviral medication?"],
+            ["it", "How long after the onset of symptoms / medical problems did you start taking antiviral medication?"],
             ["nl-be", "Hoe snel nadat uw symptomen/klachten opkwamen bent u begonnen met het gebruiken van antivirale middelen?"],
             ["fr-be", "Combien de temps après la survenue des symptômes / des troubles médicaux avez-vous commencé à prendre des médicaments antiviraux ?"],
             ["de-be", "Wie schnell nach dem Auftreten Ihrer Symptome/Beschwerden haben Sie mit der Einnahme antiviraler Mittel begonnen?"],
@@ -2177,6 +2328,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -2188,6 +2340,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             {
                 content: new Map([
                     ["en", "To study how long a person waits before taking antivirals."],
+                    ["it", "To study how long a person waits before taking antivirals."],
                     ["nl-be", "Om te onderzoeken hoe lang men wacht om antivirale middelen in te nemen."],
                     ["fr-be", "Pour étudier combien de temps les personnes attendent avant de prendre des antiviraux."],
                     ["de-be", "Um festzustellen, wie lange man wartet, um antivirale Mittel einzunehmen."],
@@ -2199,6 +2352,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -2210,6 +2364,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             {
                 content: new Map([
                     ["en", "Please indicate the number of days that passed between the onset of symptoms and the day you began taking antivirals."],
+                    ["it", "Please indicate the number of days that passed between the onset of symptoms and the day you began taking antivirals."],
                     ["nl-be", "Geef het aantal dagen tussen het begin van de klachten en de dag waarop u met de antivirale middelen begon."],
                     ["fr-be", "Veuillez indiquer le nombre de jours écoulés entre l'apparition des symptômes et le jour où vous avez commencé à prendre les antiviraux."],
                     ["de-be", "Geben Sie die Anzahl der Tage zwischen dem Beginn der Beschwerden und dem Tag ein, an dem Sie mit den antiviralen Mitteln begannen."],
@@ -2228,6 +2383,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Same day (within 24 hours)"],
+                ["it", "Same day (within 24 hours)"],
                 ["nl-be", "Dezelfde dag (binnen 24 uur)"],
                 ["fr-be", "Le jour même (dans les 24 heures)"],
                 ["de-be", "Am selben Tag (innerhalb von 24 Stunden)"],
@@ -2239,6 +2395,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '1', role: 'option',
             content: new Map([
                 ["en", "1 day"],
+                ["it", "1 day"],
                 ["nl-be", "1 dag"],
                 ["fr-be", "1 jour"],
                 ["de-be", "1 Tag"],
@@ -2250,6 +2407,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '2', role: 'option',
             content: new Map([
                 ["en", "2 days"],
+                ["it", "2 days"],
                 ["nl-be", "2 dagen"],
                 ["fr-be", "2 jours"],
                 ["de-be", "2 Tage"],
@@ -2261,6 +2419,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '3', role: 'option',
             content: new Map([
                 ["en", "3 days"],
+                ["it", "3 days"],
                 ["nl-be", "3 dagen"],
                 ["fr-be", "3 jours"],
                 ["de-be", "3 Tage"],
@@ -2271,6 +2430,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '4', role: 'option',
             content: new Map([
                 ["en", "4 days"],
+                ["it", "4 days"],
                 ["nl-be", "4 dagen"],
                 ["fr-be", "4 jours"],
                 ["de-be", "4 Tage"],
@@ -2281,6 +2441,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '5', role: 'option',
             content: new Map([
                 ["en", "5-7 days"],
+                ["it", "5-7 days"],
                 ["nl-be", "5-7 dagen"],
                 ["fr-be", "5–7 jours"],
                 ["de-be", "5-7 Tage"],
@@ -2291,6 +2452,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '6', role: 'option',
             content: new Map([
                 ["en", "More than 7 days"],
+                ["it", "More than 7 days"],
                 ["nl-be", "Meer dan 7 dagen"],
                 ["fr-be", "Plus de 7 jours"],
                 ["de-be", "mehr als 7 Tage"],
@@ -2301,6 +2463,7 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
             key: '7', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
                 ["nl-be", "Dat weet ik niet (meer)"],
                 ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
                 ["de-be", "Das weiß ich nicht (mehr)"],
@@ -2340,6 +2503,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What do you think is causing your symptoms?"],
+            ["it", "What do you think is causing your symptoms?"],
             ["nl-be", "Heeft u zelf enig idee waar uw symptomen/klachten vandaan komen?"],
             ["fr-be", "Avez-vous une idée de l'origine de vos symptômes / troubles médicaux ?"],
             ["de-be", "Haben Sie selbst irgendeine Ahnung, woher Ihre Symptome/Beschwerden kommen?"],
@@ -2357,6 +2521,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -2368,6 +2533,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                    ["it", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
                     ["nl-be", "Om te achterhalen of onze beoordeling van uw ziekte op basis van uw symptomen overeenkomt met wat u denkt dat de oorzaak is. U heeft misschien een beter idee van de oorzaak van uw ziekte dan onze computeralgoritmen."],
                     ["fr-be", "Pour savoir si notre évaluation de votre maladie, basée sur vos symptômes, correspond à ce que vous pensez en être la cause. Vous avez peut-être une meilleure idée de la cause de votre maladie que nos algorithmes informatiques."],
                     ["de-be", "Um zu ermitteln, ob unsere Beurteilung Ihrer Krankheit auf der Grundlage Ihrer Symptome mit dem übereinstimmt, was Ihrer Meinung nach die Ursache ist. Sie haben vielleicht eine bessere Vorstellung von der Ursache Ihrer Krankheit als unsere Computeralgorithmen."],
@@ -2379,6 +2545,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -2390,6 +2557,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "If you are reasonably sure of the cause of your symptoms, select the appropriate box. Otherwise, select 'No, I Don’t know'."],
+                    ["it", "If you are reasonably sure of the cause of your symptoms, select the appropriate box. Otherwise, select 'No, I Don’t know'."],
                     ["nl-be", "Als u redelijk zeker weet wat uw symptomen veroorzaakt, vink dan het juiste vakje aan. Vink anders 'Nee, ik heb geen idee' aan."],
                     ["fr-be", "Si vous êtes raisonnablement certain(e) de la cause de vos symptômes, cochez la case appropriée. Sinon, cochez « Non, je n'en ai aucune idée »."],
                     ["de-be", "Wenn Sie ziemlich genau wissen, was Ihre Symptome verursacht, dann kreuzen Sie das richtige Kästchen an (oder haken es ab). Andernfalls kreuzen Sie 'Nein, ich habe keine Ahnung' an."],
@@ -2408,6 +2576,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes, I have flu or flu-like illness"],
+                ["it", "Yes, I have flu or flu-like illness"],
                 ["nl-be", "Ja, ik heb griep, of griepachtige verschijnselen"],
                 ["fr-be", "Oui, j'ai la grippe, ou des symptômes de type grippal"],
                 ["de-be", "Ja, ich habe Grippe oder grippeartige Symptome"],
@@ -2419,6 +2588,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, I have a common cold"],
+                ["it", "Yes, I have a common cold"],
                 ["nl-be", "Ja, ik ben verkouden"],
                 ["fr-be", "Oui, j'ai un rhume"],
                 ["de-be", "Ja, ich bin erkältet"],
@@ -2430,6 +2600,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Yes, I am suffering from an allergy/hay fever"],
+                ["it", "Yes, I am suffering from an allergy/hay fever"],
                 ["nl-be", "Ja, ik heb last van een allergie/ hooikoorts"],
                 ["fr-be", "Oui, je souffre d'une allergie/du rhume des foins"],
                 ["de-be", "Ja, ich habe Beschwerden aufgrund einer Allergie/ eines Heuschnupfens"],
@@ -2441,6 +2612,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '6', role: 'option',
             content: new Map([
                 ["en", "Yes, I am suffering from ashtma"],
+                ["it", "Yes, I am suffering from ashtma"],
                 ["nl-be", "Ja, ik heb last van astma"],
                 ["fr-be", "Oui, je souffre d'asthme"],
                 ["de-be", "Ja, ich habe Asthma-Beschwerden"],
@@ -2451,6 +2623,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Yes, I have gastroenteritis complaints or gastric flu"],
+                ["it", "Yes, I have gastroenteritis complaints or gastric flu"],
                 ["nl-be", "Ja, ik heb maag-darmklachten of buikgriep"],
                 ["fr-be", "Oui, j'ai des problèmes gastro-intestinaux ou une grippe intestinale"],
                 ["de-be", "Ja, ich habe Magen-Darm-Beschwerden oder eine Magen-Darm-Infektion (Gastroenteritis)"],
@@ -2461,6 +2634,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '9', role: 'option',
             content: new Map([
                 ["en", "Yes, by the coronavirus (COVID-19)"],
+                ["it", "Yes, by the coronavirus (COVID-19)"],
                 ["nl-be", "Ja, het coronavirus (COVID-19)"],
                 ["fr-be", "Oui, il s’agit du coronavirus (COVID-19)"],
                 ["de-be", "Ja, COVID-19"],
@@ -2471,6 +2645,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Yes, I have another illness or cause which are causing these symptoms"],
+                ["it", "Yes, I have another illness or cause which are causing these symptoms"],
                 ["nl-be", "Ja, ik heb een andere ziekte of reden die de klachten hebben veroorzaakt"],
                 ["fr-be", "Oui, ces symptômes ont été causés par une autre maladie ou par une autre origine"],
                 ["de-be", "Ja, ich habe eine andere Krankheit oder Gründe, welche die Beschwerden verursacht haben"],
@@ -2481,6 +2656,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '5', role: 'option',
             content: new Map([
                 ["en", "No, I don't know"],
+                ["it", "No, I don't know"],
                 ["nl-be", "Nee, ik heb geen idee"],
                 ["fr-be", "Non, je n'en ai aucune idée"],
                 ["de-be", "Nein, ich habe keine Ahnung"],
