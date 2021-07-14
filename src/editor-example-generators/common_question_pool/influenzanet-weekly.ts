@@ -1,6 +1,6 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
-import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { initDropdownGroup, initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
 import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 
@@ -21,8 +21,8 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did you have any general symptoms such as"],
-            ["it", "Did you have any general symptoms such as"],
+            ["en", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
+            ["it", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
             ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten? (chronische klachten hoeven hier niet gemeld te worden)"],
         ]))
     );
@@ -31,10 +31,65 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
     // none
 
     // INFO POPUP
-    // none
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Het belangrijkste onderdeel van deze enquête is het opvolgen van de door u gerapporteerde symptomen."],
+                    ["fr-be", "La partie la plus importante de cette enquête a trait au suivi des symptômes que vous avez signalés."],
+                    ["de-be", "Der wichtigste Teil dieser Umfrage ist das Verfolgen der von Ihnen gemeldeten Symptome."],
+                    ["en", "The most important part of this study is about following up on the symptoms you have reported."],
+                    ["it", "The most important part of this study is about following up on the symptoms you have reported."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden. Meerdere antwoorden mogelijk."],
+                    ["fr-be", "Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé. Plusieurs réponses sont possibles."],
+                    ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an. Mehrere Antworten sind möglich."],
+                    ["en", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
+                    ["it", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk. Voor mensen met chronische (langdurige) ziekten, vink alleen veranderingen in symptomen aan. Dus als u bijvoorbeeld chronische kortademigheid heeft, vink dit vakje dan alleen aan als dit recentelijk erger is geworden.'],
+                ["fr-be", "Plusieurs réponses sont possibles. Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
+                ["de-be", "Mehrere Antworten möglich. Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an."],
+                ["en", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
+                ["it", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option', content: new Map([
@@ -251,10 +306,104 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["it", "Other"],
             ]),
             description: new Map([
-                ["en", "Enter symptom"],
-                ["it", "Enter symptom"],
+                ["en", "Enter symptoms"],
+                ["it", "Enter symptoms"],
             ]),
         },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * CONSENT FOR SYMPTOMS QUESTIONS: single choice question to get consent for further questions on symptoms
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q1a'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Bent u bereid om meer informatie te geven met betrekking tot de door u gerapporteerde symptomen? Dit zal 5-10 minuten van uw tijd in beslag nemen."],
+            ["fr-be", "Êtes-vous disposé(e) à fournir de plus amples informations concernant les symptômes que vous avez signalés ? Cela vous prendra 5 à 10 minutes de votre temps."],
+            ["de-be", "Sind Sie bereit, in Bezug auf die von Ihnen gemeldeten Symptome weitere Informationen zu erteilen? Das wird 5-10 Minuten Ihrer Zeit in Beschlag nehmen."],
+            ["en", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
+            ["it", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasOnlyKeysOtherThan', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '0')
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten of je bereid bent de vervolgvragen te beantwoorden. Uw antwoorden op de vervolgvragen kunnen ons onderzoek helpen."],
+                    ["fr-be", "Nous voulons savoir si vous êtes prêt à répondre aux questions de suivi. Vos réponses aux questions de suivi peuvent aider notre enquête."],
+                    ["de-be", "Wir möchten wissen, ob Sie bereit sind, die Anschlussfragen zu beantworten. Ihre Antworten auf die Anschlussfragen können unsere Untersuchung unterstützen."],
+                    ["en", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
+                    ["it", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
+                ]),
+                //style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option', content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+                ["it", "Yes"],
+
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+                ["it", "No"],
+            ])
+        }
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -438,6 +587,115 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["it", "I don’t know/can’t remember"],
             ])
         },
+        {
+            key: '9', role: 'option',
+            content: new Map([
+                /* ["en", "I don't know/can't remember"], */
+                ["nl", "Dit geldt niet voor mij"],
+                ["fr", "Cela ne s'applique pas à moi"],
+                ["nl-be", "Dit geldt niet voor mij"],
+                ["fr-be", "Cela ne s'applique pas à moi"],
+                ["de-be", "Das trifft auf mich nicht zu"],
+                ["en", "This does not apply to me"],
+                ["it", "This does not apply to me"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * PCR TESTED CONTACTS COVID-19: single choice question about contact with PCR tested Covid19 patients
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov3'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "In de 14 dagen voor de start van uw symptomen, bent u in nauw contact geweest met één of meerdere personen die een positieve PCR-test hadden voor COVID-19 (deze persoon kan al dan niet symptomen vertonen)?"],
+            ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une ou plusieurs personne(s) ayant obtenu un résultat positif au PCR-test de dépistage du coronavirus (cette personne peut présenter ou non des symptômes) ?"],
+            ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit einer oder mehreren Personen, die einen positiven PCR-Test auf COVID-19 hatten (Diese Person kann Symptome aufweisen oder auch nicht!)?"],
+            ["en", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
+            ["it", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om te onderzoeken hoe COVID-19 zich verspreidt in de algemene bevolking."],
+                    ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
+                    ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
+                    ["en", "In  order to study how the coronavirus spreads within the general population."],
+                ]),
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik weet het niet (meer)"],
+                ["fr-be", "Je ne sais pas (plus)"],
+                ["de-be", "Ich weiß es nicht (mehr)"],
+                ["en", "I don’t know/can’t remember"],
+            ])
+        },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -484,7 +742,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('not', expWithArgs('responseHasKeysAny', keySameIllnes, [responseGroupKey, singleChoiceKey].join('.'), '0'))
+        expWithArgs('not', expWithArgs('responseHasKeysAny', keySameIllnes, [responseGroupKey, singleChoiceKey].join('.'), '0', '9'))
     );
 
 
@@ -1606,6 +1864,19 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', "Meerdere antwoorden mogelijk"],
+                ['nl', "Meerdere antwoorden mogelijk"],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+                ["it", "Multiple answers possible"],
+            ])),
+    }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
@@ -1628,16 +1899,6 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             ])
         },
         {
-            key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
-            content: new Map([
-                ["en", "Hospital accident & emergency department / out of hours service"],
-                ["it", "Hospital accident & emergency department / out of hours service"],
-                ["nl", "Ja, bij de eerste hulp van het ziekenhuis of de huisartsenpost"],
-                ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
-            ])
-        },
-        {
             key: '2', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
@@ -1645,6 +1906,16 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
                 ["it", "Hospital admission"],
                 ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
                 ["fr", "Consultation ambulatoire à l'hôpital"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
+            content: new Map([
+                ["en", "Hospital accident & emergency department / out of hours service"],
+                ["it", "Hospital accident & emergency department / out of hours service"],
+                ["nl", "Ja, bij de eerste hulp van het ziekenhuis of de huisartsenpost"],
+                ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
             ])
         },
         {
@@ -2486,6 +2757,440 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
     return editor.getItem();
 }
 
+
+/**
+ * DAILY ROUTINE
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Heeft u vanwege uw klachten uw dagelijkse bezigheden moeten aanpassen?"],
+            ["fr-be", "Avez-vous dû adapter vos activités quotidiennes à cause de vos symptômes ?"],
+            ["de-be", "Haben Sie aufgrund Ihrer Beschwerden Ihre täglichen Beschäftigungen anpassen müssen?"],
+            ["en", "Did you change your daily routine because of your illness?"],
+            ["it", "Did you change your daily routine because of your illness?"],
+        ]))
+    );
+
+    // CONDITION
+    // None
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om het effect te bepalen van de klachten op uw dagelijks leven."],
+                    ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
+                    ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
+                    ["en", "To determine how the symptoms are impacting your daily life."],
+                    ["it", "To determine how the symptoms are impacting your daily life."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten of u afwezig was op uw werk of school als gevolg van uw symptomen, of dat u uw routine (vb: niet kunnen sporten) op een andere manier hebt veranderd. Indien u een student bent en online-lessen niet hebt kunnen volgen als gevolg van uw symptomen, kiest u ook best de tweede optie. We vragen naar veranderingen als gevolg van uw symptomen/klachten, niet omwille van een mogelijke quarantaine."],
+                    ["fr-be", "Nous voulons savoir si vous avez dû vous absenter de votre travail ou si vous n'avez pas su fréquenter l'école en raison de vos symptômes, ou si vous avez modifié votre routine de quelque manière que ce soit (par exemple, ne pas avoir pu pratiquer de sport). Si vous êtes étudiant(e) et que vous n'avez pas pu assister aux cours en ligne en raison de vos symptômes, choisissez également la deuxième option. Nous nous intéressons aux changements en raison de vos symptômes/plaintes, et non en raison d'une éventuelle quarantaine."],
+                    ["de-be", "Wir möchten wissen, ob Sie bei der Arbeit oder in der Schule als Folge Ihrer Symptome anwesend waren, oder ob Sie Ihre Routine (zum Beispiel: keine Sportausübung möglich) auf eine andere Art verändert haben. Wenn Sie ein Student sind und als Folge Ihrer Symptome Online-Lektionen nicht folgen konnten, wählen Sie am besten die zweite Alternative. Wir fragen nach Veränderungen als Folge Ihrer Symptome/Beschwerden, nicht aufgrund einer möglichen Quarantäne."],
+                    ["en", "We want to know if you have missed work or school due to your symptoms, or if you have modified your daily routine in any way (for example, if you were unable to engage in sport activities). If you are a student, and were unable to attend online classes due to your symptoms, you should also select option 2. We are interested in changes due to your symptoms/complaints and not due to any quarantine."],
+                    ["it", "We want to know if you have missed work or school due to your symptoms, or if you have modified your daily routine in any way (for example, if you were unable to engage in sport activities). If you are a student, and were unable to attend online classes due to your symptoms, you should also select option 2. We are interested in changes due to your symptoms/complaints and not due to any quarantine."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+                ["it", "Multiple answers possible"],
+            ])),
+        style: [{ key: 'className', value: 'mb-1' }]
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0',
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik heb mijn dagelijkse bezigheden zoals normaal kunnen doen"],
+                ["fr-be", "Non, j'ai pu vaquer à mes occupations quotidiennes comme d'habitude"],
+                ["de-be", "Nein, ich habe meine täglichen Beschäftigungen wie normal durchführen können"],
+                ["en", "No, I was able to go about my daily activities as usual"],
+                ["it", "No, I was able to go about my daily activities as usual"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", "Ja, maar ik heb geen vrij genomen van school of werk"],
+                ["fr-be", "Oui, mais je n'ai pas pris de congé à l'école ou au travail"],
+                ["de-be", "Ja, aber ich habe weder Schule noch Arbeit genommen"],
+                ["en", "Yes, but I did not take time off school or work"],
+            ])
+        },
+        {
+            key: '2',
+            role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["nl-be", "Ja, ik heb mijn beroep niet kunnen uitoefenen of ben niet naar school kunnen gaan"],
+                ["fr-be", "Oui, je n'ai pas pu travailler ou me rendre à l'école"],
+                ["de-be", "Ja, ich konnte meinen Beruf nicht ausüben oder konnte nicht zur Schule gehen"],
+                ["en", "Yes, I took time off school or work"],
+                ["it", "Yes, I took time off school or work"],
+            ])
+        },
+
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+
+/**
+ * DAILY ROUTINE TODAY
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyDailyRoutine: reference to question if participant missed work/school
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10b';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Kan u op dit moment nog steeds niet werken of school volgen vanwege de symptomen/klachten?"],
+            ["fr-be", "Êtes-vous actuellement toujours dans l'incapacité de travailler ou de fréquenter l'école en raison des symptômes/plaintes ?"],
+            ["de-be", "Können Sie in diesem Augenblick aufgrund der Symptome/Beschwerden noch immer nicht arbeiten oder die Schule besuchen?"],
+            ["en", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
+            ["it", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om het effect te bepalen van de klachten op uw dagelijks leven."],
+                    ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
+                    ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
+                    ["en", "To determine how the symptoms are impacting your daily life."],
+                    ["it", "To determine how the symptoms are impacting your daily life."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Antwoord 'Ja' als u vanwege klachten vandaag nog niet kan werken of naar school gaan."],
+                    ["fr-be", "Répondez « Oui » si vous ne pouvez pas vous rendre au travail ou à l'école aujourd'hui en raison de certains symptômes."],
+                    ["de-be", "Antworten Sie 'Ja', wenn Sie aufgrund von Beschwerden heute noch nicht arbeiten oder zur Schule gehen können."],
+                    ["en", "Answer 'yes' if you missed work or school today due to certain symptoms."],
+                    ["it", "Answer 'yes' if you missed work or school today due to certain symptoms."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0',
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+                ["it", "Yes"],
+            ])
+        },
+        {
+            key: '1',
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+                ["it", "No"],
+            ])
+        },
+        {
+            key: '3',
+            role: 'option',
+            content: new Map([
+                ["nl-be", "Andere (ik hoefde vandaag sowieso niet te werken of niet naar school te gaan)"],
+                ["fr-be", "Autre (je ne devais pas travailler ou à aller à l'école aujourd'hui de toute façon)"],
+                ["de-be", "Andere (ich brauchte heute sowieso nicht zu arbeiten oder nicht zur Schule zu gehen)"],
+                ["en", "Other (I did not have to work or go to school today in any case)"],
+                ["it", "Other (I did not have to work or go to school today in any case)"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
+ * DAILY ROUTINE DAYS MISSED WORK/SCHOOL
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyDailyRoutine: reference to question if participant missed work/school
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q10c'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Hoeveel dagen hebt u niet normaal kunnen werken of bent u niet naar school geweest (terwijl dat wel had gemoeten)?"],
+            ["fr-be", "Durant combien de jours n’avez-vous pas pu travailler normalement, ou n’êtes-vous pas allé(e) à l'école (alors que vous auriez dû le faire) ?"],
+            ["de-be", "Wie viele Tage konnten Sie nicht normal arbeiten oder waren Sie nicht in der Schule (während Sie das jedoch eigentlich gemusst hätten)?"],
+            ["en", "For how many days have you been unable to work normally/go to school (when you otherwise would have)?"],
+            ["it", "For how many days have you been unable to work normally/go to school (when you otherwise would have)?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om uit te rekenen hoeveel dagen mensen niet kunnen werken/niet naar school gaan vanwege klachten."],
+                    ["fr-be", "Pour calculer le nombre de jours pendant lesquels les citoyens ne peuvent pas se rendre au travail ou à l'école en raison de certains symptômes."],
+                    ["de-be", "Um auszurechnen, wie viele Tagen Menschen aufgrund von Beschwerden nicht arbeiten können/nicht zur Schule gehen können."],
+                    ["en", "To calculate the number of days a person misses work or school due to certain symptoms."],
+                    ["it", "To calculate the number of days a person misses work or school due to certain symptoms."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Tel alleen de dagen waar u normaal had moeten werken/school had moeten volgen. Maak een zo goed als mogelijke inschatting."],
+                    ["fr-be", "Ne comptez que les jours au cours desquels vous auriez dû normalement vous rendre au travail/à l'école. Fournissez l'estimation la plus précise possible."],
+                    ["de-be", "Zählen Sie nur die Tage, an denen Sie normalerweise hätten arbeiten / dem Schulunterricht folgen müssen. Machen Sie eine möglichst gute Einschätzung."],
+                    ["en", "Only count the days that you would otherwise have gone to work or school. Provide as precise an estimate as possible."],
+                    ["it", "Only count the days that you would otherwise have gone to work or school. Provide as precise an estimate as possible."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    const ddOptions = initDropdownGroup('ddg', [
+        {
+            key: '0', role: 'option', content: new Map([
+                ["nl-be", "1 dag"],
+                ["fr-be", "1 jour"],
+                ["de-be", "1 Tage"],
+                ["en", "1 day"],
+                ["it", "1 day"],
+            ]),
+        },
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl-be", "2 dagen"],
+                ["fr-be", "2 jours"],
+                ["de-be", "2 Tagen"],
+                ["en", "2 days"],
+                ["it", "2 days"],
+            ]),
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["nl-be", "3 dagen"],
+                ["fr-be", "3 jours"],
+                ["de-be", "3 Tagen"],
+                ["en", "3 days"],
+                ["it", "3 days"],
+            ]),
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl-be", "4 dagen"],
+                ["fr-be", "4 jours"],
+                ["de-be", "4 Tagen"],
+                ["en", "4 days"],
+                ["it", "4 days"],
+            ]),
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl-be", "5 dagen"],
+                ["fr-be", "5 jours"],
+                ["de-be", "5 Tagen"],
+                ["en", "5 days"],
+                ["it", "5 days"],
+            ]),
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl-be", "6 to 10 dagen"],
+                ["fr-be", "6 to 10jours"],
+                ["de-be", "6 zur 10 Tagen"],
+                ["en", "6 to 10 days"],
+                ["it", "6 to 10 days"],
+            ]),
+        },
+        {
+            key: '6', role: 'option', content: new Map([
+                ["nl-be", "11 to 15 dagen"],
+                ["fr-be", "11 to 15 jours"],
+                ["de-be", "11 zur 15 Tagen"],
+                ["en", "11 to 15 days"],
+                ["it", "11 to 15 days"],
+            ]),
+        },
+        {
+            key: '7', role: 'option', content: new Map([
+                ["nl-be", "More than 15 days"],
+                ["fr-be", "More than 15 days"],
+                ["de-be", "Mehr als 15 Tage"],
+                ["en", "More than 15 days"],
+                ["it", "More than 15 days"],
+            ]),
+        },
+    ]);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
 /**
  * PERCIEVED CAUSE OF SYMPTOMS
  *
@@ -2681,13 +3386,11 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
 
 
 export const WeeklyQuestions = {
-    symptomps,
-    hasSymptomsGroup,
-    userConsentedSymptomsGroup,
-    sameIllnes,
-    symptomsStart,
-    symptomsEnd,
-    symptomsSuddenlyDeveloped,
+    causeOfSymptoms,
+    consentForSymptoms,
+    dailyRoutine,
+    dailyRoutineToday,
+    dailyRoutineDaysMissed,
     feverGroup: {
         all: getFullFeverGroup,
         feverStart,
@@ -2695,10 +3398,17 @@ export const WeeklyQuestions = {
         didUMeasureTemperature,
         highestTemprerature,
     },
+    hasSymptomsGroup,
+    pcrTestedContact,
+    sameIllnes,
+    symptomps,
+    symptomsStart,
+    symptomsEnd,
+    symptomsSuddenlyDeveloped,
+    tookMedication,
+    userConsentedSymptomsGroup,
     visitedMedicalService,
     visitedGP,
     visitedMedicalServiceWhen,
-    tookMedication,
     whenAntivirals,
-    causeOfSymptoms,
 }
