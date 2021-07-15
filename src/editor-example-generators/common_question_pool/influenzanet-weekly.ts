@@ -957,6 +957,126 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
 
 
 /**
+ * HOUSEHOLD CONTACTS WITH PEOPLE SHOWING COVID-19 SYMPTOMS: single choice question about household contacts who are showing covid19 symptoms
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov8b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Behoort deze persoon of één van deze personen tot uw huishouden?"],
+            ["fr-be", "Cette personne ou l'une de ces personnes fait-elle partie de votre ménage ou de votre foyer ?"],
+            ["de-be", "Gehört diese Person oder eine dieser Personen zu Ihrem Haushalt?"],
+            ["en", "Was this person or one of these persons a member of your household?"],
+            ["it", "Was this person or one of these persons a member of your household?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', covid19ContactKey, [responseGroupKey, singleChoiceKey].join('.'), '1'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "COVID-19 en griep verspreiden zich snel binnenshuis."],
+                    ["fr-be", "Le coronavirus et la grippe se propagent beaucoup à l'intérieur."],
+                    ["de-be", "COVID-19 und Grippe verbreiten sich sehr stark im Hause."],
+                    ["en", "The coronavirus and influenza spread quickly indoors."],
+                    ["it", "The coronavirus and influenza spread quickly indoors."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Een lid van het huishouden wordt gedefinieerd als iemand (niet noodzakelijk verwant) die op hetzelfde adres woont als u en die de kookgelegenheid, woonkamer, zitkamer of eethoek deelt."],
+                    ["fr-be", "Un membre du ménage ou du foyer est défini comme une personne (pas nécessairement apparentée) qui vit à la même adresse que vous, et qui partage la cuisine, le salon, la salle de séjour ou la salle à manger."],
+                    ["de-be", "Ein Mitglied des Haushalts wird als jemand (nicht notwendigerweise verwandt) definiert, der an derselben Anschrift wie Sie wohnt und mit dem Sie die Kochgelegenheit, Wohnzimmer oder Essecke teilen."],
+                    ["en", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
+                    ["it", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
+                ]),
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee, ik weet het niet"],
+                ["fr-be", "Je ne sais pas"],
+                ["de-be", "Ich weiß es nicht"],
+                ["en", "I don’t know"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+
+/**
  * SYMPTOMS START
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -3632,6 +3752,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
 export const WeeklyQuestions = {
     causeOfSymptoms,
     consentForSymptoms,
+    covidHouseholdContact,
     covidSymptomsContact,
     dailyRoutine,
     dailyRoutineToday,
