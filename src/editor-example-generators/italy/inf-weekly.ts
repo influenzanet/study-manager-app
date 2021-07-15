@@ -116,10 +116,6 @@ const weekly = (): Survey | undefined => {
     const Q_visitedMedicalService = CommonPoolWeekly.visitedMedicalService(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_visitedMedicalService, hasSymptomGroupKey);
 
-    // // Q7a visited GP practice --------------------------------------
-    // const Q_visitedGPPractice = InfluenzanetWeekly.visitedGP(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
-    // survey.addExistingSurveyItem(Q_visitedGPPractice, hasSymptomGroupKey);
-
     // // Q7b how soon visited medical service --------------------------------------
     const Q_visitedMedicalServiceWhen = CommonPoolWeekly.visitedMedicalServiceWhen(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
     survey.addExistingSurveyItem(Q_visitedMedicalServiceWhen, hasSymptomGroupKey);

@@ -2452,8 +2452,8 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "How soon after your symptoms appeared did you first VISIT a medical service?"],
-            ["it", "How soon after your symptoms appeared did you first VISIT a medical service?"],
+            ["en", "How soon after your symptoms appeared did you first VISIT this medical service?"],
+            ["it", "How soon after your symptoms appeared did you first VISIT this medical service?"],
             ["nl", "Waar en hoe snel na de start van je klachten heb je voor de EERSTE keer medische hulp gezocht?"],
             ["fr", "Combien de temps après que vos symptômes soient apparus avez-vous visité un service médical ?"],
         ]))
@@ -2562,94 +2562,22 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
             },
             {
                 key: '5', role: 'option', content: new Map([
-                    ["en", "5 days"],
-                    ["it", "5 days"],
-                    ["nl", "5 dagen"],
-                    ["fr", "5 jours"],
+                    ["en", "5 - 7 days"],
+                    ["it", "5 - 7 days"],
+                    ["nl", "5 - 7 dagen"],
+                    ["fr", "5 - 7 jours"],
                 ]),
             },
             {
                 key: '6', role: 'option', content: new Map([
-                    ["en", "6 days"],
-                    ["it", "6 days"],
-                    ["nl", "6 dagen"],
-                    ["fr", "6 jours"],
+                    ["en", "More than 7 days"],
+                    ["it", "Più di 7 giorni"],
+                    ["nl", "Meer dan 7 dagen"],
+                    ["fr", "Plus de 7 jours"],
                 ]),
             },
             {
                 key: '7', role: 'option', content: new Map([
-                    ["en", "7 days"],
-                    ["it", "7 days"],
-                    ["nl", "7 dagen"],
-                    ["fr", "7 jours"],
-                ]),
-            },
-            {
-                key: '8', role: 'option', content: new Map([
-                    ["en", "8 days"],
-                    ["it", "8 days"],
-                    ["nl", "8 dagen"],
-                    ["fr", "8 jours"],
-                ]),
-            },
-            {
-                key: '9', role: 'option', content: new Map([
-                    ["en", "9 days"],
-                    ["it", "9 days"],
-                    ["nl", "9 dagen"],
-                    ["fr", "9 jours"],
-                ]),
-            },
-            {
-                key: '10', role: 'option', content: new Map([
-                    ["en", "10 days"],
-                    ["it", "10 days"],
-                    ["nl", "10 dagen"],
-                    ["fr", "10 jours"],
-                ]),
-            },
-            {
-                key: '11', role: 'option', content: new Map([
-                    ["en", "11 days"],
-                    ["it", "11 days"],
-                    ["nl", "11 dagen"],
-                    ["fr", "11 jours"],
-                ]),
-            },
-            {
-                key: '12', role: 'option', content: new Map([
-                    ["en", "12 days"],
-                    ["it", "12 days"],
-                    ["nl", "12 dagen"],
-                    ["fr", "12 jours"],
-                ]),
-            },
-            {
-                key: '13', role: 'option', content: new Map([
-                    ["en", "13 days"],
-                    ["it", "13 days"],
-                    ["nl", "13 dagen"],
-                    ["fr", "13 jours"],
-                ]),
-            },
-            {
-                key: '14', role: 'option', content: new Map([
-                    ["en", "14 days"],
-                    ["it", "14 days"],
-                    ["nl", "14 dagen"],
-                    ["fr", "14 jours"],
-                ]),
-            },
-            {
-                key: '15', role: 'option', content: new Map([
-                    ["en", "More than 14 days"],
-                    ["it", "More than 14 days"],
-                    ["nl", "meer dan 14 dagen"],
-                    ["fr", "Plus de 14 jours"],
-                ]),
-            },
-            {
-                key: '16', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
                     ["it", "I don't know/can't remember"],
                     ["nl", "Dat weet ik niet (meer)"],
