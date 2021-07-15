@@ -1622,7 +1622,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '1', role: 'dateInput',
+            key: '0', role: 'dateInput',
             optionProps: {
                 min: {
                     dtype: 'exp', exp: {
@@ -1648,7 +1648,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
             ])
         },
         {
-            key: '0', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 /* ["en", "I don't know/can't rember"], */
                 ["nl", "Ik weet het niet (meer)."],
