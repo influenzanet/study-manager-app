@@ -1905,7 +1905,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '1', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 /*  ["en", "Yes"], */
                 ["nl", "Ja"],
@@ -1918,7 +1918,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
             ])
         },
         {
-            key: '0', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 /* ["en", "No"], */
                 ["nl", "Nee"],
