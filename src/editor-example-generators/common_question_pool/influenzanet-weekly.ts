@@ -1169,14 +1169,43 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    editor.addExistingResponseComponent({
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
+            },
+            content: new Map([
+                ["nl", "Kies de dag"],
+                ["fr", "Sélectionner la date"],
+                ["nl-be", "Kies een datum"],
+                ["fr-be", "Choisissez une date."],
+                ["de-be", "Wählen Sie das Datum"],
+                ["en", "Choose date"],
+                ["it", "Choose date"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
+                ["nl", "Dit weet ik niet (meer)?"],
+                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    /* editor.addExistingResponseComponent({
         key: '0', role: 'dateInput',
         properties: {
             min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -5184000) },
             max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 10) },
         },
         description: generateLocStrings(new Map([
-            /* ["en", "Choose date"], */
             ["nl", "Kies de dag"],
             ["fr", "Sélectionner la date"],
             ["nl-be", "Kies een datum"],
@@ -1185,7 +1214,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             ["en", "Choose date"],
             ["it", "Choose date"],
         ]))
-    }, rg?.key);
+    }, rg?.key); */
 
     // VALIDATIONs
     if (isRequired) {
@@ -1298,7 +1327,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     dtype: 'exp', exp: {
                         name: 'getAttribute',
                         data: [
-                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomsStart, [responseGroupKey, '0'].join('.')) },
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomsStart, [responseGroupKey, singleChoiceKey, '0'].join('.')) },
                             { str: 'value', dtype: 'str' }
                         ],
                         returnType: 'int',
@@ -1317,15 +1346,15 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                 ["it", "Choose date"],
             ])
         },
-        //{
-        //    key: '1', role: 'option',
-        //    content: new Map([
-        //        ["en", "I don't know/can't remember"],
-        //        ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
-        //        ["nl", "Dit weet ik niet (meer)?"],
-        //        ["fr", "Je ne sais pas / je ne m'en souviens plus"],
-        //    ])
-        //},
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
+                ["nl", "Dit weet ik niet (meer)?"],
+                ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
         {
             key: '2', role: 'option',
             content: new Map([
@@ -1597,7 +1626,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     dtype: 'exp', exp: {
                         name: 'getAttribute',
                         data: [
-                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomStart, [responseGroupKey, '0'].join('.')) },
+                            { dtype: 'exp', exp: expWithArgs('getResponseItem', keySymptomStart, [responseGroupKey,  singleChoiceKey, '0'].join('.')) },
                             { str: 'value', dtype: 'str' }
                         ],
                         returnType: 'int',
