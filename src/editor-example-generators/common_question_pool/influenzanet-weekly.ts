@@ -1191,6 +1191,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
                 ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
                 ["nl", "Dit weet ik niet (meer)?"],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
@@ -1350,6 +1351,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
                 ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
                 ["nl", "Dit weet ik niet (meer)?"],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
