@@ -1,11 +1,9 @@
-import { Survey, SurveyItem, SurveyGroupItem } from "survey-engine/lib/data_types";
+import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
-import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, initDropdownGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { initMultipleChoiceGroup, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
-import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
-import { initLikertScaleItem } from "../../editor-engine/utils/question-type-generator";
-import { likertScaleKey } from "../common_question_pool/key-definitions";
+import { multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
 const vaccination = (): Survey | undefined => {
     const surveyKey = 'vaccination';
@@ -26,18 +24,18 @@ const vaccination = (): Survey | undefined => {
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["nl-be", "Het doel van deze vaccinatievragenlijst is om onderzoek te voeren naar de bescherming die het vaccin geeft en de vaccinatiestatus van België in kaart brengen. "],
+            ["nl-be", "Het doel van deze vaccinatievragenlijst is om onderzoek te voeren naar de bescherming die het vaccin geeft en de vaccinatiestatus van België in kaart te brengen. "],
             ["en", "The purpose of the vaccination questionnaire is to find out more about protection given by the vaccine and monitor vaccination uptake in Belgium."],
-            ["fr-be", ""],
-            ["de-be", ""],
+            ["fr-be", "Le but de ce questionnaire relatif à la vaccination est d'examiner la protection conférée par le vaccin, et de cartographier la couverture vaccinale en Belgique. "],
+            ["de-be", "Der Zweck des Fragebogens zur Impfung ist die Untersuchung des Schutzes, der von dem Impfstoff geboten wird, sowie die Überwachung des Impfgrades in Belgien. "],
         ])
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["nl-be", "Dit zal ongeveer 2-5 minuten tijd in beslag nemen."],
-            ["en", "It takes approximately 2-5 minutes to complete this questionnaire."],
-            ["fr-be", "Comptez environ 2-5 minutes pour compléter le questionnaire préliminaire."],
-            ["de-be", "Es dauert etwa 2-5 Minuten, um diesen Fragebogen auszufüllen."],
+            ["nl-be", "Dit zal ongeveer 2 minuten tijd in beslag nemen."],
+            ["en", "It takes approximately 2 minutes to complete this questionnaire."],
+            ["fr-be", "Comptez environ 2 minutes pour compléter le questionnaire préliminaire."],
+            ["de-be", "Es dauert etwa 2 Minuten, um diesen Fragebogen auszufüllen."],
         ])
     ));
 
@@ -59,29 +57,34 @@ const vaccination = (): Survey | undefined => {
     const Q_vacStart = vacStart(rootKey, true);
     survey.addExistingSurveyItem(Q_vacStart, rootKey);
 
-    const Q_vac = vac(rootKey, true);
-    survey.addExistingSurveyItem(Q_vac, rootKey);
+    // // -------> VACCINATION GROUP
+    const hasVaccineGroup = hasVacGroup(rootKey, Q_vacStart.key);
+    survey.addExistingSurveyItem(hasVaccineGroup, rootKey);
+    const hasVaccineGroupKey = hasVaccineGroup.key;
 
-    const Q_vaccineBrand = vaccineBrand(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineBrand, rootKey);
+    const Q_vac = vac(hasVaccineGroupKey, true);
+    survey.addExistingSurveyItem(Q_vac, hasVaccineGroupKey);
 
-    const Q_vaccineShots = vaccineShots(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineShots, rootKey);
+    const Q_vaccineBrand = vaccineBrand(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineBrand, hasVaccineGroupKey);
 
-    const Q_dateFirstVaccine = dateFirstVaccine(rootKey, Q_vac.key, Q_vaccineShots.key, true);
-    survey.addExistingSurveyItem(Q_dateFirstVaccine, rootKey);
+    const Q_vaccineShots = vaccineShots(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineShots, hasVaccineGroupKey);
 
-    const Q_dateSecondVaccine = dateSecondVaccine(rootKey, Q_vac.key, Q_vaccineShots.key, Q_dateFirstVaccine.key, true);
-    survey.addExistingSurveyItem(Q_dateSecondVaccine, rootKey);
+    const Q_dateFirstVaccine = dateFirstVaccine(hasVaccineGroupKey, Q_vac.key, Q_vaccineShots.key, true);
+    survey.addExistingSurveyItem(Q_dateFirstVaccine, hasVaccineGroupKey);
 
-    const Q_vaccinePro = vaccinePro(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccinePro, rootKey);
+    const Q_dateSecondVaccine = dateSecondVaccine(hasVaccineGroupKey, Q_vac.key, Q_vaccineShots.key, Q_dateFirstVaccine.key, true);
+    survey.addExistingSurveyItem(Q_dateSecondVaccine, hasVaccineGroupKey);
 
-    const Q_vaccineContra = vaccineContra(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineContra, rootKey);
+    const Q_vaccinePro = vaccinePro(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccinePro, hasVaccineGroupKey);
 
-    const Q_sideEffects = sideEffects(rootKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_sideEffects, rootKey);
+    const Q_vaccineContra = vaccineContra(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_vaccineContra, hasVaccineGroupKey);
+
+    const Q_sideEffects = sideEffects(hasVaccineGroupKey, Q_vac.key, true);
+    survey.addExistingSurveyItem(Q_sideEffects, hasVaccineGroupKey);
 
     return survey.getSurvey();
 }
@@ -95,7 +98,7 @@ export default vaccination;
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q0'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -103,15 +106,17 @@ export default vaccination;
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Vier weken geleden vulde u een vragenlijst in over uw COVID-19 vaccinatie. Met deze nieuwe vragenlijst willen we veranderingen hierin verder opvolgen. Duid de optie aan die van toepassing is voor u.   "],
+            ["nl-be", "Vier weken geleden vulde u een vragenlijst in over uw COVID-19 vaccinatie. Met deze nieuwe vragenlijst willen we veranderingen hierin verder opvolgen. Duid de optie aan die voor u van toepassing is.   "],
             ["fr-be", "Il y a quatre semaines, vous avez reçu un questionnaire relatif à la vaccination contre le coronavirus. Ce nouveau questionnaire a pour but de contrôler tout changement ultérieur de votre statut vaccinal. Sélectionnez l'option qui vous concerne."],
             ["de-be", "Vor vier Wochen erhielten Sie einen Fragebogen zur COVID-19-Impfung.  Dieser neue Fragebogen dient zur Überwachung eventueller weiterer Änderungen an Ihrem Impfstatus. Bitte wählen Sie die Option, die auf Sie zutrifft."],
             ["en", "Four weeks ago you received a questionnaire about COVID-19 vaccination.  This new questionnaire is to monitor any further changes to your vaccination status. Select the option that applies to you."],
         ]))
     );
 
-    // INFO POPUP
- 
+    // CONDITION
+    const hadCompletedVaccSurvey = expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1");
+    editor.setCondition(hadCompletedVaccSurvey);
+
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
@@ -157,7 +162,27 @@ export default vaccination;
     return editor.getItem();
 }
 
+/**
+ * GROUP DEPENDING VACCINATION SURVEY ROUND
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyVacStart reference to the vac survey
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'HV'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
 
+    editor.setCondition(
+        expWithArgs('or',
+            expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, singleChoiceKey].join('.'), '2'),
+            expWithArgs('not',expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1")),
+        )
+    );
+    editor.setSelectionMethod({ name: 'sequential' });
+    return editor.getItem();
+}
 /**
  * VAC: single choice question about vaccination status
  *
@@ -237,46 +262,46 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '01', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen"],
+                ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen."],
                 ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
-                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten"],
-                ["en", "No, I was invited and will receive a vaccine soon"],
+                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten."],
+                ["en", "No, I was invited and will receive a vaccine soon."],
             ])
         },
         {
             key: '02', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd"],
+                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd."],
                 ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
-                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab"],
-                ["en", "No, I was invited but declined the vaccine"],
+                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab."],
+                ["en", "No, I was invited but declined the vaccine."],
             ])
         },
         {
             key: '03', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen"],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen."],
                 ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen"],
-                ["en", "When invited, I plan to receive a vaccine"],
+                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen."],
+                ["en", "When invited, I plan to receive a vaccine."],
             ])
         },
         {
             key: '04', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
+                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren."],
                 ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen"],
-                ["en", "When invited, I will decline the vaccine"],
+                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen."],
+                ["en", "When invited, I will decline the vaccine."],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren"],
+                ["nl-be", "Ik wens niet te antwoorden."],
                 ["fr-be", "Je ne sais pas/je ne me souviens pas."],
-                ["de-be", "Ich weiß nicht/kann mich nicht erinnern"],
-                ["en", "I don't know/can't remember"],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
+                ["en", "I don't know/can't remember."],
             ])
         },
     ]);
@@ -302,7 +327,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -423,7 +448,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineShots = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccineShots = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35c'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -548,7 +573,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const dateFirstVaccine = (parentKey: string, keyvac?: string, keyvaccineShots?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const dateFirstVaccine = (parentKey: string, keyvac?: string, keyvaccineShots?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35d'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -613,34 +638,34 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         ])
     );
 
-        // RESPONSE PART
-        const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-        const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-            {
-                key: '1', role: 'dateInput',
-                optionProps: {
-                    min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -86400*365) },
-                    max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
-                },
-                description: new Map([
-                    ["nl-be", "Kies een datum"],
-                    ["fr-be", "Choisissez la date"],
-                    ["de-be", "Datum auswählen"],
-                    ["en", "Choose date"],
-                ]),
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'dateInput',
+            optionProps: {
+                min: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', -86400 * 365) },
+                max: { dtype: 'exp', exp: expWithArgs('timestampWithOffset', 0) }
             },
-            {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl-be", "Ik weet het niet (meer)"],
-                    ["fr-be", "Je ne sais pas (plus)"],
-                    ["de-be", "Ich weiß es nicht (mehr)"],
-                    ["en", "I don’t know/can’t remember"],
-    
-                ])
-            },
-        ]);
-        editor.addExistingResponseComponent(rg_inner, rg?.key);
+            description: new Map([
+                ["nl-be", "Kies een datum"],
+                ["fr-be", "Choisissez la date"],
+                ["de-be", "Datum auswählen"],
+                ["en", "Choose date"],
+            ]),
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik weet het niet (meer)"],
+                ["fr-be", "Je ne sais pas (plus)"],
+                ["de-be", "Ich weiß es nicht (mehr)"],
+                ["en", "I don’t know/can’t remember"],
+
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
@@ -662,7 +687,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?: string, keyDateFirstVaccine?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?: string, keyDateFirstVaccine?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -786,7 +811,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35f'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -804,7 +829,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1','01','03')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1', '01', '03')
         );
     }
 
@@ -1061,7 +1086,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35g'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1079,7 +1104,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'),'02','04')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '02', '04')
         );
     }
 
@@ -1300,7 +1325,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Q35h'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
