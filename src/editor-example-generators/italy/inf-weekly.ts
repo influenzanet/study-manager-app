@@ -96,6 +96,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptomsSuddenlyDeveloped, hasSymptomGroupKey);
 
     // Q6 fever start questions
+    // Separated into individual questions and Key code overriden to prevent Q6.a and keep Q6
     const Q_feverStart = CommonPoolWeekly.feverGroup.feverStart(hasSymptomGroupKey, Q_symptomStart.key, true, "Q6");
     survey.addExistingSurveyItem(Q_feverStart, hasSymptomGroupKey);
 
