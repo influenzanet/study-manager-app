@@ -2053,7 +2053,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '1', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
                 /* ["en", "Below 37.0°C"], */
                 ["nl", "Onder de 37,0°C"],
@@ -2066,7 +2066,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
             ])
         },
         {
-            key: '2', role: 'option',
+            key: '1', role: 'option',
             content: new Map([
                 /* ["en", "37.0° - 37.4°C"], */
                 ["nl", "37,0°C - 37,4°C"],
@@ -2080,7 +2080,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 /* ["en", "37.5° - 37.9°C"], */
                 ["nl", "37,5°C - 37,9°C"],
@@ -2093,7 +2093,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
             ])
         },
         {
-            key: '4', role: 'option',
+            key: '3', role: 'option',
             content: new Map([
                 /* ["en", "38.0° - 38.9°C"], */
                 ["nl", "38,0°C - 38,9°C"],
@@ -2106,7 +2106,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
             ])
         },
         {
-            key: '5', role: 'option',
+            key: '4', role: 'option',
             content: new Map([
                 /* ["en", "39.0° - 39.9°C"], */
                 ["nl", "39,0°C - 39,9°C"],
@@ -2118,7 +2118,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
                 ["it", "39.0°C - 39.9°C"],
             ])
         }, {
-            key: '6', role: 'option',
+            key: '5', role: 'option',
             content: new Map([
                 /* ["en", "40.0°C or more"], */
                 ["nl", "40,0°C of meer"],
@@ -2131,7 +2131,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
             ])
         },
         {
-            key: '7', role: 'option',
+            key: '6', role: 'option',
             content: new Map([
                 /* ["en", "I don't know/can't remember"], */
                 ["nl", "Dat weet ik niet (meer)."],
