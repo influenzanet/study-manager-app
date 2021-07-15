@@ -53,24 +53,28 @@ export class AcuteHealthGroup extends GroupItemEditor {
             this.isPartOfSurvey(surveyKeys.T3) ||
             this.isPartOfSurvey(surveyKeys.T6)
         ) {
-            hasSymptomsGroup.addItem(Q2(hasSymptomsGroup.key, true));
             hasSymptomsGroup.addItem(IPQ(hasSymptomsGroup.key, true));
         }
 
         if (
-            this.isPartOfSurvey(surveyKeys.T0) ||
-            this.isPartOfSurvey(surveyKeys.short)
-        ) {
+            this.isPartOfSurvey(surveyKeys.T0)) {
+            hasSymptomsGroup.addItem(Q2(hasSymptomsGroup.key, true));
+        }
             const q4 = Q4(hasSymptomsGroup.key, true);
             hasSymptomsGroup.addItem(q4);
 
             hasSymptomsGroup.addItem(Q5(hasSymptomsGroup.key, q4.key, true));
             hasSymptomsGroup.addItem(Q5a(hasSymptomsGroup.key, q4.key, true));
-            hasSymptomsGroup.addItem(Q6(hasSymptomsGroup.key, q4.key, true));
+            if (this.isPartOfSurvey(surveyKeys.T0)) {
+            hasSymptomsGroup.addItem(Q6(hasSymptomsGroup.key, q4.key, true));}
 
-            hasSymptomsGroup.addItem(Q7_longsymptoms(hasSymptomsGroup.key, this.hasAnyLongSymptoms, true));
+            if (this.isPartOfSurvey(surveyKeys.T0)) {
+                hasSymptomsGroup.addItem(Q7_longsymptoms(hasSymptomsGroup.key, this.hasAnyLongSymptoms, true));}
             hasSymptomsGroup.addItem(Q7(hasSymptomsGroup.key, true));
 
+            if (
+                this.isPartOfSurvey(surveyKeys.T0) 
+            ) {
             const q8 = Q8(hasSymptomsGroup.key, true);
             hasSymptomsGroup.addItem(q8)
 
@@ -919,7 +923,7 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Heb je een arts gezien, gesproken of gebeld vanwege je klachten? En zo ja, waar?"],
+            ["nl", "Heb je een arts gezien, gesproken of gebeld vanwege je klachten in de afgelopen 7 dagen? En zo ja, waar?"],
         ]),
         topDisplayCompoments: [
             {
@@ -1270,7 +1274,7 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 14 dagen? En zo ja, welke?"],
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 7 dagen? En zo ja, welke?"],
         ]),
         topDisplayCompoments: [
             {

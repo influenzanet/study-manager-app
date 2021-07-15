@@ -76,6 +76,7 @@ export const generateT3 = (): Survey | undefined => {
     const medicineGroupEditor = new MedicineGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
 
+    
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
         ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
     ])));

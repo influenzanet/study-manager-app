@@ -5,6 +5,7 @@ import { numericInputKey, responseGroupKey } from "../../../../editor-engine/uti
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 export class DemographieGroup extends GroupItemEditor {
 
@@ -19,6 +20,8 @@ export class DemographieGroup extends GroupItemEditor {
         testQ11jaCondition?: Expression,
     ) {
         this.addItem(Q_instructions(this.key))
+       
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         const Q_gender = q_gender(this.key, true);
         this.addItem(Q_gender)
 
@@ -58,12 +61,16 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q12(this.key, q12Condition, true));
 
         this.addItem(Q13(this.key, true))
+        }
 
         const Q14a = gen_Q14a(this.key, testQ11jaCondition, true);
         this.addItem(Q14a)
+        
         const PaidJob = Q14(this.key, true);
         this.addItem(PaidJob)
-
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {
+        this.addItem(Qwerkveranderd(this.key, true))
+        }
         this.addItem(Q15(this.key, true))
 
         const qWorkcondition = CommonExpressions.or(
@@ -566,7 +573,7 @@ const Q13 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["nl", "Basisonderwijs of lager onderwijs"],
+                    ["nl", "Geen onderwijs of lager onderwijs"],
                 ]),
             },
             {
@@ -655,6 +662,35 @@ const Q14 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+        ]
+    });
+}
+
+const Qwerkveranderd = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q14';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Is er sinds de vorige vragenlijst iets veranderd in je dagelijkse activiteiten (werk, studie of andere dagbesteding)?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Ook veranderingen in werktijden vanwege klachten door corona."],
+        ]),
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
