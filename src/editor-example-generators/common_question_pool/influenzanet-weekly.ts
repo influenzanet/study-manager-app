@@ -2674,6 +2674,419 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
     return editor.getItem();
 }
 
+/**
+ * CONTACTED MEDICAL SERVICE
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q8';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Because of your symptoms, did you contact via TELEPHONE or INTERNET any of medical services?"],
+            ["it", "A causa dei suoi sintomi, ha contattato via TELEFONO o INTERNET qualche servizio medico?"],
+            ["nl", "Heeft u vanwege uw symptomen via TELEFOON of INTERNET contact opgenomen met een van de medische diensten?"],
+            ["fr", "En raison de vos symptômes, avez-vous contacté par TÉLÉPHONE ou INTERNET l'un des services médicaux ?"],
+            ["nl-be", "Heeft u vanwege uw symptomen via TELEFOON of INTERNET contact opgenomen met een van de medische diensten?"],
+        ]))
+    );
+
+    // CONDITION
+    // None
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["it", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                    ["nl-be", "Waarom vragen we dit?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out whether people contact the health services because of their symptoms."],
+                    ["it", "To find out whether people contact the health services because of their symptoms."],
+                    ["nl", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
+                    ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
+                    ["nl-be", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre ?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Tick all of those that apply."],
+                    ["it", "Tick all of those that apply."],
+                    ["nl", "Selecteer alle relevante vormen van medische hulp die je hebt bezocht."],
+                    ["fr", "Merci de cocher toutes les réponses qui s'appliquent ."],
+                ]),
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', "Meerdere antwoorden mogelijk"],
+                ['nl', "Meerdere antwoorden mogelijk"],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+                ["it", "Multiple answers possible"],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "No"],
+                ["it", "No"],
+                ["nl", "Nee, ik heb geen medische hulp gezocht"],
+                ["fr", "Non"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "GP - spoke to receptionist only"],
+                ["it", "GP - ha parlato solo con l'addetto alla reception"],
+                ["nl", "Huisarts - sprak alleen met receptioniste"],
+                ["fr", "GP - n'a parlé qu'à la réceptionniste"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "GP - spoke to the doctor or nurse."],
+                ["it", "GP - ha parlato con il medico o l'infermiere"],
+                ["nl", "Huisarts - sprak met de arts of verpleegkundige"],
+                ["fr", "GP - parlé au médecin ou à l'infirmière"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "NHS Direct or similar"],
+                ["it", "Linea informazioni 1500 o simile"],
+                ["nl", "Informatielijn volksgezondheid of vergelijkbaar"],
+                ["fr", "Ligne d'information sur la santé publique ou similaire"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "NPFS"],
+                ["it", "NPFS"],
+                ["nl", "NPFS"],
+                ["fr", "NPFS"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
+            content: new Map([
+                ["en", "Other"],
+                ["it", "Other"],
+                ["nl", "Andere"],
+                ["fr", "Autre"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * WHEN CONTACTED MEDICAL SERVICE
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyContactedMedicalService: reference to quesiton if contacted any medical service
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalService: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q8b';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How soon after your symptoms appeared did you first contact via telephone or internet this medical service?"],
+            ["it", "How soon after your symptoms appeared did you first contact via telephone or internet this medical service?"],
+            ["nl", "Hoe snel nadat uw klachten optraden, heeft u voor het eerst telefonisch of via internet contact opgenomen met deze medische dienst?"],
+            ["fr", "Combien de temps après l'apparition de vos symptômes avez-vous contacté pour la première fois par téléphone ou Internet ce service médical ?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasOnlyKeysOtherThan', keyContactedMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '0')
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this?"],
+                    ["it", "Why are we asking this?"],
+                    ["nl", "Waarom vragen we dit?"],
+                    ["fr", "Pourquoi demandons-nous cela ?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To find out how soon people contact the health services because of their symptoms."],
+                    ["it", "To find out how soon people contact the health services because of their symptoms."],
+                    ["nl", "Om erachter te komen hoe snel mensen contact opnemen met de gezondheidsdiensten vanwege hun symptomen."],
+                    ["fr", "Pour savoir combien de temps les gens contactent les services de santé en raison de leurs symptômes."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer it?"],
+                    ["it", "How should I answer it?"],
+                    ["nl", "Hoe zal ik deze vraag beantwoorden?"],
+                    ["fr", "Comment dois-je répondre ?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Only record the time until your FIRST contact with the health services."],
+                    ["it", "Only record the time until your FIRST contact with the health services."],
+                    ["nl", "Geef alleen het aantal dagen van het begin van de klachten tot je EERSTE bezoek aan de desbetreffende medische hulpverlener/specialist."],
+                    ["fr", "En saisissant le temps séparant l'apparition de vos symptômes et votre PREMIER contact avec les services de santé."],
+                ]),
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        content: generateLocStrings(
+            new Map([
+                ['en', 'Select the correct number of days'],
+                ['it', 'Select the correct number of days'],
+                ['nl', 'Selecteer het juiste aantal dagen'],
+                ["fr", "sélectionnez toutes les options applicables"],
+            ])),
+    }, rg?.key);
+    const ddOptions: ResponseRowCell = {
+        key: 'col1', role: 'dropDownGroup', items: [
+            {
+                key: '0', role: 'option', content: new Map([
+                    ["en", "Same day"],
+                    ["it", "Same day"],
+                    ["nl", "Op dezelfde dag als de eerste klachten"],
+                    ["fr", "Jour même"],
+                ]),
+            },
+            {
+                key: '1', role: 'option', content: new Map([
+                    ["en", "1 day"],
+                    ["it", "1 day"],
+                    ["nl", "1 dag"],
+                    ["fr", "1 jour"],
+                ]),
+            },
+            {
+                key: '2', role: 'option', content: new Map([
+                    ["en", "2 days"],
+                    ["it", "2 days"],
+                    ["nl", "2 dagen"],
+                    ["fr", "2 jours"],
+
+                ]),
+            },
+            {
+                key: '3', role: 'option', content: new Map([
+                    ["en", "3 days"],
+                    ["it", "3 days"],
+                    ["nl", "3 dagen"],
+                    ["fr", "3 jours"],
+                ]),
+            },
+            {
+                key: '4', role: 'option', content: new Map([
+                    ["en", "4 days"],
+                    ["it", "4 days"],
+                    ["nl", "4 dagen"],
+                    ["fr", "4 jours"],
+                ]),
+            },
+            {
+                key: '5', role: 'option', content: new Map([
+                    ["en", "5 - 7 days"],
+                    ["it", "5 - 7 days"],
+                    ["nl", "5 - 7 dagen"],
+                    ["fr", "5 - 7 jours"],
+                ]),
+            },
+            {
+                key: '6', role: 'option', content: new Map([
+                    ["en", "More than 7 days"],
+                    ["it", "Più di 7 giorni"],
+                    ["nl", "Meer dan 7 dagen"],
+                    ["fr", "Plus de 7 jours"],
+                ]),
+            },
+            {
+                key: '7', role: 'option', content: new Map([
+                    ["en", "I don't know/can't remember"],
+                    ["it", "I don't know/can't remember"],
+                    ["nl", "Dat weet ik niet (meer)"],
+                    ["fr", "Je ne sais pas / je ne m'en souviens plus"],
+                ]),
+            },
+        ]
+    };
+
+    const rg_inner = initMatrixQuestion(matrixKey, [
+        {
+            key: 'header', role: 'headerRow', cells: [
+                {
+                    key: 'col0', role: 'text', content: new Map([
+                        ["en", "Medical Service"],
+                        ["it", "Medical Service"],
+                        ["nl", "Medische hulpverlener"],
+                        ["fr", "Service médical"],
+                    ]),
+                },
+                {
+                    key: 'col1', role: 'text'
+                },
+            ]
+        },
+        {
+            key: 'r1', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "GP - spoke to receptionist only"],
+						["it", "GP - ha parlato solo con l'addetto alla reception"],
+						["nl", "Huisarts - sprak alleen met receptioniste"],
+						["fr", "GP - n'a parlé qu'à la réceptionniste"],
+                    ]),
+                },
+                { ...ddOptions }
+            ],
+            displayCondition: expWithArgs('responseHasKeysAny', keyContactedMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+        },
+        {
+            key: 'r2', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "GP - spoke to the doctor or nurse."],
+						["it", "GP - ha parlato con il medico o l'infermiere"],
+						["nl", "Huisarts - sprak met de arts of verpleegkundige"],
+						["fr", "GP - parlé au médecin ou à l'infirmière"],
+                    ]),
+                },
+                { ...ddOptions }
+            ],
+            displayCondition: expWithArgs('responseHasKeysAny', keyContactedMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+        },
+        {
+            key: 'r3', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "NHS Direct or similar"],
+						["it", "Linea informazioni 1500 o simile"],
+						["nl", "Informatielijn volksgezondheid of vergelijkbaar"],
+						["fr", "Ligne d'information sur la santé publique ou similaire"],
+                    ]),
+                },
+                { ...ddOptions }
+            ],
+            displayCondition: expWithArgs('responseHasKeysAny', keyContactedMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '3')
+        },
+        {
+            key: 'r4', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+						["en", "NPFS"],
+						["it", "NPFS"],
+						["nl", "NPFS"],
+						["fr", "NPFS"],
+                    ]),
+                },
+                { ...ddOptions }
+            ],
+            displayCondition: expWithArgs('responseHasKeysAny', keyContactedMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '4')
+        },
+		{
+            key: 'r5', role: 'responseRow', cells: [
+                {
+                    key: 'col0', role: 'label', content: new Map([
+                        ["en", "Other medical services"],
+                        ["it", "Other medical services"],
+                        ["nl", "Andere medische hulp."],
+                        ["fr", "Autre service médical"],
+                    ]),
+                },
+                { ...ddOptions }
+            ],
+            displayCondition: expWithArgs('responseHasKeysAny', keyContactedMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '5')
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
 
 /**
  * TOOK ANY MEDICATION
@@ -3711,6 +4124,8 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
 export const WeeklyQuestions = {
     causeOfSymptoms,
     consentForSymptoms,
+    contactedMedicalService,
+    contactedMedicalServiceWhen,
     covidHouseholdContact,
     covidSymptomsContact,
     dailyRoutine,

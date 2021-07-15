@@ -120,6 +120,14 @@ const weekly = (): Survey | undefined => {
     const Q_visitedMedicalServiceWhen = CommonPoolWeekly.visitedMedicalServiceWhen(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
     survey.addExistingSurveyItem(Q_visitedMedicalServiceWhen, hasSymptomGroupKey);
 
+    // // Q8 contacted medical service --------------------------------------
+    const Q_contactedMedicalService = CommonPoolWeekly.contactedMedicalService(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_contactedMedicalService, hasSymptomGroupKey);
+
+    // // Q8b how soon contacted medical service --------------------------------------
+    const Q_contactedMedicalServiceWhen = CommonPoolWeekly.contactedMedicalServiceWhen(hasSymptomGroupKey, Q_contactedMedicalService.key, true);
+    survey.addExistingSurveyItem(Q_contactedMedicalServiceWhen, hasSymptomGroupKey);
+
     // // Q9 took medication --------------------------------------
     const Q_tookMedication = CommonPoolWeekly.tookMedication(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);
