@@ -67,6 +67,16 @@ const weekly = (): Survey | undefined => {
     const Q_same_illnes = CommonPoolWeekly.sameIllnes(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_same_illnes, hasSymptomGroupKey);
 
+
+
+    // // Qcov3 pcr tested contact COVID-19--------------------------------------
+    const Q_covidPCRTestedContact = CommonPoolWeekly.pcrTestedContact(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_covidPCRTestedContact, hasSymptomGroupKey);
+
+    // // Qcov3b household pcr contacts COVID-19--------------------------
+    const Q_pcrHouseholdContact = CommonPoolWeekly.pcrHouseholdContact(hasSymptomGroupKey, Q_covidPCRTestedContact.key, true);
+    survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
+
     // // Q3 when first symptoms --------------------------------------
     const Q_symptomStart = CommonPoolWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
@@ -140,14 +150,6 @@ const weekly = (): Survey | undefined => {
     //Q_BE_cov16z duration untill test result
     const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
     survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
-
-    // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
-    const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, true, "Qcov_BE_3");
-    survey.addExistingSurveyItem(Q_covidPCRTestedContact, hasSymptomGroupKey);
-
-    // // Qcov_BE_3b household pcr contacts COVID-19--------------------------
-    const Q_pcrHouseholdContact = pcrHouseholdContact(hasSymptomGroupKey, Q_covidPCRTestedContact.key, true, "Qcov_BE_3b");
-    survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
 
     // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
     const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, true, "Qcov_BE_8");
@@ -995,215 +997,6 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent(ddOptions, rg?.key);
-
-    // VALIDATIONs
-    if (isRequired) {
-        editor.addValidation({
-            key: 'r1',
-            type: 'hard',
-            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-        });
-    }
-
-    return editor.getItem();
-}
-
-/**
- * PCR TESTED CONTACTS COVID-19: single choice question about contact with PCR tested Covid19 patients
- *
- * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
- * @param keySymptomsQuestion reference to the symptom survey
- * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
- * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
- */
-const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Qcov_BE_3'
-    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
-    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
-
-    // QUESTION TEXT
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl-be", "In de 14 dagen voor de start van uw symptomen, bent u in nauw contact geweest met één of meerdere personen die een positieve test hadden voor COVID-19 (deze persoon kan al dan niet symptomen vertonen)?"],
-            ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une ou plusieurs personne(s) ayant obtenu un résultat positif au test de dépistage du coronavirus (cette personne peut présenter ou non des symptômes) ?"],
-            ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit einer oder mehreren Personen, die einen positiven Test auf COVID-19 hatten (Diese Person kann Symptome aufweisen oder auch nicht!)?"],
-            ["en", "During the 14 days before your symptoms appeared, were you  in close contact with one or more person(s) who tested positive for coronavirus (whether or not the person had symptoms)?"],
-        ]))
-    );
-
-    // CONDITION
-    // none
-
-    // INFO POPUP
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen wir das?"],
-                    ["en", "Why are we asking this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Om te onderzoeken hoe COVID-19 zich verspreidt in de algemene bevolking."],
-                    ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
-                    ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
-                    ["en", "In  order to study how the coronavirus spreads within the general population."],
-                ]),
-            },
-        ])
-    );
-
-    // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '1', role: 'option', content: new Map([
-                ["nl-be", "Ja"],
-                ["fr-be", "Oui"],
-                ["de-be", "Ja"],
-                ["en", "Yes"],
-
-            ])
-        },
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee"],
-                ["fr-be", "Non"],
-                ["de-be", "Nein"],
-                ["en", "No"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee, ik weet het niet (meer)"],
-                ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en", "I don’t know/can’t remember"],
-            ])
-        },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    // VALIDATIONs
-    if (isRequired) {
-        editor.addValidation({
-            key: 'r1',
-            type: 'hard',
-            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-        });
-    }
-
-    return editor.getItem();
-}
-
-/**
- * HOUSEHOLD PCR TESTED CONTACT COVID-19: single choice question about household contacts who are PCR tested Covid19 patients
- *
- * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
- * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
- * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
- */
-const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Qcov_BE_3b'
-    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
-    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
-
-    // QUESTION TEXT
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl-be", "Behoort deze persoon of één van deze personen tot uw huishouden?"],
-            ["fr-be", "Cette personne ou l'une de ces personnes fait-elle partie de votre ménage ou de votre foyer ?"],
-            ["de-be", "Gehört diese Person oder eine dieser Personen zu Ihrem Haushalt?"],
-            ["en", "Was this person or one of these persons a member of your household?"],
-        ]))
-    );
-
-    // CONDITION
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', covid19ContactKey, [responseGroupKey, singleChoiceKey].join('.'), '1'),
-    );
-
-    // INFO POPUP
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen wir das?"],
-                    ["en", "Why are we asking this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "COVID-19 en griep verspreiden zich zeer binnenshuis."],
-                    ["fr-be", "Le coronavirus et la grippe se propagent beaucoup à l'intérieur."],
-                    ["de-be", "COVID-19 und Grippe verbreiten sich sehr stark im Hause."],
-                    ["en", "The coronavirus and influenza spread quickly indoors."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question ?"],
-                    ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en", "How should I answer this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Een lid van het huishouden wordt gedefinieerd als iemand (niet noodzakelijk verwant) die op hetzelfde adres woont als u en die de kookgelegenheid, woonkamer, zitkamer of eethoek deelt."],
-                    ["fr-be", "Un membre du ménage ou du foyer est défini comme une personne (pas nécessairement apparentée) qui vit à la même adresse que vous, et qui partage la cuisine, le salon, la salle de séjour ou la salle à manger."],
-                    ["de-be", "Ein Mitglied des Haushalts wird als jemand (nicht notwendigerweise verwandt) definiert, der an derselben Anschrift wie Sie wohnt und mit dem Sie die Kochgelegenheit, Wohnzimmer oder Essecke teilen."],
-                    ["en", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
-                ]),
-            },
-        ])
-    );
-
-    // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '1', role: 'option', content: new Map([
-                ["nl-be", "Ja"],
-                ["fr-be", "Oui"],
-                ["de-be", "Ja"],
-                ["en", "Yes"],
-
-            ])
-        },
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee"],
-                ["fr-be", "Non"],
-                ["de-be", "Nein"],
-                ["en", "No"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee, ik weet het niet"],
-                ["fr-be", "Je ne sais pas"],
-                ["de-be", "Ich weiß es nicht"],
-                ["en", "I don’t know"],
-            ])
-        },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
