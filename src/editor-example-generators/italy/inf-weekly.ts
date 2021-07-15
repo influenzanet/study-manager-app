@@ -77,6 +77,13 @@ const weekly = (): Survey | undefined => {
     const Q_pcrHouseholdContact = CommonPoolWeekly.pcrHouseholdContact(hasSymptomGroupKey, Q_covidPCRTestedContact.key, true);
     survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
 
+    // // Qcov8 contact with people showing symptoms -------------------------------------
+    const Q_covidContact = CommonPoolWeekly.covidSymptomsContact(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_covidContact, hasSymptomGroupKey);
+
+    // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
+    const Q_covidHouseholdContact = covidHouseholdContact(hasSymptomGroupKey, Q_covidContact.key, true, "Qcov_BE_8b");
+    survey.addExistingSurveyItem(Q_covidHouseholdContact, hasSymptomGroupKey);
     // // Q3 when first symptoms --------------------------------------
     const Q_symptomStart = CommonPoolWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
@@ -126,7 +133,6 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_dailyRoutineDaysMissed, hasSymptomGroupKey);
 
 
-
     // Q_BE_1_3 COVID-19 test
     const Q_covidTest = covidTest(rootKey, true, "Q_BE_1_3");
     survey.addExistingSurveyItem(Q_covidTest, rootKey);
@@ -150,15 +156,6 @@ const weekly = (): Survey | undefined => {
     //Q_BE_cov16z duration untill test result
     const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
     survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
-
-    // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
-    const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, true, "Qcov_BE_8");
-    survey.addExistingSurveyItem(Q_covidContact, hasSymptomGroupKey);
-
-    // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
-    const Q_covidHouseholdContact = covidHouseholdContact(hasSymptomGroupKey, Q_covidContact.key, true, "Qcov_BE_8b");
-    survey.addExistingSurveyItem(Q_covidHouseholdContact, hasSymptomGroupKey);
-
 
     // // Qcov_BE_18 reasons no medical services-----------------------------------------
     const Q_visitedNoMedicalService = visitedNoMedicalService(hasSymptomGroupKey, Q_visitedMedicalService.key, true, "Qcov_BE_18");
@@ -997,101 +994,6 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent(ddOptions, rg?.key);
-
-    // VALIDATIONs
-    if (isRequired) {
-        editor.addValidation({
-            key: 'r1',
-            type: 'hard',
-            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-        });
-    }
-
-    return editor.getItem();
-}
-
-/**
- * CONTACT WITH SYMPTOMATIC PERSONS: single choice question about contact with people showing covid symptoms
- *
- * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
- * @param keySymptomsQuestion reference to the symptom survey
- * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
- * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
- */
-const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Qcov_BE_8'
-    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
-    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
-
-    // QUESTION TEXT
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl-be", "In de 14 dagen voor de start van uw symptomen, bent u in nauw contact geweest met iemand die symptomen van COVID-19 vertoonde?"],
-            ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une personne présentant des symptômes du coronavirus ?"],
-            ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit jemandem, der die Symptome von COVID-19 aufwies?"],
-            ["en", "During the 14 days before your symptoms appeared, were you in close contact with a person with coronavirus symptoms?"],
-        ]))
-    );
-
-    // CONDITION
-    // none
-
-    // INFO POPUP
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen wir das?"],
-                    ["en", "Why are we asking this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Om te onderzoeken hoe COVID-19 zich verspreidt in de algemene bevolking."],
-                    ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
-                    ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
-                    ["en", "In  order to study how the coronavirus spreads within the general population."],
-                ]),
-            },
-        ])
-    );
-
-    // RESPONSE PART
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
-        {
-            key: '1', role: 'option', content: new Map([
-                ["nl-be", "Ja"],
-                ["fr-be", "Oui"],
-                ["de-be", "Ja"],
-                ["en", "Yes"],
-
-            ])
-        },
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee"],
-                ["fr-be", "Non"],
-                ["de-be", "Nein"],
-                ["en", "No"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee, ik weet het niet (meer)"],
-                ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en", "I don’t know/can’t remember"],
-            ])
-        },
-    ]);
-    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
