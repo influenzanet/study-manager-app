@@ -141,6 +141,8 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q19(this.key, true))
         this.addItem(Q20(this.key, true))
         this.addItem(Q21(this.key, true))
+        // TODO: add condition, show this text only in case TEST.Q11 = "yes" (in T0 OR in T3/6/9/12)
+        this.addItem(Q_instructions_eind(this.key))
     }
 }
 
@@ -1586,5 +1588,28 @@ const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         placeholderText: new Map([
             ["nl", "Opmerkingen"]
         ])
+    });
+}
+
+
+// TODO: add condition, show this text only in case TEST.Q11 = "yes" (in T0 OR in T3/6/9/12)
+const Q_instructions_eind = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+### Advies en ondersteuning langdurige gezondheidsklachten
+
+Voor advies en ondersteuning rondom langdurige gezondheidsklachten door het coronavirus kun je terecht bij [c-support](https://www.c-support.nu/). Op [coronaplein.nu](https://coronaplein.nu/) vind je informatie en advies over herstel, ontmoet je lotgenoten en kun je jouw ervaringen delen. Ook kun je op dit patiëntenplatform via een chatfunctie vragen stellen aan zorgprofessionals.
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'ondersteuning',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
     });
 }
