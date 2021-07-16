@@ -128,6 +128,14 @@ const weekly = (): Survey | undefined => {
     const Q_contactedMedicalServiceWhen = CommonPoolWeekly.contactedMedicalServiceWhen(hasSymptomGroupKey, Q_contactedMedicalService.key, true);
     survey.addExistingSurveyItem(Q_contactedMedicalServiceWhen, hasSymptomGroupKey);
 
+    // // Qcov18 reasons no medical services-----------------------------------------
+    const Q_visitedNoMedicalService = CommonPoolWeekly.visitedNoMedicalService(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
+    survey.addExistingSurveyItem(Q_visitedNoMedicalService, hasSymptomGroupKey);
+
+    // // Qcov_BE_18b consequences fear-------------------------------------------------
+    const Q_consFear = consFear(hasSymptomGroupKey, Q_visitedMedicalService.key, Q_visitedNoMedicalService.key, true, "Qcov_BE_18b");
+    survey.addExistingSurveyItem(Q_consFear, hasSymptomGroupKey);
+
     // // Q9 took medication --------------------------------------
     const Q_tookMedication = CommonPoolWeekly.tookMedication(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);
@@ -172,14 +180,6 @@ const weekly = (): Survey | undefined => {
     //Q_BE_cov16z duration untill test result
     const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
     survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
-
-    // // Qcov_BE_18 reasons no medical services-----------------------------------------
-    const Q_visitedNoMedicalService = visitedNoMedicalService(hasSymptomGroupKey, Q_visitedMedicalService.key, true, "Qcov_BE_18");
-    survey.addExistingSurveyItem(Q_visitedNoMedicalService, hasSymptomGroupKey);
-
-    // // Qcov_BE_18b consequences fear-------------------------------------------------
-    const Q_consFear = consFear(hasSymptomGroupKey, Q_visitedMedicalService.key, Q_visitedNoMedicalService.key, true, "Qcov_BE_18b");
-    survey.addExistingSurveyItem(Q_consFear, hasSymptomGroupKey);
 
     // // Q_BE_7x duration hospitalisation----------------------------------------------
     const Q_durHosp = durHosp(hasSymptomGroupKey, Q_visitedMedicalService.key, true, "Q_BE_7x");

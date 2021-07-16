@@ -3089,6 +3089,245 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
 }
 
 /**
+ * WHY VISITED AND CONTACTED NO MEDICAL SERVICE
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyVisitedMedicalServ key to check if medical services have been visited.
+ * @param keyContactedMedicalServ key to check if medical services have been contacted.
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: string, keyContactedMedicalServ?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov18';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Wat is de belangrijkste reden dat u geen contact heeft opgenomen met een beroepsbeoefenaar in de gezondheidszorg voor de symptomen die u vandaag heeft gemeld?"],
+            ["fr-be", "Quelle est la principale raison pour laquelle vous n'avez contacté aucun professionnel de la santé pour les symptômes que vous avez signalés aujourd'hui ?"],
+            ["de-be", "Was ist der Hauptgrund, warum Sie wegen der Symptome, die Sie heute gemeldet haben, keinen Arzt kontaktiert haben?"],
+            ["en", "What is the main reason for which you did not contact any health professional for the symptoms you declared today?"],
+            ["it", "What is the main reason for which you did not contact any health professional for the symptoms you declared today?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyVisitedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyContactedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0')
+        )
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om uit te zoeken waarom sommige mensen geen medische hulp zoeken."],
+                    ["fr-be", "Pour savoir pourquoi certaines personnes ne consultent pas un médecin."],
+                    ["de-be", "Um festzustellen, warum manche Menschen keine ärztliche Hilfe aufsuchen."],
+                    ["en", "To understand why some people do not consult a doctor."],
+                    ["it", "To understand why some people do not consult a doctor."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Meerdere antwoorden mogelijk."],
+                    ["fr-be", "Plusieurs réponses sont possibles."],
+                    ["de-be", "Mehrere Antworten möglich."],
+                    ["en", "Multiple answers are possible."],
+                    ["it", "Multiple answers are possible."],
+                ]),
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+                ["it", "Multiple answers possible"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Mijn symptomen kwamen recent op."],
+                ["fr-be", "Mes symptômes sont apparus récemment."],
+                ["de-be", "Meine Symptome traten erst kürzlich auf."],
+                ["en", "My symptoms appeared very recently"],
+                ["it", "My symptoms appeared very recently"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Mijn symptomen zijn mild."],
+                ["fr-be", "Mes symptômes sont légers."],
+                ["de-be", "Meine Symptome sind mild."],
+                ["en", "My symptoms are mild"],
+                ["it", "My symptoms are mild"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Ik heb deze symptomen vaker."],
+                ["fr-be", "Je présente régulièrement ces symptômes."],
+                ["de-be", "Ich habe diese Symptome öfter."],
+                ["en", "I have these symptoms often"],
+                ["it", "I have these symptoms often"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Ik denk te weten wat ik heb en gebruik eigen medicatie."],
+                ["fr-be", "Je pense que je sais ce dont je souffre, et j'ai recours à ma propre médication."],
+                ["de-be", "Ich meine zu wissen, was ich habe, und verwende meine eigene Medikation."],
+                ["en", "I think I know what I have and I self-medicate"],
+                ["it", "I think I know what I have and I self-medicate"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Ik denk dat er geen goede behandeling is voor mijn ziekte."],
+                ["fr-be", "Je pense qu'il n'existe pas de bon traitement pour ma maladie."],
+                ["de-be", "Ich denke, dass es keine gute Behandlung für meine Krankheit gibt."],
+                ["en", "I think there is no effective treatment for the disease I have"],
+                ["it", "I think there is no effective treatment for the disease I have"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Het is te moeilijk om snel een afspraak te verkrijgen."],
+                ["fr-be", "Il est trop difficile d'obtenir rapidement un rendez-vous."],
+                ["de-be", "Es ist zu schwierig, schnell einen Termin zu bekommen."],
+                ["en", "It is too hard to get an appointment quickly"],
+                ["it", "It is too hard to get an appointment quickly"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Ik heb onvoldoende tijd."],
+                ["fr-be", "Je n'ai pas assez de temps."],
+                ["de-be", "Ich habe nicht genug Zeit."],
+                ["en", "I do not have time"],
+                ["it", "I do not have time"],
+            ])
+        },
+        {
+            key: '8', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Omwille van financiële redenen."],
+                ["fr-be", "Pour des raisons financières."],
+                ["de-be", "Aus finanziellen Gründen."],
+                ["en", "For financial reasons"],
+                ["it", "For financial reasons"],
+            ])
+        },
+        {
+            key: '9', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Omwille van angst voor de gevolgen als de dokter vermoedt dat ik COVID-19 heb."],
+                ["fr-be", "Par crainte des conséquences si le médecin me suspecte d'avoir contracté le coronavirus."],
+                ["de-be", "Aufgrund von Angst vor den Folgen, wenn der Arzt vermutet, dass ich COVID-19 habe."],
+                ["en", "For fear of consequences if the doctor thinks I have COVID-19"],
+                ["it", "For fear of consequences if the doctor thinks I have COVID-19"],
+            ])
+        },
+        {
+            key: '10', role: 'input',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            style: [{ key: 'className', value: 'w-100' }],
+            content: new Map([
+                ["nl-be", "Mijn symptomen verschenen zeer recent"],
+                ["fr-be", "Mes symptômes sont apparus très récemment"],
+                ["de-be", "Meine Symptome sind vor kurzem aufgetreten"],
+                ["en", "My symptoms appeared very recently"],
+                ["it", "My symptoms appeared very recently"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["en", "Describe here (optional)"],
+                ["it", "Describe here (optional)"],
+            ])
+        },
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik weet het niet / ik wil niet antwoorden"],
+                ["fr-be", "Je ne sais pas / Je ne veux pas répondre"],
+                ["de-be", "Ich weiß nicht / ich möchte nicht antworten"],
+                ["en", "I don't know / I don't want to answer"],
+                ["it", "I don't know / I don't want to answer"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
  * TOOK ANY MEDICATION
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -4151,5 +4390,6 @@ export const WeeklyQuestions = {
     visitedMedicalService,
     visitedGP,
     visitedMedicalServiceWhen,
+    visitedNoMedicalService,
     whenAntivirals,
 }
