@@ -129,11 +129,11 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_contactedMedicalServiceWhen, hasSymptomGroupKey);
 
     // // Qcov18 reasons no medical services-----------------------------------------
-    const Q_visitedNoMedicalService = CommonPoolWeekly.visitedNoMedicalService(hasSymptomGroupKey, Q_visitedMedicalService.key, true);
+    const Q_visitedNoMedicalService = CommonPoolWeekly.visitedNoMedicalService(hasSymptomGroupKey, Q_visitedMedicalService.key, Q_contactedMedicalService.key, true);
     survey.addExistingSurveyItem(Q_visitedNoMedicalService, hasSymptomGroupKey);
 
-    // // Qcov_BE_18b consequences fear-------------------------------------------------
-    const Q_consFear = consFear(hasSymptomGroupKey, Q_visitedMedicalService.key, Q_visitedNoMedicalService.key, true, "Qcov_BE_18b");
+    // // Qcov18b consequences fear-------------------------------------------------
+    const Q_consFear = CommonPoolWeekly.consFear(hasSymptomGroupKey, Q_visitedMedicalService.key, Q_contactedMedicalService.key, Q_visitedNoMedicalService.key, true);
     survey.addExistingSurveyItem(Q_consFear, hasSymptomGroupKey);
 
     // // Q9 took medication --------------------------------------

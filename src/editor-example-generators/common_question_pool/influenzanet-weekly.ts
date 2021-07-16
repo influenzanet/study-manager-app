@@ -3328,6 +3328,144 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
 }
 
 /**
+ * FEAR CONSEQUENCES
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyVisitedMedicalServ key to Q7.
+ * @param keyContactedMedicalServ key to Q8.
+ * @param keyvisitedNoMedicalService key to Qcov18.
+ *
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContactedMedicalServ?: string, keyvisitedNoMedicalService?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov18b';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Kan u aangeven welke gevolgen u vreest?"],
+            ["fr-be", "Pouvez-vous indiquer les conséquences que vous craignez ?"],
+            ["de-be", "Können Sie angeben, welche Folgen Sie fürchten?"],
+            ["en", "Can you specify which consequences you mainly fear? "],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyVisitedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyContactedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '9')
+        )
+    );
+
+    // INFO POPUP
+    // None
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk'],
+                ["fr-be", "Plusieurs réponses sont possibles"],
+                ["de-be", "Mehrere Antworten möglich"],
+                ["en", "Multiple answers possible"],
+                ["it", "Multiple answers possible"],
+            ])),
+    }, rg?.key);
+
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik moet een test laten uitvoeren."],
+                ["fr-be", "Je dois me faire tester."],
+                ["de-be", "Ich muss einen Test durchführen lassen."],
+                ["en", "Have to do a diagnostic test."],
+                ["it", "Have to do a diagnostic test."],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik moet in quarantaine."],
+                ["fr-be", "Je dois me mettre en quarantaine."],
+                ["de-be", "Ich muss in Quarantäne gehen."],
+                ["en", "Have to be isolated."],
+                ["it", "Have to be isolated."],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik moet stoppen met werken."],
+                ["fr-be", "Je dois arrêter de travailler."],
+                ["de-be", "Ich muss mit dem Arbeiten aufhören."],
+                ["en", "Have to stop working."],
+                ["it", "Have to stop working."],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Veroordeeld worden door anderen."],
+                ["fr-be", "Le jugement des autres."],
+                ["de-be", "Durch andere verurteilt werden."],
+                ["en", "To be judged by others."],
+                ["it", "To be judged by others."],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Door anderen buitengesloten te worden."],
+                ["fr-be", "Être exclu par les autres."],
+                ["de-be", "Von anderen ausgeschlossen werden."],
+                ["en", "To be excluded by others."],
+                ["it", "Essere esclusi da altri."],
+            ])
+        },
+        {
+            key: '6', role: 'input',
+            style: [{ key: 'className', value: 'w-100' }],
+            content: new Map([
+                ["nl-be", "Andere"],
+                ["fr-be", "Autre"],
+                ["de-be", "Andere"],
+                ["en", "Other"],
+                ["it", "Other"],
+            ]),
+            description: new Map([
+                ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
+                ["fr-be", "Veuillez fournir une description ici (facultatif)"],
+                ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
+                ["it", "Describe here (optional)"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
  * TOOK ANY MEDICATION
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -4363,6 +4501,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
 export const WeeklyQuestions = {
     causeOfSymptoms,
     consentForSymptoms,
+    consFear,
     contactedMedicalService,
     contactedMedicalServiceWhen,
     covidHouseholdContact,
