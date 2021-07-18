@@ -60,21 +60,23 @@ export class AcuteHealthGroup extends GroupItemEditor {
             this.isPartOfSurvey(surveyKeys.T0)) {
             hasSymptomsGroup.addItem(Q2(hasSymptomsGroup.key, true));
         }
-            const q4 = Q4(hasSymptomsGroup.key, true);
-            hasSymptomsGroup.addItem(q4);
+        const q4 = Q4(hasSymptomsGroup.key, true);
+        hasSymptomsGroup.addItem(q4);
 
-            hasSymptomsGroup.addItem(Q5(hasSymptomsGroup.key, q4.key, true));
-            hasSymptomsGroup.addItem(Q5a(hasSymptomsGroup.key, q4.key, true));
-            if (this.isPartOfSurvey(surveyKeys.T0)) {
-            hasSymptomsGroup.addItem(Q6(hasSymptomsGroup.key, q4.key, true));}
+        hasSymptomsGroup.addItem(Q5(hasSymptomsGroup.key, q4.key, true));
+        hasSymptomsGroup.addItem(Q5a(hasSymptomsGroup.key, q4.key, true));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            hasSymptomsGroup.addItem(Q6(hasSymptomsGroup.key, q4.key, true));
+        }
 
-            if (this.isPartOfSurvey(surveyKeys.T0)) {
-                hasSymptomsGroup.addItem(Q7_longsymptoms(hasSymptomsGroup.key, this.hasAnyLongSymptoms, true));}
-            hasSymptomsGroup.addItem(Q7(hasSymptomsGroup.key, true));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            hasSymptomsGroup.addItem(Q7_longsymptoms(hasSymptomsGroup.key, this.hasAnyLongSymptoms, true));
+        }
+        hasSymptomsGroup.addItem(Q7(hasSymptomsGroup.key, true));
 
-            if (
-                this.isPartOfSurvey(surveyKeys.T0) 
-            ) {
+        if (
+            this.isPartOfSurvey(surveyKeys.T0)
+        ) {
             const q8 = Q8(hasSymptomsGroup.key, true);
             hasSymptomsGroup.addItem(q8)
 
