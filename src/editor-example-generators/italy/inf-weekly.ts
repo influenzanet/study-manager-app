@@ -156,6 +156,10 @@ const weekly = (): Survey | undefined => {
     const Q_durationLabSampling = CommonPoolWeekly.durationLabSampling(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true)
     survey.addExistingSurveyItem(Q_durationLabSampling, hasSymptomGroupKey);
 
+    //Qcov16f rapid test result
+    const Q_resultRapidTest = CommonPoolWeekly.resultRapidTest(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true)
+    survey.addExistingSurveyItem(Q_resultRapidTest, hasSymptomGroupKey);
+
     // // Q9 took medication --------------------------------------
     const Q_tookMedication = CommonPoolWeekly.tookMedication(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);

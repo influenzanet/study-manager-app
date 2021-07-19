@@ -3698,6 +3698,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                 ["fr-be", "Oui, résultat non interprétable"],
                 ["de-be", "Ja, nicht interpretierbares Ergebnis"],
                 ["en", "Yes, the results are inconclusive"],
+                ["it", "Yes, the results are inconclusive"],
             ])
         },
         {
@@ -3707,6 +3708,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                 ["fr-be", "Non, je n'ai pas encore reçu le résultat du test"],
                 ["de-be", "Nein, ich habe noch kein Testergebnis"],
                 ["en", "No, I have not yet received the test results"],
+                ["it", "No, I have not yet received the test results"],
             ])
         },
     ]);
@@ -3810,6 +3812,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                 ["fr-be", "Oui, résultat non interprétable"],
                 ["de-be", "Ja, nicht interpretierbares Ergebnis"],
                 ["en", "Yes, the results are inconclusive"],
+                ["it", "Yes, the results are inconclusive"],
             ])
         },
         {
@@ -3819,6 +3822,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                 ["fr-be", "Non, je n'ai pas encore reçu le résultat du test"],
                 ["de-be", "Nein, ich habe noch kein Testergebnis"],
                 ["en", "No, I have not yet received the test results"],
+                ["it", "No, I have not yet received the test results"],
             ])
         },
     ]);
@@ -4150,6 +4154,120 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
 
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     editor.addExistingResponseComponent(ddOptions, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * RESULT COVID-19 RAPID TEST: result COVID-19 rapid test
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keysymptomImpliedCovidTest key to the answer of Qcov16
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const resultRapidTest = (parentKey: string, keysymptomImpliedCovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov16f'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Heeft u de COVID-19 Rapid testresultaten reeds ontvangen?"],
+            ["fr-be", "Avez-vous déjà reçu les résultats du test de dépistage du Rapid ?"],
+            ["de-be", "Haben Sie die COVID-19-Rapid-Testergebnisse bereits erhalten?"],
+            ["en", "Have you received the results of your Rapid test?"],
+            ["it", "Have you received the results of your Rapid test?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keysymptomImpliedCovidTest, responseGroupKey + '.' + multipleChoiceKey, '5'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten hoe COVID-19 zich verspreidt in de bevolking."],
+                    ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
+                    ["de-be", "Wir möchten wissen, wie COVID-19 sich in der Bevölkerung ausbreitet."],
+                    ["en", "We want to understand how the coronavirus is spreading within the population."],
+                    ["it", "We want to understand how the coronavirus is spreading within the population."],
+                ]),
+                //style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, positief voor COVID-19"],
+                ["fr-be", "Oui, positif au coronavirus"],
+                ["de-be", "Ja, positiv auf COVID-19"],
+                ["en", "Yes, the test is positive for coronavirus"],
+                ["it", "Yes, the test is positive for coronavirus"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, negatief voor COVID-19"],
+                ["fr-be", "Oui, négatif au coronavirus"],
+                ["de-be", "Ja, negativ auf COVID-19"],
+                ["en", "Yes, the test is negative for coronavirus"],
+                ["it", "Yes, the test is negative for coronavirus"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja, niet-interpreteerbaar resultaat"],
+                ["fr-be", "Oui, résultat non interprétable"],
+                ["de-be", "Ja, nicht interpretierbares Ergebnis"],
+                ["en", "Yes, the results are inconclusive"],
+                ["it", "Yes, the results are inconclusive"],
+            ])
+        },
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
+                ["de-be", "ich weiß es nicht/kann mich nicht erinnern"],
+                ["nl-be", "Dit wil ik niet aangeven"],
+                ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
+            ]),
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {
@@ -5220,6 +5338,7 @@ export const WeeklyQuestions = {
     pcrHouseholdContact,
     pcrTestedContact,
     resultPCRTest,
+    resultRapidTest,
     resultSerologicalTest,
     sameIllnes,
     symptomImpliedCovidTest,
