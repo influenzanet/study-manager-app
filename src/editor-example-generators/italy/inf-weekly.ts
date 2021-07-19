@@ -177,6 +177,10 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_whenAntivirals, hasSymptomGroupKey);
 
     // // Q10 daily routine------------------------------------------------
+    const Q_hospitalized = CommonPoolWeekly.hospitalized(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_hospitalized, hasSymptomGroupKey);
+
+    // // Q10 daily routine------------------------------------------------
     const Q_dailyRoutine = CommonPoolWeekly.dailyRoutine(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_dailyRoutine, hasSymptomGroupKey);
 
@@ -187,23 +191,6 @@ const weekly = (): Survey | undefined => {
     // // Q10c daily routine days-----------------------------------------
     const Q_dailyRoutineDaysMissed = CommonPoolWeekly.dailyRoutineDaysMissed(hasSymptomGroupKey, Q_dailyRoutine.key, true);
     survey.addExistingSurveyItem(Q_dailyRoutineDaysMissed, hasSymptomGroupKey);
-
-
-    // Q_BE_1_3 COVID-19 test
-    const Q_covidTest = covidTest(rootKey, true, "Q_BE_1_3");
-    survey.addExistingSurveyItem(Q_covidTest, rootKey);
-
-    // Q_BE_1_4 reason test
-    const Q_reasonTest = reasonTest(rootKey, Q_covidTest.key, true, "Q_BE_1_4");
-    survey.addExistingSurveyItem(Q_reasonTest, rootKey);
-
-    // Q_BE_1_5 date test
-    const Q_dateTest = dateTest(rootKey, Q_covidTest.key, true, "Q_BE_1_5");
-    survey.addExistingSurveyItem(Q_dateTest, rootKey);
-
-    /* //Q_BE_cov16z duration untill test result
-    const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
-    survey.addExistingSurveyItem(Q_durationTestResult, rootKey); */
 
     // // Q_BE_7x duration hospitalisation----------------------------------------------
     const Q_durHosp = durHosp(hasSymptomGroupKey, Q_visitedMedicalService.key, true, "Q_BE_7x");

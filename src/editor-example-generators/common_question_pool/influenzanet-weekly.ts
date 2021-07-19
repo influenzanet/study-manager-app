@@ -4925,6 +4925,97 @@ const whenAntivirals = (parentKey: string, keyMedicineToken: string, isRequired?
     return editor.getItem();
 }
 
+/**
+ * HOSPITALIZED BECAUSE OF SYMPTOMS: single choice question to check if symptoms lead to hospitalization
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const hospitalized = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q14'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Bent u vanwege uw klachten opgenomen in het ziekenhuis?"],
+            ["fr-be", "En raison de vos symptômes, avez-vous été hospitalisé ?"],
+            ["de-be", "Wurden Sie aufgrund Ihrer Symptome ins Krankenhaus eingeliefert?"],
+            ["en", "Because of your symptoms, were you hospitalized?"],
+            ["it", "Because of your symptoms, were you hospitalized?"],
+        ]))
+    );
+
+    // CONDITION
+    // None
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen inzicht krijgen in het aantal ziekenhuisopnames vanwege symptomen"],
+                    ["fr-be", "Nous voulons comprendre les taux d'hospitalisation en raison de symptômes"],
+                    ["de-be", "Wir möchten die Krankenhauseinweisungsraten aufgrund von Symptomen verstehen"],
+                    ["en", "We want to understand the rates of hospitalization due to symptoms"],
+                    ["it", "We want to understand the rates of hospitalization due to symptoms"],
+                ]),
+                //style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option', content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+                ["it", "Yes"],
+
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+                ["it", "No"],
+            ])
+        }
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
 
 /**
  * DAILY ROUTINE
@@ -5566,6 +5657,7 @@ export const WeeklyQuestions = {
     dailyRoutineDaysMissed,
     durationLabSampling,
     durationLabSearch,
+    hospitalized,
     feverGroup: {
         all: getFullFeverGroup,
         feverStart,
