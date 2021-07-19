@@ -18,7 +18,7 @@ export class VaccinationGroup extends GroupItemEditor {
         if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions(this.key))
         }
-        if (!this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(Q_instructionsVACCFU(this.key));}
+        if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(Q_instructionsVACCFU(this.key)); }
         const vacc = q_vacc_def(this.key, true);
         const vacc_FU = q_vacc_def_FU(this.key, true);
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
@@ -32,8 +32,8 @@ export class VaccinationGroup extends GroupItemEditor {
         const vacc2_date1 = q_vacc2_date1_def(this.key, true, condition_2vacc);
         const vacc2_date1_FU = q_vacc2_date1_def_FU(this.key, true, condition_2vacc_FU);
 
-        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(vacc);}
-        if (!this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(vacc_FU);}
+        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc); }
+        if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc_FU); }
         this.addItem(vacc_num);
         this.addItem(vacc_num_FU);
         this.addItem(q_vacc_type_def(this.key, true, condition_vacc_yes));
@@ -370,9 +370,10 @@ const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: E
     });
 }
 
-// TODO: add restrictions date: not in future and not before january 2021
+
 const q_vacc1_date_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4_FU';
+
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -386,6 +387,10 @@ const q_vacc1_date_def_FU = (parentKey: string, isRequired?: boolean, condition?
                 content: new Map([
                     ["nl", "Op deze datum:"],
                 ]),
+                optionProps: {
+                    min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                    max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                },
             },
             {
                 key: '1', role: 'option',
@@ -417,7 +422,7 @@ const q_vacc2_date1_def = (parentKey: string, isRequired?: boolean, condition?: 
     });
 }
 
-// TODO: add restrictions date: not in future and not before january 2021
+
 const q_vacc2_date1_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5_FU';
     return SurveyItemGenerators.singleChoice({
@@ -433,6 +438,10 @@ const q_vacc2_date1_def_FU = (parentKey: string, isRequired?: boolean, condition
                 content: new Map([
                     ["nl", "Op deze datum:"],
                 ]),
+                optionProps: {
+                    min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                    max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                },
             },
             {
                 key: '1', role: 'option',
@@ -471,7 +480,7 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
     });
 }
 
-// TODO: add restrictions date: not in future and not before january 2021
+
 const q_vacc2_date2_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6_FU';
     return SurveyItemGenerators.singleChoice({
@@ -487,6 +496,10 @@ const q_vacc2_date2_def_FU = (parentKey: string, isRequired?: boolean, condition
                 content: new Map([
                     ["nl", "Op deze datum:"],
                 ]),
+                optionProps: {
+                    min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                    max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                },
             },
             {
                 key: '1', role: 'option',
