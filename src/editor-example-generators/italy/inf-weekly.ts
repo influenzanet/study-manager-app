@@ -161,8 +161,12 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_resultRapidTest, hasSymptomGroupKey);
 
     // // Qcov19 test -----------------------------------------------------
-    const q_fluTest = CommonPoolWeekly.fluTest(hasSymptomGroupKey, true);
-    survey.addExistingSurveyItem(q_fluTest, hasSymptomGroupKey);
+    const Q_fluTest = CommonPoolWeekly.fluTest(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(Q_fluTest, hasSymptomGroupKey);
+
+    //Qcov19b Flu PCR test result
+    const Q_resultFluPCRTest = CommonPoolWeekly.resultFluTest(hasSymptomGroupKey, Q_fluTest.key, true)
+    survey.addExistingSurveyItem(Q_resultFluPCRTest, hasSymptomGroupKey);
 
     // // Q9 took medication --------------------------------------
     const Q_tookMedication = CommonPoolWeekly.tookMedication(hasSymptomGroupKey, true);
