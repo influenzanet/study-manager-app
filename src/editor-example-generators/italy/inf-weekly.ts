@@ -152,6 +152,10 @@ const weekly = (): Survey | undefined => {
     const Q_durationTestResult = CommonPoolWeekly.durationLabSearch(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true)
     survey.addExistingSurveyItem(Q_durationTestResult, hasSymptomGroupKey);
 
+    //Qcov16e duration between symptoms and test sampling
+    const Q_durationLabSampling = CommonPoolWeekly.durationLabSampling(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true)
+    survey.addExistingSurveyItem(Q_durationLabSampling, hasSymptomGroupKey);
+
     // // Q9 took medication --------------------------------------
     const Q_tookMedication = CommonPoolWeekly.tookMedication(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);
@@ -184,10 +188,6 @@ const weekly = (): Survey | undefined => {
     // Q_BE_1_5 date test
     const Q_dateTest = dateTest(rootKey, Q_covidTest.key, true, "Q_BE_1_5");
     survey.addExistingSurveyItem(Q_dateTest, rootKey);
-
-    //Q_BE_cov16e duration untill test
-    const Q_durationTest = durationTest(rootKey, Q_covidTest.key, Q_reasonTest.key, true, "Q_BE_cov16e")
-    survey.addExistingSurveyItem(Q_durationTest, rootKey);
 
     /* //Q_BE_cov16z duration untill test result
     const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
@@ -528,192 +528,6 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
         },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
-
-    // VALIDATIONs
-    if (isRequired) {
-        editor.addValidation({
-            key: 'r1',
-            type: 'hard',
-            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-        });
-    }
-
-    return editor.getItem();
-}
-
-/**
- * DURATION COVID-19 TEST: duration since symptoms untill COVID-19 test
- * TO DO: fix dropdown menu
- *
- * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
- * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
- * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
- */
-const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Qcov_BE_16e'
-    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
-    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
-
-    // QUESTION TEXT
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl-be", "Hoe snel na de start van uw symptomen/klachten heeft u een COVID-19 test kunnen laten uitvoeren?"],
-            ["fr-be", "Combien de temps après le début de vos symptômes/plaintes avez-vous pu passer un test de dépistage du coronavirus ?"],
-            ["de-be", "Wie schnell nach dem Beginn Ihrer Symptome/Beschwerden konnten Sie einen COVID-19-Test durchführen lassen?"],
-            ["en", "How long after the onset of your symptoms / complaints were you able to get tested for coronavirus?"],
-        ]))
-    );
-
-    // CONDITION
-    editor.setCondition(
-        expWithArgs('and',
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0'),
-            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0')
-        )
-    );
-
-    // INFO POPUP
-    editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen wir das?"],
-                    ["en", "Why are we asking this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "We willen onderzoeken hoeveel tijd er gaat tussen de ontwikkeling van de symptomen en het moment dat een persoon zich laat of kan laten testen."],
-                    ["fr-be", "Nous voulons savoir combien de temps s'écoule entre l'apparition des symptômes et le moment où une personne se fait ou peut se faire tester."],
-                    ["de-be", "Wir möchten untersuchen, wieviel Zeit zwischen der Entwicklung der Symptome und dem Moment vergeht, in dem eine Person sich testen lässt oder testen lassen kann."],
-                    ["en", "We want to know how much time elapses between the onset of symptoms and the moment a person is or can get tested."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question ?"],
-                    ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en", "How should I answer this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Maak een zo goed mogelijke inschatting."],
-                    ["fr-be", "Faites une estimation de la manière la plus précise possible."],
-                    ["de-be", "Nehmen Sie eine bestmögliche Einschätzung vor."],
-                    ["en", "Please provide as precise an estimate as possible."],
-                ]),
-                // style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
-
-    // RESPONSE PART
-    const ddOptions = initDropdownGroup('ddg', [
-        {
-            key: '0', role: 'option',
-            content: new Map([
-                ["nl-be", "Op dezelfde dag"],
-                ["fr-be", "Le jour même "],
-                ["de-be", "Le jour même "],
-                ["en", "The same day"],
-            ])
-        },
-        {
-            key: '1', role: 'option',
-            content: new Map([
-                ["nl-be", "1 dag"],
-                ["fr-be", "1 jour"],
-                ["de-be", "1 Tag"],
-                ["en", "1 day"],
-            ])
-        },
-        {
-            key: '2', role: 'option', content: new Map([
-                ["nl-be", "2 dagen"],
-                ["fr-be", "2 jours"],
-                ["de-be", "2 Tagen"],
-                ["en", "2 days"],
-            ]),
-        },
-        {
-            key: '3', role: 'option', content: new Map([
-                ["nl-be", "3 dagen"],
-                ["fr-be", "3 jours"],
-                ["de-be", "3 Tagen"],
-                ["en", "3 days"],
-            ]),
-        },
-        {
-            key: '4', role: 'option', content: new Map([
-                ["nl-be", "4 dagen"],
-                ["fr-be", "4 jours"],
-                ["de-be", "4 Tagen"],
-                ["en", "4 days"],
-            ]),
-        },
-        {
-            key: '5', role: 'option', content: new Map([
-                ["nl-be", "5 dagen"],
-                ["fr-be", "5 jours"],
-                ["de-be", "5 Tagen"],
-                ["en", "5 days"],
-            ]),
-        },
-        {
-            key: '6', role: 'option', content: new Map([
-                ["nl-be", "6 dagen"],
-                ["fr-be", "6 jours"],
-                ["de-be", "6 Tagen"],
-                ["en", "6 days"],
-            ]),
-        },
-        {
-            key: '7', role: 'option', content: new Map([
-                ["nl-be", "7 dagen"],
-                ["fr-be", "7 jours"],
-                ["de-be", "7 Tagen"],
-                ["en", "7 days"],
-            ]),
-        },
-        {
-            key: '8', role: 'option', content: new Map([
-                ["nl-be", "meer dan 7 dagen"],
-                ["fr-be", "plus de 7 jours"],
-                ["de-be", "mehr als 7 Tage"],
-                ["en", "more than 7 days"],
-            ]),
-        },
-        {
-            key: '99', role: 'option', content: new Map([
-                ["nl-be", "Ik weet het niet (meer)"],
-                ["fr-be", "Je ne sais pas (plus)"],
-                ["de-be", "Ich weiß es nicht (mehr)"],
-                ["en", "I don’t know/can’t remember"],
-
-            ])
-        },
-        // {
-        //     key: '1', role: 'numberInput',
-        //     //properties:{min:0,max:14},
-        //     description: new Map([
-        //         ["nl-be", "Dagen"],
-        //         ["fr-be", "Jours"],
-        //         ["de-be", "Tage"],
-        //         ["en", "Days"],
-        //     ])
-        // },
-    ]);
-
-    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    editor.addExistingResponseComponent(ddOptions, rg?.key);
 
     // VALIDATIONs
     if (isRequired) {

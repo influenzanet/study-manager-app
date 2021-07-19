@@ -4004,6 +4004,166 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
 }
 
 /**
+ * DURATION COVID-19 LAB SAMPLING: duration between the start of symptoms and the time the test was carried out.
+ * TO DO: fix dropdown menu
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keysymptomImpliedCovidTest key to the answer of Qcov16
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov16e'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Hoeveel tijd is er verstreken tussen het begin van uw symptomen en de bemonstering?"],
+            ["fr-be", "Combien de temps s'est écoulé entre le début de vos symptômes et le prélèvement ?"],
+            ["de-be", "Wie viel Zeit verging zwischen dem Beginn Ihrer Symptome und der Probenahme?"],
+            ["en", "How much time passed between the beginning of your symptoms and the sampling?"],
+            ["it", "How much time passed between the beginning of your symptoms and the sampling?"],
+        ]))
+    );
+
+   // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keysymptomImpliedCovidTest, responseGroupKey + '.' + multipleChoiceKey, '1'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen onderzoeken hoeveel tijd er gaat tussen de ontwikkeling van de symptomen en het moment dat een persoon zich laat of kan laten testen."],
+                    ["fr-be", "Nous voulons savoir combien de temps s'écoule entre l'apparition des symptômes et le moment où une personne se fait ou peut se faire tester."],
+                    ["de-be", "Wir möchten untersuchen, wieviel Zeit zwischen der Entwicklung der Symptome und dem Moment vergeht, in dem eine Person sich testen lässt oder testen lassen kann."],
+                    ["en", "We want to know how much time elapses between the onset of symptoms and the moment a person is or can get tested."],
+                    ["it", "We want to know how much time elapses between the onset of symptoms and the moment a person is or can get tested."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Maak een zo goed mogelijke inschatting."],
+                    ["fr-be", "Faites une estimation de la manière la plus précise possible."],
+                    ["de-be", "Nehmen Sie eine bestmögliche Einschätzung vor."],
+                    ["en", "Please provide as precise an estimate as possible."],
+                    ["it", "Please provide as precise an estimate as possible."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const ddOptions = initDropdownGroup('ddg', [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "0 tot 1 dag"],
+                ["fr-be", "0 à 1 jour"],
+                ["de-be", "0 bis 1 Tag"],
+                ["en", "0 to 1 day"],
+                ["it", "0 to 1 day"],
+            ])
+        },
+        {
+            key: '2', role: 'option', content: new Map([
+                ["nl-be", "2 tot 4 dagen"],
+                ["fr-be", "2 à 4 jours"],
+                ["de-be", "2 bis 4 Tagen"],
+                ["en", "2 to 4 days"],
+                ["it", "2 to 4 days"],
+            ]),
+        },
+        {
+            key: '3', role: 'option', content: new Map([
+                ["nl-be", "5 tot 7 dagen"],
+                ["fr-be", "5 à 7 jours"],
+                ["de-be", "5 bis 7 Tagen"],
+                ["en", "5 to 7 days"],
+                ["it", "5 to 7 days"],
+            ]),
+        },
+        {
+            key: '4', role: 'option', content: new Map([
+                ["nl-be", "8 tot 15 dagen"],
+                ["fr-be", "8 à 15 jours"],
+                ["de-be", "8 bis 15 Tagen"],
+                ["en", "8 to 15 days"],
+                ["it", "8 to 15 days"],
+            ]),
+        },
+        {
+            key: '5', role: 'option', content: new Map([
+                ["nl-be", "15 tot 28 dagen"],
+                ["fr-be", "15 à 28 jours"],
+                ["de-be", "15 bis 28 Tagen"],
+                ["en", "15 to 28 days"],
+                ["it", "15 to 28 days"],
+            ]),
+        },
+        {
+            key: '6', role: 'option', content: new Map([
+                ["nl-be", "Meer dan 28 dagen"],
+                ["fr-be", "Plus de 28 jours"],
+                ["de-be", "Mehr als 28 Tage"],
+                ["en", "More than 28 days"],
+                ["it", "More than 28 days"],
+            ]),
+        },
+        {
+            key: '99', role: 'option', content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
+                ["de-be", "ich weiß es nicht/kann mich nicht erinnern"],
+                ["nl-be", "Dit wil ik niet aangeven"],
+                ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
+            ]),
+        },
+    ]);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
  * TOOK ANY MEDICATION
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -5047,6 +5207,7 @@ export const WeeklyQuestions = {
     dailyRoutine,
     dailyRoutineToday,
     dailyRoutineDaysMissed,
+    durationLabSampling,
     durationLabSearch,
     feverGroup: {
         all: getFullFeverGroup,
