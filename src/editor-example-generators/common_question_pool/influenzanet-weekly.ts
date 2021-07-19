@@ -1,8 +1,8 @@
 import { SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
-import { initDropdownGroup, initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
+import { initDropdownGroup, initLikertScaleItem, initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
-import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
+import { likertScaleKey, matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions";
 
 
 /**
@@ -5449,6 +5449,344 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
     return editor.getItem();
 }
 
+/**
+ * COVID 19 Personal Habits Changes: likert scale question about changes in personal habits after experiencing covid symptoms
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keySymptomsQuestion reference to the symptom survey
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov7'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Heeft u vanwege uw symtomen deze maatregelen genomen of verstrengd (in vergelijking met de periode voor uw symptomen)?"],
+            ["fr-be", "En raison de vos symptômes, avez-vous pris ou intensifié les mesures reprises ci-dessous (par rapport à la période précédant vos symptômes) ?"],
+            ["de-be", "Haben Sie aufgrund Ihrer Symtome diese Maßnahmen ergriffen oder verstärkt (im Vergleich mit dem Zeitraum vor Ihren Symptomen)?"],
+            ["en", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
+            ["it", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
+        ]))
+    );
+
+    // CONDITION
+    // none
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Om te onderzoeken hoe verschillende maatregelen worden opgevolgd."],
+                    ["fr-be", "Afin d'examiner la manière dont les différentes mesures sont suivies."],
+                    ["de-be", "Um zu untersuchen, wie verschiedene Maßnahmen befolgt werden."],
+                    ["en", "To examine how different measures are being followed."],
+                    ["it", "To examine how different measures are being followed."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Bijvoorbeeld 'Handen schudden vermijden': Kies 'Ja', omwille van mijn symptomen heb ik geen of nog minder handen geschud; Kies 'Nee, ik pas deze maatregel niet toe', ik geef nog steeds mensen de hand ook al heb ik symptomen; Kies 'Nee, ik hield me al aan deze maatregel', want ook voor mijn symptomen gaf ik geen handen en heb dit niet aangepast."],
+                    ["fr-be", "Par exemple, « Évitez de serrer les mains » : Choisissez « Oui » si vous avez serré moins de mains ou si vous n'avez plus serré de mains en raison de vos symptômes ; Choisissez « Non, je n'applique pas cette mesure », si vous continuez à serrer la main des gens malgré vos symptômes ; Choisissez « Non, J'appliquais déjà cette mesure » si vous ne serriez déjà plus la main des gens avant l'apparition de vos symptômes, et que vous n'avez pas modifié ce comportement."],
+                    ["de-be", "Zum Beispiel so, 'Hände schütteln vermeiden': Wählen Sie 'Ja', aufgrund meiner Symptome habe ich keine oder noch weniger Hände geschüttelt; Wählen Sie 'Nein, ich wende diese Maßnahme nicht an', ich gebe noch immer Menschen die Hand, obwohl ich schon Symptome habe; Wählen Sie 'Nein, ich hielt mich schon an diese Maßnahme', denn auch aufgrund meiner Symptome gab ich niemandem die Hand und habe das nicht gemacht."],
+                    ["en", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
+                    ["it", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+
+    // RESPONSE PART
+    const likertOptions = [
+        {
+            key: "1", content: new Map([
+                ["nl-be", "Ja, ik pas deze maatregel nu (voor het eerst) of meer (verstrengd) toe"],
+                ["fr-be", "Oui, j'applique cette mesure maintenant (pour la première fois) ou de manière plus stricte"],
+                ["de-be", "Ja, ich wende diese Maßnahme nun (zum ersten Mal) oder mehr (verstärkt) an"],
+                ["en", " Yes, I am following this measure now for the first time, or in a stricter way"],
+                ["it", " Yes, I am following this measure now for the first time, or in a stricter way"],
+            ])
+        },
+        {
+            key: "3", content: new Map([
+                ["nl-be", "Nee, ik hield me al aan deze maatregel"],
+                ["fr-be", "Non, j'appliquais déjà cette mesure"],
+                ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
+                ["en", "I was already following this measure"],
+                ["it", "I was already following this measure"],
+            ])
+        },
+        {
+            key: "2", content: new Map([
+                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
+                ["fr-be", "Non, je n'applique pas cette mesure"],
+                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
+                ["en", "No, I am not following this measure"],
+                ["it", "No, I am not following this measure"],
+            ])
+        }
+    ];
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Optioneel in te vullen'],
+                ["fr-be", "Question facultative"],
+                ["de-be", "Optional einzutragen"],
+                ["en", "To be completed optionally"],
+                ["it", "To be completed optionally"],
+            ])),
+    }, rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Regelmatig handen wassen/desinfecteren"],
+                ["fr-be", "Se laver/se désinfecter régulièrement les mains"],
+                ["de-be", "Regelmäßig die Hände waschen/desinfiziren"],
+                ['en', 'Regularly wash or disinfect hands'],
+                ['it', 'Regularly wash or disinfect hands'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Niezen en hoesten in uw elleboog"],
+                ["fr-be", "Éternuer et tousser dans votre coude"],
+                ["de-be", "In Ihren Ellenbogen niesen und husten"],
+                ['en', 'Cough or sneeze into your elbow'],
+                ['it', 'Cough or sneeze into your elbow'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Wegwerptissues gebruiken"],
+                ["fr-be", "Utiliser des mouchoirs jetables"],
+                ["de-be", "Einwegtaschentücher verwenden"],
+                ['en', 'Use a disposable tissue'],
+                ['it', 'Use a disposable tissue'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Draag mond- en neusbescherming"],
+                ["fr-be", "Portez un masque facial"],
+                ["de-be", "Einen Mund-Nasen-Schutz tragen"],
+                ['en', 'Wear a face mask'],
+                ['it', 'Wear a face mask'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Handen schudden vermijden"],
+                ["fr-be", "Éviter de serrer les mains"],
+                ["de-be", "Hände schütteln vermeiden"],
+                ['en', 'Avoid shaking hands'],
+                ['it', 'Avoid shaking hands'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_5', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Niet meer knuffelen of kus op de wang geven"],
+                ["fr-be", "Éviter les embrassades ou les bisous sur la joue"],
+                ["de-be", "Nicht mehr knutschen oder einen Kuss auf die Wange geben"],
+                ['en', 'Stop greeting by hugging and/or kissing on both cheeks'],
+                ['it', 'Stop greeting by hugging and/or kissing on both cheeks'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_11', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Gebruik van openbaar vervoer beperken"],
+                ["fr-be", "Limiter l'utilisation des transports en commun"],
+                ["de-be", "Die Nutzung des ÖPNV begrenzen"],
+                ['en', 'Limit your use of public transport'],
+                ['it', 'Limit your use of public transport'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_6', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Drukke plaatsen mijden (supermarkt, cinema, stadium,...)"],
+                ["fr-be", "Éviter les lieux bondés (un supermarché, un cinéma, un stade, etc.)"],
+                ["de-be", "Belebte Plätze meiden (Supermarkt, Kino, Stadion, usw.)"],
+                ['en', 'Avoid busy places and gatherings (supermarket, cinema, stadium)'],
+                ['it', 'Avoid busy places and gatherings (supermarket, cinema, stadium)'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_7', likertOptions), rg?.key);
+
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Thuis blijven"],
+                ["fr-be", "Rester à la maison"],
+                ["de-be", "Zu Hause bleiben"],
+                ['en', 'Stay at home'],
+                ['it', 'Stay at home'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_8', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Telewerken"],
+                ["fr-be", "Effectuer du télétravail"],
+                ["de-be", "Telearbeit oder erhöhen Sie die Anzahl der Telearbeitstage"],
+                ['en', 'Telework or increase your number of telework days'],
+                ['it', 'Telework or increase your number of telework days'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_9', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Niet meer naar het buitenland reizen"],
+                ["fr-be", "Ne plus voyager à l'étranger"],
+                ["de-be", "Nicht mehr ins Ausland reisen!"],
+                ['en', 'Avoid travel outside your own country or region'],
+                ['it', 'Avoid travel outside your own country or region'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_10', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Boodschappen aan huis laten leveren (door winkel/familie/vriend)"],
+                ["fr-be", "Se faire livrer ses achats à domicile (par un magasin/un membre de la famille/un ami)"],
+                ["de-be", "Aufträge nach Hause liefern lassen (durch das Geschäft/die Familie/Freunde)"],
+                ['en', 'Have your food/shopping delivered by a store or a friend/family member'],
+                ['it', 'Have your food/shopping delivered by a store or a friend/family member'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_13', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Ontmoetingen met familie en vrienden beperken"],
+                ["fr-be", "Limiter les rencontres avec la famille et les amis"],
+                ["de-be", "Treffen mit Familie und Freunden einschränken und begrenzen"],
+                ['en', 'Avoid seeing friends and family'],
+                ['it', 'Avoid seeing friends and family'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_14', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Ontmoetingen met mensen 65+ jaar of met chronische aandoeningen beperken"],
+                ["fr-be", "Limiter les rencontres avec les personnes âgées de plus de 65 ans ou souffrant de maladies chroniques"],
+                ["de-be", "Treffen mit Menschen im Alter von 65+ Jahren oder mit chronischen Erkrankungen begrenzen"],
+                ['en', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
+                ['it', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_15', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Contact met kinderen beperken"],
+                ["fr-be", "Limiter les contacts avec les enfants"],
+                ["de-be", "Kontakt mit Kindern begrenzen"],
+                ['en', 'Avoid being in contact with children'],
+                ['it', 'Avoid being in contact with children'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_16', likertOptions), rg?.key);
+
+    // VALIDATIONs
+    // None
+
+    return editor.getItem();
+}
+
 
 /**
  * PERCIEVED CAUSE OF SYMPTOMS
@@ -5650,6 +5988,7 @@ export const WeeklyQuestions = {
     consFear,
     contactedMedicalService,
     contactedMedicalServiceWhen,
+    covidHabitsChange,
     covidHouseholdContact,
     covidSymptomsContact,
     dailyRoutine,
