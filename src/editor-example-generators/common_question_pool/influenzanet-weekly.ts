@@ -4634,7 +4634,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
                 ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
                 ["fr", "Médicaments contre la toux (p. ex. expectorants)"],
             ])
-        },
+        },/*
         {
             key: '9',
             role: 'option',
@@ -4645,7 +4645,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
                 ["nl", "Ja, medicatie tegen hooikoorts"],
 
             ])
-        },
+        }, */
         {
             key: '3',
             role: 'option',
