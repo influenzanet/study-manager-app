@@ -59,6 +59,11 @@ export class CovidTestGroup extends GroupItemEditor {
             const Q11 = q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten);
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
+        } else if (this.isPartOfSurvey(surveyKeys.T3)) {
+            // TODO: Tessa - check if works as intended
+            const Q11 = q_langdurige_klachten(this.key, true, undefined);
+            this.addItem(Q11);
+            this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
         }
 
         if (!this.isPartOfSurvey(surveyKeys.short)) {
