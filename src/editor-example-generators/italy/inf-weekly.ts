@@ -160,6 +160,10 @@ const weekly = (): Survey | undefined => {
     const Q_resultRapidTest = CommonPoolWeekly.resultRapidTest(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true)
     survey.addExistingSurveyItem(Q_resultRapidTest, hasSymptomGroupKey);
 
+    // // Qcov19 test -----------------------------------------------------
+    const q_fluTest = CommonPoolWeekly.fluTest(hasSymptomGroupKey, true);
+    survey.addExistingSurveyItem(q_fluTest, hasSymptomGroupKey);
+
     // // Q9 took medication --------------------------------------
     const Q_tookMedication = CommonPoolWeekly.tookMedication(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_tookMedication, hasSymptomGroupKey);
