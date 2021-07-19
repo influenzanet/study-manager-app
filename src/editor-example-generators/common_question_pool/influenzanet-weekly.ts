@@ -3837,6 +3837,173 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
 }
 
 /**
+ * DURATION COVID-19 LAB SEARCH: duration between symptoms start and finding a lab to perform covid tests.
+ * TO DO: fix dropdown menu
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keysymptomImpliedCovidTest key to the answer of Qcov16
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov16d'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Hoeveel tijd zat er tussen het begin van uw symptomen en uw zoektocht naar een laboratorium dat deze analyse zou kunnen ondergaan?"],
+            ["fr-be", "Combien de temps s'est écoulé entre le début de vos symptômes et votre recherche d'un laboratoire pouvant subir cette analyse ?"],
+            ["de-be", "Wie viel Zeit verging zwischen dem Beginn Ihrer Symptome und Ihrer Suche nach einem Labor, das dieser Analyse unterzogen werden könnte?"],
+            ["en", "How much time passed between the beginning of your symptoms and your search of a laboratory which could undergo this analysis?"],
+            ["it", "How much time passed between the beginning of your symptoms and your search of a laboratory which could undergo this analysis?"],
+
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keysymptomImpliedCovidTest, responseGroupKey + '.' + multipleChoiceKey, '1'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen weten hoeveel tijd er gemiddeld nodig is om getest te worden"],
+                    ["fr-be", "Nous voulons savoir combien de temps il faut en moyenne pour se faire tester"],
+                    ["de-be", "Wir wollen wissen, wie lange es im Durchschnitt dauert, getestet zu werden"],
+                    ["en", "We want to know how much time is taken on average to get tested"],
+                    ["it", "Vogliamo sapere quanto tempo ci vuole in media per fare il test"],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Maak een zo goed mogelijke inschatting."],
+                    ["fr-be", "Veuillez faire une estimation la plus précise possible."],
+                    ["de-be", "Nehmen Sie eine bestmögliche Einschätzung vor."],
+                    ["en", "Please provide as precise an estimate as possible."],
+                    ["it", "Please provide as precise an estimate as possible."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Symptomen verschenen de dag of de dag voor het doorzoeken van een laboratorium"],
+                ["fr-be", "Les symptômes sont apparus la veille ou la veille de la perquisition d'un laboratoire"],
+                ["de-be", "Die Symptome traten am Tag oder am Tag vor der Durchsuchung eines Labors auf"],
+                ["en", "Symptoms appeared the day or the day before the search of a laboratory"],
+                ["it", "Symptoms appeared the day or the day before the search of a laboratory"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Symptomen verschenen 2, 3 of 4 dagen voor het doorzoeken van een laboratorium"],
+                ["fr-be", "Les symptômes sont apparus 2, 3 ou 4 jours avant la recherche d'un laboratoire"],
+                ["de-be", "Symptome traten 2, 3 oder 4 Tage vor der Durchsuchung eines Labors auf"],
+                ["en", "Symptoms appeared 2, 3 or 4 days before the search of a laboratory"],
+                ["it", "Symptoms appeared 2, 3 or 4 days before the search of a laboratory"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["nl-be", "Symptomen verschenen 5, 6 of 7 dagen voor het doorzoeken van een laboratorium"],
+                ["fr-be", "Les symptômes sont apparus 5, 6 ou 7 jours avant la recherche d'un laboratoire"],
+                ["de-be", "Symptome traten 5, 6 oder 7 Tage vor der Durchsuchung eines Labors auf"],
+                ["en", "Symptoms appeared 5, 6 or 7 days before the search of a laboratory"],
+                ["it", "Symptoms appeared 5, 6 or 7 days before the search of a laboratory"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["nl-be", "Symptomen verschenen tussen 8 en 14 dagen voor het doorzoeken van een laboratorium"],
+                ["fr-be", "Les symptômes sont apparus entre 8 et 14 jours avant la perquisition d'un laboratoire"],
+                ["de-be", "Die Symptome traten zwischen 8 und 14 Tagen vor der Durchsuchung eines Labors auf"],
+                ["en", "Symptoms appeared between 8 and 14 days before the search of a laboratory"],
+                ["it", "Symptoms appeared between 8 and 14 days before the search of a laboratory"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["nl-be", "Symptomen verschenen tussen 15 en 28 dagen voor het doorzoeken van een laboratorium"],
+                ["fr-be", "Les symptômes sont apparus entre 15 et 28 jours avant la perquisition d'un laboratoire"],
+                ["de-be", "Die Symptome traten zwischen 15 und 28 Tagen vor der Durchsuchung eines Labors auf"],
+                ["en", "Symptoms appeared between 15 and 28 days before the search of a laboratory"],
+                ["it", "Symptoms appeared between 15 and 28 days before the search of a laboratory"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["nl-be", "Symptomen begonnen meer dan vier weken voor het zoeken van een laboratorium"],
+                ["fr-be", "Les symptômes ont commencé plus de quatre semaines avant la perquisition d'un laboratoire"],
+                ["de-be", "Die Symptome begannen mehr als vier Wochen vor der Durchsuchung eines Labors"],
+                ["en", "Symptoms appeared more than four weeks before the search of a laboratory"],
+                ["it", "Symptoms appeared more than four weeks before the search of a laboratory"],
+            ])
+        },
+
+        {
+            key: '99', role: 'option',
+            content: new Map([
+                ["en", "I don't know/can't remember"],
+                ["it", "I don't know/can't remember"],
+                ["de-be", "ich weiß es nicht/kann mich nicht erinnern"],
+                ["nl-be", "Dit wil ik niet aangeven"],
+                ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
  * TOOK ANY MEDICATION
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -4880,6 +5047,7 @@ export const WeeklyQuestions = {
     dailyRoutine,
     dailyRoutineToday,
     dailyRoutineDaysMissed,
+    durationLabSearch,
     feverGroup: {
         all: getFullFeverGroup,
         feverStart,
