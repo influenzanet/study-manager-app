@@ -5536,20 +5536,29 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ])
         },
         {
-            key: "3", content: new Map([
+            key: "2", content: new Map([
                 ["nl-be", "Nee, ik hield me al aan deze maatregel"],
                 ["fr-be", "Non, j'appliquais déjà cette mesure"],
                 ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
-                ["en", "I was already following this measure"],
-                ["it", "I was already following this measure"],
+                ["en", "No, I was already following this measure"],
+                ["it", "No, I was already following this measure"],
             ])
         },
         {
-            key: "2", content: new Map([
+            key: "0", content: new Map([
                 ["nl-be", "Nee, ik pas deze maatregel niet toe"],
                 ["fr-be", "Non, je n'applique pas cette mesure"],
                 ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
                 ["en", "No, I am not following this measure"],
+                ["it", "No, I am not following this measure"],
+            ])
+        },
+        {
+            key: "3", content: new Map([
+                ["nl-be", "Nee, ik pas deze maatregel niet toe"],
+                ["fr-be", "Non, je n'applique pas cette mesure"],
+                ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
+                ["en", "Not applicable"],
                 ["it", "No, I am not following this measure"],
             ])
         }
@@ -5618,12 +5627,26 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             new Map([
                 ["nl-be", "Draag mond- en neusbescherming"],
                 ["fr-be", "Portez un masque facial"],
-                ["de-be", "Einen Mund-Nasen-Schutz tragen"],
-                ['en', 'Wear a face mask'],
-                ['it', 'Wear a face mask'],
+                ["de-be", "Einen Mund-Nasen-Schutz im eingang tragen"],
+                ['en', 'Wear a face mask indoors'],
+                ['it', 'Wear a face mask indoors'],
             ])),
     }, rg?.key);
-    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4', likertOptions), rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4a', likertOptions), rg?.key);
+
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-1 border-top border-1 border-grey-7 pt-1 mt-2 fw-bold' }, { key: 'variant', value: 'h5' }],
+        content: generateLocStrings(
+            new Map([
+                ["nl-be", "Draag mond- en neusbescherming"],
+                ["fr-be", "Portez un masque facial"],
+                ["de-be", "Einen Mund-Nasen-Schutz im ausgang tragen"],
+                ['en', 'Wear a face mask outdoors'],
+                ['it', 'Wear a face mask outdoors'],
+            ])),
+    }, rg?.key);
+    editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4b', likertOptions), rg?.key);
 
     editor.addExistingResponseComponent({
         role: 'text',
