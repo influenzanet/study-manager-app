@@ -6221,6 +6221,263 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
     return editor.getItem();
 }
 
+/**
+ * LOCKDOWN / RESTRICTION BASED QUESTIONS
+ */
+
+ /**
+ * WORK CONDITION DURING LOCKDOWN : To assess if participant is working from home/ outside / had to take a leave of absence / etc
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const workDuringLockdown = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov10';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity? (Select all the relevant answers)?"],
+            ["it", "Since the beginning of COVID-19 lockdown measures, do you carry out a professional activity? (Select all the relevant answers)?"],
+        ]))
+    );
+
+    // CONDITION
+    // None
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To better understand how people are working during the COVID-19 pandemic."],
+                    ["it", "To better understand how people are working during the COVID-19 pandemic."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Select all the options that best suits your situation."],
+                    ["it", "Select all the options that best suits your situation."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk.'],
+                ["fr-be", "Plusieurs réponses sont possibles."],
+                ["de-be", "Mehrere Antworten möglich."],
+                ["en", "Multiple answers possible."],
+                ["it", "Multiple answers possible."],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes, I work from home"],
+                ["it", "Yes, I work from home"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Yes, I work outside home"],
+                ["it", "Yes, I work outside home"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "No, I have a leave of absence to take care of my kid(s)"],
+                ["it", "No, I have a leave of absence to take care of my kid(s)"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "No, I have a sick leave (because of COVID-19)"],
+                ["it", "No, I have a sick leave (because of COVID-19)"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "No, I have another situation (retired, job-seeker, student, house-wife/husband, other sick-leave, partial unemployment, forced leave…)"],
+                ["it", "No, I have another situation (retired, job-seeker, student, house-wife/husband, other sick-leave, partial unemployment, forced leave…)"],
+            ])
+        }
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
+ * DAYS WORKING OUTSIDE HOME DURING LOCKDOWN
+ * TO DO: fix dropdown menu
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyWorkDuringLockdown key to the answer of Qcov10
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const daysWorkingOutsideHome = (parentKey: string, keyWorkDuringLockdown?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov10b'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "How many days a week do you work outside from home?"],
+            ["it", "How many days a week do you work outside from home?"],
+        ]))
+    );
+
+   // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyWorkDuringLockdown, responseGroupKey + '.' + multipleChoiceKey, '2'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "We want to the number of days people on average are working outside their homes during a lockdown"],
+                    ["it", "We want to the number of days people on average are working outside their homes during a lockdown"],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Select the option that fits your situation"],
+                    ["it", "Select the option that fits your situation"],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const ddOptions = initDropdownGroup('ddg', [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "1 day"],
+                ["it", "1 day"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "2 days"],
+                ["it", "2 days"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "3 days"],
+                ["it", "3 days"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "4 days"],
+                ["it", "4 days"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "5 days"],
+                ["it", "5 days"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "6 days"],
+                ["it", "6 days"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "7 days"],
+                ["it", "7 days"],
+            ])
+        },
+    ]);
+
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent(ddOptions, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
 export const WeeklyQuestions = {
     causeOfSymptoms,
     consentForSymptoms,
@@ -6266,4 +6523,5 @@ export const WeeklyQuestions = {
     visitedMedicalServiceWhen,
     visitedNoMedicalService,
     whenAntivirals,
+    workDuringLockdown
 }
