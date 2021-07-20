@@ -736,7 +736,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
             ["fr-be", "Cette personne ou l'une de ces personnes fait-elle partie de votre ménage ou de votre foyer ?"],
             ["de-be", "Gehört diese Person oder eine dieser Personen zu Ihrem Haushalt?"],
             ["en", "Was this person or one of these persons a member of your household?"],
-            ["it", "Was this person or one of these persons a member of your household?"],
+            ["it", "Questa persona fa parte del tuo nucleo familiare? (ovvero vive presso la tua stessa abitazione)"],
         ]))
     );
 
@@ -754,7 +754,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -764,7 +764,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Le coronavirus et la grippe se propagent beaucoup à l'intérieur."],
                     ["de-be", "COVID-19 und Grippe verbreiten sich sehr stark im Hause."],
                     ["en", "The coronavirus and influenza spread quickly indoors."],
-                    ["it", "The coronavirus and influenza spread quickly indoors."],
+                    ["it", "Il coronavirus e l'influenza possono trasmettersi facilmente al chiuso e tra persone che convivono."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -774,7 +774,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -784,7 +784,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Un membre du ménage ou du foyer est défini comme une personne (pas nécessairement apparentée) qui vit à la même adresse que vous, et qui partage la cuisine, le salon, la salle de séjour ou la salle à manger."],
                     ["de-be", "Ein Mitglied des Haushalts wird als jemand (nicht notwendigerweise verwandt) definiert, der an derselben Anschrift wie Sie wohnt und mit dem Sie die Kochgelegenheit, Wohnzimmer oder Essecke teilen."],
                     ["en", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
-                    ["it", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
+                    ["it", "Una persona è definita come parte del tuo nucleo familiare (non necessariamente un parente) se vive nella tua stessa abitazione e condivide la stessa cucina, soggiorno o sala da pranzo."],
                 ]),
             },
         ])
@@ -799,7 +799,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -820,7 +820,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                 ["fr-be", "Je ne sais pas"],
                 ["de-be", "Ich weiß es nicht"],
                 ["en", "I don’t know"],
-                ["it", "I don’t know"],
+                ["it", "Non so"],
             ])
         },
     ]);
