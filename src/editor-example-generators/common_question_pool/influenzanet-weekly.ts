@@ -22,7 +22,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
-            ["it", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
+            ["it", "HHai avuto uno dei seguenti sintomi dall'ultima volta che hai compilato il questionario? (Indica tutte le voci appropriate)"],
             ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten? (chronische klachten hoeven hier niet gemeld te worden)"],
         ]))
     );
@@ -39,7 +39,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -49,7 +49,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "La partie la plus importante de cette enquête a trait au suivi des symptômes que vous avez signalés."],
                     ["de-be", "Der wichtigste Teil dieser Umfrage ist das Verfolgen der von Ihnen gemeldeten Symptome."],
                     ["en", "The most important part of this study is about following up on the symptoms you have reported."],
-                    ["it", "The most important part of this study is about following up on the symptoms you have reported."],
+                    ["it", "Il nodo cruciale di questo progetto è quello di tracciare i sintomi degli utenti."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -59,7 +59,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -69,7 +69,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé. Plusieurs réponses sont possibles."],
                     ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an. Mehrere Antworten sind möglich."],
                     ["en", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
-                    ["it", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
+                    ["it", "Seleziona i sintomi che hai avuto dall’ultima volta che hai compilato il questionario. Per persone con condizioni croniche a lungo termine, seleziona solo gli eventuali nuovi sintomi."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -87,14 +87,14 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["fr-be", "Plusieurs réponses sont possibles. Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
                 ["de-be", "Mehrere Antworten möglich. Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an."],
                 ["en", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
-                ["it", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
+                ["it", "Puoi selezionare multiple opzioni. Per persone con condizioni croniche a lungo termine, seleziona solo gli eventuali nuovi sintomi. Ad esempio, se hai respiro affannoso cronico, segnala questo sintomo solo se recentemente è peggiorato."],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option', content: new Map([
                 ["en", "No symptoms"],
-                ["it", "No symptoms"],
+                ["it", "Nessun sintomo"],
                 ["nl", "Nee, geen van deze klachten"],
             ])
         },
@@ -103,7 +103,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Fever"],
-                ["it", "Fever"],
+                ["it", "Febbre"],
                 ["nl", "Koorts"],
             ])
         },
@@ -112,7 +112,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chills"],
-                ["it", "Chills"],
+                ["it", "Brividi"],
                 ["nl", "Koude rillingen"],
             ])
         },
@@ -121,7 +121,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Runny or blocked nose"],
-                ["it", "Runny or blocked nose"],
+                ["it", "Naso che cola o naso chiuso"],
                 ["nl", "Loopneus of verstopte neus"],
             ])
         },
@@ -130,7 +130,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sneezing"],
-                ["it", "Sneezing"],
+                ["it", "Starnuti"],
                 ['nl', "Niezen"],
             ])
         },
@@ -139,7 +139,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sore throat"],
-                ["it", "Sore throat"],
+                ["it", "Gola infiammata"],
                 ["nl", "Zere keel"],
             ])
         },
@@ -148,7 +148,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Cough"],
-                ["it", "Cough"],
+                ["it", "Tosse"],
                 ["nl", "Hoesten"],
             ])
         },
@@ -157,7 +157,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Shortness of breath"],
-                ["it", "Shortness of breath"],
+                ["it", "Respiro affannoso"],
                 ["nl", "Kortademig (snel buiten adem)"],
             ])
         },
@@ -166,7 +166,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Headache"],
-                ["it", "Headache"],
+                ["it", "Mal di testa"],
                 ["nl", "Hoofdpijn"],
             ])
         },
@@ -175,7 +175,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Muscle/joint pain"],
-                ["it", "Muscle/joint pain"],
+                ["it", "Dolori muscolari/alle articolazioni"],
                 ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
             ])
         },
@@ -184,7 +184,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chest pain"],
-                ["it", "Chest pain"],
+                ["it", "Dolori al petto"],
                 ["nl", "Pijn op de borst"],
             ])
         },
@@ -193,7 +193,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Feeling tired or exhausted (malaise)"],
-                ["it", "Feeling tired or exhausted (malaise)"],
+                ["it", "Sensazione di stanchezza/spossatezza"],
                 ["nl", "Vermoeid en lamlendig (algehele malaise)"],
             ])
         },
@@ -202,7 +202,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of appetite"],
-                ["it", "Loss of appetite"],
+                ["it", "Perdita di appetito"],
                 ["nl", "Verminderde eetlust"],
             ])
         },
@@ -211,7 +211,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Coloured sputum/phlegm"],
-                ["it", "Coloured sputum/phlegm"],
+                ["it", "Catarro"],
                 ["nl", "Verkleurd slijm"],
             ])
         },
@@ -220,7 +220,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Watery, bloodshot eyes"],
-                ["it", "Watery, bloodshot eyes"],
+                ["it", "Occhi arrossati, lacrimosi"],
                 ["nl", "Waterige of bloeddoorlopen ogen"],
             ])
         },
@@ -238,7 +238,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Vomiting"],
-                ["it", "Vomiting"],
+                ["it", "Vomito"],
                 ["nl", "Overgeven"],
             ])
         },
@@ -247,7 +247,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Diarrhoea (at least three times a day)"],
-                ["it", "Diarrhoea (at least three times a day)"],
+                ["it", "Diarrea (almeno tre volte al giorno)"],
                 ["nl", "Diarree (minstens 3 keer per dag)"],
             ])
         },
@@ -256,7 +256,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Stomach ache"],
-                ["it", "Stomach ache"],
+                ["it", "Mal di stomaco"],
                 ["nl", "Buikpijn"],
             ])
         },
@@ -267,7 +267,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of smell"],
-                ["it", "Loss of smell"],
+                ["it", "Perdita dell'olfatto"],
                 ["nl", "Geen reuk"],
             ])
         },
@@ -276,7 +276,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of taste"],
-                ["it", "Loss of taste"],
+                ["it", "Perdita del gusto"],
                 ["nl", "Geen smaak"],
             ])
         },
@@ -285,7 +285,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nose bleed"],
-                ["it", "Nose bleed"],
+                ["it", "Perdita di sangue dal naso"],
                 ["nl", "Bloedneus"],
             ])
         },
@@ -294,7 +294,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Rash"],
-                ["it", "Rash"],
+                ["it", "Eruzione cutanea"],
                 ["nl", "Huiduitslag"],
             ])
         },
@@ -303,11 +303,11 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
             ]),
             description: new Map([
                 ["en", "Enter symptoms"],
-                ["it", "Enter symptoms"],
+                ["it", "Inserisci sintomi"],
             ]),
         },
     ]);
