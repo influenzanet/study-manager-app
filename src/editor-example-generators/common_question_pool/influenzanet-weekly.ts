@@ -5981,6 +5981,145 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
     return editor.getItem();
 }
 
+/**
+ * REASON PARTICIPANT THINKS THEY HAVE THE SELECTED DISEASE
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyReasonForSymptoms Key to the answer provided in Q11
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov9';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "For which reason(s) do you think you have this disease? (select all the relevant answers)"],
+            ["it", "For which reason(s) do you think you have this disease? (select all the relevant answers)"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyReasonForSymptoms, [responseGroupKey, singleChoiceKey].join('.'), '9'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                    ["it", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Select all the options that match your reasons for your assessment of your illness."],
+                    ["it", "Select all the options that match your reasons for your assessment of your illness."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    editor.addExistingResponseComponent({
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(
+            new Map([
+                ['nl-be', 'Meerdere antwoorden mogelijk.'],
+                ["fr-be", "Plusieurs réponses sont possibles."],
+                ["de-be", "Mehrere Antworten möglich."],
+                ["en", "Multiple answers possible."],
+                ["it", "Multiple answers possible."],
+            ])),
+    }, rg?.key);
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "My doctor told me I have this disease"],
+                ["it", "My doctor told me I have this disease"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I had a laboratory confirmation that I have this disease"],
+                ["it", "I had a laboratory confirmation that I have this disease"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I had direct contact with a laboratory confirmed case"],
+                ["it", "I had direct contact with a laboratory confirmed case"],
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "I had close contact with someone for whom a doctor diagnosed this disease"],
+                ["it", "I had close contact with someone for whom a doctor diagnosed this disease"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "I was in close contact with someone presenting symptoms of this disease	"],
+                ["it", "I was in close contact with someone presenting symptoms of this disease	"],
+            ])
+        },
+        {
+            key: '6', role: 'option',
+            content: new Map([
+                ["en", "I was at an event/location with a confirmed case"],
+                ["it", "I was at an event/location with a confirmed case"],
+            ])
+        },
+        {
+            key: '7', role: 'option',
+            content: new Map([
+                ["en", "I think I have this disease"],
+                ["it", "I think I have this disease"],
+            ])
+        }
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
 
 export const WeeklyQuestions = {
     causeOfSymptoms,
@@ -6008,6 +6147,7 @@ export const WeeklyQuestions = {
     hasSymptomsGroup,
     pcrHouseholdContact,
     pcrTestedContact,
+    perceivedReasonForDisease,
     resultFluTest,
     resultPCRTest,
     resultRapidTest,
