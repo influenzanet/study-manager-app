@@ -904,7 +904,8 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["nl-be", "Symptomen van COVID-19 zijn onder meer: ​​koorts of koude rillingen, hoesten, keelpijn, kortademigheid, pijnlijke spieren en hoofdpijn."],
                     ["fr-be", "Les symptômes du COVID-19 incluent : fièvre ou frissons, toux, mal de gorge, essoufflement, douleurs musculaires et maux de tête."],
                     ["de-be", "Zu den Symptomen von COVID-19 gehören: Fieber oder Schüttelfrost, Husten, Halsschmerzen, Kurzatmigkeit, Muskelkater und Kopfschmerzen."],
-                    ["en", "Sintomi da COVID-19 includono: febbre o brividi, tosse, gola infiammata, respiro affannoso, muscoli doloranti e mal di testa."],
+                    ["en", "COVID-19 symptoms include:  fever or chills, cough, sore throat, shortness of breath, sore muscles and headache."],
+                    ["it", "Sintomi da COVID-19 includono: febbre o brividi, tosse, gola infiammata, respiro affannoso, muscoli doloranti e mal di testa."],
                 ]),
             },
         ])
