@@ -860,7 +860,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
             ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une personne présentant des symptômes du coronavirus ?"],
             ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit jemandem, der die Symptome von COVID-19 aufwies?"],
             ["en", "During the 14 days before your symptoms appeared, were you in close contact with a person presenting COVID-19 symptoms?"],
-            ["it", "During the 14 days before your symptoms appeared, were you in close contact with a person presenting COVID-19 symptoms?"],
+            ["it", "Nei 14 giorni prima dell'inizio dei tuoi sintomi, sei stato in contatto con qualcuno che presentava sintomi da COVID-19? (inclusi febbre, brividi, tosse, mal di gola, fiato corto, dolori muscolari o mal di testa)"],
         ]))
     );
 
@@ -876,7 +876,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -886,7 +886,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
                     ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
                     ["en", "In  order to study how the coronavirus spreads within the general population."],
-                    ["it", "In  order to study how the coronavirus spreads within the general population."],
+                    ["it", "Ci interessa studiare come il coronavirus si trasmette tra le persone."],
                 ]),
             },
             {
@@ -895,7 +895,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -904,7 +904,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["nl-be", "Symptomen van COVID-19 zijn onder meer: ​​koorts of koude rillingen, hoesten, keelpijn, kortademigheid, pijnlijke spieren en hoofdpijn."],
                     ["fr-be", "Les symptômes du COVID-19 incluent : fièvre ou frissons, toux, mal de gorge, essoufflement, douleurs musculaires et maux de tête."],
                     ["de-be", "Zu den Symptomen von COVID-19 gehören: Fieber oder Schüttelfrost, Husten, Halsschmerzen, Kurzatmigkeit, Muskelkater und Kopfschmerzen."],
-                    ["en", "Symptoms of COVID-19 include: fever or chills, cough, sore throat, shortness of breath, sore muscles and headache."],
+                    ["en", "Sintomi da COVID-19 includono: febbre o brividi, tosse, gola infiammata, respiro affannoso, muscoli doloranti e mal di testa."],
                 ]),
             },
         ])
@@ -919,6 +919,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -929,6 +930,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -938,6 +940,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
