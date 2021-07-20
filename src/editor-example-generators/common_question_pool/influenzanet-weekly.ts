@@ -636,7 +636,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
             ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une ou plusieurs personne(s) ayant obtenu un résultat positif au PCR-test de dépistage du coronavirus (cette personne peut présenter ou non des symptômes) ?"],
             ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit einer oder mehreren Personen, die einen positiven PCR-Test auf COVID-19 hatten (Diese Person kann Symptome aufweisen oder auch nicht!)?"],
             ["en", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
-            ["it", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
+            ["it", "Nelle due settimane prima dell'inizio dei tuoi sintomi, sei stato in contatto con qualcuno che è risultato positivo al tampone MOLECOLARE (caso confermato con esame PCR) da coronavirus?"],
         ]))
     );
 
@@ -652,7 +652,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -662,7 +662,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                     ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
                     ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
                     ["en", "In  order to study how the coronavirus spreads within the general population."],
-                    ["it", "In  order to study how the coronavirus spreads within the general population."],
+                    ["it", "Ci interessa studiare la diffusione del virus nella popolazione generale"],
                 ]),
             },
         ])
@@ -677,7 +677,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -698,7 +698,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
