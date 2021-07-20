@@ -55,13 +55,19 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptoms, rootKey);
 
     // Q1a consent to further symptom questions
-    const Q_consentSymptomQuestion = CommonPoolWeekly.consentForSymptoms(rootKey, Q_symptoms.key, true)
-    survey.addExistingSurveyItem(Q_consentSymptomQuestion, rootKey);
+    /* const Q_consentSymptomQuestion = CommonPoolWeekly.consentForSymptoms(rootKey, Q_symptoms.key, true)
+    survey.addExistingSurveyItem(Q_consentSymptomQuestion, rootKey); */
 
     // // -------> HAS SYMPTOMS GROUP
+    const hasSymptomGroup = CommonPoolWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key);
+    survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
+    const hasSymptomGroupKey = hasSymptomGroup.key;
+
+    /*
+    // OLDER CONFIG WITH CONSENT FOR MORE QUESTIONS
     const userConsentedSymptomsGroup = CommonPoolWeekly.userConsentedSymptomsGroup(rootKey, Q_consentSymptomQuestion.key);
     survey.addExistingSurveyItem(userConsentedSymptomsGroup, rootKey);
-    const hasSymptomGroupKey = userConsentedSymptomsGroup.key;
+    const hasSymptomGroupKey = userConsentedSymptomsGroup.key; */
 
     // // Q2 same illnes --------------------------------------
     const Q_same_illnes = CommonPoolWeekly.sameIllnes(hasSymptomGroupKey, true);

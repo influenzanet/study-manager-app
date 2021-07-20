@@ -6513,6 +6513,7 @@ export const WeeklyQuestions = {
     dailyRoutine,
     dailyRoutineToday,
     dailyRoutineDaysMissed,
+    daysWorkingOutsideHome,
     durationLabSampling,
     durationLabSearch,
     feverGroup: {
