@@ -18,7 +18,6 @@ export class VaccinationGroup extends GroupItemEditor {
         if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions(this.key))
         }
-        if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(Q_instructionsVACCFU(this.key)); }
         const vacc = q_vacc_def(this.key, true);
         const vacc_FU = q_vacc_def_FU(this.key, true);
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
@@ -63,25 +62,6 @@ const Q_instructions = (parentKey: string): SurveyItem => {
     return SurveyItemGenerators.display({
         parentKey: parentKey,
         itemKey: 'intro',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ["nl", markdownContent],
-                ]),
-                className: ''
-            })
-        ]
-    });
-}
-
-const Q_instructionsVACCFU = (parentKey: string): SurveyItem => {
-    const markdownContent = `
-**LET OP: deze vragen over vaccinaties hoef je alleen in te vullen indien je sinds de vorige vragenlijst een vaccinatie hebt gehad.**
-`
-
-    return SurveyItemGenerators.display({
-        parentKey: parentKey,
-        itemKey: 'introVACC',
         content: [
             ComponentGenerators.markdown({
                 content: new Map([

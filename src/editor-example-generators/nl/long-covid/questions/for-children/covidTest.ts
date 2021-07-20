@@ -39,12 +39,12 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(this.Q6('Q6', conditionQ5Positive, isRequired));
         if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(q7);
-        }
         this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
         this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
         this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
+       // TODO Peter: add similar condition as for adults (show under condition in T0, always show without condition in T3, 6, 9, 12)
         this.addItem(q11);
-
+    }
         this.addPageBreak();
     }
 
@@ -516,9 +516,9 @@ export class CovidTestGroup extends GroupItemEditor {
                     ])
                 },
                 {
-                    key: 'unknown', role: 'option',
+                    key: 'notanymore', role: 'option',
                     content: new Map([
-                        ["nl", "Weet ik niet"],
+                        ["nl", "Nee, niet meer"],
                     ])
                 },
             ],

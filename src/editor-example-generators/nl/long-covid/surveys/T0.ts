@@ -42,7 +42,7 @@ export const generateT0 = (): Survey | undefined => {
             ["nl", "Dit is de eerste vragenlijst van het LongCOVID-onderzoek. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
-            ["nl", "Invullen van deze vragenlijst kost ongeveer 30 minuten van je tijd."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 20-30 minuten van je tijd."],
         ])
     })
 

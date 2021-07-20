@@ -578,6 +578,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             questionText: new Map([
                 ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
             ]),
+            questionSubText: new Map([
+                ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
+            ]),
             responseOptions: [
                 {
                     key: 'nee', role: 'option',

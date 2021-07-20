@@ -98,15 +98,15 @@ const assignShortC = () => StudyActions.addNewSurvey(
         days: 14
     }));
 
-const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 30);
-const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 30);
-const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 30);
-const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 30);
+const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 42);
+const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 42);
+const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 42);
+const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 42);
 
-const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "prio", 90, 30);
-const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 30);
-const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 30);
-const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 30);
+const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "prio", 90, 42);
+const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 42);
+const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 42);
+const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 42);
 
 export const AgeCategoryFlagName = {
     younger8: '<8',
