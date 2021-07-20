@@ -22,7 +22,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
-            ["it", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
+            ["it", "Hai avuto uno dei seguenti sintomi dall'ultima volta che hai compilato il questionario? (Indica tutte le voci appropriate)"],
             ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten? (chronische klachten hoeven hier niet gemeld te worden)"],
         ]))
     );
@@ -39,7 +39,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -49,7 +49,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "La partie la plus importante de cette enquête a trait au suivi des symptômes que vous avez signalés."],
                     ["de-be", "Der wichtigste Teil dieser Umfrage ist das Verfolgen der von Ihnen gemeldeten Symptome."],
                     ["en", "The most important part of this study is about following up on the symptoms you have reported."],
-                    ["it", "The most important part of this study is about following up on the symptoms you have reported."],
+                    ["it", "Il nodo cruciale di questo progetto è quello di tracciare i sintomi degli utenti."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -59,7 +59,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -69,7 +69,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                     ["fr-be", "Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé. Plusieurs réponses sont possibles."],
                     ["de-be", "Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an. Mehrere Antworten sind möglich."],
                     ["en", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
-                    ["it", "If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse. Multiple answers possible."],
+                    ["it", "Seleziona i sintomi che hai avuto dall’ultima volta che hai compilato il questionario. Per persone con condizioni croniche a lungo termine, seleziona solo gli eventuali nuovi sintomi."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -87,14 +87,14 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
                 ["fr-be", "Plusieurs réponses sont possibles. Pour les personnes souffrant de maladies chroniques (de longue durée), ne cochez que les changements au niveau des symptômes. Ainsi, si vous souffrez d'un essoufflement chronique, ne cochez cette case que si ce symptôme s'est récemment aggravé."],
                 ["de-be", "Mehrere Antworten möglich. Für Menschen mit chronischen (längeren) Krankheiten kreuzen Sie bitte nur Veränderungen ihrer Symptome an."],
                 ["en", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
-                ["it", "Multiple answers possible. If you suffer from chronic illness, only indicate symptoms that have changed. For example, if you experience chronic shortness of breath, only mark this symptom if it has recently gotten worse."],
+                ["it", "Puoi selezionare multiple opzioni. Per persone con condizioni croniche a lungo termine, seleziona solo gli eventuali nuovi sintomi. Ad esempio, se hai respiro affannoso cronico, segnala questo sintomo solo se recentemente è peggiorato."],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option', content: new Map([
                 ["en", "No symptoms"],
-                ["it", "No symptoms"],
+                ["it", "Nessun sintomo"],
                 ["nl", "Nee, geen van deze klachten"],
             ])
         },
@@ -103,7 +103,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Fever"],
-                ["it", "Fever"],
+                ["it", "Febbre"],
                 ["nl", "Koorts"],
             ])
         },
@@ -112,7 +112,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chills"],
-                ["it", "Chills"],
+                ["it", "Brividi"],
                 ["nl", "Koude rillingen"],
             ])
         },
@@ -121,7 +121,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Runny or blocked nose"],
-                ["it", "Runny or blocked nose"],
+                ["it", "Naso che cola o naso chiuso"],
                 ["nl", "Loopneus of verstopte neus"],
             ])
         },
@@ -130,7 +130,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sneezing"],
-                ["it", "Sneezing"],
+                ["it", "Starnuti"],
                 ['nl', "Niezen"],
             ])
         },
@@ -139,7 +139,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Sore throat"],
-                ["it", "Sore throat"],
+                ["it", "Gola infiammata"],
                 ["nl", "Zere keel"],
             ])
         },
@@ -148,7 +148,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Cough"],
-                ["it", "Cough"],
+                ["it", "Tosse"],
                 ["nl", "Hoesten"],
             ])
         },
@@ -157,7 +157,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Shortness of breath"],
-                ["it", "Shortness of breath"],
+                ["it", "Respiro affannoso"],
                 ["nl", "Kortademig (snel buiten adem)"],
             ])
         },
@@ -166,7 +166,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Headache"],
-                ["it", "Headache"],
+                ["it", "Mal di testa"],
                 ["nl", "Hoofdpijn"],
             ])
         },
@@ -175,7 +175,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Muscle/joint pain"],
-                ["it", "Muscle/joint pain"],
+                ["it", "Dolori muscolari/alle articolazioni"],
                 ["nl", "Spierpijn/Gewrichtspijn (niet sportgerelateerd)"],
             ])
         },
@@ -184,7 +184,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chest pain"],
-                ["it", "Chest pain"],
+                ["it", "Dolori al petto"],
                 ["nl", "Pijn op de borst"],
             ])
         },
@@ -193,7 +193,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Feeling tired or exhausted (malaise)"],
-                ["it", "Feeling tired or exhausted (malaise)"],
+                ["it", "Sensazione di stanchezza/spossatezza"],
                 ["nl", "Vermoeid en lamlendig (algehele malaise)"],
             ])
         },
@@ -202,7 +202,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of appetite"],
-                ["it", "Loss of appetite"],
+                ["it", "Perdita di appetito"],
                 ["nl", "Verminderde eetlust"],
             ])
         },
@@ -211,7 +211,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Coloured sputum/phlegm"],
-                ["it", "Coloured sputum/phlegm"],
+                ["it", "Catarro"],
                 ["nl", "Verkleurd slijm"],
             ])
         },
@@ -220,7 +220,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Watery, bloodshot eyes"],
-                ["it", "Watery, bloodshot eyes"],
+                ["it", "Occhi arrossati, lacrimosi"],
                 ["nl", "Waterige of bloeddoorlopen ogen"],
             ])
         },
@@ -238,7 +238,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Vomiting"],
-                ["it", "Vomiting"],
+                ["it", "Vomito"],
                 ["nl", "Overgeven"],
             ])
         },
@@ -247,7 +247,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Diarrhoea (at least three times a day)"],
-                ["it", "Diarrhoea (at least three times a day)"],
+                ["it", "Diarrea (almeno tre volte al giorno)"],
                 ["nl", "Diarree (minstens 3 keer per dag)"],
             ])
         },
@@ -256,7 +256,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Stomach ache"],
-                ["it", "Stomach ache"],
+                ["it", "Mal di stomaco"],
                 ["nl", "Buikpijn"],
             ])
         },
@@ -267,7 +267,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of smell"],
-                ["it", "Loss of smell"],
+                ["it", "Perdita dell'olfatto"],
                 ["nl", "Geen reuk"],
             ])
         },
@@ -276,7 +276,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Loss of taste"],
-                ["it", "Loss of taste"],
+                ["it", "Perdita del gusto"],
                 ["nl", "Geen smaak"],
             ])
         },
@@ -285,7 +285,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nose bleed"],
-                ["it", "Nose bleed"],
+                ["it", "Perdita di sangue dal naso"],
                 ["nl", "Bloedneus"],
             ])
         },
@@ -294,7 +294,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Rash"],
-                ["it", "Rash"],
+                ["it", "Eruzione cutanea"],
                 ["nl", "Huiduitslag"],
             ])
         },
@@ -303,11 +303,11 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
             ]),
             description: new Map([
                 ["en", "Enter symptoms"],
-                ["it", "Enter symptoms"],
+                ["it", "Inserisci sintomi"],
             ]),
         },
     ]);
@@ -346,7 +346,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
             ["fr-be", "Êtes-vous disposé(e) à fournir de plus amples informations concernant les symptômes que vous avez signalés ? Cela vous prendra 5 à 10 minutes de votre temps."],
             ["de-be", "Sind Sie bereit, in Bezug auf die von Ihnen gemeldeten Symptome weitere Informationen zu erteilen? Das wird 5-10 Minuten Ihrer Zeit in Beschlag nehmen."],
             ["en", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
-            ["it", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
+            ["it", "Ti interessa riportare ulteriori informazioni sui sintomi che hai segnalato? La compilazione delle successive domande richiederà tra i 5 e i 10 minuti."],
         ]))
     );
 
@@ -364,7 +364,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -374,7 +374,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                     ["fr-be", "Nous voulons savoir si vous êtes prêt à répondre aux questions de suivi. Vos réponses aux questions de suivi peuvent aider notre enquête."],
                     ["de-be", "Wir möchten wissen, ob Sie bereit sind, die Anschlussfragen zu beantworten. Ihre Antworten auf die Anschlussfragen können unsere Untersuchung unterstützen."],
                     ["en", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
-                    ["it", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
+                    ["it", "Vogliamo sapere se ti interessa rispondere a queste domande di approfondimento. Le tue risposte possono aiutarci a migliorare la nostra attività di ricerca."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -390,7 +390,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -480,7 +480,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ["fr-be", "Lorsque vous avez complété le précédent questionnaire, vous avez indiqué que vous étiez toujours malade. Les symptômes que vous signalez actuellement font-ils partie de la même période que les symptômes que vous aviez déjà signalés la dernière fois ?"],
             ["de-be", "In Ihrer letzten Fragen gaben Sie an, noch immer krank zu sein. Gehören die Symptome, die Sie nun melden, zu demselben Beschwerdezeitraum wie die Symptome, die Sie das letzte Mal schon gemeldet haben?"],
             ["en", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
-            ["it", "When you filled in the previous questionnaire, you indicated that you were still sick. Are the symptoms you are  reporting now from the same timeframe as the symptoms you reported the last time?"],
+            ["it", "Quando hai compilato il questionario la volta precedente, hai indicato di essere ancora malato (ovvero che i tuoi sintomi non erano ancora terminati). I sintomi che stai riportando stavolta fanno parte dello stesso episodio di malattia?"],
         ]))
     );
 
@@ -500,7 +500,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -513,7 +513,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Pour accélérer le remplissage du reste du questionnaire."],
                     ["de-be", "Um das Ausfüllen der restlichen Fragen zu beschleunigen."],
                     ["en", "To speed up the completion of the rest of the questionnaire."],
-                    ["it", "To speed up the completion of the rest of the questionnaire."],
+                    ["it", "Per renderti più agevole e veloce la compilazione del questionario."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -526,7 +526,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -539,7 +539,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["fr-be", "Si vous pensez que les plaintes que vous signalez aujourd'hui sont toujours causées par la même infection ou le même problème (même période durant laquelle les plaintes ont été observées), répondez alors oui à la question."],
                     ["de-be", "Wenn Sie der Meinung sind, dass die Beschwerden, über die Sie heute berichten, durch dieselbe Infektion / dasselbe Problem (in derselben Beschwerdezeit) verursacht werden, dann beantworten Sie die Frage mit Ja."],
                     ["en", "If you think that the complaints you are indicating today are caused by the same infection or the same problem (the same period during which you experienced the complaints), answer 'yes'."],
-                    ["it", "If you think that the complaints you are indicating today are caused by the same infection or the same problem (the same period during which you experienced the complaints), answer 'yes'."],
+                    ["it", "Se ritieni che I sintomi che stai riportando siano causati dalla stessa patologia dei sintomi che hai segnalato in precedenza, allora rispondi 'si'"],
                 ]),
             },
         ])
@@ -558,7 +558,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
@@ -584,7 +584,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
         {
@@ -597,7 +597,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ["fr-be", "Cela ne s'applique pas à moi"],
                 ["de-be", "Das trifft auf mich nicht zu"],
                 ["en", "This does not apply to me"],
-                ["it", "This does not apply to me"],
+                ["it", "Non si applica"],
             ])
         },
     ]);
@@ -636,7 +636,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
             ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une ou plusieurs personne(s) ayant obtenu un résultat positif au PCR-test de dépistage du coronavirus (cette personne peut présenter ou non des symptômes) ?"],
             ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit einer oder mehreren Personen, die einen positiven PCR-Test auf COVID-19 hatten (Diese Person kann Symptome aufweisen oder auch nicht!)?"],
             ["en", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
-            ["it", "In the 14 days before your symptoms started, have you been in close contact with someone for whom a PCR test (nasal swab) has confirmed that they have Covid-19?"],
+            ["it", "Nelle due settimane prima dell'inizio dei tuoi sintomi, sei stato in contatto con qualcuno che è risultato positivo al tampone MOLECOLARE (caso confermato con esame PCR) da coronavirus?"],
         ]))
     );
 
@@ -652,7 +652,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -662,7 +662,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                     ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
                     ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
                     ["en", "In  order to study how the coronavirus spreads within the general population."],
-                    ["it", "In  order to study how the coronavirus spreads within the general population."],
+                    ["it", "Ci interessa studiare la diffusione del virus nella popolazione generale"],
                 ]),
             },
         ])
@@ -677,7 +677,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -698,7 +698,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
@@ -736,7 +736,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
             ["fr-be", "Cette personne ou l'une de ces personnes fait-elle partie de votre ménage ou de votre foyer ?"],
             ["de-be", "Gehört diese Person oder eine dieser Personen zu Ihrem Haushalt?"],
             ["en", "Was this person or one of these persons a member of your household?"],
-            ["it", "Was this person or one of these persons a member of your household?"],
+            ["it", "Questa persona fa parte del tuo nucleo familiare? (ovvero vive presso la tua stessa abitazione)"],
         ]))
     );
 
@@ -754,7 +754,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -764,7 +764,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Le coronavirus et la grippe se propagent beaucoup à l'intérieur."],
                     ["de-be", "COVID-19 und Grippe verbreiten sich sehr stark im Hause."],
                     ["en", "The coronavirus and influenza spread quickly indoors."],
-                    ["it", "The coronavirus and influenza spread quickly indoors."],
+                    ["it", "Il coronavirus e l'influenza possono trasmettersi facilmente al chiuso e tra persone che convivono."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -774,7 +774,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -784,7 +784,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                     ["fr-be", "Un membre du ménage ou du foyer est défini comme une personne (pas nécessairement apparentée) qui vit à la même adresse que vous, et qui partage la cuisine, le salon, la salle de séjour ou la salle à manger."],
                     ["de-be", "Ein Mitglied des Haushalts wird als jemand (nicht notwendigerweise verwandt) definiert, der an derselben Anschrift wie Sie wohnt und mit dem Sie die Kochgelegenheit, Wohnzimmer oder Essecke teilen."],
                     ["en", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
-                    ["it", "A member of the household is defined as a person (not necessary a family member) who lives at the same address as you, and who shares the kitchen, living room, family room or dining room."],
+                    ["it", "Una persona è definita come parte del tuo nucleo familiare (non necessariamente un parente) se vive nella tua stessa abitazione e condivide la stessa cucina, soggiorno o sala da pranzo."],
                 ]),
             },
         ])
@@ -799,7 +799,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -820,7 +820,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
                 ["fr-be", "Je ne sais pas"],
                 ["de-be", "Ich weiß es nicht"],
                 ["en", "I don’t know"],
-                ["it", "I don’t know"],
+                ["it", "Non so"],
             ])
         },
     ]);
@@ -860,7 +860,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
             ["fr-be", "Au cours des 14 jours précédant l'apparition de vos symptômes, avez-vous été en contact étroit avec une personne présentant des symptômes du coronavirus ?"],
             ["de-be", "Waren Sie in den 14 Tagen vor dem Beginn Ihrer Symptome in engem Kontakt mit jemandem, der die Symptome von COVID-19 aufwies?"],
             ["en", "During the 14 days before your symptoms appeared, were you in close contact with a person presenting COVID-19 symptoms?"],
-            ["it", "During the 14 days before your symptoms appeared, were you in close contact with a person presenting COVID-19 symptoms?"],
+            ["it", "Nei 14 giorni prima dell'inizio dei tuoi sintomi, sei stato in contatto con qualcuno che presentava sintomi da COVID-19? (inclusi febbre, brividi, tosse, mal di gola, fiato corto, dolori muscolari o mal di testa)"],
         ]))
     );
 
@@ -876,7 +876,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -886,7 +886,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["fr-be", "Afin d'étudier la façon dont le coronavirus se propage au sein de la population générale."],
                     ["de-be", "Um zu untersuchen, wie sich COVID-19 in der allgemeinen Bevölkerung verbreitet."],
                     ["en", "In  order to study how the coronavirus spreads within the general population."],
-                    ["it", "In  order to study how the coronavirus spreads within the general population."],
+                    ["it", "Ci interessa studiare come il coronavirus si trasmette tra le persone."],
                 ]),
             },
             {
@@ -895,7 +895,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -904,7 +904,8 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                     ["nl-be", "Symptomen van COVID-19 zijn onder meer: ​​koorts of koude rillingen, hoesten, keelpijn, kortademigheid, pijnlijke spieren en hoofdpijn."],
                     ["fr-be", "Les symptômes du COVID-19 incluent : fièvre ou frissons, toux, mal de gorge, essoufflement, douleurs musculaires et maux de tête."],
                     ["de-be", "Zu den Symptomen von COVID-19 gehören: Fieber oder Schüttelfrost, Husten, Halsschmerzen, Kurzatmigkeit, Muskelkater und Kopfschmerzen."],
-                    ["en", "Symptoms of COVID-19 include: fever or chills, cough, sore throat, shortness of breath, sore muscles and headache."],
+                    ["en", "COVID-19 symptoms include:  fever or chills, cough, sore throat, shortness of breath, sore muscles and headache."],
+                    ["it", "Sintomi da COVID-19 includono: febbre o brividi, tosse, gola infiammata, respiro affannoso, muscoli doloranti e mal di testa."],
                 ]),
             },
         ])
@@ -919,6 +920,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -929,6 +931,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -938,6 +941,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
