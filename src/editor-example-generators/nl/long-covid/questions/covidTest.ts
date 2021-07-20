@@ -582,7 +582,7 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze deels of geheel door het coronavirus komen?"],
+            ["nl", "Heb je op dit moment langdurige gezondheidsklachten waarvan je denkt dat deze deels of geheel door het coronavirus komen?"],
         ]),
         responseOptions: [
             {
@@ -607,6 +607,7 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
         isRequired: isRequired,
     });
 }
+
 
 const Q_instructions2 = (parentKey: string): SurveyItem => {
     const markdownContent = `
