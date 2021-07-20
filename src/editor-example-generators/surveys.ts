@@ -7,6 +7,7 @@ import getExampleWeekly from './nl/infectieradar/inf-weekly';
 
 import likertScales from './examples/likert-scales';
 import { LongCovidSurveys } from './nl/long-covid';
+import { RTRSurveys } from './rtr/bw21';
 
 const surveys = [
     {
@@ -59,6 +60,16 @@ const surveys = [
             'fr-be',
             'de-be',
             'en',
+        ]
+    },
+    {
+        instance: 'rtr',
+        surveys: [
+            { name: "EG 0829 PRE", survey: RTRSurveys.EG_0829_PRE() },
+            { name: "EG 0829 POST", survey: RTRSurveys.EG_0829_POST() },
+        ],
+        languageCodes: [
+            'de',
         ]
     }
 ];
