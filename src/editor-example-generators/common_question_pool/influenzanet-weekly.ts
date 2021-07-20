@@ -22,7 +22,7 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you had any of the following symptoms since your last visit (or in the past week, if this is your first visit)?"],
-            ["it", "HHai avuto uno dei seguenti sintomi dall'ultima volta che hai compilato il questionario? (Indica tutte le voci appropriate)"],
+            ["it", "Hai avuto uno dei seguenti sintomi dall'ultima volta che hai compilato il questionario? (Indica tutte le voci appropriate)"],
             ["nl", "Had je in de afgelopen week geen, één of meerdere van deze klachten? (chronische klachten hoeven hier niet gemeld te worden)"],
         ]))
     );
@@ -346,7 +346,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
             ["fr-be", "Êtes-vous disposé(e) à fournir de plus amples informations concernant les symptômes que vous avez signalés ? Cela vous prendra 5 à 10 minutes de votre temps."],
             ["de-be", "Sind Sie bereit, in Bezug auf die von Ihnen gemeldeten Symptome weitere Informationen zu erteilen? Das wird 5-10 Minuten Ihrer Zeit in Beschlag nehmen."],
             ["en", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
-            ["it", "Are you willing to provide further information regarding the symptoms you have reported? This will take 5 to 10 minutes."],
+            ["it", "Ti interessa riportare ulteriori informazioni sui sintomi che hai segnalato? La compilazione delle successive domande richiederà tra i 5 e i 10 minuti."],
         ]))
     );
 
@@ -364,7 +364,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -374,7 +374,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                     ["fr-be", "Nous voulons savoir si vous êtes prêt à répondre aux questions de suivi. Vos réponses aux questions de suivi peuvent aider notre enquête."],
                     ["de-be", "Wir möchten wissen, ob Sie bereit sind, die Anschlussfragen zu beantworten. Ihre Antworten auf die Anschlussfragen können unsere Untersuchung unterstützen."],
                     ["en", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
-                    ["it", "We want to know if you are willing to answer the follow-up questions. Your answers to the follow-up questions may assist our research."],
+                    ["it", "Vogliamo sapere se ti interessa rispondere a queste domande di approfondimento. Le tue risposte possono aiutarci a migliorare la nostra attività di ricerca."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -390,7 +390,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
