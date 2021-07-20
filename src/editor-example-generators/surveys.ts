@@ -1,4 +1,6 @@
 import getBelIntake from './belgium/inf-intake';
+import getItalyIntake from './italy/inf-intake';
+import getItalyWeekly from './italy/inf-weekly';
 import getBelWeekly from './belgium/inf-weekly';
 import getBelVaccination from './belgium/inf-vaccination';
 import getExampleIntake from './nl/infectieradar/inf-intake';
@@ -28,6 +30,7 @@ const surveys = [
             'en',
         ]
     },
+
     {
         instance: 'nl-long-covid', surveys: [
             { name: "T0", survey: LongCovidSurveys.T0 },
@@ -59,6 +62,17 @@ const surveys = [
             'fr-be',
             'de-be',
             'en',
+        ]
+    },
+    {
+        instance: 'italy',
+        surveys: [
+            { name: "intake", survey: getItalyIntake() },
+            { name: "weekly", survey: getItalyWeekly() },
+        ],
+        languageCodes: [
+            'en',
+            'it'
         ]
     }
 ];
