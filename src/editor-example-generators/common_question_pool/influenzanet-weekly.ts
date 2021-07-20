@@ -6121,6 +6121,106 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
     return editor.getItem();
 }
 
+/**
+ * INFORMED CONTACTS OF DISEASE SUSPICION
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param keyReasonForSymptoms Key to the answer provided in Q11
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Qcov9b';
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setVersion(1);
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
+            ["it", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
+        ]))
+    );
+
+    // CONDITION
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keyReasonForSymptoms, [responseGroupKey, singleChoiceKey].join('.'), '9'),
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["en", "Why are we asking this question?"],
+                    ["it", "Why are we asking this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "To better understand how people communicate their illnesses during the COVID-19 pandemic."],
+                    ["it", "To better understand how people communicate their illnesses during the COVID-19 pandemic."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["en", "How should I answer this question?"],
+                    ["it", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["en", "Select the option that best suits your situation."],
+                    ["it", "Select the option that best suits your situation."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "Yes"],
+                ["it", "Yes"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "Some of them"],
+                ["it", "Some of them"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["en", "No"],
+                ["it", "No"],
+            ])
+        }
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
 export const WeeklyQuestions = {
     causeOfSymptoms,
     consentForSymptoms,
@@ -6135,7 +6235,6 @@ export const WeeklyQuestions = {
     dailyRoutineDaysMissed,
     durationLabSampling,
     durationLabSearch,
-    hospitalized,
     feverGroup: {
         all: getFullFeverGroup,
         feverStart,
@@ -6145,6 +6244,8 @@ export const WeeklyQuestions = {
     },
     fluTest,
     hasSymptomsGroup,
+    hospitalized,
+    informedContacts,
     pcrHouseholdContact,
     pcrTestedContact,
     perceivedReasonForDisease,

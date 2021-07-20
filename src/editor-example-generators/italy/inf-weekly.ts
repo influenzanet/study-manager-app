@@ -200,6 +200,14 @@ const weekly = (): Survey | undefined => {
     const Q_causeOfSymptoms = CommonPoolWeekly.causeOfSymptoms(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_causeOfSymptoms, hasSymptomGroupKey);
 
+    // // Qcov9 why do you think you have covid-19 --------------------------------------
+    const Q_reasonForDisease = CommonPoolWeekly.perceivedReasonForDisease(hasSymptomGroupKey, Q_causeOfSymptoms.key, true);
+    survey.addExistingSurveyItem(Q_reasonForDisease, hasSymptomGroupKey);
+
+    // // Qcov9b inform contacts of suspected covid-19 --------------------------------------
+    const Q_informContacts = CommonPoolWeekly.informedContacts(hasSymptomGroupKey, Q_causeOfSymptoms.key, true);
+    survey.addExistingSurveyItem(Q_informContacts, hasSymptomGroupKey);
+
     const surveyEndText = surveyEnd(rootKey);
     survey.addExistingSurveyItem(surveyEndText, rootKey);
 
