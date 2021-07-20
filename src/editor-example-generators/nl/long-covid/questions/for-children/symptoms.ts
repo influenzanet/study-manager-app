@@ -89,7 +89,7 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
-        this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(this.Q10('Q10', conditionQ6nee, isRequired))};
         this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired));
         this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q12);

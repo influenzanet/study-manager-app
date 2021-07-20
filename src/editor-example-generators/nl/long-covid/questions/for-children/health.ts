@@ -632,7 +632,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die WEL te maken hebben met het coronavirus?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
@@ -684,7 +684,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
+                ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die WEL te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
             ]),
             customValidations: [{
                 key: 'numberInputChecks',
@@ -802,7 +802,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             isRequired: isRequired,
             condition: condition,
             questionText: new Map([
-                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die WEL te maken hebben met het coronavirus?"],
             ]),
             content: new Map([
                 ['nl', '']
@@ -823,7 +823,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener anders dan voor corona?"],
+                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die NIET te maken hebben met het coronavirus?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
@@ -876,7 +876,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden anders dan voor corona? En hoe vaak?"],
+                ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus? En hoe vaak?"],
             ]),
             customValidations: [{
                 key: 'numberInputChecks',
@@ -996,7 +996,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             isRequired: isRequired,
             condition: condition,
             questionText: new Map([
-                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
+                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die NIET te maken hebben met het coronavirus?"],
             ]),
             content: new Map([
                 ['nl', '']
