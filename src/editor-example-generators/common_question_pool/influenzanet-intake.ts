@@ -2474,7 +2474,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 ["fr", "Je me fais systématiquement vacciner"],
             ])
         }, {
-            key: '10', role: 'option',
+            key: '12', role: 'option',
             content: new Map([
                 ["en", "I try to protect myself against infections, because of the circulation of the pandemic coronavirus"],
                 ["it", "Cerco di proteggermi dalle infezioni a causa della circolazione del coronavirus pandemico"],
