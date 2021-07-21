@@ -1258,7 +1258,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
             ["fr-be", "Quel jour vos symptômes / vos troubles médicaux avaient-ils à nouveau disparu ?"],
             ["de-be", "An welchem Tag waren Ihre Symptome/Beschwerden wieder verschwunden?"],
             ["en", "When did your symptoms end?"],
-            ["it", "When did your symptoms end?"],
+            ["it", "Quando sono terminati i sintomi?"],
         ]))
     );
 
@@ -1277,7 +1277,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1290,7 +1290,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Sur la base du premier et du dernier jour des plaintes, nous pouvons calculer depuis combien de temps vous souffrez de (ces) plaintes."],
                     ["de-be", "Auf der Grundlage des ersten und letzten Tages der Beschwerden können wir ausrechnen, wie lange Sie an (diesen) Beschwerden litten."],
                     ["en", "We can use the first and last dates of the complaints to calculate how long your complaints lasted. "],
-                    ["it", "We can use the first and last dates of the complaints to calculate how long your complaints lasted. "],
+                    ["it", "Grazie alla data di inizio e fine dei sintomi, possiamo avere una buona stima della durata delle infezioni respiratorie."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1303,7 +1303,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1316,7 +1316,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                     ["fr-be", "Veuillez fournir la réponse la plus précise possible."],
                     ["de-be", "Mehrere Antworten sind möglich."],
                     ["en", "Answer as precisely as possible."],
-                    ["it", "Answer as precisely as possible."],
+                    ["it", "Per favore, inserisci una data che sia il più accurata possibile."],
                 ]),
             },
         ])
@@ -1348,14 +1348,14 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
                 ["en", "Choose date"],
-                ["it", "Choose date"],
+                ["it", "Scegli la data"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
-                ["it", "I don't know/can't remember"],
+                ["it", "Non so/non ricordo"],
                 ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
                 ["nl", "Dit weet ik niet (meer)?"],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
@@ -1371,7 +1371,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
                 ["fr-be", "Je suis encore malade"],
                 ["de-be", "Ich habe immer noch Beschwerden"],
                 ["en", "I am still ill"],
-                ["it", "I am still ill"],
+                ["it", "Sono ancora malato/a"],
             ])
         },
     ]);
