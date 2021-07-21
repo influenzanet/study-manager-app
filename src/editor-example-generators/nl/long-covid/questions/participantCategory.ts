@@ -17,14 +17,46 @@ export class ParticipantCategoryGroup extends GroupItemEditor {
 
         this.addItem(qCategory);
         this.addPageBreak();
-        this.Q_age = q_age(this.key, this.isAdultVersionCondition, true);
+        this.Q_age = q_age(this.key, undefined, true);
         this.addItem(this.Q_age);
-        this.addItem(q_postal_code(this.key, this.isAdultVersionCondition, true));
+        this.addItem(q_postal_code(this.key, undefined, true));
         this.addPageBreak();
     }
 
     getAgeInYearsExpression() {
         return expWithArgs('dateResponseDiffFromNow', this.Q_age.key, [responseGroupKey, datePickerKey].join('.'), 'years', 1)
+    }
+
+    isOlder(age: number, allowEqual?: boolean): Expression {
+        return expWithArgs(
+            allowEqual ? 'gte' : 'gt',
+            this.getAgeInYearsExpression(),
+            age,
+        )
+    }
+
+    isYounger(age: number, allowEqual?: boolean): Expression {
+        return expWithArgs(
+            allowEqual ? 'lte' : 'lt',
+            this.getAgeInYearsExpression(),
+            age,
+        )
+    }
+
+    isBetweenAges(minAge: number, maxAge: number, allowEqual?: boolean): Expression {
+        return expWithArgs(
+            'and',
+            expWithArgs(
+                allowEqual ? 'gte' : 'gt',
+                this.getAgeInYearsExpression(),
+                minAge,
+            ),
+            expWithArgs(
+                allowEqual ? 'lte' : 'lt',
+                this.getAgeInYearsExpression(),
+                maxAge,
+            )
+        );
     }
 
     getIsForAKind() {
@@ -51,7 +83,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'kind', role: 'option',
                 content: new Map([
-                    ["nl", "Voor mijn kind van jonger dan 16 jaar oud"],
+                    ["nl", "Voor mijn kind"],
                 ])
             },
         ],
@@ -79,7 +111,7 @@ const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, 
         },
         maxRelativeDate: {
             delta: {
-                years: -5
+                years: 0,
             }
         },
         isRequired: isRequired,

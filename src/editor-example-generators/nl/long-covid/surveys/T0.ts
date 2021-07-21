@@ -1,6 +1,5 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
-import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
@@ -9,6 +8,7 @@ import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
 import { CovidTestGroup } from "../questions/covidTest";
+import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest";
 import { DemographieGroup } from "../questions/demographie";
 import { EQ5DGroup } from '../questions/eq5d';
 import { HADSGroup } from "../questions/hads";
@@ -22,7 +22,12 @@ import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
+import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 import { surveyKeys } from "../studyRules";
+import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
+import { IntroGroup as ChildrenGroupIntro } from "../questions/for-children/childGroupIntro";
+import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
+import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -45,16 +50,13 @@ export const generateT0 = (): Survey | undefined => {
     // *******************************
     // Questions
     // *******************************
-    const categoryQuestions = new ParticipantCategoryGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(categoryQuestions.getItem());
+    const participantInfos = new ParticipantCategoryGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(participantInfos.getItem());
 
     const isChildParticipant =
         expWithArgs('or',
-            expWithArgs('lt',
-                categoryQuestions.getAgeInYearsExpression(),
-                16
-            ),
-            categoryQuestions.getIsForAKind()
+            participantInfos.isYounger(18),
+            participantInfos.getIsForAKind()
         );
     const isNotChildParticipant = expWithArgs('not',
         isChildParticipant
@@ -112,7 +114,7 @@ export const generateT0 = (): Survey | undefined => {
 
     const demographieGroupEditor = new DemographieGroup(
         adultVersion.key,
-        categoryQuestions.getAgeInYearsExpression(),
+        participantInfos.getAgeInYearsExpression(),
         covidTestGroupEditor.getQ11JaCondition(),
     );
     adultVersion.addItem(demographieGroupEditor.getItem());
@@ -120,29 +122,70 @@ export const generateT0 = (): Survey | undefined => {
 
     // ===========================
     // CHILD QUESTIONS BRANCH
+    // -------------------------->
     const childVersion = new GroupItemEditor(surveyKey, 'C');
     childVersion.groupEditor.setCondition(isChildParticipant);
 
-    childVersion.addItem(SurveyItemGenerators.display({
-        parentKey: childVersion.key,
-        itemKey: 'info',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ['nl', `Het LongCOVID-onderzoek bij kinderen is helaas nog niet van start gegaan. Volg de informatie op de website [longcovid.rivm.nl](longcovid.rivm.nl) over de start van het onderzoek bij kinderen.`]
-                ])
-            })]
-    }))
+    const minAge = 4;
+
+    // For children under 5
+    const introGroup = new ChildrenGroupIntro(childVersion.key, {
+        belowMinAge: participantInfos.isYounger(minAge, true)
+    });
+    childVersion.addItem(introGroup.getItem());
+
+    // COVID test group for children
+    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(childVersion.key);
+    childrenCovidTestGroupEditor.groupEditor.setCondition(participantInfos.isOlder(minAge));
+    childVersion.addItem(childrenCovidTestGroupEditor.getItem());
+
+    // COVID vaccination for children
+    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(11),
+    });
+    childVersion.addItem(childrenVaccinationGroupEditor.getItem());
+
+    // SymptomsGroup for children
+    const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(minAge),
+        olderThan10: participantInfos.isOlder(10),
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    childVersion.addItem(childrenSymptomsGroupEditor.getItem());
+
+    // General Health for children
+    const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(minAge),
+        testQ11ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+        hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
+        hasReportedSymptomsQ1: childrenSymptomsGroupEditor.hasAnyReportedSymptoms,
+        youngerThan8: participantInfos.isYounger(8),
+        youngerThan11: participantInfos.isYounger(11),
+        between8And12: participantInfos.isBetweenAges(8, 12, true),
+        between13And18: participantInfos.isBetweenAges(13, 18, true),
+    });
+    childVersion.addItem(childrenGeneralHealthGroupEditor.getItem());
+
+    // General Data for children
+    const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(childVersion.key, {
+        groupCondition: participantInfos.isOlder(minAge),
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    childVersion.addItem(childrenGeneralDataGroupEditor.getItem());
+
+    // <--------------------------
+    // END OF CHILD QUESTIONS BRANCH
+    // ===========================
 
 
-
+    // Add adult and children groups to the survey:
     surveyEditor.addSurveyItemToRoot(adultVersion.getItem());
     surveyEditor.addSurveyItemToRoot(childVersion.getItem());
 
-
+    // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
-    ])));
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat. Voor het onderzoek is het heel belangrijk dat je de vragenlijsten blijft invullen, ook als je geen klachten (meer) hebt door corona.']
+    ]), participantInfos.isOlder(minAge)));
 
     return surveyEditor.getSurvey();
 }

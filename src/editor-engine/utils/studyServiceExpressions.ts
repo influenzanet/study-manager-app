@@ -133,6 +133,10 @@ const hasSurveyKeyValidUntilSoonerThan = (surveyKey: string, delta: Duration, re
     );
 }
 
+const or = (...args: any[]) => expWithArgs('or', ...args);
+const and = (...args: any[]) => expWithArgs('and', ...args);
+const not = (arg: Expression) => expWithArgs('not', arg);
+
 export const StudyActions = {
     if: IF,
     do: DO,
@@ -145,6 +149,7 @@ export const StudyActions = {
 }
 
 export const StudyExpressions = {
+    or, and, not,
     checkEventType,
     checkSurveyResponseKey,
     getStudyEntryTime,
