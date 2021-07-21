@@ -165,9 +165,194 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q19(this.key, true))
         this.addItem(Q20(this.key, true))
         this.addItem(Q21(this.key, true))
-        // TODO: add condition, show this text only in case TEST.Q11 = "yes" (in T0 OR in T3/6/9/12)
-        this.addItem(Q_instructions_eind(this.key))
+
+        this.addItem(Q_instructions_eind(this.key, testQ11jaCondition))
     }
+
+
+    Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder lesuren op school/opleiding kunnen volgen dan je normaalgesproken deed?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'onveranderd', role: 'option',
+                    content: new Map([
+                        ["nl", "Mijn gevolgde lesuren zijn onveranderd"],
+                    ]),
+                },
+                {
+                    key: 'minder', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik volg af en toe minder lessen"],
+                    ]),
+                },
+                {
+                    key: 'structureel', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik volg structureel minder lessen"],
+                    ]),
+                },
+                {
+                    key: 'volledig', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ben volledig ziekgemeld"],
+                    ]),
+                },
+                {
+                    key: 'gestopt', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ben gestopt met school/opleiding door de langdurige klachten"],
+                    ]),
+                },
+                {
+                    key: 'niet', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ga niet naar school/opleiding om andere reden"],
+                    ]),
+                },
+            ]
+        });
+    }
+
+
+    // TODO PETER add these questions with the right conditions:
+    // Q_verzuim(itemKey: string, condition: Expression, isRequired: boolean) {
+    //     const inputProperties = {
+    //         min: 0,
+    //         max: 20
+    //     };
+    //     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+    //     return SurveyItemGenerators.multipleChoice({
+    //         parentKey: this.key,
+    //         itemKey: itemKey,
+    //         condition: condition,
+    //         isRequired: isRequired,
+    //         questionText: new Map([
+    //             ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
+    //         ]),
+    //         questionSubText: new Map([
+    //             ["nl", "Meerdere antwoorden mogelijk"]
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: 'geen', role: 'numberInput',
+    //                 content: new Map([
+    //                     ["nl", "Dagen helemaal geen les kunnen volgen:"],
+    //                 ]),
+    //                 optionProps: inputProperties,
+    //                 style: inputStyle,
+    //             },
+    //             {
+    //                 key: 'minder', role: 'numberInput',
+    //                 content: new Map([
+    //                     ["nl", "Aantal dagen minder les kunnen volgen:"],
+    //                 ]),
+    //                 optionProps: inputProperties,
+    //                 style: inputStyle,
+    //             },
+    //         ]
+    //     });
+    // }
+
+    // // if Q_minderschool != onveranderd OR Q_minderschool != niet
+    // Q_langafwezig(itemKey: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: itemKey,
+    //         condition: condition,
+    //         isRequired: isRequired,
+    //         questionText: new Map([
+    //             ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
+    //         ]),
+    //         questionSubText: new Map([
+    //             ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: 'nee', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Nee"],
+    //                 ]),
+    //             },
+    //             {
+    //                 key: 'ja', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Ja"],
+    //                 ]),
+    //             }
+    //         ]
+    //     });
+    // }
+
+    // // if Q_langafwezig == ja
+    // Q_datumziek(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Wanneer heb je je ziek gemeld?"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         minRelativeDate: { delta: { days: -10 } },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: itemKey,
+    //         condition: condition,
+    //         isRequired: isRequired,
+    //         questionText: new Map([
+    //             ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: 'ernstig', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Ernstige zorgen"],
+    //                 ]),
+    //             },
+    //             {
+    //                 key: 'redelijk', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Redelijk veel zorgen"],
+    //                 ]),
+    //             },
+    //             {
+    //                 key: 'weinig', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Weinig zorgen"],
+    //                 ]),
+    //             },
+    //             {
+    //                 key: 'geen1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Geen zorgen, ik ben redelijk positief"],
+    //                 ]),
+    //             },
+    //             {
+    //                 key: 'geen2', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Geen zorgen, ik ben positief"],
+    //                 ]),
+    //             },
+    //         ]
+    //     });
+    // }
+
 }
 
 const Q_instructions = (parentKey: string): SurveyItem => {
@@ -997,187 +1182,6 @@ const Q18 = (parentKey: string, condition: Expression, isRequired?: boolean, key
         isRequired: isRequired,
     });
 }
-// TODO PETER add these questions with the right conditions:
-// Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
-//     return SurveyItemGenerators.singleChoice({
-//         parentKey: this.key,
-//         itemKey: itemKey,
-//         isRequired: isRequired,
-//         condition: condition,
-//         questionText: new Map([
-//             ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder lesuren op school/opleiding kunnen volgen dan je normaalgesproken deed?"],
-//         ]),
-//         responseOptions: [
-//             {
-//                 key: 'onveranderd', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Mijn gevolgde lesuren zijn onveranderd"],
-//                 ]),
-//             },
-//             {
-//                 key: 'minder', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ik volg af en toe minder lessen"],
-//                 ]),
-//             },
-//             {
-//                 key: 'structureel', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ik volg structureel minder lessen"],
-//                 ]),
-//             },
-//             {
-//                 key: 'volledig', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ik ben volledig ziekgemeld"],
-//                 ]),
-//             },
-//             {
-//                 key: 'gestopt', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ik ben gestopt met school/opleiding door de langdurige klachten"],
-//                 ]),
-//             },
-//             {
-//                 key: 'niet', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ik ga niet naar school/opleiding om andere reden"],
-//                 ]),
-//             },
-//         ]
-//     });
-// }
-
-// Q_verzuim(itemKey: string, condition: Expression, isRequired: boolean) {
-//     const inputProperties = {
-//         min: 0,
-//         max: 20
-//     };
-//     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
-//     return SurveyItemGenerators.multipleChoice({
-//         parentKey: this.key,
-//         itemKey: itemKey,
-//         condition: condition,
-//         isRequired: isRequired,
-//         questionText: new Map([
-//             ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
-//         ]),
-//         questionSubText: new Map([
-//             ["nl", "Meerdere antwoorden mogelijk"]
-//         ]),
-//         responseOptions: [
-//             {
-//                 key: 'geen', role: 'numberInput',
-//                 content: new Map([
-//                     ["nl", "Dagen helemaal geen les kunnen volgen:"],
-//                 ]),
-//                 optionProps: inputProperties,
-//                 style: inputStyle,
-//             },
-//             {
-//                 key: 'minder', role: 'numberInput',
-//                 content: new Map([
-//                     ["nl", "Aantal dagen minder les kunnen volgen:"],
-//                 ]),
-//                 optionProps: inputProperties,
-//                 style: inputStyle,
-//             },
-//         ]
-//     });
-// }
-
-// // if Q_minderschool != onveranderd OR Q_minderschool != niet
-// Q_langafwezig(itemKey: string, condition: Expression, isRequired: boolean) {
-//     return SurveyItemGenerators.singleChoice({
-//         parentKey: this.key,
-//         itemKey: itemKey,
-//         condition: condition,
-//         isRequired: isRequired,
-//         questionText: new Map([
-//             ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
-//         ]),
-//         questionSubText: new Map([
-//             ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
-//         ]),
-//         responseOptions: [
-//             {
-//                 key: 'nee', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Nee"],
-//                 ]),
-//             },
-//             {
-//                 key: 'ja', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ja"],
-//                 ]),
-//             }
-//         ]
-//     });
-// }
-
-// // if Q_langafwezig == ja
-// Q_datumziek(key: string, condition: Expression, isRequired: boolean) {
-//     return SurveyItemGenerators.dateInput({
-//         parentKey: this.key,
-//         itemKey: key,
-//         condition: condition,
-//         questionText: new Map([
-//             ["nl", "Wanneer heb je je ziek gemeld?"],
-//         ]),
-//         dateInputMode: 'YMD',
-//         placeholderText: new Map([
-//             ["nl", "dd-mm-jjjj"],
-//         ]),
-//         minRelativeDate: { delta: { days: -10 } },
-//         maxRelativeDate: { delta: { seconds: 1 } },
-//         isRequired: isRequired,
-//     });
-// }
-
-// Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
-//     return SurveyItemGenerators.singleChoice({
-//         parentKey: this.key,
-//         itemKey: itemKey,
-//         condition: condition,
-//         isRequired: isRequired,
-//         questionText: new Map([
-//             ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
-//         ]),
-//         responseOptions: [
-//             {
-//                 key: 'ernstig', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Ernstige zorgen"],
-//                 ]),
-//             },
-//             {
-//                 key: 'redelijk', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Redelijk veel zorgen"],
-//                 ]),
-//             },
-//             {
-//                 key: 'weinig', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Weinig zorgen"],
-//                 ]),
-//             },
-//             {
-//                 key: 'geen1', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Geen zorgen, ik ben redelijk positief"],
-//                 ]),
-//             },
-//             {
-//                 key: 'geen2', role: 'option',
-//                 content: new Map([
-//                     ["nl", "Geen zorgen, ik ben positief"],
-//                 ]),
-//             },
-//         ]
-//     });
-// }
 
 
 const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
@@ -1798,8 +1802,7 @@ const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 }
 
 
-// TODO: add condition, show this text only in case TEST.Q11 = "yes" (in T0 OR in T3/6/9/12)
-const Q_instructions_eind = (parentKey: string): SurveyItem => {
+const Q_instructions_eind = (parentKey: string, condition?: Expression): SurveyItem => {
     const markdownContent = `
 ### Advies en ondersteuning langdurige gezondheidsklachten
 
@@ -1808,6 +1811,7 @@ Voor advies en ondersteuning rondom langdurige gezondheidsklachten door het coro
 
     return SurveyItemGenerators.display({
         parentKey: parentKey,
+        condition: condition,
         itemKey: 'ondersteuning',
         content: [
             ComponentGenerators.markdown({
