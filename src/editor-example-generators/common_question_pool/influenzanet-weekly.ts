@@ -1104,7 +1104,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
             ["fr-be", "Quel jour les premiers symptômes sont-ils apparus ? Si vous ne vous souvenez plus de la date exacte, sélectionnez une date approximative."],
             ["de-be", "An welchem Tag erschienen die ersten Symptome? Wenn Sie das genaue Datum nicht mehr wissen, dann wählen Sie einfach ein geschätztes Datum."],
             ["en", "On what day did you begin feeling the first symptoms? If you do not recall the exact date, please give an approximate date."],
-            ["it", "On what day did you begin feeling the first symptoms? If you do not recall the exact date, please give an approximate date."],
+            ["it", "Quando sono comparsi i primi sintomi? Se non ricordi la data esatta, per favore inserisci una data approssimata."],
         ]))
     );
 
@@ -1126,7 +1126,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1139,7 +1139,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Cette question nous aide à déterminer combien de personnes ressentent des symptômes par jour/semaine."],
                     ["de-be", "Dit helpt ons vast te stellen hoeveel mensen er klachten krijgen per dag/week. "],
                     ["en", "This question will help us to determine how many people are experiencing symptoms per day/week."],
-                    ["it", "This question will help us to determine how many people are experiencing symptoms per day/week."],
+                    ["it", "Questa informazione ci aiuterà a capire quante persone presentano dei sintomi per ogni giorno/settimana."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1152,7 +1152,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1165,7 +1165,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                     ["fr-be", "Veuillez répondre de la manière la plus précise possible."],
                     ["de-be", "Bitte so genau wie möglich."],
                     ["en", "Answer as precisely as possible."],
-                    ["it", "Answer as precisely as possible."],
+                    ["it", "Inserisci una data il più accurata possibile."],
                 ]),
             },
         ])
@@ -1188,14 +1188,14 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
                 ["en", "Choose date"],
-                ["it", "Choose date"],
+                ["it", "Scegli la data"],
             ])
         },
         {
             key: '1', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
-                ["it", "I don't know/can't remember"],
+                ["it", "Non so/Non ricordo"],
                 ["de", "Ich weiss es nicht bzw. kann mich nicht erinnern"],
                 ["nl", "Dit weet ik niet (meer)?"],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
