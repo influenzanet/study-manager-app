@@ -30,7 +30,7 @@ export const generateT3c = (): Survey | undefined => {
 
     // COVID vaccination for children
     const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(surveyKey, {
-        groupCondition: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older15, 'true'),
+        groupCondition: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
     });
     surveyEditor.addSurveyItemToRoot(childrenVaccinationGroupEditor.getItem());
 
