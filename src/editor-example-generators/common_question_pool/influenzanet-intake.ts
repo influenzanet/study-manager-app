@@ -949,7 +949,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "Batchelors Degree (BA, BSc) or equivalent"],
+                ["en", "Bachelors Degree (BA, BSc) or equivalent"],
                 ["it", "Diploma di laurea triennale"],
                 ["nl", "HBO of WO Bachelor"],
                 ["fr", "Diplôme de Bachelor ou équivalent"],
