@@ -1412,7 +1412,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
             ["fr-be", "Avez-vous ressenti ces symptômes / troubles médicaux de manière soudaine (en quelques heures) ?"],
             ["de-be", "Kamen Ihre Symptome/Beschwerden plötzlich? (innerhalb einiger Stunden)"],
             ["en", "Did your symptoms develop suddenly over a few hours?"],
-            ["it", "Did your symptoms develop suddenly over a few hours?"],
+            ["it", "I sintomi si sono manifestati in maniera improvvisa nel giro di qualche ora?"],
         ]))
     );
 
@@ -1431,7 +1431,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1444,7 +1444,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "L'apparition soudaine des symptômes (en quelques heures) est liée au coronavirus et à la grippe."],
                     ["de-be", "Dass Beschwerden plötzlich (in ein paar Stunden) anfangen, hängt mit COVID-19 und Grippe zusammen."],
                     ["en", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
-                    ["it", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
+                    ["it", "Sintomi che compaiono in maniera improvvisa sono comuni per l’influenza e per il coronavirus."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1457,7 +1457,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1470,7 +1470,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                     ["fr-be", "Répondez Oui lorsque les symptômes sont apparus en quelques heures, plutôt qu'une apparition progressive étalée sur plusieurs jours."],
                     ["de-be", "Beantworten Sie die Frage mit Ja, wenn die Beschwerden innerhalb von einigen Stunden begannen, statt mit einer allmählichen Entwicklung über eine Anzahl von Tagen hinweg."],
                     ["en", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
-                    ["it", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
+                    ["it", "Rispondi 'si' se i tuoi sintomi sono comparsi nel giro di poche ore piuttosto che svilupparsi e crescere nel corso di alcuni giorni."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -1490,7 +1490,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
@@ -1513,7 +1513,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
 
             ])
         },
