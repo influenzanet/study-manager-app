@@ -1206,32 +1206,15 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ]),
             }, {
                 key: '5', role: 'option', content: new Map([
-                    ["any", "5"],
-                ]),
-            }, {
-                key: '6', role: 'option', content: new Map([
-                    ["any", "6"],
-                ]),
-            }, {
-                key: '7', role: 'option', content: new Map([
-                    ["any", "7"],
-                ]),
-            }, {
-                key: '8', role: 'option', content: new Map([
-                    ["any", "8"],
-                ]),
-            }, {
-                key: '9', role: 'option', content: new Map([
-                    ["any", "> 8"],
+                    ["any", "5+"],
                 ]),
             },
-
         ]
     };
 
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '1', role: 'responseRow',
+            key: '0', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1246,7 +1229,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2', role: 'responseRow',
+            key: '1', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1261,7 +1244,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '3', role: 'responseRow',
+            key: '2', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1276,7 +1259,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '4', role: 'responseRow',
+            key: '3', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1291,7 +1274,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '5', role: 'responseRow',
+            key: '4', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
