@@ -1556,7 +1556,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
             ["fr-be", "Quel jour avez-vous ressenti de la fièvre ? Si vous ne vous souvenez plus de la date exacte, sélectionnez une date approximative."],
             ["de-be", "An welchem Tag kam das Fieber? Wenn Sie den Tag nicht genau wissen, dann wählen Sie einfach ein geschätztes Datum"],
             ["en", "On what day did your fever start? If you do not recall the exact date, please give an approximate date."],
-            ["it", "On what day did your fever start? If you do not recall the exact date, please give an approximate date."],
+            ["it", "In quale giorno è cominciata la febbre? Se non ricordi la data esatta, ti chiediamo di inserire una data approssimativa."],
 
         ]))
     )
@@ -1576,7 +1576,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1589,7 +1589,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "La fièvre est importante pour le diagnostic, c'est pourquoi nous aimerions savoir quand la fièvre a commencé."],
                     ["de-be", "Fieber ist für eine Diagnose nötig, darum möchten wir gerne wissen, wann das Fieber anfing."],
                     ["en", "Fever is an important diagnostic symptom, so we would like to know when the fever appeared."],
-                    ["it", "Fever is an important diagnostic symptom, so we would like to know when the fever appeared."],
+                    ["it", "La febbre è un sintomo molto importante nella diagnosi per l’influenza o per il covid, ecco perché vogliamo saperne la data di inizio."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1602,7 +1602,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1615,7 +1615,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                     ["fr-be", "Veuillez fournir la réponse la plus précise possible."],
                     ["de-be", "Bitte antworten Sie so genau wie möglich."],
                     ["en", "Answer as precisely as possible."],
-                    ["it", "Answer as precisely as possible."],
+                    ["it", "Per favore, inserisci una data che sia il più accurata possibile."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1648,7 +1648,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
                 ["en", "Choose date"],
-                ["it", "Choose date"],
+                ["it", "Scegli la data"],
             ])
         },
         {
@@ -1661,7 +1661,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
 
             ])
         },
