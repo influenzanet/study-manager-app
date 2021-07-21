@@ -1704,7 +1704,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
             ["fr-be", "La fièvre est-elle apparue de manière soudaine (en quelques heures) ?"],
             ["de-be", "Kam das Fieber plötzlich? (innerhalb von ein paar Stunden)"],
             ["en", "Did your fever develop suddenly over a few hours?"],
-            ["it", "Did your fever develop suddenly over a few hours?"],
+            ["it", "La febbre è salita improvvisamente nel giro di poche ore?"],
         ]))
     );
 
@@ -1723,7 +1723,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1736,7 +1736,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "L'apparition soudaine des symptômes (en quelques heures) est liée au coronavirus et à la grippe."],
                     ["de-be", "Dass Beschwerden plötzlich (in ein paar Stunden) auftreten, hängt mit COVID-19 und Grippe zusammen."],
                     ["en", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
-                    ["it", "The sudden onset of symptoms (within a few hours) is linked to the coronavirus and influenza."],
+                    ["it", "L’influenza e il COVID-19 sono spesso associati alla comparsa improvvisa di febbre."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -1749,7 +1749,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1762,7 +1762,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Répondez Oui lorsque les symptômes sont apparus en quelques heures, plutôt qu'une apparition progressive étalée sur plusieurs jours."],
                     ["de-be", "Beantwoord de vraag met Ja wanneer de klachten binnen enkele uren kwamen opzetten, in plaats van een geleidelijke ontwikkeling over een aantal dagen."],
                     ["en", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
-                    ["it", "Answer “yes” if your symptoms appeared within a few hours, and not gradually over a period of several days."],
+                    ["it", "Rispondi si se la febbre è comparsa improvvisamente nel giro di poche ore piuttosto che crescere gradualmente nel corso di alcuni giorni."],
                 ]),
             },
         ])
@@ -1781,7 +1781,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
@@ -1807,7 +1807,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
