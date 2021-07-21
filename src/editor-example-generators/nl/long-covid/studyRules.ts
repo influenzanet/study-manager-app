@@ -126,7 +126,16 @@ const handleT0Submission = (): Expression => {
         ),
         isTestResultUnknown: () => StudyExpressions.singleChoiceOptionsSelected(
             "T0.A.TEST.Q5", "unknown"
-        )
+        ),
+        isStudent: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.DEM.Q15", "4"
+        ),
+        hasPaidJobAtInfection: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.DEM.Q14a", "ja"
+        ),
+        hasPaidJobAtT0: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.DEM.Q14", "1"
+        ),
     }
     const childVersionChecks = {
         hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
@@ -225,6 +234,18 @@ const handleT0Submission = (): Expression => {
                 StudyActions.updateParticipantFlag('acute_symptoms_T0', 'yes'),
                 // else:
                 StudyActions.updateParticipantFlag('acute_symptoms_T0', 'no'),
+            ),
+            StudyActions.if(
+                adultVersionChecks.hasPaidJobAtT0(),
+                StudyActions.updateParticipantFlag('paidJobAtT0', 'yes')
+            ),
+            StudyActions.if(
+                adultVersionChecks.hasPaidJobAtInfection(),
+                StudyActions.updateParticipantFlag('paidJobAtInfection', 'yes')
+            ),
+            StudyActions.if(
+                adultVersionChecks.isStudent(),
+                StudyActions.updateParticipantFlag('student', 'yes')
             ),
             StudyActions.if(
                 isChildParticipant(),
