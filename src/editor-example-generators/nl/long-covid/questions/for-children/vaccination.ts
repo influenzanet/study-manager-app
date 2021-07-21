@@ -28,8 +28,12 @@ export class VaccinationGroup extends GroupItemEditor {
         const dateForFirstVac = CommonExpressions.getDatePickerResponseValue(Q5.key);
 
         this.addItem(this.groupIntro());
-        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(Q1)};
-        // if (!this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(Q1_FU)};
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(Q1)
+        } else {
+            this.addItem(this.Q1_FU('Q1_FU'))
+        };
+
         this.addItem(Q2);
         this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired));
         this.addItem(this.Q4('Q4', condition1Vac, isRequired));
@@ -90,37 +94,37 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    // Q1_FU(key: string, isRequired?: boolean) {
-    //     return SurveyItemGenerators.singleChoice({
-    //         parentKey: this.key,
-    //         itemKey: key,
-    //         questionText: new Map([
-    //             ["nl", "Heb je een vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst?"],
-    //         ]),
-    //         responseOptions: [
-    //             {
-    //                 key: 'no', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Nee"],
-    //                 ])
-    //             },
-    //             {
-    //                 key: 'yes', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Ja"],
-    //                 ])
-    //             },
-    //             {
-    //                 key: 'dontknow', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Weet ik niet"],
-    //                 ])
-    //             },
-    //         ],
-    //         isRequired: isRequired,
-    //     });
-    // }
-    
+    Q1_FU(key: string, isRequired?: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            questionText: new Map([
+                ["nl", "Heb je een vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'no', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
+                {
+                    key: 'yes', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ])
+                },
+                {
+                    key: 'dontknow', role: 'option',
+                    content: new Map([
+                        ["nl", "Weet ik niet"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
+
     Q2(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
