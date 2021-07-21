@@ -23,7 +23,6 @@ export class EQ5DGroup extends GroupItemEditor {
         this.initQuestions();
     }
 
-    // TODO Peter: fix pagebreaks, add copyright message
     initQuestions() {
         this.addItem(Q_instructions(this.key))
         this.addItem(q_mobility_def(this.key, this.isRequired, this.useCopyRight));
@@ -86,7 +85,7 @@ const q_mobility_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             ["en", "MOBILITY"],
             ["nl", "MOBILITEIT"],
         ]),
-      
+
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -139,7 +138,7 @@ const q_selfcare_def = (parentKey: string, isRequired?: boolean, useCopyRight?: 
             ["en", "SELF-CARE"],
             ["nl", "ZELFZORG"],
         ]),
-        
+
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -196,7 +195,7 @@ const q_activities_def = (parentKey: string, isRequired?: boolean, useCopyRight?
             ["en", "(e.g. work, study, housework, family or leisure activities)"],
             ["nl", "(bijv. werk, studie, huishouden, gezins- en vrijetijdsactiviteiten)"],
         ]),
-        
+
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -249,7 +248,7 @@ const q_pain_def = (parentKey: string, isRequired?: boolean, useCopyRight?: bool
             ["en", "PAIN / DISCOMFORT"],
             ["nl", "PIJN / ONGEMAK"],
         ]),
-        
+
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -301,7 +300,7 @@ const q_anxiety_def = (parentKey: string, isRequired?: boolean, useCopyRight?: b
             ["en", "ANXIETY / DEPRESSION"],
             ["nl", "ANGST / SOMBERHEID"],
         ]),
-        
+
         responseOptions: [
             {
                 key: '0', role: 'option',
