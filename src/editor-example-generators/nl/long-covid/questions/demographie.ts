@@ -94,45 +94,30 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q17(this.key, qWorkcondition, true))
         this.addItem(Q18(this.key, qWorkcondition, true))
 
-        // TODO Peter: add these questions with the right condition (these are copied from kids version)
+        const conditionQ11JaAndStudent = CommonExpressions.and(
+            testQ11jaCondition,
+            CommonExpressions.hasParticipantFlag("student", "yes")
+        )
+        const Q_minderschool = this.Q_minderschool('Q_minderschool', conditionQ11JaAndStudent, true)
+        const Q_verzuim_school = this.Q_verzuim_school('Q_verzuim_school',
+            CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+                'onveranderd', 'niet'
+            ), true)
 
-
-        //condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
-        // this.addItem(Q_verzuim);
-        //condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
-        // this.addItem(Q_langafwezig);
-        // condition: Q_langafwezig = “ja”
-        // this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
-        //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
-        // this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
-
-        // TODO: add participant flag for students
-        //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
-        // const conditionQ11JaAndStudent = CommonExpressions.and(
-        //     testQ11jaCondition,
-        //     CommonExpressions.hasParticipantFlag("student", "yes")
-        // )
-        // const Q_minderschool = this.Q_minderschool('Q_minderschool', conditionQ11JaAndStudent, true)
-        // const Q_verzuim = this.Q_verzuim('Q_verzuim',
-        //     CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
-        //         'onveranderd', 'niet'
-        //     ), true)
-
-        // const Q_langafwezig = this.Q_langafwezig('Q_langafwezig',
-        //     CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
-        //         'onveranderd', 'niet'
-        //     ),
-        //     true);
-        // const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
-        //     Q_langafwezig.key, 'ja'
-        // )
-        // this.addItem(Q_minderschool);
-        // this.addItem(Q_verzuim);
-        // this.addItem(Q_langafwezig);
-        // this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
-        // this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
-        // this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
-        // this.addPageBreak();
+        const Q_langafwezig_school = this.Q_langafwezig_school('Q_langafwezig_school',
+            CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+                'onveranderd', 'niet'
+            ),
+            true);
+        const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
+            Q_langafwezig_school.key, 'ja'
+        )
+        this.addItem(Q_minderschool);
+        this.addItem(Q_verzuim_school);
+        this.addItem(Q_langafwezig_school);
+        this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, true));
+        this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditionQ11JaAndStudent, true));
+        this.addPageBreak();
 
 
         let q11AndQ14aCondition = CommonExpressions.and(
@@ -260,138 +245,136 @@ export class DemographieGroup extends GroupItemEditor {
         });
     }
 
+    Q_verzuim_school(itemKey: string, condition: Expression, isRequired: boolean) {
+        const inputProperties = {
+            min: 0,
+            max: 20
+        };
+        const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+        return SurveyItemGenerators.multipleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk"]
+            ]),
+            responseOptions: [
+                {
+                    key: 'geen', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Dagen helemaal geen les kunnen volgen:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'minder', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Aantal dagen minder les kunnen volgen:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+            ]
+        });
+    }
 
-    // TODO PETER add these questions with the right conditions:
-    // Q_verzuim(itemKey: string, condition: Expression, isRequired: boolean) {
-    //     const inputProperties = {
-    //         min: 0,
-    //         max: 20
-    //     };
-    //     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
-    //     return SurveyItemGenerators.multipleChoice({
-    //         parentKey: this.key,
-    //         itemKey: itemKey,
-    //         condition: condition,
-    //         isRequired: isRequired,
-    //         questionText: new Map([
-    //             ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
-    //         ]),
-    //         questionSubText: new Map([
-    //             ["nl", "Meerdere antwoorden mogelijk"]
-    //         ]),
-    //         responseOptions: [
-    //             {
-    //                 key: 'geen', role: 'numberInput',
-    //                 content: new Map([
-    //                     ["nl", "Dagen helemaal geen les kunnen volgen:"],
-    //                 ]),
-    //                 optionProps: inputProperties,
-    //                 style: inputStyle,
-    //             },
-    //             {
-    //                 key: 'minder', role: 'numberInput',
-    //                 content: new Map([
-    //                     ["nl", "Aantal dagen minder les kunnen volgen:"],
-    //                 ]),
-    //                 optionProps: inputProperties,
-    //                 style: inputStyle,
-    //             },
-    //         ]
-    //     });
-    // }
+    // if Q_minderschool != onveranderd OR Q_minderschool != niet
+    Q_langafwezig_school(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
+            ]),
+            responseOptions: [
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ]),
+                },
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ]),
+                }
+            ]
+        });
+    }
 
-    // // if Q_minderschool != onveranderd OR Q_minderschool != niet
-    // Q_langafwezig(itemKey: string, condition: Expression, isRequired: boolean) {
-    //     return SurveyItemGenerators.singleChoice({
-    //         parentKey: this.key,
-    //         itemKey: itemKey,
-    //         condition: condition,
-    //         isRequired: isRequired,
-    //         questionText: new Map([
-    //             ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
-    //         ]),
-    //         questionSubText: new Map([
-    //             ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
-    //         ]),
-    //         responseOptions: [
-    //             {
-    //                 key: 'nee', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Nee"],
-    //                 ]),
-    //             },
-    //             {
-    //                 key: 'ja', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Ja"],
-    //                 ]),
-    //             }
-    //         ]
-    //     });
-    // }
+    // if Q_langafwezig == ja
+    Q_datumziek(key: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.dateInput({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Wanneer heb je je ziek gemeld?"],
+            ]),
+            dateInputMode: 'YMD',
+            placeholderText: new Map([
+                ["nl", "dd-mm-jjjj"],
+            ]),
+            minRelativeDate: { delta: { days: -10 } },
+            maxRelativeDate: { delta: { seconds: 1 } },
+            isRequired: isRequired,
+        });
+    }
 
-    // // if Q_langafwezig == ja
-    // Q_datumziek(key: string, condition: Expression, isRequired: boolean) {
-    //     return SurveyItemGenerators.dateInput({
-    //         parentKey: this.key,
-    //         itemKey: key,
-    //         condition: condition,
-    //         questionText: new Map([
-    //             ["nl", "Wanneer heb je je ziek gemeld?"],
-    //         ]),
-    //         dateInputMode: 'YMD',
-    //         placeholderText: new Map([
-    //             ["nl", "dd-mm-jjjj"],
-    //         ]),
-    //         minRelativeDate: { delta: { days: -10 } },
-    //         maxRelativeDate: { delta: { seconds: 1 } },
-    //         isRequired: isRequired,
-    //     });
-    // }
-
-    // Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
-    //     return SurveyItemGenerators.singleChoice({
-    //         parentKey: this.key,
-    //         itemKey: itemKey,
-    //         condition: condition,
-    //         isRequired: isRequired,
-    //         questionText: new Map([
-    //             ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
-    //         ]),
-    //         responseOptions: [
-    //             {
-    //                 key: 'ernstig', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Ernstige zorgen"],
-    //                 ]),
-    //             },
-    //             {
-    //                 key: 'redelijk', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Redelijk veel zorgen"],
-    //                 ]),
-    //             },
-    //             {
-    //                 key: 'weinig', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Weinig zorgen"],
-    //                 ]),
-    //             },
-    //             {
-    //                 key: 'geen1', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Geen zorgen, ik ben redelijk positief"],
-    //                 ]),
-    //             },
-    //             {
-    //                 key: 'geen2', role: 'option',
-    //                 content: new Map([
-    //                     ["nl", "Geen zorgen, ik ben positief"],
-    //                 ]),
-    //             },
-    //         ]
-    //     });
-    // }
+    Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ernstig', role: 'option',
+                    content: new Map([
+                        ["nl", "Ernstige zorgen"],
+                    ]),
+                },
+                {
+                    key: 'redelijk', role: 'option',
+                    content: new Map([
+                        ["nl", "Redelijk veel zorgen"],
+                    ]),
+                },
+                {
+                    key: 'weinig', role: 'option',
+                    content: new Map([
+                        ["nl", "Weinig zorgen"],
+                    ]),
+                },
+                {
+                    key: 'geen1', role: 'option',
+                    content: new Map([
+                        ["nl", "Geen zorgen, ik ben redelijk positief"],
+                    ]),
+                },
+                {
+                    key: 'geen2', role: 'option',
+                    content: new Map([
+                        ["nl", "Geen zorgen, ik ben positief"],
+                    ]),
+                },
+            ]
+        });
+    }
 
 }
 
