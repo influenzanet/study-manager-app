@@ -39,8 +39,11 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(this.Q4('Q4', condition1Vac, isRequired));
         this.addItem(Q5);
         this.addItem(this.Q6('Q6', condition2Vac, dateForFirstVac, isRequired));
-        this.addItem(this.Q7('Q7', isRequired));
-        this.addItem(this.Q8('Q8', isRequired));
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q7('Q7', isRequired));
+            this.addItem(this.Q8('Q8', isRequired));
+        }
         this.addPageBreak();
     }
 
