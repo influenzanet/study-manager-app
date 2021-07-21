@@ -9,90 +9,102 @@ import { surveyKeys } from "../studyRules";
 
 export class DemographieGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, getAgeInYearsExpression: Expression, testQ11jaCondition?: Expression, keyOverride?: string) {
+    constructor(parentKey: string, getAgeInYearsExpression?: Expression, testQ11jaCondition?: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'DEM';
         super(parentKey, groupKey);
         this.initQuestions(getAgeInYearsExpression, testQ11jaCondition);
     }
 
     initQuestions(
-        getAgeInYearsExpression: Expression,
+        getAgeInYearsExpression?: Expression,
         testQ11jaCondition?: Expression,
     ) {
         this.addItem(Q_instructions(this.key))
-       
+
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        const Q_gender = q_gender(this.key, true);
-        this.addItem(Q_gender)
+            const Q_gender = q_gender(this.key, true);
+            this.addItem(Q_gender)
 
 
-        const showQPregnancy = expWithArgs('and',
-            CommonExpressions.singleChoiceOptionsSelected(Q_gender.key, 'F'),
-            expWithArgs('gte',
-                getAgeInYearsExpression,
-                14
-            ),
-            expWithArgs('lte',
-                getAgeInYearsExpression,
-                45
-            ),
-        )
+            const showQPregnancy = expWithArgs('and',
+                CommonExpressions.singleChoiceOptionsSelected(Q_gender.key, 'F'),
+                expWithArgs('gte',
+                    getAgeInYearsExpression,
+                    14
+                ),
+                expWithArgs('lte',
+                    getAgeInYearsExpression,
+                    45
+                ),
+            )
 
-        const Q_pregnancy = Q3(this.key, Q_gender.key, showQPregnancy, true);
-        this.addItem(Q_pregnancy)
+            const Q_pregnancy = Q3(this.key, Q_gender.key, showQPregnancy, true);
+            this.addItem(Q_pregnancy)
 
-        const showQTrimester = CommonExpressions.singleChoiceOptionsSelected(Q_pregnancy.key, 'yes');
-        this.addItem(Q4(this.key, showQTrimester, true))
+            const showQTrimester = CommonExpressions.singleChoiceOptionsSelected(Q_pregnancy.key, 'yes');
+            this.addItem(Q4(this.key, showQTrimester, true))
 
-        this.addItem(Q5(this.key, true))
-        this.addItem(Q6(this.key, true))
-        this.addItem(Q7(this.key, true))
-        this.addItem(Q8(this.key, true))
-        this.addItem(Q9(this.key, true))
-        this.addItem(Q10(this.key, true))
+            this.addItem(Q5(this.key, true))
+            this.addItem(Q6(this.key, true))
+            this.addItem(Q7(this.key, true))
+            this.addItem(Q8(this.key, true))
+            this.addItem(Q9(this.key, true))
+            this.addItem(Q10(this.key, true))
 
-        const nrOfPersons = Q11(this.key, true);
-        this.addItem(Q11(this.key, true))
+            const nrOfPersons = Q11(this.key, true);
+            this.addItem(Q11(this.key, true))
 
-        const q12Condition = expWithArgs('gt',
-            CommonExpressions.getResponseValueAsNum(nrOfPersons.key, [responseGroupKey, numericInputKey].join('.')),
-            1
-        );
-        this.addItem(Q12(this.key, q12Condition, true));
+            const q12Condition = expWithArgs('gt',
+                CommonExpressions.getResponseValueAsNum(nrOfPersons.key, [responseGroupKey, numericInputKey].join('.')),
+                1
+            );
+            this.addItem(Q12(this.key, q12Condition, true));
 
-        this.addItem(Q13(this.key, true))
+            this.addItem(Q13(this.key, true))
         }
 
         const Q14a = gen_Q14a(this.key, testQ11jaCondition, true);
         this.addItem(Q14a)
-        
+
         const PaidJob = Q14(this.key, true);
         this.addItem(PaidJob)
+        let conditionWerkveranderdJa = undefined;
         if (!this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(Qwerkveranderd(this.key, true))
+            const qwv = Qwerkveranderd(this.key, true)
+            conditionWerkveranderdJa = CommonExpressions.singleChoiceOptionsSelected(qwv.key, 'ja');
+            this.addItem(qwv)
         }
-        this.addItem(Q15(this.key, true))
+        this.addItem(Q15(this.key, conditionWerkveranderdJa, true))
 
-        const qWorkcondition = CommonExpressions.or(
+        let qWorkcondition = CommonExpressions.or(
             CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1'),
             CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
         )
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {
+            qWorkcondition = CommonExpressions.and(
+                conditionWerkveranderdJa,
+                CommonExpressions.or(
+                    CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1'),
+                    CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
+                )
+            )
+        }
 
         this.addItem(Q16(this.key, qWorkcondition, true))
         this.addItem(Q17(this.key, qWorkcondition, true))
         this.addItem(Q18(this.key, qWorkcondition, true))
 
-// TODO Peter: add these questions with the right condition (these are copied from kids version)
+        // TODO Peter: add these questions with the right condition (these are copied from kids version)
 
-//condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”. 
+        //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
         // this.addItem(Q_minderschool);
-//condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
+        //condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
         // this.addItem(Q_verzuim);
-//condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
+        //condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
         // this.addItem(Q_langafwezig);
-// condition: Q_langafwezig = “ja”
+        // condition: Q_langafwezig = “ja”
         // this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
-//condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”. 
+        //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
         // this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
         const q11AndQ14aCondition = CommonExpressions.and(
             testQ11jaCondition,
@@ -685,7 +697,7 @@ const Q14 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 }
 
 const Qwerkveranderd = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q14';
+    const itemKey = keyOverride ? keyOverride : 'Qwerkveranderd';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -713,12 +725,13 @@ const Qwerkveranderd = (parentKey: string, isRequired?: boolean, keyOverride?: s
     });
 }
 
-const Q15 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q15 = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q15';
 
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Wat is je voornaamste bezigheid overdag?"],
@@ -984,7 +997,7 @@ const Q18 = (parentKey: string, condition: Expression, isRequired?: boolean, key
         isRequired: isRequired,
     });
 }
-// TODO PETER add these questions with the right conditions: 
+// TODO PETER add these questions with the right conditions:
 // Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
 //     return SurveyItemGenerators.singleChoice({
 //         parentKey: this.key,
