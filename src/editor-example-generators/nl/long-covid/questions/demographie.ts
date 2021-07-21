@@ -96,8 +96,7 @@ export class DemographieGroup extends GroupItemEditor {
 
         // TODO Peter: add these questions with the right condition (these are copied from kids version)
 
-        //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
-        // this.addItem(Q_minderschool);
+
         //condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
         // this.addItem(Q_verzuim);
         //condition: Q_minderschool ≠ “gevolgde lesuren zijn onveranderd” of  ≠ “Ik ga niet naar school/opleiding om andere reden”
@@ -106,18 +105,59 @@ export class DemographieGroup extends GroupItemEditor {
         // this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
         //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
         // this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
-        const q11AndQ14aCondition = CommonExpressions.and(
-            testQ11jaCondition,
-            CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
-        ) // TODO: or CommonExpressions.singleChoiceOptionsSelected(Q14.key, 'ja')
 
+        // TODO: add participant flag for students
+        //condition: TEST.Q11 = ja AND DEM.Q15 in T0 = “ Ik ben een scholier of student”.
+        // const conditionQ11JaAndStudent = CommonExpressions.and(
+        //     testQ11jaCondition,
+        //     CommonExpressions.hasParticipantFlag("student", "yes")
+        // )
+        // const Q_minderschool = this.Q_minderschool('Q_minderschool', conditionQ11JaAndStudent, true)
+        // const Q_verzuim = this.Q_verzuim('Q_verzuim',
+        //     CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+        //         'onveranderd', 'niet'
+        //     ), true)
+
+        // const Q_langafwezig = this.Q_langafwezig('Q_langafwezig',
+        //     CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+        //         'onveranderd', 'niet'
+        //     ),
+        //     true);
+        // const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
+        //     Q_langafwezig.key, 'ja'
+        // )
+        // this.addItem(Q_minderschool);
+        // this.addItem(Q_verzuim);
+        // this.addItem(Q_langafwezig);
+        // this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, isRequired));
+        // this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditions.q11Ja, isRequired));
+        // this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
+        // this.addPageBreak();
+
+
+        let q11AndQ14aCondition = CommonExpressions.and(
+            testQ11jaCondition,
+            CommonExpressions.or(
+                CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
+                CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, 'ja')
+            )
+        )
+        // Overwrite for not T0 surveys:
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {
+            q11AndQ14aCondition = CommonExpressions.and(
+                testQ11jaCondition,
+                CommonExpressions.or(
+                    CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
+                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes")
+                )
+            )
+        }
 
         const Q_minderwerk = gen_Q_minderwerk(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_minderwerk);
         const Q_arbo = gen_Q_arbo(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_arbo);
 
-        // TODO:
         const conditionOnMinderwerk = CommonExpressions.singleChoiceOnlyOtherKeysSelected(
             Q_minderwerk.key, '1'
         )
