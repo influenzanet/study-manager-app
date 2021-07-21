@@ -12,10 +12,10 @@ export class CovidTestGroup extends GroupItemEditor {
         super(parentKey, groupKey);
 
         const isRequired = true
- if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
-    const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
-    this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
-}
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
+            const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
+            this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
+        }
         const q1 = this.Q_hadTest('Q1', isRequired);
         const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes');
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
@@ -23,13 +23,9 @@ export class CovidTestGroup extends GroupItemEditor {
         const q7 = this.Q7('Q7', isRequired);
         const conditionQ7Positive = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test');
         const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_notest');
-        const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
+        // const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
         const conditionQ7Ja = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
-        const q11 = this.Q11('Q11', conditionQ7Ja, isRequired);
-        this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(
-            q11.key, 'ja'
-        );
 
         this.addItem(q1);
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
@@ -38,13 +34,20 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(q5);
         this.addItem(this.Q6('Q6', conditionQ5Positive, isRequired));
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(q7);
-        this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
-        this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
-        this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
-       // TODO Peter: add similar condition as for adults (show under condition in T0, always show without condition in T3, 6, 9, 12)
+            this.addItem(q7);
+            this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
+            this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
+            this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
+        }
+
+        const q11 = this.Q11(
+            'Q11',
+            this.isPartOfSurvey(surveyKeys.T0) ? conditionQ7Ja : undefined, // condition when to display, if undefined, it will be displayed
+            isRequired
+        );
+        this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(q11.key, 'ja');
         this.addItem(q11);
-    }
+
         this.addPageBreak();
     }
 
@@ -494,7 +497,7 @@ export class CovidTestGroup extends GroupItemEditor {
     /**
      *
      */
-    Q11(key: string, condition: Expression, isRequired: boolean) {
+    Q11(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
