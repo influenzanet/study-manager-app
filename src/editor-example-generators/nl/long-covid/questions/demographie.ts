@@ -139,7 +139,7 @@ export class DemographieGroup extends GroupItemEditor {
             testQ11jaCondition,
             CommonExpressions.or(
                 CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
-                CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, 'ja')
+                CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
             )
         )
         // Overwrite for not T0 surveys:
