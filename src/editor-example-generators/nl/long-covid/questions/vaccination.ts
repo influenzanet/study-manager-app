@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, ExpressionArg, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -10,10 +10,10 @@ export class VaccinationGroup extends GroupItemEditor {
     constructor(parentKey: string, isT0: boolean, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'VAC';
         super(parentKey, groupKey);
-        this.initQuestions(isT0);
+        this.initQuestions();
     }
 
-    initQuestions(isT0: boolean) {
+    initQuestions() {
 
         if (!this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(Q_instructions(this.key))
@@ -461,8 +461,17 @@ const q_vacc2_date2_def = (parentKey: string, isRequired?: boolean, condition?: 
 }
 
 
-const q_vacc2_date2_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q6_FU';
+const q_vacc2_date2_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, firstVaccinationKey?: string,): SurveyItem => {
+    const itemKey = 'Q6_FU';
+
+    const firstVaccinationExpression = firstVaccinationKey
+        ? {
+            dtype: 'exp', exp: CommonExpressions.timestampWithOffset(
+                { days: 5 },
+                CommonExpressions.getResponseValueAsNum(firstVaccinationKey, 'rg.scg.0'),
+            )
+        } : undefined;
+
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -477,7 +486,7 @@ const q_vacc2_date2_def_FU = (parentKey: string, isRequired?: boolean, condition
                     ["nl", "Op deze datum:"],
                 ]),
                 optionProps: {
-                    min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                    min: firstVaccinationExpression ? firstVaccinationExpression as ExpressionArg : { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
                 },
             },
