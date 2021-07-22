@@ -22,10 +22,11 @@ export class VaccinationGroup extends GroupItemEditor {
         const conditionQ1_FU_Ja = CommonExpressions.singleChoiceOptionsSelected(Q1_FU.key, 'yes');
 
         const Q2 = this.Q2('Q2', conditionQ1Ja, isRequired)
+        const Q2_FU = this.Q2_FU('Q2_FU', conditionQ1_FU_Ja, isRequired)
         const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1vacc');
         const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2vacc');
 
-        const Q2_FU = this.Q2('Q2', conditionQ1_FU_Ja, isRequired)
+       
         const condition1Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '1vacc');
         const condition2Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '2vacc');
 
