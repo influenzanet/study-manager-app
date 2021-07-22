@@ -47,6 +47,7 @@ const Q1 = (parentKey: string) => {
             //    ["de", "1 = Stimme voll und ganz zu, 10 = Stimme überhaupt nicht zu"],
             //]))
         //}],
+        stackOnSmallScreen: true,
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -128,6 +129,7 @@ const Q2 = (parentKey: string) => {
             //    ["de", "1 = Stimme voll und ganz zu, 10 = Stimme überhaupt nicht zu"],
             //]))
         //}],
+        stackOnSmallScreen: true,
         scaleOptions: [
             {
                 key: '1', content: new Map([
