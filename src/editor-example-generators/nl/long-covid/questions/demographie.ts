@@ -138,7 +138,8 @@ export class DemographieGroup extends GroupItemEditor {
                 testQ11jaCondition,
                 CommonExpressions.or(
                     CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
-                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes")
+                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"),
+                    CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
                 )
             )
         }
