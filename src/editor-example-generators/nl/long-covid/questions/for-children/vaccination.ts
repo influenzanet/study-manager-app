@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
@@ -6,7 +6,6 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 import { surveyKeys } from "../../studyRules";
 
 export class VaccinationGroup extends GroupItemEditor {
-
     constructor(parentKey: string, conditions: {
         groupCondition: Expression;
     }, keyOverride?: string) {
@@ -19,6 +18,7 @@ export class VaccinationGroup extends GroupItemEditor {
 
         const Q1 = this.Q1("Q1", isRequired);
         const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(Q1.key, 'yes');
+        const Q1_FU = this.Q1_FU("Q1_FU", isRequired);
         const conditionQ1_FU_Ja = CommonExpressions.singleChoiceOptionsSelected(Q1_FU.key, 'yes');
 
         const Q2 = this.Q2('Q2', conditionQ1Ja, isRequired)
@@ -37,38 +37,43 @@ export class VaccinationGroup extends GroupItemEditor {
             this.addItem(Q1)
         } else {
             this.addItem(this.Q1_FU('Q1_FU'))
-        };
+        }
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(Q2)
         } else {
             this.addItem(this.Q2_FU('Q2_FU'))
-        };
-        if (this.isPartOfSurvey(surveyKeys.T0)) {    
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired))
         } else {
             this.addItem(this.Q3_FU('Q3_FU', conditionQ1_FU_Ja, isRequired))
-        };
-        if (this.isPartOfSurvey(surveyKeys.T0)) {        
-this.addItem(this.Q4('Q4', condition1Vac, isRequired))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q4('Q4', condition1Vac, isRequired))
         } else {
             this.addItem(this.Q4_FU('Q4_FU', condition1Vac_FU, isRequired))
-     
-        if (this.isPartOfSurvey(surveyKeys.T0)) { 
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(Q5)
-         } else {
+        } else {
             this.addItem(this.Q5_FU('Q5_FU', condition2Vac_FU, isRequired))
-         
-        if (this.isPartOfSurvey(surveyKeys.T0)) { 
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q6('Q6', condition2Vac, dateForFirstVac, isRequired));
         } else {
             this.addItem(this.Q6_FU('Q6_FU', condition2Vac_FU, isRequired))
+        }
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q7('Q7', isRequired));
             this.addItem(this.Q8('Q8', isRequired));
         }
-            this.addPageBreak();
+        this.addPageBreak();
     }
 
     groupIntro() {
@@ -178,12 +183,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q2_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-        const itemKey = keyOverride ? keyOverride : 'Q2_FU';
-    
+    Q2_FU(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
-            parentKey: parentKey,
-            itemKey: itemKey,
+            parentKey: this.key,
+            itemKey: key,
             condition: condition,
             questionText: new Map([
                 ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je gehad sinds de vorige vragenlijst?"],
@@ -271,12 +274,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q3_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-        const itemKey = keyOverride ? keyOverride : 'Q3_FU';
-    
+    Q3_FU(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.multipleChoice({
-            parentKey: parentKey,
-            itemKey: itemKey,
+            parentKey: this.key,
+            itemKey: key,
             condition: condition,
             questionText: new Map([
                 ["nl", "Welk vaccin tegen het coronavirus heb je ontvangen sinds de vorige vragenlijst?"],
@@ -337,7 +338,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             isRequired: isRequired,
         });
     }
-    
+
 
     Q4(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.dateInput({
@@ -357,12 +358,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    const Q4_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-        const itemKey = keyOverride ? keyOverride : 'Q4_FU';
-    
+    Q4_FU(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
-            parentKey: parentKey,
-            itemKey: itemKey,
+            parentKey: this.key,
+            itemKey: key,
             condition: condition,
             questionText: new Map([
                 ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst (je mag de datum ook schatten)?"],
@@ -407,11 +406,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    const Q5_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-        const itemKey = keyOverride ? keyOverride : 'Q5_FU';
+    Q5_FU(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
-            parentKey: parentKey,
-            itemKey: itemKey,
+            parentKey: this.key,
+            itemKey: key,
             condition: condition,
             questionText: new Map([
                 ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst (je mag de datum ook schatten)?"],
@@ -459,11 +457,10 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    const Q6_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-        const itemKey = keyOverride ? keyOverride : 'Q6_FU';
+    Q6_FU(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
-            parentKey: parentKey,
-            itemKey: itemKey,
+            parentKey: this.key,
+            itemKey: key,
             condition: condition,
             questionText: new Map([
                 ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst (je mag de datum ook schatten)?"],
