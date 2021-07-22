@@ -794,7 +794,7 @@ const Q3_FU = (parentKey: string, isRequired?: boolean, keyOverride?: string): S
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Is je medicijngebruik de afgelopen 3 maanden veranderd?"],
+            ["nl", "Is je medicijngebruik de afgelopen 3 maanden veranderd (sinds de vorige vragenlijst)?"],
         ]),
         responseOptions: [
             {
@@ -822,7 +822,7 @@ const Q4_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, 
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Welke medicijnen bent je gaan gebruiken sinds de afgelopen 3 maanden?"],
+            ["nl", "Welke medicijnen bent je gaan gebruiken de afgelopen 3 maanden (sinds de vorige vragenlijst)?"],
         ]),
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],

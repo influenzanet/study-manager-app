@@ -64,7 +64,7 @@ export class DemographieGroup extends GroupItemEditor {
         }
 
         const Q14a = gen_Q14a(this.key, testQ11jaCondition, true);
-        this.addItem(Q14a)
+        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(Q14a)}
 
         const PaidJob = Q14(this.key, true);
         this.addItem(PaidJob)
@@ -944,9 +944,6 @@ const Q15 = (parentKey: string, condition?: Expression, isRequired?: boolean, ke
         questionText: new Map([
             ["nl", "Wat is je voornaamste bezigheid overdag?"],
         ]),
-        questionSubText: new Map([
-            ["nl", "Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
-        ]),
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -1014,9 +1011,6 @@ const Q16 = (parentKey: string, condition: Expression, isRequired?: boolean, key
         condition: condition,
         questionText: new Map([
             ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden?"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
         ]),
         responseOptions: [
             {
