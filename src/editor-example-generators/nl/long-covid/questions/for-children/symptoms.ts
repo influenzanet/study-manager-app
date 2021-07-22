@@ -60,7 +60,8 @@ export class SymptomsGroup extends GroupItemEditor {
         const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten' || Q12.key, '3')
 
         this.addItem(this.groupIntro());
-        this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+        this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired))};
         this.addItem(Q1);
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Qklachtenperiode('Qklachtenperiode', hasReportedSymptomsQ1, isRequired));
@@ -90,7 +91,8 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
         if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(this.Q10('Q10', conditionQ6nee, isRequired))};
-        this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+        this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired))};
         this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q12);
         this.addItem(this.Q13('Q13', conditionQ12ja, isRequired));

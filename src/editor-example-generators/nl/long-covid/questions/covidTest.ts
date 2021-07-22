@@ -602,12 +602,6 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
                 ])
             },
             {
-                key: 'unknown', role: 'option',
-                content: new Map([
-                    ["nl", "Weet ik niet"],
-                ])
-            },
-            {
                 key: 'notanymore', role: 'option',
                 content: new Map([
                     ["nl", "Nee, niet meer"],
