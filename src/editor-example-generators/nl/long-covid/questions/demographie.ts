@@ -64,7 +64,7 @@ export class DemographieGroup extends GroupItemEditor {
         }
 
         const Q14a = gen_Q14a(this.key, testQ11jaCondition, true);
-        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(Q14a)}
+        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(Q14a) }
 
         const PaidJob = Q14(this.key, true);
         this.addItem(PaidJob)
@@ -74,7 +74,8 @@ export class DemographieGroup extends GroupItemEditor {
             conditionWerkveranderdJa = CommonExpressions.singleChoiceOptionsSelected(qwv.key, 'ja');
             this.addItem(qwv)
         }
-        this.addItem(Q15(this.key, conditionWerkveranderdJa, true))
+        const q15 = Q15(this.key, conditionWerkveranderdJa, true)
+        this.addItem(q15);
 
         let qWorkcondition = CommonExpressions.or(
             CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1'),
@@ -96,7 +97,11 @@ export class DemographieGroup extends GroupItemEditor {
 
         const conditionQ11JaAndStudent = CommonExpressions.and(
             testQ11jaCondition,
-            CommonExpressions.hasParticipantFlag("student", "yes")
+            CommonExpressions.or(
+                CommonExpressions.hasParticipantFlag("student", "yes"),
+                CommonExpressions.singleChoiceOptionsSelected(q15.key, '4'),
+            )
+
         )
         const Q_minderschool = this.Q_minderschool('Q_minderschool', conditionQ11JaAndStudent, true)
         const Q_verzuim_school = this.Q_verzuim_school('Q_verzuim_school',
@@ -133,7 +138,8 @@ export class DemographieGroup extends GroupItemEditor {
                 testQ11jaCondition,
                 CommonExpressions.or(
                     CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
-                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes")
+                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"),
+                    CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
                 )
             )
         }
