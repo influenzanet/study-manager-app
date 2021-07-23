@@ -2246,7 +2246,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "To find out whether people contact the health services because of their symptoms."],
-                    ["it", "TPer capire se le persone si fanno visitare dal proprio medico medico o presso altre strutture sanitarie in seguito alla comparsa di sintomi."],
+                    ["it", "Per capire se le persone si fanno visitare dal proprio medico medico o presso altre strutture sanitarie in seguito alla comparsa di sintomi."],
                     ["nl", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
                     ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
                     ["nl-be", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
