@@ -26,7 +26,7 @@ export class VaccinationGroup extends GroupItemEditor {
         const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1vacc');
         const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2vacc');
 
-       
+
         const condition1Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '1vacc');
         const condition2Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '2vacc');
 
@@ -43,7 +43,7 @@ export class VaccinationGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(Q2)
         } else {
-            this.addItem(this.Q2_FU('Q2_FU'))
+            this.addItem(Q2_FU)
         }
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
