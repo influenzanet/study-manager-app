@@ -1848,7 +1848,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
             ["fr-be", "Avez-vous pris votre température après l'apparition des symptômes ?"],
             ["de-be", "Haben Sie Ihre Temperatur nach dem Erscheinen der Symptome gemessen?"],
             ["en", "Did you take your temperature?"],
-            ["it", "Did you take your temperature?"],
+            ["it", "Ti sei misurato/a la febbre?"],
         ]))
     );
 
@@ -1867,7 +1867,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -1880,14 +1880,14 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                     ["fr-be", "Si vous avez mesuré votre température, nous aimerions connaître la température corporelle la plus élevée mesurée."],
                     ["de-be", "Wenn Sie das Fieber gemessen haben, möchten wir gerne die höchste gemessene Temperatur wissen."],
                     ["en", "If you have taken your temperature, we would like to know the highest body temperature you have measured."],
-                    ["it", "If you have taken your temperature, we would like to know the highest body temperature you have measured."],
+                    ["it", "L’influenza e il COVID-19 di solito causano febbre alta. Tuttavia non tutti si misurano la febbre quando sono ammalati."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
-                    ["it", "How should I answer it?"],
+                    ["it", "Come devi rispondere?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre?"],
                 ]),
@@ -1896,7 +1896,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
             {
                 content: new Map([
                     ["en", "Answer yes, if you took your temperature using a thermometer."],
-                    ["it", "Answer yes, if you took your temperature using a thermometer."],
+                    ["it", "Rispondi si se ti sei misurato la febbre in modo accurato usando un termometro."],
                     ["nl", "Beantwoord deze vraag met Ja wanneer je de temperatuur hebt gemeten met een thermometer."],
                     ["fr", "Cochez «oui» si vous avez pris votre température à l'aide d'un thermomètre."],
                 ]),
@@ -1918,7 +1918,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
@@ -1944,7 +1944,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
