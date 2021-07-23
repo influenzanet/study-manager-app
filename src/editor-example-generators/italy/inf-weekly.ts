@@ -103,19 +103,19 @@ const weekly = (): Survey | undefined => {
 
     // Q6 fever start questions
     // Separated into individual questions and Key code overriden to prevent Q6.a and keep Q6
-    const Q_feverStart = CommonPoolWeekly.feverGroup.feverStart(hasSymptomGroupKey, Q_symptomStart.key, true, "Q6");
+    const Q_feverStart = CommonPoolWeekly.feverGroup.feverStart(hasSymptomGroupKey, Q_symptoms.key, Q_symptomStart.key, true, "Q6");
     survey.addExistingSurveyItem(Q_feverStart, hasSymptomGroupKey);
 
     // Q6b fever developed suddenly
-    const Q_feverDevelopedSuddenly = CommonPoolWeekly.feverGroup.feverDevelopedSuddenly(hasSymptomGroupKey, true, "Q6b");
+    const Q_feverDevelopedSuddenly = CommonPoolWeekly.feverGroup.feverDevelopedSuddenly(hasSymptomGroupKey, Q_symptoms.key, true, "Q6b");
     survey.addExistingSurveyItem(Q_feverDevelopedSuddenly, hasSymptomGroupKey);
 
     // Q6c temperature taken
-    const Q_didUMeasureTemp = CommonPoolWeekly.feverGroup.didUMeasureTemperature(hasSymptomGroupKey, true, "Q6c");
+    const Q_didUMeasureTemp = CommonPoolWeekly.feverGroup.didUMeasureTemperature(hasSymptomGroupKey, Q_symptoms.key, true, "Q6c");
     survey.addExistingSurveyItem(Q_didUMeasureTemp, hasSymptomGroupKey);
 
     // Q6d highest temperature taken
-    const Q_highestTempMeasured = CommonPoolWeekly.feverGroup.highestTemprerature(hasSymptomGroupKey, Q_didUMeasureTemp.key, true, "Q6d");
+    const Q_highestTempMeasured = CommonPoolWeekly.feverGroup.highestTemprerature(hasSymptomGroupKey, Q_symptoms.key, Q_didUMeasureTemp.key, true, "Q6d");
     survey.addExistingSurveyItem(Q_highestTempMeasured, hasSymptomGroupKey);
 
     // // Q7 visited medical service --------------------------------------

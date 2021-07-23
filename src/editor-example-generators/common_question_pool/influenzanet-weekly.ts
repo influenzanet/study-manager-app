@@ -1543,7 +1543,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const feverStart = (parentKey: string, keySymptomsQuestion: string, keySymptomStart: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'a';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1565,7 +1565,9 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
     )
 
     // CONDITION
-    // None
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -1691,7 +1693,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const feverDevelopedSuddenly = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'b';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1712,7 +1714,9 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
     );
 
     // CONDITION
-    // None
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -1835,7 +1839,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const didUMeasureTemperature = (parentKey: string, keySymptomsQuestion: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'c';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1856,7 +1860,9 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
     );
 
     // CONDITION
-    // None
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
@@ -1974,7 +1980,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, keyDidYouMeasureTemperature: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'd';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1996,7 +2002,10 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyDidYouMeasureTemperature, [responseGroupKey, singleChoiceKey].join('.'), '0')
+        expWithArgs('and',
+            expWithArgs('responseHasKeysAny', keyDidYouMeasureTemperature, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keySymptomsQuestion, [responseGroupKey, multipleChoiceKey].join('.'), '1')
+        )
     );
 
     // INFO POPUP
@@ -2178,17 +2187,17 @@ const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, keySy
     );
 
     // Fever Start
-    editor.addSurveyItem(feverStart(itemKey, keySymptomStart, isRequired));
+    editor.addSurveyItem(feverStart(itemKey, keySymptomsQuestion, keySymptomStart, isRequired));
 
     // Developed Suddenly
-    editor.addSurveyItem(feverDevelopedSuddenly(itemKey, isRequired));
+    editor.addSurveyItem(feverDevelopedSuddenly(itemKey, keySymptomsQuestion, isRequired));
 
     // Did you take temperature
-    const Q_tempTaken = didUMeasureTemperature(itemKey, isRequired);
+    const Q_tempTaken = didUMeasureTemperature(itemKey, keySymptomsQuestion, isRequired);
     editor.addSurveyItem(Q_tempTaken);
 
     // What was the highest
-    editor.addSurveyItem(highestTemprerature(itemKey, Q_tempTaken.key, isRequired));
+    editor.addSurveyItem(highestTemprerature(itemKey, keySymptomsQuestion, Q_tempTaken.key, isRequired));
 
     return editor.getItem();
 }
