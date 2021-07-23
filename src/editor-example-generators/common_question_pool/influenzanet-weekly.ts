@@ -1996,7 +1996,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
             ["fr-be", "Après avoir pris votre température corporelle, quelle était la valeur maximale mesurée ?"],
             ["de-be", "Was ist Ihre höchste gemessene Körpertemperatur?"],
             ["en", "What was your highest temperature measured?"],
-            ["it", "What was your highest temperature measured?"],
+            ["it", "Quando ti sei misurato la temperatura, qual è stata la più alta raggiunta?"],
         ]))
     );
 
@@ -2020,7 +2020,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2033,7 +2033,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                     ["fr-be", "Certaines maladies infectieuses provoquent une température élevée."],
                     ["de-be", "Bestimmte Infektionskrankheiten verursachen eine hohe Temperatur."],
                     ["en", "Certain infectious diseases cause a raised temperature."],
-                    ["it", "Certain infectious diseases cause a raised temperature."],
+                    ["it", "L’influenza e il covid-19 causano spesso febbre alta."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -2046,7 +2046,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -2059,7 +2059,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                     ["fr-be", "Veuillez indiquer la température la plus élevée que vous avez mesurée pendant la période liée à vos symptômes."],
                     ["de-be", "Geben Sie die höchste Temperatur an, die Sie während der Zeit Ihre Beschwerden gemessen haben."],
                     ["en", "Please indicate the highest temperature you measured during the period in which you experienced your symptoms."],
-                    ["it", "Please indicate the highest temperature you measured during the period in which you experienced your symptoms."],
+                    ["it", "Segnala il valore più alto che hai trovato nel misurare la febbre mentre eri malato/a."],
                 ]),
             },
         ])
@@ -2078,7 +2078,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                 ["fr-be", "En dessous de 37,0°C"],
                 ["de-be", "Unter 37,0°C"],
                 ["en", "Below 37.0°C"],
-                ["it", "Below 37.0°C"],
+                ["it", "Meno di 37.0°C"],
             ])
         },
         {
@@ -2143,7 +2143,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                 ["fr-be", "40,0°C ou plus"],
                 ["de-be", "40,0°C oder mehr"],
                 ["en", "40.0°C or more"],
-                ["it", "40.0°C or more"],
+                ["it", "40.0°C o più alta"],
             ])
         },
         {
@@ -2156,7 +2156,7 @@ const highestTemprerature = (parentKey: string, keySymptomsQuestion: string, key
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Das weiß ich nicht (mehr)"],
                 ["en", "I don't know/can't remember"],
-                ["it", "I don't know/can't remember"],
+                ["it", "Non so/non ricordo"],
             ])
         },
     ]);
