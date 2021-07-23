@@ -114,7 +114,7 @@ const weekly = (): Survey | undefined => {
     const Q_didUMeasureTemp = CommonPoolWeekly.feverGroup.didUMeasureTemperature(hasSymptomGroupKey, true, "Q6c");
     survey.addExistingSurveyItem(Q_didUMeasureTemp, hasSymptomGroupKey);
 
-    // Q6c temperature taken
+    // Q6d highest temperature taken
     const Q_highestTempMeasured = CommonPoolWeekly.feverGroup.highestTemprerature(hasSymptomGroupKey, Q_didUMeasureTemp.key, true, "Q6d");
     survey.addExistingSurveyItem(Q_highestTempMeasured, hasSymptomGroupKey);
 

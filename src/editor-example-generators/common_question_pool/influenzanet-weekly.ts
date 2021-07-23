@@ -1993,7 +1993,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyDidYouMeasureTemperature, [responseGroupKey, singleChoiceKey].join('.'), '1')
+        expWithArgs('responseHasKeysAny', keyDidYouMeasureTemperature, [responseGroupKey, singleChoiceKey].join('.'), '0')
     );
 
     // INFO POPUP
