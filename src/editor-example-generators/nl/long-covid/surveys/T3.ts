@@ -41,41 +41,41 @@ export const generateT3 = (): Survey | undefined => {
     const covidTestGroupEditor = new CovidTestGroup(surveyKey, false);
     surveyEditor.addSurveyItemToRoot(covidTestGroupEditor.getItem());
 
-    // const vaccineGroupEditor = new VaccinationGroup(surveyKey, false);
-    // surveyEditor.addSurveyItemToRoot(vaccineGroupEditor.getItem());
+    const vaccineGroupEditor = new VaccinationGroup(surveyKey, false);
+    surveyEditor.addSurveyItemToRoot(vaccineGroupEditor.getItem());
 
-    // const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
-    // surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
+    const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
 
-    // // const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(acuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
-    // // surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, hasKortademigCondition, true));
+    const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(acuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+    surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, hasKortademigCondition, true));
 
-    // // const ncsiGroupEditor = new NCSIGroup(surveyKey, hasKortademigCondition);
-    // // surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
+    const ncsiGroupEditor = new NCSIGroup(surveyKey, hasKortademigCondition);
+    surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
 
-    // // const satGroupEditor = new SaTGroup(surveyKey);
-    // // surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
+    const satGroupEditor = new SaTGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
 
-    // // const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
-    // // surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
+    const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
+    surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
 
-    // // surveyEditor.addSurveyItemToRoot(Q_CIS(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(Q_CIS(surveyKey, true));
 
-    // // const cfqGroup = new CFQGroup(surveyKey);
-    // // surveyEditor.addSurveyItemToRoot(cfqGroup.getItem());
+    const cfqGroup = new CFQGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(cfqGroup.getItem());
 
-    // // const hadsGroup = new HADSGroup(surveyKey);
-    // // surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
+    const hadsGroup = new HADSGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
 
-    // // // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
+    // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
-    // // surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
 
-    // // const sf36Group = new SF36Group(surveyKey);
-    // // surveyEditor.addSurveyItemToRoot(sf36Group.getItem());
+    const sf36Group = new SF36Group(surveyKey);
+    surveyEditor.addSurveyItemToRoot(sf36Group.getItem());
 
-    // const medicineGroupEditor = new MedicineGroup(surveyKey);
-    // surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
+    const medicineGroupEditor = new MedicineGroup(surveyKey);
+    surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
 
     const demographieGroupEditor = new DemographieGroup(
         surveyKey,
