@@ -1042,7 +1042,8 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
                 ["nl-be", "Ja"],
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
-                ["en", "Si"],
+                ["en", "Yes"],
+                ["it", "Si"],
 
             ])
         },
@@ -1053,6 +1054,7 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
         {
@@ -1061,7 +1063,8 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
                 ["nl-be", "Nee, ik weet het niet"],
                 ["fr-be", "Je ne sais pas"],
                 ["de-be", "Ich weiß es nicht"],
-                ["en", "Non so"],
+                ["it", "Non so"],
+                ["en", "I don't know"],
             ])
         },
     ]);
