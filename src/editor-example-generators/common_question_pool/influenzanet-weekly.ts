@@ -2220,7 +2220,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
-            ["it", "Because of your symptoms, did you VISIT (see face to face) any medical services?"],
+            ["it", "Per il trattamento dei tuoi sintomi, ti sei rivolto DI PERSONA ad una delle seguenti strutture sanitarie (di persona a domicilio o nell'ambulatorio del medico)? (Indica tutte le voci appropriate)?"],
             ["nl", "Heb je een arts gezien of gesproken vanwege je klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
             ["fr", "En raison de vos symptômes, avez-vous rendu visite (en personne) à des services médicaux ?"],
             ["nl-be", "Heeft u medische hulp gezocht vanwege uw symptomen/klachten? En zo ja, waar? (meerdere antwoorden mogelijk)"],
@@ -2236,7 +2236,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                     ["nl-be", "Waarom vragen we dit?"],
@@ -2246,7 +2246,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "To find out whether people contact the health services because of their symptoms."],
-                    ["it", "To find out whether people contact the health services because of their symptoms."],
+                    ["it", "TPer capire se le persone si fanno visitare dal proprio medico medico o presso altre strutture sanitarie in seguito alla comparsa di sintomi."],
                     ["nl", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
                     ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
                     ["nl-be", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
@@ -2256,7 +2256,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
-                    ["it", "How should I answer it?"],
+                    ["it", "Come devi rispondere?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
@@ -2265,7 +2265,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             {
                 content: new Map([
                     ["en", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
-                    ["it", "Tick all of those that apply. If you are due to see attend, then tick the final option."],
+                    ["it", "Seleziona tutte le opzioni che si applicano al tuo caso. Se hai già un appuntamento prenotato, seleziona l’ultima opzione."],
                     ["nl", "Selecteer alle relevante vormen van medische hulp die je hebt bezocht. Wanneer je nog niet bent geweest maar wel een afspraak heeft gemaakt, selecteer dan de laatste optie."],
                     ["fr", "Merci de cocher toutes les réponses qui s'appliquent . Si vous avez rendez-vous prochainement, merci de cocher l'option finale."],
                 ]),
@@ -2285,7 +2285,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi selezionare più di un'opzione"],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2304,7 +2304,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "GP or GP's practice nurse"],
-                ["it", "GP or GP's practice nurse"],
+                ["it", "Si: medico di base o guardia medica"],
                 ["nl", "Ja, bij de huisarts of huisartsassistent"],
                 ["fr", "Médecin généraliste"],
             ])
@@ -2314,7 +2314,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Hospital admission"],
-                ["it", "Hospital admission"],
+                ["it", "Si: ricovero in ospedale"],
                 ["nl", "Ja, ik ben opgenomen in het ziekenhuis"],
                 ["fr", "Consultation ambulatoire à l'hôpital"],
             ])
@@ -2324,7 +2324,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Hospital accident & emergency department / out of hours service"],
-                ["it", "Hospital accident & emergency department / out of hours service"],
+                ["it", "Si: pronto soccorso"],
                 ["nl", "Ja, bij de eerste hulp van het ziekenhuis of de huisartsenpost"],
                 ["fr", "Service des urgences d'un hôpital/clinique ou médecin de garde"],
             ])
@@ -2334,7 +2334,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '5'),
             content: new Map([
                 ["en", "Other medical services"],
-                ["it", "Other medical services"],
+                ["it", "Si: altro"],
                 ["nl", "Ja, ik heb andere medische hulp gezocht"],
                 ["fr", "Autre service médical"],
             ])
@@ -2344,7 +2344,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
             disabled: expWithArgs('responseHasOnlyKeysOtherThan', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '5'),
             content: new Map([
                 ["en", "No, but I have an appointment scheduled"],
-                ["it", "No, but I have an appointment scheduled"],
+                ["it", "Non ancora ma ho una visita prenotata a breve."],
                 ["nl", "Nog niet, maar ik heb een afspraak gemaakt"],
                 ["fr", "Non, mais j'ai rendez-vous prochainement"],
             ])
