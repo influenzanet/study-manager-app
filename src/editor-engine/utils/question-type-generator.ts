@@ -21,12 +21,18 @@ export interface OptionDef {
     optionProps?: ComponentProperties;
 }
 
+export interface StyledTextComponentProp {
+    text: Map<string, string>;
+    className?: string;
+}
+
 interface GenericQuestionProps {
     parentKey: string;
     itemKey: string;
     version?: number;
-    questionText: Map<string, string>;
+    questionText: Map<string, string> | Array<StyledTextComponentProp>;
     questionSubText?: Map<string, string>;
+    titleClassName?: string;
     helpGroupContent?: Array<{
         content: Map<string, string>,
         style?: Array<{ key: string, value: string }>,
@@ -63,7 +69,7 @@ const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyI
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -119,7 +125,7 @@ const generateSingleChoiceQuestion = (props: OptionQuestionProps): SurveyItem =>
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -165,7 +171,7 @@ const generateDropDownQuestion = (props: OptionQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -208,7 +214,7 @@ const generateMultipleChoiceQuestion = (props: OptionQuestionProps): SurveyItem 
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -254,7 +260,7 @@ const generateSimpleLikertGroupQuestion = (props: LikertGroupQuestionProps): Sur
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -321,7 +327,7 @@ const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem =>
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -389,7 +395,7 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -448,7 +454,7 @@ const generateMultilineInput = (props: MultiLineTextInput): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);

@@ -1,6 +1,7 @@
 import { Expression, ItemComponent } from "survey-engine/lib/data_types";
 import { responseGroupKey } from "../../editor-example-generators/common_question_pool/key-definitions";
 import { ItemEditor } from "../survey-editor/item-editor";
+import { StyledTextComponentProp } from "./question-type-generator";
 import { expWithArgs, generateTitleComponent } from "./simple-generators";
 
 export class SimpleQuestionEditor {
@@ -22,9 +23,9 @@ export class SimpleQuestionEditor {
         return this.editor.getItem();
     }
 
-    setTitle(title: Map<string, string>, description?: Map<string, string>) {
+    setTitle(title: Map<string, string> | Array<StyledTextComponentProp>, description?: Map<string, string>, className?: string) {
         this.editor.setTitleComponent(
-            generateTitleComponent(title, description)
+            generateTitleComponent(title, description, className)
         );
     }
 
