@@ -44,7 +44,7 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
             this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
         }
-
+//TODO PETER: to make it more complicated, Q11 should be ommitted in short. So: in T0 under the condtion (like it is now), in T3/6/8/12 always (like it is now), in SHORT never (TODO). aame for kids.
         const q11 = this.Q11(
             'Q11',
             this.isPartOfSurvey(surveyKeys.T0) ? conditionQ7Ja : undefined, // condition when to display, if undefined, it will be displayed
