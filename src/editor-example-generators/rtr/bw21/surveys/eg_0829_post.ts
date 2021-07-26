@@ -2,6 +2,8 @@ import { Survey } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
+import { getWPERF } from "./question_pool/questions";
+
 
 export const generate_EG0829POST = (): Survey | undefined => {
     const surveyKey = surveyKeys.EG_0829_POST;
@@ -18,6 +20,9 @@ export const generate_EG0829POST = (): Survey | undefined => {
             ["de", "Invullen van deze vragenlijst kost ongeveer 30 minuten van je tijd."],
         ])
     })
+
+    
+    surveyEditor.addSurveyItemToRoot(getWPERF(surveyKey,true));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
