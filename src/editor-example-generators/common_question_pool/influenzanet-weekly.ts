@@ -2620,7 +2620,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Because of your symptoms, did you contact via TELEPHONE or INTERNET any of medical services?"],
-            ["it", "A causa dei suoi sintomi, ha contattato via TELEFONO o INTERNET qualche servizio medico?"],
+            ["it", "Per il trattamento dei tuoi sintomi, ti sei rivolto TELEFONICAMENTE O VIA INTERNET (video o teleconsulto) ad una delle seguenti strutture sanitarie? (indica tutte le voci appropriate)?"],
             ["nl", "Heeft u vanwege uw symptomen via TELEFOON of INTERNET contact opgenomen met een van de medische diensten?"],
             ["fr", "En raison de vos symptômes, avez-vous contacté par TÉLÉPHONE ou INTERNET l'un des services médicaux ?"],
             ["nl-be", "Heeft u vanwege uw symptomen via TELEFOON of INTERNET contact opgenomen met een van de medische diensten?"],
@@ -2636,7 +2636,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                     ["nl-be", "Waarom vragen we dit?"],
@@ -2646,7 +2646,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "To find out whether people contact the health services because of their symptoms."],
-                    ["it", "To find out whether people contact the health services because of their symptoms."],
+                    ["it", "Per capire se le persone contattano il proprio medico o altre strutture sanitarie in seguito alla comparsa dei propri sintomi."],
                     ["nl", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
                     ["fr", "Pour savoir si la population entre en contact avec les services de santé en raison de ses symptômes."],
                     ["nl-be", "Om uit te zoeken welk percentage van mensen met bepaalde klachten medische hulp zoeken."],
@@ -2656,7 +2656,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
-                    ["it", "How should I answer it?"],
+                    ["it", "Come devi rispondere?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
@@ -2665,7 +2665,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             {
                 content: new Map([
                     ["en", "Tick all of those that apply."],
-                    ["it", "Tick all of those that apply."],
+                    ["it", "Seleziona tutte le opzioni che si applicano al tuo caso."],
                     ["nl", "Selecteer alle relevante vormen van medische hulp die je hebt bezocht."],
                     ["fr", "Merci de cocher toutes les réponses qui s'appliquent ."],
                 ]),
@@ -2685,7 +2685,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "È possibile selezionare più di una risposta"],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -2704,7 +2704,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GP - spoke to receptionist only"],
-                ["it", "GP - ha parlato solo con l'addetto alla reception"],
+                ["it", "Si: medico di base -- ho parlato con la segretaria"],
                 ["nl", "Huisarts - sprak alleen met receptioniste"],
                 ["fr", "GP - n'a parlé qu'à la réceptionniste"],
             ])
@@ -2714,7 +2714,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GP - spoke to the doctor or nurse."],
-                ["it", "GP - ha parlato con il medico o l'infermiere"],
+                ["it", "Si: medico di base -- ho parlato direttamente con il medico"],
                 ["nl", "Huisarts - sprak met de arts of verpleegkundige"],
                 ["fr", "GP - parlé au médecin ou à l'infirmière"],
             ])
@@ -2724,7 +2724,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "NHS Direct or similar"],
-                ["it", "Linea informazioni 1500 o simile"],
+                ["it", "Si: ho chiamato il 112"],
                 ["nl", "Informatielijn volksgezondheid of vergelijkbaar"],
                 ["fr", "Ligne d'information sur la santé publique ou similaire"],
             ])
@@ -2734,7 +2734,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "NPFS"],
-                ["it", "NPFS"],
+                ["it", "Si: ho chiamato il numero di emergenza pandemia 1500"],
                 ["nl", "NPFS"],
                 ["fr", "NPFS"],
             ])
@@ -2744,7 +2744,7 @@ const contactedMedicalService = (parentKey: string, isRequired?: boolean, keyOve
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
                 ["nl", "Andere"],
                 ["fr", "Autre"],
             ])
