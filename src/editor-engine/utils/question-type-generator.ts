@@ -14,6 +14,7 @@ export interface OptionDef {
     key: string;
     role: string;
     content?: Map<string, string>;
+    items?: Array<StyledTextComponentProp>;
     description?: Map<string, string>;
     displayCondition?: Expression;
     disabled?: Expression;
@@ -22,7 +23,7 @@ export interface OptionDef {
 }
 
 export interface StyledTextComponentProp {
-    text: Map<string, string>;
+    content: Map<string, string>;
     className?: string;
 }
 
@@ -623,6 +624,17 @@ const initResponseGroup = (
         }
         if (optionDef.description) {
             optEditor.setDescription(generateLocStrings(optionDef.description));
+        }
+        if (optionDef.items) {
+
+            optionDef.items.forEach((item, index) => {
+                optEditor.addItemComponent({
+                    key: index.toFixed(),
+                    role: 'text',
+                    content: generateLocStrings(item.content),
+                    style: item.className ? [{ key: 'className', value: item.className }] : undefined
+                });
+            })
         }
 
         switch (optionDef.role) {

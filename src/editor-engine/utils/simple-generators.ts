@@ -25,7 +25,7 @@ export const generateTitleComponent = (content: Map<string, string> | Array<Styl
             return {
                 key: index.toFixed(),
                 role: 'text',
-                content: generateLocStrings(item.text),
+                content: generateLocStrings(item.content),
                 style: item.className ? [{ key: 'className', value: item.className }] : undefined
             }
         })
