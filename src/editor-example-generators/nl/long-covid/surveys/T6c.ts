@@ -14,13 +14,13 @@ export const generateT6c = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "Nieuwe vragenlijst LongCOVID-onderzoek: 6 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 6 maanden"],
         ]),
         description: new Map([
-            ["en", "es maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid en zorggebruik."],
+            ["nl", "es maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid en zorggebruik."],
         ]),
         durationText: new Map([
-            ["en", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
         ])
     })
 

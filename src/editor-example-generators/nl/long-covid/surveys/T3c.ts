@@ -14,13 +14,13 @@ export const generateT3c = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "Nieuwe vragenlijst LongCOVID-onderzoek: 3 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 3 maanden"],
         ]),
         description: new Map([
-            ["en", "Drie maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid, en zorggebruik."],
+            ["nl", "Drie maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid, en zorggebruik."],
         ]),
         durationText: new Map([
-            ["en", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
         ])
     })
 
@@ -53,9 +53,9 @@ export const generateT3c = (): Survey | undefined => {
     });
     surveyEditor.addSurveyItemToRoot(childrenGeneralHealthGroupEditor.getItem());
 
-//  TODO PETER add generaldata group to T3c, T6c, T9c and T12c // GeneralData for children
-//   const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey);
-//   surveyEditor.addSurveyItemToRoot(childrenGeneralDataGroupEditor.getItem());
+    //  TODO PETER add generaldata group to T3c, T6c, T9c and T12c // GeneralData for children
+    //   const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey);
+    //   surveyEditor.addSurveyItemToRoot(childrenGeneralDataGroupEditor.getItem());
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
