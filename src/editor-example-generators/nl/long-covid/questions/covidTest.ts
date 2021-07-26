@@ -65,7 +65,7 @@ export class CovidTestGroup extends GroupItemEditor {
             const Q11 = q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten);
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
-        } else { //TODO PETER: to make it more complicated, Q11 should be ommitted in short. So: in T0 under the condtion (like it is now), in T3/6/8/12 always (like it is now), in SHORT never (TODO).
+        } else { //TODO PETER: to make it more complicated, Q11 should be ommitted in short. So: in T0 under the condtion (like it is now), in T3/6/8/12 always (like it is now), in SHORT never (TODO). aame for kids.
             const Q11 = q_langdurige_klachten(this.key, true, undefined);
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
