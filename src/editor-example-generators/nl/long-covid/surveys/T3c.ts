@@ -7,6 +7,7 @@ import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-child
 import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
+import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 
 export const generateT3c = (): Survey | undefined => {
     const surveyKey = surveyKeys.T3c;
@@ -53,9 +54,12 @@ export const generateT3c = (): Survey | undefined => {
     });
     surveyEditor.addSurveyItemToRoot(childrenGeneralHealthGroupEditor.getItem());
 
-    //  TODO PETER add generaldata group to T3c, T6c, T9c and T12c // GeneralData for children
-    //   const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey);
-    //   surveyEditor.addSurveyItemToRoot(childrenGeneralDataGroupEditor.getItem());
+    // General data group
+    const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey, {
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    surveyEditor.addSurveyItemToRoot(childrenGeneralDataGroupEditor.getItem());
+
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

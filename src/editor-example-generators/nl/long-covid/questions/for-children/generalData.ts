@@ -11,8 +11,8 @@ import { surveyKeys } from "../../studyRules";
 export class GeneralDataGroup extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
-        groupCondition: Expression,
-        q11Ja: Expression;
+        groupCondition?: Expression,
+        q11Ja?: Expression;
     }, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'GEN';
         super(parentKey, groupKey);
@@ -66,11 +66,11 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addPageBreak();
 
         if (
-            this.isPartOfSurvey(surveyKeys.T0))       
-            {this.addItem(this.Q11preText());
-        this.addItem(this.Q11('Q11', isRequired));
-        this.addItem(this.Q12('Q12', isRequired));
-            }
+            this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q11preText());
+            this.addItem(this.Q11('Q11', isRequired));
+            this.addItem(this.Q12('Q12', isRequired));
+        }
         this.addItem(this.Q13('Q13', false));
         // TODO add this later
         // this.addItem(this.Q14('Q14', false));
@@ -98,7 +98,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         })
     }
 
-    InfoText2(condition: Expression) {
+    InfoText2(condition?: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'InfoText2',
@@ -462,7 +462,7 @@ De volgende vragen gaan over je school
     }
 
     // The following questions should be grouped (kvdw: is already done I think?)
-    Q_minderschoolpreText(condition: Expression) {
+    Q_minderschoolpreText(condition?: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'headingQ2',
@@ -484,7 +484,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     }
 
 
-    Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q_minderschool(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -621,7 +621,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q_zorgenschool(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -665,7 +665,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q_lotgenoten(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q_lotgenoten(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,

@@ -38,9 +38,11 @@ export class CovidTestGroup extends GroupItemEditor {
 
         const test = q_test_def(this.key, true);
         const test_FU = q_test_def_FU(this.key, true);
-       // TODO PETER: check condition_test_yes below, no errors, but does not work? (same for adults survey)
-        const condition_test_yes = (CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes')|| CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes'));
-        const condition_test_yes_FU = CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes');
+
+        const condition_test_yes = CommonExpressions.or(
+            CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes'),
+            CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes')
+        )
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
         const condition_test_result_pos = CommonExpressions.singleChoiceOptionsSelected(test_result.key, 'pos');
         const infect_earlier = q_infect_earlier_def(this.key, true);
@@ -48,9 +50,10 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
         const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {this.addItem(test);
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(test);
         } else {
-        this.addItem(test_FU);
+            this.addItem(test_FU);
         }
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
@@ -65,7 +68,7 @@ export class CovidTestGroup extends GroupItemEditor {
             const Q11 = q_langdurige_klachten(this.key, true, condition_for_langdurige_klachten);
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
-        } else { //TODO PETER: to make it more complicated, Q11 should be ommitted in short. So: in T0 under the condtion (like it is now), in T3/6/8/12 always (like it is now), in SHORT never (TODO). aame for kids.
+        } else if (!this.isPartOfSurvey(surveyKeys.short)) {
             const Q11 = q_langdurige_klachten(this.key, true, undefined);
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');

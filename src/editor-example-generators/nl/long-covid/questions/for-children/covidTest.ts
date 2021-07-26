@@ -5,7 +5,7 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 import { surveyKeys } from "../../studyRules";
 
 export class CovidTestGroup extends GroupItemEditor {
-    q11JaSelectedExp: Expression;
+    q11JaSelectedExp?: Expression;
 
     constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
@@ -18,8 +18,10 @@ export class CovidTestGroup extends GroupItemEditor {
         }
         const q1 = this.Q_hadTest('Q1', isRequired);
         const q1_FU = this.Q_hadTest_FU('Q1_FU', isRequired);
-        // TODO PETER: check condition_test_yes below, no errors, but does not work? (same for kids survey)
-        const conditionQ1Ja = (CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes') || CommonExpressions.singleChoiceOptionsSelected(q1_FU.key, 'yes'));
+        const conditionQ1Ja = CommonExpressions.or(
+            CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes'),
+            CommonExpressions.singleChoiceOptionsSelected(q1_FU.key, 'yes')
+        );
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
         const conditionQ5Positive = CommonExpressions.singleChoiceOptionsSelected(q5.key, 'pos');
         const q7 = this.Q7('Q7', isRequired);
@@ -29,9 +31,10 @@ export class CovidTestGroup extends GroupItemEditor {
         const conditionQ7Ja = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
 
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {this.addItem(q1);
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(q1);
         } else {
-        this.addItem(q1_FU);
+            this.addItem(q1_FU);
         }
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
         this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired));
@@ -44,15 +47,16 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
             this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
         }
-//TODO PETER: to make it more complicated, Q11 should be ommitted in short. So: in T0 under the condtion (like it is now), in T3/6/8/12 always (like it is now), in SHORT never (TODO). aame for kids.
-        const q11 = this.Q11(
-            'Q11',
-            this.isPartOfSurvey(surveyKeys.T0) ? conditionQ7Ja : undefined, // condition when to display, if undefined, it will be displayed
-            isRequired
-        );
-        this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(q11.key, 'ja');
-        this.addItem(q11);
 
+        if (!this.isPartOfSurvey(surveyKeys.shortC)) {
+            const q11 = this.Q11(
+                'Q11',
+                this.isPartOfSurvey(surveyKeys.T0) ? conditionQ7Ja : undefined, // condition when to display, if undefined, it will be displayed
+                isRequired
+            );
+            this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(q11.key, 'ja');
+            this.addItem(q11);
+        }
         this.addPageBreak();
     }
 

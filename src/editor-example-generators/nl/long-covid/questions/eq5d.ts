@@ -5,7 +5,6 @@ import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
-import { surveyKeys } from "../studyRules";
 
 
 export class EQ5DGroup extends GroupItemEditor {
@@ -460,7 +459,7 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
 //     const markdownContent = `
 // ## Onderzoek naar reuk- of smaakverlies
 
-// Je hebt aangegeven dat je na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies. Ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie.htm), of stuur een mail naar COVORTS.studie@wur.nl. 
+// Je hebt aangegeven dat je na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies. Ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie.htm), of stuur een mail naar COVORTS.studie@wur.nl.
 
 //     `
 

@@ -7,6 +7,7 @@ import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-c
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
+import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 
 
 export const generateT12c = (): Survey | undefined => {
@@ -57,6 +58,11 @@ export const generateT12c = (): Survey | undefined => {
     });
     surveyEditor.addSurveyItemToRoot(childrenGeneralHealthGroupEditor.getItem());
 
+    // General data group
+    const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey, {
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    surveyEditor.addSurveyItemToRoot(childrenGeneralDataGroupEditor.getItem());
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
