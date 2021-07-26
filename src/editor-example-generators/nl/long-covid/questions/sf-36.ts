@@ -504,11 +504,11 @@ const Q9 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
                     ["nl", "Voelde je jezelf kalm en rustig?"],
                 ])
             },
-            // {
-            //     key: 'e', content: new Map([
-            //         ["nl", "Voelde je jezelf erg energiek?"],
-            //     ])
-            // },
+            {
+                key: 'e', content: new Map([
+                    ["nl", "Voelde je jezelf erg energiek?"],
+                ])
+            },
             {
                 key: 'f', content: new Map([
                     ["nl", "Voelde je jezelf neerslachtig en somber?"],

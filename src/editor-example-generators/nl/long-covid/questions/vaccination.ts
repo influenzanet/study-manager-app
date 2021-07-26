@@ -176,7 +176,7 @@ const q_vacc_num_def_FU = (parentKey: string, isRequired?: boolean, condition?: 
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je gehad sinds de vorige vragenlijst?"],
+            ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je nu in totaal gehad?"],
         ]),
         responseOptions: [
             {
