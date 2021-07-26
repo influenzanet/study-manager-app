@@ -2782,7 +2782,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "How soon after your symptoms appeared did you first contact via telephone or internet this medical service?"],
-            ["it", "How soon after your symptoms appeared did you first contact via telephone or internet this medical service?"],
+            ["it", "Quanto tempo dopo la comparsa dei primi sintomi ti sei rivolto TELEFONICAMENTE O VIA INTERNET al medico/struttura sanitaria?"],
             ["nl", "Hoe snel nadat uw klachten optraden, heeft u voor het eerst telefonisch of via internet contact opgenomen met deze medische dienst?"],
             ["fr", "Combien de temps après l'apparition de vos symptômes avez-vous contacté pour la première fois par téléphone ou Internet ce service médical ?"],
         ]))
@@ -2799,7 +2799,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
@@ -2808,7 +2808,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 content: new Map([
                     ["en", "To find out how soon people contact the health services because of their symptoms."],
-                    ["it", "To find out how soon people contact the health services because of their symptoms."],
+                    ["it", "Per capire quanto rapidamente le persone che presentano sintomi contattano le strutture sanitarie."],
                     ["nl", "Om erachter te komen hoe snel mensen contact opnemen met de gezondheidsdiensten vanwege hun symptomen."],
                     ["fr", "Pour savoir combien de temps les gens contactent les services de santé en raison de leurs symptômes."],
                 ]),
@@ -2817,7 +2817,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
-                    ["it", "How should I answer it?"],
+                    ["it", "Come devi rispondere?"],
                     ["nl", "Hoe zal ik deze vraag beantwoorden?"],
                     ["fr", "Comment dois-je répondre ?"],
                 ]),
@@ -2826,7 +2826,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 content: new Map([
                     ["en", "Only record the time until your FIRST contact with the health services."],
-                    ["it", "Only record the time until your FIRST contact with the health services."],
+                    ["it", "Segnala soltanto quando hai contattato telefonicamente ill medico/struttura sanitaria per la PRIMA VOLTA dopo la comparsa dei sintomi."],
                     ["nl", "Geef alleen het aantal dagen van het begin van de klachten tot je EERSTE bezoek aan de desbetreffende medische hulpverlener/specialist."],
                     ["fr", "En saisissant le temps séparant l'apparition de vos symptômes et votre PREMIER contact avec les services de santé."],
                 ]),
@@ -2841,7 +2841,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
         content: generateLocStrings(
             new Map([
                 ['en', 'Select the correct number of days'],
-                ['it', 'Select the correct number of days'],
+                ['it', 'Seleziona il numero di giorni che ritieni corretto'],
                 ['nl', 'Selecteer het juiste aantal dagen'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
@@ -2851,7 +2851,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '0', role: 'option', content: new Map([
                     ["en", "Same day"],
-                    ["it", "Same day"],
+                    ["it", "Stesso giorno"],
                     ["nl", "Op dezelfde dag als de eerste klachten"],
                     ["fr", "Jour même"],
                 ]),
@@ -2859,7 +2859,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '1', role: 'option', content: new Map([
                     ["en", "1 day"],
-                    ["it", "1 day"],
+                    ["it", "1 giorno"],
                     ["nl", "1 dag"],
                     ["fr", "1 jour"],
                 ]),
@@ -2867,7 +2867,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '2', role: 'option', content: new Map([
                     ["en", "2 days"],
-                    ["it", "2 days"],
+                    ["it", "2 giorni"],
                     ["nl", "2 dagen"],
                     ["fr", "2 jours"],
 
@@ -2876,7 +2876,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '3', role: 'option', content: new Map([
                     ["en", "3 days"],
-                    ["it", "3 days"],
+                    ["it", "3 giorni"],
                     ["nl", "3 dagen"],
                     ["fr", "3 jours"],
                 ]),
@@ -2884,7 +2884,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '4', role: 'option', content: new Map([
                     ["en", "4 days"],
-                    ["it", "4 days"],
+                    ["it", "4 giorni"],
                     ["nl", "4 dagen"],
                     ["fr", "4 jours"],
                 ]),
@@ -2892,7 +2892,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '5', role: 'option', content: new Map([
                     ["en", "5 - 7 days"],
-                    ["it", "5 - 7 days"],
+                    ["it", "5 - 7 giorni"],
                     ["nl", "5 - 7 dagen"],
                     ["fr", "5 - 7 jours"],
                 ]),
@@ -2908,7 +2908,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
             {
                 key: '7', role: 'option', content: new Map([
                     ["en", "I don't know/can't remember"],
-                    ["it", "I don't know/can't remember"],
+                    ["it", "Non so/non ricordo"],
                     ["nl", "Dat weet ik niet (meer)"],
                     ["fr", "Je ne sais pas / je ne m'en souviens plus"],
                 ]),
@@ -2922,7 +2922,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
                 {
                     key: 'col0', role: 'text', content: new Map([
                         ["en", "Medical Service"],
-                        ["it", "Medical Service"],
+                        ["it", "Struttura sanitaria"],
                         ["nl", "Medische hulpverlener"],
                         ["fr", "Service médical"],
                     ]),
@@ -2937,7 +2937,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP - spoke to receptionist only"],
-						["it", "GP - ha parlato solo con l'addetto alla reception"],
+						["it", "medico di base -- ho parlato con la segretaria"],
 						["nl", "Huisarts - sprak alleen met receptioniste"],
 						["fr", "GP - n'a parlé qu'à la réceptionniste"],
                     ]),
@@ -2951,7 +2951,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "GP - spoke to the doctor or nurse."],
-						["it", "GP - ha parlato con il medico o l'infermiere"],
+						["it", "medico di base -- ho parlato direttamente con il medico"],
 						["nl", "Huisarts - sprak met de arts of verpleegkundige"],
 						["fr", "GP - parlé au médecin ou à l'infirmière"],
                     ]),
@@ -2965,7 +2965,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "NHS Direct or similar"],
-						["it", "Linea informazioni 1500 o simile"],
+						["it", "Numero di emergenza sanitaria 112"],
 						["nl", "Informatielijn volksgezondheid of vergelijkbaar"],
 						["fr", "Ligne d'information sur la santé publique ou similaire"],
                     ]),
@@ -2979,7 +2979,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
                 {
                     key: 'col0', role: 'label', content: new Map([
 						["en", "NPFS"],
-						["it", "NPFS"],
+						["it", "Numero di emergenza pandemica 1500"],
 						["nl", "NPFS"],
 						["fr", "NPFS"],
                     ]),
@@ -2993,7 +2993,7 @@ const contactedMedicalServiceWhen = (parentKey: string, keyContactedMedicalServi
                 {
                     key: 'col0', role: 'label', content: new Map([
                         ["en", "Other medical services"],
-                        ["it", "Other medical services"],
+                        ["it", "Altro"],
                         ["nl", "Andere medische hulp."],
                         ["fr", "Autre service médical"],
                     ]),
