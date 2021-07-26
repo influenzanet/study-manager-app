@@ -766,7 +766,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had."],
         ]),
         questionSubText: new Map([
-            ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
+            ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag op het getal dat je mening het beste weergeeft."],
         ]),
         scaleOptions: [
             {
@@ -859,7 +859,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
-                            ['nl', '0 Helemaal niet -  10 zeer veel']
+                            ['nl', '0 helemaal niet -  10 zeer veel']
                         ]),
                         className: "fst-italic mb-1"
                     }),
@@ -927,15 +927,10 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         questionText: new Map([
             ["nl", "Heb je een arts gezien, gesproken of gebeld vanwege je klachten in de afgelopen 7 dagen? En zo ja, waar?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ], responseOptions: [
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        responseOptions: [
             {
                 key: '0', role: 'option',
                 disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
@@ -1170,15 +1165,9 @@ const Q7_longsymptoms = (parentKey: string, condition?: Expression, isRequired?:
         questionText: new Map([
             ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus? En zo ja, welke?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -1276,17 +1265,11 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 7 dagen? En zo ja, welke?"],
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de afgelopen 7 dagen? En zo ja, welke?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',

@@ -5,6 +5,7 @@ import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 
 export class EQ5DGroup extends GroupItemEditor {
@@ -37,7 +38,8 @@ export class EQ5DGroup extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(q_healthstatus_instructions_def(this.key));
         this.addItem(q_healthstatus_def(this.key, this.isRequired, this.useCopyRight));
-        this.addPageBreak();
+        // if (this.isPartOfSurvey(surveyKeys.short)) { this.addItem(Q_instr_reuksmaak(this.key))}
+        // this.addPageBreak();
     }
 }
 
@@ -353,7 +355,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                 {
                     role: 'text', content: generateLocStrings(new Map([
                         ["en", "We would like to know how good or bad your health is TODAY."],
-                        ["nl", "We willen weten hoe goed of slecht uw gezondheid VANDAAG is."],
+                        ["nl", "We willen weten hoe goed of slecht je gezondheid VANDAAG is."],
                     ])),
                     style: [{ key: 'variant', value: 'li' }]
                 },
@@ -384,7 +386,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", " health you can imagine."],
-                                ["nl", " gezondheid die u zich kunt voorstellen."],
+                                ["nl", " gezondheid die je je kunt voorstellen."],
                             ]))
                         },
                     ],
@@ -408,7 +410,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                         {
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", " health you can imagine."],
-                                ["en", " gezondheid die u zich kunt voorstellen."],
+                                ["en", " gezondheid die je je kunt voorstellen."],
                             ]))
                         },
                     ],
@@ -429,19 +431,19 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
         role: 'eq5d-health-indicator',
         instructionText: new Map([
             ["en", "Please indicate on the scale how your health is TODAY."],
-            ["nl", "Klik op de meetschaal om aan te geven hoe uw gezondheid VANDAAG is."],
+            ["nl", "Klik op de meetschaal om aan te geven hoe je gezondheid VANDAAG is."],
         ]),
         valueBoxText: new Map([
             ["en", "YOUR HEALTH TODAY ="],
-            ["nl", "UW GEZONDHEID VANDAAG ="],
+            ["nl", "JE GEZONDHEID VANDAAG ="],
         ]),
         minHealthText: new Map([
             ["en", "The worst health you can imagine"],
-            ["nl", "De slechste gezondheid die u zich kunt voorstellen"],
+            ["nl", "De slechste gezondheid die je je kunt voorstellen"],
         ]),
         maxHealthText: new Map([
             ["en", "The best health you can imagine"],
-            ["nl", "De beste gezondheid die u zich kunt voorstellen"],
+            ["nl", "De beste gezondheid die je je kunt voorstellen"],
         ]),
     });
     simpleEditor.setResponseGroupWithContent(rg_inner);
@@ -453,3 +455,25 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
     if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
     return simpleEditor.getItem();
 }
+
+// const Q_instr_reuksmaak = (parentKey: string): SurveyItem => {
+//     const markdownContent = `
+// ## Onderzoek naar reuk- of smaakverlies
+
+// Je hebt aangegeven dat je na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies. Ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie.htm), of stuur een mail naar COVORTS.studie@wur.nl. 
+
+//     `
+
+//     return SurveyItemGenerators.display({
+//         parentKey: parentKey,
+//         itemKey: 'intro_reuksmaak',
+//         content: [
+//             ComponentGenerators.markdown({
+//                 content: new Map([
+//                     ["nl", markdownContent],
+//                 ]),
+//                 className: ''
+//             })
+//         ]
+//     });
+// }

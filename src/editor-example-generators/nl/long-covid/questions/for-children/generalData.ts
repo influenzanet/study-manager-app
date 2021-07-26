@@ -5,6 +5,7 @@ import { numericInputKey, responseGroupKey } from "../../../../../editor-engine/
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../../studyRules";
 
 
 export class GeneralDataGroup extends GroupItemEditor {
@@ -64,9 +65,12 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
         this.addPageBreak();
 
-        this.addItem(this.Q11preText());
+        if (
+            this.isPartOfSurvey(surveyKeys.T0))       
+            {this.addItem(this.Q11preText());
         this.addItem(this.Q11('Q11', isRequired));
         this.addItem(this.Q12('Q12', isRequired));
+            }
         this.addItem(this.Q13('Q13', false));
         // TODO add this later
         // this.addItem(this.Q14('Q14', false));

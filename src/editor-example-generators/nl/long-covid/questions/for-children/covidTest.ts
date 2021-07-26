@@ -17,7 +17,9 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
         }
         const q1 = this.Q_hadTest('Q1', isRequired);
-        const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes');
+        const q1_FU = this.Q_hadTest_FU('Q1_FU', isRequired);
+        // TODO PETER: check condition_test_yes below, no errors, but does not work? (same for kids survey)
+        const conditionQ1Ja = (CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes') || CommonExpressions.singleChoiceOptionsSelected(q1_FU.key, 'yes'));
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
         const conditionQ5Positive = CommonExpressions.singleChoiceOptionsSelected(q5.key, 'pos');
         const q7 = this.Q7('Q7', isRequired);
@@ -27,7 +29,10 @@ export class CovidTestGroup extends GroupItemEditor {
         const conditionQ7Ja = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
 
-        this.addItem(q1);
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {this.addItem(q1);
+        } else {
+        this.addItem(q1_FU);
+        }
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
         this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired));
         this.addItem(this.Q4('Q4', conditionQ1Ja, isRequired));
@@ -39,7 +44,7 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
             this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
         }
-
+//TODO PETER: to make it more complicated, Q11 should be ommitted in short. So: in T0 under the condtion (like it is now), in T3/6/8/12 always (like it is now), in SHORT never (TODO). aame for kids.
         const q11 = this.Q11(
             'Q11',
             this.isPartOfSurvey(surveyKeys.T0) ? conditionQ7Ja : undefined, // condition when to display, if undefined, it will be displayed
@@ -94,6 +99,31 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             questionText: new Map([
                 ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'yes', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ])
+                },
+                {
+                    key: 'no', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
+
+    Q_hadTest_FU(key: string, isRequired?: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            questionText: new Map([
+                ["nl", "Heb je sinds de vorige vragenlijst een test gedaan om te weten of je corona hebt?"],
             ]),
             responseOptions: [
                 {
@@ -503,7 +533,7 @@ export class CovidTestGroup extends GroupItemEditor {
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze door het coronavirus komen?"],
+                ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze door het kunnen coronavirus komen?"],
             ]),
             responseOptions: [
                 {
