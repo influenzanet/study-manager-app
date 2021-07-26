@@ -6472,7 +6472,6 @@ export const WeeklyQuestions = {
     tookMedication,
     userConsentedSymptomsGroup,
     visitedMedicalService,
-    visitedGP,
     visitedMedicalServiceWhen,
     visitedNoMedicalService,
     whenAntivirals,
