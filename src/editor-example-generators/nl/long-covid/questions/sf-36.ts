@@ -214,7 +214,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
             },
             {
                 key: 'j', content: new Map([
-                    ["nl", "Uzelf wassen of aankleden"],
+                    ["nl", "Jezelf wassen of aankleden"],
                 ])
             }
         ]

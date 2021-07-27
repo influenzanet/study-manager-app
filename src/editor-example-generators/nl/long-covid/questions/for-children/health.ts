@@ -1148,7 +1148,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     disabled: optionNoneSelected,
                 },
                 {
-                    key: 'anders', role: 'option',
+                    key: 'anders', role: 'input',
                     content: new Map([
                         ["nl", "Andere medicijnen, namelijk"],
                     ]),
@@ -1230,7 +1230,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     disabled: optionNoneSelected,
                 },
                 {
-                    key: 'input', role: 'option',
+                    key: 'anders', role: 'input',
                     content: new Map([
                         ["nl", "Andere medicijnen, namelijk"],
                     ]),
