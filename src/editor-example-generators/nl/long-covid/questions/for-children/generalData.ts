@@ -41,7 +41,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
             Q_langafwezig.key, 'ja'
         )
-
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', isRequired));
         this.addItem(this.Q2('Q2', isRequired));
@@ -53,7 +53,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', Q7GreaterThanOne, isRequired));
         this.addItem(this.Q9('Q9', isRequired));
         this.addItem(this.Q10('Q10', false)); // not required
-        this.addPageBreak();
+        this.addPageBreak();}
 
         this.addItem(this.Q_minderschoolpreText(conditions.q11Ja));
         this.addItem(this.InfoText2(conditions.q11Ja));
