@@ -3,7 +3,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB } from "./question_pool/questions";
+import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
 
 
 export const generate_EG0829PRE = (): Survey | undefined => {
@@ -43,6 +43,14 @@ export const generate_EG0829PRE = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getPID(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getSEX(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getAGE(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey,true));
+
 
 
     //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
