@@ -6,14 +6,12 @@ import { surveyKeys } from "../../studyRules";
 
 
 
-export const getPOLINT = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getPOLINT = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'POLINT';
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: short form for PUB group
-        //shortForm: shortForm,
         questionText: new Map([
             ["de", "Wie stark interessieren Sie sich im Allgemeinen für Politik? "],
         ]),
@@ -55,14 +53,12 @@ export const getPOLINT = (parentKey: string, isRequired?: boolean, shortForm?: b
 
 
 
-export const getWKINT = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getWKINT = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'WKINT';
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: short form for PUB group
-        //shortForm: shortForm,
         questionText: new Map([
             ["de", "Wie stark interessiert Sie speziell der gerade laufende Wahlkampf zur bevorstehenden Bundestagswahl?"],
         ]),
@@ -103,7 +99,7 @@ export const getWKINT = (parentKey: string, isRequired?: boolean, shortForm?: bo
 }
 
 
-export const getWBT = (parentKey: string, isRequired?: boolean, shortForm?: boolean ): SurveyItem => {
+export const getWBT = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'WBT';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -157,7 +153,7 @@ export const getWBT = (parentKey: string, isRequired?: boolean, shortForm?: bool
 }
 
 
-export const getWABS = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getWABS = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'WABS';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -220,14 +216,12 @@ export const getWABS = (parentKey: string, isRequired?: boolean, shortForm?: boo
 }
 
 
-export const getSWABS = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getSWABS = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'SWABS';
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: short form for PUB group
-        //shortForm: shortForm,
         questionText: new Map([
             ["de", "Wie sicher sind Sie sich bei dieser Wahlentscheidung?"],
         ]),
@@ -270,12 +264,12 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group
-    //shortForm: shortForm,
     questionText: new Map([
         ["de", "Was halten Sie ganz allgemein von den folgenden Parteien? Bitte beschreiben Sie dies mit Hilfe einer Skala von -3 bis +3. -3 bedeutet, dass Sie überhaupt nichts von der Partei halten, +3 bedeutet, dass Sie sehr viel von der Partei halten. Mit den Werten dazwischen können Sie Ihre Meinung abstufen."],
     ]),
     stackOnSmallScreen: true,
+    //TODO Peter: hort form for PUB group:
+    //only first two slots are displayed (CDU and SPD)
     scaleOptions: [
         {
             key: '1', content: new Map([
@@ -346,14 +340,12 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getSKPOL = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getSKPOL = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'SKPOL';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group
-    //shortForm: shortForm,
     questionText: new Map([
         ["de", "Was halten Sie ganz allgemein von den folgenden Politikern?"],
     ]),
@@ -412,7 +404,7 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getPROB1 = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getPROB1 = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'PROB1';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -482,7 +474,7 @@ export const getPROB1 = (parentKey: string, isRequired?: boolean, shortForm?: bo
 }
 
 
-export const getKPROB1 = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getKPROB1 = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'KPROB1';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -551,7 +543,7 @@ export const getKPROB1 = (parentKey: string, isRequired?: boolean, shortForm?: b
 }
 
 
-export const getPROB2 = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getPROB2 = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'PROB2';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -621,7 +613,7 @@ export const getPROB2 = (parentKey: string, isRequired?: boolean, shortForm?: bo
 }
 
 
-export const getKPROB2 = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getKPROB2 = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'KPROB2';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -690,14 +682,13 @@ export const getKPROB2 = (parentKey: string, isRequired?: boolean, shortForm?: b
 }
 
 
-export const getIMAGEAL = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getIMAGEAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
         const itemKey = 'IMAGEAL';
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: short form for PUB group, Armin Laschet fettgedruckt
-        //shortForm: shortForm,
+        //TODO Peter: Armin Laschet fettgedruckt
         questionText: new Map([
            ["de", "Und nun genauer zu den Kanzlerkandidaten. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Armin Laschet zutreffen."],
         ]),
@@ -773,14 +764,13 @@ export const getIMAGEAL = (parentKey: string, isRequired?: boolean, shortForm?: 
 }
 
 
-export const getIMAGEOS = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getIMAGEOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'IMAGEOS';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Olaf Scholz fettgedruckt
-    //shortForm: shortForm,
+    //TODO Peter: Olaf Scholz fettgedruckt
     questionText: new Map([
         ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Olaf Scholz zu?"],
     ]),
@@ -856,14 +846,13 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getIMAGEAB = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getIMAGEAB = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'IMAGEAB';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Annalena Baerbock fettgedruckt
-    //shortForm: shortForm,
+    //TODO Peter:  Annalena Baerbock fettgedruckt
     questionText: new Map([
         ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Annalena Baerbock zu?"],
     ]),
@@ -939,13 +928,12 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getKANZLER = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getKANZLER = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'KANZLER';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: "zweitwichtigste" fettgedruckt
         questionText: new Map([
             ["de", "Wen hätten Sie nach der Bundestagswahl lieber als Bundeskanzlerin oder Bundeskanzler? "],
         ]),
@@ -979,14 +967,12 @@ export const getKANZLER = (parentKey: string, isRequired?: boolean, shortForm?: 
 }
 
 
-export const getEPERF = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getEPERF = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'EPERF';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Annalena Baerbock fettgedruckt
-    //shortForm: shortForm,
     questionText: new Map([
         ["de", "Einmal ganz allgemein gesprochen, wie werden Ihrer Meinung nach die Kandidaten in der heutigen TV-Debatte abschneiden?"],
     ]),
@@ -1037,14 +1023,12 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getWPERF = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getWPERF = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'WPERF';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Annalena Baerbock fettgedruckt
-    //shortForm: shortForm,
     questionText: new Map([
         ["de", "Einmal ganz allgemein gesprochen, wie haben Ihrer Meinung nach die Kandidaten in der TV-Debatte abgeschnitten?"],
     ]),
@@ -1095,14 +1079,13 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getRPERF = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getRPERF = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'RPERF';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Annalena Baerbock fettgedruckt
-    //shortForm: shortForm,
+    //TODO Peter: "TV-Debatte vom 29.8.2021" fettgedruckt
     questionText: new Map([
         ["de", "Im Folgenden geht es um die TV-Debatte vom 29.8.2021. Einmal ganz allgemein gesprochen, wie haben Ihrer Meinung nach die Kandidaten in dieser TV-Debatte abgeschnitten? "],
     ]),
@@ -1153,14 +1136,13 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getESTRATAL = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getESTRATAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'ESTRATAL';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Armin Laschet fettgedruckt
-    //shortForm: shortForm,
+    //TODO Peter: Armin Laschet fettgedruckt
     questionText: new Map([
         ["de", "Im Folgenden geht es um das mögliche Auftreten der Kandidaten in der TV-Debatte. Welchen Auftritt erwarten Sie von Armin Laschet?"],
     ]),
@@ -1211,14 +1193,13 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-export const getESTRATOS = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+export const getESTRATOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'ESTRATOS';
 return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Olaf Scholz fettgedruckt
-    //shortForm: shortForm,
+    //TODO Peter: Olaf Scholz fettgedruckt
     questionText: new Map([
         ["de", "Und welchen Auftritt erwarten Sie von Olaf Scholz?"],
     ]),
@@ -1275,8 +1256,7 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: short form for PUB group, Annalena Baerbock fettgedruckt
-    //shortForm: shortForm,
+    //TODO Peter:  Annalena Baerbock fettgedruckt
     questionText: new Map([
         ["de", "Und welchen Auftritt erwarten Sie von Annalena Baerbock?"],
     ]),
@@ -1327,17 +1307,823 @@ return SurveyItemGenerators.simpleLikertGroup({
 }
 
 
-/*
-export const getQ1c = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
-        const itemKey = 'Q1c';
+
+export const getWSTRATAL = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+    const itemKey = 'WSTRATAL';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Armin Laschet fettgedruckt
+    questionText: new Map([
+        ["de", "Nun geht es um den Auftritt der Kandidaten in der TV-Debatte. Welchen Eindruck haben Sie von Armin Laschet?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "Er hat die anderen Kandidaten häufig angegriffen."],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "Er hat häufig für seine Politik geworben."],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "Er musste sich häufig verteidigen."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+
+
+export const getWSTRATOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'WSTRATOS';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Olaf Scholz fettgedruckt
+    questionText: new Map([
+        ["de", "Und welchen Eindruck haben Sie von Olaf Scholz? "],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "Er hat die anderen Kandidaten häufig angegriffen."],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "Er hat häufig für seine Politik geworben."],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "Er musste sich häufig verteidigen."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+
+
+export const getWSTRATAB = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'WSTRATAB';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Annalena Baerbock fettgedruckt
+    questionText: new Map([
+        ["de", "Und welchen Eindruck haben Sie von Annalena Baerbock? "],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "Sie hat die anderen Kandidaten häufig angegriffen."],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "Sie hat häufig für ihre Politik geworben."],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "Sie musste sich häufig verteidigen."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+
+export const getRSTRATAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'RSTRATAL';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: "TV-Debatte vom 29.8.2021" und "Armin Laschet" fettgedruckt
+    questionText: new Map([
+        ["de", "Nun geht um den Auftritt der Kandidaten in der TV-Debatte vom 29.8.2021. Welchen Eindruck hatten Sie von Armin Laschet?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "Er hat die anderen Kandidaten häufig angegriffen."],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "Er hat häufig für seine Politik geworben."],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "Er musste sich häufig verteidigen."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+
+
+export const getRSTRATOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'RSTRATOS';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Olaf SCholz fettgedruckt
+    questionText: new Map([
+        ["de", "Und welchen Eindruck hatten Sie von Olaf Scholz? "],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "Er hat die anderen Kandidaten häufig angegriffen."],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "Er hat häufig für seine Politik geworben."],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "Er musste sich häufig verteidigen."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+
+export const getRSTRATAB = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'RSTRATAB';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Annalena Baerbock fettgedruckt
+    questionText: new Map([
+        ["de", "Und welchen Eindruck hatten Sie von Annalena Baerbock? "],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "Sie hat die anderen Kandidaten häufig angegriffen."],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "Sie hat häufig für ihre Politik geworben."],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "Sie musste sich häufig verteidigen."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+
+//TODO Scale options
+//write ATTACK functions here
+export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'RATTACKAL';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Armin Laschet fettgedruckt
+    questionText: new Map([
+        ["de", "Wenn Sie jetzt nur einmal an die Kandidaten und ihre Angriffe auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von Armin Laschet beschreiben? Seine Angriffe... "],
+    ]),
+    topDisplayCompoments: [{
+        role: 'text',
+        style: [{ key: 'className', value: 'mb-2' }],
+        content: generateLocStrings(new Map([
+            ["de", "1 = Stimme voll und ganz zu, 10 = Stimme überhaupt nicht zu"],
+        ]))
+    }],
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL1', content: new Map([
+                ["de", "...zielten auf die Politik/Persönlichkeit des Gegners"],
+            ])
+
+        },
+        {
+            key: 'AL2', content: new Map([
+                ["de", "...waren respektvoll/respektlos "],
+            ])
+        },
+        {
+            key: 'AL3', content: new Map([
+                ["de", "...haben wichtige/unwichtige Punkte angesprochen"],
+            ])
+
+        },
+    ]
+});
+}
+
+
+export const getANKOMM = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'ANKOMM';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        //TODO Peter: "TV-Debatte vom 29.8.2021" fettgedruckt
+        questionText: new Map([
+            ["de", "Haben Sie Berichte zum Ausgang der TV-Debatte vom 29.8.2021 wahrgenommen oder Gespräche mit anderen Personen hierzu geführt? (Mehrfachantworten möglich)?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Ja, Berichte in den Medien (inkl. Online-Auftritte)"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Ja, Beiträge im Internet oder in den sozialen Medien (ausgenommen Online-Auftritte von Medien)"],
+                ]),    
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "Ja, Gespräche mit Dritten"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "Nein"],
+                ]),
+            }, 
+        ],
+    });
+}
+
+
+export const getANKOMMSIEG = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'ANKOMMSIEG';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Welcher Kandidat wurde in diesen Berichten oder Gesprächen – alles in allem –als Debattensieger gesehen?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Armin Laschet"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Olaf Scholz"],
+                ]),    
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "Es gab keinen eindeutigen Sieger"],
+                ]),
+            }, 
+        ],
+    });
+}
+
+
+export const getWK = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
+    const itemKey = 'WK';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    questionText: new Map([
+        ["de", "Wenn Sie einmal an den laufenden Wahlkampf denken, inwieweit stimmen Sie den folgenden Aussagen zu? "],
+    ]),
+    stackOnSmallScreen: true,
+    //TODO Peter: short Form for Pub group
+    //last row not displayed for Pub group
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils/teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'WK1', content: new Map([
+                ["de", "Der Wahlkampf der Parteien ist zu negativ."],
+            ])
+
+        },
+        {
+            key: 'WK2', content: new Map([
+                ["de", "Im Wahlkampf stehen Personen zu sehr im Vordergrund."],
+            ])
+        },
+        {
+            key: 'WK3', content: new Map([
+                ["de", "Im Wahlkampf geht es zu wenig um politische Inhalte."],
+            ])
+
+        },
+    ]
+});
+}
+
+
+export const getPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'PID';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        //TODO Peter: condition hier, um Frage getSTPID anzuzeigen
+        questionText: new Map([
+            ["de", "In Deutschland neigen viele Leute längere Zeit einer bestimmten politischen Partei zu, obwohl sie auch ab und zu eine andere Partei wählen. Wie ist das bei Ihnen: Neigen Sie – ganz allgemein – einer bestimmten Partei zu? Und wenn ja, welcher?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "CDU bzw. CSU"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "SPD"],
+                ]),    
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "AfD"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "FDP"],
+                ]),
+            }, 
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["de", "Die Linke"],
+                ]),
+            }, 
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["de", "B90/Die Grünen"],
+                ]),
+            }, 
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["de", "Einer anderen Partei"],
+                ]),
+            }, 
+            {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["de", "Nein, keiner Partei"],
+                ]),//TODO: if selected go to question getSEX
+            }, 
+        ],
+    });
+}
+
+
+
+export const getSTPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'STPID';
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: short form for PUB group
-        //shortForm: shortForm,
         questionText: new Map([
-            ["de", "Inwieweit stimmen Sie den folgenden Aussagen zu? "],
+            ["de", "Wie stark oder wie schwach neigen Sie – alles zusammengenommen – dieser Partei zu?"],
+        ]),
+        stackOnSmallScreen: true,
+        scaleOptions: [
+        {
+            key: '1', content: new Map([
+                    ["de", "Sehr stark"],
+                ])
+            }, {
+            key: '2', content: new Map([
+                    ["de", "Stark"],
+                ])
+            }, {
+            key: '3', content: new Map([
+                   ["de", "Mittelmäßig"],
+                ])
+            }, {
+            key: '4', content: new Map([
+                    ["de", "Schwach"],
+                ]),
+            }, {
+            key: '5', content: new Map([
+                    ["de", "Sehr schwach"],
+                ])
+            }
+        ],
+        rows: [
+        {
+            key: 'a', content: new Map([
+                ["de", ""],
+            ])
+
+        },
+        
+    ]
+});
+}
+
+
+
+export const getSEX = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'SEX';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Ihr Geschlecht:"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Männlich"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Weiblich"],
+                ]),    
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "Divers"],
+                ]),
+            },
+        ],
+    });
+}
+
+
+export const getAGE = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'AGE';
+
+    return SurveyItemGenerators.numericInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Ihr Alter:"],
+        ]),
+        /* topDisplayCompoments: [{
+            key: 'expl',
+            role: 'text',
+            content: generateLocStrings(new Map([
+                ['nl', 'Indien je zwanger bent, hier graag je gewicht van vóór de zwangerschap invullen.']
+            ])),
+            style: [{ key: 'className', value: 'mb-2' }]
+        }], */
+        //TODO Peter: Numerisches Input Feld ist sehr breit, evtl kleiner?
+        content: new Map([
+            ['de', 'Jahre']
+        ]),
+        contentBehindInput: true,
+        componentProperties: {
+            min: 0,
+            max: 100
+        }
+    })
+}
+
+
+export const getEDUC = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'EDUC';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Was ist Ihr höchster allgemeinbildender Schulabschluss?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Kein Schulabschluss"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Hauptschule, Volksschule bzw. POS 8./9. Klasse"],
+                ]),    
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "Realschule, mittlere Reife, qualifizierter Sekundarabschluss I bzw. POS 10. Klasse"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "Fachhochschulreife"],
+                ]),
+            }, 
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["de", "Abitur bzw. EOS 12. Klasse"],
+                ]),
+            }, 
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["de", "Noch Schüler"],
+                ]),
+            }, 
+        ],
+    });
+}
+
+
+export const getWBR = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'WBR';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Sind Sie bei der kommenden Bundestagswahl wahlberechtigt?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "ja"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "nein"],
+                ]),    
+            },
+        ],
+    });
+}
+
+
+export const getPERS1 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+        const itemKey = 'PERS1';
+    return SurveyItemGenerators.simpleLikertGroup({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Inwieweit stimmen Sie den folgenden Aussagen zu?"],
         ]),
         //topDisplayCompoments: [{
           //  role: 'text',
@@ -1372,40 +2158,40 @@ export const getQ1c = (parentKey: string, isRequired?: boolean, shortForm?: bool
         ],
         rows: [
             {
-                key: 'a', content: new Map([
-                    ["de", "Es ist mir unbegreiflich, wie es aufregend sein kann, gemein zu anderen zu sein."],
+                key: 'DCORE1', content: new Map([
+                    ["de", "Es fällt mir schwer, jemanden leiden zu sehen."],
                 ])
 
             },
             {
-                key: 'b', content: new Map([
-                    ["de", "Ich neige dazu, andere zu kritisieren."],
+                key: 'CA1', content: new Map([
+                    ["de", "Ich hasse Streit."],
                 ])
             },
             {
-                key: 'c', content: new Map([
-                    ["de", "Die meisten Menschen verdienen Respekt."],
+                key: 'DCORE2', content: new Map([
+                    ["de", "Insgesamt ist es besser, bescheiden und ehrlich zu sein, als wichtig und unehrlich."],
                 ])
 
             },
             {
-                key: 'd', content: new Map([
-                    ["de", "Ich versuche, niemanden bei der Verfolgung meiner Ziele zu verletzen."],
+                key: 'BFI1', content: new Map([
+                    ["de", "Ich bin eher zurückhaltend, reserviert."],
                 ])
             },
             {
-                key: 'e', content: new Map([
-                    ["de", "Ich erledige Aufgaben gründlich."],
+                key: 'DCORE3', content: new Map([
+                    ["de", "Rache muss schnell und fies sein."],
                 ])
             },
             {
-                key: 'f', content: new Map([
-                    ["de", "Manche Leute würde ich gerne leiden lassen, selbst wenn ich dafür mit ihnen in die Hölle käme."],
+                key: 'BFI2', content: new Map([
+                    ["de", "Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen."],
                 ])
             },
             {
-                key: 'g', content: new Map([
-                    ["de", "Es ist ratsam, Informationen im Auge zu behalten, die man später gegen andere verwenden kann."],
+                key: 'DCORE4', content: new Map([
+                    ["de", "Mein eigenes Vergnügen ist das Einzige was zählt."],
                 ])
             },
         ]
@@ -1413,63 +2199,830 @@ export const getQ1c = (parentKey: string, isRequired?: boolean, shortForm?: bool
 }
 
 
-export const Q2 = (parentKey: string) => {
-    return SurveyItemGenerators.simpleLikertGroup({
+
+export const getPERS2 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'PERS2';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    questionText: new Map([
+        ["de", "Inwieweit stimmen Sie diesen Aussagen zu?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'BFI3', content: new Map([
+                ["de", "Ich bin bequem, neige zur Faulheit."],
+            ])
+
+        },
+        {
+            key: 'DCORE5', content: new Map([
+                ["de", "Ich würde mich sehr unwohl dabei fühlen, andere Menschen zu verletzen."],
+            ])
+        },
+        {
+            key: 'BFI4', content: new Map([
+                ["de", "Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen."],
+            ])
+
+        },
+        {
+            key: 'DCORE6', content: new Map([
+                ["de", "Menschen bereuen es immer, wenn sie sich mit mir anlegen."],
+            ])
+        },
+        {
+            key: 'BFI5', content: new Map([
+                ["de", "Ich habe nur wenig künstlerisches Interesse."],
+            ])
+        },
+        {
+            key: 'DCORE7', content: new Map([
+                ["de", "Warum sollte ich mich für andere interessieren, wenn sich niemand für mich interessiert?"],
+            ])
+        },
+        {
+            key: 'BFI6', content: new Map([
+                ["de", "Ich gehe aus mir heraus, bin gesellig."],
+            ])
+        },
+    ]
+});
+}
+
+
+
+export const getPERS3 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'PERS3';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    questionText: new Map([
+        ["de", "Inwieweit stimmen Sie den folgenden Aussagen zu?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'DCORE8', content: new Map([
+                ["de", "Es ist mir unbegreiflich, wie es aufregend sein kann, gemein zu anderen zu sein."],
+            ])
+
+        },
+        {
+            key: 'BFI7', content: new Map([
+                ["de", "Ich neige dazu, andere zu kritisieren."],
+            ])
+        },
+        {
+            key: 'DCORE9', content: new Map([
+                ["de", "Die meisten Menschen verdienen Respekt."],
+            ])
+
+        },
+        {
+            key: 'DCORE10', content: new Map([
+                ["de", "Ich versuche, niemanden bei der Verfolgung meiner Ziele zu verletzen."],
+            ])
+        },
+        {
+            key: 'BFI8', content: new Map([
+                ["de", "Ich erledige Aufgaben gründlich."],
+            ])
+        },
+        {
+            key: 'DCORE11', content: new Map([
+                ["de", "Manche Leute würde ich gerne leiden lassen, selbst wenn ich dafür mit ihnen in die Hölle käme."],
+            ])
+        },
+        {
+            key: 'DCORE12', content: new Map([
+                ["de", "Es ist ratsam, Informationen im Auge zu behalten, die man später gegen andere verwenden kann."],
+            ])
+        },
+    ]
+});
+}
+
+
+export const getPERS4 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'PERS4';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    questionText: new Map([
+        ["de", "Inwieweit stimmen Sie diesen Aussagen zu?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stimme voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Stimme eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Stimme eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stimme überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'BFI9', content: new Map([
+                ["de", "Ich werde leicht nervös und unsicher."],
+            ])
+
+        },
+        {
+            key: 'DCORE13', content: new Map([
+                ["de", "Ich vermeide es, andere zu demütigen."],
+            ])
+        },
+        {
+            key: 'DCORE14', content: new Map([
+                ["de", "Leute, die schlecht behandelt werden, haben dies üblicherweise verdient."],
+            ])
+
+        },
+        {
+            key: 'BFI10', content: new Map([
+                ["de", "Ich habe eine aktive Vorstellungskraft, bin fantasievoll."],
+            ])
+        },
+        {
+            key: 'DCORE15', content: new Map([
+                ["de", "Ich würde selbst einen Schlag hinnehmen, wenn das bedeuten würde, dass jemand, den ich nicht mag, zwei Schläge erhalten würde."],
+            ])
+        },
+        {
+            key: 'CA2', content: new Map([
+                ["de", "Wenn möglich, versuche ich Konflikte zu vermeiden."],
+            ])
+        },
+        {
+            key: 'DCORE16', content: new Map([
+                ["de", "Es tut mir leid, wenn Dinge, die ich tue, andere Menschen verärgern."],
+            ])
+        },
+    ]
+});
+}
+
+
+export const getAUFM1 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'AUFM1';
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
-        itemKey: "TODO2",
-        isRequired: true,
+        itemKey: itemKey,
+        isRequired: isRequired,
         questionText: new Map([
-            ["de", "Hat Peter Kloeppel - alles in allem - einen Kandidaten bevorzugt oder benachteiligt?"],
+            ["de", "An welchen Kandidaten ging die erste Frage?"],
         ]),
-        //topDisplayCompoments: [{
-          //  role: 'text',
-            //style: [{ key: 'className', value: 'mb-2' }]
-            //content: generateLocStrings(new Map([
-            //    ["de", "1 = Stimme voll und ganz zu, 10 = Stimme überhaupt nicht zu"],
-            //]))
-        //}],
-        stackOnSmallScreen: true,
-        scaleOptions: [
+        responseOptions: [
             {
-                key: '1', content: new Map([
-                    ["de", "Stark bevorzugt"],
-                ])
-            }, {
-                key: '2', content: new Map([
-                    ["de", "Eher bevorzugt"],
-                ])
-            }, {
-                key: '3', content: new Map([
-                    ["de", "Weder bevorzugt, noch benachteiligt"],
-                ])
-            }, {
-                key: '4', content: new Map([
-                    ["de", "Eher benachteiligt"],
-                ]),
-            }, {
-                key: '5', content: new Map([
-                    ["de", "Stark benachteiligt"],
-                ])
-            }
-        ],
-        rows: [
-            {
-                key: 'a', content: new Map([
+                key: '1', role: 'option',
+                content: new Map([
                     ["de", "Armin Laschet"],
                 ])
-
             },
             {
-                key: 'b', content: new Map([
+                key: '2', role: 'option',
+                content: new Map([
                     ["de", "Olaf Scholz"],
+                ]),    
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "Weiß nicht"],
+                ]),
+            }, 
+        ],
+    });
+}
+
+
+export const getAUFM2 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'AUFM2';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Und welcher Kandidat hat am Ende der TV-Debatte mehr Redezeit gehabt?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Armin Laschet"],
                 ])
             },
             {
-                key: 'c', content: new Map([
-                    ["de", "Annalena Baerbock"],
-                ])
-
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Olaf Scholz"],
+                ]),    
             },
-        ]
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "Weiß nicht"],
+                ]),
+            }, 
+        ],
     });
-}*/
+}
+
+
+export const getJSTRATPA = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'JSTRATPA';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Pinar Atalay fettgedruckt
+    questionText: new Map([
+        ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Pinar Atalay zutreffen."],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Trifft voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Trifft eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Trifft eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Trifft überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'PA1', content: new Map([
+                ["de", "Sie hat den Kandidaten häufig Fragen zu ihrem Programm und ihren Problemlösungsvorschlägen gestellt."],
+            ])
+
+        },
+        {
+            key: 'PA2', content: new Map([
+                ["de", "Sie hat die Antworten der Kandidaten häufig kritisch hinterfragt und Nachfragen gestellt, wenn Fragen nicht oder nur unvollständig beantwortet wurden. "],
+            ])
+        },
+        {
+            key: 'PA3', content: new Map([
+                ["de", "Sie hat häufig Fragen zur Wahlkampfführung und zu den Koalitionspräferenzen der Kandidaten gestellt."],
+            ])
+
+        },
+        {
+            key: 'PA4', content: new Map([
+                ["de", "Sie hat häufig versucht, Schwächen der Kandidaten aufzudecken und sie in die Enge zu treiben."],
+            ])
+        },
+        {
+            key: 'PA5', content: new Map([
+                ["de", "Sie hat die Kandidaten häufig unterbrochen."],
+            ])
+        },
+    ]
+});
+}
+
+
+export const getJSTRATPK = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'JSTRATPK';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Peter Kloeppel fettgedruckt
+    questionText: new Map([
+        ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Peter Kloeppel zu?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Trifft voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Trifft eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Trifft eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Trifft überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'PK1', content: new Map([
+                ["de", "Er hat den Kandidaten häufig Fragen zu ihrem Programm und ihren Problemlösungsvorschlägen gestellt."],
+            ])
+
+        },
+        {
+            key: 'PK2', content: new Map([
+                ["de", "Er hat die Antworten der Kandidaten häufig kritisch hinterfragt und Nachfragen gestellt, wenn Fragen nicht oder nur unvollständig beantwortet wurden. "],
+            ])
+        },
+        {
+            key: 'PK3', content: new Map([
+                ["de", "Er hat häufig Fragen zur Wahlkampfführung und zu den Koalitionspräferenzen der Kandidaten gestellt."],
+            ])
+
+        },
+        {
+            key: 'PK4', content: new Map([
+                ["de", "Er hat häufig versucht, Schwächen der Kandidaten aufzudecken und sie in die Enge zu treiben."],
+            ])
+        },
+        {
+            key: 'PK5', content: new Map([
+                ["de", "Er hat die Kandidaten häufig unterbrochen."],
+            ])
+        },
+    ]
+});
+}
+
+export const getJSTRATMI = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'JSTRATMI';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Maybritt Illner fettgedruckt
+    questionText: new Map([
+        ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Maybrit Illner zutreffen."],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Trifft voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Trifft eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Trifft eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Trifft überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'MI1', content: new Map([
+                ["de", "Sie hat den Kandidaten häufig Fragen zu ihrem Programm und ihren Problemlösungsvorschlägen gestellt."],
+            ])
+
+        },
+        {
+            key: 'MI2', content: new Map([
+                ["de", "Sie hat die Antworten der Kandidaten häufig kritisch hinterfragt und Nachfragen gestellt, wenn Fragen nicht oder nur unvollständig beantwortet wurden. "],
+            ])
+        },
+        {
+            key: 'MI3', content: new Map([
+                ["de", "Sie hat häufig Fragen zur Wahlkampfführung und zu den Koalitionspräferenzen der Kandidaten gestellt."],
+            ])
+
+        },
+        {
+            key: 'MI4', content: new Map([
+                ["de", "Sie hat häufig versucht, Schwächen der Kandidaten aufzudecken und sie in die Enge zu treiben."],
+            ])
+        },
+        {
+            key: 'MI5', content: new Map([
+                ["de", "Sie hat die Kandidaten häufig unterbrochen."],
+            ])
+        },
+    ]
+});
+}
+
+export const getJSTRATOK = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'JSTRATOK';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Oliver Köhr fettgedruckt
+    questionText: new Map([
+        ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Oliver Köhr zu?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Trifft voll und ganz zu"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Trifft eher zu"],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Teils, teils"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Trifft eher nicht zu"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Trifft überhaupt nicht zu"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'PK1', content: new Map([
+                ["de", "Er hat den Kandidaten häufig Fragen zu ihrem Programm und ihren Problemlösungsvorschlägen gestellt."],
+            ])
+
+        },
+        {
+            key: 'PK2', content: new Map([
+                ["de", "Er hat die Antworten der Kandidaten häufig kritisch hinterfragt und Nachfragen gestellt, wenn Fragen nicht oder nur unvollständig beantwortet wurden. "],
+            ])
+        },
+        {
+            key: 'PK3', content: new Map([
+                ["de", "Er hat häufig Fragen zur Wahlkampfführung und zu den Koalitionspräferenzen der Kandidaten gestellt."],
+            ])
+
+        },
+        {
+            key: 'PK4', content: new Map([
+                ["de", "Er hat häufig versucht, Schwächen der Kandidaten aufzudecken und sie in die Enge zu treiben."],
+            ])
+        },
+        {
+            key: 'PK5', content: new Map([
+                ["de", "Er hat die Kandidaten häufig unterbrochen."],
+            ])
+        },
+    ]
+});
+}
+
+
+export const getBIASPA = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'BIASPA';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Pinar Atalay fettgedruckt
+    questionText: new Map([
+        ["de", "Hat Pinar Atalay – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stark bevorzugt"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Eher bevorzugt "],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Weder bevorzugt, noch benachteiligt"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Eher benachteiligt"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stark benachteiligt"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL', content: new Map([
+                ["de", "Armin Laschet"],
+            ])
+
+        },
+        {
+            key: 'OS', content: new Map([
+                ["de", "Olaf Scholz"],
+            ])
+        },
+        {
+            key: 'AB', content: new Map([
+                ["de", "Annalena Baerbock"],
+            ])
+
+        },
+    ]
+});
+}
+
+
+export const getBIASPK = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'BIASPK';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter: Peter Kloeppel fettgedruckt
+    questionText: new Map([
+        ["de", "Hat Peter Kloeppel – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stark bevorzugt"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Eher bevorzugt "],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Weder bevorzugt, noch benachteiligt"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Eher benachteiligt"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stark benachteiligt"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL', content: new Map([
+                ["de", "Armin Laschet"],
+            ])
+
+        },
+        {
+            key: 'OS', content: new Map([
+                ["de", "Olaf Scholz"],
+            ])
+        },
+        {
+            key: 'AB', content: new Map([
+                ["de", "Annalena Baerbock"],
+            ])
+
+        },
+    ]
+});
+}
+
+
+export const getBIASMI = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'BIASMI';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter:  Maybritt Illner fettgedruckt
+    questionText: new Map([
+        ["de", "Hat Maybritt Illner – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stark bevorzugt"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Eher bevorzugt "],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Weder bevorzugt, noch benachteiligt"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Eher benachteiligt"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stark benachteiligt"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL', content: new Map([
+                ["de", "Armin Laschet"],
+            ])
+
+        },
+        {
+            key: 'OS', content: new Map([
+                ["de", "Olaf Scholz"],
+            ])
+        },
+        {
+            key: 'AB', content: new Map([
+                ["de", "Annalena Baerbock"],
+            ])
+
+        },
+    ]
+});
+}
+
+
+export const getBIASOK = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'BIASOK';
+return SurveyItemGenerators.simpleLikertGroup({
+    parentKey: parentKey,
+    itemKey: itemKey,
+    isRequired: isRequired,
+    //TODO Peter:  Oliver Köhr fettgedruckt
+    questionText: new Map([
+        ["de", "Hat Oliver Köhr – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    ]),
+    stackOnSmallScreen: true,
+    scaleOptions: [
+        {
+            key: '1', content: new Map([
+                ["de", "Stark bevorzugt"],
+            ])
+        }, {
+            key: '2', content: new Map([
+                ["de", "Eher bevorzugt "],
+            ])
+        }, {
+            key: '3', content: new Map([
+                ["de", "Weder bevorzugt, noch benachteiligt"],
+            ])
+        }, {
+            key: '4', content: new Map([
+                ["de", "Eher benachteiligt"],
+            ]),
+        }, {
+            key: '5', content: new Map([
+                ["de", "Stark benachteiligt"],
+            ])
+        }
+    ],
+    rows: [
+        {
+            key: 'AL', content: new Map([
+                ["de", "Armin Laschet"],
+            ])
+
+        },
+        {
+            key: 'OS', content: new Map([
+                ["de", "Olaf Scholz"],
+            ])
+        },
+        {
+            key: 'AB', content: new Map([
+                ["de", "Annalena Baerbock"],
+            ])
+
+        },
+    ]
+});
+}
+
+
+export const getREZEPT = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'REZEPT';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Haben Sie sich die TV-Debatte allein oder gemeinsam mit anderen Personen gesehen?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Allein"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Mit anderen Personen"],
+                ]),    
+            },
+        ],
+    });
+}
