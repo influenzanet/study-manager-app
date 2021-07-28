@@ -3791,7 +3791,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
             ["fr-be", "Combien de temps s'est écoulé entre le début de vos symptômes et votre recherche d'un laboratoire pouvant subir cette analyse ?"],
             ["de-be", "Wie viel Zeit verging zwischen dem Beginn Ihrer Symptome und Ihrer Suche nach einem Labor, das dieser Analyse unterzogen werden könnte?"],
             ["en", "How much time passed between the beginning of your symptoms and your search of a laboratory which could undergo this analysis?"],
-            ["it", "How much time passed between the beginning of your symptoms and your search of a laboratory which could undergo this analysis?"],
+            ["it", "Quanto tempo è passato tra l'insorgenza dei sintomi e il consulto presso il laboratorio per fare le analisi?"],
 
         ]))
     );
@@ -3810,7 +3810,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3830,7 +3830,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3840,7 +3840,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                     ["fr-be", "Veuillez faire une estimation la plus précise possible."],
                     ["de-be", "Nehmen Sie eine bestmögliche Einschätzung vor."],
                     ["en", "Please provide as precise an estimate as possible."],
-                    ["it", "Please provide as precise an estimate as possible."],
+                    ["it", "Ti preghiamo di fornire la data il più accurata possibile."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3857,7 +3857,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                 ["fr-be", "Les symptômes sont apparus la veille ou la veille de la perquisition d'un laboratoire"],
                 ["de-be", "Die Symptome traten am Tag oder am Tag vor der Durchsuchung eines Labors auf"],
                 ["en", "Symptoms appeared the day or the day before the search of a laboratory"],
-                ["it", "Symptoms appeared the day or the day before the search of a laboratory"],
+                ["it", "I sintomi sono comparsi il giorno stesso o il giorno prima che io mi sia rivolto al laboratorio"],
             ])
         },
         {
@@ -3867,7 +3867,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                 ["fr-be", "Les symptômes sont apparus 2, 3 ou 4 jours avant la recherche d'un laboratoire"],
                 ["de-be", "Symptome traten 2, 3 oder 4 Tage vor der Durchsuchung eines Labors auf"],
                 ["en", "Symptoms appeared 2, 3 or 4 days before the search of a laboratory"],
-                ["it", "Symptoms appeared 2, 3 or 4 days before the search of a laboratory"],
+                ["it", "I sintomi sono comparsi 2,3 o 4 giorni prima che io mi sia rivolto al laboratorio"],
             ])
         },
         {
@@ -3877,7 +3877,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                 ["fr-be", "Les symptômes sont apparus 5, 6 ou 7 jours avant la recherche d'un laboratoire"],
                 ["de-be", "Symptome traten 5, 6 oder 7 Tage vor der Durchsuchung eines Labors auf"],
                 ["en", "Symptoms appeared 5, 6 or 7 days before the search of a laboratory"],
-                ["it", "Symptoms appeared 5, 6 or 7 days before the search of a laboratory"],
+                ["it", "I sintomi sono comparsi 5, 6 o 7 giorni prima che io mi sia rivolto al laboratorio"],
             ])
         },
         {
@@ -3887,7 +3887,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                 ["fr-be", "Les symptômes sont apparus entre 8 et 14 jours avant la perquisition d'un laboratoire"],
                 ["de-be", "Die Symptome traten zwischen 8 und 14 Tagen vor der Durchsuchung eines Labors auf"],
                 ["en", "Symptoms appeared between 8 and 14 days before the search of a laboratory"],
-                ["it", "Symptoms appeared between 8 and 14 days before the search of a laboratory"],
+                ["it", "I sintomi sono comparsi tra gli 8 e i 14 giorni prima che io mi sia rivolto al laboratorio"],
             ])
         },
         {
@@ -3897,7 +3897,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                 ["fr-be", "Les symptômes sont apparus entre 15 et 28 jours avant la perquisition d'un laboratoire"],
                 ["de-be", "Die Symptome traten zwischen 15 und 28 Tagen vor der Durchsuchung eines Labors auf"],
                 ["en", "Symptoms appeared between 15 and 28 days before the search of a laboratory"],
-                ["it", "Symptoms appeared between 15 and 28 days before the search of a laboratory"],
+                ["it", "I sintomi sono comparsti tra i 15 e i 28 giorni prima che io mi sia rivolto al laboratorio"],
             ])
         },
         {
@@ -3907,7 +3907,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
                 ["fr-be", "Les symptômes ont commencé plus de quatre semaines avant la perquisition d'un laboratoire"],
                 ["de-be", "Die Symptome begannen mehr als vier Wochen vor der Durchsuchung eines Labors"],
                 ["en", "Symptoms appeared more than four weeks before the search of a laboratory"],
-                ["it", "Symptoms appeared more than four weeks before the search of a laboratory"],
+                ["it", "I sintomi sono comparsi più di quattro settimane prima che io mi sia rivolto al laboratorio"],
             ])
         },
 
@@ -3915,7 +3915,7 @@ const durationLabSearch = (parentKey: string, keysymptomImpliedCovidTest?: strin
             key: '99', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember"],
-                ["it", "I don't know/can't remember"],
+                ["it", "Non so/non ricordo"],
                 ["de-be", "ich weiß es nicht/kann mich nicht erinnern"],
                 ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
