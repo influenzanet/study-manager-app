@@ -3562,7 +3562,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
             ["fr-be", "Avez-vous déjà reçu les résultats du test de dépistage du PCR ?"],
             ["de-be", "Haben Sie die COVID-19-PCR-Testergebnisse bereits erhalten?"],
             ["en", "Have you received the results of your PCR test?"],
-            ["it", "Have you received the results of your PCR test?"],
+            ["it", "Hai già ottenuto il risultato del tampone con test PCR?"],
         ]))
     );
 
@@ -3580,7 +3580,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3590,7 +3590,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                     ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
                     ["de-be", "Wir möchten wissen, wie COVID-19 sich in der Bevölkerung ausbreitet."],
                     ["en", "We want to understand how the coronavirus is spreading within the population."],
-                    ["it", "We want to understand how the coronavirus is spreading within the population."],
+                    ["it", "Vogliamo sapere quanti sono i casi confermati tra i partecipanti che presentano sintomi COVID-19."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -3607,7 +3607,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                 ["fr-be", "Oui, positif au coronavirus"],
                 ["de-be", "Ja, positiv auf COVID-19"],
                 ["en", "Yes, the test is positive for coronavirus"],
-                ["it", "Yes, the test is positive for coronavirus"],
+                ["it", "Si, il test è risultato positivo al coronavirus."],
             ])
         },
         {
@@ -3617,7 +3617,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                 ["fr-be", "Oui, négatif au coronavirus"],
                 ["de-be", "Ja, negativ auf COVID-19"],
                 ["en", "Yes, the test is negative for coronavirus"],
-                ["it", "Yes, the test is negative for coronavirus"],
+                ["it", "Si, il test è risultato negativo al coronavirus."],
             ])
         },
         {
@@ -3627,7 +3627,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                 ["fr-be", "Oui, résultat non interprétable"],
                 ["de-be", "Ja, nicht interpretierbares Ergebnis"],
                 ["en", "Yes, the results are inconclusive"],
-                ["it", "Yes, the results are inconclusive"],
+                ["it", "Si ma i risultati non sono conclusivi."],
             ])
         },
         {
@@ -3637,7 +3637,7 @@ const resultPCRTest = (parentKey: string, keysymptomImpliedCovidTest?: string, i
                 ["fr-be", "Non, je n'ai pas encore reçu le résultat du test"],
                 ["de-be", "Nein, ich habe noch kein Testergebnis"],
                 ["en", "No, I have not yet received the test results"],
-                ["it", "No, I have not yet received the test results"],
+                ["it", "No, non ho ancora ricevuto i risultati."],
             ])
         },
     ]);
@@ -3676,7 +3676,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
             ["fr-be", "Avez-vous déjà reçu les résultats du test de dépistage du sérologique ?"],
             ["de-be", "Haben Sie die Serologischer-Testergebnisse bereits erhalten?"],
             ["en", "Have you received the results of your serological analysis?"],
-            ["it", "Have you received the results of your serological analysis?"],
+            ["it", "Hai già ottenuto il risultato delle tue analisi del sangue?"],
         ]))
     );
 
@@ -3694,7 +3694,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3704,7 +3704,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                     ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
                     ["de-be", "Wir möchten wissen, wie COVID-19 sich in der Bevölkerung ausbreitet."],
                     ["en", "We want to understand how the coronavirus is spreading within the population."],
-                    ["it", "We want to understand how the coronavirus is spreading within the population."],
+                    ["it", "Vogliamo sapere quante persone risultano portatrici di anticorpi al coronavirus nella popolazione."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -3721,7 +3721,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                 ["fr-be", "Oui, positif au coronavirus"],
                 ["de-be", "Ja, positiv auf COVID-19"],
                 ["en", "Yes, the test is positive for coronavirus"],
-                ["it", "Yes, the test is positive for coronavirus"],
+                ["it", "Si, il test risulta positivo al coronavirus"],
             ])
         },
         {
@@ -3731,7 +3731,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                 ["fr-be", "Oui, négatif au coronavirus"],
                 ["de-be", "Ja, negativ auf COVID-19"],
                 ["en", "Yes, the test is negative for coronavirus"],
-                ["it", "Yes, the test is negative for coronavirus"],
+                ["it", "Si, il test risulta negativo al coronavirus"],
             ])
         },
         {
@@ -3741,7 +3741,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                 ["fr-be", "Oui, résultat non interprétable"],
                 ["de-be", "Ja, nicht interpretierbares Ergebnis"],
                 ["en", "Yes, the results are inconclusive"],
-                ["it", "Yes, the results are inconclusive"],
+                ["it", "Si ma i risultati non sono interpretabili"],
             ])
         },
         {
@@ -3751,7 +3751,7 @@ const resultSerologicalTest = (parentKey: string, keysymptomImpliedCovidTest?: s
                 ["fr-be", "Non, je n'ai pas encore reçu le résultat du test"],
                 ["de-be", "Nein, ich habe noch kein Testergebnis"],
                 ["en", "No, I have not yet received the test results"],
-                ["it", "No, I have not yet received the test results"],
+                ["it", "No, non ho ancora ricevuto i risultati"],
             ])
         },
     ]);
