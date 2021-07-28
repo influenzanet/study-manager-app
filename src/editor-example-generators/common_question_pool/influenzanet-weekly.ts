@@ -3958,7 +3958,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
             ["fr-be", "Combien de temps s'est écoulé entre le début de vos symptômes et le prélèvement ?"],
             ["de-be", "Wie viel Zeit verging zwischen dem Beginn Ihrer Symptome und der Probenahme?"],
             ["en", "How much time passed between the beginning of your symptoms and the sampling?"],
-            ["it", "How much time passed between the beginning of your symptoms and the sampling?"],
+            ["it", "Quanto tempo è passato tra l'inizio dei tuoi sintomi e il tampone?"],
         ]))
     );
 
@@ -3976,7 +3976,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3986,7 +3986,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                     ["fr-be", "Nous voulons savoir combien de temps s'écoule entre l'apparition des symptômes et le moment où une personne se fait ou peut se faire tester."],
                     ["de-be", "Wir möchten untersuchen, wieviel Zeit zwischen der Entwicklung der Symptome und dem Moment vergeht, in dem eine Person sich testen lässt oder testen lassen kann."],
                     ["en", "We want to know how much time elapses between the onset of symptoms and the moment a person is or can get tested."],
-                    ["it", "We want to know how much time elapses between the onset of symptoms and the moment a person is or can get tested."],
+                    ["it", "Vogliamo sapere quanto tempo trascorre tra l'inizio dei sintomi e il test per il COVID-19."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -3996,7 +3996,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere a questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4006,7 +4006,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                     ["fr-be", "Faites une estimation de la manière la plus précise possible."],
                     ["de-be", "Nehmen Sie eine bestmögliche Einschätzung vor."],
                     ["en", "Please provide as precise an estimate as possible."],
-                    ["it", "Please provide as precise an estimate as possible."],
+                    ["it", "Ti preghiamo di fornire la data il più accurata possibile."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -4022,7 +4022,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                 ["fr-be", "0 à 1 jour"],
                 ["de-be", "0 bis 1 Tag"],
                 ["en", "0 to 1 day"],
-                ["it", "0 to 1 day"],
+                ["it", "Tra 0 e 1 giorno"],
             ])
         },
         {
@@ -4031,7 +4031,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                 ["fr-be", "2 à 4 jours"],
                 ["de-be", "2 bis 4 Tagen"],
                 ["en", "2 to 4 days"],
-                ["it", "2 to 4 days"],
+                ["it", "Tra 2 e 4 giorni"],
             ]),
         },
         {
@@ -4040,7 +4040,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                 ["fr-be", "5 à 7 jours"],
                 ["de-be", "5 bis 7 Tagen"],
                 ["en", "5 to 7 days"],
-                ["it", "5 to 7 days"],
+                ["it", "Tra 5 e 7 giorni"],
             ]),
         },
         {
@@ -4049,7 +4049,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                 ["fr-be", "8 à 15 jours"],
                 ["de-be", "8 bis 15 Tagen"],
                 ["en", "8 to 15 days"],
-                ["it", "8 to 15 days"],
+                ["it", "Tra 8 e 15 giorni"],
             ]),
         },
         {
@@ -4058,7 +4058,7 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                 ["fr-be", "15 à 28 jours"],
                 ["de-be", "15 bis 28 Tagen"],
                 ["en", "15 to 28 days"],
-                ["it", "15 to 28 days"],
+                ["it", "Tra 15 e 28 giorni"],
             ]),
         },
         {
@@ -4067,13 +4067,13 @@ const durationLabSampling = (parentKey: string, keysymptomImpliedCovidTest?: str
                 ["fr-be", "Plus de 28 jours"],
                 ["de-be", "Mehr als 28 Tage"],
                 ["en", "More than 28 days"],
-                ["it", "More than 28 days"],
+                ["it", "Più di 28 giorni"],
             ]),
         },
         {
             key: '99', role: 'option', content: new Map([
                 ["en", "I don't know/can't remember"],
-                ["it", "I don't know/can't remember"],
+                ["it", "Non so/non ricordo"],
                 ["de-be", "ich weiß es nicht/kann mich nicht erinnern"],
                 ["nl-be", "Dit wil ik niet aangeven"],
                 ["fr-be", "Je ne sais pas / je ne m'en souviens plus"],
