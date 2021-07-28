@@ -4466,7 +4466,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you take medication for these symptoms?"],
-            ["it", "Did you take medication for these symptoms?"],
+            ["it", "Hai assunto farmaci per il trattamento dei tuoi sintomi?"],
             ["nl", "Heb je vanwege je klachten medicijnen gebruikt? En zo ja, welke?"],
             ["fr", "Avez-vous pris des médicaments pour ces symptômes?"],
         ]))
@@ -4481,7 +4481,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl", "Waarom vragen we dit?"],
                     ["fr", "Pourquoi demandons-nous cela ?"],
                 ]),
@@ -4490,7 +4490,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "To find out who gets treated, and how effective treatment is."],
-                    ["it", "To find out who gets treated, and how effective treatment is."],
+                    ["it", "Per sapere quante persone assumono farmaci e qual è l'efficacia."],
                     ["nl", "Om uit te zoeken wie er medicatie neemt, en hoe effectief deze behandeling is."],
                     ["fr", "Pour savoir qui se fait soigner, et si le traitement est efficace."],
                 ]),
@@ -4499,7 +4499,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "How should I answer it?"],
-                    ["it", "How should I answer it?"],
+                    ["it", "Come devi rispondere?"],
                     ["nl", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr", "Comment devez-vous répondre ?"],
                 ]),
@@ -4508,7 +4508,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             {
                 content: new Map([
                     ["en", "Only record those medications that you used because of this illness. If you are on other medications because of a pre-existing illness then do not record these."],
-                    ["it", "Only record those medications that you used because of this illness. If you are on other medications because of a pre-existing illness then do not record these."],
+                    ["it", "Segnala soltanto i farmaci che hai assunto in seguito alla comparsa dei presenti sintomi. Non riportare farmaci assunti in seguito a condizioni mediche pregresse."],
                     ["nl", "Geef alleen de medicatie aan die je gebruikt in verband met je gemelde klachten. Medicatie die je gebruikt voor een al bestaande aandoening hoef je niet te noemen."],
                     ["fr", "Ne saisissez que les médicaments que vous pris en raison de cette épisode de maladie. Si vous avez pris d'autres médicaments pour une maladie préexistante, alors ne les enregistrez pas."],
                 ]),
@@ -4524,7 +4524,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
         content: generateLocStrings(
             new Map([
                 ['en', 'Select all options that apply'],
-                ['it', 'Select all options that apply'],
+                ['it', 'Seleziona tutte le opzioni che si applicano al tuo caso'],
                 ['nl', 'Meerdere antwoorden mogelijk'],
                 ["fr", "sélectionnez toutes les options applicables"],
             ])),
@@ -4537,7 +4537,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '6'),
             content: new Map([
                 ["en", "No medication"],
-                ["it", "No medication"],
+                ["it", "Nessun farmaco"],
                 ["nl", "Nee, ik heb geen medicijnen gebruikt"],
                 ["fr", "Aucun médicament"],
             ])
@@ -4548,7 +4548,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
-                ["it", "Pain killers (e.g. paracetamol, lemsip, ibuprofen, aspirin, calpol, etc)"],
+                ["it", "Antidolorifici o farmaci per abbassare la febbre (ad es. paracetamolo, ibuprofene, aspirina, etc.)"],
                 ["nl", "Ja, pijnstillers zoals paracetamol, aspirine of ibuprofen"],
                 ["fr", "Médicaments contre la douleur ou la fièvre (p. ex. Paracetamol, Dafalgan, Ibuprofen, Aspirin, Pretuval, etc)"],
             ])
@@ -4559,7 +4559,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Cough medication (e.g. expectorants)"],
-                ["it", "Cough medication (e.g. expectorants)"],
+                ["it", "Espettoranti o medicinali per la tosse"],
                 ["nl", "Ja, medicijnen om het hoesten te onderdrukken"],
                 ["fr", "Médicaments contre la toux (p. ex. expectorants)"],
             ])
@@ -4581,7 +4581,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Antivirals (Tamiflu, Relenza)"],
-                ["it", "Antivirals (Tamiflu, Relenza)"],
+                ["it", "Antivirali (Tamiflu, Relenza)"],
                 ["nl", "Ja, antivirale middelen zoals Tamiflu of Relenza"],
                 ["fr", "Antiviraux (par ex. Tamiflu)"],
             ])
@@ -4592,7 +4592,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Antibiotics"],
-                ["it", "Antibiotics"],
+                ["it", "Antibiotici"],
                 ["nl", "Ja, antibiotica"],
                 ["fr", "Antibiotiques"],
             ])
@@ -4603,7 +4603,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Homeopathy"],
-                ["it", "Homeopathy"],
+                ["it", "Farmaci omeopatici"],
                 ["nl", "Ja, homeopathische middelen"],
                 ["fr", "Homéopathie"],
             ])
@@ -4614,7 +4614,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Alternative medicine (essential oil, phytotherapy, etc.)"],
-                ["it", "Alternative medicine (essential oil, phytotherapy, etc.)"],
+                ["it", "Medicine alternative (olii essenziali, fitoterapia, etc.)"],
                 ["nl", "Ja, alternatieve medicatie (essentiële olie, fytotherapie enz.)"],
                 ["fr", "Médecines douces (huiles essentielles, phytothérapie, etc.)"],
             ])
@@ -4625,7 +4625,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0', '6'),
             content: new Map([
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
                 ["nl", "Ja, andere medicatie"],
                 ["fr", "Autre"],
             ])
@@ -4636,7 +4636,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "I don't know/can't remember"],
-                ["it", "I don't know/can't remember"],
+                ["it", "Non so/non ricordo"],
                 ["nl", "Dit wil ik niet aangeven"],
                 ["fr", "Je ne sais pas / je ne m'en souviens plus"],
             ])
