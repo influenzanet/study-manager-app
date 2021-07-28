@@ -3039,7 +3039,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             ["fr-be", "Quelle est la principale raison pour laquelle vous n'avez contacté aucun professionnel de la santé pour les symptômes que vous avez signalés aujourd'hui ?"],
             ["de-be", "Was ist der Hauptgrund, warum Sie wegen der Symptome, die Sie heute gemeldet haben, keinen Arzt kontaktiert haben?"],
             ["en", "What is the main reason for which you did not contact any health professional for the symptoms you declared today?"],
-            ["it", "What is the main reason for which you did not contact any health professional for the symptoms you declared today?"],
+            ["it", "Per quale motivo non ti sei rivolto a nessuna struttura sanitaria per i sintomi che stai segnalando?"],
         ]))
     );
 
@@ -3060,7 +3060,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3070,7 +3070,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                     ["fr-be", "Pour savoir pourquoi certaines personnes ne consultent pas un médecin."],
                     ["de-be", "Um festzustellen, warum manche Menschen keine ärztliche Hilfe aufsuchen."],
                     ["en", "To understand why some people do not consult a doctor."],
-                    ["it", "To understand why some people do not consult a doctor."],
+                    ["it", "Per capire quali sono i motivi per cui alcune persone non si rivolgono ad un medico."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -3080,7 +3080,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3090,7 +3090,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                     ["fr-be", "Plusieurs réponses sont possibles."],
                     ["de-be", "Mehrere Antworten möglich."],
                     ["en", "Multiple answers are possible."],
-                    ["it", "Multiple answers are possible."],
+                    ["it", "Puoi inserire più di una risposta."],
                 ]),
             },
         ])
@@ -3107,7 +3107,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi inserire più di una risposta"],
             ])),
     }, rg?.key);
 
@@ -3120,7 +3120,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Mes symptômes sont apparus récemment."],
                 ["de-be", "Meine Symptome traten erst kürzlich auf."],
                 ["en", "My symptoms appeared very recently"],
-                ["it", "My symptoms appeared very recently"],
+                ["it", "I sintomi sono comparsi molto di recente"],
             ])
         },
         {
@@ -3131,7 +3131,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Mes symptômes sont légers."],
                 ["de-be", "Meine Symptome sind mild."],
                 ["en", "My symptoms are mild"],
-                ["it", "My symptoms are mild"],
+                ["it", "I sintomi sono molto lievi"],
             ])
         },
         {
@@ -3142,7 +3142,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Je présente régulièrement ces symptômes."],
                 ["de-be", "Ich habe diese Symptome öfter."],
                 ["en", "I have these symptoms often"],
-                ["it", "I have these symptoms often"],
+                ["it", "Ho spesso questi sintomi."],
             ])
         },
         {
@@ -3153,7 +3153,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Je pense que je sais ce dont je souffre, et j'ai recours à ma propre médication."],
                 ["de-be", "Ich meine zu wissen, was ich habe, und verwende meine eigene Medikation."],
                 ["en", "I think I know what I have and I self-medicate"],
-                ["it", "I think I know what I have and I self-medicate"],
+                ["it", "Credo di sapere quale sia il problema e so quali medicine prendere."],
             ])
         },
         {
@@ -3164,7 +3164,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Je pense qu'il n'existe pas de bon traitement pour ma maladie."],
                 ["de-be", "Ich denke, dass es keine gute Behandlung für meine Krankheit gibt."],
                 ["en", "I think there is no effective treatment for the disease I have"],
-                ["it", "I think there is no effective treatment for the disease I have"],
+                ["it", "Non credo esistano terapie efficaci per la malattia che penso di avere."],
             ])
         },
         {
@@ -3175,7 +3175,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Il est trop difficile d'obtenir rapidement un rendez-vous."],
                 ["de-be", "Es ist zu schwierig, schnell einen Termin zu bekommen."],
                 ["en", "It is too hard to get an appointment quickly"],
-                ["it", "It is too hard to get an appointment quickly"],
+                ["it", "È troppo complicato riuscire ad avere un appuntamento velocemente."],
             ])
         },
         {
@@ -3186,7 +3186,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Je n'ai pas assez de temps."],
                 ["de-be", "Ich habe nicht genug Zeit."],
                 ["en", "I do not have time"],
-                ["it", "I do not have time"],
+                ["it", "Non ho tempo."],
             ])
         },
         {
@@ -3197,7 +3197,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Pour des raisons financières."],
                 ["de-be", "Aus finanziellen Gründen."],
                 ["en", "For financial reasons"],
-                ["it", "For financial reasons"],
+                ["it", "Per motivi economici."],
             ])
         },
         {
@@ -3208,7 +3208,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Par crainte des conséquences si le médecin me suspecte d'avoir contracté le coronavirus."],
                 ["de-be", "Aufgrund von Angst vor den Folgen, wenn der Arzt vermutet, dass ich COVID-19 habe."],
                 ["en", "For fear of consequences if the doctor thinks I have COVID-19"],
-                ["it", "For fear of consequences if the doctor thinks I have COVID-19"],
+                ["it", "Per paura delle conseguenze nel caso in cui il medico ritenga che io abbia il COVID-19."],
             ])
         },
         {
@@ -3220,14 +3220,14 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Mes symptômes sont apparus très récemment"],
                 ["de-be", "Meine Symptome sind vor kurzem aufgetreten"],
                 ["en", "My symptoms appeared very recently"],
-                ["it", "My symptoms appeared very recently"],
+                ["it", "I sintomi sono comparsi da poco"],
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
                 ["fr-be", "Veuillez fournir une description ici (facultatif)"],
                 ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
                 ["en", "Describe here (optional)"],
-                ["it", "Describe here (optional)"],
+                ["it", "Descrivi qui (opzionale)"],
             ])
         },
         {
@@ -3237,7 +3237,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Je ne sais pas / Je ne veux pas répondre"],
                 ["de-be", "Ich weiß nicht / ich möchte nicht antworten"],
                 ["en", "I don't know / I don't want to answer"],
-                ["it", "I don't know / I don't want to answer"],
+                ["it", "Non so/preferisco non rispondere"],
             ])
         },
     ]);
