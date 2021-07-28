@@ -4356,7 +4356,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
             ["fr-be", "Avez-vous déjà reçu les résultats du test de dépistage du PCR ?"],
             ["de-be", "Haben Sie die Grippe-PCR-Testergebnisse bereits erhalten?"],
             ["en", "Have you received the results of your Flu PCR test?"],
-            ["it", "Have you received the results of your Flu PCR test?"],
+            ["it", "Hai ottenuto il risultato del tuo test PCR per l'influenza?"],
         ]))
     );
 
@@ -4374,7 +4374,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4384,7 +4384,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
                     ["fr-be", "Nous voulons savoir comment le grippe se propage au sein de la population."],
                     ["de-be", "Wir möchten wissen, wie Grippe sich in der Bevölkerung ausbreitet."],
                     ["en", "We want to understand how the flu is spreading within the population."],
-                    ["it", "We want to understand how the flu is spreading within the population."],
+                    ["it", "Vogliamo sapere quante persone hanno l'influenza nella popolazione generale."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -4401,7 +4401,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
                 ["fr-be", "Oui, positif au grippe"],
                 ["de-be", "Ja, positiv auf Grippe"],
                 ["en", "Yes, the test is positive for influenza"],
-                ["it", "Yes, the test is positive for influenza"],
+                ["it", "Si, il test è risultato positivo per l'influenza"],
             ])
         },
         {
@@ -4411,7 +4411,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
                 ["fr-be", "Oui, négatif au grippe"],
                 ["de-be", "Ja, negativ auf Grippe"],
                 ["en", "Yes, the test is negative for influenza"],
-                ["it", "Yes, the test is negative for influenza"],
+                ["it", "Si, il test è risultato negativo per l'influenza"],
             ])
         },
         {
@@ -4421,7 +4421,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
                 ["fr-be", "Oui, résultat non interprétable"],
                 ["de-be", "Ja, nicht interpretierbares Ergebnis"],
                 ["en", "Yes, the results are inconclusive"],
-                ["it", "Yes, the results are inconclusive"],
+                ["it", "Si ma i risultati non sono interpretabili"],
             ])
         },
         {
@@ -4431,7 +4431,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
                 ["fr-be", "Non, je n'ai pas encore reçu le résultat du test"],
                 ["de-be", "Nein, ich habe noch kein Testergebnis"],
                 ["en", "No, I have not yet received the test results"],
-                ["it", "No, I have not yet received the test results"],
+                ["it", "No, non ho ancora ricevuto i risultati"],
             ])
         },
     ]);
