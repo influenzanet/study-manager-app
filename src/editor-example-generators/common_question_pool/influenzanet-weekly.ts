@@ -4230,7 +4230,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             ["fr-be", "Avez-vous passé un test de dépistage du Grippe en raison de vos symptômes ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symptome einen Test auf Grippe durchführen lassen?"],
             ["en", "Because of your symptoms, did you undergo a test/analyses to know if you have the Flu?"],
-            ["it", "Because of your symptoms, did you undergo a test/analyses to know if you have the Flu?"],
+            ["it", "A causa dei tuoi sintomi, hai ricevuto un test virologico per sapere se hai l'influenza?"],
         ]))
     );
 
@@ -4246,7 +4246,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4256,7 +4256,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                     ["fr-be", "Nous voulons savoir sur la base de quelles plaintes les gens se font tester en vue de dépister le grippe."],
                     ["de-be", "Wir möchten wissen, für welche Beschwerden Menschen sich auf Grippe testen lassen."],
                     ["en", "We want to know which complaints lead people to get tested for the flu."],
-                    ["it", "We want to know which complaints lead people to get tested for the flu."],
+                    ["it", "Vogliamo sapere quante persone che presentano sintomi siano state sottoposte a test virologico per sapere se hanno l'influenza."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -4273,7 +4273,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi inseire più di una risposta"],
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
@@ -4286,7 +4286,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["fr-be", "Oui, un PCR test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
                 ["de-be", "Ja, ein PCR Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
                 ["en", "Yes, a PCR test based on a swab in nose or mouth, or a sputum or saliva sample"],
-                ["it", "Yes, a PCR test based on a swab in nose or mouth, or a sputum or saliva sample"],
+                ["it", "Si, un test PCR basato su un tampone nasale o faringeo o un campione di saliva."],
             ])
         },
         {
@@ -4296,7 +4296,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
-                ["en", "Not yet, I plan to shortly undergo a test"],
+                ["en", "Non ancora, ho in programma di fare il test"],
             ])
         },
         {
