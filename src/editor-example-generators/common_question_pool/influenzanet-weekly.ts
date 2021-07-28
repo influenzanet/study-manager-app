@@ -3414,7 +3414,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             ["fr-be", "Avez-vous passé un test de dépistage du coronavirus en raison de vos symptômes ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symptome einen Test auf COVID-19 durchführen lassen?"],
             ["en", "Because of your symptoms, did you undergo a test/analyses to know if you have COVID-19?"],
-            ["it", "Because of your symptoms, did you undergo a test/analyses to know if you have COVID-19?"],
+            ["it", "A causa dei tuoi sintomi, sei stato sottoposto ad analisi per accertare se hai il COVID-19?"],
         ]))
     );
 
@@ -3430,7 +3430,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -3440,7 +3440,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                     ["fr-be", "Nous voulons savoir sur la base de quelles plaintes les gens se font tester en vue de dépister le coronavirus."],
                     ["de-be", "Wir möchten wissen, für welche Beschwerden Menschen sich auf COVID-19 testen lassen."],
                     ["en", "We want to know which complaints lead people to get tested for the coronavirus."],
-                    ["it", "We want to know which complaints lead people to get tested for the coronavirus."],
+                    ["it", "Vogliamo sapere quali circostanze spingono le persone a ricevere un test/analisi per il coronavirus."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -3457,7 +3457,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi inserire più di una risposta"],
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
@@ -3470,7 +3470,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Oui, un PCR test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
                 ["de-be", "Ja, ein PCR Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
                 ["en", "Yes, a PCR test based on a swab in nose or mouth, or a sputum or saliva sample"],
-                ["it", "Yes, a PCR test based on a swab in nose or mouth, or a sputum or saliva sample"],
+                ["it", "si, tramite un test PCR con tampone nasale-faringeo o campione di saliva"],
             ])
         },
         {
@@ -3481,7 +3481,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Oui, un test sanguin"],
                 ["de-be", "Ja, ein Bluttest"],
                 ["en", "Yes, a serological analysis (screening for antibodies against this virus, from a drop of blood from fingertip or a blood sample)"],
-                ["it", "Yes, a serological analysis (screening for antibodies against this virus, from a drop of blood from fingertip or a blood sample)"],
+                ["it", "si, tramite analisi di un campione di sangue."],
             ])
         },
         {
@@ -3492,7 +3492,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Oui, un test antigénique rapide (sur un écouvillon introduit dans le nez ou la bouche, permettant d'obtenir un résultat en moins d'une heure)"],
                 ["de-be", "Ja, ein Antigen-Schnelltest (mit einem Wattestäbchen in Nase oder Mund mit einem Ergebnis, das in unter einer Stunde verfügbar ist)"],
                 ["en", "Yes, a rapid antigen detection test (on a swab in nose or mouth, with a result available in less than an hour)"],
-                ["it", "Yes, a rapid antigen detection test (on a swab in nose or mouth, with a result available in less than an hour)"],
+                ["it", "Si, tramite un test rapido antigenico (con un tampone nel naso o in bocca, con risultati disponibili in meno di un'ora)"],
             ])
         },
         {
@@ -3502,7 +3502,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
-                ["en", "Not yet, I plan to shortly undergo a test"],
+                ["en", "Non ancora, ho una ricetta e ho in programma di farlo a breve"],
             ])
         },
         {
@@ -3513,7 +3513,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Non, j'ai une ordonnance mais je ne ferai pas de test"],
                 ["de-be", "Nein, ich habe ein Rezept, werde mich aber keinem Test unterziehen"],
                 ["en", "No, I have a prescription but will not undergo a test"],
-                ["it", "No, ho una ricetta ma non mi sottoporrò a test"],
+                ["it", "No, ho una ricetta ma non mi sottoporrò al test"],
             ])
         },
         {
