@@ -3279,7 +3279,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
             ["nl-be", "Kan u aangeven welke gevolgen u vreest?"],
             ["fr-be", "Pouvez-vous indiquer les conséquences que vous craignez ?"],
             ["de-be", "Können Sie angeben, welche Folgen Sie fürchten?"],
-            ["en", "Can you specify which consequences you mainly fear? "],
+            ["en", "Puoi specificare quali sono le conseguenze di cui hai timore? "],
         ]))
     );
 
@@ -3306,7 +3306,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi inserire più di una risposta"],
             ])),
     }, rg?.key);
 
@@ -3318,7 +3318,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Je dois me faire tester."],
                 ["de-be", "Ich muss einen Test durchführen lassen."],
                 ["en", "Have to do a diagnostic test."],
-                ["it", "Have to do a diagnostic test."],
+                ["it", "Temo di dover fare un test diagnostico."],
             ])
         },
         {
@@ -3328,7 +3328,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Je dois me mettre en quarantaine."],
                 ["de-be", "Ich muss in Quarantäne gehen."],
                 ["en", "Have to be isolated."],
-                ["it", "Have to be isolated."],
+                ["it", "Temo di essere messo in isolamento."],
             ])
         },
         {
@@ -3338,7 +3338,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Je dois arrêter de travailler."],
                 ["de-be", "Ich muss mit dem Arbeiten aufhören."],
                 ["en", "Have to stop working."],
-                ["it", "Have to stop working."],
+                ["it", "Temo di dover smettere di lavorare."],
             ])
         },
         {
@@ -3348,7 +3348,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Le jugement des autres."],
                 ["de-be", "Durch andere verurteilt werden."],
                 ["en", "To be judged by others."],
-                ["it", "To be judged by others."],
+                ["it", "Temo di essere giudicato dagli altri."],
             ])
         },
         {
@@ -3358,7 +3358,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Être exclu par les autres."],
                 ["de-be", "Von anderen ausgeschlossen werden."],
                 ["en", "To be excluded by others."],
-                ["it", "Essere esclusi da altri."],
+                ["it", "Temo di essere escluso dagli altri."],
             ])
         },
         {
@@ -3369,13 +3369,13 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
                 ["fr-be", "Autre"],
                 ["de-be", "Andere"],
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
                 ["fr-be", "Veuillez fournir une description ici (facultatif)"],
                 ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
-                ["it", "Describe here (optional)"],
+                ["it", "Descrivi qui (opzionale)"],
             ])
         },
     ]);
