@@ -4966,7 +4966,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ["fr-be", "Avez-vous dû adapter vos activités quotidiennes à cause de vos symptômes ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Beschwerden Ihre täglichen Beschäftigungen anpassen müssen?"],
             ["en", "Did you change your daily routine because of your illness?"],
-            ["it", "Did you change your daily routine because of your illness?"],
+            ["it", "Hai modificato la tua routine quotidiana a causa di questi sintomi?"],
         ]))
     );
 
@@ -4982,7 +4982,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4992,7 +4992,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
                     ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
                     ["en", "To determine how the symptoms are impacting your daily life."],
-                    ["it", "To determine how the symptoms are impacting your daily life."],
+                    ["it", "Per capire che impatto abbiano i sintomi sulla routine quotidiana."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5002,7 +5002,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5012,7 +5012,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Nous voulons savoir si vous avez dû vous absenter de votre travail ou si vous n'avez pas su fréquenter l'école en raison de vos symptômes, ou si vous avez modifié votre routine de quelque manière que ce soit (par exemple, ne pas avoir pu pratiquer de sport). Si vous êtes étudiant(e) et que vous n'avez pas pu assister aux cours en ligne en raison de vos symptômes, choisissez également la deuxième option. Nous nous intéressons aux changements en raison de vos symptômes/plaintes, et non en raison d'une éventuelle quarantaine."],
                     ["de-be", "Wir möchten wissen, ob Sie bei der Arbeit oder in der Schule als Folge Ihrer Symptome anwesend waren, oder ob Sie Ihre Routine (zum Beispiel: keine Sportausübung möglich) auf eine andere Art verändert haben. Wenn Sie ein Student sind und als Folge Ihrer Symptome Online-Lektionen nicht folgen konnten, wählen Sie am besten die zweite Alternative. Wir fragen nach Veränderungen als Folge Ihrer Symptome/Beschwerden, nicht aufgrund einer möglichen Quarantäne."],
                     ["en", "We want to know if you have missed work or school due to your symptoms, or if you have modified your daily routine in any way (for example, if you were unable to engage in sport activities). If you are a student, and were unable to attend online classes due to your symptoms, you should also select option 2. We are interested in changes due to your symptoms/complaints and not due to any quarantine."],
-                    ["it", "We want to know if you have missed work or school due to your symptoms, or if you have modified your daily routine in any way (for example, if you were unable to engage in sport activities). If you are a student, and were unable to attend online classes due to your symptoms, you should also select option 2. We are interested in changes due to your symptoms/complaints and not due to any quarantine."],
+                    ["it", "Vogliamo sapere se, in seguito alla comparsa dei sintomi, sei stato assente dal lavoro o da scuola o se hai modificato la tua routine quotidiana in qualunque altro modo (ad esempio hai evitato di uscire la sera)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5029,7 +5029,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi inserire più di una risposta"],
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
@@ -5042,7 +5042,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Non, j'ai pu vaquer à mes occupations quotidiennes comme d'habitude"],
                 ["de-be", "Nein, ich habe meine täglichen Beschäftigungen wie normal durchführen können"],
                 ["en", "No, I was able to go about my daily activities as usual"],
-                ["it", "No, I was able to go about my daily activities as usual"],
+                ["it", "No, ho potuto svolgere le mie attività quotidiane come al solito"],
             ])
         },
         {
@@ -5053,7 +5053,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl-be", "Ja, maar ik heb geen vrij genomen van school of werk"],
                 ["fr-be", "Oui, mais je n'ai pas pris de congé à l'école ou au travail"],
                 ["de-be", "Ja, aber ich habe weder Schule noch Arbeit genommen"],
-                ["en", "Yes, but I did not take time off school or work"],
+                ["en", "Si, ma non sono stato/a assente da lavoro/scuola"],
             ])
         },
         {
@@ -5065,7 +5065,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Oui, je n'ai pas pu travailler ou me rendre à l'école"],
                 ["de-be", "Ja, ich konnte meinen Beruf nicht ausüben oder konnte nicht zur Schule gehen"],
                 ["en", "Yes, I took time off school or work"],
-                ["it", "Yes, I took time off school or work"],
+                ["it", "Si, sono stato/a assente da lavoro/scuola"],
             ])
         },
 
