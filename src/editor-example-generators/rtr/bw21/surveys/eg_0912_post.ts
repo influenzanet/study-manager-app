@@ -1,12 +1,13 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
+import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getBIASMI, getBIASOK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATMI, getJSTRATOK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
 
 
-export const generate_EG0829POST = (): Survey | undefined => {
-    const surveyKey = surveyKeys.EG_0829_POST;
+export const generate_EG0912POST = (): Survey | undefined => {
+    const surveyKey = surveyKeys.EG_0912_POST;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
@@ -21,7 +22,7 @@ export const generate_EG0829POST = (): Survey | undefined => {
         ])
     })
 
-    
+
     surveyEditor.addSurveyItemToRoot(getWPERF(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getAUFM1(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getAUFM2(surveyKey,true));
@@ -46,24 +47,21 @@ export const generate_EG0829POST = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getJSTRATPA(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getJSTRATPK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getBIASPA(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getBIASPK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPERS3(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPERS4(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getJSTRATMI(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getJSTRATOK(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getBIASMI(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getBIASOK(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey,true));
+
     
 
 
 
-
-
-
-
+    //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
+    //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
@@ -72,3 +70,4 @@ export const generate_EG0829POST = (): Survey | undefined => {
 
     return surveyEditor.getSurvey();
 }
+
