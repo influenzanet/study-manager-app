@@ -70,6 +70,8 @@ const surveys = [
         surveys: [
             { name: "EG 0829 PRE", survey: RTRSurveys.EG_0829_PRE() },
             { name: "EG 0829 POST", survey: RTRSurveys.EG_0829_POST() },
+            { name: "EG 0912 PRE", survey: RTRSurveys.EG_0912_PRE() },
+            { name: "EG 0912 POST", survey: RTRSurveys.EG_0912_POST() },
         ],
         languageCodes: [
             'de',
