@@ -5404,7 +5404,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ["fr-be", "En raison de vos symptômes, avez-vous pris ou intensifié les mesures reprises ci-dessous (par rapport à la période précédant vos symptômes) ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symtome diese Maßnahmen ergriffen oder verstärkt (im Vergleich mit dem Zeitraum vor Ihren Symptomen)?"],
             ["en", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
-            ["it", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
+            ["it", "A causa dei tuoi sintomi, hai adottato o rafforzato una delle seguenti misure cautelari (rispetto al periodo precedente in cui i sintomi non erano ancora comparsi)?"],
         ]))
     );
 
@@ -5420,7 +5420,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5430,7 +5430,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Afin d'examiner la manière dont les différentes mesures sont suivies."],
                     ["de-be", "Um zu untersuchen, wie verschiedene Maßnahmen befolgt werden."],
                     ["en", "To examine how different measures are being followed."],
-                    ["it", "To examine how different measures are being followed."],
+                    ["it", "Per capire il livello di adozione di misure protettive/restrittive nella popolazione, in presenza di sintomi."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5440,7 +5440,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5450,7 +5450,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Par exemple, « Évitez de serrer les mains » : Choisissez « Oui » si vous avez serré moins de mains ou si vous n'avez plus serré de mains en raison de vos symptômes ; Choisissez « Non, je n'applique pas cette mesure », si vous continuez à serrer la main des gens malgré vos symptômes ; Choisissez « Non, J'appliquais déjà cette mesure » si vous ne serriez déjà plus la main des gens avant l'apparition de vos symptômes, et que vous n'avez pas modifié ce comportement."],
                     ["de-be", "Zum Beispiel so, 'Hände schütteln vermeiden': Wählen Sie 'Ja', aufgrund meiner Symptome habe ich keine oder noch weniger Hände geschüttelt; Wählen Sie 'Nein, ich wende diese Maßnahme nicht an', ich gebe noch immer Menschen die Hand, obwohl ich schon Symptome habe; Wählen Sie 'Nein, ich hielt mich schon an diese Maßnahme', denn auch aufgrund meiner Symptome gab ich niemandem die Hand und habe das nicht gemacht."],
                     ["en", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
-                    ["it", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
+                    ["it", "Per esempio, all'opzione 'Evitare le strette di mano' rispondere 'si' se hai diminuito o eliminato del tutto le strette di mano a causa dei tuoi sintomi; rispondi 'no, non ho adottato questa misura' se continui a stringere la mano nonostante i tuoi sintomi; rispondi 'no, stavo già adottando questa misura' se avevi già smesso di stringere la mano prima che i tuoi sintomi insorgessero."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5466,7 +5466,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Oui, j'applique cette mesure maintenant (pour la première fois) ou de manière plus stricte"],
                 ["de-be", "Ja, ich wende diese Maßnahme nun (zum ersten Mal) oder mehr (verstärkt) an"],
                 ["en", " Yes, I am following this measure now for the first time, or in a stricter way"],
-                ["it", " Yes, I am following this measure now for the first time, or in a stricter way"],
+                ["it", " Si, ho appena adottato questa misura per la prima volta o l'ho resa più restrittiva "],
             ])
         },
         {
@@ -5475,7 +5475,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, j'appliquais déjà cette mesure"],
                 ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
                 ["en", "No, I was already following this measure"],
-                ["it", "No, I was already following this measure"],
+                ["it", "No, avevo già adottato questa misura"],
             ])
         },
         {
@@ -5484,7 +5484,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, je n'applique pas cette mesure"],
                 ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
                 ["en", "No, I am not following this measure"],
-                ["it", "No, I am not following this measure"],
+                ["it", "No, non ho adottato questa misura"],
             ])
         },
         {
@@ -5493,7 +5493,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, je n'applique pas cette mesure"],
                 ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
                 ["en", "Not applicable"],
-                ["it", "No, I am not following this measure"],
+                ["it", "Non applicabile"],
             ])
         }
     ];
@@ -5508,7 +5508,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Question facultative"],
                 ["de-be", "Optional einzutragen"],
                 ["en", "To be completed optionally"],
-                ["it", "To be completed optionally"],
+                ["it", "Domanda non obbligatoria"],
             ])),
     }, rg?.key);
 
@@ -5521,7 +5521,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Se laver/se désinfecter régulièrement les mains"],
                 ["de-be", "Regelmäßig die Hände waschen/desinfiziren"],
                 ['en', 'Regularly wash or disinfect hands'],
-                ['it', 'Regularly wash or disinfect hands'],
+                ['it', 'Lavarti o disinfettarti regolarmente le mani'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
@@ -5535,7 +5535,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Éternuer et tousser dans votre coude"],
                 ["de-be", "In Ihren Ellenbogen niesen und husten"],
                 ['en', 'Cough or sneeze into your elbow'],
-                ['it', 'Cough or sneeze into your elbow'],
+                ['it', 'Tossire o starnutire nella piega del gomito'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
@@ -5549,7 +5549,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Utiliser des mouchoirs jetables"],
                 ["de-be", "Einwegtaschentücher verwenden"],
                 ['en', 'Use a disposable tissue'],
-                ['it', 'Use a disposable tissue'],
+                ['it', 'Usare un fazzolettino di carta'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
@@ -5562,8 +5562,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Draag mond- en neusbescherming"],
                 ["fr-be", "Portez un masque facial"],
                 ["de-be", "Einen Mund-Nasen-Schutz im eingang tragen"],
-                ['en', 'Wear a face mask indoors'],
-                ['it', 'Wear a face mask indoors'],
+                ['en', "Wear a face mask indoors"],
+                ['it', "Usare una mascherina protettiva al chiuso"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4a', likertOptions), rg?.key);
@@ -5576,8 +5576,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Draag mond- en neusbescherming"],
                 ["fr-be", "Portez un masque facial"],
                 ["de-be", "Einen Mund-Nasen-Schutz im ausgang tragen"],
-                ['en', 'Wear a face mask outdoors'],
-                ['it', 'Wear a face mask outdoors'],
+                ['en', "Wear a face mask outdoors"],
+                ['it', "Usare una mascherina protettiva all'aperto"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4b', likertOptions), rg?.key);
@@ -5590,8 +5590,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Handen schudden vermijden"],
                 ["fr-be", "Éviter de serrer les mains"],
                 ["de-be", "Hände schütteln vermeiden"],
-                ['en', 'Avoid shaking hands'],
-                ['it', 'Avoid shaking hands'],
+                ['en', "Avoid shaking hands"],
+                ['it', "Evitare le strette di mano"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_5', likertOptions), rg?.key);
@@ -5604,8 +5604,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Niet meer knuffelen of kus op de wang geven"],
                 ["fr-be", "Éviter les embrassades ou les bisous sur la joue"],
                 ["de-be", "Nicht mehr knutschen oder einen Kuss auf die Wange geben"],
-                ['en', 'Stop greeting by hugging and/or kissing on both cheeks'],
-                ['it', 'Stop greeting by hugging and/or kissing on both cheeks'],
+                ['en', "Stop greeting by hugging and/or kissing on both cheeks"],
+                ['it', "Evitare i saluti con abbracci o baci sulla guancia"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_11', likertOptions), rg?.key);
@@ -5618,8 +5618,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Gebruik van openbaar vervoer beperken"],
                 ["fr-be", "Limiter l'utilisation des transports en commun"],
                 ["de-be", "Die Nutzung des ÖPNV begrenzen"],
-                ['en', 'Limit your use of public transport'],
-                ['it', 'Limit your use of public transport'],
+                ['en', "Limit your use of public transport"],
+                ['it', "Limitare l'uso dei trasporti pubblici"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_6', likertOptions), rg?.key);
@@ -5633,8 +5633,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Drukke plaatsen mijden (supermarkt, cinema, stadium,...)"],
                 ["fr-be", "Éviter les lieux bondés (un supermarché, un cinéma, un stade, etc.)"],
                 ["de-be", "Belebte Plätze meiden (Supermarkt, Kino, Stadion, usw.)"],
-                ['en', 'Avoid busy places and gatherings (supermarket, cinema, stadium)'],
-                ['it', 'Avoid busy places and gatherings (supermarket, cinema, stadium)'],
+                ['en', "Avoid busy places and gatherings (supermarket, cinema, stadium)"],
+                ['it', "Evitare gli assembramenti di persone (per andare a teatro, cinema, stadio, supermarket, in chiesa etc.)"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_7', likertOptions), rg?.key);
@@ -5648,8 +5648,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Thuis blijven"],
                 ["fr-be", "Rester à la maison"],
                 ["de-be", "Zu Hause bleiben"],
-                ['en', 'Stay at home'],
-                ['it', 'Stay at home'],
+                ['en', "Stay at home"],
+                ['it', "Rimanere a casa"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_8', likertOptions), rg?.key);
@@ -5662,8 +5662,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Telewerken"],
                 ["fr-be", "Effectuer du télétravail"],
                 ["de-be", "Telearbeit oder erhöhen Sie die Anzahl der Telearbeitstage"],
-                ['en', 'Telework or increase your number of telework days'],
-                ['it', 'Telework or increase your number of telework days'],
+                ['en', "Telework or increase your number of telework days"],
+                ['it', "Lavorare solo da casa o aumentare il numero dei giorni in cui lavori da casa"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_9', likertOptions), rg?.key);
@@ -5676,8 +5676,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Niet meer naar het buitenland reizen"],
                 ["fr-be", "Ne plus voyager à l'étranger"],
                 ["de-be", "Nicht mehr ins Ausland reisen!"],
-                ['en', 'Avoid travel outside your own country or region'],
-                ['it', 'Avoid travel outside your own country or region'],
+                ['en', "Avoid travel outside your own country or region"],
+                ['it', "Evitare di viaggiare fuori dalla tua regione o dal tuo paese"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_10', likertOptions), rg?.key);
@@ -5690,8 +5690,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Boodschappen aan huis laten leveren (door winkel/familie/vriend)"],
                 ["fr-be", "Se faire livrer ses achats à domicile (par un magasin/un membre de la famille/un ami)"],
                 ["de-be", "Aufträge nach Hause liefern lassen (durch das Geschäft/die Familie/Freunde)"],
-                ['en', 'Have your food/shopping delivered by a store or a friend/family member'],
-                ['it', 'Have your food/shopping delivered by a store or a friend/family member'],
+                ['en', "Have your food/shopping delivered by a store or a friend/family member"],
+                ['it', "Farti portare cibo o la spesa a casa tramite un negozio o da amici/familiari"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_13', likertOptions), rg?.key);
@@ -5704,8 +5704,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Ontmoetingen met familie en vrienden beperken"],
                 ["fr-be", "Limiter les rencontres avec la famille et les amis"],
                 ["de-be", "Treffen mit Familie und Freunden einschränken und begrenzen"],
-                ['en', 'Avoid seeing friends and family'],
-                ['it', 'Avoid seeing friends and family'],
+                ['en', "Avoid seeing friends and family"],
+                ['it', "Evitare di vedere amici o familiari"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_14', likertOptions), rg?.key);
@@ -5718,8 +5718,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Ontmoetingen met mensen 65+ jaar of met chronische aandoeningen beperken"],
                 ["fr-be", "Limiter les rencontres avec les personnes âgées de plus de 65 ans ou souffrant de maladies chroniques"],
                 ["de-be", "Treffen mit Menschen im Alter von 65+ Jahren oder mit chronischen Erkrankungen begrenzen"],
-                ['en', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
-                ['it', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
+                ['en', "Avoid being in contact with people over 65 years old or with a chronic disease"],
+                ['it', "Evitare il contatto con persone over 65 o con malattie croniche"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_15', likertOptions), rg?.key);
@@ -5732,8 +5732,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Contact met kinderen beperken"],
                 ["fr-be", "Limiter les contacts avec les enfants"],
                 ["de-be", "Kontakt mit Kindern begrenzen"],
-                ['en', 'Avoid being in contact with children'],
-                ['it', 'Avoid being in contact with children'],
+                ['en', "Avoid being in contact with children"],
+                ['it', "Evitare il contatto con bambini"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_16', likertOptions), rg?.key);
