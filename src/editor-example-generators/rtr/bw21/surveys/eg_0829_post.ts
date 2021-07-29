@@ -2,7 +2,7 @@ import { Survey } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
 
 
 export const generate_EG0829POST = (): Survey | undefined => {
@@ -38,7 +38,9 @@ export const generate_EG0829POST = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey,true));
@@ -51,6 +53,10 @@ export const generate_EG0829POST = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getPERS3(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getPERS4(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey,true));
+    
 
 
 
