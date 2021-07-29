@@ -5956,7 +5956,7 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "For which reason(s) do you think you have this disease? (select all the relevant answers)"],
-            ["it", "For which reason(s) do you think you have this disease? (select all the relevant answers)"],
+            ["it", "Per quale motivo/i ritieni di avere questa malattia? (seleziona tutte le opzioni che si applicano al tuo caso)"],
         ]))
     );
 
@@ -5971,28 +5971,28 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
-                    ["it", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                    ["it", "Per capire se la tua valutazione della malattia, basata sui sintomi, è allineata con quella che ritieni sia la causa. Potresti avere un’idea più accurata di quale sia la causa dei tuoi sintomi rispetto ai nostri algoritmi automatici."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "Select all the options that match your reasons for your assessment of your illness."],
-                    ["it", "Select all the options that match your reasons for your assessment of your illness."],
+                    ["it", "Seleziona le opzioni che si applicano alla tua situazione."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -6010,7 +6010,7 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
                 ["fr-be", "Plusieurs réponses sont possibles."],
                 ["de-be", "Mehrere Antworten möglich."],
                 ["en", "Multiple answers possible."],
-                ["it", "Multiple answers possible."],
+                ["it", "Puoi inserire più di una risposta."],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -6018,49 +6018,49 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
             key: '1', role: 'option',
             content: new Map([
                 ["en", "My doctor told me I have this disease"],
-                ["it", "My doctor told me I have this disease"],
+                ["it", "Il mio dottore mi ha detto che ho questa malattia"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I had a laboratory confirmation that I have this disease"],
-                ["it", "I had a laboratory confirmation that I have this disease"],
+                ["it", "Ho avuto una conferma tramite analisi di laboratorio"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I had direct contact with a laboratory confirmed case"],
-                ["it", "I had direct contact with a laboratory confirmed case"],
+                ["it", "Ho avuto un contatto diretto con qualcuno che è stato testato ed è risultato postivo"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I had close contact with someone for whom a doctor diagnosed this disease"],
-                ["it", "I had close contact with someone for whom a doctor diagnosed this disease"],
+                ["it", "Ho avuto un contatto diretto con qualcuno che è stato diagnosticato come malato"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["en", "I was in close contact with someone presenting symptoms of this disease	"],
-                ["it", "I was in close contact with someone presenting symptoms of this disease	"],
+                ["it", "Ho avuto un contatto diretto con qualcuno che presentava i sintomi della malattia"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["en", "I was at an event/location with a confirmed case"],
-                ["it", "I was at an event/location with a confirmed case"],
+                ["it", "Sono stato in un posto/evento dove c'era un caso confermato"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["en", "I think I have this disease"],
-                ["it", "I think I have this disease"],
+                ["it", "Credo di avere questa malattia"],
             ])
         }
     ]);
