@@ -4874,7 +4874,7 @@ const hospitalized = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ["fr-be", "En raison de vos symptômes, avez-vous été hospitalisé ?"],
             ["de-be", "Wurden Sie aufgrund Ihrer Symptome ins Krankenhaus eingeliefert?"],
             ["en", "Because of your symptoms, were you hospitalized?"],
-            ["it", "Because of your symptoms, were you hospitalized?"],
+            ["it", "Per i tuoi sintomi, sei stato ricoverato in ospedale?"],
         ]))
     );
 
@@ -4890,7 +4890,7 @@ const hospitalized = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4900,7 +4900,7 @@ const hospitalized = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Nous voulons comprendre les taux d'hospitalisation en raison de symptômes"],
                     ["de-be", "Wir möchten die Krankenhauseinweisungsraten aufgrund von Symptomen verstehen"],
                     ["en", "We want to understand the rates of hospitalization due to symptoms"],
-                    ["it", "We want to understand the rates of hospitalization due to symptoms"],
+                    ["it", "Vogliamo sapere quante persone vengono ricoverate in ospedale a seguito dell'insorgenza dei sintomi"],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -4916,7 +4916,7 @@ const hospitalized = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
 
             ])
         },
