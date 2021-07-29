@@ -5238,7 +5238,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
             ["fr-be", "Durant combien de jours n’avez-vous pas pu travailler normalement, ou n’êtes-vous pas allé(e) à l'école (alors que vous auriez dû le faire) ?"],
             ["de-be", "Wie viele Tage konnten Sie nicht normal arbeiten oder waren Sie nicht in der Schule (während Sie das jedoch eigentlich gemusst hätten)?"],
             ["en", "For how many days have you been unable to work normally/go to school (when you otherwise would have)?"],
-            ["it", "For how many days have you been unable to work normally/go to school (when you otherwise would have)?"],
+            ["it", "Per quanti giorni sei stato/a assente dal lavoro/da scuola??"],
         ]))
     );
 
@@ -5256,7 +5256,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5266,7 +5266,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Pour calculer le nombre de jours pendant lesquels les citoyens ne peuvent pas se rendre au travail ou à l'école en raison de certains symptômes."],
                     ["de-be", "Um auszurechnen, wie viele Tagen Menschen aufgrund von Beschwerden nicht arbeiten können/nicht zur Schule gehen können."],
                     ["en", "To calculate the number of days a person misses work or school due to certain symptoms."],
-                    ["it", "To calculate the number of days a person misses work or school due to certain symptoms."],
+                    ["it", "Per calcolare il numero di giorni che vengono persi al lavoro o a scuola per via dei sintomi influenzali o COVID-19."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5276,7 +5276,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5286,7 +5286,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Ne comptez que les jours au cours desquels vous auriez dû normalement vous rendre au travail/à l'école. Fournissez l'estimation la plus précise possible."],
                     ["de-be", "Zählen Sie nur die Tage, an denen Sie normalerweise hätten arbeiten / dem Schulunterricht folgen müssen. Machen Sie eine möglichst gute Einschätzung."],
                     ["en", "Only count the days that you would otherwise have gone to work or school. Provide as precise an estimate as possible."],
-                    ["it", "Only count the days that you would otherwise have gone to work or school. Provide as precise an estimate as possible."],
+                    ["it", "Tieni conto soltanto dei giorni in cui normalmente saresti stato al lavoro o a scuola (ad esempio non includere il fine settimana nel conteggio)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5300,7 +5300,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "1 jour"],
                 ["de-be", "1 Tage"],
                 ["en", "1 day"],
-                ["it", "1 day"],
+                ["it", "1 giorno"],
             ]),
         },
         {
@@ -5309,7 +5309,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "2 jours"],
                 ["de-be", "2 Tagen"],
                 ["en", "2 days"],
-                ["it", "2 days"],
+                ["it", "2 giorni"],
             ]),
         },
         {
@@ -5318,7 +5318,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "3 jours"],
                 ["de-be", "3 Tagen"],
                 ["en", "3 days"],
-                ["it", "3 days"],
+                ["it", "3 giorni"],
             ]),
         },
         {
@@ -5327,7 +5327,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "4 jours"],
                 ["de-be", "4 Tagen"],
                 ["en", "4 days"],
-                ["it", "4 days"],
+                ["it", "4 giorni"],
             ]),
         },
         {
@@ -5336,7 +5336,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "5 jours"],
                 ["de-be", "5 Tagen"],
                 ["en", "5 days"],
-                ["it", "5 days"],
+                ["it", "5 giorni"],
             ]),
         },
         {
@@ -5345,7 +5345,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "6 to 10jours"],
                 ["de-be", "6 zur 10 Tagen"],
                 ["en", "6 to 10 days"],
-                ["it", "6 to 10 days"],
+                ["it", "tra 6 e 10 giorni"],
             ]),
         },
         {
@@ -5354,7 +5354,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "11 to 15 jours"],
                 ["de-be", "11 zur 15 Tagen"],
                 ["en", "11 to 15 days"],
-                ["it", "11 to 15 days"],
+                ["it", "tra 11 e 15 giorni"],
             ]),
         },
         {
@@ -5363,7 +5363,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "More than 15 days"],
                 ["de-be", "Mehr als 15 Tage"],
                 ["en", "More than 15 days"],
-                ["it", "More than 15 days"],
+                ["it", "Più di 15 giorni"],
             ]),
         },
     ]);
