@@ -3502,7 +3502,8 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
-                ["en", "Non ancora, ho una ricetta e ho in programma di farlo a breve"],
+                ["it", "Non ancora, ho una ricetta e ho in programma di farlo a breve"],
+                ["en", "Not yet, I have a prescription and plan to shortly undergo a test"],
             ])
         },
         {
@@ -3524,6 +3525,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
     ]);
@@ -4145,7 +4147,7 @@ const resultRapidTest = (parentKey: string, keysymptomImpliedCovidTest?: string,
                     ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
                     ["de-be", "Wir möchten wissen, wie COVID-19 sich in der Bevölkerung ausbreitet."],
                     ["en", "We want to understand how the coronavirus is spreading within the population."],
-                    ["it", "Vogliamo quante persone potenzialmente hanno contratto il COVID-19."],
+                    ["it", "Vogliamo sapere quante persone potenzialmente hanno contratto il COVID-19."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
