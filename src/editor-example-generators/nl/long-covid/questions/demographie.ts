@@ -1420,7 +1420,7 @@ const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?:
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder kunnen werken dan je normaalgesproken deed?"],
+            ["nl", "Werk je op dit moment minder dan je normaalgesproken deed voor je langdurige klachten kreeg?"],
         ]),
         isRequired: isRequired,
         responseOptions: [

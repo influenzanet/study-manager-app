@@ -365,7 +365,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst (je mag de datum ook schatten)?"],
+                ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             responseOptions: [
                 {
@@ -413,7 +413,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst (je mag de datum ook schatten)?"],
+                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             responseOptions: [
                 {
@@ -464,7 +464,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad sinds de vorige vragenlijst (je mag de datum ook schatten)?"],
+                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             responseOptions: [
                 {

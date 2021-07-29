@@ -438,7 +438,7 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
         ]),
         minHealthText: new Map([
             ["en", "The worst health you can imagine"],
-            ["nl", "De slechste gezondheid die je je kunt voorstellen"],
+            ["nl", "De slechtste gezondheid die je je kunt voorstellen"],
         ]),
         maxHealthText: new Map([
             ["en", "The best health you can imagine"],
