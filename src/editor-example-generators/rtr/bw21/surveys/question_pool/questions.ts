@@ -223,7 +223,7 @@ export const getSWABS = (parentKey: string, isRequired?: boolean): SurveyItem =>
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Wie sicher sind Sie sich bei dieser Wahlentscheidung?"],
+            ["de", "Wie sicher sind Sie sich dieser Wahlentscheidung?"],
         ]),
         stackOnSmallScreen: true,
         scaleOptions: [
@@ -410,10 +410,28 @@ export const getPROB1 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: "wichtigste" fettgedruckt
-        questionText: new Map([
-            ["de", "Welches der folgenden Themen ist Ihrer Meinung nach das wichtigste Problem in Deutschland?"],
-        ]),
+        questionText: [
+            {
+                content: new Map([
+                    ["de", "Welches der folgenden Themen ist Ihrer Meinung nach das "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "wichtigste"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " Problem in Deutschland?"],
+                ]),
+            },
+        ],
+        titleClassName: "sticky-top",
+        //questionText: new Map([
+        //    ["de", "Welches der folgenden Themen ist Ihrer Meinung nach das wichtigste Problem in Deutschland?"],
+        //]),
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -550,9 +568,28 @@ export const getPROB2 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         itemKey: itemKey,
         isRequired: isRequired,
         //TODO Peter: "zweitwichtigste" fettgedruckt
-        questionText: new Map([
+         questionText: [
+            {
+                content: new Map([
+                    ["de", "Welches der folgenden Themen ist Ihrer Meinung nach das "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "zweitwichtigste"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " Problem in Deutschland?"],
+                ]),
+            },
+        ],
+        titleClassName: "sticky-top",
+        /* questionText: new Map([
             ["de", "Welches der folgenden Themen ist Ihrer Meinung nach das zweitwichtigste Problem in Deutschland?"],
-        ]),
+        ]), */
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -688,10 +725,29 @@ export const getIMAGEAL = (parentKey: string, isRequired?: boolean): SurveyItem 
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: Armin Laschet fettgedruckt
-        questionText: new Map([
-           ["de", "Und nun genauer zu den Kanzlerkandidaten. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Armin Laschet zutreffen."],
-        ]),
+        //bold text here
+         questionText: [
+            {
+                content: new Map([
+                    ["de", "Und nun genauer zu den Kanzlerkandidaten. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Armin Laschet"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zutreffen."],
+                ]),
+            },
+         ],
+        titleClassName: "sticky-top",
+        //questionText: new Map([
+        //   ["de", "Und nun genauer zu den Kanzlerkandidaten. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Armin Laschet zutreffen."],
+        //]),
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -766,16 +822,35 @@ export const getIMAGEAL = (parentKey: string, isRequired?: boolean): SurveyItem 
 
 export const getIMAGEOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'IMAGEOS';
-return SurveyItemGenerators.simpleLikertGroup({
-    parentKey: parentKey,
-    itemKey: itemKey,
-    isRequired: isRequired,
-    //TODO Peter: Olaf Scholz fettgedruckt
-    questionText: new Map([
-        ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Olaf Scholz zu?"],
-    ]),
-    stackOnSmallScreen: true,
-    scaleOptions: [
+    return SurveyItemGenerators.simpleLikertGroup({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        //bold text here
+        questionText: [
+            {
+                content: new Map([
+                    ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Olaf Scholz"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zu?"],
+                ]),
+            },
+         ],
+        titleClassName: "sticky-top",
+        // questionText: new Map([
+        //     ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Olaf Scholz zu?"],
+        // ]),
+        stackOnSmallScreen: true,
+        scaleOptions: [
         {
             key: '1', content: new Map([
                 ["de", "Trifft voll und ganz zu"],
@@ -852,10 +927,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter:  Annalena Baerbock fettgedruckt
-    questionText: new Map([
-        ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Annalena Baerbock zu?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zu?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Annalena Baerbock zu?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1085,10 +1179,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: "TV-Debatte vom 29.8.2021" fettgedruckt
-    questionText: new Map([
-        ["de", "Im Folgenden geht es um die TV-Debatte vom 29.8.2021. Einmal ganz allgemein gesprochen, wie haben Ihrer Meinung nach die Kandidaten in dieser TV-Debatte abgeschnitten? "],
-    ]),
+     //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Im Folgenden geht es um die TV-Debatte vom "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "29.8.2021"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", ". Einmal ganz allgemein gesprochen, wie haben Ihrer Meinung nach die Kandidaten in dieser TV-Debatte abgeschnitten?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Im Folgenden geht es um die TV-Debatte vom 29.8.2021. Einmal ganz allgemein gesprochen, wie haben Ihrer Meinung nach die Kandidaten in dieser TV-Debatte abgeschnitten? "],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1142,10 +1255,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Armin Laschet fettgedruckt
-    questionText: new Map([
-        ["de", "Im Folgenden geht es um das mögliche Auftreten der Kandidaten in der TV-Debatte. Welchen Auftritt erwarten Sie von Armin Laschet?"],
-    ]),
+     //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Im Folgenden geht es um das mögliche Auftreten der Kandidaten in der TV-Debatte. Welchen Auftritt erwarten Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Armin Laschet"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Im Folgenden geht es um das mögliche Auftreten der Kandidaten in der TV-Debatte. Welchen Auftritt erwarten Sie von Armin Laschet?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1199,10 +1331,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Olaf Scholz fettgedruckt
-    questionText: new Map([
-        ["de", "Und welchen Auftritt erwarten Sie von Olaf Scholz?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und welchen Auftritt erwarten Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Olaf Scholz"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und welchen Auftritt erwarten Sie von Olaf Scholz?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1256,10 +1407,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter:  Annalena Baerbock fettgedruckt
-    questionText: new Map([
-        ["de", "Und welchen Auftritt erwarten Sie von Annalena Baerbock?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und welchen Auftritt erwarten Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und welchen Auftritt erwarten Sie von Annalena Baerbock?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1289,7 +1459,6 @@ return SurveyItemGenerators.simpleLikertGroup({
             key: 'AB1', content: new Map([
                 ["de", "Sie wird die anderen Kandidaten häufig angreifen. "],
             ])
-
         },
         {
             key: 'AB2', content: new Map([
@@ -1300,7 +1469,6 @@ return SurveyItemGenerators.simpleLikertGroup({
             key: 'AB3', content: new Map([
                 ["de", "Sie wird sich oft verteidigen müssen."],
             ])
-
         },
     ]
 });
@@ -1314,10 +1482,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Armin Laschet fettgedruckt
-    questionText: new Map([
-        ["de", "Nun geht es um den Auftritt der Kandidaten in der TV-Debatte. Welchen Eindruck haben Sie von Armin Laschet?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Nun geht es um den Auftritt der Kandidaten in der TV-Debatte. Welchen Eindruck haben Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Armin Laschet"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Nun geht es um den Auftritt der Kandidaten in der TV-Debatte. Welchen Eindruck haben Sie von Armin Laschet?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1373,10 +1560,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Olaf Scholz fettgedruckt
-    questionText: new Map([
-        ["de", "Und welchen Eindruck haben Sie von Olaf Scholz? "],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und welchen Eindruck haben Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Olaf Scholz"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und welchen Eindruck haben Sie von Olaf Scholz? "],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1403,18 +1609,18 @@ return SurveyItemGenerators.simpleLikertGroup({
     ],
     rows: [
         {
-            key: 'AL1', content: new Map([
+            key: 'OS1', content: new Map([
                 ["de", "Er hat die anderen Kandidaten häufig angegriffen."],
             ])
 
         },
         {
-            key: 'AL2', content: new Map([
+            key: 'OS2', content: new Map([
                 ["de", "Er hat häufig für seine Politik geworben."],
             ])
         },
         {
-            key: 'AL3', content: new Map([
+            key: 'OS3', content: new Map([
                 ["de", "Er musste sich häufig verteidigen."],
             ])
 
@@ -1432,10 +1638,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Annalena Baerbock fettgedruckt
-    questionText: new Map([
-        ["de", "Und welchen Eindruck haben Sie von Annalena Baerbock? "],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und welchen Eindruck haben Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und welchen Eindruck haben Sie von Annalena Baerbock? "],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1462,18 +1687,18 @@ return SurveyItemGenerators.simpleLikertGroup({
     ],
     rows: [
         {
-            key: 'AL1', content: new Map([
+            key: 'AB1', content: new Map([
                 ["de", "Sie hat die anderen Kandidaten häufig angegriffen."],
             ])
 
         },
         {
-            key: 'AL2', content: new Map([
+            key: 'AB2', content: new Map([
                 ["de", "Sie hat häufig für ihre Politik geworben."],
             ])
         },
         {
-            key: 'AL3', content: new Map([
+            key: 'AB3', content: new Map([
                 ["de", "Sie musste sich häufig verteidigen."],
             ])
 
@@ -1490,10 +1715,40 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: "TV-Debatte vom 29.8.2021" und "Armin Laschet" fettgedruckt
-    questionText: new Map([
-        ["de", "Nun geht um den Auftritt der Kandidaten in der TV-Debatte vom 29.8.2021. Welchen Eindruck hatten Sie von Armin Laschet?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Nun geht um den Auftritt der Kandidaten in der TV-Debatte vom "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "29.8.2021"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", ". Welchen Eindruck hatten Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Armin Laschet"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Nun geht um den Auftritt der Kandidaten in der TV-Debatte vom 29.8.2021. Welchen Eindruck hatten Sie von Armin Laschet?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1549,10 +1804,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Olaf SCholz fettgedruckt
-    questionText: new Map([
-        ["de", "Und welchen Eindruck hatten Sie von Olaf Scholz? "],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und welchen Eindruck hatten Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Olaf Scholz"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und welchen Eindruck hatten Sie von Olaf Scholz? "],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1579,18 +1853,18 @@ return SurveyItemGenerators.simpleLikertGroup({
     ],
     rows: [
         {
-            key: 'AL1', content: new Map([
+            key: 'OS1', content: new Map([
                 ["de", "Er hat die anderen Kandidaten häufig angegriffen."],
             ])
 
         },
         {
-            key: 'AL2', content: new Map([
+            key: 'OS2', content: new Map([
                 ["de", "Er hat häufig für seine Politik geworben."],
             ])
         },
         {
-            key: 'AL3', content: new Map([
+            key: 'OS3', content: new Map([
                 ["de", "Er musste sich häufig verteidigen."],
             ])
 
@@ -1607,10 +1881,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Annalena Baerbock fettgedruckt
-    questionText: new Map([
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und welchen Eindruck hatten Sie von "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Annalena Baerbock"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", "?"],
+                ]),
+            },
+         ],
+    titleClassName: "sticky-top",
+ /*    questionText: new Map([
         ["de", "Und welchen Eindruck hatten Sie von Annalena Baerbock? "],
-    ]),
+    ]), */
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -1637,18 +1930,18 @@ return SurveyItemGenerators.simpleLikertGroup({
     ],
     rows: [
         {
-            key: 'AL1', content: new Map([
+            key: 'AB1', content: new Map([
                 ["de", "Sie hat die anderen Kandidaten häufig angegriffen."],
             ])
 
         },
         {
-            key: 'AL2', content: new Map([
+            key: 'AB2', content: new Map([
                 ["de", "Sie hat häufig für ihre Politik geworben."],
             ])
         },
         {
-            key: 'AL3', content: new Map([
+            key: 'AB3', content: new Map([
                 ["de", "Sie musste sich häufig verteidigen."],
             ])
 
@@ -1660,7 +1953,7 @@ return SurveyItemGenerators.simpleLikertGroup({
 
 
 //TODO Scale options
-//write ATTACK functions here
+//write 3 ATTACK functions here
 export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'RATTACKAL';
 return SurveyItemGenerators.simpleLikertGroup({
@@ -1727,14 +2020,33 @@ return SurveyItemGenerators.simpleLikertGroup({
 
 export const getANKOMM = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'ANKOMM';
-    return SurveyItemGenerators.singleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: "TV-Debatte vom 29.8.2021" fettgedruckt
-        questionText: new Map([
-            ["de", "Haben Sie Berichte zum Ausgang der TV-Debatte vom 29.8.2021 wahrgenommen oder Gespräche mit anderen Personen hierzu geführt? (Mehrfachantworten möglich)?"],
-        ]),
+        //bold text here
+         questionText: [
+            {
+                content: new Map([
+                    ["de", "Haben Sie Berichte zum Ausgang der TV-Debatte vom "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "29.8.2021"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " wahrgenommen oder Gespräche mit anderen Personen hierzu geführt? (Mehrfachantworten möglich)?"],
+                ]),
+            },
+         ], 
+    titleClassName: "sticky-top",
+        // questionText: new Map([
+        //     ["de", "Haben Sie Berichte zum Ausgang der TV-Debatte vom 29.8.2021 wahrgenommen oder Gespräche mit anderen Personen hierzu geführt? (Mehrfachantworten möglich)?"],
+        // ]),
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2032,7 +2344,7 @@ export const getAGE = (parentKey: string, isRequired?: boolean): SurveyItem => {
         contentBehindInput: true,
         componentProperties: {
             min: 0,
-            max: 100
+            max: 120
         }
     })
 }
@@ -2513,10 +2825,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Pinar Atalay fettgedruckt
-    questionText: new Map([
-        ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Pinar Atalay zutreffen."],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Pinar Atalay"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zutreffen."],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Pinar Atalay zutreffen."],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2580,10 +2911,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Peter Kloeppel fettgedruckt
-    questionText: new Map([
-        ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Peter Kloeppel zu?"],
-    ]),
+     //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Peter Kloeppel"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zu?"],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Peter Kloeppel zu?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2646,10 +2996,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Maybritt Illner fettgedruckt
-    questionText: new Map([
-        ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Maybrit Illner zutreffen."],
-    ]),
+     //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Maybrit Illner"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zutreffen."],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf Maybrit Illner zutreffen."],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2712,10 +3081,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Oliver Köhr fettgedruckt
-    questionText: new Map([
-        ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Oliver Köhr zu?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Oliver Köhr"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " zu?"],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Und in welchem Maße treffen die verschiedenen Aussagen Ihrer Meinung nach auf Oliver Köhr zu?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2742,29 +3130,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     ],
     rows: [
         {
-            key: 'PK1', content: new Map([
+            key: 'OK1', content: new Map([
                 ["de", "Er hat den Kandidaten häufig Fragen zu ihrem Programm und ihren Problemlösungsvorschlägen gestellt."],
             ])
 
         },
         {
-            key: 'PK2', content: new Map([
+            key: 'OK2', content: new Map([
                 ["de", "Er hat die Antworten der Kandidaten häufig kritisch hinterfragt und Nachfragen gestellt, wenn Fragen nicht oder nur unvollständig beantwortet wurden. "],
             ])
         },
         {
-            key: 'PK3', content: new Map([
+            key: 'OK3', content: new Map([
                 ["de", "Er hat häufig Fragen zur Wahlkampfführung und zu den Koalitionspräferenzen der Kandidaten gestellt."],
             ])
 
         },
         {
-            key: 'PK4', content: new Map([
+            key: 'OK4', content: new Map([
                 ["de", "Er hat häufig versucht, Schwächen der Kandidaten aufzudecken und sie in die Enge zu treiben."],
             ])
         },
         {
-            key: 'PK5', content: new Map([
+            key: 'OK5', content: new Map([
                 ["de", "Er hat die Kandidaten häufig unterbrochen."],
             ])
         },
@@ -2779,10 +3167,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Pinar Atalay fettgedruckt
-    questionText: new Map([
-        ["de", "Hat Pinar Atalay – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Hat "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Pinar Atalay"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Hat Pinar Atalay – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2836,10 +3243,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter: Peter Kloeppel fettgedruckt
-    questionText: new Map([
-        ["de", "Hat Peter Kloeppel – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Hat "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Peter Kloeppel"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Hat Peter Kloeppel – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2893,10 +3319,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter:  Maybritt Illner fettgedruckt
-    questionText: new Map([
-        ["de", "Hat Maybritt Illner – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
-    ]),
+      //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Hat "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Maybritt Illner"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Hat Maybritt Illner – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {
@@ -2950,10 +3395,29 @@ return SurveyItemGenerators.simpleLikertGroup({
     parentKey: parentKey,
     itemKey: itemKey,
     isRequired: isRequired,
-    //TODO Peter:  Oliver Köhr fettgedruckt
-    questionText: new Map([
-        ["de", "Hat Oliver Köhr – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
-    ]),
+    //bold text here
+    questionText: [
+            {
+                content: new Map([
+                    ["de", "Hat "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Oliver Köhr"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+                ]),
+            },
+    ], 
+    titleClassName: "sticky-top",
+    // questionText: new Map([
+    //     ["de", "Hat Oliver Köhr – alles in allem – einen Kandidaten bevorzugt oder benachteiligt?"],
+    // ]),
     stackOnSmallScreen: true,
     scaleOptions: [
         {

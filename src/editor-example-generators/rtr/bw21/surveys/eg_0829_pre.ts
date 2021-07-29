@@ -22,8 +22,8 @@ export const generate_EG0829PRE = (): Survey | undefined => {
         ])
     })
 
-    // TODO: add questions
 
+    // add questions
     surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getWBT(surveyKey,true));
@@ -45,6 +45,7 @@ export const generate_EG0829PRE = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getPID(surveyKey,true));
+    //TODO Peter display of STPID depends on PID answer
     surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getSEX(surveyKey,true));
     surveyEditor.addSurveyItemToRoot(getAGE(surveyKey,true));
