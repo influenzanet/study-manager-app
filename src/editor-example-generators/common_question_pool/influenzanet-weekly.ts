@@ -3456,8 +3456,8 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
-                ["en", "Multiple answers possible"],
-                ["it", "Puoi inserire più di una risposta"],
+                ["en", "the participant can select the first three options together if they want"],
+                ["it", "le prime tre opzioni possono essere selezionate insieme, se necessario"],
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
