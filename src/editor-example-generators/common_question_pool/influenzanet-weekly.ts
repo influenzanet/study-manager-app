@@ -6096,7 +6096,7 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
-            ["it", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
+            ["it", "Hai informato le persone con cui sei stato in stretto contatto del tuo sospetto di essere malato di COVID-19?"],
         ]))
     );
 
@@ -6111,28 +6111,28 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "To better understand how people communicate their illnesses during the COVID-19 pandemic."],
-                    ["it", "To better understand how people communicate their illnesses during the COVID-19 pandemic."],
+                    ["it", "Per capire meglio come le persone comunicano la loro malattia durante la pandemia."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "Select the option that best suits your situation."],
-                    ["it", "Select the option that best suits your situation."],
+                    ["it", "Seleziona le opzioni che si applicano alla tua situazione."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -6146,14 +6146,14 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Some of them"],
-                ["it", "Some of them"],
+                ["it", "Ad alcuni di loro"],
             ])
         },
         {
