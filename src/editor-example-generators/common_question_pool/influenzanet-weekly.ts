@@ -5112,7 +5112,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             ["fr-be", "Êtes-vous actuellement toujours dans l'incapacité de travailler ou de fréquenter l'école en raison des symptômes/plaintes ?"],
             ["de-be", "Können Sie in diesem Augenblick aufgrund der Symptome/Beschwerden noch immer nicht arbeiten oder die Schule besuchen?"],
             ["en", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
-            ["it", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
+            ["it", "Sei ancora assente dal lavoro/da scuola per via dei tuoi sintomi?"],
         ]))
     );
 
@@ -5130,7 +5130,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5140,7 +5140,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
                     ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
                     ["en", "To determine how the symptoms are impacting your daily life."],
-                    ["it", "To determine how the symptoms are impacting your daily life."],
+                    ["it", "Per stimare il tempo medio di assenteismo da scuola o lavoro causato dall’influenza o dal COVID-19, abbiamo bisogno di sapere se sei ancora assente da lavoro/scuola."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5150,7 +5150,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5160,7 +5160,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Répondez « Oui » si vous ne pouvez pas vous rendre au travail ou à l'école aujourd'hui en raison de certains symptômes."],
                     ["de-be", "Antworten Sie 'Ja', wenn Sie aufgrund von Beschwerden heute noch nicht arbeiten oder zur Schule gehen können."],
                     ["en", "Answer 'yes' if you missed work or school today due to certain symptoms."],
-                    ["it", "Answer 'yes' if you missed work or school today due to certain symptoms."],
+                    ["it", "Rispondi si nel caso in cui oggi saresti al lavoro o a scuola se non fossi malato/a."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5178,7 +5178,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
@@ -5200,7 +5200,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                 ["fr-be", "Autre (je ne devais pas travailler ou à aller à l'école aujourd'hui de toute façon)"],
                 ["de-be", "Andere (ich brauchte heute sowieso nicht zu arbeiten oder nicht zur Schule zu gehen)"],
                 ["en", "Other (I did not have to work or go to school today in any case)"],
-                ["it", "Other (I did not have to work or go to school today in any case)"],
+                ["it", "Altro (non sarei comunque al lavoro/a scuola oggi)"],
             ])
         },
     ]);
