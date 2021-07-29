@@ -4296,7 +4296,8 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
-                ["en", "Non ancora, ho in programma di fare il test"],
+                ["en", "Not yet, I have a prescription and plan to shortly undergo a test"],
+                ["it", "Non ancora, ho in programma di fare il test"],
             ])
         },
         {
@@ -4318,6 +4319,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
     ]);
