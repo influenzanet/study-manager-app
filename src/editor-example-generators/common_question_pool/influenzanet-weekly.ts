@@ -5057,7 +5057,8 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl-be", "Ja, maar ik heb geen vrij genomen van school of werk"],
                 ["fr-be", "Oui, mais je n'ai pas pris de congé à l'école ou au travail"],
                 ["de-be", "Ja, aber ich habe weder Schule noch Arbeit genommen"],
-                ["en", "Si, ma non sono stato/a assente da lavoro/scuola"],
+                ["en", "Yes, but I did not take time off work/school"],
+                ["it", "Si, ma non sono stato/a assente da lavoro/scuola"],
             ])
         },
         {
