@@ -5466,7 +5466,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Oui, j'applique cette mesure maintenant (pour la première fois) ou de manière plus stricte"],
                 ["de-be", "Ja, ich wende diese Maßnahme nun (zum ersten Mal) oder mehr (verstärkt) an"],
                 ["en", " Yes, I am following this measure now for the first time, or in a stricter way"],
-                ["it", " Si, ho appena adottato questa misura per la prima volta o l'ho resa più restrittiva "],
+                ["it", " Si, ho appena adottato questa misura o l'ho resa più restrittiva "],
             ])
         },
         {
@@ -5475,7 +5475,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, j'appliquais déjà cette mesure"],
                 ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
                 ["en", "No, I was already following this measure"],
-                ["it", "No, avevo già adottato questa misura"],
+                ["it", "Avevo già adottato questa misura prima dei sintomi"],
             ])
         },
         {
