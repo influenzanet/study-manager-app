@@ -9,12 +9,14 @@ import getExampleWeekly from './nl/infectieradar/inf-weekly';
 
 import likertScales from './examples/likert-scales';
 import { LongCovidSurveys } from './nl/long-covid';
+import { generateExampleSurvey } from './examples/survey-item';
 
 const surveys = [
     {
         instance: 'ex.',
         surveys: [
-            { name: 'likert', survey: likertScales() }
+            { name: 'example', survey: generateExampleSurvey() },
+            { name: 'likert', survey: likertScales() },
         ],
         languageCodes: [
             'en',
