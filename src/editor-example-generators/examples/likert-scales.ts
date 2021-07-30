@@ -238,7 +238,7 @@ const simpleExample2 = (parentKey: string, keyOverride?: string): SurveyItem => 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Multiple Likert Scales"],
-        ]))
+        ]), undefined, 'sticky-top')
     );
 
     // RESPONSE PART
