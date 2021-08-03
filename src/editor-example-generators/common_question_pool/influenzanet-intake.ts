@@ -3275,7 +3275,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
         }, {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "Yes, only e-sigarets"],
+                ["en", "Yes, only e-cigarettes"],
                 ["it", "Si ma solo sigarette elettroniche"],
                 ["nl", "Ja, alleen e-sigaretten"],
                 ["fr", "e-sigarettes"],
