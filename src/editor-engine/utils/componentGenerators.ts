@@ -12,6 +12,7 @@ interface CommonProps {
 interface OptionProps extends CommonProps {
     key: string;
     disabled?: Expression;
+    className?: string;
 }
 
 interface OptionTextProps extends CommonProps {
@@ -20,12 +21,19 @@ interface OptionTextProps extends CommonProps {
 }
 
 const option = (props: OptionProps): OptionDef => {
+    const styles = [];
+    if (props.className !== undefined) {
+        styles.push({
+            key: 'className', value: props.className
+        })
+    }
     return {
         key: props.key,
         role: 'option',
         content: props.content,
         displayCondition: props.displayCondition,
         disabled: props.disabled,
+        style: styles,
     }
 }
 

@@ -3456,8 +3456,8 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ['nl-be', 'Meerdere antwoorden mogelijk'],
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
-                ["en", "Multiple answers possible"],
-                ["it", "Puoi inserire più di una risposta"],
+                ["en", "the participant can select the first three options together if they want"],
+                ["it", "le prime tre opzioni possono essere selezionate insieme, se necessario"],
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
@@ -3502,7 +3502,8 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
-                ["en", "Non ancora, ho una ricetta e ho in programma di farlo a breve"],
+                ["it", "Non ancora, ho una ricetta e ho in programma di farlo a breve"],
+                ["en", "Not yet, I have a prescription and plan to shortly undergo a test"],
             ])
         },
         {
@@ -3524,6 +3525,7 @@ const symptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
     ]);
@@ -4145,7 +4147,7 @@ const resultRapidTest = (parentKey: string, keysymptomImpliedCovidTest?: string,
                     ["fr-be", "Nous voulons savoir comment le coronavirus se propage au sein de la population."],
                     ["de-be", "Wir möchten wissen, wie COVID-19 sich in der Bevölkerung ausbreitet."],
                     ["en", "We want to understand how the coronavirus is spreading within the population."],
-                    ["it", "Vogliamo quante persone potenzialmente hanno contratto il COVID-19."],
+                    ["it", "Vogliamo sapere quante persone potenzialmente hanno contratto il COVID-19."],
                 ]),
                 //style: [{ key: 'variant', value: 'p' }],
             },
@@ -4296,7 +4298,8 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
                 ["de-be", "Noch nicht, ich werde in Kürze einen Test durchführen lassen"],
-                ["en", "Non ancora, ho in programma di fare il test"],
+                ["en", "Not yet, I have a prescription and plan to shortly undergo a test"],
+                ["it", "Non ancora, ho in programma di fare il test"],
             ])
         },
         {
@@ -4318,6 +4321,7 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
                 ["fr-be", "Non"],
                 ["de-be", "Nein"],
                 ["en", "No"],
+                ["it", "No"],
             ])
         },
     ]);
@@ -4966,7 +4970,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ["fr-be", "Avez-vous dû adapter vos activités quotidiennes à cause de vos symptômes ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Beschwerden Ihre täglichen Beschäftigungen anpassen müssen?"],
             ["en", "Did you change your daily routine because of your illness?"],
-            ["it", "Did you change your daily routine because of your illness?"],
+            ["it", "Hai modificato la tua routine quotidiana a causa di questi sintomi?"],
         ]))
     );
 
@@ -4982,7 +4986,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -4992,7 +4996,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
                     ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
                     ["en", "To determine how the symptoms are impacting your daily life."],
-                    ["it", "To determine how the symptoms are impacting your daily life."],
+                    ["it", "Per capire che impatto abbiano i sintomi sulla routine quotidiana."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5002,7 +5006,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5012,7 +5016,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["fr-be", "Nous voulons savoir si vous avez dû vous absenter de votre travail ou si vous n'avez pas su fréquenter l'école en raison de vos symptômes, ou si vous avez modifié votre routine de quelque manière que ce soit (par exemple, ne pas avoir pu pratiquer de sport). Si vous êtes étudiant(e) et que vous n'avez pas pu assister aux cours en ligne en raison de vos symptômes, choisissez également la deuxième option. Nous nous intéressons aux changements en raison de vos symptômes/plaintes, et non en raison d'une éventuelle quarantaine."],
                     ["de-be", "Wir möchten wissen, ob Sie bei der Arbeit oder in der Schule als Folge Ihrer Symptome anwesend waren, oder ob Sie Ihre Routine (zum Beispiel: keine Sportausübung möglich) auf eine andere Art verändert haben. Wenn Sie ein Student sind und als Folge Ihrer Symptome Online-Lektionen nicht folgen konnten, wählen Sie am besten die zweite Alternative. Wir fragen nach Veränderungen als Folge Ihrer Symptome/Beschwerden, nicht aufgrund einer möglichen Quarantäne."],
                     ["en", "We want to know if you have missed work or school due to your symptoms, or if you have modified your daily routine in any way (for example, if you were unable to engage in sport activities). If you are a student, and were unable to attend online classes due to your symptoms, you should also select option 2. We are interested in changes due to your symptoms/complaints and not due to any quarantine."],
-                    ["it", "We want to know if you have missed work or school due to your symptoms, or if you have modified your daily routine in any way (for example, if you were unable to engage in sport activities). If you are a student, and were unable to attend online classes due to your symptoms, you should also select option 2. We are interested in changes due to your symptoms/complaints and not due to any quarantine."],
+                    ["it", "Vogliamo sapere se, in seguito alla comparsa dei sintomi, sei stato assente dal lavoro o da scuola o se hai modificato la tua routine quotidiana in qualunque altro modo (ad esempio hai evitato di uscire la sera)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5029,7 +5033,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Plusieurs réponses sont possibles"],
                 ["de-be", "Mehrere Antworten möglich"],
                 ["en", "Multiple answers possible"],
-                ["it", "Multiple answers possible"],
+                ["it", "Puoi inserire più di una risposta"],
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
@@ -5042,7 +5046,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Non, j'ai pu vaquer à mes occupations quotidiennes comme d'habitude"],
                 ["de-be", "Nein, ich habe meine täglichen Beschäftigungen wie normal durchführen können"],
                 ["en", "No, I was able to go about my daily activities as usual"],
-                ["it", "No, I was able to go about my daily activities as usual"],
+                ["it", "No, ho potuto svolgere le mie attività quotidiane come al solito"],
             ])
         },
         {
@@ -5053,7 +5057,8 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["nl-be", "Ja, maar ik heb geen vrij genomen van school of werk"],
                 ["fr-be", "Oui, mais je n'ai pas pris de congé à l'école ou au travail"],
                 ["de-be", "Ja, aber ich habe weder Schule noch Arbeit genommen"],
-                ["en", "Yes, but I did not take time off school or work"],
+                ["en", "Yes, but I did not take time off work/school"],
+                ["it", "Si, ma non sono stato/a assente da lavoro/scuola"],
             ])
         },
         {
@@ -5065,7 +5070,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["fr-be", "Oui, je n'ai pas pu travailler ou me rendre à l'école"],
                 ["de-be", "Ja, ich konnte meinen Beruf nicht ausüben oder konnte nicht zur Schule gehen"],
                 ["en", "Yes, I took time off school or work"],
-                ["it", "Yes, I took time off school or work"],
+                ["it", "Si, sono stato/a assente da lavoro/scuola"],
             ])
         },
 
@@ -5107,7 +5112,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
             ["fr-be", "Êtes-vous actuellement toujours dans l'incapacité de travailler ou de fréquenter l'école en raison des symptômes/plaintes ?"],
             ["de-be", "Können Sie in diesem Augenblick aufgrund der Symptome/Beschwerden noch immer nicht arbeiten oder die Schule besuchen?"],
             ["en", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
-            ["it", "Are you currently still unable to work or attend school due to your symptoms/complaints?"],
+            ["it", "Sei ancora assente dal lavoro/da scuola per via dei tuoi sintomi?"],
         ]))
     );
 
@@ -5125,7 +5130,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5135,7 +5140,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Pour déterminer l'effet des symptômes sur votre vie quotidienne."],
                     ["de-be", "Um die Wirkung der Beschwerden auf Ihr tägliches Leben zu bestimmen."],
                     ["en", "To determine how the symptoms are impacting your daily life."],
-                    ["it", "To determine how the symptoms are impacting your daily life."],
+                    ["it", "Per stimare il tempo medio di assenteismo da scuola o lavoro causato dall’influenza o dal COVID-19, abbiamo bisogno di sapere se sei ancora assente da lavoro/scuola."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5145,7 +5150,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5155,7 +5160,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                     ["fr-be", "Répondez « Oui » si vous ne pouvez pas vous rendre au travail ou à l'école aujourd'hui en raison de certains symptômes."],
                     ["de-be", "Antworten Sie 'Ja', wenn Sie aufgrund von Beschwerden heute noch nicht arbeiten oder zur Schule gehen können."],
                     ["en", "Answer 'yes' if you missed work or school today due to certain symptoms."],
-                    ["it", "Answer 'yes' if you missed work or school today due to certain symptoms."],
+                    ["it", "Rispondi si nel caso in cui oggi saresti al lavoro o a scuola se non fossi malato/a."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5173,7 +5178,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                 ["fr-be", "Oui"],
                 ["de-be", "Ja"],
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
@@ -5195,7 +5200,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
                 ["fr-be", "Autre (je ne devais pas travailler ou à aller à l'école aujourd'hui de toute façon)"],
                 ["de-be", "Andere (ich brauchte heute sowieso nicht zu arbeiten oder nicht zur Schule zu gehen)"],
                 ["en", "Other (I did not have to work or go to school today in any case)"],
-                ["it", "Other (I did not have to work or go to school today in any case)"],
+                ["it", "Altro (non sarei comunque al lavoro/a scuola oggi)"],
             ])
         },
     ]);
@@ -5233,7 +5238,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
             ["fr-be", "Durant combien de jours n’avez-vous pas pu travailler normalement, ou n’êtes-vous pas allé(e) à l'école (alors que vous auriez dû le faire) ?"],
             ["de-be", "Wie viele Tage konnten Sie nicht normal arbeiten oder waren Sie nicht in der Schule (während Sie das jedoch eigentlich gemusst hätten)?"],
             ["en", "For how many days have you been unable to work normally/go to school (when you otherwise would have)?"],
-            ["it", "For how many days have you been unable to work normally/go to school (when you otherwise would have)?"],
+            ["it", "Per quanti giorni sei stato/a assente dal lavoro/da scuola??"],
         ]))
     );
 
@@ -5251,7 +5256,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5261,7 +5266,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Pour calculer le nombre de jours pendant lesquels les citoyens ne peuvent pas se rendre au travail ou à l'école en raison de certains symptômes."],
                     ["de-be", "Um auszurechnen, wie viele Tagen Menschen aufgrund von Beschwerden nicht arbeiten können/nicht zur Schule gehen können."],
                     ["en", "To calculate the number of days a person misses work or school due to certain symptoms."],
-                    ["it", "To calculate the number of days a person misses work or school due to certain symptoms."],
+                    ["it", "Per calcolare il numero di giorni che vengono persi al lavoro o a scuola per via dei sintomi influenzali o COVID-19."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5271,7 +5276,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5281,7 +5286,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                     ["fr-be", "Ne comptez que les jours au cours desquels vous auriez dû normalement vous rendre au travail/à l'école. Fournissez l'estimation la plus précise possible."],
                     ["de-be", "Zählen Sie nur die Tage, an denen Sie normalerweise hätten arbeiten / dem Schulunterricht folgen müssen. Machen Sie eine möglichst gute Einschätzung."],
                     ["en", "Only count the days that you would otherwise have gone to work or school. Provide as precise an estimate as possible."],
-                    ["it", "Only count the days that you would otherwise have gone to work or school. Provide as precise an estimate as possible."],
+                    ["it", "Tieni conto soltanto dei giorni in cui normalmente saresti stato al lavoro o a scuola (ad esempio non includere il fine settimana nel conteggio)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5295,7 +5300,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "1 jour"],
                 ["de-be", "1 Tage"],
                 ["en", "1 day"],
-                ["it", "1 day"],
+                ["it", "1 giorno"],
             ]),
         },
         {
@@ -5304,7 +5309,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "2 jours"],
                 ["de-be", "2 Tagen"],
                 ["en", "2 days"],
-                ["it", "2 days"],
+                ["it", "2 giorni"],
             ]),
         },
         {
@@ -5313,7 +5318,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "3 jours"],
                 ["de-be", "3 Tagen"],
                 ["en", "3 days"],
-                ["it", "3 days"],
+                ["it", "3 giorni"],
             ]),
         },
         {
@@ -5322,7 +5327,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "4 jours"],
                 ["de-be", "4 Tagen"],
                 ["en", "4 days"],
-                ["it", "4 days"],
+                ["it", "4 giorni"],
             ]),
         },
         {
@@ -5331,7 +5336,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "5 jours"],
                 ["de-be", "5 Tagen"],
                 ["en", "5 days"],
-                ["it", "5 days"],
+                ["it", "5 giorni"],
             ]),
         },
         {
@@ -5340,7 +5345,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "6 to 10jours"],
                 ["de-be", "6 zur 10 Tagen"],
                 ["en", "6 to 10 days"],
-                ["it", "6 to 10 days"],
+                ["it", "tra 6 e 10 giorni"],
             ]),
         },
         {
@@ -5349,7 +5354,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "11 to 15 jours"],
                 ["de-be", "11 zur 15 Tagen"],
                 ["en", "11 to 15 days"],
-                ["it", "11 to 15 days"],
+                ["it", "tra 11 e 15 giorni"],
             ]),
         },
         {
@@ -5358,7 +5363,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
                 ["fr-be", "More than 15 days"],
                 ["de-be", "Mehr als 15 Tage"],
                 ["en", "More than 15 days"],
-                ["it", "More than 15 days"],
+                ["it", "Più di 15 giorni"],
             ]),
         },
     ]);
@@ -5399,7 +5404,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
             ["fr-be", "En raison de vos symptômes, avez-vous pris ou intensifié les mesures reprises ci-dessous (par rapport à la période précédant vos symptômes) ?"],
             ["de-be", "Haben Sie aufgrund Ihrer Symtome diese Maßnahmen ergriffen oder verstärkt (im Vergleich mit dem Zeitraum vor Ihren Symptomen)?"],
             ["en", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
-            ["it", "Did you begin to follow or increase any of the measures below, due to your symptoms (compared to the period before your symptoms began)?"],
+            ["it", "A causa dei tuoi sintomi, hai adottato o rafforzato una delle seguenti misure cautelari (rispetto al periodo precedente in cui i sintomi non erano ancora comparsi)?"],
         ]))
     );
 
@@ -5415,7 +5420,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5425,7 +5430,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Afin d'examiner la manière dont les différentes mesures sont suivies."],
                     ["de-be", "Um zu untersuchen, wie verschiedene Maßnahmen befolgt werden."],
                     ["en", "To examine how different measures are being followed."],
-                    ["it", "To examine how different measures are being followed."],
+                    ["it", "Per capire il livello di adozione di misure protettive/restrittive nella popolazione, in presenza di sintomi."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
@@ -5435,7 +5440,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
@@ -5445,7 +5450,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                     ["fr-be", "Par exemple, « Évitez de serrer les mains » : Choisissez « Oui » si vous avez serré moins de mains ou si vous n'avez plus serré de mains en raison de vos symptômes ; Choisissez « Non, je n'applique pas cette mesure », si vous continuez à serrer la main des gens malgré vos symptômes ; Choisissez « Non, J'appliquais déjà cette mesure » si vous ne serriez déjà plus la main des gens avant l'apparition de vos symptômes, et que vous n'avez pas modifié ce comportement."],
                     ["de-be", "Zum Beispiel so, 'Hände schütteln vermeiden': Wählen Sie 'Ja', aufgrund meiner Symptome habe ich keine oder noch weniger Hände geschüttelt; Wählen Sie 'Nein, ich wende diese Maßnahme nicht an', ich gebe noch immer Menschen die Hand, obwohl ich schon Symptome habe; Wählen Sie 'Nein, ich hielt mich schon an diese Maßnahme', denn auch aufgrund meiner Symptome gab ich niemandem die Hand und habe das nicht gemacht."],
                     ["en", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
-                    ["it", "For example, 'Avoid shaking hands': Answer 'yes' if you shake hands less or not at all due to your symptoms; Answer 'No, I am not following this measure' if you continue to shake hands despite your symptoms; Answer 'No, I was already following this measure' if you had already stopped shaking hands before the onset of your symptoms and you did not change this behaviour."],
+                    ["it", "Per esempio, all'opzione 'Evitare le strette di mano' rispondere 'si' se hai diminuito o eliminato del tutto le strette di mano a causa dei tuoi sintomi; rispondi 'no, non ho adottato questa misura' se continui a stringere la mano nonostante i tuoi sintomi; rispondi 'no, stavo già adottando questa misura' se avevi già smesso di stringere la mano prima che i tuoi sintomi insorgessero."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -5461,7 +5466,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Oui, j'applique cette mesure maintenant (pour la première fois) ou de manière plus stricte"],
                 ["de-be", "Ja, ich wende diese Maßnahme nun (zum ersten Mal) oder mehr (verstärkt) an"],
                 ["en", " Yes, I am following this measure now for the first time, or in a stricter way"],
-                ["it", " Yes, I am following this measure now for the first time, or in a stricter way"],
+                ["it", " Si, ho appena adottato questa misura o l'ho resa più restrittiva "],
             ])
         },
         {
@@ -5470,7 +5475,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, j'appliquais déjà cette mesure"],
                 ["de-be", "Nein, ich hielt mich schon an diese Maßnahme"],
                 ["en", "No, I was already following this measure"],
-                ["it", "No, I was already following this measure"],
+                ["it", "Avevo già adottato questa misura prima dei sintomi"],
             ])
         },
         {
@@ -5479,7 +5484,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, je n'applique pas cette mesure"],
                 ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
                 ["en", "No, I am not following this measure"],
-                ["it", "No, I am not following this measure"],
+                ["it", "No, non ho adottato questa misura"],
             ])
         },
         {
@@ -5488,7 +5493,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Non, je n'applique pas cette mesure"],
                 ["de-be", "Nein, ich wende diese Maßnahme nicht an"],
                 ["en", "Not applicable"],
-                ["it", "No, I am not following this measure"],
+                ["it", "Non applicabile"],
             ])
         }
     ];
@@ -5503,7 +5508,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Question facultative"],
                 ["de-be", "Optional einzutragen"],
                 ["en", "To be completed optionally"],
-                ["it", "To be completed optionally"],
+                ["it", "Domanda non obbligatoria"],
             ])),
     }, rg?.key);
 
@@ -5516,7 +5521,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Se laver/se désinfecter régulièrement les mains"],
                 ["de-be", "Regelmäßig die Hände waschen/desinfiziren"],
                 ['en', 'Regularly wash or disinfect hands'],
-                ['it', 'Regularly wash or disinfect hands'],
+                ['it', 'Lavarti o disinfettarti regolarmente le mani'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_1', likertOptions), rg?.key);
@@ -5530,7 +5535,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Éternuer et tousser dans votre coude"],
                 ["de-be", "In Ihren Ellenbogen niesen und husten"],
                 ['en', 'Cough or sneeze into your elbow'],
-                ['it', 'Cough or sneeze into your elbow'],
+                ['it', 'Tossire o starnutire nella piega del gomito'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_2', likertOptions), rg?.key);
@@ -5544,7 +5549,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["fr-be", "Utiliser des mouchoirs jetables"],
                 ["de-be", "Einwegtaschentücher verwenden"],
                 ['en', 'Use a disposable tissue'],
-                ['it', 'Use a disposable tissue'],
+                ['it', 'Usare un fazzolettino di carta'],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_3', likertOptions), rg?.key);
@@ -5557,8 +5562,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Draag mond- en neusbescherming"],
                 ["fr-be", "Portez un masque facial"],
                 ["de-be", "Einen Mund-Nasen-Schutz im eingang tragen"],
-                ['en', 'Wear a face mask indoors'],
-                ['it', 'Wear a face mask indoors'],
+                ['en', "Wear a face mask indoors"],
+                ['it', "Usare una mascherina protettiva al chiuso"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4a', likertOptions), rg?.key);
@@ -5571,8 +5576,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Draag mond- en neusbescherming"],
                 ["fr-be", "Portez un masque facial"],
                 ["de-be", "Einen Mund-Nasen-Schutz im ausgang tragen"],
-                ['en', 'Wear a face mask outdoors'],
-                ['it', 'Wear a face mask outdoors'],
+                ['en', "Wear a face mask outdoors"],
+                ['it', "Usare una mascherina protettiva all'aperto"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_4b', likertOptions), rg?.key);
@@ -5585,8 +5590,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Handen schudden vermijden"],
                 ["fr-be", "Éviter de serrer les mains"],
                 ["de-be", "Hände schütteln vermeiden"],
-                ['en', 'Avoid shaking hands'],
-                ['it', 'Avoid shaking hands'],
+                ['en', "Avoid shaking hands"],
+                ['it', "Evitare le strette di mano"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_5', likertOptions), rg?.key);
@@ -5599,8 +5604,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Niet meer knuffelen of kus op de wang geven"],
                 ["fr-be", "Éviter les embrassades ou les bisous sur la joue"],
                 ["de-be", "Nicht mehr knutschen oder einen Kuss auf die Wange geben"],
-                ['en', 'Stop greeting by hugging and/or kissing on both cheeks'],
-                ['it', 'Stop greeting by hugging and/or kissing on both cheeks'],
+                ['en', "Stop greeting by hugging and/or kissing on both cheeks"],
+                ['it', "Evitare i saluti con abbracci o baci sulla guancia"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_11', likertOptions), rg?.key);
@@ -5613,8 +5618,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Gebruik van openbaar vervoer beperken"],
                 ["fr-be", "Limiter l'utilisation des transports en commun"],
                 ["de-be", "Die Nutzung des ÖPNV begrenzen"],
-                ['en', 'Limit your use of public transport'],
-                ['it', 'Limit your use of public transport'],
+                ['en', "Limit your use of public transport"],
+                ['it', "Limitare l'uso dei trasporti pubblici"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_6', likertOptions), rg?.key);
@@ -5628,8 +5633,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Drukke plaatsen mijden (supermarkt, cinema, stadium,...)"],
                 ["fr-be", "Éviter les lieux bondés (un supermarché, un cinéma, un stade, etc.)"],
                 ["de-be", "Belebte Plätze meiden (Supermarkt, Kino, Stadion, usw.)"],
-                ['en', 'Avoid busy places and gatherings (supermarket, cinema, stadium)'],
-                ['it', 'Avoid busy places and gatherings (supermarket, cinema, stadium)'],
+                ['en', "Avoid busy places and gatherings (supermarket, cinema, stadium)"],
+                ['it', "Evitare gli assembramenti di persone (per andare a teatro, cinema, stadio, supermarket, in chiesa etc.)"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_7', likertOptions), rg?.key);
@@ -5643,8 +5648,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Thuis blijven"],
                 ["fr-be", "Rester à la maison"],
                 ["de-be", "Zu Hause bleiben"],
-                ['en', 'Stay at home'],
-                ['it', 'Stay at home'],
+                ['en', "Stay at home"],
+                ['it', "Rimanere a casa"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_8', likertOptions), rg?.key);
@@ -5657,8 +5662,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Telewerken"],
                 ["fr-be", "Effectuer du télétravail"],
                 ["de-be", "Telearbeit oder erhöhen Sie die Anzahl der Telearbeitstage"],
-                ['en', 'Telework or increase your number of telework days'],
-                ['it', 'Telework or increase your number of telework days'],
+                ['en', "Telework or increase your number of telework days"],
+                ['it', "Lavorare solo da casa o aumentare il numero dei giorni in cui lavori da casa"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_9', likertOptions), rg?.key);
@@ -5671,8 +5676,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Niet meer naar het buitenland reizen"],
                 ["fr-be", "Ne plus voyager à l'étranger"],
                 ["de-be", "Nicht mehr ins Ausland reisen!"],
-                ['en', 'Avoid travel outside your own country or region'],
-                ['it', 'Avoid travel outside your own country or region'],
+                ['en', "Avoid travel outside your own country or region"],
+                ['it', "Evitare di viaggiare fuori dalla tua regione o dal tuo paese"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_10', likertOptions), rg?.key);
@@ -5685,8 +5690,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Boodschappen aan huis laten leveren (door winkel/familie/vriend)"],
                 ["fr-be", "Se faire livrer ses achats à domicile (par un magasin/un membre de la famille/un ami)"],
                 ["de-be", "Aufträge nach Hause liefern lassen (durch das Geschäft/die Familie/Freunde)"],
-                ['en', 'Have your food/shopping delivered by a store or a friend/family member'],
-                ['it', 'Have your food/shopping delivered by a store or a friend/family member'],
+                ['en', "Have your food/shopping delivered by a store or a friend/family member"],
+                ['it', "Farti portare cibo o la spesa a casa tramite un negozio o da amici/familiari"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_13', likertOptions), rg?.key);
@@ -5699,8 +5704,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Ontmoetingen met familie en vrienden beperken"],
                 ["fr-be", "Limiter les rencontres avec la famille et les amis"],
                 ["de-be", "Treffen mit Familie und Freunden einschränken und begrenzen"],
-                ['en', 'Avoid seeing friends and family'],
-                ['it', 'Avoid seeing friends and family'],
+                ['en', "Avoid seeing friends and family"],
+                ['it', "Evitare di vedere amici o familiari"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_14', likertOptions), rg?.key);
@@ -5713,8 +5718,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Ontmoetingen met mensen 65+ jaar of met chronische aandoeningen beperken"],
                 ["fr-be", "Limiter les rencontres avec les personnes âgées de plus de 65 ans ou souffrant de maladies chroniques"],
                 ["de-be", "Treffen mit Menschen im Alter von 65+ Jahren oder mit chronischen Erkrankungen begrenzen"],
-                ['en', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
-                ['it', 'Avoid being in contact with people over 65 years old or with a chronic disease'],
+                ['en', "Avoid being in contact with people over 65 years old or with a chronic disease"],
+                ['it', "Evitare il contatto con persone over 65 o con malattie croniche"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_15', likertOptions), rg?.key);
@@ -5727,8 +5732,8 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
                 ["nl-be", "Contact met kinderen beperken"],
                 ["fr-be", "Limiter les contacts avec les enfants"],
                 ["de-be", "Kontakt mit Kindern begrenzen"],
-                ['en', 'Avoid being in contact with children'],
-                ['it', 'Avoid being in contact with children'],
+                ['en', "Avoid being in contact with children"],
+                ['it', "Evitare il contatto con bambini"],
             ])),
     }, rg?.key);
     editor.addExistingResponseComponent(initLikertScaleItem(likertScaleKey + '_16', likertOptions), rg?.key);
@@ -5757,7 +5762,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What do you think is causing your symptoms?"],
-            ["it", "What do you think is causing your symptoms?"],
+            ["it", "Quale ritieni sia la causa dei tuoi sintomi?"],
             ["nl-be", "Heeft u zelf enig idee waar uw symptomen/klachten vandaan komen?"],
             ["fr-be", "Avez-vous une idée de l'origine de vos symptômes / troubles médicaux ?"],
             ["de-be", "Haben Sie selbst irgendeine Ahnung, woher Ihre Symptome/Beschwerden kommen?"],
@@ -5775,7 +5780,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -5787,7 +5792,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
-                    ["it", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                    ["it", "Per capire se la valutazione che noi facciamo dei tuoi sintomi corrisponde a quella che tu ritieni ne sia la causa. Potresti essere tu ad avere un’idea più accurata di quale sia la causa dei tuoi sintomi rispetto ai nostri algoritmi automatici."],
                     ["nl-be", "Om te achterhalen of onze beoordeling van uw ziekte op basis van uw symptomen overeenkomt met wat u denkt dat de oorzaak is. U heeft misschien een beter idee van de oorzaak van uw ziekte dan onze computeralgoritmen."],
                     ["fr-be", "Pour savoir si notre évaluation de votre maladie, basée sur vos symptômes, correspond à ce que vous pensez en être la cause. Vous avez peut-être une meilleure idée de la cause de votre maladie que nos algorithmes informatiques."],
                     ["de-be", "Um zu ermitteln, ob unsere Beurteilung Ihrer Krankheit auf der Grundlage Ihrer Symptome mit dem übereinstimmt, was Ihrer Meinung nach die Ursache ist. Sie haben vielleicht eine bessere Vorstellung von der Ursache Ihrer Krankheit als unsere Computeralgorithmen."],
@@ -5799,7 +5804,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -5811,7 +5816,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             {
                 content: new Map([
                     ["en", "If you are reasonably sure of the cause of your symptoms, select the appropriate box. Otherwise, select 'No, I Don’t know'."],
-                    ["it", "If you are reasonably sure of the cause of your symptoms, select the appropriate box. Otherwise, select 'No, I Don’t know'."],
+                    ["it", "Se sei ragionevolmente sicuro di quale sia la causa dei tuoi sintomi, seleziona l’opzione che ritieni appropriata. Altrimenti seleziona l’opzione 'Non so'."],
                     ["nl-be", "Als u redelijk zeker weet wat uw symptomen veroorzaakt, vink dan het juiste vakje aan. Vink anders 'Nee, ik heb geen idee' aan."],
                     ["fr-be", "Si vous êtes raisonnablement certain(e) de la cause de vos symptômes, cochez la case appropriée. Sinon, cochez « Non, je n'en ai aucune idée »."],
                     ["de-be", "Wenn Sie ziemlich genau wissen, was Ihre Symptome verursacht, dann kreuzen Sie das richtige Kästchen an (oder haken es ab). Andernfalls kreuzen Sie 'Nein, ich habe keine Ahnung' an."],
@@ -5830,7 +5835,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes, I have flu or flu-like illness"],
-                ["it", "Yes, I have flu or flu-like illness"],
+                ["it", "Influenza o sindrome para-influenzale"],
                 ["nl-be", "Ja, ik heb griep, of griepachtige verschijnselen"],
                 ["fr-be", "Oui, j'ai la grippe, ou des symptômes de type grippal"],
                 ["de-be", "Ja, ich habe Grippe oder grippeartige Symptome"],
@@ -5842,7 +5847,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, I have a common cold"],
-                ["it", "Yes, I have a common cold"],
+                ["it", "Raffreddore"],
                 ["nl-be", "Ja, ik ben verkouden"],
                 ["fr-be", "Oui, j'ai un rhume"],
                 ["de-be", "Ja, ich bin erkältet"],
@@ -5854,7 +5859,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Yes, I am suffering from an allergy/hay fever"],
-                ["it", "Yes, I am suffering from an allergy/hay fever"],
+                ["it", "Allergia/febbre da fieno"],
                 ["nl-be", "Ja, ik heb last van een allergie/ hooikoorts"],
                 ["fr-be", "Oui, je souffre d'une allergie/du rhume des foins"],
                 ["de-be", "Ja, ich habe Beschwerden aufgrund einer Allergie/ eines Heuschnupfens"],
@@ -5866,7 +5871,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '6', role: 'option',
             content: new Map([
                 ["en", "Yes, I am suffering from ashtma"],
-                ["it", "Yes, I am suffering from ashtma"],
+                ["it", "Asma"],
                 ["nl-be", "Ja, ik heb last van astma"],
                 ["fr-be", "Oui, je souffre d'asthme"],
                 ["de-be", "Ja, ich habe Asthma-Beschwerden"],
@@ -5877,7 +5882,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '3', role: 'option',
             content: new Map([
                 ["en", "Yes, I have gastroenteritis complaints or gastric flu"],
-                ["it", "Yes, I have gastroenteritis complaints or gastric flu"],
+                ["it", "Gastroenterite/influenza gastro-intestinale"],
                 ["nl-be", "Ja, ik heb maag-darmklachten of buikgriep"],
                 ["fr-be", "Oui, j'ai des problèmes gastro-intestinaux ou une grippe intestinale"],
                 ["de-be", "Ja, ich habe Magen-Darm-Beschwerden oder eine Magen-Darm-Infektion (Gastroenteritis)"],
@@ -5888,7 +5893,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '9', role: 'option',
             content: new Map([
                 ["en", "Yes, by the coronavirus (COVID-19)"],
-                ["it", "Yes, by the coronavirus (COVID-19)"],
+                ["it", "COVID-19"],
                 ["nl-be", "Ja, het coronavirus (COVID-19)"],
                 ["fr-be", "Oui, il s’agit du coronavirus (COVID-19)"],
                 ["de-be", "Ja, COVID-19"],
@@ -5899,7 +5904,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '4', role: 'option',
             content: new Map([
                 ["en", "Yes, I have another illness or cause which are causing these symptoms"],
-                ["it", "Yes, I have another illness or cause which are causing these symptoms"],
+                ["it", "Altro"],
                 ["nl-be", "Ja, ik heb een andere ziekte of reden die de klachten hebben veroorzaakt"],
                 ["fr-be", "Oui, ces symptômes ont été causés par une autre maladie ou par une autre origine"],
                 ["de-be", "Ja, ich habe eine andere Krankheit oder Gründe, welche die Beschwerden verursacht haben"],
@@ -5910,7 +5915,7 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
             key: '5', role: 'option',
             content: new Map([
                 ["en", "No, I don't know"],
-                ["it", "No, I don't know"],
+                ["it", "Non so"],
                 ["nl-be", "Nee, ik heb geen idee"],
                 ["fr-be", "Non, je n'en ai aucune idée"],
                 ["de-be", "Nein, ich habe keine Ahnung"],
@@ -5951,7 +5956,7 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "For which reason(s) do you think you have this disease? (select all the relevant answers)"],
-            ["it", "For which reason(s) do you think you have this disease? (select all the relevant answers)"],
+            ["it", "Per quale motivo/i ritieni di avere questa malattia? (seleziona tutte le opzioni che si applicano al tuo caso)"],
         ]))
     );
 
@@ -5966,28 +5971,28 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
-                    ["it", "To see if our assessment of your illness, based on your symptoms, matches what you believe to be the cause. You may have a better idea of the cause of your illness than our computer algorithms."],
+                    ["it", "Per capire se la tua valutazione della malattia, basata sui sintomi, è allineata con quella che ritieni sia la causa. Potresti avere un’idea più accurata di quale sia la causa dei tuoi sintomi rispetto ai nostri algoritmi automatici."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "Select all the options that match your reasons for your assessment of your illness."],
-                    ["it", "Select all the options that match your reasons for your assessment of your illness."],
+                    ["it", "Seleziona le opzioni che si applicano alla tua situazione."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -6005,7 +6010,7 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
                 ["fr-be", "Plusieurs réponses sont possibles."],
                 ["de-be", "Mehrere Antworten möglich."],
                 ["en", "Multiple answers possible."],
-                ["it", "Multiple answers possible."],
+                ["it", "Puoi inserire più di una risposta."],
             ])),
     }, rg?.key);
     const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
@@ -6013,49 +6018,49 @@ const perceivedReasonForDisease = (parentKey: string, keyReasonForSymptoms: stri
             key: '1', role: 'option',
             content: new Map([
                 ["en", "My doctor told me I have this disease"],
-                ["it", "My doctor told me I have this disease"],
+                ["it", "Il mio dottore mi ha detto che ho questa malattia"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I had a laboratory confirmation that I have this disease"],
-                ["it", "I had a laboratory confirmation that I have this disease"],
+                ["it", "Ho avuto una conferma tramite analisi di laboratorio"],
             ])
         },
         {
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I had direct contact with a laboratory confirmed case"],
-                ["it", "I had direct contact with a laboratory confirmed case"],
+                ["it", "Ho avuto un contatto diretto con qualcuno che è stato testato ed è risultato postivo"],
             ])
         },
         {
             key: '4', role: 'option',
             content: new Map([
                 ["en", "I had close contact with someone for whom a doctor diagnosed this disease"],
-                ["it", "I had close contact with someone for whom a doctor diagnosed this disease"],
+                ["it", "Ho avuto un contatto diretto con qualcuno che è stato diagnosticato come malato"],
             ])
         },
         {
             key: '5', role: 'option',
             content: new Map([
                 ["en", "I was in close contact with someone presenting symptoms of this disease	"],
-                ["it", "I was in close contact with someone presenting symptoms of this disease	"],
+                ["it", "Ho avuto un contatto diretto con qualcuno che presentava i sintomi della malattia"],
             ])
         },
         {
             key: '6', role: 'option',
             content: new Map([
                 ["en", "I was at an event/location with a confirmed case"],
-                ["it", "I was at an event/location with a confirmed case"],
+                ["it", "Sono stato in un posto/evento dove c'era un caso confermato"],
             ])
         },
         {
             key: '7', role: 'option',
             content: new Map([
                 ["en", "I think I have this disease"],
-                ["it", "I think I have this disease"],
+                ["it", "Credo di avere questa malattia"],
             ])
         }
     ]);
@@ -6091,7 +6096,7 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
-            ["it", "Have you informed people who have been in close contact with you about your suspicion of COVID-19 infection?"],
+            ["it", "Hai informato le persone con cui sei stato in stretto contatto del tuo sospetto di essere malato di COVID-19?"],
         ]))
     );
 
@@ -6106,28 +6111,28 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
             {
                 content: new Map([
                     ["en", "Why are we asking this question?"],
-                    ["it", "Why are we asking this question?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "To better understand how people communicate their illnesses during the COVID-19 pandemic."],
-                    ["it", "To better understand how people communicate their illnesses during the COVID-19 pandemic."],
+                    ["it", "Per capire meglio come le persone comunicano la loro malattia durante la pandemia."],
                 ]),
                 style: [{ key: 'variant', value: 'p' }],
             },
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere?"],
                 ]),
                 style: [{ key: 'variant', value: 'h5' }],
             },
             {
                 content: new Map([
                     ["en", "Select the option that best suits your situation."],
-                    ["it", "Select the option that best suits your situation."],
+                    ["it", "Seleziona le opzioni che si applicano alla tua situazione."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -6141,14 +6146,14 @@ const informedContacts = (parentKey: string, keyReasonForSymptoms: string, isReq
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes"],
-                ["it", "Yes"],
+                ["it", "Si"],
             ])
         },
         {
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Some of them"],
-                ["it", "Some of them"],
+                ["it", "Ad alcuni di loro"],
             ])
         },
         {

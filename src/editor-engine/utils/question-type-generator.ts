@@ -14,6 +14,7 @@ export interface OptionDef {
     key: string;
     role: string;
     content?: Map<string, string>;
+    items?: Array<StyledTextComponentProp>;
     description?: Map<string, string>;
     displayCondition?: Expression;
     disabled?: Expression;
@@ -21,12 +22,18 @@ export interface OptionDef {
     optionProps?: ComponentProperties;
 }
 
+export interface StyledTextComponentProp {
+    content: Map<string, string>;
+    className?: string;
+}
+
 interface GenericQuestionProps {
     parentKey: string;
     itemKey: string;
     version?: number;
-    questionText: Map<string, string>;
+    questionText: Map<string, string> | Array<StyledTextComponentProp>;
     questionSubText?: Map<string, string>;
+    titleClassName?: string;
     helpGroupContent?: Array<{
         content: Map<string, string>,
         style?: Array<{ key: string, value: string }>,
@@ -63,7 +70,7 @@ const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyI
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -119,7 +126,7 @@ const generateSingleChoiceQuestion = (props: OptionQuestionProps): SurveyItem =>
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -165,7 +172,7 @@ const generateDropDownQuestion = (props: OptionQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -208,7 +215,7 @@ const generateMultipleChoiceQuestion = (props: OptionQuestionProps): SurveyItem 
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -254,7 +261,7 @@ const generateSimpleLikertGroupQuestion = (props: LikertGroupQuestionProps): Sur
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -321,7 +328,7 @@ const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem =>
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -389,7 +396,7 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -448,7 +455,7 @@ const generateMultilineInput = (props: MultiLineTextInput): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
 
     // QUESTION TEXT
-    simpleEditor.setTitle(props.questionText, props.questionSubText);
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
 
     if (props.condition) {
         simpleEditor.setCondition(props.condition);
@@ -617,6 +624,17 @@ const initResponseGroup = (
         }
         if (optionDef.description) {
             optEditor.setDescription(generateLocStrings(optionDef.description));
+        }
+        if (optionDef.items) {
+
+            optionDef.items.forEach((item, index) => {
+                optEditor.addItemComponent({
+                    key: index.toFixed(),
+                    role: 'text',
+                    content: generateLocStrings(item.content),
+                    style: item.className ? [{ key: 'className', value: item.className }] : undefined
+                });
+            })
         }
 
         switch (optionDef.role) {
