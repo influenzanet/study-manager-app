@@ -15,7 +15,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.8",
     "bootstrap": "^5.0.2",
-    "case-web-ui": "^1.4.1",
+    "case-web-ui": "^1.4.2",
     "date-fns": "^2.23.0",
     "i18next": "^20.3.5",
     "moment": "2.24.0",
