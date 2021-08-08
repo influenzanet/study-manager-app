@@ -644,7 +644,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                 })]
         })
     }
-    //TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q1
+
     Q1(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -656,21 +656,63 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb geen problemen met lopen"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "geen"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met lopen"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'beetje', role: 'option',
-                    content: new Map([
-                        ["nl", " Ik heb een beetje problemen met lopen"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "een beetje"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met lopen"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'veel', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb veel problemen met lopen"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "veel"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met lopen"],
+                            ])
+                        },
+                    ]
                 },
             ],
             bottomDisplayCompoments: [
@@ -679,7 +721,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-    //TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q2
+
     Q2(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -691,21 +733,63 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb geen problemen met wassen of aankleden"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "geen"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met wassen of aankleden"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'beetje', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb een beetje problemen met wassen of aankleden"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "een beetje"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met wassen of aankleden"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'veel', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb veel problemen met wassen of aankleden"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "veel"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met wassen of aankleden"],
+                            ])
+                        },
+                    ]
                 },
             ],
             bottomDisplayCompoments: [
@@ -714,7 +798,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-    //TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q3
+
     Q3(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -729,21 +813,63 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb geen problemen met mijn dagelijkse activiteiten"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "geen"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met mijn dagelijkse activiteiten"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'beetje', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb een beetje problemen met mijn dagelijkse activiteiten"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "een beetje"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met mijn dagelijkse activiteiten"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'veel', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb veel problemen met mijn dagelijkse activiteiten"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "veel"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " problemen met mijn dagelijkse activiteiten"],
+                            ])
+                        },
+                    ]
                 },
             ],
             bottomDisplayCompoments: [
@@ -752,7 +878,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-    //TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q4
+
     Q4(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -764,21 +890,63 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb geen pijn of andere klachten"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "geen"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " pijn of andere klachten"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'beetje', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb een beetje pijn of andere klachten"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "een beetje"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " pijn of andere klachten"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'veel', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb veel pijn of andere klachten"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik heb "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "veel"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " pijn of andere klachten"],
+                            ])
+                        },
+                    ]
                 },
             ],
             bottomDisplayCompoments: [
@@ -787,7 +955,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-    //TODO Peter: underline the words "niet", "een beetje" and "erg" in the responseOptions Q5
+
     Q5(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -799,21 +967,63 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             responseOptions: [
                 {
                     key: 'geen', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik ben niet bezorgd, verdrietig of ongelukkig"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik ben "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "niet"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " bezorgd, verdrietig of ongelukkig"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'beetje', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik ben een beetje bezorgd, verdrietig of ongelukkig"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik ben "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "een beetje"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " bezorgd, verdrietig of ongelukkig"],
+                            ])
+                        },
+                    ]
                 },
                 {
                     key: 'veel', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik ben erg bezorgd, verdrietig of ongelukkig"],
-                    ])
+                    items: [
+                        {
+                            content: new Map([
+                                ["nl", "Ik ben "],
+                            ])
+                        },
+                        {
+                            content: new Map([
+                                ["nl", "erg"],
+                            ]), className: 'text-decoration-underlined'
+                        },
+                        {
+                            content: new Map([
+                                ["nl", " bezorgd, verdrietig of ongelukkig"],
+                            ])
+                        },
+                    ]
                 },
             ],
             bottomDisplayCompoments: [
@@ -822,7 +1032,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-    //TODO Peter: underline the words "beste" and "slechtste" in Q_healthstatus_instructions_def
+
     Q_healthstatus_instructions_def() {
         const defaultKey = 'HEALTH_INS'
         const itemKey = [this.key, defaultKey].join('.');
@@ -845,11 +1055,26 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         style: [{ key: 'variant', value: 'li' }]
                     },
                     {
-                        role: 'text', content: generateLocStrings(new Map([
-                            ["en", "100 indicates the best health you can imagine"],
-                            ["nl", "100 geeft de beste gezondheid aan die je je kunt voorstellen."],
-                        ])),
-                        style: [{ key: 'variant', value: 'li' }]
+                        role: 'text',
+                        style: [{ key: 'variant', value: 'li' }],
+                        items: [
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["nl", "100 geeft de "],
+                                ]))
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["nl", "beste"],
+                                ])),
+                                style: [{ key: 'className', value: 'text-decoration-underline' }]
+                            },
+                            {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["nl", " gezondheid aan die je je kunt voorstellen."],
+                                ]))
+                            },
+                        ],
                     },
                     {
                         role: 'text',
@@ -857,8 +1082,16 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         items: [
                             {
                                 role: 'part', content: generateLocStrings(new Map([
-                                    ["en", "0 indicates the worst health you can imagine"],
-                                    ["nl", "0 de slechtste gezondheid aangeeft die je je kunt voorstellen."],
+                                    ["nl", "0 de "],
+                                ]))
+                            }, {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["nl", "slechtste"],
+                                ])),
+                                style: [{ key: 'className', value: 'text-decoration-underline' }]
+                            }, {
+                                role: 'part', content: generateLocStrings(new Map([
+                                    ["nl", " gezondheid aangeeft die je je kunt voorstellen."],
                                 ]))
                             },
                         ],
