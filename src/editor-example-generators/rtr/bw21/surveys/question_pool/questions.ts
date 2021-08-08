@@ -1,4 +1,5 @@
 import { SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../../editor-engine/utils/simple-survey-editor";
@@ -265,9 +266,21 @@ export const getSKPART = (parentKey: string, isRequired?: boolean, shortForm?: b
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Was halten Sie ganz allgemein von den folgenden Parteien? Bitte beschreiben Sie dies mit Hilfe einer Skala von -3 bis +3. -3 bedeutet, dass Sie überhaupt nichts von der Partei halten, +3 bedeutet, dass Sie sehr viel von der Partei halten. Mit den Werten dazwischen können Sie Ihre Meinung abstufen."],
+            ["de", "Was halten Sie ganz allgemein von den folgenden Parteien?"],
         ]),
-        stackOnSmallScreen: true,
+        /*questionSubText: new Map([
+            ["de", "Bitte beschreiben Sie dies mit Hilfe einer Skala von -3 bis +3. -3 bedeutet, dass Sie überhaupt nichts von der Partei halten, \n\n+3 bedeutet, dass Sie sehr viel von der Partei halten. \n\nMit den Werten dazwischen können Sie Ihre Meinung abstufen."],
+        ]),*/
+        topDisplayCompoments: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ['de', 'Bitte beschreiben Sie dies mit Hilfe einer Skala von -3 bis +3. \n\n-3 bedeutet, dass Sie überhaupt nichts von der Partei halten, \n\n+3 bedeutet, dass Sie sehr viel von der Partei halten. \n\nMit den Werten dazwischen können Sie Ihre Meinung abstufen.']
+                ]),
+                className: 'border-bottom border-1 pb-2 mb-1'
+            })
+        ],
+        titleClassName: 'sticky-top',
+        stackOnSmallScreen: false,
         //TODO Peter: short form for PUB group:
         // Only CDU, SPD, and GRU are displayed
         scaleOptions: [

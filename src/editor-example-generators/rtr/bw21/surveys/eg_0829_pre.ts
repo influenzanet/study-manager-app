@@ -1,6 +1,6 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
+import { generateLocStrings, generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
 import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
@@ -12,45 +12,53 @@ export const generate_EG0829PRE = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["de", "Vragenlijst start LongCOVID-onderzoek"],
+            ["de", "0829 Pre"],
         ]),
         description: new Map([
-            ["de", "Dit is de eerste vragenlijst van het LongCOVID-onderzoek. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
+            ["de", "not defined"],
         ]),
         durationText: new Map([
-            ["de", "Invullen van deze vragenlijst kost ongeveer 30 minuten van je tijd."],
+            ["de", "not defined"],
         ])
     })
 
+    // surveyEditor.editor.setMaxItemPerPage({ small: 1, large: 1 });
+
+    const isRequired = false;
 
     // add questions
-    surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPID(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
+
+    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
+
+    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
+
     //TODO Peter display of STPID depends on PID answer
-    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSEX(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getAGE(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSEX(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey, isRequired));
 
 
 
