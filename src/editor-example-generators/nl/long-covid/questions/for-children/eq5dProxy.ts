@@ -93,7 +93,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
                 })]
         })
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q1
     Q1(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -128,7 +128,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q2
     Q2(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -163,7 +163,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q3
     Q3(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -201,7 +201,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q4
     Q4(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -236,7 +236,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "niet", "een beetje" and "erg" in the responseOptions Q5
     Q5(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -271,7 +271,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "beste" and "slechtste" in Q_healthstatus_instructions_def
     Q_healthstatus_instructions_def() {
         const defaultKey = 'HEALTH_INS'
         const itemKey = [this.key, defaultKey].join('.');
@@ -403,7 +403,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                 })]
         })
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q1
     Q1(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -438,7 +438,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q2
     Q2(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -473,7 +473,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q3
     Q3(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -511,7 +511,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "geen", "een beetje" and "veel" in the responseOptions Q4
     Q4(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -546,7 +546,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "niet", "een beetje" and "erg" in the responseOptions Q5
     Q5(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
@@ -581,7 +581,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
             isRequired: isRequired,
         });
     }
-
+//TODO Peter: underline the words "beste" and "slechtste" in Q_healthstatus_instructions_def
     Q_healthstatus_instructions_def() {
         const defaultKey = 'HEALTH_INS'
         const itemKey = [this.key, defaultKey].join('.');
