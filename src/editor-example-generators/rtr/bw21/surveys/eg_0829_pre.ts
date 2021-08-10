@@ -1,4 +1,5 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings, generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
@@ -23,6 +24,16 @@ export const generate_EG0829PRE = (): Survey | undefined => {
     })
 
     // surveyEditor.editor.setMaxItemPerPage({ small: 1, large: 1 });
+
+    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.display({
+        parentKey: surveyKey,
+        itemKey: 'intro',
+        content: [ComponentGenerators.markdown({
+            content: new Map([
+                ['de', `## ${surveyKey}`]
+            ]),
+        })],
+    }));
 
     const isRequired = false;
 

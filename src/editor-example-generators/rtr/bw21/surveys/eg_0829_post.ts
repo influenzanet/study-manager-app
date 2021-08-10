@@ -1,4 +1,5 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
@@ -21,48 +22,53 @@ export const generate_EG0829POST = (): Survey | undefined => {
         ])
     })
 
-    
-    surveyEditor.addSurveyItemToRoot(getWPERF(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getAUFM1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getAUFM2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWSTRATAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWSTRATOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWSTRATAB(surveyKey,true));
+    const isRequired = false;
+
+    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.display({
+        parentKey: surveyKey,
+        itemKey: 'intro',
+        content: [ComponentGenerators.markdown({
+            content: new Map([
+                ['de', `## ${surveyKey}`]
+            ]),
+        })],
+    }));
+
+
+    surveyEditor.addSurveyItemToRoot(getWPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getAUFM1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getAUFM2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWSTRATAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWSTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWSTRATAB(surveyKey, isRequired));
 
     //3 ATTACK questions here
-    surveyEditor.addSurveyItemToRoot(getATTACKAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getJSTRATPA(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getJSTRATPK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getBIASPA(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getBIASPK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPERS3(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPERS4(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey,true));
-    
-
-
-
-
-
-
+    surveyEditor.addSurveyItemToRoot(getATTACKAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getJSTRATPA(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getJSTRATPK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getBIASPA(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getBIASPK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPERS3(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPERS4(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey, isRequired));
 
 
     // Survey End

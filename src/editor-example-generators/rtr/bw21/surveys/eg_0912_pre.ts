@@ -1,9 +1,10 @@
 import { Survey } from "survey-engine/lib/data_types";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getRPERF, getRSTRATAL, getRSTRATOS, getRSTRATAB, getANKOMM, getANKOMMSIEG} from "./question_pool/questions";
+import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getRPERF, getRSTRATAL, getRSTRATOS, getRSTRATAB, getANKOMM, getANKOMMSIEG } from "./question_pool/questions";
 
 
 export const generate_EG0912PRE = (): Survey | undefined => {
@@ -22,36 +23,46 @@ export const generate_EG0912PRE = (): Survey | undefined => {
         ])
     })
 
+    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.display({
+        parentKey: surveyKey,
+        itemKey: 'intro',
+        content: [ComponentGenerators.markdown({
+            content: new Map([
+                ['de', `## ${surveyKey}`]
+            ]),
+        })],
+    }));
+
 
     // add questions
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getRPERF(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getRSTRATAL(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getRSTRATOS(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getRSTRATAB(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getANKOMM(surveyKey,true));
-    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getRPERF(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getRSTRATAL(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getRSTRATOS(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getRSTRATAB(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getANKOMM(surveyKey, true));
+    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey, true));
 
 
-    
+
 
 
 

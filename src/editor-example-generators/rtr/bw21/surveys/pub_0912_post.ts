@@ -1,14 +1,13 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getATTACKAL, getAUFM1, getAUFM2, getBIASMI, getBIASOK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATMI, getJSTRATOK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
 
 
-export const generate_EG0912POST = (): Survey | undefined => {
-    const surveyKey = surveyKeys.EG_0912_POST;
+export const generate_PUB0912POST = (): Survey | undefined => {
+    const surveyKey = surveyKeys.PUB_0912_POST;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
@@ -60,17 +59,17 @@ export const generate_EG0912POST = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getJSTRATMI(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getJSTRATOK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getBIASMI(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getBIASOK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getJSTRATPA(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getJSTRATPK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getBIASPA(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getBIASPK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPERS3(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPERS4(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey, isRequired));
 
-    //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
-    //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
@@ -79,4 +78,3 @@ export const generate_EG0912POST = (): Survey | undefined => {
 
     return surveyEditor.getSurvey();
 }
-
