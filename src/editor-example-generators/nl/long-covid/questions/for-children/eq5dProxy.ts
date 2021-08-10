@@ -665,7 +665,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "geen"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -685,7 +685,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "een beetje"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -705,7 +705,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "veel"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -742,7 +742,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "geen"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -762,7 +762,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "een beetje"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -782,7 +782,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "veel"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -822,7 +822,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "geen"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -842,7 +842,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "een beetje"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -862,7 +862,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "veel"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -899,7 +899,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "geen"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -919,7 +919,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "een beetje"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -939,7 +939,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "veel"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -976,7 +976,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "niet"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -996,7 +996,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "een beetje"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
@@ -1016,7 +1016,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
                         {
                             content: new Map([
                                 ["nl", "erg"],
-                            ]), className: 'text-decoration-underlined'
+                            ]), className: 'text-decoration-underline'
                         },
                         {
                             content: new Map([
