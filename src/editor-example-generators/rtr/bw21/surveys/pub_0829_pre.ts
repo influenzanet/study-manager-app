@@ -7,7 +7,7 @@ import { surveyKeys } from "../studyRules";
 import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
 
 
-export const generate_PUB0829_PRE = (): Survey | undefined => {
+export const generate_PUB0829PRE = (): Survey | undefined => {
     const surveyKey = surveyKeys.PUB_0829_PRE;
 
     const surveyEditor = new SimpleSurveyEditor({
