@@ -49,12 +49,12 @@ const eq5dCopyright = {
 
 
 
-class EQ5Dy extends GroupItemEditor {
+class EQ5DyProxy extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
         groupCondition: Expression,
     }) {
-        const groupKey = 'Y';
+        const groupKey = 'YProxy';
         super(parentKey, groupKey);
 
         this.groupEditor.setCondition(conditions.groupCondition);
@@ -602,12 +602,12 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
 }
 
 
-class EQ5DyProxy extends GroupItemEditor {
+class EQ5Dy extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
         groupCondition: Expression,
     }) {
-        const groupKey = 'YProxy';
+        const groupKey = 'Y';
         super(parentKey, groupKey);
 
         this.groupEditor.setCondition(conditions.groupCondition);
