@@ -379,15 +379,15 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
-    editor.addValidation({
+    /* editor.addValidation({
         key: 'r2',
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            /* expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'), */
+             expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
         )
-    });
+    }); */
 
     /* editor.addDisplayComponent(
         {
