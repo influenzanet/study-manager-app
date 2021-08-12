@@ -384,12 +384,12 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+            /* expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'), */
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
         )
     });
 
-    editor.addDisplayComponent(
+    /* editor.addDisplayComponent(
         {
             role: 'error',
             content: generateLocStrings(new Map([
@@ -402,7 +402,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
-    );
+    ); */
     return editor.getItem();
 }
 
