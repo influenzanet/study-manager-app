@@ -41,34 +41,23 @@ export const generate_PUB0829POST = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getWSTRATAL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWSTRATOS(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWSTRATAB(surveyKey, isRequired));
-
-    //3 ATTACK questions here
-    surveyEditor.addSurveyItemToRoot(getATTACKAL(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+    //short form SKPART
     surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
+    //short form WK
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getJSTRATPA(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getJSTRATPK(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getBIASPA(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getBIASPK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS3(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS4(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey, isRequired));
+
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
