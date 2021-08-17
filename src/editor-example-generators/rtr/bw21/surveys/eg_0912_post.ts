@@ -1,7 +1,6 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
 import { getATTACKAL, getAUFM1, getAUFM2, getBIASMI, getBIASOK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATMI, getJSTRATOK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
@@ -30,7 +29,11 @@ export const generate_EG0912POST = (): Survey | undefined => {
         itemKey: 'intro',
         content: [ComponentGenerators.markdown({
             content: new Map([
-                ['de', `## ${surveyKey}`]
+                ['de', `
+Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
+
+Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
+                `]
             ]),
         })],
     }));
@@ -74,7 +77,7 @@ export const generate_EG0912POST = (): Survey | undefined => {
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['de', 'TODO: Text for end of survey']
+        ['de', 'Vielen Dank für Ihre Angaben! Bitte schließen Sie nun die Umfrage ab.']
     ])));
 
     return surveyEditor.getSurvey();

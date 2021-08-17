@@ -29,7 +29,13 @@ export const generate_PUB0912PRE = (): Survey | undefined => {
         itemKey: 'intro',
         content: [ComponentGenerators.markdown({
             content: new Map([
-                ['de', `## ${surveyKey}`]
+                ['de', `
+Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
+
+Wenn Sie eine Frage nicht beantworten können oder möchten, gehen Sie bitte zur nächsten Frage weiter.
+
+Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
+                `]
             ]),
         })],
     }));
@@ -44,8 +50,8 @@ export const generate_PUB0912PRE = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
-    
-    
+
+
     surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
 
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
@@ -71,7 +77,7 @@ export const generate_PUB0912PRE = (): Survey | undefined => {
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['de', 'TODO: Text for end of survey']
+        ['de', 'Vielen Dank für Ihre Angaben! Bitte schließen Sie nun die Umfrage ab.']
     ])));
 
     return surveyEditor.getSurvey();
