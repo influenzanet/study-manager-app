@@ -7,17 +7,17 @@
     "@fontsource/open-sans": "^4.5.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
-    "@popperjs/core": "^2.9.2",
+    "@popperjs/core": "^2.9.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^15.6.1",
-    "@types/react": "^17.0.15",
+    "@types/react": "^17.0.18",
     "@types/react-datepicker": "^4.1.4",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.8",
-    "bootstrap": "^5.0.2",
-    "case-web-ui": "^1.4.2",
+    "bootstrap": "^5.1.0",
+    "case-web-ui": "^1.5.0",
     "date-fns": "^2.23.0",
-    "i18next": "^20.3.5",
+    "i18next": "^20.4.0",
     "moment": "2.24.0",
     "node-sass": "4.14.1",
     "react": "^17.0.2",
@@ -27,7 +27,7 @@
     "react-scripts": "4.0.3",
     "survey-engine": "^0.10.0",
     "typeface-roboto": "^1.1.13",
-    "typescript": "^4.2.4",
+    "typescript": "^4.3.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -55,6 +55,6 @@
     ]
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.0.15"
+    "@types/bootstrap": "^5.1.1"
   }
 }
