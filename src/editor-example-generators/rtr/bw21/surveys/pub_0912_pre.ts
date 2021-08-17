@@ -4,7 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
+import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2, getEDUC, getWBR } from "./question_pool/questions";
 
 
 export const generate_PUB0912PRE = (): Survey | undefined => {
@@ -37,29 +37,24 @@ export const generate_PUB0912PRE = (): Survey | undefined => {
     const isRequired = false;
 
     // add questions
-    surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+    //TODO Peter: short form of SKPART
     surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
-
+    
+    
     surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
 
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, isRequired));
+
+    //short form WK
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
+
+
     surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
 
@@ -67,9 +62,8 @@ export const generate_PUB0912PRE = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSEX(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey, isRequired));
-
+    surveyEditor.addSurveyItemToRoot(getEDUC(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWBR(surveyKey, isRequired));
 
 
     //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
