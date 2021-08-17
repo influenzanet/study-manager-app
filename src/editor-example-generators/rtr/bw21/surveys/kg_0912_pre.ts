@@ -56,10 +56,7 @@ export const generate_KG0912PRE = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, isRequired));
+    
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
