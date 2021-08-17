@@ -4,7 +4,7 @@ import { ItemEditor } from "../survey-editor/item-editor";
 import { CommonExpressions } from "./commonExpressions";
 import { ComponentGenerators } from "./componentGenerators";
 import { Duration, durationObjectToSeconds } from "./duration";
-import { datePickerKey, dropDownKey, inputKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, responsiveSingleChoiceArrayKey, singleChoiceKey } from "./key-definitions";
+import { datePickerKey, dropDownKey, inputKey, likertScaleGroupKey, multipleChoiceKey, numericInputKey, responseGroupKey, responsiveBipolarLikertArrayKey, responsiveSingleChoiceArrayKey, singleChoiceKey } from "./key-definitions";
 import { generateRandomKey } from "./randomKeyGenerator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "./simple-generators";
 import { SimpleQuestionEditor } from "./simple-question-editor";
@@ -67,6 +67,7 @@ interface LikertGroupQuestionProps extends GenericQuestionProps {
 }
 
 type ResponsiveSingleChoiceArrayVariant = 'horizontal' | 'vertical' | 'table';
+type ResponsiveBipolarLikertArrayVariant = 'withLabelRow' | 'vertical' | 'table';
 
 interface ResponsiveSingleChoiceArrayProps {
     scaleOptions: Array<{
@@ -113,9 +114,52 @@ interface ResponsiveSingleChoiceArrayProps {
     }
 }
 
-interface ResponsiveSingleChoiceArrayQuestionProps extends GenericQuestionProps, ResponsiveSingleChoiceArrayProps {
-
+interface ResponsiveBipolarLikertArrayProps {
+    scaleOptions: Array<{
+        key: string;
+    }>,
+    rows: Array<{
+        key: string;
+        startLabel: Map<string, string> | StyledTextComponentProp[];
+        endLabel: Map<string, string> | StyledTextComponentProp[];
+        withLabelRowModeProps?: {
+            className?: string;
+        },
+        verticalModeProps?: {
+            className?: string;
+        }
+        tableModeProps?: {
+            className?: string;
+        }
+    }>,
+    defaultMode: ResponsiveBipolarLikertArrayVariant;
+    responsiveModes?: {
+        sm?: ResponsiveBipolarLikertArrayVariant;
+        md?: ResponsiveBipolarLikertArrayVariant;
+        lg?: ResponsiveBipolarLikertArrayVariant;
+        xl?: ResponsiveBipolarLikertArrayVariant;
+        xxl?: ResponsiveBipolarLikertArrayVariant;
+    },
+    rgClassName?: string;
+    tableModeProps?: {
+        className?: string;
+        layout?: "fixed";
+        labelColWidth?: string;
+        hideRowBorder?: boolean;
+    },
+    withLabelRowModeProps?: {
+        hideRowBorder?: boolean;
+        maxLabelWidth?: string;
+        useBottomLabel?: boolean;
+    },
+    verticalModeProps?: {
+        hideRowBorder?: boolean;
+    }
 }
+
+interface ResponsiveSingleChoiceArrayQuestionProps extends GenericQuestionProps, ResponsiveSingleChoiceArrayProps { }
+
+interface ResponsiveBipolarLikertArrayQuestionProps extends GenericQuestionProps, ResponsiveBipolarLikertArrayProps { }
 
 const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyItem => {
     const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
@@ -426,6 +470,65 @@ const generateResponsiveSingleChoiceArrayQuestion = (props: ResponsiveSingleChoi
     return simpleEditor.getItem();
 }
 
+const generateResponsiveBipolarLikertArray = (props: ResponsiveBipolarLikertArrayQuestionProps): SurveyItem => {
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+
+    // QUESTION TEXT
+    simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
+
+    if (props.condition) {
+        simpleEditor.setCondition(props.condition);
+    }
+
+    if (props.helpGroupContent) {
+        simpleEditor.editor.setHelpGroupComponent(
+            generateHelpGroupComponent(props.helpGroupContent)
+        )
+    }
+
+    if (props.topDisplayCompoments) {
+        props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    const rg_inner = initResponsiveBipolarLikertArray(
+        responsiveSingleChoiceArrayKey,
+        {
+            ...props,
+        },
+    );
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (props.bottomDisplayCompoments) {
+        props.bottomDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
+    }
+
+    if (props.isRequired) {
+        simpleEditor.editor.addValidation({
+            key: 'r',
+            type: 'hard',
+            rule: expWithArgs('and',
+                ...props.rows.map(r => expWithArgs(
+                    'responseHasKeysAny',
+                    [props.parentKey, props.itemKey].join('.'),
+                    [responseGroupKey, responsiveBipolarLikertArrayKey, r.key].join('.'),
+                    ...props.scaleOptions.map(o => o.key)
+                ))
+            )
+        })
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (props.footnoteText) {
+        simpleEditor.addDisplayComponent({
+            role: 'footnote', content: generateLocStrings(props.footnoteText), style: [
+                { key: 'className', value: 'fs-small fst-italic text-center' }
+            ]
+        })
+    }
+
+    return simpleEditor.getItem();
+}
+
 interface NumericSliderProps extends GenericQuestionProps {
     sliderLabel: Map<string, string>;
     noResponseLabel: Map<string, string>;
@@ -638,6 +741,7 @@ const generateSurveyEnd = (parentKey: string, content: Map<string, string>, cond
 export const SurveyItemGenerators = {
     singleChoice: generateSingleChoiceQuestion,
     responsiveSingleChoiceArray: generateResponsiveSingleChoiceArrayQuestion,
+    responsiveBipolarLikertArray: generateResponsiveBipolarLikertArray,
     multipleChoice: generateMultipleChoiceQuestion,
     simpleLikertGroup: generateSimpleLikertGroupQuestion,
     dateInput: generateDatePickerInput,
@@ -1198,6 +1302,155 @@ export const initResponsiveSingleChoiceArray = (
                     style: cont.className ? [{ key: 'className', value: cont.className }] : undefined,
                 }
             }) : [],
+        })
+    })
+
+    return groupEdit.getComponent() as ItemGroupComponent;
+}
+
+export const initResponsiveBipolarLikertArray = (
+    rgKey: string,
+    props: ResponsiveBipolarLikertArrayProps,
+    displayCondition?: Expression,
+): ItemGroupComponent => {
+    const groupEdit = new ComponentEditor(undefined, {
+        key: rgKey,
+        isGroup: true,
+        role: 'responsiveBipolarLikertScaleArray',
+    });
+
+    if (displayCondition) {
+        groupEdit.setDisplayCondition(displayCondition);
+    }
+
+    const style: Array<{ key: string, value: string }> = [
+        { key: 'defaultMode', value: props.defaultMode },
+    ];
+    if (props.responsiveModes) {
+        if (props.responsiveModes.sm) {
+            style.push({ key: 'smMode', value: props.responsiveModes.sm });
+        }
+        if (props.responsiveModes.md) {
+            style.push({ key: 'mdMode', value: props.responsiveModes.md });
+        }
+        if (props.responsiveModes.lg) {
+            style.push({ key: 'lgMode', value: props.responsiveModes.lg });
+        }
+        if (props.responsiveModes.xl) {
+            style.push({ key: 'xlMode', value: props.responsiveModes.xl });
+        }
+        if (props.responsiveModes.xxl) {
+            style.push({ key: 'xxlMode', value: props.responsiveModes.xxl });
+        }
+    }
+    if (props.rgClassName) {
+        style.push({ key: 'className', value: props.rgClassName });
+    }
+    if (props.withLabelRowModeProps) {
+        if (props.withLabelRowModeProps.maxLabelWidth) {
+            style.push({ key: 'labelRowMaxLabelWidth', value: props.withLabelRowModeProps.maxLabelWidth });
+        }
+    }
+    style.push({ key: 'labelRowPosition', value: props.withLabelRowModeProps?.useBottomLabel ? 'bottom' : 'top' })
+
+    if (props.tableModeProps) {
+        style.push({ key: 'tableModeClassName', value: 'table-borderless mb-0 ' + props.tableModeProps.className });
+        if (props.tableModeProps.layout) {
+            style.push({ key: 'tableModeLayout', value: props.tableModeProps.layout });
+        }
+        if (props.tableModeProps.labelColWidth) {
+            style.push({ key: 'tableModeLabelColWidth', value: props.tableModeProps.labelColWidth });
+        }
+    }
+    groupEdit.setStyles(style);
+
+    const defaultBorderClass = 'border-bottom border-grey-2';
+
+    groupEdit.addItemComponent({
+        key: 'header',
+        role: 'options',
+        items: props.scaleOptions.map(option => {
+            return {
+                key: option.key,
+                role: 'option',
+            }
+        })
+    })
+
+    props.rows.forEach((row, index) => {
+        let tableModeRowClassName: string | undefined = undefined;
+        let withLabelRowModeClassName: string | undefined = undefined;
+        let verticalModeRowClassName: string | undefined = undefined;
+
+        const isLast = index === props.rows.length - 1;
+
+        if (!props.tableModeProps?.hideRowBorder && !isLast) {
+            tableModeRowClassName = defaultBorderClass;
+        }
+        if (row.tableModeProps?.className) {
+            tableModeRowClassName += ' ' + row.tableModeProps?.className;
+        }
+
+        if (!props.withLabelRowModeProps?.hideRowBorder && !isLast) {
+            withLabelRowModeClassName = defaultBorderClass;
+        }
+        if (row.withLabelRowModeProps?.className) {
+            withLabelRowModeClassName += ' ' + row.withLabelRowModeProps?.className;
+        }
+
+        if (!props.verticalModeProps?.hideRowBorder && !isLast) {
+            verticalModeRowClassName = defaultBorderClass;
+        }
+        if (row.verticalModeProps?.className) {
+            verticalModeRowClassName += ' ' + row.verticalModeProps?.className;
+        }
+
+        const rowStyles: Array<{ key: string, value: string }> = [];
+        if (tableModeRowClassName) {
+            rowStyles.push({ key: 'tableModeClassName', value: tableModeRowClassName })
+        }
+        if (withLabelRowModeClassName) {
+            rowStyles.push({ key: 'withLabelRowModeClassName', value: withLabelRowModeClassName })
+        }
+        if (verticalModeRowClassName) {
+            rowStyles.push({ key: 'verticalModeClassName', value: verticalModeRowClassName })
+        }
+
+        const startLabel = {
+            key: 'start',
+            role: 'start',
+            content: !Array.isArray(row.startLabel) ? generateLocStrings(row.startLabel) : undefined,
+            items: Array.isArray(row.startLabel) ? row.startLabel.map((cont, index) => {
+                return {
+                    key: index.toFixed(),
+                    role: 'text',
+                    content: generateLocStrings(cont.content),
+                    style: cont.className ? [{ key: 'className', value: cont.className }] : undefined,
+                }
+            }) : [],
+        }
+
+        const endLabel = {
+            key: 'end',
+            role: 'end',
+            content: !Array.isArray(row.startLabel) ? generateLocStrings(row.startLabel) : undefined,
+            items: Array.isArray(row.startLabel) ? row.startLabel.map((cont, index) => {
+                return {
+                    key: index.toFixed(),
+                    role: 'text',
+                    content: generateLocStrings(cont.content),
+                    style: cont.className ? [{ key: 'className', value: cont.className }] : undefined,
+                }
+            }) : [],
+        }
+
+        groupEdit.addItemComponent({
+            key: row.key,
+            role: 'row',
+            style: rowStyles.length > 0 ? rowStyles : undefined,
+            items: [
+                startLabel, endLabel
+            ],
         })
     })
 
