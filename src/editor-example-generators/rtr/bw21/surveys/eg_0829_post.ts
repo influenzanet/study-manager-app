@@ -3,7 +3,7 @@ import { ComponentGenerators } from "../../../../editor-engine/utils/componentGe
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3, getATTACKOS, getATTACKAB } from "./question_pool/questions";
 
 
 export const generate_EG0829POST = (): Survey | undefined => {
@@ -22,7 +22,7 @@ export const generate_EG0829POST = (): Survey | undefined => {
         ])
     })
 
-    const isRequired = true;
+    const isRequired = false;
 
     surveyEditor.editor.setMaxItemPerPage({ small: 1, large: 1 });
 
@@ -49,6 +49,9 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
 
     //3 ATTACK questions here
     surveyEditor.addSurveyItemToRoot(getATTACKAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getATTACKOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getATTACKAB(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
