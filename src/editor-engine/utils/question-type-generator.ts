@@ -50,6 +50,7 @@ interface NumericInputQuestionProps extends GenericQuestionProps {
     content: Map<string, string>;
     contentBehindInput?: boolean;
     componentProperties?: ComponentProperties;
+    inputMaxWidth?: string;
 }
 
 interface OptionQuestionProps extends GenericQuestionProps {
@@ -181,6 +182,18 @@ const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyI
         props.topDisplayCompoments.forEach(comp => simpleEditor.addDisplayComponent(comp))
     }
 
+    const style: Array<{ key: string, value: string }> = [];
+
+    if (props.inputMaxWidth) {
+        style.push({
+            key: 'inputMaxWidth', value: props.inputMaxWidth,
+        })
+    }
+    if (props.contentBehindInput) {
+        style.push({ key: 'labelPlacement', value: 'after' });
+    }
+
+
     const rg_inner: ItemComponent = {
         key: numericInputKey,
         role: 'numberInput',
@@ -190,7 +203,7 @@ const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyI
             stepSize: props.componentProperties?.stepSize ? (typeof (props.componentProperties.stepSize) === 'number' ? { dtype: 'num', num: props.componentProperties.stepSize } : props.componentProperties.stepSize) : undefined,
         },
         content: generateLocStrings(props.content),
-        style: props.contentBehindInput ? [{ key: 'labelPlacement', value: 'after' }] : undefined,
+        style: style.length > 0 ? style : undefined,
     };
     simpleEditor.setResponseGroupWithContent(rg_inner);
 
