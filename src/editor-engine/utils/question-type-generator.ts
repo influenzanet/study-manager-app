@@ -1367,7 +1367,7 @@ export const initResponsiveBipolarLikertArray = (
     const defaultBorderClass = 'border-bottom border-grey-2';
 
     groupEdit.addItemComponent({
-        key: 'header',
+        key: 'options',
         role: 'options',
         items: props.scaleOptions.map(option => {
             return {
@@ -1433,8 +1433,8 @@ export const initResponsiveBipolarLikertArray = (
         const endLabel = {
             key: 'end',
             role: 'end',
-            content: !Array.isArray(row.startLabel) ? generateLocStrings(row.startLabel) : undefined,
-            items: Array.isArray(row.startLabel) ? row.startLabel.map((cont, index) => {
+            content: !Array.isArray(row.endLabel) ? generateLocStrings(row.endLabel) : undefined,
+            items: Array.isArray(row.endLabel) ? row.endLabel.map((cont, index) => {
                 return {
                     key: index.toFixed(),
                     role: 'text',
