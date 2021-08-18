@@ -45,8 +45,7 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
     // add questions
     surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
-    //TODO Peter: short form of SKPART
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired, true));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));

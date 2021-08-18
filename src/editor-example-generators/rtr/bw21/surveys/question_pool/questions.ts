@@ -261,6 +261,60 @@ export const getSWABS = (parentKey: string, isRequired?: boolean): SurveyItem =>
 
 export const getSKPART = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
     const itemKey = 'SKPART';
+
+    const shortFormRows = [
+        {
+            key: 'CDU', content: new Map([
+                ["de", "CDU/CSU"],
+            ])
+        },
+        {
+            key: 'SPD', content: new Map([
+                ["de", "SPD"],
+            ])
+        },
+        {
+            key: 'GRU', content: new Map([
+                ["de", "B90/Die Grünen"],
+            ])
+        },
+    ]
+
+    const longFormRows = [
+        {
+            key: 'CDU', content: new Map([
+                ["de", "CDU/CSU"],
+            ])
+
+        },
+        {
+            key: 'SPD', content: new Map([
+                ["de", "SPD"],
+            ])
+        },
+        {
+            key: 'AFD', content: new Map([
+                ["de", "AfD"],
+            ])
+
+        },
+        {
+            key: 'FDP', content: new Map([
+                ["de", "FDP"],
+            ])
+        },
+        {
+            key: 'LINKE', content: new Map([
+                ["de", "Die Linke"],
+            ])
+        },
+        {
+            key: 'GRU', content: new Map([
+                ["de", "B90/Die Grünen"],
+            ])
+        },
+    ]
+
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -281,8 +335,6 @@ export const getSKPART = (parentKey: string, isRequired?: boolean, shortForm?: b
         ],
         titleClassName: 'sticky-top',
         stackOnSmallScreen: false,
-        //TODO Peter: short form for PUB group:
-        // Only CDU, SPD, and GRU are displayed
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -314,41 +366,7 @@ export const getSKPART = (parentKey: string, isRequired?: boolean, shortForm?: b
                 ])
             },
         ],
-        rows: [
-            {
-                key: 'CDU', content: new Map([
-                    ["de", "CDU/CSU"],
-                ])
-
-            },
-            {
-                key: 'SPD', content: new Map([
-                    ["de", "SPD"],
-                ])
-            },
-            {
-                key: 'AFD', content: new Map([
-                    ["de", "AfD"],
-                ])
-
-            },
-            {
-                key: 'FDP', content: new Map([
-                    ["de", "FDP"],
-                ])
-            },
-            {
-                key: 'LINKE', content: new Map([
-                    ["de", "Die Linke"],
-                ])
-            },
-            {
-                key: 'GRU', content: new Map([
-                    ["de", "B90/Die Grünen"],
-                ])
-            },
-
-        ]
+        rows: shortForm ? shortFormRows : longFormRows,
     });
 }
 
@@ -580,7 +598,6 @@ export const getPROB2 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: "zweitwichtigste" fettgedruckt
         questionText: [
             {
                 content: new Map([
@@ -2134,7 +2151,7 @@ export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem
         titleClassName: 'sticky-top',
     });
 }
- 
+
 export const getATTACKOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'RATTACKOS';
     return SurveyItemGenerators.responsiveBipolarLikertArray({
