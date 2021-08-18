@@ -2625,21 +2625,13 @@ export const getAGE = (parentKey: string, isRequired?: boolean): SurveyItem => {
         questionText: new Map([
             ["de", "Ihr Alter:"],
         ]),
-        /* topDisplayCompoments: [{
-            key: 'expl',
-            role: 'text',
-            content: generateLocStrings(new Map([
-                ['nl', 'Indien je zwanger bent, hier graag je gewicht van vóór de zwangerschap invullen.']
-            ])),
-            style: [{ key: 'className', value: 'mb-2' }]
-        }], */
-        //TODO Peter: Numerisches Input Feld ist sehr breit, evtl kleiner?
+        inputMaxWidth: '80px',
         content: new Map([
             ['de', 'Jahre']
         ]),
         contentBehindInput: true,
         componentProperties: {
-            min: 0,
+            min: 10,
             max: 120
         }
     })
