@@ -491,7 +491,7 @@ const generateResponsiveBipolarLikertArray = (props: ResponsiveBipolarLikertArra
     }
 
     const rg_inner = initResponsiveBipolarLikertArray(
-        responsiveSingleChoiceArrayKey,
+        responsiveBipolarLikertArrayKey,
         {
             ...props,
         },
