@@ -1965,71 +1965,337 @@ export const getRSTRATAB = (parentKey: string, isRequired?: boolean): SurveyItem
 
 
 
+const getQ3 = (parentKey: string) => {
+    return SurveyItemGenerators.responsiveBipolarLikertArray({
+        parentKey: parentKey,
+        itemKey: 'Q3',
+        questionText: [
+            {
+                content: new Map([
+                    ['en', 'Question type: ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['en', 'responsive single choice array']
+                ]),
+                className: 'text-primary'
+            }
+        ],
+        scaleOptions: [
+            {
+                key: '-2',
+            }, {
+                key: '-1',
+            }, {
+                key: '0',
+            }, {
+                key: '1',
+            }, {
+                key: '2',
+            },
+        ],
+        rows: [
+            {
+                key: 'row1',
+                startLabel: [
+                    {
+                        content: new Map([
+                            ['en', 'Negative First row ']
+                        ]),
+                    },
+                    {
+                        content: new Map([
+                            ['en', 'with formatting']
+                        ]),
+                        className: 'text-primary'
+                    }
+                ],
+                endLabel: [
+                    {
+                        content: new Map([
+                            ['en', 'Positive First row ']
+                        ]),
+                    },
+                    {
+                        content: new Map([
+                            ['en', 'with formatting']
+                        ]),
+                        className: 'text-primary'
+                    }
+                ]
+            },
+            {
+                key: 'row2',
+                startLabel: new Map([
+                    ['en', 'Negative Second row without']
+                ]),
+                endLabel: new Map([
+                    ['en', 'Positive Second row without']
+                ]),
+            }
+        ],
+        defaultMode: 'vertical',
+        responsiveModes: {
+            sm: 'withLabelRow',
+            lg: 'table',
+        },
+        withLabelRowModeProps: {
+            maxLabelWidth: '120px',
+
+        },
+        verticalModeProps: {},
+        tableModeProps: {},
+        titleClassName: 'sticky-top',
+        isRequired: true,
+    });
+}
+
+
 //TODO Scale options
 //write 3 ATTACK functions here
 export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'RATTACKAL';
-    return SurveyItemGenerators.simpleLikertGroup({
+    return SurveyItemGenerators.responsiveBipolarLikertArray({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: Armin Laschet fettgedruckt
-        questionText: new Map([
-            ["de", "Wenn Sie jetzt nur einmal an die Kandidaten und ihre Angriffe auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von Armin Laschet beschreiben? Seine Angriffe... "],
-        ]),
-        topDisplayCompoments: [{
-            role: 'text',
-            style: [{ key: 'className', value: 'mb-2' }],
-            content: generateLocStrings(new Map([
-                ["de", "1 = Stimme voll und ganz zu, 10 = Stimme überhaupt nicht zu"],
-            ]))
-        }],
-        stackOnSmallScreen: true,
+        questionText: [
+            {
+                content: new Map([
+                    ['de', 'Wenn Sie jetzt nur einmal an die Kandidaten und ihre Angriffe auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['de', 'Armin Laschet']
+                ]),
+                className: 'text-primary'
+            },
+            {
+                content: new Map([
+                    ['de', ' beschreiben? Seine Angriffe...']
+                ]),
+            }
+        ],
         scaleOptions: [
             {
-                key: '1', content: new Map([
-                    ["de", "Stimme voll und ganz zu"],
-                ])
+                key: '-2',
             }, {
-                key: '2', content: new Map([
-                    ["de", "Stimme eher zu"],
-                ])
+                key: '-1',
             }, {
-                key: '3', content: new Map([
-                    ["de", "Teils/teils"],
-                ])
+                key: '0',
             }, {
-                key: '4', content: new Map([
-                    ["de", "Stimme eher nicht zu"],
-                ]),
+                key: '1',
             }, {
-                key: '5', content: new Map([
-                    ["de", "Stimme überhaupt nicht zu"],
-                ])
-            }
+                key: '2',
+            },
         ],
         rows: [
             {
-                key: 'AL1', content: new Map([
-                    ["de", "...zielten auf die Politik/Persönlichkeit des Gegners"],
-                ])
-
+                key: 'AL1',
+                startLabel: new Map([
+                    ['de', '...zielten auf die Politik des Gegners']
+                ]),
+                endLabel: new Map([
+                    ['de', '...zielten auf die Persönlichkeit des Gegners']
+                ]),
             },
             {
-                key: 'AL2', content: new Map([
-                    ["de", "...waren respektvoll/respektlos "],
-                ])
+                key: 'AL2',
+                startLabel: new Map([
+                    ['de', '...waren respektvoll']
+                ]),
+                endLabel: new Map([
+                    ['de', '...waren respektlos']
+                ]),
             },
             {
-                key: 'AL3', content: new Map([
-                    ["de", "...haben wichtige/unwichtige Punkte angesprochen"],
-                ])
+                key: 'AL3',
+                startLabel: new Map([
+                    ['de', '...haben wichtige Punkte angesprochen']
+                ]),
+                endLabel: new Map([
+                    ['de', '...haben unwichtige Punkte angesprochen']
+                ]),
+            }
+        ],
+        defaultMode: 'vertical',
+        responsiveModes: {
+            sm: 'withLabelRow',
+            lg: 'table',
+        },
+        withLabelRowModeProps: {
+            maxLabelWidth: '120px',
 
+        },
+        verticalModeProps: {},
+        tableModeProps: {},
+        titleClassName: 'sticky-top',
+    });
+}
+ 
+export const getATTACKOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'RATTACKOS';
+    return SurveyItemGenerators.responsiveBipolarLikertArray({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: [
+            {
+                content: new Map([
+                    ['de', 'Und wie würden Sie die Angriffe von ']
+                ]),
             },
-        ]
+            {
+                content: new Map([
+                    ['de', 'Olaf Scholz']
+                ]),
+                className: 'text-primary'
+            },
+            {
+                content: new Map([
+                    ['de', ' beschreiben? Seine Angriffe...']
+                ]),
+            }
+        ],
+        scaleOptions: [
+            {
+                key: '-2',
+            }, {
+                key: '-1',
+            }, {
+                key: '0',
+            }, {
+                key: '1',
+            }, {
+                key: '2',
+            },
+        ],
+        rows: [
+            {
+                key: 'OS1',
+                startLabel: new Map([
+                    ['de', '...zielten auf die Politik des Gegners']
+                ]),
+                endLabel: new Map([
+                    ['de', '...zielten auf die Persönlichkeit des Gegners']
+                ]),
+            },
+            {
+                key: 'OS2',
+                startLabel: new Map([
+                    ['de', '...waren respektvoll']
+                ]),
+                endLabel: new Map([
+                    ['de', '...waren respektlos']
+                ]),
+            },
+            {
+                key: 'OS3',
+                startLabel: new Map([
+                    ['de', '...haben wichtige Punkte angesprochen']
+                ]),
+                endLabel: new Map([
+                    ['de', '...haben unwichtige Punkte angesprochen']
+                ]),
+            }
+        ],
+        defaultMode: 'vertical',
+        responsiveModes: {
+            sm: 'withLabelRow',
+            lg: 'table',
+        },
+        withLabelRowModeProps: {
+            maxLabelWidth: '120px',
+
+        },
+        verticalModeProps: {},
+        tableModeProps: {},
+        titleClassName: 'sticky-top',
     });
 }
 
+export const getATTACKAB = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'RATTACKAB';
+    return SurveyItemGenerators.responsiveBipolarLikertArray({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: [
+            {
+                content: new Map([
+                    ['de', 'Und wie würden Sie die Angriffe von ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['de', 'Annalena Baerbock']
+                ]),
+                className: 'text-primary'
+            },
+            {
+                content: new Map([
+                    ['de', ' beschreiben? Ihre Angriffe...']
+                ]),
+            }
+        ],
+        scaleOptions: [
+            {
+                key: '-2',
+            }, {
+                key: '-1',
+            }, {
+                key: '0',
+            }, {
+                key: '1',
+            }, {
+                key: '2',
+            },
+        ],
+        rows: [
+            {
+                key: 'AB1',
+                startLabel: new Map([
+                    ['de', '...zielten auf die Politik des Gegners']
+                ]),
+                endLabel: new Map([
+                    ['de', '...zielten auf die Persönlichkeit des Gegners']
+                ]),
+            },
+            {
+                key: 'AB2',
+                startLabel: new Map([
+                    ['de', '...waren respektvoll']
+                ]),
+                endLabel: new Map([
+                    ['de', '...waren respektlos']
+                ]),
+            },
+            {
+                key: 'AB3',
+                startLabel: new Map([
+                    ['de', '...haben wichtige Punkte angesprochen']
+                ]),
+                endLabel: new Map([
+                    ['de', '...haben unwichtige Punkte angesprochen']
+                ]),
+            }
+        ],
+        defaultMode: 'vertical',
+        responsiveModes: {
+            sm: 'withLabelRow',
+            lg: 'table',
+        },
+        withLabelRowModeProps: {
+            maxLabelWidth: '120px',
+
+        },
+        verticalModeProps: {},
+        tableModeProps: {},
+        titleClassName: 'sticky-top',
+    });
+}
 
 export const getANKOMM = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'ANKOMM';
