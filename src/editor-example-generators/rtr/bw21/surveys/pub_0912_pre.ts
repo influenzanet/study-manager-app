@@ -55,9 +55,7 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
 
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
-
-    //short form WK
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired, true));
 
 
     surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));

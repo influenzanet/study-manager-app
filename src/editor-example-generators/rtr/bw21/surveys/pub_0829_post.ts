@@ -49,15 +49,13 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
     surveyEditor.addSurveyItemToRoot(getWSTRATAB(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
-    //short form SKPART
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired, true));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
 
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
-    //short form WK
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired, true));
 
     surveyEditor.addSurveyItemToRoot(getBIASPA(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getBIASPK(surveyKey, isRequired));

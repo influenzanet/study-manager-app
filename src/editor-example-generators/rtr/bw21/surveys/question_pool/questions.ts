@@ -2414,6 +2414,15 @@ export const getANKOMMSIEG = (parentKey: string, isRequired?: boolean): SurveyIt
 
 export const getWK = (parentKey: string, isRequired?: boolean, shortForm?: boolean): SurveyItem => {
     const itemKey = 'WK';
+
+    const lastItems = !shortForm ? [
+        {
+            key: 'WK3', content: new Map([
+                ["de", "Im Wahlkampf geht es zu wenig um politische Inhalte."],
+            ])
+        },
+    ] : [];
+
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -2422,8 +2431,6 @@ export const getWK = (parentKey: string, isRequired?: boolean, shortForm?: boole
             ["de", "Wenn Sie einmal an den laufenden Wahlkampf denken, inwieweit stimmen Sie den folgenden Aussagen zu? "],
         ]),
         stackOnSmallScreen: true,
-        //TODO Peter: short Form for Pub group
-        //last row not displayed for Pub group
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -2459,12 +2466,7 @@ export const getWK = (parentKey: string, isRequired?: boolean, shortForm?: boole
                     ["de", "Im Wahlkampf stehen Personen zu sehr im Vordergrund."],
                 ])
             },
-            {
-                key: 'WK3', content: new Map([
-                    ["de", "Im Wahlkampf geht es zu wenig um politische Inhalte."],
-                ])
-
-            },
+            ...lastItems,
         ]
     });
 }
