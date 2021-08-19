@@ -382,7 +382,7 @@ export const getSKPOL = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Was halten Sie ganz allgemein von den folgenden Politikern?"],
         ]),
-        stackOnSmallScreen: true,
+        stackOnSmallScreen: false,
         scaleOptions: [
             {
                 key: '1', content: new Map([
@@ -2547,7 +2547,7 @@ export const getAGE = (parentKey: string, isRequired?: boolean): SurveyItem => {
         ]),
         contentBehindInput: true,
         componentProperties: {
-            min: 10,
+            min: 0,
             max: 120
         }
     })
