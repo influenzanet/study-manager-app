@@ -1984,95 +1984,8 @@ export const getRSTRATAB = (parentKey: string, isRequired?: boolean): SurveyItem
 
 
 
-const getQ3 = (parentKey: string) => {
-    return SurveyItemGenerators.responsiveBipolarLikertArray({
-        parentKey: parentKey,
-        itemKey: 'Q3',
-        questionText: [
-            {
-                content: new Map([
-                    ['en', 'Question type: ']
-                ]),
-            },
-            {
-                content: new Map([
-                    ['en', 'responsive single choice array']
-                ]),
-                className: 'text-primary'
-            }
-        ],
-        scaleOptions: [
-            {
-                key: '-2',
-            }, {
-                key: '-1',
-            }, {
-                key: '0',
-            }, {
-                key: '1',
-            }, {
-                key: '2',
-            },
-        ],
-        rows: [
-            {
-                key: 'row1',
-                startLabel: [
-                    {
-                        content: new Map([
-                            ['en', 'Negative First row ']
-                        ]),
-                    },
-                    {
-                        content: new Map([
-                            ['en', 'with formatting']
-                        ]),
-                        className: 'text-primary'
-                    }
-                ],
-                endLabel: [
-                    {
-                        content: new Map([
-                            ['en', 'Positive First row ']
-                        ]),
-                    },
-                    {
-                        content: new Map([
-                            ['en', 'with formatting']
-                        ]),
-                        className: 'text-primary'
-                    }
-                ]
-            },
-            {
-                key: 'row2',
-                startLabel: new Map([
-                    ['en', 'Negative Second row without']
-                ]),
-                endLabel: new Map([
-                    ['en', 'Positive Second row without']
-                ]),
-            }
-        ],
-        defaultMode: 'vertical',
-        responsiveModes: {
-            sm: 'withLabelRow',
-            lg: 'table',
-        },
-        withLabelRowModeProps: {
-            maxLabelWidth: '120px',
-
-        },
-        verticalModeProps: {},
-        tableModeProps: {},
-        titleClassName: 'sticky-top',
-        isRequired: true,
-    });
-}
-
-
 export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'RATTACKAL';
+    const itemKey = 'ATTACKAL';
     return SurveyItemGenerators.responsiveBipolarLikertArray({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -2153,7 +2066,7 @@ export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem
 }
 
 export const getATTACKOS = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'RATTACKOS';
+    const itemKey = 'ATTACKOS';
     return SurveyItemGenerators.responsiveBipolarLikertArray({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -2234,7 +2147,7 @@ export const getATTACKOS = (parentKey: string, isRequired?: boolean): SurveyItem
 }
 
 export const getATTACKAB = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'RATTACKAB';
+    const itemKey = 'ATTACKAB';
     return SurveyItemGenerators.responsiveBipolarLikertArray({
         parentKey: parentKey,
         itemKey: itemKey,
