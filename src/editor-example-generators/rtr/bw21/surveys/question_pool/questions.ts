@@ -2071,8 +2071,6 @@ const getQ3 = (parentKey: string) => {
 }
 
 
-//TODO Scale options
-//write 3 ATTACK functions here
 export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'RATTACKAL';
     return SurveyItemGenerators.responsiveBipolarLikertArray({
