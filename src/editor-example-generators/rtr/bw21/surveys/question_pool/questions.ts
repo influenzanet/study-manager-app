@@ -1,5 +1,7 @@
 import { SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
+import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
+import { responseGroupKey, singleChoiceKey } from "../../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../../editor-engine/utils/simple-survey-editor";
@@ -2478,7 +2480,6 @@ export const getPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
-        //TODO Peter: condition hier, um Frage getSTPID anzuzeigen (Kevin: Also STPID bekommt wahrscheinlich eine Condition, die von PID abhängt.)
         questionText: new Map([
             ["de", "In Deutschland neigen viele Leute längere Zeit einer bestimmten politischen Partei zu, obwohl sie auch ab und zu eine andere Partei wählen. Wie ist das bei Ihnen: Neigen Sie – ganz allgemein – einer bestimmten Partei zu? Und wenn ja, welcher?"],
         ]),
@@ -2529,7 +2530,7 @@ export const getPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
                 key: '8', role: 'option',
                 content: new Map([
                     ["de", "Nein, keiner Partei"],
-                ]),//TODO: if selected go to question getSEX (Kevin: Das ist die Bedingung, unter der STPID nicht angezeigt wird. PID, STPID und SEX werden immer "zusammen" angezeigt.)
+                ]),
             },
         ],
     });
@@ -2537,12 +2538,14 @@ export const getPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
 
 
 
-export const getSTPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
+export const getSTPID = (parentKey: string, PIDkey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'STPID';
+    const condition = CommonExpressions.singleChoiceOnlyOtherKeysSelected(PIDkey, '8')
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
+        condition: condition,
         questionText: new Map([
             ["de", "Wie stark oder wie schwach neigen Sie – alles zusammengenommen – dieser Partei zu?"],
         ]),

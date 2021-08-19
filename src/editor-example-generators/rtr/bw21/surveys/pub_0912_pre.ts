@@ -58,11 +58,9 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired, true));
 
 
-    surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
-
-    //TODO Peter display of STPID depends on PID answer
-    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, isRequired));
+    const PID = getPID(surveyKey, isRequired)
+    surveyEditor.addSurveyItemToRoot(PID);
+    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, PID.key, isRequired));
     surveyEditor.addSurveyItemToRoot(getSEX(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getEDUC(surveyKey, isRequired));
