@@ -2612,10 +2612,10 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/react@^17.0.18":
-  version "17.0.18"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.18.tgz#4109cbbd901be9582e5e39e3d77acd7b66bb7fbe"
-  integrity sha512-YTLgu7oS5zvSqq49X5Iue5oAbVGhgPc5Au29SJC4VeE17V6gASoOxVkUDy9pXFMRFxCWCD9fLeweNFizo3UzOg==
+"@types/react@^17.0.19":
+  version "17.0.19"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.19.tgz#8f2a85e8180a43b57966b237d26a29481dacc991"
+  integrity sha512-sX1HisdB1/ZESixMTGnMxH9TDe8Sk709734fEQZzCV/4lSu9kJCPbo2PbTRoZM+53Pp0P10hYVyReUueGwUi4A==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4038,10 +4038,10 @@ case-sensitive-paths-webpack-plugin@2.3.0:
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz#23ac613cc9a856e4f88ff8bb73bbb5e989825cf7"
   integrity sha512-/4YgnZS8y1UXXmC02xD5rRrBEu6T5ub+mQHLNRj0fzTRbgdBYhsNo2V5EqwgqrExjxsjtF/OpAKAMkKsxbD5XQ==
 
-case-web-ui@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/case-web-ui/-/case-web-ui-1.5.0.tgz#57ec12ba8833205f9729cc13fc93680a35b444a0"
-  integrity sha512-Zfhp4MjBryk5Uf8gFrJyxYhren0SoItYvS+Kd47LmRYZ15/FHs6i+2KRfz6YslQVeHHl/0SzGaOr2YJWuadx2g==
+case-web-ui@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/case-web-ui/-/case-web-ui-1.5.1.tgz#8580569b8f707110fe929dd19cf1044686ff758f"
+  integrity sha512-yX2JL9WPge9ITPP5lBkGNhtbPFd+AxBsweLYGNnHSK78evTjHN85sJvDsL34yAPIwISnjjEIGTh7dQPxmIHKww==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.15.3"
 
