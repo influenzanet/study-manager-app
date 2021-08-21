@@ -1,12 +1,7 @@
-import { SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
-import { responseGroupKey, singleChoiceKey } from "../../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
-import { SimpleSurveyEditor } from "../../../../../editor-engine/utils/simple-survey-editor";
-import { surveyKeys } from "../../studyRules";
-
 
 
 export const getPOLINT = (parentKey: string, isRequired?: boolean): SurveyItem => {
@@ -18,6 +13,7 @@ export const getPOLINT = (parentKey: string, isRequired?: boolean): SurveyItem =
         questionText: new Map([
             ["de", "Wie stark interessieren Sie sich im Allgemeinen für Politik? "],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -65,6 +61,7 @@ export const getWKINT = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Wie stark interessiert Sie speziell der gerade laufende Wahlkampf zur bevorstehenden Bundestagswahl?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -111,6 +108,7 @@ export const getWBT = (parentKey: string, isRequired?: boolean): SurveyItem => {
         questionText: new Map([
             ["de", "Wenn Wahlen stattfinden, geben viele Leute ihre Stimme ab. Andere kommen nicht dazu, ihre Stimme abzugeben oder nehmen aus anderen Gründen nicht an der Wahl teil. Wie ist das bei Ihnen? Werden Sie am 26. September bei der Bundestagswahl… "],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -165,6 +163,7 @@ export const getWABS = (parentKey: string, isRequired?: boolean): SurveyItem => 
         questionText: new Map([
             ["de", "Und welcher Partei werden Sie dann Ihre Zweitstimme geben? (Falls Sie bereits per Briefwahl gewählt haben: Welcher Partei haben Sie Ihre Zweitstimme gegeben?) "],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -228,6 +227,7 @@ export const getSWABS = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Wie sicher sind Sie sich dieser Wahlentscheidung?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -324,6 +324,7 @@ export const getSKPART = (parentKey: string, isRequired?: boolean, shortForm?: b
         questionText: new Map([
             ["de", "Was halten Sie ganz allgemein von den folgenden Parteien?"],
         ]),
+        titleClassName: 'sticky-top',
         /*questionSubText: new Map([
             ["de", "Bitte beschreiben Sie dies mit Hilfe einer Skala von -3 bis +3. -3 bedeutet, dass Sie überhaupt nichts von der Partei halten, \n\n+3 bedeutet, dass Sie sehr viel von der Partei halten. \n\nMit den Werten dazwischen können Sie Ihre Meinung abstufen."],
         ]),*/
@@ -335,7 +336,6 @@ export const getSKPART = (parentKey: string, isRequired?: boolean, shortForm?: b
                 className: 'border-bottom border-1 pb-2 mb-1'
             })
         ],
-        titleClassName: 'sticky-top',
         stackOnSmallScreen: false,
         scaleOptions: [
             {
@@ -382,6 +382,7 @@ export const getSKPOL = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Was halten Sie ganz allgemein von den folgenden Politikern?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: false,
         scaleOptions: [
             {
@@ -534,6 +535,7 @@ export const getKPROB1 = (parentKey: string, isRequired?: boolean): SurveyItem =
         questionText: new Map([
             ["de", "Und welche Partei kann dieses Problem am ehesten lösen? "],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -691,6 +693,7 @@ export const getKPROB2 = (parentKey: string, isRequired?: boolean): SurveyItem =
         questionText: new Map([
             ["de", "Und welche Partei kann dieses Problem am ehesten lösen? "],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -1063,6 +1066,7 @@ export const getKANZLER = (parentKey: string, isRequired?: boolean): SurveyItem 
         questionText: new Map([
             ["de", "Wen hätten Sie nach der Bundestagswahl lieber als Bundeskanzlerin oder Bundeskanzler? "],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -1102,6 +1106,7 @@ export const getEPERF = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Einmal ganz allgemein gesprochen, wie werden Ihrer Meinung nach die Kandidaten in der heutigen TV-Debatte abschneiden?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -1158,6 +1163,7 @@ export const getWPERF = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Einmal ganz allgemein gesprochen, wie haben Ihrer Meinung nach die Kandidaten in der TV-Debatte abgeschnitten?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -2295,6 +2301,7 @@ export const getANKOMMSIEG = (parentKey: string, isRequired?: boolean): SurveyIt
         questionText: new Map([
             ["de", "Welcher Kandidat wurde in diesen Berichten oder Gesprächen – alles in allem – als Debattensieger gesehen?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2343,6 +2350,7 @@ export const getWK = (parentKey: string, isRequired?: boolean, shortForm?: boole
         questionText: new Map([
             ["de", "Wenn Sie einmal an den laufenden Wahlkampf denken, inwieweit stimmen Sie den folgenden Aussagen zu? "],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -2394,6 +2402,7 @@ export const getPID = (parentKey: string, isRequired?: boolean): SurveyItem => {
         questionText: new Map([
             ["de", "In Deutschland neigen viele Leute längere Zeit einer bestimmten politischen Partei zu, obwohl sie auch ab und zu eine andere Partei wählen. Wie ist das bei Ihnen: Neigen Sie – ganz allgemein – einer bestimmten Partei zu? Und wenn ja, welcher?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2460,6 +2469,7 @@ export const getSTPID = (parentKey: string, PIDkey: string, isRequired?: boolean
         questionText: new Map([
             ["de", "Wie stark oder wie schwach neigen Sie – alles zusammengenommen – dieser Partei zu?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -2507,6 +2517,7 @@ export const getSEX = (parentKey: string, isRequired?: boolean): SurveyItem => {
         questionText: new Map([
             ["de", "Ihr Geschlecht:"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2541,6 +2552,7 @@ export const getAGE = (parentKey: string, isRequired?: boolean): SurveyItem => {
         questionText: new Map([
             ["de", "Ihr Alter:"],
         ]),
+        titleClassName: 'sticky-top',
         inputMaxWidth: '80px',
         content: new Map([
             ['de', 'Jahre']
@@ -2563,6 +2575,7 @@ export const getEDUC = (parentKey: string, isRequired?: boolean): SurveyItem => 
         questionText: new Map([
             ["de", "Was ist Ihr höchster allgemeinbildender Schulabschluss?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2614,6 +2627,7 @@ export const getWBR = (parentKey: string, isRequired?: boolean): SurveyItem => {
         questionText: new Map([
             ["de", "Sind Sie bei der kommenden Bundestagswahl wahlberechtigt?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2641,6 +2655,7 @@ export const getPERS1 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Inwieweit stimmen Sie den folgenden Aussagen zu?"],
         ]),
+        titleClassName: 'sticky-top',
         //topDisplayCompoments: [{
         //  role: 'text',
         // style: [{ key: 'className', value: 'mb-2' }]
@@ -2725,6 +2740,7 @@ export const getPERS2 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Inwieweit stimmen Sie diesen Aussagen zu?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -2802,6 +2818,7 @@ export const getPERS3 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Inwieweit stimmen Sie den folgenden Aussagen zu?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -2878,6 +2895,7 @@ export const getPERS4 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Inwieweit stimmen Sie diesen Aussagen zu?"],
         ]),
+        titleClassName: 'sticky-top',
         stackOnSmallScreen: true,
         scaleOptions: [
             {
@@ -2954,6 +2972,7 @@ export const getAUFM1 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "An welchen Kandidaten ging die erste Frage?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -2993,6 +3012,7 @@ export const getAUFM2 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Und welcher Kandidat hat am Ende der TV-Debatte mehr Redezeit gehabt?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -3706,6 +3726,7 @@ export const getSYNC1 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionText: new Map([
             ["de", "Wann haben Sie die Echtzeitmessung gestartet?"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
@@ -3755,6 +3776,7 @@ export const getSYNC2 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         questionSubText: new Map([
             ["de", "z.B. durch Pausieren oder technische Probleme"],
         ]),
+        titleClassName: 'sticky-top',
         responseOptions: [
             {
                 key: '1', role: 'option',
