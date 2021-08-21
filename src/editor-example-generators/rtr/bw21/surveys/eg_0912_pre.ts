@@ -37,41 +37,34 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
         })],
     }));
 
+    const isRequired = true;
 
     // add questions
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getRPERF(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getRSTRATAL(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getRSTRATOS(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getRSTRATAB(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getANKOMM(surveyKey, true));
-    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey, true));
-
-
-
-
-
-
-    //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
-    //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
+    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRSTRATAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRSTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRSTRATAB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getANKOMM(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey, isRequired));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

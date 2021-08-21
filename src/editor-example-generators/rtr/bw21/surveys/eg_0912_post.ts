@@ -22,7 +22,7 @@ export const generate_EG0912POST = (): Survey | undefined => {
         ])
     })
 
-    const isRequired = false;
+    const isRequired = true;
 
     surveyEditor.editor.setMaxItemPerPage({ small: 1, large: 1 });
 

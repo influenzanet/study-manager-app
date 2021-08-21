@@ -67,9 +67,6 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
     surveyEditor.addSurveyItemToRoot(getWBR(surveyKey, isRequired));
 
 
-    //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
-    //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
-
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
         ['de', 'Vielen Dank für Ihre Angaben! Bitte schließen Sie nun die Umfrage ab.']

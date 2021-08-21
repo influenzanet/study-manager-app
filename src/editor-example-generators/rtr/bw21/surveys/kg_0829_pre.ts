@@ -39,7 +39,7 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
         })],
     }));
 
-    const isRequired = false;
+    const isRequired = true;
 
     // add questions
     surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
@@ -70,11 +70,6 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey, isRequired));
-
-
-
-    //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
-    //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

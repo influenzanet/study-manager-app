@@ -22,7 +22,7 @@ export const generate_KG0829POST = (): Survey | undefined => {
         ])
     })
 
-    const isRequired = false;
+    const isRequired = true;
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.display({
         parentKey: surveyKey,
