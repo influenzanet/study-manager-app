@@ -154,11 +154,13 @@ export const getWBT = (parentKey: string, isRequired?: boolean): SurveyItem => {
 }
 
 
-export const getWABS = (parentKey: string, isRequired?: boolean): SurveyItem => {
+export const getWABS = (parentKey: string, wbtKey: string, isRequired?: boolean): SurveyItem => {
+    const condition = CommonExpressions.singleChoiceOnlyOtherKeysSelected(wbtKey, '5');
     const itemKey = 'WABS';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["de", "Und welcher Partei werden Sie dann Ihre Zweitstimme geben? (Falls Sie bereits per Briefwahl gewählt haben: Welcher Partei haben Sie Ihre Zweitstimme gegeben?) "],
@@ -218,12 +220,14 @@ export const getWABS = (parentKey: string, isRequired?: boolean): SurveyItem => 
 }
 
 
-export const getSWABS = (parentKey: string, isRequired?: boolean): SurveyItem => {
+export const getSWABS = (parentKey: string, wbtKey: string, isRequired?: boolean): SurveyItem => {
+    const condition = CommonExpressions.singleChoiceOnlyOtherKeysSelected(wbtKey, '5');
     const itemKey = 'SWABS';
     return SurveyItemGenerators.simpleLikertGroup({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
+        condition: condition,
         questionText: new Map([
             ["de", "Wie sicher sind Sie sich dieser Wahlentscheidung?"],
         ]),

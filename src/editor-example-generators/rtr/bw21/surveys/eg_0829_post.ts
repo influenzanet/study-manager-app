@@ -32,6 +32,8 @@ export const generate_EG0829POST = (): Survey | undefined => {
         content: [ComponentGenerators.markdown({
             content: new Map([
                 ['de', `
+Zunächst möchten wir Ihnen einige Fragen zur Bundestagswahl, den Parteien und Kandidaten stellen.
+
 Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
 
 Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
@@ -53,9 +55,10 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     surveyEditor.addSurveyItemToRoot(getATTACKAB(surveyKey, isRequired));
 
     surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+    const WBT = getWBT(surveyKey, isRequired);
+    surveyEditor.addSurveyItemToRoot(WBT);
+    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, WBT.key, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, WBT.key, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));

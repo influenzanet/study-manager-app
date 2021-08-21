@@ -1,7 +1,7 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings, generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
+import { generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
 import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
@@ -31,6 +31,8 @@ export const generate_EG0829PRE = (): Survey | undefined => {
         content: [ComponentGenerators.markdown({
             content: new Map([
                 ['de', `
+Zunächst möchten wir Ihnen einige Fragen zur Bundestagswahl, den Parteien und Kandidaten stellen.
+
 Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
 
 Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
@@ -44,9 +46,11 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     // add questions
     surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWBT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, isRequired));
+
+    const WBT = getWBT(surveyKey, isRequired);
+    surveyEditor.addSurveyItemToRoot(WBT);
+    surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, WBT.key, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, WBT.key, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
