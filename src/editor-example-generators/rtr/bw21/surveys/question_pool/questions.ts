@@ -2050,9 +2050,9 @@ export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem
                 ]),
             }
         ],
-        defaultMode: 'vertical',
+        defaultMode: 'withLabelRow',
         responsiveModes: {
-            sm: 'withLabelRow',
+            // sm: 'withLabelRow',
             lg: 'table',
         },
         withLabelRowModeProps: {
@@ -2131,9 +2131,9 @@ export const getATTACKOS = (parentKey: string, isRequired?: boolean): SurveyItem
                 ]),
             }
         ],
-        defaultMode: 'vertical',
+        defaultMode: 'withLabelRow',
         responsiveModes: {
-            sm: 'withLabelRow',
+            // sm: 'withLabelRow',
             lg: 'table',
         },
         withLabelRowModeProps: {
@@ -2212,9 +2212,9 @@ export const getATTACKAB = (parentKey: string, isRequired?: boolean): SurveyItem
                 ]),
             }
         ],
-        defaultMode: 'vertical',
+        defaultMode: 'withLabelRow',
         responsiveModes: {
-            sm: 'withLabelRow',
+            // sm: 'withLabelRow',
             lg: 'table',
         },
         withLabelRowModeProps: {
