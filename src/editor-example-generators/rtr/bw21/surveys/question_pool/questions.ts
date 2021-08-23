@@ -2003,7 +2003,18 @@ export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem
         questionText: [
             {
                 content: new Map([
-                    ['de', 'Wenn Sie jetzt nur einmal an die Kandidaten und ihre Angriffe auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von ']
+                    ['de', 'Wenn Sie jetzt nur einmal an die Kandidaten und ihre ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['de', 'Angriffe']
+                ]),
+                className: 'text-primary'
+            },
+            {
+                content: new Map([
+                    ['de','  auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von ']
                 ]),
             },
             {
@@ -2084,7 +2095,18 @@ export const getATTACKOS = (parentKey: string, isRequired?: boolean): SurveyItem
         questionText: [
             {
                 content: new Map([
-                    ['de', 'Und wie würden Sie die Angriffe von ']
+                    ['de', 'Und wie würden Sie die ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['de', 'Angriffe']
+                ]),
+                className: 'text-primary'
+            },
+            {
+                content: new Map([
+                    ['de', ' von ']
                 ]),
             },
             {
@@ -2165,7 +2187,18 @@ export const getATTACKAB = (parentKey: string, isRequired?: boolean): SurveyItem
         questionText: [
             {
                 content: new Map([
-                    ['de', 'Und wie würden Sie die Angriffe von ']
+                    ['de', 'Und wie würden Sie die ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['de', 'Angriffe']
+                ]),
+                className: 'text-primary'
+            },
+            {
+                content: new Map([
+                    ['de',' von ']
                 ]),
             },
             {
@@ -3057,7 +3090,18 @@ export const getJSTRATPA = (parentKey: string, isRequired?: boolean): SurveyItem
         questionText: [
             {
                 content: new Map([
-                    ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                    ["de", "Nun geht es um die "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Moderatoren"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
                 ]),
             },
             {
@@ -3228,7 +3272,18 @@ export const getJSTRATMI = (parentKey: string, isRequired?: boolean): SurveyItem
         questionText: [
             {
                 content: new Map([
-                    ["de", "Nun geht es um die Moderatoren der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
+                    ["de", "Nun geht es um die "],
+                ]),
+            },
+            {
+                content: new Map([
+                    ["de", "Moderatoren"],
+                ]),
+                className: "text-primary"
+            },
+            {
+                content: new Map([
+                    ["de", " der TV-Debatte. Geben Sie bitte an, in welchem Maße die verschiedenen Aussagen Ihrer Meinung nach auf "],
                 ]),
             },
             {
@@ -3807,7 +3862,7 @@ export const getSYNC3 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Haben Sie die Bewertung der Kandidaten für mehr als 30 Sekunden unterbrochen?"],
+            ["de", "Haben Sie die Echtzeitbewertung der Kandidaten für mehr als 30 Sekunden unterbrochen?"],
         ]),
         responseOptions: [
             {
