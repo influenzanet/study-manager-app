@@ -67,8 +67,10 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     surveyEditor.addSurveyItemToRoot(getRSTRATAL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getRSTRATOS(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getRSTRATAB(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getANKOMM(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey, isRequired));
+
+    const ANKOMM = getANKOMM(surveyKey, isRequired);
+    surveyEditor.addSurveyItemToRoot(ANKOMM);
+    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey, ANKOMM.key, isRequired));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

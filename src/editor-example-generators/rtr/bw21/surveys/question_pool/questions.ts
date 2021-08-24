@@ -2014,7 +2014,7 @@ export const getATTACKAL = (parentKey: string, isRequired?: boolean): SurveyItem
             },
             {
                 content: new Map([
-                    ['de','  auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von ']
+                    ['de', '  auf den politischen Gegner in der heutigen TV-Debatte denken. Wie würden Sie die Angriffe von ']
                 ]),
             },
             {
@@ -2198,7 +2198,7 @@ export const getATTACKAB = (parentKey: string, isRequired?: boolean): SurveyItem
             },
             {
                 content: new Map([
-                    ['de',' von ']
+                    ['de', ' von ']
                 ]),
             },
             {
@@ -2304,36 +2304,42 @@ export const getANKOMM = (parentKey: string, isRequired?: boolean): SurveyItem =
                 key: '1', role: 'option',
                 content: new Map([
                     ["de", "Ja, Berichte in den Medien (inkl. Online-Auftritte)"],
-                ])
+                ]),
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '4')
             },
             {
                 key: '2', role: 'option',
                 content: new Map([
                     ["de", "Ja, Beiträge im Internet oder in den sozialen Medien (ausgenommen Online-Auftritte von Medien)"],
                 ]),
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '4')
             },
             {
                 key: '3', role: 'option',
                 content: new Map([
                     ["de", "Ja, Gespräche mit Dritten"],
                 ]),
+                disabled: CommonExpressions.multipleChoiceOptionsSelected([parentKey, itemKey].join('.'), '4')
             },
             {
                 key: '4', role: 'option',
                 content: new Map([
                     ["de", "Nein"],
                 ]),
+                disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '4')
             },
         ],
     });
 }
 
 
-export const getANKOMMSIEG = (parentKey: string, isRequired?: boolean): SurveyItem => {
+export const getANKOMMSIEG = (parentKey: string, ANKOMMKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'ANKOMMSIEG';
+    const condition = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(ANKOMMKey, '4');
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["de", "Welcher Kandidat wurde in diesen Berichten oder Gesprächen – alles in allem – als Debattensieger gesehen?"],
