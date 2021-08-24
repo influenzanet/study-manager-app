@@ -1,6 +1,7 @@
 import getBelIntake from './belgium/inf-intake';
 import getItalyIntake from './italy/inf-intake';
 import getItalyWeekly from './italy/inf-weekly';
+import getItalyVaccination from './italy/inf-vaccination';
 import getBelWeekly from './belgium/inf-weekly';
 import getBelVaccination from './belgium/inf-vaccination';
 import getExampleIntake from './nl/infectieradar/inf-intake';
@@ -71,6 +72,7 @@ const surveys = [
         surveys: [
             { name: "intake", survey: getItalyIntake() },
             { name: "weekly", survey: getItalyWeekly() },
+            { name: "vaccination", survey: getItalyVaccination() },
         ],
         languageCodes: [
             'en',
