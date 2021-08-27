@@ -3604,7 +3604,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you have pets at home?"],
-            ["it", "Do you have pets at home?"],
+            ["it", "Possiedi animali domestici?"],
             ["nl", "Heb je huisdieren?"],
             ["nl-be", "Heeft u huisdieren?"],
             ["fr", "Avez-vous un animal domestique ?"],
