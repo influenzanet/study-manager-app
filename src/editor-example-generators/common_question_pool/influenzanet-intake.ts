@@ -379,21 +379,21 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
         });
     }
-    /* editor.addValidation({
+    editor.addValidation({
         key: 'r2',
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-             expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
         )
-    }); */
+    });
 
-    /* editor.addDisplayComponent(
+    editor.addDisplayComponent(
         {
             role: 'error',
             content: generateLocStrings(new Map([
-                ["en", "Please enter the four digits of your postal code"],
+                ["en", "Please enter the digits of your postal code"],
                 ["it", "Per favore, inserisci il tuo codice postale"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
                 ["nl-be", "Voer de vier cijfers van je postcode in"],
@@ -402,7 +402,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
-    ); */
+    );
     return editor.getItem();
 }
 
@@ -676,7 +676,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
         )
     });
@@ -688,7 +688,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
                 ["nl-be", "Voer de vier cijfers van de postcode in"],
                 ["fr-be", "4 chiffres"],
                 ["de-be", "4 Ziffern"],
-                ["en", "Please enter the four digits of your postal code"],
+                ["en", "Please enter the digits of your postal code"],
                 ["it", "Per favore, inserisci il tuo codice postale"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
@@ -922,8 +922,8 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Non possiedo alcuna qualifica formale"],
-                ["it", "I have no formal qualification"],
+                ["en", "I have no formal qualification"],
+                ["it", "Non possiedo alcuna qualifica formale"],
                 ["nl", "Ik heb geen officiële diploma's of alleen lager onderwijs"],
                 ["fr", "Aucune qualification"],
             ])
