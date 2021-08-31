@@ -16,19 +16,19 @@ const intake = (): Survey | undefined => {
     survey.setSurveyName(generateLocStrings(
         new Map([
             ["en", "Intake questionnaire"],
-            ["it", "Intake questionnaire"],
+            ["it", "Questionario di profilo"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["en", "The purpose of the background questionnaire is to find out a little more about each user."],
-            ["it", "The purpose of the background questionnaire is to find out a little more about each user."],
+            ["it", "Lo scopo di questo questionario è scoprire di più su ciascun utente."],
         ])
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
             ["en", "It takes approximately 5-15 minutes to complete this questionnaire."],
-            ["it", "It takes approximately 5-15 minutes to complete this questionnaire."],
+            ["it", "Ci vogliono circa 5-15 minuti per completare questo questionario."],
         ])
     ));
 
