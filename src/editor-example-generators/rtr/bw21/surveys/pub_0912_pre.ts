@@ -13,7 +13,7 @@ export const generate_PUB0912PRE = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["de", "0929 Pre"],
+            ["de", "0912 Pre"],
         ]),
         description: new Map([
             ["de", "not defined"],
