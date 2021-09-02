@@ -20,7 +20,7 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Four weeks ago you received a questionnaire about COVID-19 vaccination.  This new questionnaire is to monitor any further changes to your vaccination status. Select the option that applies to you."],
-            ["it", "Four weeks ago you received a questionnaire about COVID-19 vaccination.  This new questionnaire is to monitor any further changes to your vaccination status. Select the option that applies to you."],
+            ["it", "Quattro settimane fa ti abbiamo invitato a compilare un questionario sulla vaccinazione per il COVID-19. Questo nuovo questionario ti viene proposto per monitorare se ci sono stati cambiamenti nella tua situazione vaccinale. Seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Vier weken geleden vulde u een vragenlijst in over uw COVID-19 vaccinatie. Met deze nieuwe vragenlijst willen we veranderingen hierin verder opvolgen. Duid de optie aan die voor u van toepassing is.   "],
             ["fr-be", "Il y a quatre semaines, vous avez reçu un questionnaire relatif à la vaccination contre le coronavirus. Ce nouveau questionnaire a pour but de contrôler tout changement ultérieur de votre statut vaccinal. Sélectionnez l'option qui vous concerne."],
             ["de-be", "Vor vier Wochen erhielten Sie einen Fragebogen zur COVID-19-Impfung.  Dieser neue Fragebogen dient zur Überwachung eventueller weiterer Änderungen an Ihrem Impfstatus. Bitte wählen Sie die Option, die auf Sie zutrifft."],
@@ -38,7 +38,7 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
             key: '1', role: 'option',
             content: new Map([
                 ["en", "In the meantime I received a new vaccine dose, or a new invitation to be vaccinated."],
-                ["it", "In the meantime I received a new vaccine dose, or a new invitation to be vaccinated."],
+                ["it", "Nel frattempo ho ricevuto una nuova dose di vaccino o un nuovo invito a essere vaccinato."],
                 ["nl-be", "In de tussentijd kreeg ik een nieuwe dosis van het vaccin of kreeg ik een nieuwe uitnodiging voor een vaccin. "],
                 ["fr-be", "Sur ces entrefaites, j'ai reçu une nouvelle dose du vaccin ou une nouvelle invitation à me faire vacciner."],
                 ["de-be", "In der Zwischenzeit erhielt ich eine neue Impfdosis oder eine neue Einladung zur Impfung."],
@@ -48,7 +48,7 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
             key: '2', role: 'option',
             content: new Map([
                 ["en", "In the meantime nothing has changed in terms of vaccination for me."],
-                ["it", "In the meantime nothing has changed in terms of vaccination for me."],
+                ["it", "Nel frattempo, nulla è cambiato nella mia situazione vaccinale."],
                 ["nl-be", "In de tussentijd is er er niets veranderd voor mijn vaccinaties. "],
                 ["fr-be", "Sur ces entrefaites, rien n'a changé pour moi en matière de vaccination."],
                 ["de-be", "In der Zwischenzeit hat sich in Bezug auf die Impfung für mich nichts geändert."],
@@ -58,7 +58,7 @@ const vacStart = (parentKey: string, isRequired?: boolean, keyOverride?: string)
             key: '3', role: 'option',
             content: new Map([
                 ["en", "I'm not sure, and would like to take these questions to make sure my information on vaccination is up to date."],
-                ["it", "I'm not sure, and would like to take these questions to make sure my information on vaccination is up to date."],
+                ["it", "Non sono sicuro/a e vorrei rispondere di nuovo alle domande del questionario per essere certi che la mia informazione sul mio stato vaccinale sia aggiornata."],
                 ["nl-be", "Ik weet het niet meer. Ik zou graag deze vragen beantwoorden zodat mijn informatie volledig is. "],
                 ["fr-be", "Je ne suis pas certain(e), et je voudrais répondre à ces questions pour m'assurer que mes informations sur la vaccination sont à jour."],
                 ["de-be", "Ich bin mir nicht sicher und ich würde gerne diese Fragen aufgreifen, um sicher zu gehen, dass meine Informationen zur Impfung auf dem neuesten Stand sind."],
