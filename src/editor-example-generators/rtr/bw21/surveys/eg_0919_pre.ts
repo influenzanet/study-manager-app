@@ -4,16 +4,16 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
+import { getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getAGE, getSEX, getPERS1, getPERS2, getRPERF1209, getRSTRATAL1209, getRSTRATOS, getRSTRATAB, getANKOMM1209, getANKOMMSIEG } from "./question_pool/questions";
 
 
-export const generate_KG0912PRE = (): Survey | undefined => {
-    const surveyKey = surveyKeys.KG_0912_PRE;
+export const generate_EG0919PRE = (): Survey | undefined => {
+    const surveyKey = surveyKeys.EG_0919_PRE;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["de", "0912 Pre"],
+            ["de", "0919 Pre"],
         ]),
         description: new Map([
             ["de", "not defined"],
@@ -44,14 +44,15 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     const isRequired = true;
 
     // add questions
-    surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
+
     const WBT = getWBT(surveyKey, isRequired);
     surveyEditor.addSurveyItemToRoot(WBT);
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, WBT.key, isRequired));
     surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, WBT.key, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
@@ -62,20 +63,37 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getESTRATAB(surveyKey, isRequired));
 
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
 
-    const PID = getPID(surveyKey, isRequired)
-    surveyEditor.addSurveyItemToRoot(PID);
-    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, PID.key, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRPERF1209(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRSTRATAL1209(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRSTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getRSTRATAB(surveyKey, isRequired));
+
+    surveyEditor.addSurveyItemToRoot(getANKOMM1209(surveyKey, isRequired));
+
+    const ANKOMM1209 = getANKOMM1209(surveyKey, isRequired);
+    surveyEditor.addSurveyItemToRoot(ANKOMM1209);
+    surveyEditor.addSurveyItemToRoot(getANKOMMSIEG(surveyKey, ANKOMM1209.key, isRequired));
+
+
+
     surveyEditor.addSurveyItemToRoot(getSEX(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey, isRequired));
 
+
+
+    //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
+    //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

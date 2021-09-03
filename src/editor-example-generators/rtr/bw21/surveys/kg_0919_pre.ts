@@ -7,13 +7,13 @@ import { surveyKeys } from "../studyRules";
 import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
 
 
-export const generate_KG0912PRE = (): Survey | undefined => {
-    const surveyKey = surveyKeys.KG_0912_PRE;
+export const generate_KG0919PRE = (): Survey | undefined => {
+    const surveyKey = surveyKeys.KG_0919_PRE;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["de", "0912 Pre"],
+            ["de", "0919 Pre"],
         ]),
         description: new Map([
             ["de", "not defined"],

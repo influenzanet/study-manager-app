@@ -1,27 +1,28 @@
 import { Survey } from "survey-engine/lib/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getIMAGEAB, getIMAGEAL, getIMAGEOS, getKANZLER, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3, getATTACKOS, getATTACKAB, getJSTRATLZ, getJSTRATCB, getBIASLZ, getBIASCB } from "./question_pool/questions";
 
 
-export const generate_KG0912PRE = (): Survey | undefined => {
-    const surveyKey = surveyKeys.KG_0912_PRE;
+export const generate_EG0919POST = (): Survey | undefined => {
+    const surveyKey = surveyKeys.EG_0919_POST;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["de", "0912 Pre"],
+            ["de", "Vragenlijst start LongCOVID-onderzoek"],
         ]),
         description: new Map([
-            ["de", "not defined"],
+            ["de", "Dit is de eerste vragenlijst van het LongCOVID-onderzoek. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
-            ["de", "not defined"],
+            ["de", "Invullen van deze vragenlijst kost ongeveer 30 minuten van je tijd."],
         ])
     })
+
+    const isRequired = true;
 
     surveyEditor.editor.setMaxItemPerPage({ small: 1, large: 1 });
 
@@ -31,8 +32,6 @@ export const generate_KG0912PRE = (): Survey | undefined => {
         content: [ComponentGenerators.markdown({
             content: new Map([
                 ['de', `
-Zunächst möchten wir Ihnen einige Fragen zur Bundestagswahl, den Parteien und Kandidaten stellen.
-
 Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
 
 Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
@@ -41,10 +40,18 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
         })],
     }));
 
-    const isRequired = true;
 
-    // add questions
-    surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getAUFM1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getAUFM2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWSTRATAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWSTRATOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWSTRATAB(surveyKey, isRequired));
+
+    surveyEditor.addSurveyItemToRoot(getATTACKAL(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getATTACKOS(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getATTACKAB(surveyKey, isRequired));
+
     surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
     const WBT = getWBT(surveyKey, isRequired);
     surveyEditor.addSurveyItemToRoot(WBT);
@@ -55,27 +62,21 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
-
-    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
-
     surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
-
     surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
+    surveyEditor.addSurveyItemToRoot(getJSTRATLZ(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getJSTRATCB(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getBIASLZ(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getBIASCB(surveyKey, isRequired));
 
-    const PID = getPID(surveyKey, isRequired)
-    surveyEditor.addSurveyItemToRoot(PID);
-    surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, PID.key, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSEX(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey, isRequired));
-
+    surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey, isRequired));
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

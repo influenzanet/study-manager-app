@@ -4,16 +4,16 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2 } from "./question_pool/questions";
+import { getWBT, getWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getKANZLER, getEPERF, getWK, getPID, getSTPID, getAGE, getSEX, getEDUC, getWBR } from "./question_pool/questions";
 
 
-export const generate_KG0912PRE = (): Survey | undefined => {
-    const surveyKey = surveyKeys.KG_0912_PRE;
+export const generate_PUB0919PRE = (): Survey | undefined => {
+    const surveyKey = surveyKeys.PUB_0919_PRE;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["de", "0912 Pre"],
+            ["de", "0919 Pre"],
         ]),
         description: new Map([
             ["de", "not defined"],
@@ -35,46 +35,40 @@ Zunächst möchten wir Ihnen einige Fragen zur Bundestagswahl, den Parteien und 
 
 Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
 
-Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
+Wenn Sie eine Frage nicht beantworten können oder möchten, gehen Sie bitte zur nächsten Frage weiter.
+
+Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
                 `]
             ]),
         })],
     }));
 
-    const isRequired = true;
+    const isRequired = false;
 
     // add questions
-    surveyEditor.addSurveyItemToRoot(getPOLINT(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getWKINT(surveyKey, isRequired));
     const WBT = getWBT(surveyKey, isRequired);
     surveyEditor.addSurveyItemToRoot(WBT);
     surveyEditor.addSurveyItemToRoot(getWABS(surveyKey, WBT.key, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSWABS(surveyKey, WBT.key, isRequired));
-    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSKPART(surveyKey, isRequired, true));
     surveyEditor.addSurveyItemToRoot(getSKPOL(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getPROB1(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKPROB1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPROB2(surveyKey, isRequired));
+
 
     surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
 
-    surveyEditor.addSurveyItemToRoot(getKPROB2(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAL(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEOS(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getIMAGEAB(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getKANZLER(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getEPERF(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired, true));
 
-    surveyEditor.addSurveyItemToRoot(getWK(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPID(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(generatePageBreak(surveyKey));
 
     const PID = getPID(surveyKey, isRequired)
     surveyEditor.addSurveyItemToRoot(PID);
     surveyEditor.addSurveyItemToRoot(getSTPID(surveyKey, PID.key, isRequired));
     surveyEditor.addSurveyItemToRoot(getSEX(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getAGE(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS1(surveyKey, isRequired));
-    surveyEditor.addSurveyItemToRoot(getPERS2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getEDUC(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getWBR(surveyKey, isRequired));
 
 
     // Survey End
