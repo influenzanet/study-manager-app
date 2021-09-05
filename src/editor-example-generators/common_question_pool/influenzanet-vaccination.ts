@@ -780,7 +780,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "What are your reason(s) for getting a COVID-19 vaccination? Select up to 3 options that are most applicable."],
-            ["it", "What are your reason(s) for getting a COVID-19 vaccination? Select up to 3 options that are most applicable."],
+            ["it", "Quali sono i motivi per cui hai deciso di vaccinarti contro il COVID-19? Seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Wat waren voor u de hoofdredenen om u te laten vaccineren? Selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "Pour quelle(s) raison(s) souhaitez-vous vous faire vacciner contre le coronavirus ? Sélectionnez jusqu'à 3 options les plus pertinentes."],
             ["de-be", "Welche sind Ihre Gründe zum Erhalt einer Impfung gegen COVID-19? Wählen Sie bis zu 3 Optionen, die am stärksten gelten."],
@@ -800,7 +800,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -810,7 +810,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             {
                 content: new Map([
                     ["en", "We would like to know the main reasons why people get the vaccine."],
-                    ["it", "We would like to know the main reasons why people get the vaccine."],
+                    ["it", "Vogliamo conoscere le principali ragioni per cui le persone si vaccinano."],
                     ["nl-be", "We kennen graag de redenen waarom mensen zich laten vaccineren. "],
                     ["fr-be", "Nous aimerions connaître les principales raisons pour lesquelles les gens se font vacciner."],
                     ["de-be", "Wir wüssten gerne die Hauptgründe der Menschen für die Impfung."],
@@ -820,7 +820,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere a questa domanda?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -830,7 +830,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             {
                 content: new Map([
                     ["en", "Please select up the 3 options that mattered to take your decision."],
-                    ["it", "Please select up the 3 options that mattered to take your decision."],
+                    ["it", "Ti preghiamo di selezionare le opzioni che si applicano al tuo caso."],
                     ["nl-be", "Gelieve de opties aan te duiden die het meest van toepassing zijn voor u. "],
                     ["fr-be", "Veuillez sélectionner toutes les réponses qui entrent en ligne de compte pour prendre votre décision."],
                     ["de-be", "Bitte wählen Sie alle Antworten, die für Ihre Entscheidung wichtig waren."],
@@ -848,7 +848,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
         content: generateLocStrings(
             new Map([
                 ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Select up to 3 options that are most applicable"],
+                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
                 ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
@@ -859,7 +859,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '21', role: 'option',
             content: new Map([
                 ["en", "The vaccination is recommended by public health authorities."],
-                ["it", "The vaccination is recommended by public health authorities."],
+                ["it", "La vaccinazione è raccomandata dalle autorità sanitarie."],
                 ["nl-be", "Vaccinatie is aangeraden door volksgezondheidsinstellingen."],
                 ["fr-be", "La vaccination est recommandée par les autorités de santé publique."],
                 ["de-be", "Die Impfung wird von Gesundheitsämtern empfohlen."],
@@ -869,7 +869,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I belong to a group who is at risk of complications in case of COVID-19 (over 65 of age, underlying health condition, obesity, etc.)."],
-                ["it", "I belong to a group who is at risk of complications in case of COVID-19 (over 65 of age, underlying health condition, obesity, etc.)."],
+                ["it", "Appartengo a un gruppo a rischio di complicazioni nel caso di COVID-19 (più di 65 anni di età, condizione di salute croniche, obesità, etc.)."],
                 ["nl-be", "Ik behoor tot een risicogroep voor ernstige COVID-19 (ouder dan 65 jaar, onderliggende gezondheidsrisico's, obesitas, etc.)."],
                 ["fr-be", "J'appartiens à un groupe à risque de complications si je contracte le coronavirus (plus de 65 ans, maladie sous-jacente, obésité, etc.)."],
                 ["de-be", "Ich gehöre zu einer Risikogruppe für Komplikationen bei COVID-19 (über 65 Jahre alt, allgemeiner Gesundheitszustand, Übergewicht usw.)."],
@@ -879,7 +879,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '20', role: 'option',
             content: new Map([
                 ["en", "I work in close contact with people at risk of complications in case of COVID-19 (working in a nursing home, health staff…)."],
-                ["it", "I work in close contact with people at risk of complications in case of COVID-19 (working in a nursing home, health staff…)."],
+                ["it", "Lavoro a stretto contatto con persone a rischio di complicazioni nel caso di COVID-19 (casa di cura, ospedale, etc.)."],
                 ["nl-be", "Voor mijn werk heb ik nauw contact met personen die behoren tot de risicogroep voor ernstige COVID-19 (werken in woonzorgcentrum, ziekenhuis, etc.)."],
                 ["fr-be", "Je travaille en contact étroit avec des personnes à risque de développer des complications si ces personnes contractent le coronavirus (travail dans une maison de retraite, personnel médical, etc.)."],
                 ["de-be", "Ich arbeite in engem Kontakt mit Menschen mit Komplikationsrisiko bei COVID-19 (ich arbeite in einem Pflegeheim, gehöre zum Pflegepersonal usw.)."],
@@ -889,7 +889,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Vaccination decreases my risk of getting COVID-19."],
-                ["it", "Vaccination decreases my risk of getting COVID-19."],
+                ["it", "La vaccinazione diminuisce il mio rischio di ammalarmi di COVID-19."],
                 ["nl-be", "Door vaccinatie verlaag ik het risico dat ikzelf COVID-19 krijg."],
                 ["fr-be", "La vaccination diminue mon risque de contracter le coronavirus."],
                 ["de-be", "Impfung senkt mein Risiko, COVID-19 zu bekommen."],
@@ -899,7 +899,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '2', role: 'option',
             content: new Map([
                 ["en", "Vaccination decreases the risk of spreading COVID-19 to others."],
-                ["it", "Vaccination decreases the risk of spreading COVID-19 to others."],
+                ["it", "La vaccinazione diminuisce il rischio di contagiare gli altri di COVID-19."],
                 ["nl-be", "Door vaccinatie verlaag ik het risico dat andere personen COVID-19 krijgen."],
                 ["fr-be", "La vaccination diminue le risque de transmettre le coronavirus à d'autres personnes."],
                 ["de-be", "Impfung senkt das Risiko der Verbreitung von COVID-19 auf andere Menschen."],
@@ -909,7 +909,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '3', role: 'option',
             content: new Map([
                 ["en", "My doctor recommended it."],
-                ["it", "My doctor recommended it."],
+                ["it", "Mi è stato raccomandato dal mio medico."],
                 ["nl-be", "Mijn (huis)arts heeft de vaccinatie aangeraden."],
                 ["fr-be", "Mon médecin me l'a recommandé."],
                 ["de-be", "Mein Arzt empfahl es."],
@@ -919,7 +919,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '4', role: 'option',
             content: new Map([
                 ["en", "It was recommended in my workplace/school."],
-                ["it", "It was recommended in my workplace/school."],
+                ["it", "Mi è stato raccomandato sul lavoro/a scuola."],
                 ["nl-be", "Vaccinatie werd aangeraden/aangeboden door mijn werk/school."],
                 ["fr-be", "Le vaccin a été recommandé sur mon lieu de travail/dans mon établissement scolaire."],
                 ["de-be", "Es wurde an meinem Arbeitsplatz/in meiner Schule empfohlen."],
@@ -929,7 +929,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '5', role: 'option',
             content: new Map([
                 ["en", "The vaccine was readily available and vaccine administration was convenient."],
-                ["it", "The vaccine was readily available and vaccine administration was convenient."],
+                ["it", "Il vaccino era facilmente disponibile e la somministrazione conveniente."],
                 ["nl-be", "Het vaccin was gemakkelijk te verkrijgen en het toedienen gaat vlot."],
                 ["fr-be", "Le vaccin était facilement disponible et l'administration du vaccin était pratique."],
                 ["de-be", "Der Impfstoff war leicht verfügbar und das Verabreichen war einfach."],
@@ -939,7 +939,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '6', role: 'option',
             content: new Map([
                 ["en", "The vaccine was free (no cost)."],
-                ["it", "The vaccine was free (no cost)."],
+                ["it", "Il vaccino era gratis."],
                 ["nl-be", "Het vaccin was gratis."],
                 ["fr-be", "Le vaccin était gratuit (aucun coût)."],
                 ["de-be", "Der Impfstoff war kostenlos (gratis)."],
@@ -949,7 +949,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: '7', role: 'option',
             content: new Map([
                 ["en", "I don’t want to miss work/school."],
-                ["it", "I don’t want to miss work/school."],
+                ["it", "Non voglio essere assente da scuola/perdere giorni di lavoro."],
                 ["nl-be", "Ik wil geen werk/school missen."],
                 ["fr-be", "Je ne veux pas manquer le travail/l'école."],
                 ["de-be", "Ich möchte nicht die Arbeit / den Unterricht verpassen."],
@@ -959,7 +959,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: 'G8', role: 'option',
             content: new Map([
                 ["en", "I always accept vaccination when it is offered to me."],
-                ["it", "I always accept vaccination when it is offered to me."],
+                ["it", "Accetto sempre di essere vaccinato se mi viene offerto."],
                 ["nl-be", "Ik haal altijd een vaccin wanneer het me wordt aangeboden"],
                 ["fr-be", "J'accepte toujours la vaccination lorsqu'elle m'est proposée."],
                 ["de-be", "Ich akzeptiere Impfung immer, wenn sie mir angeboten wird."],
@@ -969,7 +969,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: 'GCS3', role: 'option',
             content: new Map([
                 ["en", "To play my role in society and enable the measures to be relaxed for the economy and people's general wellbeing."],
-                ["it", "To play my role in society and enable the measures to be relaxed for the economy and people's general wellbeing."],
+                ["it", "Per svolgere il mio ruolo nella società e contribuire alla possibilità di rilassare le misure restrittive, per il bene dell'economia e delle altre persone in generale."],
                 ["nl-be", "Om mijn rol te spelen in de maatschappij en versoepelingen mogelijk te maken voor de economie en het algemeen welzijn."],
                 ["fr-be", "Pour jouer mon rôle dans la société et permettre l'assouplissement des mesures pour l'économie et le bien-être général de la population."],
                 ["de-be", "Meine Verantwortung für die Gesellschaft zu übernehmen und Lockerungen für die Wirtschaft und das Allgemeinwohl zu ermöglichen."],
@@ -979,7 +979,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: 'GCS4', role: 'option',
             content: new Map([
                 ["en", "To have more personal freedom again."],
-                ["it", "To have more personal freedom again."],
+                ["it", "Per avere di nuovo libertà personale."],
                 ["nl-be", "Om zelf terug meer vrijheid te krijgen."],
                 ["fr-be", "Pour récupérer ma liberté."],
                 ["de-be", "Wieder mehr persönliche Freiheit zu haben."],
@@ -989,7 +989,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: 'GCS14', role: 'option',
             content: new Map([
                 ["en", "To take the pressure off medical staff."],
-                ["it", "To take the pressure off medical staff."],
+                ["it", "Per togliere pressione dal personale medico."],
                 ["nl-be", "Om het medisch personeel te ontlasten."],
                 ["fr-be", "Pour soulager les professionnels de la santé."],
                 ["de-be", "Den Druck von dem medizinischen Personal zu nehmen."],
@@ -999,7 +999,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             key: 'GCS12', role: 'option',
             content: new Map([
                 ["en", "To be able to have an operation/procedure."],
-                ["it", "To be able to have an operation/procedure."],
+                ["it", "Per poter fare un'operazione/procedura medica."],
                 ["nl-be", "Om zelf een operatie/ingreep te kunnen ondergaan."],
                 ["fr-be", "Pour pouvoir subir une opération/intervention médicale."],
                 ["de-be", "Um sich einer Operation/einer medizinischen Eingriff zu unterziehen."],
@@ -1010,14 +1010,14 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
                 ["nl-be", "Andere"],
                 ["fr-be", "Autre"],
                 ["de-be", "Andere"],
             ]),
             description: new Map([
                 ["en", "Describe here (optional)"],
-                ["it", "Describe here (optional)"],
+                ["it", "Descrizone (Opzionale)"],
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
                 ["fr-be", "Veuillez fournir une description ici (facultatif)"],
                 ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
