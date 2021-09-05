@@ -116,7 +116,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Have you received a COVID-19 vaccine?"],
-            ["it", "Have you received a COVID-19 vaccine?"],
+            ["it", "Sei stato vaccinato per il COVID-19?"],
             ["nl-be", "Bent u reeds gevaccineerd voor COVID-19?"],
             ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus ? "],
             ["de-be", "Erhielten Sie einen COVID-19-Impfstoff? "],
@@ -129,7 +129,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -139,7 +139,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["en", "We would like to be able to work out how much protection the vaccine gives."],
-                    ["it", "We would like to be able to work out how much protection the vaccine gives."],
+                    ["it", "Vogliamo studiare l'efficacia e la protezione fornita dal vaccino."],
                     ["nl-be", "We willen onderzoeken hoeveel bescherming vaccinatie geeft."],
                     ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection offert par le vaccin."],
                     ["de-be", "Wir würden gerne untersuchen, wieviel Schutz der Impfstoff verleiht."],
@@ -149,7 +149,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere a questa domanda?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -159,7 +159,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             {
                 content: new Map([
                     ["en", "Report yes, if you received a COVID-19 vaccine (since December 2020)."],
-                    ["it", "Report yes, if you received a COVID-19 vaccine (since December 2020)."],
+                    ["it", "Rispondi sì se sei stato vaccinato per il COVID-19 (a partire da Dicembre 2020)."],
                     ["nl-be", "Antwoord ja indien u een COVID-19 vaccin heeft ontvangen (sinds december 2020). "],
                     ["fr-be", "Geben Sie 'Ja' an, wenn Sie eine Impfung mit COVID-19-Impfstoff erhielten (seit Dezember 2020)."],
                     ["de-be", "Répondez oui si vous avez reçu un vaccin contre le coronavirus (depuis décembre 2020)."],
@@ -176,7 +176,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, I received at least one COVID-19 vaccine"],
-                ["it", "Yes, I received at least one COVID-19 vaccine"],
+                ["it", "Si, sono stato vaccinato per il COVID-19"],
                 ["nl-be", "Ja, ik heb al minstens 1 dosis gekregen."],
                 ["fr-be", "Oui, j'ai reçu au moins un vaccin contre le coronavirus. "],
                 ["de-be", "Ja, ich erhielt mindestens einen COVID-19-Impfstoff"],
@@ -186,7 +186,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '01', role: 'option',
             content: new Map([
                 ["en", "No, I was invited and will receive a vaccine soon."],
-                ["it", "No, I was invited and will receive a vaccine soon."],
+                ["it", "Non ancora, mi è stato proposto e lo farò presto."],
                 ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen."],
                 ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
                 ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten."],
@@ -196,7 +196,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '02', role: 'option',
             content: new Map([
                 ["en", "No, I was invited but declined the vaccine."],
-                ["it", "No, I was invited but declined the vaccine."],
+                ["it", "No, mi è stato proposto ma ho declinato."],
                 ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd."],
                 ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
                 ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab."],
@@ -206,7 +206,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '03', role: 'option',
             content: new Map([
                 ["en", "When invited, I plan to receive a vaccine."],
-                ["it", "When invited, I plan to receive a vaccine."],
+                ["it", "No, non mi è stato ancora proposto. Non appena mi sarà proposto, lo farò."],
                 ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen."],
                 ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
                 ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen."],
@@ -216,7 +216,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '04', role: 'option',
             content: new Map([
                 ["en", "When invited, I will decline the vaccine."],
-                ["it", "When invited, I will decline the vaccine."],
+                ["it", "No, non mi è stato ancora proposto. Se mi sarà proposto, non accetterò di farlo."],
                 ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren."],
                 ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
                 ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen."],
@@ -226,7 +226,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             key: '2', role: 'option',
             content: new Map([
                 ["en", "I don't know/can't remember."],
-                ["it", "I don't know/can't remember."],
+                ["it", "Non so/non ricordo."],
                 ["nl-be", "Ik wens niet te antwoorden."],
                 ["fr-be", "Je ne sais pas/je ne me souviens pas."],
                 ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
