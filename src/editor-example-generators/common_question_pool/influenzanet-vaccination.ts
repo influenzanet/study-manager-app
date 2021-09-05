@@ -1310,7 +1310,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
             role: 'error',
             content: generateLocStrings(new Map([
                 ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Select up to 3 options that are most applicable"],
+                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
                 ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
@@ -1338,7 +1338,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Did you experience any side effects of this vaccination? If yes, select up to 3 options that are most applicable."],
-            ["it", "Did you experience any side effects of this vaccination? If yes, select up to 3 options that are most applicable."],
+            ["it", "Hai avuto alcun effetto collaterale dopo la vaccinazione? Se si, seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Heeft u ernstige nevenwerkingen ondervonden van deze vaccinatie? Indien ja, selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "Avez-vous ressenti des effets secondaires de cette vaccination ? Si oui, sélectionnez jusqu'à 3 options les plus pertinentes."],
             ["de-be", "Gab es Nebenwirkungen bei dieser Impfung? Wenn ja, wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
@@ -1358,7 +1358,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -1368,7 +1368,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             {
                 content: new Map([
                     ["en", "We want to investigate what are the side effects that people experience from COVID-19 vaccination."],
-                    ["it", "We want to investigate what are the side effects that people experience from COVID-19 vaccination."],
+                    ["it", "Vogliamo studiare i possibili effetti collaterali del vaccino per il COVID-19."],
                     ["nl-be", "We willen onderzoeken welke neveneffecten mensen ervaren na een COVID-19 vaccinatie. "],
                     ["fr-be", "Nous souhaitons connaître les effets secondaires éventuels de la vaccination contre le coronavirus."],
                     ["de-be", "Wir möchten die Nebenwirkungen untersuchen, die Menschen bei der COVID-19-Impfung erfahren."],
@@ -1378,7 +1378,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere a questa domanda?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -1388,7 +1388,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             {
                 content: new Map([
                     ["en", "Please select up to 3 side effects that you experienced after COVID-19 vaccination."],
-                    ["it", "Please select up to 3 side effects that you experienced after COVID-19 vaccination."],
+                    ["it", "Ti preghiamo di selezionare le opzioni che si applicano al tuo caso."],
                     ["nl-be", "Gelieve de neveneffecten aan te duiden die het meest van toepassing zijn voor u. "],
                     ["fr-be", "Veuillez sélectionner tous les effets secondaires que vous avez ressentis après avoir reçu un vaccin contre le coronavirus."],
                     ["de-be", "Bitte wählen Sie alle Nebenwirkungen, die Sie nach der COVID-19-Impfung erfuhren."],
@@ -1406,7 +1406,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
         content: generateLocStrings(
             new Map([
                 ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Select up to 3 options that are most applicable"],
+                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
                 ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
@@ -1417,7 +1417,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             key: '0', role: 'option',
             content: new Map([
                 ["en", "None"],
-                ["it", "None"],
+                ["it", "Nessuno"],
                 ["nl-be", "Geen"],
                 ["fr-be", "Aucun effet secondaire"],
                 ["de-be", "Keine"],
@@ -1428,7 +1428,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Allergic reaction"],
-                ["it", "Allergic reaction"],
+                ["it", "Reazione allergica"],
                 ["nl-be", "Allergische reactie"],
                 ["fr-be", "Réaction allergique"],
                 ["de-be", "Allergische Reaktion"],
@@ -1439,7 +1439,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Severe allergic reaction (with medical intervention)"],
-                ["it", "Severe allergic reaction (with medical intervention)"],
+                ["it", "Reazione allergica severa (con intervento medico)"],
                 ["nl-be", "Hevige allergische reactie (met medische interventie)"],
                 ["fr-be", "Réaction allergique grave (avec intervention médicale)"],
                 ["de-be", "Schwere allergische Reaktion (mit medizinischer Intervention)"],
@@ -1450,7 +1450,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Diarrhea"],
-                ["it", "Diarrhea"],
+                ["it", "Diarrea"],
                 ["nl-be", "Diarree"],
                 ["fr-be", "Diarrhée"],
                 ["de-be", "Durchfall"],
@@ -1461,7 +1461,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Feeling of being feverish (not measured)"],
-                ["it", "Feeling of being feverish (not measured)"],
+                ["it", "Sensazione di essere febbricitante (non mi sono misurato la temperatura)"],
                 ["nl-be", "Gevoel van koorts (niet gemeten)"],
                 ["fr-be", "Sensation de fièvre (non mesurée)"],
                 ["de-be", "Gefühl von Fieber (nicht gemessen)"],
@@ -1472,7 +1472,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Fever (measured and above 38°C)"],
-                ["it", "Fever (measured and above 38°C)"],
+                ["it", "Febbre (misurata e superiore ai 38°C)"],
                 ["nl-be", "Koorts boven de 38°c (gemeten)"],
                 ["fr-be", "Fièvre (mesurée et supérieure à 38°C)"],
                 ["de-be", "Fieber (gemessen und über 38°C)"],
@@ -1483,7 +1483,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Headache"],
-                ["it", "Headache"],
+                ["it", "Mal di testa"],
                 ["nl-be", "Hoofdpijn"],
                 ["fr-be", "Maux de tête"],
                 ["de-be", "Kopfschmerzen"],
@@ -1494,7 +1494,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Shortness of breath"],
-                ["it", "Shortness of breath"],
+                ["it", "Respiro corto"],
                 ["nl-be", "Kortademigheid"],
                 ["fr-be", "L'essouflement"],
                 ["de-be", "Kurzatmigkeit"],
@@ -1505,7 +1505,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Nausea or vomiting"],
-                ["it", "Nausea or vomiting"],
+                ["it", "Nausea o vomito"],
                 ["nl-be", "Misselijkheid of braken"],
                 ["fr-be", "Des nausées ou des vommissements"],
                 ["de-be", "Übelkeit oder Erbrechen"],
@@ -1516,7 +1516,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Tiredness"],
-                ["it", "Tiredness"],
+                ["it", "Spossatezza"],
                 ["nl-be", "Moeheid"],
                 ["fr-be", "La fatigue"],
                 ["de-be", "Müdigkeit"],
@@ -1527,7 +1527,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Chest or stomach pain"],
-                ["it", "Chest or stomach pain"],
+                ["it", "Dolore al petto o allo stomaco"],
                 ["nl-be", "Pijn ter hoogte van borst of maag"],
                 ["fr-be", "Des douleurs à la hauteur de la poitrine ou de l'estomac"],
                 ["de-be", "Schmerzen in Höhe der Brust oder des Magens"],
@@ -1538,7 +1538,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Painful and/or swollen arm at the vaccination site"],
-                ["it", "Painful and/or swollen arm at the vaccination site"],
+                ["it", "Braccio gonfio e/o dolorante nella zona dell'iniezione"],
                 ["nl-be", "Pijnlijke en/of gezwollen plek op de arm die geprikt is"],
                 ["fr-be", "Un endroit douloureur et/ou enflé sur le bras qui a été piqué"],
                 ["de-be", "Schmerzhafte und/ oder geschwollene Stelle an dem Arm, an dem geimpft wurde"],
@@ -1549,7 +1549,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Muscle or joint pain"],
-                ["it", "Muscle or joint pain"],
+                ["it", "Dolore muscolare o alle articolazioni"],
                 ["nl-be", "Gewrichtspijn"],
                 ["fr-be", "Des douleurs musculaires, articulaires"],
                 ["de-be", "Muskelschmerzen, Gelenkschmerzen"],
@@ -1560,7 +1560,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Swelling or cold feeling in arm or leg"],
-                ["it", "Swelling or cold feeling in arm or leg"],
+                ["it", "Gonfiore o sensazione di freddo al braccio o alla gamba"],
                 ["nl-be", "Zwelling of koud aanvoelen van een arm of been"],
                 ["fr-be", "Un gonflement ou une sensation de froid dans un bras ou une jambe"],
                 ["de-be", "Schwellung oder kaltes Gefühl in einem Arm oder Bein"],
@@ -1572,14 +1572,14 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["en", "Other"],
-                ["it", "Other"],
+                ["it", "Altro"],
                 ["nl-be", "Andere"],
                 ["fr-be", "Autre"],
                 ["de-be", "Andere"],
             ]),
             description: new Map([
                 ["en", "Describe here (optional)"],
-                ["it", "Describe here (optional)"],
+                ["it", "Decrizione (opzionale)"],
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
                 ["fr-be", "Veuillez fournir une description ici (facultatif)"],
                 ["de-be", "Beschreiben Sie es hier (optional einzutragen)"],
@@ -1613,7 +1613,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             role: 'error',
             content: generateLocStrings(new Map([
                 ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Select up to 3 options that are most applicable"],
+                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
                 ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
