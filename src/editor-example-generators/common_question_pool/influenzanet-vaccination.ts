@@ -649,7 +649,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "When did you receive your second injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
-            ["it", "When did you receive your second injection of vaccine against COVID-19? If you do not know the exact date, provide an estimate."],
+            ["it", "Quando hai ricevuto la tua seconda dose di vaccino per il COVID-19. Se non ricordi la data esatta, fornisci una data approssimata."],
             ["nl-be", "Wanneer heeft u de tweede dosis van het vaccin ontvangen? Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie."],
             ["fr-be", "Quand avez-vous reçu votre deuxième injection du vaccin contre le coronavirus ? Si vous ne connaissez pas la date exacte, veuillez donner une estimation. "],
             ["de-be", "Wann erhielten Sie Ihre zweite Injektion von Impfstoff gegen COVID-19? Wenn Sie das genaue Datum nicht wissen, schätzen Sie es bitte. "],
@@ -670,7 +670,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
             {
                 content: new Map([
                     ["en", "Why are we asking this?"],
-                    ["it", "Why are we asking this?"],
+                    ["it", "Perché ti facciamo questa domanda?"],
                     ["nl-be", "Waarom vragen we dit?"],
                     ["fr-be", "Pourquoi posons-nous cette question ?"],
                     ["de-be", "Warum fragen wir das?"],
@@ -680,7 +680,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
             {
                 content: new Map([
                     ["en", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
-                    ["it", "Knowing when people are vaccinated tells us how well the vaccination program is being carried out."],
+                    ["it", "Vogliamo studiare come si sta svolgendo il programma di vaccinazione."],
                     ["nl-be", "Dit vertelt ons hoe de vaccinatie campgane wordt uitgevoerd. "],
                     ["fr-be", "Le fait de savoir quand les gens sont vaccinés nous permet de savoir si le programme de vaccination est bien exécuté."],
                     ["de-be", "Wenn wir wissen, wann die Menschen geimpft wurden, sagt das uns, wie gut das Impfprogramm durchgeführt wird"],
@@ -690,7 +690,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
             {
                 content: new Map([
                     ["en", "How should I answer this question?"],
-                    ["it", "How should I answer this question?"],
+                    ["it", "Come devi rispondere a questa domanda?"],
                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
                     ["fr-be", "Comment dois-je répondre à cette question ?"],
                     ["de-be", "Wie soll ich diese Frage beantworten?"],
@@ -700,7 +700,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
             {
                 content: new Map([
                     ["en", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
-                    ["it", "Please try and answer as accurately as possible. If you do not know the precise date, please give your best estimate of the month and year of vaccination."],
+                    ["it", "Ti preghiamo di rispondere nel modo più accurato possibile. Se non ricordi la data esatta, ti preghiamo di fornire una data approssimata."],
                     ["nl-be", "Gelieve zo correct mogelijk te antwoorden. Indien u de exacte datum niet meer weet, geef een zo goed mogelijke schatting van maand en jaar van de vaccinatie. "],
                     ["fr-be", "Essayez de répondre de la manière la plus précise possible. Si vous ne connaissez pas la date précise, veuillez donner votre meilleure estimation du mois et de l'année de vaccination. "],
                     ["de-be", "Bitte versuchen Sie es und antworten Sie es so genau wie möglich. Wenn Sie das genaue Datum nicht wissen, geben Sie bitte Ihre beste Schätzung des Monats und des Jahres der Impfung an. "],
@@ -730,7 +730,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
             },
             content: new Map([
                 ["en", "Choose date"],
-                ["it", "Choose date"],
+                ["it", "Scegli la data"],
                 ["nl-be", "Kies een datum"],
                 ["fr-be", "Choisissez une date."],
                 ["de-be", "Wählen Sie das Datum"],
@@ -740,7 +740,7 @@ const dateSecondVaccine = (parentKey: string, keyVac?: string, keyVaccineShots?:
             key: '0', role: 'option',
             content: new Map([
                 ["en", "I don’t know/can’t remember"],
-                ["it", "I don’t know/can’t remember"],
+                ["it", "Non so/non ricordo"],
                 ["nl-be", "Ik weet het niet (meer)"],
                 ["fr-be", "Je ne sais pas (plus)"],
                 ["de-be", "Ich weiß es nicht (mehr)"],
