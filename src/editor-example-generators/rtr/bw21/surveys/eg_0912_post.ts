@@ -3,7 +3,8 @@ import { ComponentGenerators } from "../../../../editor-engine/utils/componentGe
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getATTACKAL, getAUFM1, getAUFM2, getBIASMI, getBIASOK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATMI, getJSTRATOK, getKANZLER, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3, getATTACKOS, getATTACKAB } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getBIASMI, getBIASOK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATMI, getJSTRATOK, getKANZLER, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getATTACKOS, getATTACKAB } from "./question_pool/questions";
+import { getSYNC1, getSYNC2, getSYNC3, getSYNC4, getSYNC5, getSYNC6, getSYNC7, getSYNC8, getSYNC9 } from "./question_pool/sync_questions";
 
 
 export const generate_EG0912POST = (): Survey | undefined => {
@@ -74,9 +75,20 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 10 Minuten.
     surveyEditor.addSurveyItemToRoot(getBIASMI(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getBIASOK(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey, isRequired));
+
+
     surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC4(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC5(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC6(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC7(surveyKey, isRequired));
     surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC8(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC9(surveyKey, false));
+
+
+
 
     //surveyEditor.addSurveyItemToRoot(Q2(surveyKey));
     //surveyEditor.addSurveyItemToRoot(getQ1c(surveyKey,true));
