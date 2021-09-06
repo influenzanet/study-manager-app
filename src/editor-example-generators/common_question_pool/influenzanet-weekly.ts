@@ -5037,7 +5037,8 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '0',
             role: 'option',
@@ -5052,7 +5053,6 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
         {
             key: '1',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, maar ik heb geen vrij genomen van school of werk"],
                 ["fr-be", "Oui, mais je n'ai pas pris de congé à l'école ou au travail"],
@@ -5064,7 +5064,6 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
         {
             key: '2',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, ik heb mijn beroep niet kunnen uitoefenen of ben niet naar school kunnen gaan"],
                 ["fr-be", "Oui, je n'ai pas pu travailler ou me rendre à l'école"],
@@ -5073,7 +5072,6 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["it", "Si, sono stato/a assente da lavoro/scuola"],
             ])
         },
-
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
