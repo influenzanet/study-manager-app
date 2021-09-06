@@ -4,7 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { generatePageBreak } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getPOLINT, getWKINT, getWBT, getWABS, getSWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getPROB2, getKPROB2, getIMAGEAL, getIMAGEOS, getIMAGEAB, getKANZLER, getEPERF, getESTRATAL, getESTRATOS, getESTRATAB, getWK, getPID, getSTPID, getAGE, getSEX, getPERS1, getPERS2, getEDUC, getWBR } from "./question_pool/questions";
+import { getWBT, getWABS, getSKPART, getSKPOL, getPROB1, getKPROB1, getKANZLER, getEPERF, getWK, getPID, getSTPID, getAGE, getSEX, getEDUC, getWBR } from "./question_pool/questions";
 
 
 export const generate_PUB0912PRE = (): Survey | undefined => {

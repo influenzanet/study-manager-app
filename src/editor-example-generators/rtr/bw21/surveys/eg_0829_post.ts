@@ -3,7 +3,8 @@ import { ComponentGenerators } from "../../../../editor-engine/utils/componentGe
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
-import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getSYNC1, getSYNC2, getSYNC3, getATTACKOS, getATTACKAB } from "./question_pool/questions";
+import { getATTACKAL, getAUFM1, getAUFM2, getBIASPA, getBIASPK, getIMAGEAB, getIMAGEAL, getIMAGEOS, getJSTRATPA, getJSTRATPK, getKANZLER, getPERS3, getPERS4, getPROB1, getKPROB1, getPROB2, getKPROB2, getREZEPT, getSKPART, getSKPOL, getSWABS, getWABS, getWBT, getWK, getWKINT, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getATTACKOS, getATTACKAB } from "./question_pool/questions";
+import { getSYNC1, getSYNC2, getSYNC3 } from "./question_pool/sync_questions";
 
 
 export const generate_EG0829POST = (): Survey | undefined => {
