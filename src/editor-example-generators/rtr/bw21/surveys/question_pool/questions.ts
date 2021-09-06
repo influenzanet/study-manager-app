@@ -2675,13 +2675,13 @@ export const getWBR = (parentKey: string, isRequired?: boolean): SurveyItem => {
             {
                 key: '1', role: 'option',
                 content: new Map([
-                    ["de", "ja"],
+                    ["de", "Ja"],
                 ])
             },
             {
                 key: '2', role: 'option',
                 content: new Map([
-                    ["de", "nein"],
+                    ["de", "Nein"],
                 ]),
             },
         ],
@@ -3780,112 +3780,6 @@ export const getREZEPT = (parentKey: string, isRequired?: boolean): SurveyItem =
     });
 }
 
-
-
-export const getSYNC1 = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'SYNC1';
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["de", "Wann haben Sie die Echtzeitmessung gestartet?"],
-        ]),
-        titleClassName: 'sticky-top',
-        responseOptions: [
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["de", "Ein paar Minuten vor Beginn der Sendung"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["de", "Ein paar Sekunden vor Beginn der Sendung"],
-                ]),
-            },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["de", "Genau zum Beginn der Sendung"],
-                ])
-            },
-            {
-                key: '4', role: 'option',
-                content: new Map([
-                    ["de", "Ein paar Sekunden nach Beginn der Sendung"],
-                ]),
-            },
-            {
-                key: '5', role: 'option',
-                content: new Map([
-                    ["de", "Ein paar Minuten nach Beginn der Sendung"],
-                ]),
-            },
-        ],
-    });
-}
-
-
-
-export const getSYNC2 = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'SYNC2';
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["de", "Wurde die Wiedergabe der Debatte unterbrochen?"],
-        ]),
-        questionSubText: new Map([
-            ["de", "z.B. durch Pausieren oder technische Probleme"],
-        ]),
-        titleClassName: 'sticky-top',
-        responseOptions: [
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["de", "Ja"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["de", "Nein"],
-                ]),
-            },
-        ],
-    });
-}
-
-
-
-export const getSYNC3 = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'SYNC3';
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["de", "Haben Sie die Echtzeitbewertung der Kandidaten für mehr als 30 Sekunden unterbrochen?"],
-        ]),
-        responseOptions: [
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["de", "Ja"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["de", "Nein"],
-                ]),
-            },
-        ],
-    });
-}
 
 
 
