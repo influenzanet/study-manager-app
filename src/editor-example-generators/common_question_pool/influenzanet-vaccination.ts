@@ -183,43 +183,10 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             ])
         },
         {
-            key: '01', role: 'option',
+            key: '0', role: 'option',
             content: new Map([
-                ["en", "No, I was invited and will receive a vaccine soon."],
-                ["it", "Non ancora, mi è stato proposto e lo farò presto."],
-                ["nl-be", "Nee, ik ben uitgenodigd en zal binnekort een eerste dosis ontvangen."],
-                ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
-                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten."],
-            ])
-        },
-        {
-            key: '02', role: 'option',
-            content: new Map([
-                ["en", "No, I was invited but declined the vaccine."],
-                ["it", "No, mi è stato proposto ma ho declinato."],
-                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd."],
-                ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
-                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab."],
-            ])
-        },
-        {
-            key: '03', role: 'option',
-            content: new Map([
-                ["en", "When invited, I plan to receive a vaccine."],
-                ["it", "No, non mi è stato ancora proposto. Non appena mi sarà proposto, lo farò."],
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen."],
-                ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen."],
-            ])
-        },
-        {
-            key: '04', role: 'option',
-            content: new Map([
-                ["en", "When invited, I will decline the vaccine."],
-                ["it", "No, non mi è stato ancora proposto. Se mi sarà proposto, non accetterò di farlo."],
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren."],
-                ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen."],
+                ["en", "No, I did not receive the COVID-19 vaccine"],
+                ["it", "No, non sono stato vaccinato per il COVID-19"],
             ])
         },
         {
@@ -1078,7 +1045,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "For what reason(s) are you against COVID-19 vaccination? Select up to 3 options that are most applicable."],
+            ["en", "Why didn't you get the COVID-19 vaccine? Select up to 3 options that are most applicable."],
             ["it", "Per quale ragione non hai ricevuto la vaccinazione per il COVID-19? Seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Wat zijn voor u de hoofdredenen om u niet te laten vaccineren? Selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "Pour quelle(s) raison(s) êtes-vous contre la vaccination contre le coronavirus ? Sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -1089,7 +1056,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '02', '04')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '0')
         );
     }
 
