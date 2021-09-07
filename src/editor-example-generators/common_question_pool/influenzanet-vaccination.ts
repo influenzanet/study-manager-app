@@ -254,16 +254,6 @@ const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, 
         {
             key: '1', role: 'option',
             content: new Map([
-                ["en", "AstraZeneca"],
-                ["it", "AstraZeneca"],
-                ["nl-be", "AstraZeneca"],
-                ["fr-be", "AstraZeneca"],
-                ["de-be", "AstraZeneca"],
-            ])
-        },
-        {
-            key: '2', role: 'option',
-            content: new Map([
                 ["en", "Pfizer/BioNTech"],
                 ["it", "Pfizer/BioNTech"],
                 ["nl-be", "Pfizer/BioNTech"],
@@ -272,13 +262,23 @@ const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, 
             ])
         },
         {
-            key: '3', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 ["en", "Moderna"],
                 ["it", "Moderna"],
                 ["nl-be", "Moderna"],
                 ["fr-be", "Moderna"],
                 ["de-be", "Moderna"],
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "AstraZeneca"],
+                ["it", "AstraZeneca"],
+                ["nl-be", "AstraZeneca"],
+                ["fr-be", "AstraZeneca"],
+                ["de-be", "AstraZeneca"],
             ])
         },
         {
