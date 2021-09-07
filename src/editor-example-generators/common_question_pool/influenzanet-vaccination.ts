@@ -746,7 +746,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "What are your reason(s) for getting a COVID-19 vaccination? Select up to 3 options that are most applicable."],
+            ["en", "What are your reason(s) for getting a COVID-19 vaccination? Select the options that are most applicable."],
             ["it", "Quali sono i motivi per cui hai deciso di vaccinarti contro il COVID-19? Seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Wat waren voor u de hoofdredenen om u te laten vaccineren? Selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "Pour quelle(s) raison(s) souhaitez-vous vous faire vacciner contre le coronavirus ? Sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -796,7 +796,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
             },
             {
                 content: new Map([
-                    ["en", "Please select up the 3 options that mattered to take your decision."],
+                    ["en", "Please select the options that mattered to take your decision."],
                     ["it", "Ti preghiamo di selezionare le opzioni che si applicano al tuo caso."],
                     ["nl-be", "Gelieve de opties aan te duiden die het meest van toepassing zijn voor u. "],
                     ["fr-be", "Veuillez sélectionner toutes les réponses qui entrent en ligne de compte pour prendre votre décision."],
@@ -814,7 +814,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ["en", "Select up to 3 options that are most applicable"],
+                ["en", "Select the options that are most applicable"],
                 ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -1008,24 +1008,6 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
     const hasMoreThanThree = expWithArgs(
         'gt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey].join('.')), 3
     );
-    editor.addValidation({
-        key: 'countRule',
-        type: 'hard',
-        rule: hasLessThanFourSelections
-    });
-    editor.addDisplayComponent(
-        {
-            role: 'error',
-            content: generateLocStrings(new Map([
-                ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
-                ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
-                ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
-                ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
-            ])),
-            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'countRule'))
-        }
-    );
 
     return editor.getItem();
 }
@@ -1045,7 +1027,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Why didn't you get the COVID-19 vaccine? Select up to 3 options that are most applicable."],
+            ["en", "Why didn't you get the COVID-19 vaccine? Select the options that are most applicable."],
             ["it", "Per quale ragione non hai ricevuto la vaccinazione per il COVID-19? Seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Wat zijn voor u de hoofdredenen om u niet te laten vaccineren? Selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "Pour quelle(s) raison(s) êtes-vous contre la vaccination contre le coronavirus ? Sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -1095,7 +1077,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
             },
             {
                 content: new Map([
-                    ["en", "Please select up the 3 options that mattered to take your decision."],
+                    ["en", "Please select the options that mattered to take your decision."],
                     ["it", "Ti preghiamo di selezionare le opzioni che si applicano al tuo caso."],
                     ["nl-be", "Gelieve de opties aan te duiden die het meest van toepassing zijn voor u. "],
                     ["fr-be", "Veuillez sélectionner toutes les réponses qui entrent en ligne de compte pour prendre votre décision."],
@@ -1113,7 +1095,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ["en", "Select up to 3 options that are most applicable"],
+                ["en", "Select the options that are most applicable"],
                 ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -1295,24 +1277,6 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
     const hasMoreThanThree = expWithArgs(
         'gt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey].join('.')), 3
     );
-    editor.addValidation({
-        key: 'countRule',
-        type: 'hard',
-        rule: hasLessThanFourSelections
-    });
-    editor.addDisplayComponent(
-        {
-            role: 'error',
-            content: generateLocStrings(new Map([
-                ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
-                ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
-                ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
-                ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
-            ])),
-            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'countRule'))
-        }
-    );
 
     return editor.getItem();
 }
@@ -1332,7 +1296,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did you experience any side effects of this vaccination? If yes, select up to 3 options that are most applicable."],
+            ["en", "Did you experience any side effects of this vaccination? If yes, select the options that are most applicable."],
             ["it", "Hai avuto alcun effetto collaterale dopo la vaccinazione? Se si, seleziona le opzioni che si applicano al tuo caso."],
             ["nl-be", "Heeft u ernstige nevenwerkingen ondervonden van deze vaccinatie? Indien ja, selecteer maximaal 3 opties die het meest van toepassing zijn."],
             ["fr-be", "Avez-vous ressenti des effets secondaires de cette vaccination ? Si oui, sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -1382,7 +1346,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
             },
             {
                 content: new Map([
-                    ["en", "Please select up to 3 side effects that you experienced after COVID-19 vaccination."],
+                    ["en", "Please select the side effects that you experienced after COVID-19 vaccination."],
                     ["it", "Ti preghiamo di selezionare le opzioni che si applicano al tuo caso."],
                     ["nl-be", "Gelieve de neveneffecten aan te duiden die het meest van toepassing zijn voor u. "],
                     ["fr-be", "Veuillez sélectionner tous les effets secondaires que vous avez ressentis après avoir reçu un vaccin contre le coronavirus."],
@@ -1400,7 +1364,7 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
         style: [{ key: 'className', value: 'mb-2' }],
         content: generateLocStrings(
             new Map([
-                ["en", "Select up to 3 options that are most applicable"],
+                ["en", "Select the options that are most applicable"],
                 ["it", "Seleziona le opzioni che si applicano al tuo caso"],
                 ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
                 ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
@@ -1597,24 +1561,6 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
     );
     const hasMoreThanThree = expWithArgs(
         'gt', expWithArgs('countResponseItems', itemKey, [responseGroupKey, multipleChoiceKey].join('.')), 3
-    );
-    editor.addValidation({
-        key: 'countRule',
-        type: 'hard',
-        rule: hasLessThanFourSelections
-    });
-    editor.addDisplayComponent(
-        {
-            role: 'error',
-            content: generateLocStrings(new Map([
-                ["en", "Select up to 3 options that are most applicable"],
-                ["it", "Seleziona le opzioni che si applicano al tuo caso"],
-                ['nl-be', "Selecteer maximaal 3 opties die het meest van toepassing zijn"],
-                ["fr-be", "Sélectionnez jusqu'à 3 options les plus pertinentes."],
-                ["de-be", "Wählen Sie bis zu 3 Optionen, die am ehesten zutreffen."],
-            ])),
-            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'countRule'))
-        }
     );
 
     return editor.getItem();
