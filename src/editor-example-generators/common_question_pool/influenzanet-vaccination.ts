@@ -1232,6 +1232,34 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
             ])
         },
         {
+            key: '1', role: 'option',
+            content: new Map([
+                ["en", "I haven't been offered it."],
+                ["it", "Non mi è stato proposto."]
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["en", "I plan to get it."],
+                ["it", "Non l'ho ancora fatto ma ho in programma di farlo."]
+            ])
+        },
+        {
+            key: '3', role: 'option',
+            content: new Map([
+                ["en", "I am unsure if I'll get it."],
+                ["it", "Non sono sicuro di volerlo fare."]
+            ])
+        },
+        {
+            key: '4', role: 'option',
+            content: new Map([
+                ["en", "I haven't got it because I'd rather not to."],
+                ["it", "Preferirei non farlo."]
+            ])
+        },
+        {
             key: 'GCS11', role: 'input',
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
