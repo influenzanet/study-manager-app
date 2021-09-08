@@ -4,6 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { surveyKeys } from "../studyRules";
 import { getAUFM1, getAUFM2, getKANZLER, getPROB1, getKPROB1, getREZEPT, getSKPART, getSKPOL, getWABS, getWBT, getWK, getWPERF, getWSTRATAB, getWSTRATAL, getWSTRATOS, getBIASMI, getBIASOK } from "./question_pool/questions";
+import { getSYNC1, getSYNC4, getSYNC5, getSYNC2, getSYNC3, getSYNC6, getSYNC7 } from "./question_pool/sync_questions";
 
 
 export const generate_PUB0912POST = (): Survey | undefined => {
@@ -64,6 +65,16 @@ Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
     surveyEditor.addSurveyItemToRoot(getBIASOK(surveyKey, isRequired));
 
     surveyEditor.addSurveyItemToRoot(getREZEPT(surveyKey, isRequired));
+
+    surveyEditor.addSurveyItemToRoot(getSYNC1(surveyKey, isRequired));
+    const SYNC4 =getSYNC4(surveyKey, isRequired);
+    surveyEditor.addSurveyItemToRoot(SYNC4);
+    surveyEditor.addSurveyItemToRoot(getSYNC5(surveyKey, SYNC4.key, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC2(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC3(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC6(surveyKey, isRequired));
+    surveyEditor.addSurveyItemToRoot(getSYNC7(surveyKey, false));
+
 
 
     // Survey End
