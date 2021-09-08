@@ -159,12 +159,14 @@ export const getSYNC4 = (parentKey: string, isRequired?: boolean): SurveyItem =>
 
 
 
-export const getSYNC5 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+export const getSYNC5 = (parentKey: string, PIDkey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'SYNC5';
+    const condition = CommonExpressions.singleChoiceOptionsSelected(PIDkey, '1', '5');
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
+        condition: condition,
         questionText: new Map([
             ["de", "Über welche Empfangstechnologie haben sie die Debatte geschaut?"],
         ]),
@@ -213,7 +215,7 @@ export const getSYNC6 = (parentKey: string, isRequired?: boolean): SurveyItem =>
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Hatten Sie technische Probleme bei der Übertragung?"],
+            ["de", "Hatten Sie das Gefühl, Ihre Meinung durch die Umfragen sinnvoll mitteilen zu können?"],
         ]),
         responseOptions: [
             {
@@ -237,71 +239,13 @@ export const getSYNC6 = (parentKey: string, isRequired?: boolean): SurveyItem =>
 
 export const getSYNC7 = (parentKey: string, isRequired?: boolean): SurveyItem => {
     const itemKey = 'SYNC7';
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["de", "Haben Sie die Sendung pausiert/angehalten?"],
-        ]),
-        responseOptions: [
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["de", "Ja"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["de", "Nein"],
-                ]),
-            },
-            
-        ],
-    });
-}
-
-
-
-export const getSYNC8 = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'SYNC8';
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        isRequired: isRequired,
-        questionText: new Map([
-            ["de", "Hatten Sie das Gefühl, Ihre Meinung durch die Umfragen sinnvoll mitteilen zu können?"],
-        ]),
-        responseOptions: [
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["de", "Ja"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["de", "Nein"],
-                ]),
-            },
-            
-        ],
-    });
-}
-
-
-
-export const getSYNC9 = (parentKey: string, isRequired?: boolean): SurveyItem => {
-    const itemKey = 'SYNC9';
 
     return SurveyItemGenerators.multilineTextInput({
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Feedback:"],
+            ["de", "Feedback: Haben Sie noch Anmerkungen?"],
         ]),
         //questionSubText: new Map([
         //    ["nl", "Let op, je krijgt geen persoonlijke reactie op deze opmerkingen. "],
