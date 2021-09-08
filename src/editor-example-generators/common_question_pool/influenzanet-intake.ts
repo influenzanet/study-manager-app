@@ -918,9 +918,10 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '3', '4', '5'),
             content: new Map([
                 ["en", "I have no formal qualification"],
                 ["it", "Non possiedo alcuna qualifica formale"],
@@ -930,6 +931,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GCSE's, levels, CSEs or equivalent"],
                 ["it", "Diploma di scuola media"],
@@ -939,6 +941,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "A-levels or equivalent (e.g. Higher, NVQ Level3, BTEC)"],
                 ["it", "Diploma di scuola superiore"],
@@ -948,6 +951,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Bachelors Degree (BA, BSc) or equivalent"],
                 ["it", "Diploma di laurea triennale"],
@@ -957,6 +961,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Higher Degree or equivalent (e.g. Masters Degree, PGCE, PhD, Medical Doctorate, Advanced Professional Award)"],
                 ["it", "Diploma di laurea magistrale o titolo di studio superiore (Ph.D.)"],
@@ -966,6 +971,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "I am still in education"],
                 ["it", "Sono ancora in formazione scolastica"],
@@ -1181,7 +1187,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
     // Dropdown options - used in each cell
     const ddg: ResponseRowCell = {
-        key: 'col2', role: 'dropDownGroup',
+        key: 'col1', role: 'dropDownGroup',
         items: [
             {
                 key: '0', role: 'option', content: new Map([
@@ -1214,7 +1220,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '0', role: 'responseRow',
+            key: 'row0', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1229,7 +1235,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '1', role: 'responseRow',
+            key: 'row1', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1244,7 +1250,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2', role: 'responseRow',
+            key: 'row2', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1259,7 +1265,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '3', role: 'responseRow',
+            key: 'row3', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1274,7 +1280,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '4', role: 'responseRow',
+            key: 'row4', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
