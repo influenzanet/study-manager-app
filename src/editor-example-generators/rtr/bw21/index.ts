@@ -16,6 +16,7 @@ import { generate_KG0912PRE } from "./surveys/kg_0912_pre";
 import { generate_KG0912POST } from "./surveys/kg_0912_post";
 import { generate_KG0919PRE } from "./surveys/kg_0919_pre";
 import { generate_KG0919POST } from "./surveys/kg_0919_post";
+import { generate_ALL0926PRE } from "./surveys/all_0926_pre";
 
 
 
@@ -38,4 +39,5 @@ export const RTRSurveys = {
     PUB_0912_POST: generate_PUB0912POST,
     PUB_0919_PRE: generate_PUB0919PRE,
     PUB_0919_POST: generate_PUB0919POST,
+    ALL_0926_PRE: generate_ALL0926PRE,
 }
