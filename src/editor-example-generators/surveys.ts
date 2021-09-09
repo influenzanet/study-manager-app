@@ -85,6 +85,7 @@ const surveys = [
             { name: "PUB 0912 POST", survey: RTRSurveys.PUB_0912_POST() },
             { name: "PUB 0919 PRE", survey: RTRSurveys.PUB_0919_PRE() },
             { name: "PUB 0919 POST", survey: RTRSurveys.PUB_0919_POST() },
+            { name: "ALL 0926 PRE", survey: RTRSurveys.ALL_0926_PRE() },
         ],
         languageCodes: [
             'de',
