@@ -3761,7 +3761,7 @@ export const getREZEPT = (parentKey: string, isRequired?: boolean): SurveyItem =
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Haben Sie sich die TV-Debatte allein oder gemeinsam mit anderen Personen gesehen?"],
+            ["de", "Haben Sie sich die TV-Debatte allein oder gemeinsam mit anderen Personen angesehen?"],
         ]),
         responseOptions: [
             {
