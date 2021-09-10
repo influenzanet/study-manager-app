@@ -3761,7 +3761,7 @@ export const getREZEPT = (parentKey: string, isRequired?: boolean): SurveyItem =
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["de", "Haben Sie sich die TV-Debatte allein oder gemeinsam mit anderen Personen gesehen?"],
+            ["de", "Haben Sie sich die TV-Debatte allein oder gemeinsam mit anderen Personen angesehen?"],
         ]),
         responseOptions: [
             {
@@ -4341,5 +4341,89 @@ export const getBIASCB = (parentKey: string, isRequired?: boolean): SurveyItem =
 }
 
 
+export const getWAHL1 = (parentKey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'WAHL1';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["de", "Bei der Bundestagswahl am 26. September kamen viele Bürger nicht dazu, ihre Stimme abzugeben oder nahmen aus anderen Gründen nicht an der Wahl teil. Wie war es bei Ihnen: Haben Sie gewählt oder haben Sie nicht gewählt?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "Ja, habe gewählt"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "Nein, habe nicht gewählt"],
+                ]),
+            },
+        ],
+    });
+}
+
+
+export const getWAHL2 = (parentKey: string, PIDkey: string, isRequired?: boolean): SurveyItem => {
+    const itemKey = 'WAHL2';
+    const condition = CommonExpressions.singleChoiceOptionsSelected(PIDkey, '1');
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        condition: condition,
+        questionText: new Map([
+            ["de", "Und welcher Partei haben Sie Ihre Zweitstimme gegeben?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["de", "CDU/CSU"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["de", "SPD"],
+                ]),
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["de", "AfD"],
+                ]),
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["de", "FDP"],
+                ]),
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["de", "Die Linke"],
+                ]),
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["de", "Bündnis 90/Die Grünen"],
+                ]),
+            },
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["de", "Einer anderen Partei"],
+                ]),
+            },
+        ],
+    });
+}
 
 
