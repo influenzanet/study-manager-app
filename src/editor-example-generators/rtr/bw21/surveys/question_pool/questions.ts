@@ -156,6 +156,7 @@ export const getWBT = (parentKey: string, isRequired?: boolean): SurveyItem => {
 
 export const getWABS = (parentKey: string, wbtKey: string, isRequired?: boolean): SurveyItem => {
     const condition = CommonExpressions.singleChoiceOnlyOtherKeysSelected(wbtKey, '5');
+    const optionCondition = CommonExpressions.singleChoiceOnlyOtherKeysSelected(wbtKey, '6');
     const itemKey = 'WABS';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
@@ -211,6 +212,7 @@ export const getWABS = (parentKey: string, wbtKey: string, isRequired?: boolean)
             },
             {
                 key: '8', role: 'option',
+                displayCondition: optionCondition,
                 content: new Map([
                     ["de", "Ich habe mich noch nicht entschieden"],
                 ]),
@@ -3819,7 +3821,7 @@ export const getRPERF1209 = (parentKey: string, isRequired?: boolean): SurveyIte
                 ]),
             },
         ],
-        titleClassName: "sticky-top",    
+        titleClassName: "sticky-top",
         stackOnSmallScreen: true,
         scaleOptions: [
             {
