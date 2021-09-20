@@ -27,23 +27,6 @@ export const generate_ALL0926PRE = (): Survey | undefined => {
 
     surveyEditor.editor.setMaxItemPerPage({ small: 1, large: 1 });
 
-    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.display({
-        parentKey: surveyKey,
-        itemKey: 'intro',
-        content: [ComponentGenerators.markdown({
-            content: new Map([
-                ['de', `
-Im Fragebogen gibt es keine richtigen oder falschen Antworten, sondern nur solche, die Ihrer Perspektive besser oder schlechter entsprechen. Bitte geben Sie deshalb jeweils die Antwort, die Ihrer Ansicht oder Ihrer Situation am nächsten kommt.
-
-Wenn Sie eine Frage nicht beantworten können oder möchten, gehen Sie bitte zur nächsten Frage weiter.
-
-Die Umfrage dauert nach unseren Erfahrungen ca. 3-4 Minuten.
-                `]
-            ]),
-        })],
-    }));
-
-
     const WAHL1 = getWAHL1(surveyKey, isRequired);
     surveyEditor.addSurveyItemToRoot(WAHL1);
 
