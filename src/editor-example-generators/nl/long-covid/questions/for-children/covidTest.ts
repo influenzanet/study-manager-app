@@ -501,7 +501,7 @@ export class CovidTestGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -500 } },
+            minRelativeDate: { delta: { days: -1500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
@@ -522,7 +522,7 @@ export class CovidTestGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -500 } },
+            minRelativeDate: { delta: { days: -1500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
