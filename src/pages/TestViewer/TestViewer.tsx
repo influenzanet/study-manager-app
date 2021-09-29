@@ -157,7 +157,7 @@ const TestViewer: React.FC = () => {
                                         survey: survey,
                                     }
                                     var a = document.createElement("a");
-                                    var file = new Blob([JSON.stringify(exportData)], { type: 'json' });
+                                    var file = new Blob([JSON.stringify(exportData, undefined, 2)], { type: 'json' });
                                     a.href = URL.createObjectURL(file);
                                     const namePrefix = studyName.length > 0 ? `${studyName}_` : '';
                                     a.download = `${namePrefix}${survey?.current.surveyDefinition.key}.json`;
