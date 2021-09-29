@@ -37,6 +37,7 @@ export class EQ5DGroup extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(q_healthstatus_instructions_def(this.key));
         this.addItem(q_healthstatus_def(this.key, this.isRequired, this.useCopyRight));
+        this.addPageBreak();
         // if (this.isPartOfSurvey(surveyKeys.short)) { this.addItem(Q_instr_reuksmaak(this.key))}
         // this.addPageBreak();
     }

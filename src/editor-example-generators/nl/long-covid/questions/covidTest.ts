@@ -589,7 +589,7 @@ const q_inf_earlier_testdate_def = (parentKey: string, isRequired?: boolean, con
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -500 } },
+        minRelativeDate: { delta: { days: -1500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -609,7 +609,7 @@ const q_inf_earlier_date_def = (parentKey: string, isRequired?: boolean, conditi
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -500 } },
+        minRelativeDate: { delta: { days: -1500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });

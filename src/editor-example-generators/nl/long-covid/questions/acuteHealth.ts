@@ -744,7 +744,7 @@ const Q3 = (parentKey: string, condition: Expression, isRequired?: boolean, keyO
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
+            ["nl", "Tijdens het invullen van de vorige vragenlijst rapporteerde je klachten, maar vandaag niet. Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([

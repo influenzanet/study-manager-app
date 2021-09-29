@@ -734,7 +734,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)? "],
+                ["nl", "Tijdens het invullen van de vorige vragenlijst rapporteerde je klachten, maar vandaag niet. Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([
