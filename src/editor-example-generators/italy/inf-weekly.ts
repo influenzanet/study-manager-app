@@ -18,20 +18,20 @@ const weekly = (): Survey | undefined => {
     survey.setSurveyName(generateLocStrings(
         new Map([
             ["en", "Weekly questionnaire"],
-            ["it", "Weekly questionnaire"],
+            ["it", "Questionario settimanale"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["en", "Click here for your questionnaire about your complaints in the past week. Please also report if you had no complaints."],
-            ["it", "Click here for your questionnaire about your complaints in the past week. Please also report if you had no complaints."],
+            ["it", "Clicca qui per il questionario sui reclami della scorsa settimana. Si prega di segnalare anche se non si hanno lamentele."],
         ])
     ));
 
     survey.setSurveyDuration(generateLocStrings(
         new Map([
             ["en", "Filling in takes 15 seconds to 5 minutes, depending on your complaints."],
-            ["it", "Filling in takes 15 seconds to 5 minutes, depending on your complaints."],
+            ["it", "La compilazione richiede da 15 secondi a 5 minuti, a seconda dei reclami."],
         ])
     ));
 
@@ -103,19 +103,19 @@ const weekly = (): Survey | undefined => {
 
     // Q6 fever start questions
     // Separated into individual questions and Key code overriden to prevent Q6.a and keep Q6
-    const Q_feverStart = CommonPoolWeekly.feverGroup.feverStart(hasSymptomGroupKey, Q_symptomStart.key, true, "Q6");
+    const Q_feverStart = CommonPoolWeekly.feverGroup.feverStart(hasSymptomGroupKey, Q_symptoms.key, Q_symptomStart.key, true, "Q6");
     survey.addExistingSurveyItem(Q_feverStart, hasSymptomGroupKey);
 
     // Q6b fever developed suddenly
-    const Q_feverDevelopedSuddenly = CommonPoolWeekly.feverGroup.feverDevelopedSuddenly(hasSymptomGroupKey, true, "Q6b");
+    const Q_feverDevelopedSuddenly = CommonPoolWeekly.feverGroup.feverDevelopedSuddenly(hasSymptomGroupKey, Q_symptoms.key, true, "Q6b");
     survey.addExistingSurveyItem(Q_feverDevelopedSuddenly, hasSymptomGroupKey);
 
     // Q6c temperature taken
-    const Q_didUMeasureTemp = CommonPoolWeekly.feverGroup.didUMeasureTemperature(hasSymptomGroupKey, true, "Q6c");
+    const Q_didUMeasureTemp = CommonPoolWeekly.feverGroup.didUMeasureTemperature(hasSymptomGroupKey, Q_symptoms.key, true, "Q6c");
     survey.addExistingSurveyItem(Q_didUMeasureTemp, hasSymptomGroupKey);
 
-    // Q6c temperature taken
-    const Q_highestTempMeasured = CommonPoolWeekly.feverGroup.highestTemprerature(hasSymptomGroupKey, Q_didUMeasureTemp.key, true, "Q6d");
+    // Q6d highest temperature taken
+    const Q_highestTempMeasured = CommonPoolWeekly.feverGroup.highestTemprerature(hasSymptomGroupKey, Q_symptoms.key, Q_didUMeasureTemp.key, true, "Q6d");
     survey.addExistingSurveyItem(Q_highestTempMeasured, hasSymptomGroupKey);
 
     // // Q7 visited medical service --------------------------------------

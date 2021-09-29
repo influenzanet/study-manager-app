@@ -28,6 +28,8 @@ export const generateExampleSurvey = (): Survey | undefined => {
 
     surveyEditor.addSurveyItemToRoot(getQ2(surveyKey));
 
+    surveyEditor.addSurveyItemToRoot(getQ3(surveyKey));
+
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
         ['en', 'This is the end of the survey. Please submit your responses.']
@@ -172,6 +174,93 @@ const getQ2 = (parentKey: string) => {
         },
         tableModeProps: {
         },
+        titleClassName: 'sticky-top',
+        isRequired: true,
+    });
+}
+
+
+const getQ3 = (parentKey: string) => {
+    return SurveyItemGenerators.responsiveBipolarLikertArray({
+        parentKey: parentKey,
+        itemKey: 'Q3',
+        questionText: [
+            {
+                content: new Map([
+                    ['en', 'Question type: ']
+                ]),
+            },
+            {
+                content: new Map([
+                    ['en', 'responsive single choice array']
+                ]),
+                className: 'text-primary'
+            }
+        ],
+        scaleOptions: [
+            {
+                key: '-2',
+            }, {
+                key: '-1',
+            }, {
+                key: '0',
+            }, {
+                key: '1',
+            }, {
+                key: '2',
+            },
+        ],
+        rows: [
+            {
+                key: 'row1',
+                startLabel: [
+                    {
+                        content: new Map([
+                            ['en', 'Negative First row ']
+                        ]),
+                    },
+                    {
+                        content: new Map([
+                            ['en', 'with formatting']
+                        ]),
+                        className: 'text-primary'
+                    }
+                ],
+                endLabel: [
+                    {
+                        content: new Map([
+                            ['en', 'Positive First row ']
+                        ]),
+                    },
+                    {
+                        content: new Map([
+                            ['en', 'with formatting']
+                        ]),
+                        className: 'text-primary'
+                    }
+                ]
+            },
+            {
+                key: 'row2',
+                startLabel: new Map([
+                    ['en', 'Negative Second row without']
+                ]),
+                endLabel: new Map([
+                    ['en', 'Positive Second row without']
+                ]),
+            }
+        ],
+        defaultMode: 'vertical',
+        responsiveModes: {
+            sm: 'withLabelRow',
+            lg: 'table',
+        },
+        withLabelRowModeProps: {
+            maxLabelWidth: '120px',
+
+        },
+        verticalModeProps: {},
+        tableModeProps: {},
         titleClassName: 'sticky-top',
         isRequired: true,
     });

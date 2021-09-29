@@ -384,7 +384,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
         )
     });
@@ -393,7 +393,7 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         {
             role: 'error',
             content: generateLocStrings(new Map([
-                ["en", "Please enter the four digits of your postal code"],
+                ["en", "Please enter the digits of your postal code"],
                 ["it", "Per favore, inserisci il tuo codice postale"],
                 ["nl", "Voer de eerste vier cijfers van je postcode in"],
                 ["nl-be", "Voer de vier cijfers van je postcode in"],
@@ -676,7 +676,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9][0-9][0-9][0-9]$'),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
         )
     });
@@ -688,7 +688,7 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
                 ["nl-be", "Voer de vier cijfers van de postcode in"],
                 ["fr-be", "4 chiffres"],
                 ["de-be", "4 Ziffern"],
-                ["en", "Please enter the four digits of your postal code"],
+                ["en", "Please enter the digits of your postal code"],
                 ["it", "Per favore, inserisci il tuo codice postale"],
             ])),
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
@@ -922,8 +922,8 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         {
             key: '0', role: 'option',
             content: new Map([
-                ["en", "Non possiedo alcuna qualifica formale"],
-                ["it", "I have no formal qualification"],
+                ["en", "I have no formal qualification"],
+                ["it", "Non possiedo alcuna qualifica formale"],
                 ["nl", "Ik heb geen officiële diploma's of alleen lager onderwijs"],
                 ["fr", "Aucune qualification"],
             ])
@@ -949,7 +949,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         {
             key: '3', role: 'option',
             content: new Map([
-                ["en", "Batchelors Degree (BA, BSc) or equivalent"],
+                ["en", "Bachelors Degree (BA, BSc) or equivalent"],
                 ["it", "Diploma di laurea triennale"],
                 ["nl", "HBO of WO Bachelor"],
                 ["fr", "Diplôme de Bachelor ou équivalent"],
@@ -1206,32 +1206,15 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                 ]),
             }, {
                 key: '5', role: 'option', content: new Map([
-                    ["any", "5"],
-                ]),
-            }, {
-                key: '6', role: 'option', content: new Map([
-                    ["any", "6"],
-                ]),
-            }, {
-                key: '7', role: 'option', content: new Map([
-                    ["any", "7"],
-                ]),
-            }, {
-                key: '8', role: 'option', content: new Map([
-                    ["any", "8"],
-                ]),
-            }, {
-                key: '9', role: 'option', content: new Map([
-                    ["any", "> 8"],
+                    ["any", "5+"],
                 ]),
             },
-
         ]
     };
 
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '1', role: 'responseRow',
+            key: '0', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1246,7 +1229,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2', role: 'responseRow',
+            key: '1', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1261,7 +1244,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '3', role: 'responseRow',
+            key: '2', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1276,7 +1259,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '4', role: 'responseRow',
+            key: '3', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1291,7 +1274,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '5', role: 'responseRow',
+            key: '4', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -2184,7 +2167,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [/*
         {
             key: '3', role: 'option',
             content: new Map([
@@ -2194,14 +2177,14 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
                 ["nl-be", "Ja"],
                 ["fr", "Oui"],
             ])
-        },
+        }, */
         {
             key: '0', role: 'option',
             content: new Map([
                 ["en", "Yes, I have got one"],
                 ["it", "Si, l'ho fatto"],
                 ["nl", "Ja, deze heb ik al gehaald"],
-                ["fr", "Non"],
+                ["fr", "Oui"],
             ])
         },
         {
@@ -2402,7 +2385,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     // CONDITION
     if (keyFluVaccineThisSeason) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '0', '1')
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '0')
         );
     }
 
@@ -2491,7 +2474,7 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
                 ["fr", "Je me fais systématiquement vacciner"],
             ])
         }, {
-            key: '10', role: 'option',
+            key: '12', role: 'option',
             content: new Map([
                 ["en", "I try to protect myself against infections, because of the circulation of the pandemic coronavirus"],
                 ["it", "Cerco di proteggermi dalle infezioni a causa della circolazione del coronavirus pandemico"],
@@ -2550,7 +2533,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // CONDITION
     if (keyFluVaccineThisSeason) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '2')
+            expWithArgs('responseHasKeysAny', keyFluVaccineThisSeason, [responseGroupKey, singleChoiceKey].join('.'), '1')
         );
     }
 
@@ -3292,7 +3275,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
         }, {
             key: '5', role: 'option',
             content: new Map([
-                ["en", "Yes, only e-sigarets"],
+                ["en", "Yes, only e-cigarettes"],
                 ["it", "Si ma solo sigarette elettroniche"],
                 ["nl", "Ja, alleen e-sigaretten"],
                 ["fr", "e-sigarettes"],
@@ -3621,7 +3604,7 @@ const pets = (parentKey: string, isRequired?: boolean, keyOverride?: string): Su
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Do you have pets at home?"],
-            ["it", "Do you have pets at home?"],
+            ["it", "Possiedi animali domestici?"],
             ["nl", "Heb je huisdieren?"],
             ["nl-be", "Heeft u huisdieren?"],
             ["fr", "Avez-vous un animal domestique ?"],

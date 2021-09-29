@@ -139,6 +139,35 @@ const TestViewer: React.FC = () => {
                             checked={showKeys}
                             label="Show Item Keys" onChange={(value) => setShowKeys(value)} />
                     </div>
+                    <div className="py-2a px-2 px-sm-3 bg-grey-1 my-2">
+                        <h5>Download JSON</h5>
+                        <TextField
+                            label="Study name"
+                            value={studyName}
+                            onChange={(event) => {
+                                const v = event.target.value as string;
+                                setStudyName(v);
+                            }}
+                        />
+                        <button className="btn btn-primary mt-2"
+                            onClick={
+                                () => {
+                                    const exportData = {
+                                        studyKey: studyName,
+                                        survey: survey,
+                                    }
+                                    var a = document.createElement("a");
+                                    var file = new Blob([JSON.stringify(exportData, undefined, 2)], { type: 'json' });
+                                    a.href = URL.createObjectURL(file);
+                                    const namePrefix = studyName.length > 0 ? `${studyName}_` : '';
+                                    a.download = `${namePrefix}${survey?.current.surveyDefinition.key}.json`;
+                                    a.click();
+                                }
+                            }
+                        >
+                            Download
+                        </button>
+                    </div>
                 </div>
                 <div className="col-12 col-lg-8">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
@@ -168,43 +197,6 @@ const TestViewer: React.FC = () => {
                                 showKeys={showKeys}
                             />
                         </div> : null}
-
-                    <Box display="flex" alignItems="center" justifyContent="center">
-
-                        <Box textAlign="center" p={2}>
-                            <div className="bg-primary p-2">
-                                <TextField
-                                    label="Study name"
-                                    value={studyName}
-                                    onChange={(event) => {
-                                        const v = event.target.value as string;
-                                        setStudyName(v);
-                                    }}
-                                >
-
-                                </TextField>
-                            </div>
-                        </Box>
-
-                        <Box textAlign="center" alignContent="center" p={2}>
-                            <Button
-                                color="primary"
-                                variant="outlined"
-                                onClick={() => {
-                                    const exportData = {
-                                        studyKey: studyName,
-                                        survey: survey,
-                                    }
-                                    var a = document.createElement("a");
-                                    var file = new Blob([JSON.stringify(exportData)], { type: 'json' });
-                                    a.href = URL.createObjectURL(file);
-                                    a.download = `${studyName}_${survey?.current.surveyDefinition.key}.json`;
-                                    a.click();
-                                }}>
-                                Save Survey JSON
-                </Button>
-                        </Box>
-                    </Box>
 
                     {/* <p>{t('title')}</p> */}
                 </div >
