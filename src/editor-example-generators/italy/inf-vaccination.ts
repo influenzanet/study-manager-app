@@ -16,19 +16,19 @@ const vaccination = (): Survey | undefined => {
     survey.setSurveyName(generateLocStrings(
         new Map([
             ["en", "Vaccination questionnaire"],
-            ["it", "Vaccination questionnaire"],
+            ["it", "Questionario di vaccinazione"],
         ])
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
             ["en", "The purpose of the vaccination questionnaire is to find out more about protection given by the vaccine and monitor vaccination uptake in Italy."],
-            ["it", "The purpose of the vaccination questionnaire is to find out more about protection given by the vaccine and monitor vaccination uptake in Italy."],
+            ["it", "Lo scopo di questo questionario è di indagare la protezione fornita dal vaccino e di monitorare l'adesione al programma di vaccinazione in Italia."],
         ])
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
             ["en", "It takes approximately 2 minutes to complete this questionnaire."],
-            ["it", "It takes approximately 2 minutes to complete this questionnaire."],
+            ["it", "Ci vogliono circa 2 minuti per completare questo questionario."],
         ])
     ));
 

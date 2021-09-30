@@ -3258,7 +3258,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, occasionally"],
-                ["it", "Yes, occasionalmente"],
+                ["it", "Sì, occasionalmente"],
                 ["nl", "Ja, af en toe"],
                 ["fr", "Oui, de temps en temps"],
             ])
