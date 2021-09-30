@@ -233,7 +233,7 @@ const surveyEnd = (parentKey: string): SurveyItem => {
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Thank you! This was all for now, please submit (push « send ») your responses. We will ask you again next week."],
-            ["it", "Thank you! This was all for now, please submit (push « send ») your responses. We will ask you again next week."],
+            ["it", "Grazie! Per ora è tutto, per favore invia le tue risposte premendo il pulsante « Invia ». Ti ricontatteremo la prossima settimana."],
         ]))
     );
 

@@ -3111,10 +3111,9 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             ])),
     }, rg?.key);
 
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Mijn symptomen kwamen recent op."],
                 ["fr-be", "Mes symptômes sont apparus récemment."],
@@ -3125,7 +3124,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '2', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Mijn symptomen zijn mild."],
                 ["fr-be", "Mes symptômes sont légers."],
@@ -3136,7 +3134,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Ik heb deze symptomen vaker."],
                 ["fr-be", "Je présente régulièrement ces symptômes."],
@@ -3147,7 +3144,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Ik denk te weten wat ik heb en gebruik eigen medicatie."],
                 ["fr-be", "Je pense que je sais ce dont je souffre, et j'ai recours à ma propre médication."],
@@ -3158,7 +3154,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '5', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Ik denk dat er geen goede behandeling is voor mijn ziekte."],
                 ["fr-be", "Je pense qu'il n'existe pas de bon traitement pour ma maladie."],
@@ -3169,7 +3164,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '6', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Het is te moeilijk om snel een afspraak te verkrijgen."],
                 ["fr-be", "Il est trop difficile d'obtenir rapidement un rendez-vous."],
@@ -3180,7 +3174,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '7', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Ik heb onvoldoende tijd."],
                 ["fr-be", "Je n'ai pas assez de temps."],
@@ -3191,7 +3184,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '8', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Omwille van financiële redenen."],
                 ["fr-be", "Pour des raisons financières."],
@@ -3202,7 +3194,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '9', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Omwille van angst voor de gevolgen als de dokter vermoedt dat ik COVID-19 heb."],
                 ["fr-be", "Par crainte des conséquences si le médecin me suspecte d'avoir contracté le coronavirus."],
@@ -3213,7 +3204,6 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
         },
         {
             key: '10', role: 'input',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
                 ["nl-be", "Mijn symptomen verschenen zeer recent"],
@@ -3288,7 +3278,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
         expWithArgs('and',
             expWithArgs('responseHasKeysAny', keyVisitedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
             expWithArgs('responseHasKeysAny', keyContactedMedicalServ, [responseGroupKey, multipleChoiceKey].join('.'), '0'),
-            expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, multipleChoiceKey].join('.'), '9')
+            expWithArgs('responseHasKeysAny', keyvisitedNoMedicalService, [responseGroupKey, singleChoiceKey].join('.'), '9')
         )
     );
 
@@ -3310,7 +3300,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyContacte
             ])),
     }, rg?.key);
 
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '1', role: 'option',
             content: new Map([
@@ -4279,10 +4269,9 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '1', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4', '0'),
             content: new Map([
                 ["nl-be", "Ja, een PCR test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
                 ["fr-be", "Oui, un PCR test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
@@ -4293,7 +4282,6 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
         },
         {
             key: '3', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '4', '0'),
             content: new Map([
                 ["nl-be", "Nog niet, ik ga binnenkort een test laten uitvoeren"],
                 ["fr-be", "Pas encore, je vais bientôt me faire tester"],
@@ -4304,7 +4292,6 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
         },
         {
             key: '4', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '3', '0'),
             content: new Map([
                 ["nl-be", "Nee, ik heb een recept maar ik zal geen test ondergaan"],
                 ["fr-be", "Non, j'ai une ordonnance mais je ne ferai pas de test"],
@@ -4315,7 +4302,6 @@ const fluTest = (parentKey: string, isRequired?: boolean, keyOverride?: string):
         },
         {
             key: '0', role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '3', '4'),
             content: new Map([
                 ["nl-be", "Nee"],
                 ["fr-be", "Non"],
@@ -4366,7 +4352,7 @@ const resultFluTest = (parentKey: string, keyFluTest?: string, isRequired?: bool
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyFluTest, responseGroupKey + '.' + multipleChoiceKey, '1'),
+        expWithArgs('responseHasKeysAny', keyFluTest, responseGroupKey + '.' + singleChoiceKey, '1'),
     );
 
     // INFO POPUP
@@ -5037,7 +5023,8 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
             ])),
         style: [{ key: 'className', value: 'mb-1' }]
     }, rg?.key);
-    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
+
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
             key: '0',
             role: 'option',
@@ -5052,7 +5039,6 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
         {
             key: '1',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, maar ik heb geen vrij genomen van school of werk"],
                 ["fr-be", "Oui, mais je n'ai pas pris de congé à l'école ou au travail"],
@@ -5064,7 +5050,6 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
         {
             key: '2',
             role: 'option',
-            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["nl-be", "Ja, ik heb mijn beroep niet kunnen uitoefenen of ben niet naar school kunnen gaan"],
                 ["fr-be", "Oui, je n'ai pas pu travailler ou me rendre à l'école"],
@@ -5073,7 +5058,6 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 ["it", "Si, sono stato/a assente da lavoro/scuola"],
             ])
         },
-
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -5118,7 +5102,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, singleChoiceKey].join('.'), '2')
     );
 
     // INFO POPUP
@@ -5244,7 +5228,7 @@ const dailyRoutineDaysMissed = (parentKey: string, keyDailyRoutine: string, isRe
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, multipleChoiceKey].join('.'), '2')
+        expWithArgs('responseHasKeysAny', keyDailyRoutine, [responseGroupKey, singleChoiceKey].join('.'), '2')
     );
 
     // INFO POPUP
