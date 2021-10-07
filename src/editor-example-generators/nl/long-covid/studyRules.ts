@@ -26,39 +26,28 @@ const timestampFromStudyStart = (daysDelta: number) => {
     );
 }
 
-const getAgeInYearsExpression = (questionRef: string) => {
-    return expWithArgs('dateResponseDiffFromNow', questionRef, [responseGroupKey, datePickerKey].join('.'), 'years', 1);
-}
 
 const isOlder = (questionRef: string, age: number, allowEqual?: boolean) => {
     return expWithArgs(
-        allowEqual ? 'gte' : 'gt',
-        getAgeInYearsExpression(questionRef),
-        age,
+        allowEqual ? 'lte' : 'lt',
+        StudyExpressions.getResponseValueAsNum(questionRef, [responseGroupKey, datePickerKey].join('.')),
+        StudyExpressions.timestampWithOffset({ years: -age }),
     )
 }
 
 const isYounger = (questionRef: string, age: number, allowEqual?: boolean) => {
     return expWithArgs(
-        allowEqual ? 'lte' : 'lt',
-        getAgeInYearsExpression(questionRef),
-        age,
+        allowEqual ? 'gte' : 'gt',
+        StudyExpressions.getResponseValueAsNum(questionRef, [responseGroupKey, datePickerKey].join('.')),
+        StudyExpressions.timestampWithOffset({ years: -age }),
     )
 }
 
 const isBetweenAges = (questionRef: string, minAge: number, maxAge: number, allowEqual?: boolean): Expression => {
     return expWithArgs(
         'and',
-        expWithArgs(
-            allowEqual ? 'gte' : 'gt',
-            getAgeInYearsExpression(questionRef),
-            minAge,
-        ),
-        expWithArgs(
-            allowEqual ? 'lte' : 'lt',
-            getAgeInYearsExpression(questionRef),
-            maxAge,
-        )
+        isYounger(questionRef, maxAge, allowEqual),
+        isOlder(questionRef, minAge, allowEqual),
     );
 }
 
