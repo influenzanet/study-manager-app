@@ -5,6 +5,7 @@ import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../studyRules";
 
 
 export class EQ5DGroup extends GroupItemEditor {
@@ -38,8 +39,8 @@ export class EQ5DGroup extends GroupItemEditor {
         this.addItem(q_healthstatus_instructions_def(this.key));
         this.addItem(q_healthstatus_def(this.key, this.isRequired, this.useCopyRight));
         this.addPageBreak();
-        // if (this.isPartOfSurvey(surveyKeys.short)) { this.addItem(Q_instr_reuksmaak(this.key))}
-        // this.addPageBreak();
+        if (this.isPartOfSurvey(surveyKeys.short)) { this.addItem(Q_instr_reuksmaak(this.key))}
+        this.addPageBreak();
     }
 }
 
@@ -456,24 +457,25 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
     return simpleEditor.getItem();
 }
 
-// const Q_instr_reuksmaak = (parentKey: string): SurveyItem => {
-//     const markdownContent = `
-// ## Onderzoek naar reuk- of smaakverlies
 
-// Je hebt aangegeven dat je na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies. Ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie.htm), of stuur een mail naar COVORTS.studie@wur.nl.
+const Q_instr_reuksmaak = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+## Onderzoek naar reuk- of smaakverlies
 
-//     `
+Heb je een maand of langer na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies en ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie-onderzoek-naar-reukverlies-na-Covid-19-infectie-deelnemers-18-60-jaar.htm), of stuur een mail naar COVORTS.studie@wur.nl.
 
-//     return SurveyItemGenerators.display({
-//         parentKey: parentKey,
-//         itemKey: 'intro_reuksmaak',
-//         content: [
-//             ComponentGenerators.markdown({
-//                 content: new Map([
-//                     ["nl", markdownContent],
-//                 ]),
-//                 className: ''
-//             })
-//         ]
-//     });
-// }
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'intro_reuksmaak',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
