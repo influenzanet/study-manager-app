@@ -1,5 +1,6 @@
 import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../../studyRules";
@@ -30,7 +31,7 @@ export class CovidTestGroup extends GroupItemEditor {
         // const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
         const conditionQ7Ja = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
-
+        this.addItem(this.groupIntro());
         if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {
             this.addItem(q1);
         } else {
@@ -60,7 +61,24 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addPageBreak();
     }
 
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Testen op het coronavirus
 
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+                        `]
+                    ])
+                })]
+        })
+    }
 
     Q_testFollowUp(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
@@ -162,7 +180,7 @@ export class CovidTestGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -10 } },
+            minRelativeDate: { delta: { days: -300 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
