@@ -98,6 +98,7 @@ const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 
 const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 42);
 
 export const AgeCategoryFlagName = {
+    younger5: '<5',
     younger8: '<8',
     younger11: '<11',
     between8and12: '8-12',
@@ -173,6 +174,11 @@ const handleT0Submission = (): Expression => {
     const ageQuestionKey = 'T0.CAT.Q2';
     const handleAgeCategories = StudyActions.do(
         StudyActions.if(
+            isYounger(ageQuestionKey, 5),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger5, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger5, "false"),
+        ),
+        StudyActions.if(
             isYounger(ageQuestionKey, 8),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger8, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger8, "false"),
@@ -197,6 +203,14 @@ const handleT0Submission = (): Expression => {
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older15, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older15, "false"),
         ),
+    )
+
+    const excludeYoungerThan5 = () => StudyActions.if(
+        isYounger(ageQuestionKey, 5),
+        StudyActions.do(
+            StudyActions.removeAllSurveys(),
+            StudyActions.finishParticipation()
+        )
     )
 
     return StudyActions.ifThen(
@@ -248,7 +262,8 @@ const handleT0Submission = (): Expression => {
                         assignShortC(),
                         // else:
                         assignT3c(),
-                    )
+                    ),
+                    excludeYoungerThan5(),
                 ),
                 // else: (adult participants)
                 StudyActions.do(
