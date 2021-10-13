@@ -1,5 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { datePickerKey, responseGroupKey, singleChoiceKey } from "../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
@@ -17,7 +18,14 @@ export class ParticipantCategoryGroup extends GroupItemEditor {
 
         this.addItem(qCategory);
         this.addPageBreak();
-        this.Q_age = q_age(this.key, undefined, true);
+        this.Q_age = q_age(this.key, undefined,
+            expWithArgs(
+                'gt',
+                expWithArgs('dateResponseDiffFromNow', 'T0.CAT.Q2', [responseGroupKey, datePickerKey].join('.'), 'years', 1),
+                18,
+            ),
+            CommonExpressions.singleChoiceOptionsSelected(qCategory.key, 'kind'),
+            true);
         this.addItem(this.Q_age);
         this.addItem(q_postal_code(this.key, undefined, true));
         this.addPageBreak();
@@ -91,7 +99,10 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
     });
 }
 
-const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const q_age = (parentKey: string, condition?: Expression,
+    isOlderThan18?: Expression,
+    fillingOutForChild?: Expression,
+    isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
     return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
@@ -101,6 +112,15 @@ const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, 
         questionText: new Map([
             ["nl", "Wat is je geboortejaar en maand?"],
         ]),
+        bottomDisplayCompoments: [
+            {
+                role: 'error',
+                content: generateLocStrings(new Map([
+                    ["nl", "TODO: warning to enter age for the child"],
+                ])),
+                displayCondition: expWithArgs('getSurveyItemValidation', 'this', 'ageNotChild'),
+            }
+        ],
         questionSubText: new Map([
             ["nl", "Het gaat hier om geboortejaar en maand van diegene voor wie je de vragenlijst invult."],
         ]),
@@ -114,6 +134,16 @@ const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, 
                 years: 0,
             }
         },
+        customValidations: [
+            {
+                key: 'ageNotChild',
+                type: 'soft',
+                rule: CommonExpressions.and(
+                    fillingOutForChild,
+                    isOlderThan18,
+                )
+            }
+        ],
         isRequired: isRequired,
     });
 }
