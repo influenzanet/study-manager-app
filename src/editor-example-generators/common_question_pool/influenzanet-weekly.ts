@@ -3202,11 +3202,8 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             key: '10', role: 'input',
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
-                ["nl-be", "Mijn symptomen verschenen zeer recent"],
-                ["fr-be", "Mes symptômes sont apparus très récemment"],
-                ["de-be", "Meine Symptome sind vor kurzem aufgetreten"],
-                ["en", "My symptoms appeared very recently"],
-                ["it", "I sintomi sono comparsi da poco"],
+                ["en", "For another reason"],
+                ["it", "Per un'altra ragione"],
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
