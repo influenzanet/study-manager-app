@@ -299,15 +299,11 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             ])
         },
         {
-            key: '19', role: 'input',
+            key: '19', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
                 ["it", "Altro"],
-            ]),
-            description: new Map([
-                ["en", "Enter symptoms"],
-                ["it", "Inserisci sintomi"],
             ]),
         },
     ]);
