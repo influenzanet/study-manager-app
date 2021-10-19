@@ -1978,9 +1978,8 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            /*["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],*/
-            ["en", "Did you receive a flu vaccine during the previous flu season (2019-2020)?"],
-            ["it", "Sei stato vaccinato contro l'influenza durante la passata stagione influenzale (2019-2020)?"],
+            ["en", "Did you receive a flu vaccine during the previous flu season (2020-2021)?"],
+            ["it", "Sei stato vaccinato contro l'influenza durante la passata stagione influenzale (2020-2021)?"],
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver (2018-2019) ?"],
@@ -2036,10 +2035,10 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2020-2021."],
                     ["it", "Rispondi 'si' se sei stato vaccinato contro l’influenza l’anno scorso durante la stagione autunno inverno 2020-2021."],
                     ["nl", "Zeg 'ja' wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
-                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
+                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2020-2021) heeft gekregen."],
                     ["fr", "Répondez « oui » si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
-                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2019-2020)"],
+                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2020-2021)."],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2020-2021)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2121,7 +2120,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
             ["it", "Hai ricevuto il vaccino contro l'influenza per la prossima stagione autunno/inverno? (2021-2022)"],
             ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
             ["nl-be", "Heeft u in het huidige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
-            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
+            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2020-2021)"],
         ]))
     );
 
