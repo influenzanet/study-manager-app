@@ -2116,11 +2116,11 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Have you received a flu vaccine this autumn/winter season? (2020-2021)"],
+            ["en", "Have you received a flu vaccine this autumn/winter season? (2021-2022)"],
             ["it", "Hai ricevuto il vaccino contro l'influenza per la prossima stagione autunno/inverno? (2021-2022)"],
             ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
             ["nl-be", "Heeft u in het huidige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
-            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2020-2021)"],
+            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2021-2022)"],
         ]))
     );
 
@@ -2248,7 +2248,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["it", "Quando hai ricevuto la vaccinazione per questa stagione? (2021-2022)?"],
             ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
-            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2020-2021) ?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2021-2022) ?"],
             ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021 ?"],
             ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2020/2021) gegen Grippe geimpft?"],
         ]))
