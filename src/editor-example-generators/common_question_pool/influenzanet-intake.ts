@@ -384,9 +384,15 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
+                          expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]+$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
         )
+    });
+
+    editor.addValidation({
+        key: 'r2max',
+        type: 'hard',
+        rule: expWithArgs('not', expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]{6,}$'))
     });
 
     editor.addDisplayComponent(
@@ -403,6 +409,18 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
     );
+
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["en", "Please enter at most 5 digits"],
+                ["it", "Per favore, inserisci un massimo di 5 cifre"],
+            ])),
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2max'))
+        }
+    );
+
     return editor.getItem();
 }
 
@@ -676,9 +694,15 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]+$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
         )
+    });
+
+    editor.addValidation({
+        key: 'r2max',
+        type: 'hard',
+        rule: expWithArgs('not', expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]{6,}$'))
     });
 
     editor.addDisplayComponent(
@@ -694,6 +718,18 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
     );
+
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["en", "Please enter at most 5 digits"],
+                ["it", "Per favore, inserisci un massimo di 5 cifre"],
+            ])),
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2max'))
+        }
+    );
+
     return editor.getItem();
 }
 
