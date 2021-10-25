@@ -266,7 +266,7 @@ De volgende vragen gaan over je school
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Met hoeveel andere mensen woon je samen?"],
+                ["nl", "Met hoeveel mensen woon je samen?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Jezelf meegeteld, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],

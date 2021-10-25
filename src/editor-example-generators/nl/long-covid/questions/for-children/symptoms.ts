@@ -363,7 +363,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: 'brainfog', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
-                        ["nl", "Brainfog/ hersenmist"],
+                        ["nl", "Brainfog / hersenmist"],
                     ])
                 },
                 {
@@ -378,6 +378,42 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Oorsuizen"],
+                    ])
+                },
+                {
+                    key: 'inspanning', role: 'option',
+                    content: new Map([
+                        ["nl", "Erger worden van klachten bij inspanning"],
+                    ])
+                },
+                {
+                    key: 'geheugenproblemen', role: 'option',
+                    content: new Map([
+                        ["nl", "Geheugenproblemen"],
+                    ])
+                },
+                {
+                    key: 'depressie', role: 'option',
+                    content: new Map([
+                        ["nl", "Depressie"],
+                    ])
+                },
+                {
+                    key: 'angst', role: 'option',
+                    content: new Map([
+                        ["nl", "Angst"],
+                    ])
+                },
+                {
+                    key: 'zenuwpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Zenuwpijn"],
+                    ])
+                },
+                {
+                    key: 'allergie', role: 'option',
+                    content: new Map([
+                        ["nl", "Nieuwe allergie"],
                     ])
                 },
                 {
@@ -599,7 +635,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: 'hartkloppingen', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
-                        ["nl", "Hartkloppingen"],
+                        ["nl", "Versnelde hartslag of hartkloppingen"],
                     ])
                 },
                 {
