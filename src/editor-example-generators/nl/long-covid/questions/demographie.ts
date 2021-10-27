@@ -716,7 +716,7 @@ const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met hoeveel andere mensen woon je samen?"],
+            ["nl", "Met hoeveel mensen woon je samen?"],
         ]),
         questionSubText: new Map([
             ["nl", "jezelf meegeteld en inclusief kinderen, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],

@@ -116,7 +116,7 @@ const q_age = (parentKey: string, condition?: Expression,
             {
                 role: 'error',
                 content: generateLocStrings(new Map([
-                    ["nl", "TODO: warning to enter age for the child"],
+                    ["nl", "Let op: vul hier geboortejaar en maand van je kind in"],
                 ])),
                 displayCondition: expWithArgs('getSurveyItemValidation', 'this', 'ageNotChild'),
             }
