@@ -1,54 +1,84 @@
 import { Expression } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../../studyRules";
 
 export class CovidTestGroup extends GroupItemEditor {
-    q11JaSelectedExp: Expression;
+    q11JaSelectedExp?: Expression;
 
     constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'TEST';
         super(parentKey, groupKey);
 
         const isRequired = true
- if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
-    const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
-    this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
-}
+        if (this.isPartOfSurvey(surveyKeys.T3) || this.isPartOfSurvey(surveyKeys.short)) {
+            const followUpCondition = CommonExpressions.hasParticipantFlag('testResult', 'unknown');
+            this.addItem(this.Q_testFollowUp('Q5followup', followUpCondition, isRequired))
+        }
         const q1 = this.Q_hadTest('Q1', isRequired);
-        const conditionQ1Ja = CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes');
+        const q1_FU = this.Q_hadTest_FU('Q1_FU', isRequired);
+        const conditionQ1Ja = CommonExpressions.or(
+            CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes'),
+            CommonExpressions.singleChoiceOptionsSelected(q1_FU.key, 'yes')
+        );
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
         const conditionQ5Positive = CommonExpressions.singleChoiceOptionsSelected(q5.key, 'pos');
         const q7 = this.Q7('Q7', isRequired);
         const conditionQ7Positive = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test');
         const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_notest');
-        const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
+        // const conditionQ7Nee = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'no');
         const conditionQ7Ja = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
 
-        const q11 = this.Q11('Q11', conditionQ7Ja, isRequired);
-        this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(
-            q11.key, 'ja'
-        );
-
-        this.addItem(q1);
+        this.addItem(this.groupIntro());
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {
+            this.addItem(q1);
+        } else {
+            this.addItem(q1_FU);
+        }
         this.addItem(this.Q_test_date('Q2', conditionQ1Ja, isRequired));
         this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired));
         this.addItem(this.Q4('Q4', conditionQ1Ja, isRequired));
         this.addItem(q5);
         this.addItem(this.Q6('Q6', conditionQ5Positive, isRequired));
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(q7);
+            this.addItem(q7);
+            this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
+            this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
+            this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
         }
-        this.addItem(this.Q8('Q8', conditionQ7Positive, isRequired));
-        this.addItem(this.Q9('Q9', conditionQ7Positive, isRequired));
-        this.addItem(this.Q10('Q10', conditionQ7Geen, isRequired));
-        this.addItem(q11);
 
+        if (!this.isPartOfSurvey(surveyKeys.shortC)) {
+            const q11 = this.Q11(
+                'Q11',
+                this.isPartOfSurvey(surveyKeys.T0) ? conditionQ7Ja : undefined, // condition when to display, if undefined, it will be displayed
+                isRequired
+            );
+            this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(q11.key, 'ja');
+            this.addItem(q11);
+        }
         this.addPageBreak();
     }
 
+    groupIntro() {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `
+## Testen op het coronavirus
 
+**De vragen hieronder zijn gericht aan een minderjarige.**
+
+Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+                        `]
+                    ])
+                })]
+        })
+    }
 
     Q_testFollowUp(key: string, condition: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
@@ -110,6 +140,31 @@ export class CovidTestGroup extends GroupItemEditor {
         });
     }
 
+    Q_hadTest_FU(key: string, isRequired?: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            questionText: new Map([
+                ["nl", "Heb je sinds de vorige vragenlijst een test gedaan om te weten of je corona hebt?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'yes', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ])
+                },
+                {
+                    key: 'no', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
+
     /**
      *
      */
@@ -125,7 +180,7 @@ export class CovidTestGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -10 } },
+            minRelativeDate: { delta: { days: -300 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
@@ -464,7 +519,7 @@ export class CovidTestGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -500 } },
+            minRelativeDate: { delta: { days: -1500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
@@ -485,7 +540,7 @@ export class CovidTestGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -500 } },
+            minRelativeDate: { delta: { days: -1500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
@@ -494,13 +549,13 @@ export class CovidTestGroup extends GroupItemEditor {
     /**
      *
      */
-    Q11(key: string, condition: Expression, isRequired: boolean) {
+    Q11(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze door het coronavirus komen?"],
+                ["nl", "Heb je langdurige gezondheidsklachten waarvan je denkt dat deze door het kunnen coronavirus komen?"],
             ]),
             responseOptions: [
                 {
@@ -516,9 +571,9 @@ export class CovidTestGroup extends GroupItemEditor {
                     ])
                 },
                 {
-                    key: 'unknown', role: 'option',
+                    key: 'notanymore', role: 'option',
                     content: new Map([
-                        ["nl", "Weet ik niet"],
+                        ["nl", "Nee, niet meer"],
                     ])
                 },
             ],

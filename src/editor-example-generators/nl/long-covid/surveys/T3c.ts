@@ -7,6 +7,7 @@ import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-child
 import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
+import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 
 export const generateT3c = (): Survey | undefined => {
     const surveyKey = surveyKeys.T3c;
@@ -14,13 +15,13 @@ export const generateT3c = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["en", "Nieuwe vragenlijst LongCOVID-onderzoek: 3 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 3 maanden"],
         ]),
         description: new Map([
-            ["en", "Drie maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid, en zorggebruik."],
+            ["nl", "Drie maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid, en zorggebruik."],
         ]),
         durationText: new Map([
-            ["en", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
+            ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
         ])
     })
 
@@ -30,7 +31,7 @@ export const generateT3c = (): Survey | undefined => {
 
     // COVID vaccination for children
     const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(surveyKey, {
-        groupCondition: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older15, 'true'),
+        groupCondition: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
     });
     surveyEditor.addSurveyItemToRoot(childrenVaccinationGroupEditor.getItem());
 
@@ -52,6 +53,13 @@ export const generateT3c = (): Survey | undefined => {
         between13And18: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
     });
     surveyEditor.addSurveyItemToRoot(childrenGeneralHealthGroupEditor.getItem());
+
+    // General data group
+    const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey, {
+        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+    });
+    surveyEditor.addSurveyItemToRoot(childrenGeneralDataGroupEditor.getItem());
+
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([

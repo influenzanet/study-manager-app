@@ -49,13 +49,20 @@ export class HealthGroup extends GroupItemEditor {
         const Q6 = this.Q6('Q6', isRequired);
         const conditionQ6ja = CommonExpressions.singleChoiceOptionsSelected(Q6.key, 'ja');
 
+        const Q6_FU = this.Q6_FU('Q6_FU', isRequired);
+        const conditionQ6ja_FU = CommonExpressions.singleChoiceOptionsSelected(Q6_FU.key, 'ja');
         //
-        this.addItem(this.groupIntro());
+       
+        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(this.groupIntro());
+        }
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(this.Q0('Q0', isRequired));
-        this.addPageBreak();
+        }
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(this.Q1TICppreText());
         this.addItem(this.Q1('Q1', isRequired));
-        this.addPageBreak();
+        }
+
         this.addItem(this.groupIntroQ2());
         this.addItem(Q2);
         this.addItem(Q3);
@@ -63,8 +70,13 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(Q4)
         this.addItem(Q5);
         this.addItem(this.Q5b('Q5b', conditionQ5anders, true));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(Q6);
         this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
+        } else {
+        this.addItem(Q6_FU);
+        this.addItem(this.Q62_FU('Q62_FU', conditionQ6ja_FU, isRequired));
+        }
         this.addPageBreak();
         this.addItem(this.QpromispreText(conditions.hasDifficultyWithBreathing));
 
@@ -632,7 +644,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die WEL te maken hebben met het coronavirus?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
@@ -684,7 +696,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
+                ["nl", "Met welke zorgverleners heb je contact gehad voor klachten die WEL te maken hebben met het coronavirus in de afgelopen 3 maanden? En hoe vaak?"],
             ]),
             customValidations: [{
                 key: 'numberInputChecks',
@@ -802,7 +814,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             isRequired: isRequired,
             condition: condition,
             questionText: new Map([
-                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die WEL te maken hebben met het coronavirus?"],
             ]),
             content: new Map([
                 ['nl', '']
@@ -823,7 +835,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener anders dan voor corona?"],
+                ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die NIET te maken hebben met het coronavirus?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Met zorgverleners bedoelen wij je huisarts, specialist, fysiotherapeut, psycholoog, maatschappelijk werker, homeopaat, logopedist of andere arts, therapeut of zorgconsulent."],
@@ -876,7 +888,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden anders dan voor corona? En hoe vaak?"],
+                ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus? En hoe vaak?"],
             ]),
             customValidations: [{
                 key: 'numberInputChecks',
@@ -996,7 +1008,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             isRequired: isRequired,
             condition: condition,
             questionText: new Map([
-                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
+                ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die NIET te maken hebben met het coronavirus?"],
             ]),
             content: new Map([
                 ['nl', '']
@@ -1037,6 +1049,30 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
+       Q6_FU(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            questionText: new Map([
+                ["nl", "Is je medicijngebruik veranderd sinds de vorige vragenlijst?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ])
+                },
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
 
     /**
      *
@@ -1112,7 +1148,89 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     disabled: optionNoneSelected,
                 },
                 {
-                    key: 'anders', role: 'option',
+                    key: 'anders', role: 'input',
+                    content: new Map([
+                        ["nl", "Andere medicijnen, namelijk"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+            ],
+            isRequired: isRequired,
+        });
+    }
+
+    Q62_FU(itemKey: string, condition: Expression, isRequired?: boolean) {
+        const optionNoneSelected = CommonExpressions.multipleChoiceOptionsSelected([this.key, itemKey].join('.'), 'geen');
+
+        return SurveyItemGenerators.multipleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Welke medicijnen ben je gaan gebruiken sinds de afgelopen 3 maanden?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Er zijn meerdere antwoorden mogelijk."],
+            ]),
+            responseOptions: [
+                {
+                    key: 'infectie', role: 'option',
+                    style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                    content: new Map([
+                        ["nl", "Medicijnen vanwege een infectie/ontsteking (bijvoorbeeld antibiotica, antivirale middelen)"],
+                    ]),
+                },
+                {
+                    key: 'immunosupr', role: 'option',
+                    content: new Map([
+                        ["nl", "Afweerremmende medicatie/immunosuppressiva (bijvoorbeeld prednison)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'maagbesch', role: 'option',
+                    content: new Map([
+                        ["nl", "Maagbeschermers/maagzuurremmers (bijvoorbeeld omeprazol)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'chemo', role: 'option',
+                    content: new Map([
+                        ["nl", "Chemokuur/chemotherapie"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'hormoon', role: 'option',
+                    content: new Map([
+                        ["nl", "Hormoonbehandeling"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'bloeddruk', role: 'option',
+                    content: new Map([
+                        ["nl", "Bloeddrukverlagers (angiotensine convertering enzyme (ACE)-remmers en angiotensine receptorblokkers (ARB’s))"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'bloedverdun', role: 'option',
+                    content: new Map([
+                        ["nl", "Bloedverdunners (bijvoorbeeld ascal, sintrom, fraxiparine)"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'anticonceptie', role: 'option',
+                    content: new Map([
+                        ["nl", "Anticonceptiepil"],
+                    ]),
+                    disabled: optionNoneSelected,
+                },
+                {
+                    key: 'anders', role: 'input',
                     content: new Map([
                         ["nl", "Andere medicijnen, namelijk"],
                     ]),

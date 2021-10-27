@@ -2,7 +2,6 @@ import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
 
@@ -200,17 +199,18 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                     ["nl", "Vermoeidheid"],
                 ])
             },
-            {
-                key: 'Hoofdpijn', role: 'option',
-                content: new Map([
-                    ["nl", "Hoofdpijn"],
-                ])
-            },
+           
             {
                 key: 'long2', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
                     ["nl", "Selecteer je klachten"],
+                ])
+            },
+            {
+                key: 'Hoofdpijn', role: 'option',
+                content: new Map([
+                    ["nl", "Hoofdpijn"],
                 ])
             },
             {
@@ -267,7 +267,13 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                     ["nl", "Buikpijn"],
                 ])
             },
-
+            {
+                key: 'long', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'geen_reuk', role: 'option',
                 content: new Map([
@@ -278,13 +284,6 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 key: 'geen_smaak', role: 'option',
                 content: new Map([
                     ["nl", "Geen smaak (of sterk verminderd)"],
-                ])
-            },
-            {
-                key: 'long', role: 'text',
-                style: [{ key: 'className', value: 'fw-bold mb-2' }],
-                content: new Map([
-                    ["nl", "Selecteer je klachten"],
                 ])
             },
             {
@@ -335,6 +334,14 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                     ["nl", "Tintelingen of gevoelloosheid"],
                 ])
             },
+
+            {
+                key: 'long4', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'verwardheid', role: 'option',
                 content: new Map([
@@ -357,6 +364,48 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                 key: 'oorsuizen', role: 'option',
                 content: new Map([
                     ["nl", "Oorsuizen"],
+                ])
+            },
+            {
+                key: 'inspanning', role: 'option',
+                content: new Map([
+                    ["nl", "Verergering van klachten bij inspanning (inspanningsintolerantie/post exertionele malaise)"],
+                ])
+            },
+            {
+                key: 'geheugenproblemen', role: 'option',
+                content: new Map([
+                    ["nl", "Geheugenproblemen"],
+                ])
+            },
+            {
+                key: 'depressie', role: 'option',
+                content: new Map([
+                    ["nl", "Depressie"],
+                ])
+            },
+            {
+                key: 'angst', role: 'option',
+                content: new Map([
+                    ["nl", "Angst"],
+                ])
+            },
+            {
+                key: 'zenuwpijn', role: 'option',
+                content: new Map([
+                    ["nl", "Zenuwpijn"],
+                ])
+            },
+            {
+                key: 'allergie', role: 'option',
+                content: new Map([
+                    ["nl", "Niet eerder bestaande allergie"],
+                ])
+            },
+            {
+                key: 'menstruatie', role: 'option',
+                content: new Map([
+                    ["nl", "Menstruatieveranderingen"],
                 ])
             },
             {
@@ -459,17 +508,18 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                     ["nl", "Vermoeidheid"],
                 ])
             },
-            {
-                key: 'Hoofdpijn', role: 'option',
-                content: new Map([
-                    ["nl", "Hoofdpijn"],
-                ])
-            },
+           
             {
                 key: 'long2', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
                 content: new Map([
                     ["nl", "Selecteer je klachten"],
+                ])
+            },
+            {
+                key: 'Hoofdpijn', role: 'option',
+                content: new Map([
+                    ["nl", "Hoofdpijn"],
                 ])
             },
             {
@@ -526,7 +576,13 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                     ["nl", "Buikpijn"],
                 ])
             },
-
+            {
+                key: 'long', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'geen_reuk', role: 'option',
                 content: new Map([
@@ -537,13 +593,6 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                 key: 'geen_smaak', role: 'option',
                 content: new Map([
                     ["nl", "Geen smaak (of sterk verminderd)"],
-                ])
-            },
-            {
-                key: 'long', role: 'text',
-                style: [{ key: 'className', value: 'fw-bold mb-2' }],
-                content: new Map([
-                    ["nl", "Selecteer je klachten"],
                 ])
             },
             {
@@ -594,6 +643,14 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                     ["nl", "Tintelingen of gevoelloosheid"],
                 ])
             },
+
+            {
+                key: 'long4', role: 'text',
+                style: [{ key: 'className', value: 'fw-bold mb-2' }],
+                content: new Map([
+                    ["nl", "Selecteer je klachten"],
+                ])
+            },
             {
                 key: 'verwardheid', role: 'option',
                 content: new Map([
@@ -616,6 +673,48 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                 key: 'oorsuizen', role: 'option',
                 content: new Map([
                     ["nl", "Oorsuizen"],
+                ])
+            },
+            {
+                key: 'inspanning', role: 'option',
+                content: new Map([
+                    ["nl", "Verergering van klachten bij inspanning (inspanningsintolerantie/post exertionele malaise)"],
+                ])
+            },
+            {
+                key: 'geheugenproblemen', role: 'option',
+                content: new Map([
+                    ["nl", "Geheugenproblemen"],
+                ])
+            },
+            {
+                key: 'depressie', role: 'option',
+                content: new Map([
+                    ["nl", "Depressie"],
+                ])
+            },
+            {
+                key: 'angst', role: 'option',
+                content: new Map([
+                    ["nl", "Angst"],
+                ])
+            },
+            {
+                key: 'zenuwpijn', role: 'option',
+                content: new Map([
+                    ["nl", "Zenuwpijn"],
+                ])
+            },
+            {
+                key: 'allergie', role: 'option',
+                content: new Map([
+                    ["nl", "Niet eerder bestaande allergie"],
+                ])
+            },
+            {
+                key: 'menstruatie', role: 'option',
+                content: new Map([
+                    ["nl", "Menstruatieveranderingen"],
                 ])
             },
             {
@@ -745,7 +844,7 @@ const Q3 = (parentKey: string, condition: Expression, isRequired?: boolean, keyO
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
+            ["nl", "Tijdens het invullen van de vorige vragenlijst rapporteerde je klachten, maar vandaag niet. Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
@@ -766,7 +865,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             ["nl", "Je hebt hierboven aangegeven dat je afgelopen week klachten had."],
         ]),
         questionSubText: new Map([
-            ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Omcirkel alsjeblieft bij elke vraag het getal dat je mening het beste weergeeft."],
+            ["nl", "Onderstaande vragen gaan over alle klachten die je eerder hebt aangegeven, of ze nu wel of niet door het coronavirus komen. Klik alsjeblieft bij elke vraag op het getal dat je mening het beste weergeeft."],
         ]),
         scaleOptions: [
             {
@@ -859,7 +958,7 @@ const IPQ = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 ]), descriptions: [
                     ComponentGenerators.text({
                         content: new Map([
-                            ['nl', '0 Helemaal niet -  10 zeer veel']
+                            ['nl', '0 helemaal niet -  10 zeer veel']
                         ]),
                         className: "fst-italic mb-1"
                     }),
@@ -927,15 +1026,10 @@ const Q4 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         questionText: new Map([
             ["nl", "Heb je een arts gezien, gesproken of gebeld vanwege je klachten in de afgelopen 7 dagen? En zo ja, waar?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ], responseOptions: [
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        responseOptions: [
             {
                 key: '0', role: 'option',
                 disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([parentKey, itemKey].join('.'), '0'),
@@ -1170,15 +1264,9 @@ const Q7_longsymptoms = (parentKey: string, condition?: Expression, isRequired?:
         questionText: new Map([
             ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de week nadat je (vermoedelijk) besmet bent geraakt met het coronavirus? En zo ja, welke?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -1276,17 +1364,11 @@ const Q7 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         parentKey: parentKey,
         itemKey: itemKey,
         questionText: new Map([
-            ["nl", "Heb je vanwege je klachten medicijnen gebruikt de afgelopen 7 dagen? En zo ja, welke?"],
+            ["nl", "Heb je vanwege je klachten medicijnen gebruikt in de afgelopen 7 dagen? En zo ja, welke?"],
         ]),
-        topDisplayCompoments: [
-            {
-                role: 'text',
-                style: [{ key: 'className', value: 'mb-2' }],
-                content: generateLocStrings(new Map([
-                    ["nl", "Meerdere antwoorden mogelijk"],
-                ]))
-            }
-        ],
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
         responseOptions: [
             {
                 key: '0', role: 'option',

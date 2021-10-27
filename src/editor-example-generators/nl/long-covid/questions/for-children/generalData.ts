@@ -5,13 +5,14 @@ import { numericInputKey, responseGroupKey } from "../../../../../editor-engine/
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
+import { surveyKeys } from "../../studyRules";
 
 
 export class GeneralDataGroup extends GroupItemEditor {
 
     constructor(parentKey: string, conditions: {
-        groupCondition: Expression,
-        q11Ja: Expression;
+        groupCondition?: Expression,
+        q11Ja?: Expression;
     }, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'GEN';
         super(parentKey, groupKey);
@@ -40,7 +41,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
             Q_langafwezig.key, 'ja'
         )
-
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', isRequired));
         this.addItem(this.Q2('Q2', isRequired));
@@ -52,7 +53,7 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q8('Q8', Q7GreaterThanOne, isRequired));
         this.addItem(this.Q9('Q9', isRequired));
         this.addItem(this.Q10('Q10', false)); // not required
-        this.addPageBreak();
+        this.addPageBreak();}
 
         this.addItem(this.Q_minderschoolpreText(conditions.q11Ja));
         this.addItem(this.InfoText2(conditions.q11Ja));
@@ -64,10 +65,14 @@ export class GeneralDataGroup extends GroupItemEditor {
         this.addItem(this.Q_lotgenoten('Q_lotgenoten', conditions.q11Ja, isRequired));
         this.addPageBreak();
 
-        this.addItem(this.Q11preText());
-        this.addItem(this.Q11('Q11', isRequired));
-        this.addItem(this.Q12('Q12', isRequired));
+        if (
+            this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q11preText());
+            this.addItem(this.Q11('Q11', isRequired));
+            this.addItem(this.Q12('Q12', isRequired));
+        }
         this.addItem(this.Q13('Q13', false));
+        this.addItem(this.Text_pococochi(conditions.q11Ja))
         // TODO add this later
         // this.addItem(this.Q14('Q14', false));
         this.addPageBreak();
@@ -94,7 +99,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         })
     }
 
-    InfoText2(condition: Expression) {
+    InfoText2(condition?: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'InfoText2',
@@ -261,7 +266,7 @@ De volgende vragen gaan over je school
             itemKey: itemKey,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Met hoeveel andere mensen woon je samen?"],
+                ["nl", "Met hoeveel mensen woon je samen?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Jezelf meegeteld, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],
@@ -458,7 +463,7 @@ De volgende vragen gaan over je school
     }
 
     // The following questions should be grouped (kvdw: is already done I think?)
-    Q_minderschoolpreText(condition: Expression) {
+    Q_minderschoolpreText(condition?: Expression) {
         return SurveyItemGenerators.display({
             parentKey: this.key,
             itemKey: 'headingQ2',
@@ -480,7 +485,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     }
 
 
-    Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q_minderschool(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -578,6 +583,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             questionText: new Map([
                 ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
             ]),
+            questionSubText: new Map([
+                ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
+            ]),
             responseOptions: [
                 {
                     key: 'nee', role: 'option',
@@ -614,7 +622,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q_zorgenschool(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -658,7 +666,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Q_lotgenoten(itemKey: string, condition: Expression, isRequired: boolean) {
+    Q_lotgenoten(itemKey: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,
@@ -823,6 +831,21 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ["nl", "Let op je krijgt geen persoonlijke reactie op deze opmerkingen."],
             ]),
         });
+    }
+
+    Text_pococochi(condition?: Expression) {
+        return SurveyItemGenerators.display({
+            parentKey: this.key,
+            itemKey: 'info',
+            condition: condition,
+            content: [
+                ComponentGenerators.markdown({
+                    content: new Map([
+                        ['nl', `Je hebt aangegeven aanhoudende klachten te hebben. Als je denkt dat deze klachten mogelijk door het coronavirus komen, kun je contact opnemen met het PoCoCoChi (Post Corona Complaints in Children) team via pocos@amsterdamumc.nl. Als je je telefoonnummer in de mail vermeldt zullen zij telefonisch contact met je opnemen.`
+                    ]
+                    ])
+                })]
+        })
     }
 
     //TODO add this later

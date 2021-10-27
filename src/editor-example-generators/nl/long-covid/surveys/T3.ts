@@ -6,6 +6,7 @@ import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { CFQGroup } from "../questions/cfq";
 import { Q_CIS } from "../questions/cis";
 import { CovidTestGroup } from "../questions/covidTest";
+import { DemographieGroup } from "../questions/demographie";
 import { EQ5DGroup } from "../questions/eq5d";
 import { HADSGroup } from "../questions/hads";
 import { Q_IPAQ } from "../questions/ipaq";
@@ -76,7 +77,14 @@ export const generateT3 = (): Survey | undefined => {
     const medicineGroupEditor = new MedicineGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(medicineGroupEditor.getItem());
 
-    
+    const demographieGroupEditor = new DemographieGroup(
+        surveyKey,
+        undefined, // not relevant here, since pregnancy question only in T0
+        covidTestGroupEditor.getQ11JaCondition(),
+    );
+    surveyEditor.addSurveyItemToRoot(demographieGroupEditor.getItem());
+
+
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
         ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat. Voor het onderzoek is het heel belangrijk dat je de vragenlijsten blijft invullen, ook als je geen klachten (meer) hebt door corona.']
     ])));

@@ -26,39 +26,28 @@ const timestampFromStudyStart = (daysDelta: number) => {
     );
 }
 
-const getAgeInYearsExpression = (questionRef: string) => {
-    return expWithArgs('dateResponseDiffFromNow', questionRef, [responseGroupKey, datePickerKey].join('.'), 'years', 1);
-}
 
 const isOlder = (questionRef: string, age: number, allowEqual?: boolean) => {
     return expWithArgs(
-        allowEqual ? 'gte' : 'gt',
-        getAgeInYearsExpression(questionRef),
-        age,
+        allowEqual ? 'lte' : 'lt',
+        StudyExpressions.getResponseValueAsNum(questionRef, [responseGroupKey, datePickerKey].join('.')),
+        StudyExpressions.timestampWithOffset({ years: -age }),
     )
 }
 
 const isYounger = (questionRef: string, age: number, allowEqual?: boolean) => {
     return expWithArgs(
-        allowEqual ? 'lte' : 'lt',
-        getAgeInYearsExpression(questionRef),
-        age,
+        allowEqual ? 'gte' : 'gt',
+        StudyExpressions.getResponseValueAsNum(questionRef, [responseGroupKey, datePickerKey].join('.')),
+        StudyExpressions.timestampWithOffset({ years: -age }),
     )
 }
 
 const isBetweenAges = (questionRef: string, minAge: number, maxAge: number, allowEqual?: boolean): Expression => {
     return expWithArgs(
         'and',
-        expWithArgs(
-            allowEqual ? 'gte' : 'gt',
-            getAgeInYearsExpression(questionRef),
-            minAge,
-        ),
-        expWithArgs(
-            allowEqual ? 'lte' : 'lt',
-            getAgeInYearsExpression(questionRef),
-            maxAge,
-        )
+        isYounger(questionRef, maxAge, allowEqual),
+        isOlder(questionRef, minAge, allowEqual),
     );
 }
 
@@ -98,17 +87,18 @@ const assignShortC = () => StudyActions.addNewSurvey(
         days: 14
     }));
 
-const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 30);
-const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 30);
-const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 30);
-const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 30);
+const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 42);
+const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 42);
+const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 42);
+const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 42);
 
-const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "prio", 90, 30);
-const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 30);
-const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 30);
-const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 30);
+const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "prio", 90, 42);
+const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 42);
+const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 42);
+const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 42);
 
 export const AgeCategoryFlagName = {
+    younger5: '<5',
     younger8: '<8',
     younger11: '<11',
     between8and12: '8-12',
@@ -126,7 +116,16 @@ const handleT0Submission = (): Expression => {
         ),
         isTestResultUnknown: () => StudyExpressions.singleChoiceOptionsSelected(
             "T0.A.TEST.Q5", "unknown"
-        )
+        ),
+        isStudent: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.DEM.Q15", "4"
+        ),
+        hasPaidJobAtInfection: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.DEM.Q14a", "ja"
+        ),
+        hasPaidJobAtT0: () => StudyExpressions.singleChoiceOptionsSelected(
+            "T0.A.DEM.Q14", "1"
+        ),
     }
     const childVersionChecks = {
         hasReportedSymptoms: () => StudyExpressions.multipleChoiceOnlyOtherKeysSelected(
@@ -175,6 +174,11 @@ const handleT0Submission = (): Expression => {
     const ageQuestionKey = 'T0.CAT.Q2';
     const handleAgeCategories = StudyActions.do(
         StudyActions.if(
+            isYounger(ageQuestionKey, 5),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger5, "true"),
+            StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger5, "false"),
+        ),
+        StudyActions.if(
             isYounger(ageQuestionKey, 8),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger8, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.younger8, "false"),
@@ -199,6 +203,14 @@ const handleT0Submission = (): Expression => {
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older15, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older15, "false"),
         ),
+    )
+
+    const excludeYoungerThan5 = () => StudyActions.if(
+        isYounger(ageQuestionKey, 5),
+        StudyActions.do(
+            StudyActions.removeAllSurveys(),
+            StudyActions.finishParticipation()
+        )
     )
 
     return StudyActions.ifThen(
@@ -227,6 +239,18 @@ const handleT0Submission = (): Expression => {
                 StudyActions.updateParticipantFlag('acute_symptoms_T0', 'no'),
             ),
             StudyActions.if(
+                adultVersionChecks.hasPaidJobAtT0(),
+                StudyActions.updateParticipantFlag('paidJobAtT0', 'yes')
+            ),
+            StudyActions.if(
+                adultVersionChecks.hasPaidJobAtInfection(),
+                StudyActions.updateParticipantFlag('paidJobAtInfection', 'yes')
+            ),
+            StudyActions.if(
+                adultVersionChecks.isStudent(),
+                StudyActions.updateParticipantFlag('student', 'yes')
+            ),
+            StudyActions.if(
                 isChildParticipant(),
                 // Logic for child participants:
                 StudyActions.do(
@@ -238,7 +262,8 @@ const handleT0Submission = (): Expression => {
                         assignShortC(),
                         // else:
                         assignT3c(),
-                    )
+                    ),
+                    excludeYoungerThan5(),
                 ),
                 // else: (adult participants)
                 StudyActions.do(

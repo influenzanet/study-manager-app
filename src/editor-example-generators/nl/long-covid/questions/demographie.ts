@@ -9,91 +9,153 @@ import { surveyKeys } from "../studyRules";
 
 export class DemographieGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, getAgeInYearsExpression: Expression, testQ11jaCondition?: Expression, keyOverride?: string) {
+    constructor(parentKey: string, getAgeInYearsExpression?: Expression, testQ11jaCondition?: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'DEM';
         super(parentKey, groupKey);
         this.initQuestions(getAgeInYearsExpression, testQ11jaCondition);
     }
 
     initQuestions(
-        getAgeInYearsExpression: Expression,
+        getAgeInYearsExpression?: Expression,
         testQ11jaCondition?: Expression,
     ) {
         this.addItem(Q_instructions(this.key))
-       
+
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        const Q_gender = q_gender(this.key, true);
-        this.addItem(Q_gender)
+            const Q_gender = q_gender(this.key, true);
+            this.addItem(Q_gender)
 
 
-        const showQPregnancy = expWithArgs('and',
-            CommonExpressions.singleChoiceOptionsSelected(Q_gender.key, 'F'),
-            expWithArgs('gte',
-                getAgeInYearsExpression,
-                14
-            ),
-            expWithArgs('lte',
-                getAgeInYearsExpression,
-                45
-            ),
-        )
+            const showQPregnancy = expWithArgs('and',
+                CommonExpressions.singleChoiceOptionsSelected(Q_gender.key, 'F'),
+                expWithArgs('gte',
+                    getAgeInYearsExpression,
+                    14
+                ),
+                expWithArgs('lte',
+                    getAgeInYearsExpression,
+                    45
+                ),
+            )
 
-        const Q_pregnancy = Q3(this.key, Q_gender.key, showQPregnancy, true);
-        this.addItem(Q_pregnancy)
+            const Q_pregnancy = Q3(this.key, Q_gender.key, showQPregnancy, true);
+            this.addItem(Q_pregnancy)
 
-        const showQTrimester = CommonExpressions.singleChoiceOptionsSelected(Q_pregnancy.key, 'yes');
-        this.addItem(Q4(this.key, showQTrimester, true))
+            const showQTrimester = CommonExpressions.singleChoiceOptionsSelected(Q_pregnancy.key, 'yes');
+            this.addItem(Q4(this.key, showQTrimester, true))
 
-        this.addItem(Q5(this.key, true))
-        this.addItem(Q6(this.key, true))
-        this.addItem(Q7(this.key, true))
-        this.addItem(Q8(this.key, true))
-        this.addItem(Q9(this.key, true))
-        this.addItem(Q10(this.key, true))
+            this.addItem(Q5(this.key, true))
+            this.addItem(Q6(this.key, true))
+            this.addItem(Q7(this.key, true))
+            this.addItem(Q8(this.key, true))
+            this.addItem(Q9(this.key, true))
+            this.addItem(Q10(this.key, true))
 
-        const nrOfPersons = Q11(this.key, true);
-        this.addItem(Q11(this.key, true))
+            const nrOfPersons = Q11(this.key, true);
+            this.addItem(Q11(this.key, true))
 
-        const q12Condition = expWithArgs('gt',
-            CommonExpressions.getResponseValueAsNum(nrOfPersons.key, [responseGroupKey, numericInputKey].join('.')),
-            1
-        );
-        this.addItem(Q12(this.key, q12Condition, true));
+            const q12Condition = expWithArgs('gt',
+                CommonExpressions.getResponseValueAsNum(nrOfPersons.key, [responseGroupKey, numericInputKey].join('.')),
+                1
+            );
+            this.addItem(Q12(this.key, q12Condition, true));
 
-        this.addItem(Q13(this.key, true))
+            this.addItem(Q13(this.key, true))
         }
 
         const Q14a = gen_Q14a(this.key, testQ11jaCondition, true);
-        this.addItem(Q14a)
-        
+        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(Q14a) }
+
         const PaidJob = Q14(this.key, true);
         this.addItem(PaidJob)
+        let conditionWerkveranderdJa = undefined;
         if (!this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(Qwerkveranderd(this.key, true))
+            const qwv = Qwerkveranderd(this.key, true)
+            conditionWerkveranderdJa = CommonExpressions.singleChoiceOptionsSelected(qwv.key, 'ja');
+            this.addItem(qwv)
         }
-        this.addItem(Q15(this.key, true))
+        const q15 = Q15(this.key, conditionWerkveranderdJa, true)
+        this.addItem(q15);
 
-        const qWorkcondition = CommonExpressions.or(
+        let qWorkcondition = CommonExpressions.or(
             CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1'),
             CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
         )
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {
+            qWorkcondition = CommonExpressions.and(
+                conditionWerkveranderdJa,
+                CommonExpressions.or(
+                    CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1'),
+                    CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
+                )
+            )
+        }
 
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(Q16(this.key, qWorkcondition, true))
         this.addItem(Q17(this.key, qWorkcondition, true))
         this.addItem(Q18(this.key, qWorkcondition, true))
+        }
 
-        const q11AndQ14aCondition = CommonExpressions.and(
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {
+        this.addItem(Q16_FU(this.key, qWorkcondition, true))
+        this.addItem(Q17_FU(this.key, qWorkcondition, true))
+        this.addItem(Q18_FU(this.key, qWorkcondition, true))
+        }
+        const conditionQ11JaAndStudent = CommonExpressions.and(
             testQ11jaCondition,
-            CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
-        ) // TODO: or CommonExpressions.singleChoiceOptionsSelected(Q14.key, 'ja')
+            CommonExpressions.or(
+                CommonExpressions.hasParticipantFlag("student", "yes"),
+                CommonExpressions.singleChoiceOptionsSelected(q15.key, '4'),
+            )
 
+        )
+        const Q_minderschool = this.Q_minderschool('Q_minderschool', conditionQ11JaAndStudent, true)
+        const Q_verzuim_school = this.Q_verzuim_school('Q_verzuim_school',
+            CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+                'onveranderd', 'niet'
+            ), true)
+
+        const Q_langafwezig_school = this.Q_langafwezig_school('Q_langafwezig_school',
+            CommonExpressions.singleChoiceOnlyOtherKeysSelected(Q_minderschool.key,
+                'onveranderd', 'niet'
+            ),
+            true);
+        const conditionAfwezig = CommonExpressions.singleChoiceOptionsSelected(
+            Q_langafwezig_school.key, 'ja'
+        )
+        this.addItem(Q_minderschool);
+        this.addItem(Q_verzuim_school);
+        this.addItem(Q_langafwezig_school);
+        this.addItem(this.Q_datumziek('Q_datumziek', conditionAfwezig, true));
+        this.addItem(this.Q_zorgenschool('Q_zorgenschool', conditionQ11JaAndStudent, true));
+        this.addPageBreak();
+
+
+        let q11AndQ14aCondition = CommonExpressions.and(
+            testQ11jaCondition,
+            CommonExpressions.or(
+                CommonExpressions.singleChoiceOptionsSelected(Q14a.key, 'ja'),
+                CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
+            )
+        )
+        // Overwrite for not T0 surveys:
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {
+            q11AndQ14aCondition = CommonExpressions.and(
+                testQ11jaCondition,
+                CommonExpressions.or(
+                    CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
+                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"),
+                    CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
+                )
+            )
+        }
 
         const Q_minderwerk = gen_Q_minderwerk(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_minderwerk);
         const Q_arbo = gen_Q_arbo(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_arbo);
 
-        // TODO:
         const conditionOnMinderwerk = CommonExpressions.singleChoiceOnlyOtherKeysSelected(
             Q_minderwerk.key, '1'
         )
@@ -137,13 +199,199 @@ export class DemographieGroup extends GroupItemEditor {
         const Q_urenhulp = gen_Q_urenhulp(this.key, conditionQHulp, true);
         this.addItem(Q_urenhulp);
 
-
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
         this.addItem(Q19(this.key, true))
         this.addItem(Q20(this.key, true))
+        }
         this.addItem(Q21(this.key, true))
-        // TODO: add condition, show this text only in case TEST.Q11 = "yes" (in T0 OR in T3/6/9/12)
-        this.addItem(Q_instructions_eind(this.key))
+
+        this.addItem(Q_instructions_eind(this.key, testQ11jaCondition))
+        if (this.isPartOfSurvey(surveyKeys.T3)) {
+            this.addItem(Q_instr_reuksmaak(this.key, testQ11jaCondition))}
     }
+
+
+    Q_minderschool(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Werk je op dit moment minder dan je normaalgesproken deed voor je langdurige klachten kreeg?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'onveranderd', role: 'option',
+                    content: new Map([
+                        ["nl", "Mijn gevolgde lesuren zijn onveranderd"],
+                    ]),
+                },
+                {
+                    key: 'minder', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik volg af en toe minder lessen"],
+                    ]),
+                },
+                {
+                    key: 'structureel', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik volg structureel minder lessen"],
+                    ]),
+                },
+                {
+                    key: 'volledig', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ben volledig ziekgemeld"],
+                    ]),
+                },
+                {
+                    key: 'gestopt', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ben gestopt met school/opleiding door de langdurige klachten"],
+                    ]),
+                },
+                {
+                    key: 'niet', role: 'option',
+                    content: new Map([
+                        ["nl", "Ik ga niet naar school/opleiding om andere reden"],
+                    ]),
+                },
+            ]
+        });
+    }
+
+    Q_verzuim_school(itemKey: string, condition: Expression, isRequired: boolean) {
+        const inputProperties = {
+            min: 0,
+            max: 20
+        };
+        const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+        return SurveyItemGenerators.multipleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Meerdere antwoorden mogelijk"]
+            ]),
+            responseOptions: [
+                {
+                    key: 'geen', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Dagen helemaal geen les kunnen volgen:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+                {
+                    key: 'minder', role: 'numberInput',
+                    content: new Map([
+                        ["nl", "Aantal dagen minder les kunnen volgen:"],
+                    ]),
+                    optionProps: inputProperties,
+                    style: inputStyle,
+                },
+            ]
+        });
+    }
+
+    // if Q_minderschool != onveranderd OR Q_minderschool != niet
+    Q_langafwezig_school(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Was je langer dan de gehele periode van 4 weken afwezig van school/opleiding doordat je ziek was?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "Het gaat om een aaneengesloten periode van schoolverzuim."]
+            ]),
+            responseOptions: [
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ]),
+                },
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ]),
+                }
+            ]
+        });
+    }
+
+    // if Q_langafwezig == ja
+    Q_datumziek(key: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.dateInput({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Wanneer heb je je ziek gemeld?"],
+            ]),
+            dateInputMode: 'YMD',
+            placeholderText: new Map([
+                ["nl", "dd-mm-jjjj"],
+            ]),
+            minRelativeDate: { delta: { days: -10 } },
+            maxRelativeDate: { delta: { seconds: 1 } },
+            isRequired: isRequired,
+        });
+    }
+
+    Q_zorgenschool(itemKey: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            condition: condition,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Maak je je zorgen over je school/opleiding in het komende jaar door de langdurige gezondheidsklachten?"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ernstig', role: 'option',
+                    content: new Map([
+                        ["nl", "Ernstige zorgen"],
+                    ]),
+                },
+                {
+                    key: 'redelijk', role: 'option',
+                    content: new Map([
+                        ["nl", "Redelijk veel zorgen"],
+                    ]),
+                },
+                {
+                    key: 'weinig', role: 'option',
+                    content: new Map([
+                        ["nl", "Weinig zorgen"],
+                    ]),
+                },
+                {
+                    key: 'geen1', role: 'option',
+                    content: new Map([
+                        ["nl", "Geen zorgen, ik ben redelijk positief"],
+                    ]),
+                },
+                {
+                    key: 'geen2', role: 'option',
+                    content: new Map([
+                        ["nl", "Geen zorgen, ik ben positief"],
+                    ]),
+                },
+            ]
+        });
+    }
+
 }
 
 const Q_instructions = (parentKey: string): SurveyItem => {
@@ -468,7 +716,7 @@ const Q11 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met hoeveel andere mensen woon je samen?"],
+            ["nl", "Met hoeveel mensen woon je samen?"],
         ]),
         questionSubText: new Map([
             ["nl", "jezelf meegeteld en inclusief kinderen, iedereen meetellen waarmee je algemene ruimtes deelt als woonkamer, keuken, toilet en/of badkamer"],
@@ -673,7 +921,7 @@ const Q14 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 }
 
 const Qwerkveranderd = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q14';
+    const itemKey = keyOverride ? keyOverride : 'Qwerkveranderd';
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
@@ -701,18 +949,16 @@ const Qwerkveranderd = (parentKey: string, isRequired?: boolean, keyOverride?: s
     });
 }
 
-const Q15 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const Q15 = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q15';
 
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        condition: condition,
         isRequired: isRequired,
         questionText: new Map([
             ["nl", "Wat is je voornaamste bezigheid overdag?"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
         ]),
         responseOptions: [
             {
@@ -781,9 +1027,6 @@ const Q16 = (parentKey: string, condition: Expression, isRequired?: boolean, key
         condition: condition,
         questionText: new Map([
             ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden?"],
-        ]),
-        questionSubText: new Map([
-            ["nl", "Ga uit van de normale situatie (dus zonder eventuele corona maatregelen)"],
         ]),
         responseOptions: [
             {
@@ -973,6 +1216,204 @@ const Q18 = (parentKey: string, condition: Expression, isRequired?: boolean, key
     });
 }
 
+const Q16_FU = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q16_FU';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Welke omschrijving past het beste bij je dagelijkse werkzaamheden?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de gezondheidzorg"],
+                ]),
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb een contactberoep (bijvoorbeeld kapper, schoonheidsspecialist)"],
+                ]),
+            }, {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de kinderopvang/onderwijs (basis, voortgezet, MBO, HBO of WO-onderwijs)"],
+                ]),
+            }, {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de horeca"],
+                ]),
+            }, {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in de detailhandel (supermarkt, verkoop in andere winkels)"],
+                ]),
+            }, {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Ik werk in het openbaar vervoer (bijv. trein, bus, metro of taxi)"],
+                ]),
+            }, {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben thuis vanwege langdurige ziekte of zwangerschapsverlof"],
+                ]),
+            }, {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Ik doe overig kenniswerk (manager, onderzoeker, accountant)"],
+                ]),
+            }, {
+                key: '9', role: 'option',
+                content: new Map([
+                    ["nl", "Ik doe administratief werk (administratie, financieel assistent, receptionist etc.)"],
+                ]),
+            },
+            {
+                key: '10', role: 'option',
+                content: new Map([
+                    ["nl", "Ik doe technisch werk (uitvoerend in techniek, bouw, productie)"],
+                ]),
+            },
+            {
+                key: '11', role: 'option',
+                content: new Map([
+                    ["nl", "Anders, valt niet in bovengenoemde opties"],
+                ]),
+            },
+        ]
+    });
+}
+
+const Q17_FU = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q17_FU';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoeveel uur per week werk je op dit moment?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Tel alleen de uren waarvoor je betaald wordt"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "8 uur"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "16 uur"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "24 uur"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "32 uur"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "36 uur"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "38 uur"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "40 uur"],
+                ])
+            },
+            {
+                key: '8', role: 'input',
+                content: new Map([
+                    ["nl", "Anders, namelijk"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
+}
+
+
+const Q18_FU = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q18_FU';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Op hoeveel dagen in de week werk je op dit moment?"],
+        ]),
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "1 dag"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "2 dagen"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "3 dagen"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "4 dagen"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "5 dagen"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "6 dagen"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "7 dagen"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
+}
 
 const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'minderwerk';
@@ -981,7 +1422,7 @@ const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?:
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je sinds je (vermoedelijke) besmetting met het coronavirus minder kunnen werken dan je normaalgesproken deed?"],
+            ["nl", "Werk je op dit moment minder dan je normaalgesproken deed voor je langdurige klachten kreeg?"],
         ]),
         isRequired: isRequired,
         responseOptions: [
@@ -1201,7 +1642,7 @@ const gen_Q_zorgenwerk = (parentKey: string, condition: Expression, isRequired?:
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Maak je je zorgen over je inkomen werk en carrière in het komende jaar door de langdurige gezondheidsklachten?"],
+            ["nl", "Maak je je zorgen over je inkomen, werk en carrière in het komende jaar door de langdurige gezondheidsklachten?"],
         ]),
         isRequired: isRequired,
         responseOptions: [
@@ -1380,7 +1821,7 @@ const gen_Q_welkehulp = (parentKey: string, condition?: Expression, isRequired?:
             {
                 key: 'verzorging', role: 'option',
                 content: new Map([
-                    ["nl", "Verzorging van uzelf (voorbeeld: hulp bij douchen of aankleden, hulp bij het eten en drinken of het geven van medicijnen)"],
+                    ["nl", "Verzorging van jezelf (voorbeeld: hulp bij douchen of aankleden, hulp bij het eten en drinken of het geven van medicijnen)"],
                 ])
             },
             {
@@ -1578,7 +2019,6 @@ const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     return SurveyItemGenerators.multilineTextInput({
         parentKey: parentKey,
         itemKey: itemKey,
-        isRequired: isRequired,
         questionText: new Map([
             ["nl", "Als je nog aanvullende opmerkingen hebt over de vragenlijst of het onderzoek, kun je die hieronder invullen."],
         ]),
@@ -1592,8 +2032,7 @@ const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 }
 
 
-// TODO: add condition, show this text only in case TEST.Q11 = "yes" (in T0 OR in T3/6/9/12)
-const Q_instructions_eind = (parentKey: string): SurveyItem => {
+const Q_instructions_eind = (parentKey: string, condition?: Expression): SurveyItem => {
     const markdownContent = `
 ### Advies en ondersteuning langdurige gezondheidsklachten
 
@@ -1602,7 +2041,31 @@ Voor advies en ondersteuning rondom langdurige gezondheidsklachten door het coro
 
     return SurveyItemGenerators.display({
         parentKey: parentKey,
+        condition: condition,
         itemKey: 'ondersteuning',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
+
+const Q_instr_reuksmaak = (parentKey: string,condition?: Expression): SurveyItem => {
+    const markdownContent = `
+### Onderzoek naar reuk- of smaakverlies
+
+Heb je een maand of langer na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies en ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie-onderzoek-naar-reukverlies-na-Covid-19-infectie-deelnemers-18-60-jaar.htm), of stuur een mail naar COVORTS.studie@wur.nl.
+
+    `
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        condition: condition,
+        itemKey: 'intro_reuksmaak',
         content: [
             ComponentGenerators.markdown({
                 content: new Map([

@@ -14,7 +14,7 @@ export class SymptomsGroup extends GroupItemEditor {
     constructor(parentKey: string, conditions: {
         groupCondition?: Expression,
         olderThan10: Expression,
-        q11Ja: Expression,
+        q11Ja?: Expression,
     }) {
         const groupKey = 'SYM';
         super(parentKey, groupKey);
@@ -60,7 +60,9 @@ export class SymptomsGroup extends GroupItemEditor {
         const conditionQ12ja = CommonExpressions.singleChoiceOptionsSelected(Q12.key, 'ja-klachten' || Q12.key, '3')
 
         this.addItem(this.groupIntro());
-        this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q1_notyes("Q1_notyes", conditions.q11Ja, isRequired))
+        };
         this.addItem(Q1);
         if (this.isPartOfSurvey(surveyKeys.shortC)) {
             this.addItem(this.Qklachtenperiode('Qklachtenperiode', hasReportedSymptomsQ1, isRequired));
@@ -89,8 +91,10 @@ export class SymptomsGroup extends GroupItemEditor {
         this.addItem(Q7);
         this.addItem(this.Q8('Q8', conditionQ7KIC, isRequired));
         this.addItem(this.Q9('Q9', conditionQ6ziekenhuis, isRequired));
-        this.addItem(this.Q10('Q10', conditionQ6nee, isRequired));
-        this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired));
+        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(this.Q10('Q10', conditionQ6nee, isRequired)) };
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q11('Q11', hasReportedSymptomsQ1AndPossibleCovid, isRequired))
+        };
         this.addItem(this.Q11_yes('Q11_yes', hasReportedSymptomsQ1, isRequired));
         this.addItem(Q12);
         this.addItem(this.Q13('Q13', conditionQ12ja, isRequired));
@@ -359,7 +363,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: 'brainfog', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
-                        ["nl", "Brainfog/ hersenmist"],
+                        ["nl", "Brainfog / hersenmist"],
                     ])
                 },
                 {
@@ -374,6 +378,42 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     disabled: optionNoneSelected,
                     content: new Map([
                         ["nl", "Oorsuizen"],
+                    ])
+                },
+                {
+                    key: 'inspanning', role: 'option',
+                    content: new Map([
+                        ["nl", "Erger worden van klachten bij inspanning"],
+                    ])
+                },
+                {
+                    key: 'geheugenproblemen', role: 'option',
+                    content: new Map([
+                        ["nl", "Geheugenproblemen"],
+                    ])
+                },
+                {
+                    key: 'depressie', role: 'option',
+                    content: new Map([
+                        ["nl", "Depressie"],
+                    ])
+                },
+                {
+                    key: 'angst', role: 'option',
+                    content: new Map([
+                        ["nl", "Angst"],
+                    ])
+                },
+                {
+                    key: 'zenuwpijn', role: 'option',
+                    content: new Map([
+                        ["nl", "Zenuwpijn"],
+                    ])
+                },
+                {
+                    key: 'allergie', role: 'option',
+                    content: new Map([
+                        ["nl", "Nieuwe allergie"],
                     ])
                 },
                 {
@@ -595,7 +635,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: 'hartkloppingen', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
-                        ["nl", "Hartkloppingen"],
+                        ["nl", "Versnelde hartslag of hartkloppingen"],
                     ])
                 },
                 {
@@ -730,7 +770,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Op welke datum waren de klachten voorbij (je mag de datum ook schatten)? "],
+                ["nl", "Tijdens het invullen van de vorige vragenlijst rapporteerde je klachten, maar vandaag niet. Op welke datum waren de klachten voorbij (je mag de datum ook schatten)?"],
             ]),
             dateInputMode: 'YMD',
             placeholderText: new Map([

@@ -670,6 +670,10 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
         simpleEditor.addHasResponseValidation();
     }
 
+    if (props.customValidations) {
+        props.customValidations.forEach(v => simpleEditor.editor.addValidation(v));
+    }
+
     if (props.footnoteText) {
         simpleEditor.addDisplayComponent(ComponentGenerators.footnote({ content: props.footnoteText }))
     }
