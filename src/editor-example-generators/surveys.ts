@@ -1,4 +1,7 @@
 import getBelIntake from './belgium/inf-intake';
+import getItalyIntake from './italy/inf-intake';
+import getItalyWeekly from './italy/inf-weekly';
+import getItalyVaccination from './italy/inf-vaccination';
 import getBelWeekly from './belgium/inf-weekly';
 import getBelVaccination from './belgium/inf-vaccination';
 import getExampleIntake from './nl/infectieradar/inf-intake';
@@ -7,12 +10,14 @@ import getExampleWeekly from './nl/infectieradar/inf-weekly';
 
 import likertScales from './examples/likert-scales';
 import { LongCovidSurveys } from './nl/long-covid';
+import { generateExampleSurvey } from './examples/survey-item';
 
 const surveys = [
     {
         instance: 'ex.',
         surveys: [
-            { name: 'likert', survey: likertScales() }
+            { name: 'example', survey: generateExampleSurvey() },
+            { name: 'likert', survey: likertScales() },
         ],
         languageCodes: [
             'en',
@@ -28,6 +33,7 @@ const surveys = [
             'en',
         ]
     },
+
     {
         instance: 'nl-long-covid', surveys: [
             { name: "T0", survey: LongCovidSurveys.T0 },
@@ -59,6 +65,18 @@ const surveys = [
             'fr-be',
             'de-be',
             'en',
+        ]
+    },
+    {
+        instance: 'italy',
+        surveys: [
+            { name: "intake", survey: getItalyIntake() },
+            { name: "weekly", survey: getItalyWeekly() },
+            { name: "vaccination", survey: getItalyVaccination() },
+        ],
+        languageCodes: [
+            'en',
+            'it'
         ]
     }
 ];

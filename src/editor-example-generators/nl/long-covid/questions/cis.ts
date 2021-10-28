@@ -31,14 +31,14 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+                    ["nl", "Klik hieronder aan welk van de antwoorden het meest overeenkomt met jouw gevoel."],
                 ]))
             },
             {
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Bijvoorbeeld als u zich wel wat slap voelt, maar niet zo erg slap, kunt u een van de vakjes aanklikken die in de buurt staan van de antwoordmogelijkheid 'ja, dat klopt'. Dus bijvoorbeeld als volgt:"],
+                    ["nl", "Bijvoorbeeld als je je wel wat slap voelt, maar niet zo erg slap, kun je een van de vakjes aanklikken die in de buurt staan van de antwoordmogelijkheid 'ja, dat klopt'. Dus bijvoorbeeld als volgt:"],
                 ]))
             },
             ComponentGenerators.markdown({
@@ -57,7 +57,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
                 content: generateLocStrings(new Map([
-                    ["nl", "Vink hieronder aan welk van de antwoorden het meest overeenkomt met uw gevoel."],
+                    ["nl", "Vink hieronder aan welk van de antwoorden het meest overeenkomt met je gevoel."],
                 ]))
             },
         ],

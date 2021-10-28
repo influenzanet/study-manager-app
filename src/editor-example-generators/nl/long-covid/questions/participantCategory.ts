@@ -1,5 +1,6 @@
 import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { datePickerKey, responseGroupKey, singleChoiceKey } from "../../../../editor-engine/utils/key-definitions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
@@ -17,14 +18,53 @@ export class ParticipantCategoryGroup extends GroupItemEditor {
 
         this.addItem(qCategory);
         this.addPageBreak();
-        this.Q_age = q_age(this.key, this.isAdultVersionCondition, true);
+        this.Q_age = q_age(this.key, undefined,
+            expWithArgs(
+                'gt',
+                expWithArgs('dateResponseDiffFromNow', 'T0.CAT.Q2', [responseGroupKey, datePickerKey].join('.'), 'years', 1),
+                18,
+            ),
+            CommonExpressions.singleChoiceOptionsSelected(qCategory.key, 'kind'),
+            true);
         this.addItem(this.Q_age);
-        this.addItem(q_postal_code(this.key, this.isAdultVersionCondition, true));
+        this.addItem(q_postal_code(this.key, undefined, true));
         this.addPageBreak();
     }
 
     getAgeInYearsExpression() {
         return expWithArgs('dateResponseDiffFromNow', this.Q_age.key, [responseGroupKey, datePickerKey].join('.'), 'years', 1)
+    }
+
+    isOlder(age: number, allowEqual?: boolean): Expression {
+        return expWithArgs(
+            allowEqual ? 'gte' : 'gt',
+            this.getAgeInYearsExpression(),
+            age,
+        )
+    }
+
+    isYounger(age: number, allowEqual?: boolean): Expression {
+        return expWithArgs(
+            allowEqual ? 'lte' : 'lt',
+            this.getAgeInYearsExpression(),
+            age,
+        )
+    }
+
+    isBetweenAges(minAge: number, maxAge: number, allowEqual?: boolean): Expression {
+        return expWithArgs(
+            'and',
+            expWithArgs(
+                allowEqual ? 'gte' : 'gt',
+                this.getAgeInYearsExpression(),
+                minAge,
+            ),
+            expWithArgs(
+                allowEqual ? 'lte' : 'lt',
+                this.getAgeInYearsExpression(),
+                maxAge,
+            )
+        );
     }
 
     getIsForAKind() {
@@ -51,7 +91,7 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'kind', role: 'option',
                 content: new Map([
-                    ["nl", "Voor mijn kind van jonger dan 16 jaar oud"],
+                    ["nl", "Voor mijn kind"],
                 ])
             },
         ],
@@ -59,7 +99,10 @@ const q_person_def = (parentKey: string, isRequired?: boolean, keyOverride?: str
     });
 }
 
-const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const q_age = (parentKey: string, condition?: Expression,
+    isOlderThan18?: Expression,
+    fillingOutForChild?: Expression,
+    isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
     return SurveyItemGenerators.dateInput({
         parentKey: parentKey,
@@ -69,6 +112,15 @@ const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, 
         questionText: new Map([
             ["nl", "Wat is je geboortejaar en maand?"],
         ]),
+        bottomDisplayCompoments: [
+            {
+                role: 'error',
+                content: generateLocStrings(new Map([
+                    ["nl", "Let op: vul hier geboortejaar en maand van je kind in"],
+                ])),
+                displayCondition: expWithArgs('getSurveyItemValidation', 'this', 'ageNotChild'),
+            }
+        ],
         questionSubText: new Map([
             ["nl", "Het gaat hier om geboortejaar en maand van diegene voor wie je de vragenlijst invult."],
         ]),
@@ -79,9 +131,19 @@ const q_age = (parentKey: string, condition?: Expression, isRequired?: boolean, 
         },
         maxRelativeDate: {
             delta: {
-                years: -5
+                years: 0,
             }
         },
+        customValidations: [
+            {
+                key: 'ageNotChild',
+                type: 'soft',
+                rule: CommonExpressions.and(
+                    fillingOutForChild,
+                    isOlderThan18,
+                )
+            }
+        ],
         isRequired: isRequired,
     });
 }

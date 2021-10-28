@@ -67,6 +67,10 @@ export class SurveyEditor implements SurveyEditorInt {
         this.survey.props.typicalDuration = duration;
     };
 
+    setMaxItemPerPage(itemLimits: { small: number; large: number }) {
+        this.survey.maxItemsPerPage = itemLimits;
+    }
+
     setSurveyContextRules(contextRules: SurveyContextDef) {
         this.survey.contextRules = { ...contextRules };
     };

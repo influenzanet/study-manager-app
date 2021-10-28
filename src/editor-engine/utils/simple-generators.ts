@@ -1,5 +1,6 @@
 import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent, SurveySingleItem } from "survey-engine/lib/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
+import { StyledTextComponentProp } from "./question-type-generator";
 import { generateRandomKey } from "./randomKeyGenerator";
 
 export const generateLocStrings = (translations: Map<string, string>): LocalizedString[] => {
@@ -15,10 +16,29 @@ export const generateLocStrings = (translations: Map<string, string>): Localized
     return locString;
 }
 
-export const generateTitleComponent = (content: Map<string, string>, description?: Map<string, string>): ItemComponent => {
+export const generateTitleComponent = (content: Map<string, string> | Array<StyledTextComponentProp>, description?: Map<string, string>, className?: string): ItemComponent => {
+    let items = undefined;
+    let currentContent = undefined;
+
+    if (Array.isArray(content)) {
+        items = content.map((item, index) => {
+            return {
+                key: index.toFixed(),
+                role: 'text',
+                content: generateLocStrings(item.content),
+                style: item.className ? [{ key: 'className', value: item.className }] : undefined
+            }
+        })
+    } else {
+        currentContent = generateLocStrings(content);
+    }
+
+    const style = className ? [{ key: 'className', value: className }] : undefined;
     return {
         role: 'title',
-        content: generateLocStrings(content),
+        content: currentContent,
+        items: items,
+        style: style,
         description: description ? generateLocStrings(description) : undefined,
     };
 }

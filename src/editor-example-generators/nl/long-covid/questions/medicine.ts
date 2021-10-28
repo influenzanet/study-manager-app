@@ -32,9 +32,11 @@ export class MedicineGroup extends GroupItemEditor {
 
         const healthcare_provider = Q1(this.key, true);
         const use_medicine = Q3(this.key, true);
+        const use_medicine_FU = Q3_FU(this.key, true);
         const condition_healthcare_provider = CommonExpressions.singleChoiceOptionsSelected(healthcare_provider.key, 'ja');
         const condition_use_medicine = CommonExpressions.singleChoiceOptionsSelected(use_medicine.key, 'ja');
-
+        const condition_use_medicine_FU = CommonExpressions.singleChoiceOptionsSelected(use_medicine_FU.key, 'ja');
+        
         this.addItem(healthcare_provider)
         const Q2a = gen_Q2a(this.key, true, condition_healthcare_provider)
         this.addItem(Q2a);
@@ -44,8 +46,10 @@ export class MedicineGroup extends GroupItemEditor {
             true)
         );
         this.addPageBreak();
-        this.addItem(use_medicine)
+        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(use_medicine)}
+        if (!this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(use_medicine_FU)}
         this.addItem(Q4(this.key, true, condition_use_medicine))
+        this.addItem(Q4_FU(this.key, true, condition_use_medicine_FU))
         this.addItem(Q16(this.key, true))
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(Q_instructions2(this.key))
@@ -62,7 +66,7 @@ const gen_Q1_longsymptoms = (parentKey: string, isRequired?: boolean, condition?
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die WEL te maken hebben met het coronavirus?"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -103,7 +107,7 @@ const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die te maken hebben met het coronavirus, en hoe vaak? "],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die WEL te maken hebben met het coronavirus, en hoe vaak? "],
         ]),
         responseOptions: [
             {
@@ -332,7 +336,7 @@ const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition
             {
                 key: '24', role: 'input',
                 content: new Map([
-                    ["nl", "Andere zorgverlener, namelijk:"],
+                    ["nl", "Andere zorgverlener, namelijk (type zorgverlener):"],
                 ]),
             },
         ]
@@ -346,7 +350,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener om andere reden dan klachten die door het coronavirus komen?"],
+            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die NIET te maken hebben met het coronavirus?"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -387,7 +391,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden om andere reden dan voor de klachten die door het coronavirus komen, en hoe vaak? "],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus?"],
         ]),
         responseOptions: [
             {
@@ -616,7 +620,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
             {
                 key: '24', role: 'input',
                 content: new Map([
-                    ["nl", "Andere zorgverlener, namelijk:"],
+                    ["nl", "Andere zorgverlener, namelijk (type zorgverlener):"],
                 ]),
             },
         ]
@@ -633,7 +637,7 @@ const Q2b = (parentKey: string, condition: Expression, isRequired?: boolean, key
         isRequired: isRequired,
         condition: condition,
         questionText: new Map([
-            ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener om andere reden dan voor de klachten die door het coronavirus komen?"],
+            ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die NIET door het coronavirus komen?"],
         ]),
         content: new Map([
             ['nl', '']
@@ -655,7 +659,7 @@ const Q2b_longsymptoms = (parentKey: string, condition: Expression, isRequired?:
         isRequired: isRequired,
         condition: condition,
         questionText: new Map([
-            ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die te maken hebben met het coronavirus?"],
+            ["nl", "Hoe vaak heb je de afgelopen 3 maanden contact gehad met deze andere zorgverlener voor klachten die WEL te maken hebben met het coronavirus?"],
         ]),
         content: new Map([
             ['nl', '']
@@ -695,6 +699,7 @@ const Q3 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         ]
     });
 }
+
 
 const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
@@ -781,6 +786,118 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
     });
 }
 
+
+const Q3_FU = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q3_FU';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Is je medicijngebruik de afgelopen 3 maanden veranderd (sinds de vorige vragenlijst)?"],
+        ]),
+        responseOptions: [
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+        ]
+    });
+}
+
+
+const Q4_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q4FU';
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Welke medicijnen bent je gaan gebruiken de afgelopen 3 maanden (sinds de vorige vragenlijst)?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+
+        responseOptions: [
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Medicijnen vanwege een infectie/ontsteking (bijvoorbeeld antibiotica, antivirale middelen)"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Afweerremmende medicatie/immunosuppressiva (bijvoorbeeld prednison)"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Maagbeschermers/ maagzuurremmers (bijvoorbeeld omeprazol)"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Cholesterolverlagers (bijvoorbeeld atorvastatine, simvastatine)"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Chemokuur/chemotherapie"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "Medicijnen voor diabetes (bijvoorbeeld insuline of metformine)"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "Hormoonbehandeling"],
+                ])
+            },
+            {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Bloeddrukverlagers (angiotensine convertering enzyme (ACE)-remmers en angiotensine receptorblokkers (ARB’s))"],
+                ])
+            },
+            {
+                key: '9', role: 'option',
+                content: new Map([
+                    ["nl", "Bloedverdunners (bijvoorbeeld clopidogrel)"],
+                ])
+            },
+            {
+                key: '10', role: 'option',
+                content: new Map([
+                    ["nl", "Anticonceptiepil"],
+                ])
+            },
+            {
+                key: '11', role: 'input',
+                content: new Map([
+                    ["nl", "Andere medicijnen, namelijk:"],
+                ])
+            },
+        ]
+    });
+}
 const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q16';
 

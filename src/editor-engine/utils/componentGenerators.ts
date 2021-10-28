@@ -1,17 +1,18 @@
 import { Expression, ItemComponent } from "survey-engine/lib/data_types"
-import { OptionDef } from "./question-type-generator"
+import { OptionDef, StyledTextComponentProp } from "./question-type-generator"
 import { generateRandomKey } from "./randomKeyGenerator"
 import { generateLocStrings } from "./simple-generators"
 
 interface CommonProps {
     key?: string,
-    content?: Map<string, string>;
+    content?: Map<string, string> | StyledTextComponentProp[];
     displayCondition?: Expression;
 }
 
 interface OptionProps extends CommonProps {
     key: string;
     disabled?: Expression;
+    className?: string;
 }
 
 interface OptionTextProps extends CommonProps {
@@ -20,12 +21,21 @@ interface OptionTextProps extends CommonProps {
 }
 
 const option = (props: OptionProps): OptionDef => {
+    const styles = [];
+    if (props.className !== undefined) {
+        styles.push({
+            key: 'className', value: props.className
+        })
+    }
+
     return {
         key: props.key,
         role: 'option',
-        content: props.content,
+        content: !Array.isArray(props.content) ? props.content : undefined,
+        items: Array.isArray(props.content) ? props.content : undefined,
         displayCondition: props.displayCondition,
         disabled: props.disabled,
+        style: styles,
     }
 }
 
@@ -39,7 +49,7 @@ const multipleChoiceOptionSubtitle = (props: OptionTextProps): OptionDef => {
     return {
         key: props.key,
         role: 'text',
-        content: props.content,
+        content: !Array.isArray(props.content) ? props.content : undefined,
         displayCondition: props.displayCondition,
         style: styles,
     }
