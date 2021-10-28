@@ -106,6 +106,20 @@ const coronavaccine = (parentKey: string, key: string, isRequired?: boolean): Su
                 ["nl", "Ja, ik heb sinds de vorige vragenlijst een tweede vaccinatie ontvangen tegen het coronavirus"],
             ])
         },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Yes, I have been vaccinated for the third time against the coronavirus"],
+                ["nl", "Ja, ik heb sinds de vorige vragenlijst een derde (booster) vaccinatie ontvangen tegen het coronavirus"],
+            ])
+        },
+        {
+            key: '5', role: 'option',
+            content: new Map([
+                ["en", "Not applicable, I am fully vaccinated and not planning to get a third booster vaccination"],
+                ["nl", "Niet meer van toepassing: ik ben volledig gevaccineerd en niet van plan om een derde (booster) vaccinatie te nemen"],
+            ])
+        },
     ]);
     editor.addExistingResponseComponent(rg_inner, rg?.key);
 
@@ -144,7 +158,7 @@ const coronavaccineWhen = (parentKey: string, key: string, keyCoronaVaccination:
 
     // CONDITION
     editor.setCondition(
-        CommonExpressions.singleChoiceOptionsSelected(keyCoronaVaccination, '3', '4')
+        CommonExpressions.singleChoiceOptionsSelected(keyCoronaVaccination, '3', '4', '5')
     )
 
     // INFO POPUP
@@ -200,7 +214,7 @@ const coronavaccineWhich = (parentKey: string, key: string, keyCoronaVaccination
 
     // CONDITION
     editor.setCondition(
-        expWithArgs('responseHasKeysAny', [keyCoronaVaccination].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '3', '4')
+        expWithArgs('responseHasKeysAny', [keyCoronaVaccination].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '3', '4', '5')
     )
 
     // INFO POPUP

@@ -2116,9 +2116,9 @@ const causeOfSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
         {
             key: '9', role: 'option',
             content: new Map([
-                ["en", "New coronavirus (COVID-19)"],
-                ["nl", "Ja, het nieuwe coronavirus (COVID-19)"],
-                ["fr", "Nouveau coronavirus (COVID-19)"],
+                ["en", "Coronavirus (COVID-19)"],
+                ["nl", "Ja, het coronavirus (COVID-19, longcovid)"],
+                ["fr", "Coronavirus (COVID-19)"],
             ])
         },
         {
