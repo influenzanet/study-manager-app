@@ -299,15 +299,11 @@ const symptomps = (parentKey: string, isRequired?: boolean, keyOverride?: string
             ])
         },
         {
-            key: '19', role: 'input',
+            key: '19', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Other"],
                 ["it", "Altro"],
-            ]),
-            description: new Map([
-                ["en", "Enter symptoms"],
-                ["it", "Inserisci sintomi"],
             ]),
         },
     ]);
@@ -1631,7 +1627,7 @@ const feverStart = (parentKey: string, keySymptomsQuestion: string, keySymptomSt
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '0', role: 'dateInput',
+            key: '1', role: 'dateInput',
             optionProps: {
                 min: {
                     dtype: 'exp', exp: {
@@ -1657,7 +1653,7 @@ const feverStart = (parentKey: string, keySymptomsQuestion: string, keySymptomSt
             ])
         },
         {
-            key: '1', role: 'option',
+            key: '2', role: 'option',
             content: new Map([
                 /* ["en", "I don't know/can't rember"], */
                 ["nl", "Ik weet het niet (meer)."],
@@ -3206,11 +3202,8 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             key: '10', role: 'input',
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
-                ["nl-be", "Mijn symptomen verschenen zeer recent"],
-                ["fr-be", "Mes symptômes sont apparus très récemment"],
-                ["de-be", "Meine Symptome sind vor kurzem aufgetreten"],
-                ["en", "My symptoms appeared very recently"],
-                ["it", "I sintomi sono comparsi da poco"],
+                ["en", "For another reason"],
+                ["it", "Per un'altra ragione"],
             ]),
             description: new Map([
                 ["nl-be", "Beschrijf hier (optioneel in te vullen)"],
