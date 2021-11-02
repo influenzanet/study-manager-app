@@ -27,8 +27,8 @@ const vaccination = (): Survey | undefined => {
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["en", "It takes approximately 2 minutes to complete this questionnaire."],
-            ["it", "Ci vogliono circa 2 minuti per completare questo questionario."],
+            ["en", "Duration 5-10 minutes"],
+            ["it", "Durata: 5-10 minuti"],
         ])
     ));
 
