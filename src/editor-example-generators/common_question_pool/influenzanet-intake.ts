@@ -203,7 +203,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 code: 'it', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' years old' }
+                    { str: ' anni' }
                 ]
             },
             {
