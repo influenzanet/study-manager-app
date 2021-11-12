@@ -27,8 +27,8 @@ const intake = (): Survey | undefined => {
     ));
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["en", "It takes approximately 5-15 minutes to complete this questionnaire."],
-            ["it", "Ci vogliono circa 5-15 minuti per completare questo questionario."],
+            ["en", "Duration 5-10 minutes"],
+            ["it", "Durata: 5-10 minuti"],
         ])
     ));
 

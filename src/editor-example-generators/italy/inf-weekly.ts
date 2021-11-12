@@ -23,15 +23,15 @@ const weekly = (): Survey | undefined => {
     ));
     survey.setSurveyDescription(generateLocStrings(
         new Map([
-            ["en", "Click here for your questionnaire about your complaints in the past week. Please also report if you had no complaints."],
-            ["it", "Clicca qui per il questionario sui sintomi della scorsa settimana. Si prega di segnalare anche se non si hanno manifestato sintomi."],
+            ["en", "Please also report if you had no complaints."],
+            ["it", "Per favore compila il questionario anche se non hai avuto sintomi."],
         ])
     ));
 
     survey.setSurveyDuration(generateLocStrings(
         new Map([
-            ["en", "Filling in takes 15 seconds to 5 minutes, depending on your complaints."],
-            ["it", "La compilazione richiede da 15 secondi a 5 minuti, a seconda dei sintomi manifestati."],
+            ["en", "Duration 1-5 minutes"],
+            ["it", "Durata: 1-5 minuti"]
         ])
     ));
 
