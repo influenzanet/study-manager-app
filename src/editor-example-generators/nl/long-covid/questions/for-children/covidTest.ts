@@ -20,7 +20,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const q1 = this.Q_hadTest('Q1', isRequired);
         const q1_FU = this.Q_hadTest_FU('Q1_FU', isRequired);
         const conditionQ1Ja = CommonExpressions.or(
-            CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes'),
+            CommonExpressions.singleChoiceOptionsSelected(q1.key, 'yes', 'yes>7', 'yes>14'),
             CommonExpressions.singleChoiceOptionsSelected(q1_FU.key, 'yes')
         );
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
@@ -120,13 +120,25 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt?"],
+                ["nl", "Heb je afgelopen 30 dagen een test gedaan om te weten of je corona hebt?"],
             ]),
             responseOptions: [
                 {
                     key: 'yes', role: 'option',
                     content: new Map([
-                        ["nl", "Ja"],
+                        ["nl", "Ja, 7 dagen of minder geleden"],
+                    ])
+                },
+                {
+                    key: 'yes>7', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, 7-14 dagen geleden"],
+                    ])
+                },
+                {
+                    key: 'yes>14', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja, meer dan 14 dagen geleden"],
                     ])
                 },
                 {
@@ -412,7 +424,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ["nl", "Ben je al eerder besmet geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
             ]),
             questionSubText: new Map([
-                ["nl", "Het gaat hier om een eerdere infectie, meer dan 7 dagen geleden."],
+                ["nl", "Het gaat hier om een eerdere infectie, meer dan 30 dagen geleden."],
             ]),
             responseOptions: [
                 {

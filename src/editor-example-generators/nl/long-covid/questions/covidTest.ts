@@ -40,7 +40,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const test_FU = q_test_def_FU(this.key, true);
 
         const condition_test_yes = CommonExpressions.or(
-            CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes'),
+            CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes', 'yes>7', 'yes>14'),
             CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes')
         )
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
@@ -218,13 +218,25 @@ const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Express
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je afgelopen 7 dagen een test gedaan om te weten of je corona hebt?"],
+            ["nl", "Heb je afgelopen 30 dagen een test gedaan om te weten of je corona hebt?"],
         ]),
         responseOptions: [
             {
                 key: 'yes', role: 'option',
                 content: new Map([
-                    ["nl", "Ja"],
+                    ["nl", "Ja, 7 dagen of minder geleden"],
+                ])
+            },
+            {
+                key: 'yes>7', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, 7-14 dagen geleden"],
+                ])
+            },
+            {
+                key: 'yes>14', role: 'option',
+                content: new Map([
+                    ["nl", "Ja, meer dan 14 dagen geleden"],
                 ])
             },
             {
@@ -494,7 +506,7 @@ const q_infect_earlier_def = (parentKey: string, isRequired?: boolean, condition
             ["nl", "Ben je al eerder besmet geweest met het coronavirus sinds de start van de pandemie in Nederland (februari 2020)?"],
         ]),
         questionSubText: new Map([
-            ["nl", "Het gaat hier om een eerdere infectie, meer dan 7 dagen geleden."],
+            ["nl", "Het gaat hier om een eerdere infectie, meer dan 30 dagen geleden."],
         ]),
         responseOptions: [
             {
