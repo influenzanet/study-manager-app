@@ -203,7 +203,7 @@ const date_of_birth = (parentKey: string, isRequired?: boolean, keyOverride?: st
             {
                 code: 'it', parts: [
                     { dtype: 'exp', exp: expWithArgs('dateResponseDiffFromNow', editor.getItem().key, [responseGroupKey, '1'].join('.'), 'years', 1) },
-                    { str: ' years old' }
+                    { str: ' anni' }
                 ]
             },
             {
@@ -384,9 +384,15 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
+                          expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]+$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1')
         )
+    });
+
+    editor.addValidation({
+        key: 'r2max',
+        type: 'hard',
+        rule: expWithArgs('not', expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]{6,}$'))
     });
 
     editor.addDisplayComponent(
@@ -403,6 +409,18 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
     );
+
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["en", "Please enter at most 5 digits"],
+                ["it", "Per favore, inserisci un massimo di 5 cifre"],
+            ])),
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2max'))
+        }
+    );
+
     return editor.getItem();
 }
 
@@ -676,9 +694,15 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
         type: 'hard',
         rule: expWithArgs('or',
             expWithArgs('not', expWithArgs('hasResponse', itemKey, responseGroupKey)),
-            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[A-Za-z0-9]*$'),
+            expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]+$'),
             expWithArgs('responseHasKeysAny', itemKey, [responseGroupKey, singleChoiceKey].join('.'), '1', '2')
         )
+    });
+
+    editor.addValidation({
+        key: 'r2max',
+        type: 'hard',
+        rule: expWithArgs('not', expWithArgs('checkResponseValueWithRegex', itemKey, [responseGroupKey, singleChoiceKey, '0'].join('.'), '^[0-9]{6,}$'))
     });
 
     editor.addDisplayComponent(
@@ -694,6 +718,18 @@ const postal_code_work = (parentKey: string, keyMainActivity?: string, isRequire
             displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2'))
         }
     );
+
+    editor.addDisplayComponent(
+        {
+            role: 'error',
+            content: generateLocStrings(new Map([
+                ["en", "Please enter at most 5 digits"],
+                ["it", "Per favore, inserisci un massimo di 5 cifre"],
+            ])),
+            displayCondition: expWithArgs('not', expWithArgs('getSurveyItemValidation', 'this', 'r2max'))
+        }
+    );
+
     return editor.getItem();
 }
 
@@ -918,9 +954,10 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
 
     // RESPONSE PART
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
-    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+    const rg_inner = initMultipleChoiceGroup(multipleChoiceKey, [
         {
             key: '0', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '1', '2', '3', '4', '5'),
             content: new Map([
                 ["en", "I have no formal qualification"],
                 ["it", "Non possiedo alcuna qualifica formale"],
@@ -930,6 +967,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '1', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "GCSE's, levels, CSEs or equivalent"],
                 ["it", "Diploma di scuola media"],
@@ -939,6 +977,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '2', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "A-levels or equivalent (e.g. Higher, NVQ Level3, BTEC)"],
                 ["it", "Diploma di scuola superiore"],
@@ -948,6 +987,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '3', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Bachelors Degree (BA, BSc) or equivalent"],
                 ["it", "Diploma di laurea triennale"],
@@ -957,6 +997,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '4', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "Higher Degree or equivalent (e.g. Masters Degree, PGCE, PhD, Medical Doctorate, Advanced Professional Award)"],
                 ["it", "Diploma di laurea magistrale o titolo di studio superiore (Ph.D.)"],
@@ -966,6 +1007,7 @@ const highest_education = (parentKey: string, isRequired?: boolean, keyOverride?
         },
         {
             key: '5', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '0'),
             content: new Map([
                 ["en", "I am still in education"],
                 ["it", "Sono ancora in formazione scolastica"],
@@ -1181,7 +1223,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
     // Dropdown options - used in each cell
     const ddg: ResponseRowCell = {
-        key: 'col2', role: 'dropDownGroup',
+        key: 'col1', role: 'dropDownGroup',
         items: [
             {
                 key: '0', role: 'option', content: new Map([
@@ -1214,7 +1256,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
 
     const rg_inner = initMatrixQuestion(matrixKey, [
         {
-            key: '0', role: 'responseRow',
+            key: 'row0', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1229,7 +1271,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '1', role: 'responseRow',
+            key: 'row1', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1244,7 +1286,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ],
         },
         {
-            key: '2', role: 'responseRow',
+            key: 'row2', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1259,7 +1301,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '3', role: 'responseRow',
+            key: 'row3', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1274,7 +1316,7 @@ const age_groups = (parentKey: string, isRequired?: boolean, keyOverride?: strin
             ]
         },
         {
-            key: '4', role: 'responseRow',
+            key: 'row4', role: 'responseRow',
             cells: [
                 {
                     key: 'l', role: 'label',
@@ -1336,8 +1378,10 @@ const children_in_school = (parentKey: string, keyOfAgeGroups?: string, isRequir
     if (keyOfAgeGroups) {
         editor.setCondition(
             expWithArgs('or',
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '0', 'col2'].join('.'), '0'),
-                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '1', 'col2'].join('.'), '0'),
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, 'row0', 'col1'].join('.'), '0'),
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, 'row1', 'col1'].join('.'), '0'),
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '0', 'col2'].join('.'), '0'), // needed for BE
+                expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '1', 'col2'].join('.'), '0'), // needed for BE
                 expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '11', 'col2'].join('.'), '0'), // needed for BE
                 expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '12', 'col2'].join('.'), '0'), // needed for BE
                 expWithArgs('responseHasOnlyKeysOtherThan', [keyOfAgeGroups].join('.'), [responseGroupKey, matrixKey, '13', 'col2'].join('.'), '0'), // needed for BE
@@ -1972,9 +2016,8 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            /*["en", "Did you receive a flu vaccine during the last autumn/winter season? (2019-2020)"],*/
-            ["en", "Did you receive a flu vaccine during the previous flu season (2019-2020)?"],
-            ["it", "Sei stato vaccinato contro l'influenza durante la passata stagione influenzale (2019-2020)?"],
+            ["en", "Did you receive a flu vaccine during the previous flu season (2020-2021)?"],
+            ["it", "Sei stato vaccinato contro l'influenza durante la passata stagione influenzale (2020-2021)?"],
             ["nl", "Heb je in het afgelopen griepseizoen (2019/2020) een griepprik gehaald?"],
             ["nl-be", "Heeft u in het vorige griepseizoen (2019/2020) een griepvaccin laten toedienen?"],
             ["fr", "Avez-vous été vacciné(e) contre la grippe lors de la dernière saison automne/hiver (2018-2019) ?"],
@@ -2030,10 +2073,10 @@ const flu_vaccine_last_season = (parentKey: string, isRequired?: boolean, keyOve
                     ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2020-2021."],
                     ["it", "Rispondi 'si' se sei stato vaccinato contro l’influenza l’anno scorso durante la stagione autunno inverno 2020-2021."],
                     ["nl", "Zeg 'ja' wanneer je de griepprik hebt gehad. Normaal ontvang je een griepprik in het najaar."],
-                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2019-2020) heeft gekregen."],
+                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2020-2021) heeft gekregen."],
                     ["fr", "Répondez « oui » si vous avez été vacciné cette saison, habituellement à l'automne. Si vous vous faites vacciner après avoir rempli ce questionnaire, merci de revenir et corriger votre réponse."],
-                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2019-2020)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2019-2020)"],
+                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2020-2021)."],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2020-2021)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2111,11 +2154,11 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Have you received a flu vaccine this autumn/winter season? (2020-2021)"],
+            ["en", "Have you received a flu vaccine this autumn/winter season? (2021-2022)"],
             ["it", "Hai ricevuto il vaccino contro l'influenza per la prossima stagione autunno/inverno? (2021-2022)"],
             ["nl", "Ben je van plan om voor dit griepseizoen (2020/2021) een griepprik te halen?"],
             ["nl-be", "Heeft u in het huidige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
-            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2019-2020)"],
+            ["fr", "Avez-vous été vacciné(e) contre la grippe cette année? (automne/hiver 2021-2022)"],
         ]))
     );
 
@@ -2243,7 +2286,7 @@ const flu_vaccine_this_season_when = (parentKey: string, keyFluVaccineThisSeason
             ["it", "Quando hai ricevuto la vaccinazione per questa stagione? (2021-2022)?"],
             ["nl", "Wanneer ben je dit griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
             ["nl-be", "Wanneer bent u in het huidige griepseizoen (2020/2021) gevaccineerd tegen de griep?"],
-            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2020-2021) ?"],
+            ["fr", "Quand avez-vous été vacciné contre la grippe cette saison (2021-2022) ?"],
             ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2020/2021 ?"],
             ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2020/2021) gegen Grippe geimpft?"],
         ]))
@@ -3252,7 +3295,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
             key: '1', role: 'option',
             content: new Map([
                 ["en", "Yes, occasionally"],
-                ["it", "Yes, occasionalmente"],
+                ["it", "Sì, occasionalmente"],
                 ["nl", "Ja, af en toe"],
                 ["fr", "Oui, de temps en temps"],
             ])
