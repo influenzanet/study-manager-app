@@ -218,7 +218,7 @@ export class DemographieGroup extends GroupItemEditor {
             isRequired: isRequired,
             condition: condition,
             questionText: new Map([
-                ["nl", "Werk je op dit moment minder dan je normaalgesproken deed voor je langdurige klachten kreeg?"],
+                ["nl", "Heb je minder lesuren op school/opleiding kunnen volgen dan je normaalgesproken deed voordat je langdurige klachten kreeg?"],
             ]),
             responseOptions: [
                 {

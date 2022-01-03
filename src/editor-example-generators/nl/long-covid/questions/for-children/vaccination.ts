@@ -25,12 +25,14 @@ export class VaccinationGroup extends GroupItemEditor {
         const Q2_FU = this.Q2_FU('Q2_FU', conditionQ1_FU_Ja, isRequired)
         const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1vacc');
         const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2vacc');
-
+        const condition3Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '3vacc');
 
         const condition1Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '1vacc');
         const condition2Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '2vacc');
+        const condition3Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '3vacc');
 
         const Q5 = this.Q5('Q5', condition2Vac, isRequired);
+        const Q9 = this.Q9('Q9', condition3Vac, isRequired);
         const dateForFirstVac = CommonExpressions.getDatePickerResponseValue(Q5.key);
 
         this.addItem(this.groupIntro());
@@ -69,6 +71,26 @@ export class VaccinationGroup extends GroupItemEditor {
         } else {
             this.addItem(this.Q6_FU('Q6_FU', condition2Vac_FU, isRequired))
         }
+
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(Q9)
+        } else {
+            this.addItem(this.Q9_FU('Q9_FU', condition3Vac_FU, isRequired))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q10('Q10', condition3Vac, dateForFirstVac, isRequired));
+        } else {
+            this.addItem(this.Q10_FU('Q10_FU', condition3Vac_FU, isRequired))
+        }
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.Q11('Q11', condition3Vac, dateForFirstVac, isRequired));
+        } else {
+            this.addItem(this.Q11_FU('Q11_FU', condition3Vac_FU, isRequired))
+        }
+
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q7('Q7', isRequired));
@@ -179,6 +201,12 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "2 vaccinaties"],
                     ])
                 },
+                  {
+                    key: '3vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "3 vaccinaties"],
+                    ])
+                },
             ],
             isRequired: isRequired,
         });
@@ -203,6 +231,12 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: '2vacc', role: 'option',
                     content: new Map([
                         ["nl", "2 vaccinaties"],
+                    ])
+                },
+                {
+                    key: '3vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "3 vaccinaties"],
                     ])
                 },
             ],
@@ -437,6 +471,54 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         })
     }
 
+    Q9(key: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.dateInput({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+            ]),
+            dateInputMode: 'YMD',
+            placeholderText: new Map([
+                ["nl", "dd-mm-jjjj"],
+            ]),
+            //minRelativeDate: { delta: { days: -10 } },
+            maxRelativeDate: { delta: { seconds: 1 } },
+            isRequired: isRequired,
+        });
+    }
+
+    Q9_FU(key: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+            ]),
+            responseOptions: [
+                {
+                    key: '0', role: 'dateInput',
+                    content: new Map([
+                        ["nl", "Op deze datum:"],
+                    ]),
+                    optionProps: {
+                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                    },
+                },
+                {
+                    key: '1', role: 'option',
+                    content: new Map([
+                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
+
     Q6(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
         return SurveyItemGenerators.dateInput({
             parentKey: this.key,
@@ -465,6 +547,108 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             condition: condition,
             questionText: new Map([
                 ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+            ]),
+            responseOptions: [
+                {
+                    key: '0', role: 'dateInput',
+                    content: new Map([
+                        ["nl", "Op deze datum:"],
+                    ]),
+                    optionProps: {
+                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                    },
+                },
+                {
+                    key: '1', role: 'option',
+                    content: new Map([
+                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
+
+    Q10(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.dateInput({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
+            ]),
+            dateInputMode: 'YMD',
+            placeholderText: new Map([
+                ["nl", "dd-mm-jjjj"],
+            ]),
+            minRelativeDate: {
+                reference: dateForFirstVac,
+                delta: { days: 5 }
+            },
+            maxRelativeDate: { delta: { seconds: 1 } },
+            isRequired: isRequired,
+        });
+    }
+
+    Q10_FU(key: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+            ]),
+            responseOptions: [
+                {
+                    key: '0', role: 'dateInput',
+                    content: new Map([
+                        ["nl", "Op deze datum:"],
+                    ]),
+                    optionProps: {
+                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                    },
+                },
+                {
+                    key: '1', role: 'option',
+                    content: new Map([
+                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+                    ])
+                },
+            ],
+            isRequired: isRequired,
+        })
+    }
+
+    Q11(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.dateInput({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Op welke datum heb je de derde vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
+            ]),
+            dateInputMode: 'YMD',
+            placeholderText: new Map([
+                ["nl", "dd-mm-jjjj"],
+            ]),
+            minRelativeDate: {
+                reference: dateForFirstVac,
+                delta: { days: 5 }
+            },
+            maxRelativeDate: { delta: { seconds: 1 } },
+            isRequired: isRequired,
+        });
+    }
+
+    Q11_FU(key: string, condition: Expression, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: key,
+            condition: condition,
+            questionText: new Map([
+                ["nl", "Op welke datum heb je de derde vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             responseOptions: [
                 {
