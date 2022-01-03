@@ -114,8 +114,10 @@ export const generateT0 = (): Survey | undefined => {
 
     const demographieGroupEditor = new DemographieGroup(
         adultVersion.key,
-        participantInfos.getAgeInYearsExpression(),
-        covidTestGroupEditor.getQ11JaCondition(),
+        {
+            getAgeInYearsExpression: participantInfos.getAgeInYearsExpression(),
+            testQ11jaCondition: covidTestGroupEditor.getQ11JaCondition(),
+        }
     );
     adultVersion.addItem(demographieGroupEditor.getItem());
 

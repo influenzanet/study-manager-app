@@ -8,6 +8,7 @@ import { surveyKeys } from "../studyRules";
 export class AcuteHealthGroup extends GroupItemEditor {
     qAcuteSymptomsKey: string;
     hasAnyLongSymptoms?: Expression;
+    geenReukSmaak?: Expression;
 
     constructor(parentKey: string, TestQ11jaCondition?: Expression, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'AH';
@@ -27,6 +28,13 @@ export class AcuteHealthGroup extends GroupItemEditor {
 
         const Q_symptoms = q_acuteSymptoms(this.key, true);
         this.addItem(Q_symptoms);
+
+        const geenReukSmaak = CommonExpressions.multipleChoiceOptionsSelected(
+            Q_symptoms.key,
+            'geen_reuk',
+            'geen_smaak'
+        )
+        this.geenReukSmaak = geenReukSmaak;
 
         const hasReportedSymptoms = CommonExpressions.multipleChoiceOnlyOtherKeysSelected(
             Q_symptoms.key, 'geen'
@@ -199,7 +207,7 @@ const q_acuteSymptoms = (parentKey: string, isRequired?: boolean, keyOverride?: 
                     ["nl", "Vermoeidheid"],
                 ])
             },
-           
+
             {
                 key: 'long2', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],
@@ -508,7 +516,7 @@ const q_longSymptoms = (parentKey: string, condition?: Expression, isRequired?: 
                     ["nl", "Vermoeidheid"],
                 ])
             },
-           
+
             {
                 key: 'long2', role: 'text',
                 style: [{ key: 'className', value: 'fw-bold mb-2' }],

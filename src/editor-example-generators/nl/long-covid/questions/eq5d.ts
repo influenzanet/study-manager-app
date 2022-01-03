@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/lib/data_types";
 import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -13,7 +13,9 @@ export class EQ5DGroup extends GroupItemEditor {
     isRequired: boolean;
     usePageBreaks: boolean;
 
-    constructor(parentKey: string, isRequired: boolean, usePageBreaks: boolean, hideCopyRight?: boolean, keyOverride?: string) {
+    constructor(parentKey: string, isRequired: boolean, usePageBreaks: boolean, hideCopyRight?: boolean, keyOverride?: string, conditions?: {
+        geenReukSmaak?: Expression
+    }) {
         const groupKey = keyOverride ? keyOverride : 'EQ5D-5L';
         super(parentKey, groupKey);
 
@@ -21,10 +23,12 @@ export class EQ5DGroup extends GroupItemEditor {
         this.usePageBreaks = usePageBreaks;
         this.isRequired = isRequired;
 
-        this.initQuestions();
+        this.initQuestions(conditions?.geenReukSmaak);
     }
 
-    initQuestions() {
+    initQuestions(
+        geenReukSmaak?: Expression,
+    ) {
         this.addItem(Q_instructions(this.key))
         this.addItem(q_mobility_def(this.key, this.isRequired, this.useCopyRight));
         this.addPageBreak();
@@ -39,7 +43,7 @@ export class EQ5DGroup extends GroupItemEditor {
         this.addItem(q_healthstatus_instructions_def(this.key));
         this.addItem(q_healthstatus_def(this.key, this.isRequired, this.useCopyRight));
         this.addPageBreak();
-        if (this.isPartOfSurvey(surveyKeys.short)) { this.addItem(Q_instr_reuksmaak(this.key))}
+        if (this.isPartOfSurvey(surveyKeys.short)) { this.addItem(Q_instr_reuksmaak(this.key, geenReukSmaak)) }
         this.addPageBreak();
     }
 }
@@ -458,7 +462,7 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRigh
 }
 
 
-const Q_instr_reuksmaak = (parentKey: string): SurveyItem => {
+const Q_instr_reuksmaak = (parentKey: string, condition?: Expression): SurveyItem => {
     const markdownContent = `
 ## Onderzoek naar reuk- of smaakverlies
 
@@ -469,6 +473,7 @@ Heb je een maand of langer na de besmetting met het coronavirus nog steeds last 
     return SurveyItemGenerators.display({
         parentKey: parentKey,
         itemKey: 'intro_reuksmaak',
+        condition: condition,
         content: [
             ComponentGenerators.markdown({
                 content: new Map([

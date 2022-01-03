@@ -9,15 +9,26 @@ import { surveyKeys } from "../studyRules";
 
 export class DemographieGroup extends GroupItemEditor {
 
-    constructor(parentKey: string, getAgeInYearsExpression?: Expression, testQ11jaCondition?: Expression, keyOverride?: string) {
+    constructor(parentKey: string,
+        conditions: {
+            getAgeInYearsExpression?: Expression;
+            testQ11jaCondition?: Expression;
+            geenReukSmaak?: Expression;
+        },
+        keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'DEM';
         super(parentKey, groupKey);
-        this.initQuestions(getAgeInYearsExpression, testQ11jaCondition);
+        this.initQuestions(
+            conditions.getAgeInYearsExpression,
+            conditions.testQ11jaCondition,
+            conditions.geenReukSmaak,
+        );
     }
 
     initQuestions(
         getAgeInYearsExpression?: Expression,
         testQ11jaCondition?: Expression,
+        geenReukSmaak?: Expression,
     ) {
         this.addItem(Q_instructions(this.key))
 
@@ -92,15 +103,15 @@ export class DemographieGroup extends GroupItemEditor {
         }
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(Q16(this.key, qWorkcondition, true))
-        this.addItem(Q17(this.key, qWorkcondition, true))
-        this.addItem(Q18(this.key, qWorkcondition, true))
+            this.addItem(Q16(this.key, qWorkcondition, true))
+            this.addItem(Q17(this.key, qWorkcondition, true))
+            this.addItem(Q18(this.key, qWorkcondition, true))
         }
 
         if (!this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(Q16_FU(this.key, qWorkcondition, true))
-        this.addItem(Q17_FU(this.key, qWorkcondition, true))
-        this.addItem(Q18_FU(this.key, qWorkcondition, true))
+            this.addItem(Q16_FU(this.key, qWorkcondition, true))
+            this.addItem(Q17_FU(this.key, qWorkcondition, true))
+            this.addItem(Q18_FU(this.key, qWorkcondition, true))
         }
         const conditionQ11JaAndStudent = CommonExpressions.and(
             testQ11jaCondition,
@@ -200,14 +211,15 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q_urenhulp);
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(Q19(this.key, true))
-        this.addItem(Q20(this.key, true))
+            this.addItem(Q19(this.key, true))
+            this.addItem(Q20(this.key, true))
         }
         this.addItem(Q21(this.key, true))
 
         this.addItem(Q_instructions_eind(this.key, testQ11jaCondition))
         if (this.isPartOfSurvey(surveyKeys.T3)) {
-            this.addItem(Q_instr_reuksmaak(this.key, testQ11jaCondition))}
+            this.addItem(Q_instr_reuksmaak(this.key, geenReukSmaak))
+        }
     }
 
 
@@ -2054,7 +2066,7 @@ Voor advies en ondersteuning rondom langdurige gezondheidsklachten door het coro
     });
 }
 
-const Q_instr_reuksmaak = (parentKey: string,condition?: Expression): SurveyItem => {
+const Q_instr_reuksmaak = (parentKey: string, condition?: Expression): SurveyItem => {
     const markdownContent = `
 ### Onderzoek naar reuk- of smaakverlies
 

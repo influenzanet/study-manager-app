@@ -32,7 +32,9 @@ export const generateShort = (): Survey | undefined => {
     const acuteHealthGroupEditor = new AcuteHealthGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(acuteHealthGroupEditor.getItem());
 
-    const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
+    const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true, false, undefined, {
+        geenReukSmaak: acuteHealthGroupEditor.geenReukSmaak,
+    });
     surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
 
 

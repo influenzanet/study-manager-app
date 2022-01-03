@@ -68,8 +68,11 @@ export const generateT9 = (): Survey | undefined => {
 
     const demographieGroupEditor = new DemographieGroup(
         surveyKey,
-        undefined, // not relevant here, since pregnancy question only in T0
-        covidTestGroupEditor.getQ11JaCondition(),
+        {
+            getAgeInYearsExpression: undefined, // not relevant here, since pregnancy question only in T0
+            testQ11jaCondition: covidTestGroupEditor.getQ11JaCondition(),
+            geenReukSmaak: acuteHealthGroupEditor.geenReukSmaak,
+        }
     );
     surveyEditor.addSurveyItemToRoot(demographieGroupEditor.getItem());
 
