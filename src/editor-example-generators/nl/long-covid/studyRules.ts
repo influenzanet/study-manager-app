@@ -293,7 +293,7 @@ const handleShortSubmission = (): Expression => {
     )
 
     const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
-        surveyKeys.short + 'TEST.Q5followup', 'pos', 'neg'
+        surveyKeys.short + '.TEST.Q5followup', 'pos', 'neg'
     );
 
     const shouldAssignShortAgain = () => expWithArgs(
@@ -340,7 +340,7 @@ const handleShortCSubmission = (): Expression => {
     )
 
     const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
-        surveyKeys.shortC + 'TEST.Q5followup', 'pos', 'neg'
+        surveyKeys.shortC + '.TEST.Q5followup', 'pos', 'neg'
     );
 
     const shouldAssignShortAgain = () => expWithArgs(
@@ -374,7 +374,7 @@ const handleShortCSubmission = (): Expression => {
 
 const handleT3Submission = (): Expression => {
     const hasTestResultAlready = () => StudyExpressions.singleChoiceOptionsSelected(
-        surveyKeys.T3 + 'TEST.Q5followup', 'pos', 'neg'
+        surveyKeys.T3 + '.TEST.Q5followup', 'pos', 'neg'
     );
 
     return StudyActions.ifThen(
