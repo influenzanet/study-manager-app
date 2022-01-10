@@ -727,7 +727,7 @@ const q_vacc_influenza_def = (parentKey: string, isRequired?: boolean, condition
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je een griepvaccinatie gehad in het najaar van 2020?"],
+            ["nl", "Heb je een griepvaccinatie gehad in het afgelopen najaar?"],
         ]),
         questionSubText: new Map([
             ["nl", "Mensen die in aanmerking komen voor de griepprik ontvangen hiervoor elk jaar in oktober een uitnodiging van de huisarts of de werkgever."],
@@ -771,10 +771,10 @@ const q_vacc_pneumoc_def = (parentKey: string, isRequired?: boolean, condition?:
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Ben je in het najaar van 2020 gevaccineerd tegen pneumokokken?"],
+            ["nl", "Ben je in het afgelopen najaar gevaccineerd tegen pneumokokken?"],
         ]),
         questionSubText: new Map([
-            ["nl", "Mensen die in aanmerking komen voor het pneumokokkenvaccin hebben hiervoor in het najaar van 2020 een uitnodiging ontvangen van de huisarts."],
+            ["nl", "Mensen die in aanmerking komen voor het pneumokokkenvaccin hebben hiervoor in het najaar een uitnodiging ontvangen van de huisarts."],
         ]),
         responseOptions: [
             {
