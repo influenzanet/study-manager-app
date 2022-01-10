@@ -677,7 +677,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             parentKey: this.key,
             itemKey: key,
             questionText: new Map([
-                ["nl", "Heb je een griepvaccinatie gehad in het najaar van 2020? "],
+                ["nl", "Heb je een griepvaccinatie gehad in het afgelopen najaar? "],
             ]),
             questionSubText: new Map([
                 ["nl", "Kinderen die in aanmerking komen voor de griepprik ontvangen hiervoor elk jaar in oktober een uitnodiging van de huisarts."],
