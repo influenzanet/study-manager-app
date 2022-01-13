@@ -6,13 +6,11 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 import { surveyKeys } from "../../studyRules";
 
 export class VaccinationGroup extends GroupItemEditor {
-    constructor(parentKey: string, conditions: {
-        groupCondition: Expression;
-    }, keyOverride?: string) {
+    constructor(parentKey: string, keyOverride?: string) {
         const groupKey = keyOverride ? keyOverride : 'VAC';
         super(parentKey, groupKey);
 
-        this.groupEditor.setCondition(conditions.groupCondition);
+        // this.groupEditor.setCondition(conditions.groupCondition);
 
         const isRequired = true;
 
@@ -201,7 +199,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "2 vaccinaties"],
                     ])
                 },
-                  {
+                {
                     key: '3vacc', role: 'option',
                     content: new Map([
                         ["nl", "3 vaccinaties"],

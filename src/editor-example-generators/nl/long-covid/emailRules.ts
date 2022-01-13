@@ -83,6 +83,17 @@ const generateStudyReminderEmailConfig = (
 export const emailConfigs = [
     generateStudyReminderEmailConfig(
         studyKey,
+        'Invite for Vaccinatierespons study IIV',
+        sendingTime,
+        { days: 2 },
+        defaultLanguage,
+        StudyExpressions.hasParticipantFlag('invite-vaccinatierespons-study-IIV', '12-jan-22'),
+        [
+            { lang: 'nl', subject: 'TODO: email subject' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
         'T0 invite',
         sendingTime,
         { days: 2 },

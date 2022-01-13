@@ -142,9 +142,7 @@ export const generateT0 = (): Survey | undefined => {
     childVersion.addItem(childrenCovidTestGroupEditor.getItem());
 
     // COVID vaccination for children
-    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key, {
-        groupCondition: participantInfos.isOlder(11),
-    });
+    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key);
     childVersion.addItem(childrenVaccinationGroupEditor.getItem());
 
     // SymptomsGroup for children
