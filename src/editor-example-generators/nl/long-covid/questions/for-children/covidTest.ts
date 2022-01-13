@@ -1004,9 +1004,6 @@ const q12 = (parentKey: string, isRequired?: boolean, condition?: Expression, ke
             questionText: new Map([
                 ["nl", "Je geeft aan dat je vaker dan 3x keer eerder besmet bent geweest met het coronavirus. Kun je hieronder aangeven hoe vaak dat was, wanneer je besmet bent geraakt en of je volledig hersteld bent na deze besmettingen?"],
             ]),
-            questionSubText: new Map([
-                ["nl", "Let op, je krijgt geen persoonlijke reactie op deze opmerkingen. "],
-            ]),
             placeholderText: new Map([
                 ["nl", "Antwoord"]
             ])
