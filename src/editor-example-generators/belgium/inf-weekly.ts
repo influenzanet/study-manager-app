@@ -696,11 +696,29 @@ const covidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
         {
-            key: '0', role: 'option', content: new Map([
-                ["nl-be", "Ja"],
-                ["fr-be", "Oui"],
-                ["de-be", "Ja"],
-                ["en", "Yes"],
+            key: '01', role: 'option', content: new Map([
+                ["nl-be", "Ja, een PCR test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
+                ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
+                ["de-be", "Ja, ein PCR Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
+                ["en", "Yes, a PCR test (virus search, or a swab in nose or mouth, or a sputum or saliva sample)"],
+
+            ])
+        },
+        {
+            key: '02', role: 'option', content: new Map([
+                ["nl-be", "Ja, een sneltest (antigeentest) (met een wattenstaafje in mijn neus of mond, en met een resultaat beschikbaar binnen het uur)"],
+                ["fr-be", "Oui, un test rapide (test d'antigène) (avec un coton-tige dans le nez ou la bouche, et avec un résultat disponible dans l'heure)"],
+                ["de-be", "Ja, ein Schnelltest/ Selbsttest (Antigentest)"],
+                ["en", "Yes, a rapid test (antigen test) (with a cotton swab in my nose or mouth, and with a result available within the hour)"],
+
+            ])
+        },
+        {
+            key: '03', role: 'option', content: new Map([
+                ["nl-be", "Ja, een bloedtest"],
+                ["fr-be", "Oui, un test sanguin"],
+                ["de-be", "Ja, ein Bluttest"],
+                ["en", "Yes, a serological analysis (screening for antibodies against this virus, from a drop of blood from fingertip or a blood sample)"],
 
             ])
         },
@@ -763,7 +781,7 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     // CONDITION
     if (keycovidTest) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03')
         );
     }
 
@@ -859,6 +877,15 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
             ])
         },
         {
+            key: '7', role: 'option',
+            content: new Map([
+                ["nl-be", "Vanwege een medische consultatie of ingreep"],
+                ["fr-be", "En raison d'une consultation médicale ou d'une intervention chirurgicale"],
+                ["de-be", "Aufgrund einer ärztlichen Beratung oder Operation"],
+                ["en", "Because of a medical consultation or surgery"],
+            ])
+        },
+        {
             key: '6', role: 'input',
             style: [{ key: 'className', value: 'w-100' }],
             content: new Map([
@@ -915,7 +942,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
     // CONDITION
     if (keycovidTest) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03')
         );
     }
 
@@ -990,7 +1017,7 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
     // CONDITION
     editor.setCondition(
         expWithArgs('and',
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03'),
             expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0')
         )
     );
@@ -1175,7 +1202,7 @@ const resultTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     // CONDITION
     if (keycovidTest) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03')
         );
     }
 
@@ -1294,7 +1321,7 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
     // CONDITION
     editor.setCondition(
         expWithArgs('and',
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '0'),
+            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03'),
             expWithArgs('responseHasKeysAny', keyresultTest, [responseGroupKey, singleChoiceKey].join('.'), '1', '2', '3')
         )
     );
@@ -2558,6 +2585,16 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
                 ["fr-be", "Par crainte des conséquences si le médecin me suspecte d'avoir contracté le coronavirus."],
                 ["de-be", "Aufgrund von Angst vor den Folgen, wenn der Arzt vermutet, dass ich COVID-19 habe."],
                 ["en", "For fear of consequences if the doctor thinks I have COVID-19"],
+            ])
+        },
+        {
+            key: '11', role: 'option',
+            disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
+            content: new Map([
+                ["nl-be", "Omdat ik ben gevaccineerd voor COVID-19."],
+                ["fr-be", "Parce que je suis vacciné(e) contre le coronavirus."],
+                ["de-be", "Weil ich gegen COVID-19 geimpft bin."],
+                ["en", "Because I am vaccinated against COVID-19"],
             ])
         },
         {
@@ -4122,7 +4159,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             key: '1', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4'),
             content: new Map([
-                ["nl-be", "Ja, een test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
+                ["nl-be", "Ja, een PCR test uitgevoerd op basis van een wattenstaafje in mijn neus of mond"],
                 ["fr-be", "Oui, un test effectué à l'aide d'un écouvillon dans mon nez ou ma bouche"],
                 ["de-be", "Ja, ein Test wurde mit einem Wattestäbchen in meiner Nase oder Mund durchgeführt"],
                 ["en", "Yes, a test based on a swab in nose or mouth, or a sputum or saliva sample"],

@@ -93,6 +93,9 @@ const intake = (): Survey | undefined => {
     const Q_age_groups = age_groups(rootKey, true);
     survey.addExistingSurveyItem(Q_age_groups, rootKey);
 
+    const Q_age_groups_risk = age_groups_risk(rootKey, true);
+    survey.addExistingSurveyItem(Q_age_groups_risk, rootKey);
+
     //const Q_age_groups_likert = age_groups_likert(rootKey);
     //survey.addExistingSurveyItem(Q_age_groups_likert, rootKey);
 
@@ -108,20 +111,20 @@ const intake = (): Survey | undefined => {
     const Q_common_cold_frequ = DefaultIntake.commonColdFrequency(rootKey, true);
     survey.addExistingSurveyItem(Q_common_cold_frequ, rootKey);
 
-    const Q_flu_vaccine_this_season = flu_vaccine_this_season(rootKey, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season, rootKey);
+    //const Q_flu_vaccine_this_season = flu_vaccine_this_season(rootKey, true);
+    //survey.addExistingSurveyItem(Q_flu_vaccine_this_season, rootKey);
 
-    const Q_flu_vaccine_this_season_when = DefaultIntake.fluVaccineThisSeasonWhen(rootKey, Q_flu_vaccine_this_season.key, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_when, rootKey);
+    //const Q_flu_vaccine_this_season_when = DefaultIntake.fluVaccineThisSeasonWhen(rootKey, Q_flu_vaccine_this_season.key, true);
+    //survey.addExistingSurveyItem(Q_flu_vaccine_this_season_when, rootKey);
 
-    const Q_flu_vaccine_this_season_reasons_for = flu_vaccine_this_season_reason_for(rootKey, Q_flu_vaccine_this_season.key, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_for, rootKey);
+    //const Q_flu_vaccine_this_season_reasons_for = flu_vaccine_this_season_reason_for(rootKey, Q_flu_vaccine_this_season.key, true);
+    //survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_for, rootKey);
 
-    const Q_flu_vaccine_this_season_reasons_against = flu_vaccine_this_season_reason_against(rootKey, Q_flu_vaccine_this_season.key, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, rootKey);
+    //const Q_flu_vaccine_this_season_reasons_against = flu_vaccine_this_season_reason_against(rootKey, Q_flu_vaccine_this_season.key, true);
+    //survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, rootKey);
 
-    const Q_flu_vaccine_last_season = DefaultIntake.fluVaccineLastSeason(rootKey, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_last_season, rootKey);
+    //const Q_flu_vaccine_last_season = DefaultIntake.fluVaccineLastSeason(rootKey, true);
+    //survey.addExistingSurveyItem(Q_flu_vaccine_last_season, rootKey);
 
     const Q_regular_medication = regular_medication(rootKey, true);
     survey.addExistingSurveyItem(Q_regular_medication, rootKey);
@@ -1929,6 +1932,76 @@ const age_groups_likert = (parentKey: string, keyOverride?: string): SurveyItem 
 
     // VALIDATIONs
     // None
+
+    return editor.getItem();
+}
+
+/**
+ * Age groups riks: single choice question about persons at risk in household
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+ const age_groups_risk = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q6c'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Lopen één of meerdere van deze mensen risico op complicaties in geval van griep of COVID-19 (bijvoorbeeld zwanger, onderliggende gezondheidstoestand, obesitas, etc.)?"],
+            ["fr-be", "Certaines de ces personnes présentent-elles un risque de complications liées à la grippe ou au coronavirus (par exemple : les femmes enceintes, les personnes souffrant d’un problème médical sous-jacent, d’obésité, etc.) ?"],
+            ["de-be", "Besteht bei einem oder mehreren dieser Menschen ein Risiko von Komplikationen im Falle von Grippe oder COVID-19 (zum Beispiel bei Schwangerschaft, zugrunde liegendem Gesundheitszustand, Fettleibigkeit/Obesitas usw.)?"],
+            ["en", "Are one or more of these people at risk of complications in the event of flu or COVID-19 (e.g., pregnant, underlying health condition, obese, etc.)?"],
+        ]))
+    );
+
+    // INFO POPUP
+    
+
+    // RESPONSE PART test
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+            ])
+        },
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "No"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Ik weet het niet/Dat wil ik niet zeggen"],
+                ["fr-be", "Je ne sais pas"],
+                ["de-be", "Das weiß ich nicht"],
+                ["en", "I don’t know/I would rather not answer"],
+            ])
+        }
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
 
     return editor.getItem();
 }
