@@ -706,10 +706,10 @@ const covidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string
         },
         {
             key: '02', role: 'option', content: new Map([
-                ["nl-be", "Ja, een sneltest (antigeentest) (met een wattenstaafje in mijn neus of mond, en met een resultaat beschikbaar binnen het uur)"],
-                ["fr-be", "Oui, un test rapide (test d'antigène) (avec un coton-tige dans le nez ou la bouche, et avec un résultat disponible dans l'heure)"],
+                ["nl-be", "Ja, een zelftest/sneltest (antigeentest) (met een wattenstaafje in mijn neus of mond, en met een resultaat beschikbaar binnen het uur)"],
+                ["fr-be", "Oui, un autotest/test rapide (test d'antigène) (avec un coton-tige dans le nez ou la bouche, et avec un résultat disponible dans l'heure)"],
                 ["de-be", "Ja, ein Schnelltest/ Selbsttest (Antigentest)"],
-                ["en", "Yes, a rapid test (antigen test) (with a cotton swab in my nose or mouth, and with a result available within the hour)"],
+                ["en", "Yes, a zelf-test/rapid test (antigen test) (with a cotton swab in my nose or mouth, and with a result available within the hour)"],
 
             ])
         },
@@ -2588,7 +2588,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
             ])
         },
         {
-            key: '11', role: 'option',
+            key: '12', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '11'),
             content: new Map([
                 ["nl-be", "Omdat ik ben gevaccineerd voor COVID-19."],
