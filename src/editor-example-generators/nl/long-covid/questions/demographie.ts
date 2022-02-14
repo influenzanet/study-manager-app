@@ -1812,7 +1812,7 @@ const gen_Q_hulp = (parentKey: string, condition?: Expression, isRequired?: bool
 
 const gen_Q_welkehulp = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'welkehulp';
-    return SurveyItemGenerators.singleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
