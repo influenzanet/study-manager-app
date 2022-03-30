@@ -45,7 +45,6 @@ export class VaccinationGroup extends GroupItemEditor {
         this.addItem(vacc_num_FU);
         this.addItem(q_vacc_type_def(this.key, true, condition_vacc_yes));
         this.addItem(q_vacc_type_def_FU(this.key, true, condition_vacc_yes_FU));
-        
         this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
         this.addItem(q_vacc1_date_def_FU(this.key, true, condition_1vacc_FU));
 
@@ -300,6 +299,12 @@ const q_vacc_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
                 ])
             },
             {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Novavax"],
+                ])
+            },
+            {
                 key: '7', role: 'option',
                 content: new Map([
                     ["nl", "Weet ik niet"],
@@ -364,6 +369,12 @@ const q_vacc_type_def_FU = (parentKey: string, isRequired?: boolean, condition?:
                 key: '6', role: 'option',
                 content: new Map([
                     ["nl", "GSK / Sanofi Pasteur"],
+                ])
+            },
+            {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Novavax"],
                 ])
             },
             {
