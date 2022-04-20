@@ -15,8 +15,8 @@ import { MedicineGroup } from "../questions/medicine";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { DemographieGroup } from "../questions/demographie";
 
-export const generateT9 = (): Survey | undefined => {
-    const surveyKey = surveyKeys.T9;
+export const generateT18 = (): Survey | undefined => {
+    const surveyKey = surveyKeys.T18;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,

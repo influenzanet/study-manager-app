@@ -19,8 +19,8 @@ import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
 import { surveyKeys } from "../studyRules";
 
-export const generateT12 = (): Survey | undefined => {
-    const surveyKey = surveyKeys.T12;
+export const generateT24 = (): Survey | undefined => {
+    const surveyKey = surveyKeys.T24;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
