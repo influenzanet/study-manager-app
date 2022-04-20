@@ -24,7 +24,7 @@ export const generateT21 = (): Survey | undefined => {
             ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 21 maanden"],
         ]),
         description: new Map([
-            ["nl", "Negen maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
+            ["nl", "Eenentwintig maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
             ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],

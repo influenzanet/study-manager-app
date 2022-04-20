@@ -600,8 +600,11 @@ const handleTimerEvent = (): Expression => {
             [
 
                 StudyActions.removeAllSurveys(),
-                // TODO: if DEM.extend_FU = 'no': if if DEM.extend_FU ='yes' show T15, 18, 21, 24
+                // TODO: if DEM.extend_FU = 'no': 
                 StudyActions.stopParticipation(),
+                // TODO: if DEM.extend_FU ='yes' assing T15:
+                StudyActions.removeAllSurveys(),
+                assignT15(),
             ]
         )
     };
@@ -611,10 +614,10 @@ const handleTimerEvent = (): Expression => {
             isSurveyExpired(surveyKeys.T15),
             [
                 StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
+                assignT18(),
             ]
         )
-        
+
     };
 
     const handleT18Expired = (): Expression => {
@@ -622,7 +625,7 @@ const handleTimerEvent = (): Expression => {
             isSurveyExpired(surveyKeys.T18),
             [
                 StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
+                assignT21(),
             ]
         )
     };
@@ -632,7 +635,7 @@ const handleTimerEvent = (): Expression => {
             isSurveyExpired(surveyKeys.T21),
             [
                 StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
+                assignT24(),
             ]
         )
     };
