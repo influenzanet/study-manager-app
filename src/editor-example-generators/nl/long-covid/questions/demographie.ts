@@ -220,6 +220,9 @@ export class DemographieGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T3)) {
             this.addItem(Q_instr_reuksmaak(this.key, geenReukSmaak))
         }
+        if (this.isPartOfSurvey(surveyKeys.T12)) {
+            this.addItem(extend_FU(this.key, true))
+        }
     }
 
 
@@ -2040,6 +2043,36 @@ const Q21 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         placeholderText: new Map([
             ["nl", "Opmerkingen"]
         ])
+    });
+}
+
+const extend_FU = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'extend_FU';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Zou je nog een jaar langer willen deelnemen aan het LongCOVID-onderzoek door elke 3 maanden een vragenlijst in te vullen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "In dat geval ontvang je het komende jaar elke 3 maanden een nieuwe vragenlijst over je gezondheid. Die informatie is heel waardevol om te onderzoeken hoe lang klachten na corona kunnen aanhouden"],
+        ]),
+        responseOptions: [
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ]),
+            },
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ]),
+            },
+        ]
     });
 }
 

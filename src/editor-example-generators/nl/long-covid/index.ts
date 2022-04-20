@@ -2,6 +2,10 @@ import { generateT3 } from './surveys/T3';
 import { generateT6 } from './surveys/T6';
 import { generateT9 } from './surveys/T9';
 import { generateT12 } from './surveys/T12';
+import { generateT15 } from './surveys/T15';
+import { generateT18 } from './surveys/T18';
+import { generateT21 } from './surveys/T21';
+import { generateT24 } from './surveys/T24';
 import { generateT3c } from './surveys/T3c';
 import { generateT6c } from './surveys/T6c';
 import { generateT9c } from './surveys/T9c';
@@ -18,6 +22,7 @@ export const LongCovidSurveys = {
     T6: generateT6(),
     T9: generateT9(),
     T12: generateT12(),
+    T15: generateT15(),
     T3c: generateT3c(),
     T6c: generateT6c(),
     T9c: generateT9c(),

@@ -18,7 +18,7 @@ export const generateT6c = (): Survey | undefined => {
             ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 6 maanden"],
         ]),
         description: new Map([
-            ["nl", "es maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid en zorggebruik."],
+            ["nl", "Zes maanden geleden ben je gestart met het LongCOVID-onderzoek. Dit is een vervolgvragenlijst. De vragenlijst richt zich op je gezondheid en zorggebruik."],
         ]),
         durationText: new Map([
             ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],
