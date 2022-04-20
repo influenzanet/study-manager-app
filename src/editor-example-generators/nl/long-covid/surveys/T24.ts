@@ -25,7 +25,7 @@ export const generateT24 = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 12 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 24 maanden"],
         ]),
         description: new Map([
             ["nl", "Een jaar geleden ben je gestart met het LongCOVID-onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
