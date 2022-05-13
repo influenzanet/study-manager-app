@@ -456,7 +456,11 @@ const handleT12Submission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T12),
         [
             StudyActions.removeAllSurveys(),
+            StudyActions.if(
+                StudyExpressions.singleChoiceOptionsSelected('extend_FU', 'yes'),
+                assignT15(),
             StudyActions.finishParticipation(),
+            )
         ]
     )
 }
