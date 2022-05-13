@@ -481,7 +481,7 @@ const handleT15Submission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T15),
         [
             StudyActions.removeAllSurveys(),
-            StudyActions.finishParticipation(),
+            assignT18(),
         ]
     )
 }
@@ -491,7 +491,7 @@ const handleT18Submission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T18),
         [
             StudyActions.removeAllSurveys(),
-            StudyActions.finishParticipation(),
+            assignT21(),
         ]
     )
 }
@@ -500,7 +500,7 @@ const handleT21Submission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T21),
         [
             StudyActions.removeAllSurveys(),
-            StudyActions.finishParticipation(),
+            assignT24(),
         ]
     )
 }
@@ -606,7 +606,7 @@ const handleTimerEvent = (): Expression => {
 
                 StudyActions.removeAllSurveys(),
                 StudyActions.stopParticipation(),
-                StudyActions.removeAllSurveys(),
+
         
             ]
         )
