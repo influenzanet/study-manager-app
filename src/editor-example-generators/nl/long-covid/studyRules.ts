@@ -441,6 +441,7 @@ const handleT9Submission = (): Expression => {
     )
 }
 
+
 const handleT9cSubmission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T9c),
@@ -604,11 +605,9 @@ const handleTimerEvent = (): Expression => {
             [
 
                 StudyActions.removeAllSurveys(),
-                // TODO: if DEM.extend_FU = 'no': 
                 StudyActions.stopParticipation(),
-                // TODO: if DEM.extend_FU ='yes' assing T15:
                 StudyActions.removeAllSurveys(),
-                assignT15(),
+        
             ]
         )
     };
