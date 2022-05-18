@@ -15,6 +15,10 @@ export const surveyKeys = {
     T9c: 'T9c',
     T12: 'T12',
     T12c: 'T12c',
+    T15: 'T15',
+    T18: 'T18',
+    T21: 'T21',
+    T24: 'T24',
 }
 
 const timestampFromStudyStart = (daysDelta: number) => {
@@ -91,6 +95,10 @@ const assignT3 = () => assignSurveyFromStudyStart(surveyKeys.T3, "prio", 90, 42)
 const assignT6 = () => assignSurveyFromStudyStart(surveyKeys.T6, "prio", 180, 42);
 const assignT9 = () => assignSurveyFromStudyStart(surveyKeys.T9, "prio", 270, 42);
 const assignT12 = () => assignSurveyFromStudyStart(surveyKeys.T12, "prio", 360, 42);
+const assignT15 = () => assignSurveyFromStudyStart(surveyKeys.T15, "prio", 450, 42);
+const assignT18 = () => assignSurveyFromStudyStart(surveyKeys.T18, "prio", 540, 42);
+const assignT21 = () => assignSurveyFromStudyStart(surveyKeys.T21, "prio", 630, 42);
+const assignT24 = () => assignSurveyFromStudyStart(surveyKeys.T24, "prio", 720, 42);
 
 const assignT3c = () => assignSurveyFromStudyStart(surveyKeys.T3c, "prio", 90, 42);
 const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 42);
@@ -193,8 +201,9 @@ const handleT0Submission = (): Expression => {
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.between8and12, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.between8and12, "false"),
         ),
-        StudyActions.if(
-            isOlder(ageQuestionKey, 13, true),
+        // TODO: check is this correct - changed it from 13 to 12? must be 13 or older
+        StudyActions.if( 
+            isOlder(ageQuestionKey, 12, true), 
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older12, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older12, "false"),
         ),
@@ -432,6 +441,7 @@ const handleT9Submission = (): Expression => {
     )
 }
 
+
 const handleT9cSubmission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T9c),
@@ -447,7 +457,11 @@ const handleT12Submission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T12),
         [
             StudyActions.removeAllSurveys(),
+            StudyActions.if(
+                StudyExpressions.singleChoiceOptionsSelected('extend_FU', 'yes'),
+                assignT15(),
             StudyActions.finishParticipation(),
+            )
         ]
     )
 }
@@ -462,6 +476,43 @@ const handleT12cSubmission = (): Expression => {
     )
 }
 
+const handleT15Submission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T15),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT18(),
+        ]
+    )
+}
+
+const handleT18Submission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T18),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT21(),
+        ]
+    )
+}
+const handleT21Submission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T21),
+        [
+            StudyActions.removeAllSurveys(),
+            assignT24(),
+        ]
+    )
+}
+const handleT24Submission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.T24),
+        [
+            StudyActions.removeAllSurveys(),
+            StudyActions.finishParticipation(),
+        ]
+    )
+}
 const handleStudyEntryEvent = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkEventType('ENTER'),
@@ -484,6 +535,10 @@ const handleSubmissionEvent = () => StudyActions.ifThen(
         handleT9cSubmission(),
         handleT12Submission(),
         handleT12cSubmission(),
+        handleT15Submission(),
+        handleT18Submission(),
+        handleT21Submission(),
+        handleT24Submission(),
     ]
 )
 
@@ -547,6 +602,50 @@ const handleTimerEvent = (): Expression => {
     const handleT12Expired = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T12),
+            [
+
+                StudyActions.removeAllSurveys(),
+                StudyActions.stopParticipation(),
+
+        
+            ]
+        )
+    };
+
+    const handleT15Expired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T15),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT18(),
+            ]
+        )
+
+    };
+
+    const handleT18Expired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T18),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT21(),
+            ]
+        )
+    };
+
+    const handleT21Expired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T21),
+            [
+                StudyActions.removeAllSurveys(),
+                assignT24(),
+            ]
+        )
+    };
+
+    const handleT24Expired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T24),
             [
                 StudyActions.removeAllSurveys(),
                 StudyActions.stopParticipation(),
@@ -613,6 +712,10 @@ const handleTimerEvent = (): Expression => {
             handleT6Expired(),
             handleT9Expired(),
             handleT12Expired(),
+            handleT15Expired(),
+            handleT18Expired(),
+            handleT21Expired(),
+            handleT24Expired(),
             handleShortCExpired(),
             handleT3cExpired(),
             handleT6cExpired(),

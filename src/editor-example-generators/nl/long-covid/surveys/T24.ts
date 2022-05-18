@@ -19,16 +19,16 @@ import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
 import { surveyKeys } from "../studyRules";
 
-export const generateT12 = (): Survey | undefined => {
-    const surveyKey = surveyKeys.T12;
+export const generateT24 = (): Survey | undefined => {
+    const surveyKey = surveyKeys.T24;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 12 maanden"],
+            ["nl", "Nieuwe vragenlijst LongCOVID-onderzoek: 24 maanden"],
         ]),
         description: new Map([
-            ["nl", "Een jaar geleden ben je gestart met het LongCOVID-onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
+            ["nl", "Twee jaar geleden ben je gestart met het LongCOVID-onderzoek. Dit is de laatste vragenlijst. De vragenlijst richt zich op je gezondheid, vaccinaties en zorggebruik."],
         ]),
         durationText: new Map([
             ["nl", "Invullen van deze vragenlijst kost ongeveer 20 minuten van je tijd."],

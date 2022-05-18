@@ -37,14 +37,16 @@ export class CovidTestGroup extends GroupItemEditor {
         }
 
         const test = q_test_def(this.key, true);
-        const test_FU = q_test_def_FU(this.key, true);
+        const testpos_FU = POS_FU(this.key, true);
+        // const test_FU = q_test_def_FU(this.key, true);
 
         const condition_test_yes = CommonExpressions.or(
             CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes', 'yes>7', 'yes>14'),
-            CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes')
+            // CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes')
         )
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
         const condition_test_result_pos = CommonExpressions.singleChoiceOptionsSelected(test_result.key, 'pos');
+        const condition_test_result_pos_FU = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos');
         // const infect_earlier = q_infect_earlier_def(this.key, true);
         const infect_earlier2 = q_infect_earlier_def2(this.key, true);
         // const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
@@ -57,16 +59,20 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer','3keer', 'vaker', 'unknown');
 
 
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.short)) {
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(test);
         } else {
-            this.addItem(test_FU);
+            this.addItem(testpos_FU);
         }
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
         this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
+        this.addItem(q_test_date_def_FU(this.key, true, condition_test_result_pos_FU));
+        this.addItem(q_test_location_def_FU(this.key, true, condition_test_result_pos_FU));
+        this.addItem(q_test_reason_def_FU(this.key, true, condition_test_result_pos_FU));
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
+        this.addItem(q_test_type_def_FU(this.key, true, condition_test_result_pos_FU));
         if (isT0) {
             // this.addItem(infect_earlier);
             // this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
@@ -268,19 +274,48 @@ const q_test_def = (parentKey: string, isRequired?: boolean, condition?: Express
     });
 }
 
-const q_test_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q1_FU';
+// const q_test_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q1_FU';
+
+//     return SurveyItemGenerators.singleChoice({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         condition: condition,
+//         questionText: new Map([
+//             ["nl", "Heb je sinds de vorige vragenlijst een test gedaan om te weten of je corona hebt?"],
+//         ]),
+//         responseOptions: [
+//             {
+//                 key: 'yes', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Ja"],
+//                 ])
+//             },
+//             {
+//                 key: 'no', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Nee"],
+//                 ])
+//             },
+//         ],
+//         isRequired: isRequired,
+//     });
+// }
+
+
+const POS_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'POS_FU';
 
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je sinds de vorige vragenlijst een test gedaan om te weten of je corona hebt?"],
+            ["nl", "Ben je sinds de vorige vragenlijst positief getest op het coronavirus?"],
         ]),
         responseOptions: [
             {
-                key: 'yes', role: 'option',
+                key: 'pos', role: 'option',
                 content: new Map([
                     ["nl", "Ja"],
                 ])
@@ -436,6 +471,147 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
     });
 }
 
+
+const q_test_date_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q2_FU';
+
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Wanneer is deze test afgenomen?"],
+        ]),
+        dateInputMode: 'YMD',
+        placeholderText: new Map([
+            ["nl", "dd-mm-jjjj"],
+        ]),
+        minRelativeDate: { delta: { days: -125 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+        isRequired: isRequired,
+    });
+}
+
+const q_test_location_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q3_FU';
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Waar heb je jezelf laten testen op corona?"],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Ziekenhuis of huisarts"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "GGD Teststraat"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "GGD kwam naar mijn huis"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Bij een bedrijf (op eigen initiatief)"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Bij een bedrijf (via mijn werkgever)"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "In het buitenland"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "Dat weet ik niet (meer)"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
+}
+
+const q_test_reason_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q4_FU';
+
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Wat is de reden dat je jezelf hebt laten testen op het coronavirus?"],
+        ]),
+
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Ik had klachten"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb contact gehad met iemand die positief getest is op corona"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik mogelijk in contact ben geweest met iemand die positief getest is op corona"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb een melding gekregen van de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "In verband met een uitje (bijv. evenement, attractiepark, dierentuin)"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "Vanwege een andere reden"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
+}
+
 const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q5';
 
@@ -472,6 +648,49 @@ const q_test_result_def = (parentKey: string, isRequired?: boolean, condition?: 
 
 const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q6';
+
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Met welk type coronatest is deze uitslag bepaald?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Met een PCR of antigeen sneltest"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Met een bloedtest (serologie) "],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Weet ik niet"],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
+}
+
+const q_test_type_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q6_FU';
 
     return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
@@ -1071,9 +1290,6 @@ const q_infect_earlier_def2 = (parentKey: string, isRequired?: boolean, conditio
             condition: condition,
             questionText: new Map([
                 ["nl", "Je geeft aan dat je vaker dan 3x keer eerder besmet bent geweest met het coronavirus. Kun je hieronder aangeven hoe vaak dat was, wanneer je besmet bent geraakt en of je volledig hersteld bent na deze besmettingen?"],
-            ]),
-            questionSubText: new Map([
-                ["nl", "Let op, je krijgt geen persoonlijke reactie op deze opmerkingen. "],
             ]),
             placeholderText: new Map([
                 ["nl", "Antwoord"]
