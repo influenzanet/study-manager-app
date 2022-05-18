@@ -55,6 +55,12 @@ const isBetweenAges = (questionRef: string, minAge: number, maxAge: number, allo
     );
 }
 
+const finishParticipation = (exitStatus: "finished" | "expired") => StudyActions.do(
+    StudyActions.removeAllSurveys(),
+    StudyActions.updateParticipantFlag("exitStatus", exitStatus)
+)
+
+
 const assignSurveyFromStudyStart = (
     surveyKey: string,
     category: "prio" | "normal" | "optional",
@@ -202,8 +208,8 @@ const handleT0Submission = (): Expression => {
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.between8and12, "false"),
         ),
         // TODO: check is this correct - changed it from 13 to 12? must be 13 or older
-        StudyActions.if( 
-            isOlder(ageQuestionKey, 12, true), 
+        StudyActions.if(
+            isOlder(ageQuestionKey, 12, true),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older12, "true"),
             StudyActions.updateParticipantFlag(AgeCategoryFlagName.older12, "false"),
         ),
@@ -459,8 +465,10 @@ const handleT12Submission = (): Expression => {
             StudyActions.removeAllSurveys(),
             StudyActions.if(
                 StudyExpressions.singleChoiceOptionsSelected('extend_FU', 'yes'),
+                // Then:
                 assignT15(),
-            StudyActions.finishParticipation(),
+                // Else:
+                finishParticipation("finished")
             )
         ]
     )
@@ -471,7 +479,7 @@ const handleT12cSubmission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T12c),
         [
             StudyActions.removeAllSurveys(),
-            StudyActions.finishParticipation(),
+            finishParticipation("finished")
         ]
     )
 }
@@ -508,8 +516,7 @@ const handleT24Submission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T24),
         [
-            StudyActions.removeAllSurveys(),
-            StudyActions.finishParticipation(),
+            finishParticipation("finished"),
         ]
     )
 }
@@ -553,8 +560,7 @@ const handleTimerEvent = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T0),
             [
-                StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
+                finishParticipation("expired")
             ]
         )
     };
@@ -603,11 +609,7 @@ const handleTimerEvent = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T12),
             [
-
-                StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
-
-        
+                finishParticipation("expired")
             ]
         )
     };
@@ -647,8 +649,7 @@ const handleTimerEvent = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T24),
             [
-                StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
+                finishParticipation("expired")
             ]
         )
     };
@@ -697,8 +698,7 @@ const handleTimerEvent = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T12c),
             [
-                StudyActions.removeAllSurveys(),
-                StudyActions.stopParticipation(),
+                finishParticipation("expired")
             ]
         )
     };
