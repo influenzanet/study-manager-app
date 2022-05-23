@@ -10,6 +10,10 @@ import { generateT3c } from './surveys/T3c';
 import { generateT6c } from './surveys/T6c';
 import { generateT9c } from './surveys/T9c';
 import { generateT12c } from './surveys/T12c';
+import { generateT15c } from './surveys/T15c';
+import { generateT18c } from './surveys/T18c';
+import { generateT21c } from './surveys/T21c';
+import { generateT24c } from './surveys/T24c';
 import { generateShort } from './surveys/Tshort';
 import { generateShortC } from './surveys/Tshortc';
 import { generateT0 } from './surveys/T0';
@@ -30,4 +34,8 @@ export const LongCovidSurveys = {
     T6c: generateT6c(),
     T9c: generateT9c(),
     T12c: generateT12c(),
+    T15c: generateT15c(),
+    T18c: generateT18c(),
+    T21c: generateT21c(),
+    T24c: generateT24c(),
 }
