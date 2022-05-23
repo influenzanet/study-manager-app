@@ -423,4 +423,92 @@ export const emailConfigs = [
             { lang: 'nl', subject: 'Reminder: de laatste vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (12 maanden)' }
         ],
     ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T15c invite',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T15c, 0, 4.99),
+        [
+            { lang: 'nl', subject: 'De nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (15 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T15c reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T15c, 5, 14.99),
+        [
+            { lang: 'nl', subject: 'Reminder: de nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (15 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T18c invite',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T18c, 0, 4.99),
+        [
+            { lang: 'nl', subject: 'De nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (18 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T18c reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T18c, 5, 14.99),
+        [
+            { lang: 'nl', subject: 'Reminder: de nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (18 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T21c invite',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T21c, 0, 4.99),
+        [
+            { lang: 'nl', subject: 'De nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (21 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T21c reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T21c, 5, 14.99),
+        [
+            { lang: 'nl', subject: 'Reminder: de nieuwe vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (21 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T24c invite',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T24c, 0, 4.99),
+        [
+            { lang: 'nl', subject: 'De laatste vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (24 maanden)' }
+        ],
+    ),
+    generateStudyReminderEmailConfig(
+        studyKey,
+        'T24c reminder',
+        sendingTime,
+        { days: 5 },
+        defaultLanguage,
+        surveyActiveInIntervalCondition(surveyKeys.T24c, 5, 14.99),
+        [
+            { lang: 'nl', subject: 'Reminder: de laatste vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (24 maanden)' }
+        ],
+    ),
 ]
