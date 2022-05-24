@@ -181,6 +181,22 @@ export class DemographieGroup extends GroupItemEditor {
         const Q_datumziek = gen_Q_datumziek(this.key, conditionOnLangafwezig, true);
         this.addItem(Q_datumziek);
 
+        // TODO Tessa: add iPCQ 7, 8, 9
+        if (this.isPartOfSurvey(surveyKeys.T12)) { 
+            const iPCQ_7 = iPCQ_Q7(this.key, q11AndQ14aCondition, true);
+        this.addItem(iPCQ_7);
+
+        const conditionOniPCQ_7 = CommonExpressions.singleChoiceOptionsSelected(
+            iPCQ_7.key, 'ja'
+        );
+
+        const iPCQ_8 = iPCQ_Q8(this.key, conditionOniPCQ_7, true);
+        this.addItem(iPCQ_8);
+
+        const iPCQ_9 = iPCQ_Q9(this.key, conditionOniPCQ_7, true);
+        this.addItem(iPCQ_9);
+
+        }
         const Q_steunwerkgever = gen_Q_steunwerkgever(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_steunwerkgever);
 
@@ -1493,15 +1509,15 @@ const gen_Q_arbo = (parentKey: string, condition: Expression, isRequired?: boole
         isRequired: isRequired,
         responseOptions: [
             {
-                key: 'ja', role: 'option',
-                content: new Map([
-                    ["nl", "Ja"],
-                ])
-            },
-            {
                 key: 'nee', role: 'option',
                 content: new Map([
                     ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
                 ])
             },
         ],
@@ -1597,6 +1613,133 @@ const gen_Q_datumziek = (parentKey: string, condition: Expression, isRequired?: 
         ]),
     });
 }
+
+const iPCQ_Q7 = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'iPCQ_7';
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Waren er in de afgelopen 4 weken dagen waarop u wel gewerkt heeft, maar tijdens uw werk last had van lichamelijke of psychische problemen?"],
+        ]),
+        isRequired: isRequired,
+        responseOptions: [
+            {
+                key: 'nee', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'ja', role: 'option',
+                content: new Map([
+                    ["nl", "Ja"],
+                ])
+            },
+        ],
+    });
+}
+
+const iPCQ_Q8 = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'iPCQ_8';
+    const inputProperties = {
+        min: 0,
+        max: 20
+    };
+    const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
+
+    return SurveyItemGenerators.singleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        isRequired: isRequired,
+        questionText: new Map([
+            ["nl", "Op hoeveel werkdagen had u tijdens uw werk last van uw lichamelijke of psychische problemen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Tel alleen de werkdagen in de afgelopen 4 weken."],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'numberInput',
+                content: new Map([
+                    ["nl", "Aantal werkdagen"],
+                ]),
+                optionProps: inputProperties,
+                style: inputStyle,
+            },
+        ]
+    })
+}
+
+
+const iPCQ_Q9 = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'iPCQ_9';
+    return SurveyItemGenerators.simpleLikertGroup({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Op de dagen dat u last had, kon u misschien niet zoveel werk doen als normaal. Hoeveel werk kon u op deze dagen gemiddeld doen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Kijk naar de cijfers hieronder. Een 10 betekent dat u op deze dagen net zoveel kon doen als normaal. Een 0 betekent dat u op deze dagen niets kon doen. Zet een cirkel om het goede cijfer."],
+        ]),
+        isRequired: isRequired,
+        scaleOptions: [
+            {
+                key: '1', content: new Map([
+                    ["nl", "1        Ik kon op deze dagen niks doen"],
+                ])
+            }, {
+                key: '2', content: new Map([
+                    ["nl", "2"],
+                ])
+            }, {
+                key: '3', content: new Map([
+                    ["nl", "3"],
+                ])
+            }, {
+                key: '4', content: new Map([
+                    ["nl", "4"],
+                ]),
+            }, {
+                key: '5', content: new Map([
+                    ["nl", "5   Ik kon ongeveer de helft doen"],
+                ])
+            }, {
+                key: '6', content: new Map([
+                    ["nl", "6"],
+                ])
+            }, {
+                key: '7', content: new Map([
+                    ["nl", "7"],
+                ])
+            }, {
+                key: '8', content: new Map([
+                    ["nl", "8"],
+                ])
+            }, {
+                key: '9', content: new Map([
+                    ["nl", "9"],
+                ])
+            }, {
+                key: '10', content: new Map([
+                    ["nl", "10 Ik kon net zoveel doen als normaal"],
+                ])
+            }
+        ],
+        rows: [
+            {
+                key: 'a', content: new Map([
+                    ["nl", ""],
+                ])
+            },
+        ]
+    });
+}
+
 
 
 const gen_Q_steunwerkgever = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {

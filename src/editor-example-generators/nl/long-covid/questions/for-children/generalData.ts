@@ -72,6 +72,10 @@ export class GeneralDataGroup extends GroupItemEditor {
             this.addItem(this.Q12('Q12', isRequired));
         }
         this.addItem(this.Q13('Q13', false));
+        if (
+            this.isPartOfSurvey(surveyKeys.T12c)) {
+        this.addItem(this.extend_FU('extend_FU', isRequired));
+            }
         this.addItem(this.Text_pococochi(conditions.q11Ja))
         // TODO add this later
         // this.addItem(this.Q14('Q14', false));
@@ -830,6 +834,35 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             questionSubText: new Map([
                 ["nl", "Let op je krijgt geen persoonlijke reactie op deze opmerkingen."],
             ]),
+        });
+    }
+
+
+    extend_FU(itemKey: string, isRequired: boolean) {
+        return SurveyItemGenerators.singleChoice({
+            parentKey: this.key,
+            itemKey: itemKey,
+            isRequired: isRequired,
+            questionText: new Map([
+                ["nl", "Zou je nog een jaar langer willen deelnemen aan het LongCOVID-onderzoek door elke 3 maanden een vragenlijst in te vullen?"],
+            ]),
+            questionSubText: new Map([
+                ["nl", "In dat geval ontvang je het komende jaar elke 3 maanden een nieuwe vragenlijst over je gezondheid. Die informatie is heel waardevol om te onderzoeken hoe lang klachten na corona kunnen aanhouden"],
+            ]),
+            responseOptions: [
+                {
+                    key: 'ja', role: 'option',
+                    content: new Map([
+                        ["nl", "Ja"],
+                    ]),
+                },
+                {
+                    key: 'nee', role: 'option',
+                    content: new Map([
+                        ["nl", "Nee"],
+                    ]),
+                },
+            ]
         });
     }
 
