@@ -36,8 +36,8 @@ export class VaccinationGroup extends GroupItemEditor {
         const vacc2_date1_FU = q_vacc2_date1_def_FU(this.key, true, condition_2vacc_FU);
         const vacc3_date1 = q_vacc3_date1_def(this.key, true, condition_3vacc);
         const vacc3_date1_FU = q_vacc3_date1_def_FU(this.key, true, condition_3vacc_FU);
-        const vacc4_date1 = q_vacc3_date1_def(this.key, true, condition_4vacc);
-        const vacc4_date1_FU = q_vacc3_date1_def_FU(this.key, true, condition_4vacc_FU);
+        const vacc4_date1 = q_vacc4_date1_def(this.key, true, condition_4vacc);
+        const vacc4_date1_FU = q_vacc4_date1_def_FU(this.key, true, condition_4vacc_FU);
 
         if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc); }
         if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc_FU); }
