@@ -5,7 +5,7 @@ import { generateCovid19Weekly } from '../../editor-example-generators/covid-19-
 // import { generateCovidSISWeekly } from '../../editor-example-generators/covid-sis-weekly';
 
 import { Box } from '@material-ui/core';
-import { Survey } from 'survey-engine/lib/data_types';
+import { Survey } from 'survey-engine/data_types';
 import ItemOverview from '../../components/SurveyEditor/ItemOverview/ItemOverview';
 
 

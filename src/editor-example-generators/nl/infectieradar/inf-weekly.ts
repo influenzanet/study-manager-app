@@ -1,6 +1,6 @@
 import { SurveyEditor } from "../../../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../../../editor-engine/utils/simple-generators";
-import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
+import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/data_types";
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../../../editor-engine/survey-editor/component-editor";
@@ -87,7 +87,7 @@ const generateNLWeekly = (): Survey | undefined => {
     if (!q1b3NL) { return; }
     survey.updateSurveyItem(q1b3NL_def(q1b3NL, q1aNL.key));
     // ---------------------------------------------------------
-    
+
     // Selftest date
     const q1d3NL = survey.addNewSurveyItem({ itemKey: 'Q1d3NL' }, rootKey);
     if (!q1d3NL) { return; }
@@ -99,7 +99,7 @@ const generateNLWeekly = (): Survey | undefined => {
     if (!q1jNL) { return; }
     survey.updateSurveyItem(q1jNL_def(q1jNL, q1aNL.key));
     // ---------------------------------------------------------
-    
+
     // questions on nose/throat swab
     // 3 title
     const q3_title = survey.addNewSurveyItem({ itemKey: 'title3' }, rootKey);
@@ -111,19 +111,19 @@ const generateNLWeekly = (): Survey | undefined => {
     if (!q1d1NL) { return; }
     survey.updateSurveyItem(q1d1NL_def(q1d1NL, q1aNL.key));
     // ---------------------------------------------------------
-    
+
     // Test PCR how long after symptoms
     const q1cNL = survey.addNewSurveyItem({ itemKey: 'Q1cNL' }, rootKey);
     if (!q1cNL) { return; }
     survey.updateSurveyItem(q1cNL_def(q1cNL, q1aNL.key));
     // ---------------------------------------------------------
-    
+
     // Contact GGD
     const q1eNL = survey.addNewSurveyItem({ itemKey: 'Q1eNL' }, rootKey);
     if (!q1eNL) { return; }
     survey.updateSurveyItem(q1eNL_def(q1eNL, q1aNL.key));
     // ---------------------------------------------------------
-    
+
     // Contact CoronaMelder app
     const q1fNL = survey.addNewSurveyItem({ itemKey: 'Q1fNL' }, rootKey);
     if (!q1fNL) { return; }
@@ -190,7 +190,7 @@ const generateNLWeekly = (): Survey | undefined => {
     const Q_symptoms = DefaultWeekly.symptomps(q1Key, true, '1');
     survey.addExistingSurveyItem(Q_symptoms, q1Key);
 
-    
+
     // -------> HAS SYMPTOMS GROUP
     const hasSymptomGroup = DefaultWeekly.hasSymptomsGroup(rootKey, Q_symptoms.key, 'HS');
     survey.addExistingSurveyItem(hasSymptomGroup, rootKey);
@@ -528,7 +528,7 @@ const q1d3NL_def = (itemSkeleton: SurveyItem, q1aNLKey: string, q1b3NLKey: strin
     editor.setCondition(
         expWithArgs('responseHasKeysAny', [q1b3NLKey].join('.'), [responseGroupKey, singleChoiceKey].join('.'), '1')
     )
-    
+
     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
 
     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
@@ -1158,7 +1158,7 @@ const q1i_nl = (parentKey: string, keyQ1A: string, isRequired?: boolean, keyOver
     const defaultKey = 'Q1iNL'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -3450,7 +3450,7 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     //survey.addNewSurveyItem({ itemKey: 'pbMedication', type: 'pageBreak' }, rootKey);
 
-    
+
     // Q14 hospitalized because symptoms --------------------------------------
     // const q14 = survey.addNewSurveyItem({ itemKey: 'Q14' }, hasSymptomGroupKey);
     // if (!q14) { return; }
@@ -3478,7 +3478,7 @@ const qfinaltext_def = (itemSkeleton: SurveyItem): SurveyItem => {
 
     // const anySymptomSelected = expWithArgs('responseHasOnlyKeysOtherThan', Q_symptoms.key, [responseGroupKey, multipleChoiceKey].join('.'), '0');
 
-    
+
     // q_postal_code -------------------------------------
     // const q_postal_code = survey.addNewSurveyItem({ itemKey: 'Q0' }, rootKey);
     // if (!q_postal_code) { return; }

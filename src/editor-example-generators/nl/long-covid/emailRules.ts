@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types"
+import { Expression } from "survey-engine/data_types"
 import { StudyExpressions } from "../../../editor-engine/utils/studyServiceExpressions"
 import { durationObjectToSeconds } from "../../../editor-engine/utils/duration"
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators"
@@ -224,7 +224,7 @@ export const emailConfigs = [
             { lang: 'nl', subject: 'Reminder: de laatste vragenlijst voor het LongCOVID-onderzoek staat voor je klaar (12 maanden)' }
         ],
     ),
- 
+
     generateStudyReminderEmailConfig(
         studyKey,
         'T15 invite',

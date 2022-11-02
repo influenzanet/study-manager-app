@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -428,7 +428,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
 
 const q_healthstatus_def = (parentKey: string, isRequired?: boolean, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'HEALTH';
-    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey, 1);
+    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey);
 
     // role: 'eq5d-health-indicator'
     const rg_inner = initEQ5DHealthIndicatorQuestion({

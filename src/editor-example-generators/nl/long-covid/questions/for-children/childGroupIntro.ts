@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
@@ -46,9 +46,9 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `
-Kinderen van 0 t/m 4 jaar kunnen **niet** meedoen aan dit LongCOVID-onderzoek, maar wel aan een ander onderzoek naar longcovid klachten bij kinderen. 
+Kinderen van 0 t/m 4 jaar kunnen **niet** meedoen aan dit LongCOVID-onderzoek, maar wel aan een ander onderzoek naar longcovid klachten bij kinderen.
 
-Klik [hier](https://limesurvey.amc.nl/cru/index.php/717116?lang=nl) voor meer informatie. 
+Klik [hier](https://limesurvey.amc.nl/cru/index.php/717116?lang=nl) voor meer informatie.
                         `]
                     ])
                 })]

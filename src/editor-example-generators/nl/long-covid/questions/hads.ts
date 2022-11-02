@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
@@ -27,7 +27,7 @@ export class HADSGroup extends GroupItemEditor {
         this.addItem(Q_l(this.key, true))
         this.addItem(Q_m(this.key, true))
         this.addItem(Q_n(this.key, true))
-       
+
     }
 }
 

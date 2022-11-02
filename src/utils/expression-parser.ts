@@ -1,5 +1,5 @@
 
-import { Expression, isExpression } from "survey-engine/lib/data_types";
+import { Expression, isExpression } from "survey-engine/data_types";
 
 export const expressionToString = (exp: Expression, space: number): string => {
     let expStr = '$' + exp.name;

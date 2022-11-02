@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -15,17 +15,17 @@ export class SaTGroup extends GroupItemEditor {
 
     initQuestions() {
         if (!this.isPartOfSurvey(surveyKeys.T9)) {
-        this.addItem(Q_instructions(this.key))
+            this.addItem(Q_instructions(this.key))
         }
-        
+
         if (!this.isPartOfSurvey(surveyKeys.T9)) {
             this.addItem(q_b(this.key, true))
             this.addItem(q_c(this.key, true))
         }
         if (!this.isPartOfSurvey(surveyKeys.T9)) {
             this.addItem(Q_instructions2(this.key))
-            }
-        
+        }
+
         if (!this.isPartOfSurvey(surveyKeys.T9)) {
             this.addItem(q_e(this.key, true))
             this.addItem(q_f(this.key, true))
@@ -129,7 +129,7 @@ export const q_c = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["nl", "Reukvermogen varieert (het komt en het gaat)"],
                 ])
             },
-           
+
         ]
     });
 }
@@ -236,7 +236,7 @@ export const q_f = (parentKey: string, isRequired?: boolean, keyOverride?: strin
                     ["nl", "Hartig/umami"],
                 ])
             },
-          
+
         ]
     });
 }

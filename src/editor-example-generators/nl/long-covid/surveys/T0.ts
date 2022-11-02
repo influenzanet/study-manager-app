@@ -1,4 +1,4 @@
-import { Survey } from "survey-engine/lib/data_types";
+import { Survey } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
@@ -142,7 +142,7 @@ export const generateT0 = (): Survey | undefined => {
     childVersion.addItem(childrenCovidTestGroupEditor.getItem());
 
     // COVID vaccination for children
-    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key); 
+    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key);
     childrenVaccinationGroupEditor.groupEditor.setCondition(participantInfos.isOlder(minAge));
     childVersion.addItem(childrenVaccinationGroupEditor.getItem());
 

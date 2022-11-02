@@ -1,4 +1,4 @@
-import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
 import { initMultipleChoiceGroup, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
@@ -177,7 +177,7 @@ const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: strin
     editor.setCondition(
         expWithArgs('or',
             expWithArgs('responseHasOnlyKeysOtherThan', keyVacStart, [responseGroupKey, singleChoiceKey].join('.'), '2'),
-            expWithArgs('not',expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1")),
+            expWithArgs('not', expWithArgs('eq', expWithArgs('getAttribute', expWithArgs('getAttribute', expWithArgs('getContext'), 'participantFlags'), 'completedVaccSurvey'), "1")),
         )
     );
     editor.setSelectionMethod({ name: 'sequential' });

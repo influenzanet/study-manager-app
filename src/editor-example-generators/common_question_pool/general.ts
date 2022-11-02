@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { expWithArgs } from "../../editor-engine/utils/simple-generators";
 import { responseGroupKey, singleChoiceKey } from "./key-definitions";

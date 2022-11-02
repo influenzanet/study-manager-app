@@ -1,4 +1,4 @@
-import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { SurveyEditor } from "../../editor-engine/survey-editor/survey-editor";
 import { initDropdownGroup, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";

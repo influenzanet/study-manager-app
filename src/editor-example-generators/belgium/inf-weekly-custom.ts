@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { initLikertScaleItem, initMatrixQuestion, initDropdownGroup, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
@@ -15,7 +15,7 @@ const symptoms = (parentKey: string, isRequired?: boolean, keyOverride?: string)
     const defaultKey = 'Q_BE_1'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -368,7 +368,7 @@ const consentForSymptoms = (parentKey: string, keySymptomsQuestion: string, isRe
     const defaultKey = 'Q_BE_1_2'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -456,7 +456,7 @@ const sameIllnes = (parentKey: string, isRequired?: boolean, keyOverride?: strin
     const defaultKey = 'Q2'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -602,7 +602,7 @@ const symptomsStart = (parentKey: string, keySameIllnes: string, isRequired?: bo
     const defaultKey = 'Q3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -724,7 +724,7 @@ const covidTest = (parentKey: string, isRequired?: boolean, keyOverride?: string
     const defaultKey = 'Q_BE_1_3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -819,7 +819,7 @@ const reasonTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     const defaultKey = 'Q_BE_1_4'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -971,7 +971,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
     const defaultKey = 'Q_BE_1_5'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1046,7 +1046,7 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
     const defaultKey = 'Qcov_BE_16e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1231,7 +1231,7 @@ const resultTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     const defaultKey = 'Qcov_BE_16b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1349,7 +1349,7 @@ const durationTestResult = (parentKey: string, keycovidTest?: string, keyresultT
     const defaultKey = 'Qcov_BE_16z'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1536,7 +1536,7 @@ const pcrTestedContact = (parentKey: string, isRequired?: boolean, keyOverride?:
     const defaultKey = 'Qcov_BE_3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1630,7 +1630,7 @@ const pcrHouseholdContact = (parentKey: string, covid19ContactKey: string, isReq
     const defaultKey = 'Qcov_BE_3b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1745,7 +1745,7 @@ const covidSymptomsContact = (parentKey: string, isRequired?: boolean, keyOverri
     const defaultKey = 'Qcov_BE_8'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1839,7 +1839,7 @@ const covidHouseholdContact = (parentKey: string, covid19ContactKey: string, isR
     const defaultKey = 'Qcov_BE_8b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1954,7 +1954,7 @@ const symptomsEnd = (parentKey: string, keySymptomsStart: string, isRequired?: b
     const defaultKey = 'Q4'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2107,7 +2107,7 @@ const symptomsSuddenlyDeveloped = (parentKey: string, isRequired?: boolean, keyO
     const defaultKey = 'Q5';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2250,7 +2250,7 @@ const feverStart = (parentKey: string, keySymptomStart: string, isRequired?: boo
     const defaultKey = 'a';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2397,7 +2397,7 @@ const feverDevelopedSuddenly = (parentKey: string, isRequired?: boolean, keyOver
     const defaultKey = 'b';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2541,7 +2541,7 @@ const didUMeasureTemperature = (parentKey: string, isRequired?: boolean, keyOver
     const defaultKey = 'c';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2679,7 +2679,7 @@ const highestTemprerature = (parentKey: string, keyDidYouMeasureTemperature: str
     const defaultKey = 'd';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2870,7 +2870,7 @@ const getFullFeverGroup = (parentKey: string, keySymptomsQuestion: string, keySy
     const defaultKey = 'Q6';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: true });
-    editor.setVersion(1);
+
 
     editor.setSelectionMethod({ name: 'sequential' });
     editor.setCondition(
@@ -2904,7 +2904,7 @@ const visitedMedicalService = (parentKey: string, isRequired?: boolean, keyOverr
     const defaultKey = 'Q_BE_7';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -3081,7 +3081,7 @@ const visitedMedicalServiceWhen = (parentKey: string, keyVisitedMedicalServ: str
     const defaultKey = 'Q_BE_7b';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -3419,7 +3419,7 @@ const visitedNoMedicalService = (parentKey: string, keyVisitedMedicalServ?: stri
     const defaultKey = 'Qcov_BE_18';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -3635,7 +3635,7 @@ const consFear = (parentKey: string, keyVisitedMedicalServ?: string, keyvisitedN
     const defaultKey = 'Qcov_BE_18b';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -3754,7 +3754,7 @@ const durHosp = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: 
     const defaultKey = 'Q_BE_7x';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -4107,7 +4107,7 @@ const addICU = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: b
     const defaultKey = 'Q_BE_7y';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -4183,7 +4183,7 @@ const inComa = (parentKey: string, keyVisitedMedicalServ: string, isRequired?: b
     const defaultKey = 'Q_BE_7z';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -4250,7 +4250,7 @@ const tookMedication = (parentKey: string, isRequired?: boolean, keyOverride?: s
     const defaultKey = 'Q_BE_9';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -4471,7 +4471,7 @@ const dailyRoutine = (parentKey: string, isRequired?: boolean, keyOverride?: str
     const defaultKey = 'Q10';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -4602,7 +4602,7 @@ const dailyRoutineToday = (parentKey: string, keyDailyRoutine: string, isRequire
     const defaultKey = 'Q_BE_10b';
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -5079,7 +5079,7 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
     const defaultKey = 'Qcov_BE_16'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -5217,7 +5217,7 @@ const covidHabitsChange = (parentKey: string, isRequired?: boolean, keyOverride?
     const defaultKey = 'Qcov_BE_7'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(

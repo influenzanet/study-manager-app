@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { multipleChoiceKey, responseGroupKey } from "../../../../../editor-engine/utils/key-definitions";
@@ -52,15 +52,16 @@ export class HealthGroup extends GroupItemEditor {
         const Q6_FU = this.Q6_FU('Q6_FU', isRequired);
         const conditionQ6ja_FU = CommonExpressions.singleChoiceOptionsSelected(Q6_FU.key, 'ja');
         //
-       
-        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(this.groupIntro());
+
+        if (this.isPartOfSurvey(surveyKeys.T0)) {
+            this.addItem(this.groupIntro());
         }
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(this.Q0('Q0', isRequired));
+            this.addItem(this.Q0('Q0', isRequired));
         }
         if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T12c)) {
-        this.addItem(this.Q1TICppreText());
-        this.addItem(this.Q1('Q1', isRequired));
+            this.addItem(this.Q1TICppreText());
+            this.addItem(this.Q1('Q1', isRequired));
         }
 
         this.addItem(this.groupIntroQ2());
@@ -71,11 +72,11 @@ export class HealthGroup extends GroupItemEditor {
         this.addItem(Q5);
         this.addItem(this.Q5b('Q5b', conditionQ5anders, true));
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(Q6);
-        this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
+            this.addItem(Q6);
+            this.addItem(this.Q62('Q62', conditionQ6ja, isRequired));
         } else {
-        this.addItem(Q6_FU);
-        this.addItem(this.Q62_FU('Q62_FU', conditionQ6ja_FU, isRequired));
+            this.addItem(Q6_FU);
+            this.addItem(this.Q62_FU('Q62_FU', conditionQ6ja_FU, isRequired));
         }
         this.addPageBreak();
         this.addItem(this.QpromispreText(conditions.hasDifficultyWithBreathing));
@@ -1049,7 +1050,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-       Q6_FU(itemKey: string, isRequired: boolean) {
+    Q6_FU(itemKey: string, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: itemKey,

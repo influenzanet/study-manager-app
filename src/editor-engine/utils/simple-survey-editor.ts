@@ -1,4 +1,4 @@
-import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyGroupItem, SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../survey-editor/item-editor";
 import { SurveyEditor } from "../survey-editor/survey-editor";
 import { generateLocStrings } from "./simple-generators";
@@ -44,7 +44,7 @@ export class SimpleSurveyEditor {
     }
 
     addSurveyItemToRoot(item: SurveyItem) {
-        this.editor.addExistingSurveyItem(item, this.editor.getSurvey().current.surveyDefinition.key);
+        this.editor.addExistingSurveyItem(item, this.editor.getSurvey().surveyDefinition.key);
     }
 
     addSurveyItemToPath(item: SurveyItem, parentKey: string) {

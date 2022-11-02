@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types"
+import { Expression } from "survey-engine/data_types"
 import { Duration, durationObjectToSeconds } from "./duration"
 import { datePickerKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "./key-definitions"
 import { expWithArgs } from "./simple-generators"

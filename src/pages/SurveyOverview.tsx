@@ -1,7 +1,7 @@
 import { Dialog, SelectField, SurveySingleItemView } from 'case-web-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { isItemGroupComponent, isSurveyGroupItem, ItemComponent, LocalizedObject, LocalizedString, Survey, SurveyItem, SurveySingleItem } from 'survey-engine/lib/data_types';
+import { ExpressionArg, isItemGroupComponent, isSurveyGroupItem, ItemComponent, LocalizedObject, LocalizedString, Survey, SurveyItem, SurveySingleItem } from 'survey-engine/data_types';
 import availableSurveys from '../editor-example-generators/surveys';
 import clsx from 'clsx';
 
@@ -34,7 +34,7 @@ const getItemTitle = (item: SurveySingleItem, lang: string): string => {
     if (!cWithLang || cWithLang.length < 1) {
         return '-';
     }
-    return (cWithLang[0] as LocalizedString).parts.map(p => p.str).join('');
+    return (cWithLang[0] as LocalizedString).parts.map(p => (p as ExpressionArg).str).join('');
 }
 
 const renderCompTexts = (comp: ItemComponent): ItemComponent => {
@@ -48,14 +48,14 @@ const renderCompTexts = (comp: ItemComponent): ItemComponent => {
         items: items ? [...items] : undefined,
         content: comp.content?.map(cCont => {
             const l = cCont as LocalizedString;
-            l.resolvedText = l.parts.map(p => p.str).join('');
+            l.resolvedText = l.parts.map(p => (p as ExpressionArg).str).join('');
             return {
                 ...l,
             }
         }),
         description: comp.description?.map(cDesc => {
             const l = cDesc as LocalizedString;
-            l.resolvedText = l.parts.map(p => p.str).join('');
+            l.resolvedText = l.parts.map(p => (p as ExpressionArg).str).join('');
             return {
                 ...l,
             }
@@ -99,7 +99,7 @@ const SurveyOverview: React.FC<SurveyOverviewProps> = (props) => {
     }, [instance, surveyKey]);
 
     console.log(selectedSurvey);
-    const surveyItems = selectedSurvey ? getSurveySingleItems(selectedSurvey.current.surveyDefinition) : [];
+    const surveyItems = selectedSurvey ? getSurveySingleItems(selectedSurvey.surveyDefinition) : [];
     console.log(surveyItems);
 
 
@@ -107,7 +107,7 @@ const SurveyOverview: React.FC<SurveyOverviewProps> = (props) => {
         if (!translations) { return; }
         const translation = (translations.find(cont => cont.code === code) as LocalizedString);
         if (!translation) { return }
-        return translation.parts.map(p => p.str).join('');
+        return translation.parts.map(p => (p as ExpressionArg).str).join('');
     }
 
     const survey = selectedSurvey;
@@ -235,7 +235,8 @@ const SurveyOverview: React.FC<SurveyOverviewProps> = (props) => {
                             title={`Item preview: ${selectedItem.key}`}
                             onClose={() => setSelectedItem(undefined)}
                             ariaLabelledBy={'key'}
-                            preferredWidth={600}
+                        // preferredWidth={600}
+
                         >
                             <SurveySingleItemView
                                 languageCode={selectedLanguage}

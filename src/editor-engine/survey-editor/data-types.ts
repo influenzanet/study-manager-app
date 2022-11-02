@@ -1,4 +1,4 @@
-import { SurveyItemTypes } from "survey-engine/lib/data_types";
+import { SurveyItemTypes } from "survey-engine/data_types";
 
 
 export interface NewItemProps {

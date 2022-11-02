@@ -1,4 +1,4 @@
-import { SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyGroupItem, SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { initEQ5DHealthIndicatorQuestion, initSingleChoiceGroup } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateLocStrings, generatePageBreak, generateTitleComponent } from "../../editor-engine/utils/simple-generators";

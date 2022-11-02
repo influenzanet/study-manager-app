@@ -1,6 +1,6 @@
 import { SurveyEditor } from "../editor-engine/survey-editor/survey-editor";
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../editor-engine/utils/simple-generators";
-import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/lib/data_types";
+import { SurveyGroupItem, SurveyItem, Survey, Expression } from "survey-engine/data_types";
 import { ItemEditor } from "../editor-engine/survey-editor/item-editor";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initDropdownGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../editor-engine/utils/question-type-generator";
 import { ComponentEditor } from "../editor-engine/survey-editor/component-editor";

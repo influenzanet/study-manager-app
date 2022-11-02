@@ -1,4 +1,4 @@
-import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem, ItemGroupComponent, ExpressionName, ResponseComponent, isItemGroupComponent } from "survey-engine/lib/data_types";
+import { SurveyItem, SurveyGroupItem, SurveyItemTypes, Expression, Validation, ItemComponent, SurveySingleItem, ItemGroupComponent, ExpressionName, ResponseComponent, isItemGroupComponent } from "survey-engine/data_types";
 import { NewItemProps, NewComponentProps } from "./data-types";
 import { ComponentEditor } from "./component-editor";
 import { generateRandomKey } from "../utils/randomKeyGenerator";
@@ -16,9 +16,6 @@ interface ItemEditorInt {
 
     setCondition: (exp: Expression | undefined) => void;
     setPriority: (prio: number | undefined) => void;
-
-    setVersion: (version: number) => void;
-    setVersionTags: (tags: string[]) => void;
 
     // methods for survey group items:
     addSurveyItem: (item: SurveyItem, atPosition?: number) => void;
@@ -61,7 +58,7 @@ export class ItemEditor implements ItemEditorInt {
     private surveyItem: SurveyItem;
 
     constructor(existingItem?: SurveyItem, newItem?: NewItemProps) {
-        this.surveyItem = { key: '', version: 0 };
+        this.surveyItem = { key: '' };
         if (existingItem) {
             this.surveyItem = { ...existingItem };
             // console.log(this.surveyItem);
@@ -70,14 +67,12 @@ export class ItemEditor implements ItemEditorInt {
             if (newItem?.isGroup) {
                 const currentItem: SurveyGroupItem = {
                     key,
-                    version: 1,
                     items: [],
                 }
                 this.surveyItem = currentItem;
             } else {
                 const currentItem: SurveyItem = {
                     key,
-                    version: 1,
                 }
                 if (newItem?.type) {
                     currentItem.type = newItem.type;
@@ -138,13 +133,6 @@ export class ItemEditor implements ItemEditorInt {
         this.surveyItem.priority = prio;
     };
 
-    setVersion(version: number) {
-        this.surveyItem.version = version;
-    };
-
-    setVersionTags(tags: string[]) {
-        this.surveyItem.versionTags = [...tags];
-    };
 
     // methods for survey group items:
     addSurveyItem(item: SurveyItem, atPosition?: number) {

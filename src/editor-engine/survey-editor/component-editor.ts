@@ -1,4 +1,4 @@
-import { ItemComponent, ItemGroupComponent, Expression, LocalizedObject, ComponentProperties, ResponseComponent } from "survey-engine/lib/data_types";
+import { ItemComponent, ItemGroupComponent, Expression, LocalizedObject, ComponentProperties, ResponseComponent } from "survey-engine/data_types";
 import { NewComponentProps } from "./data-types";
 
 
