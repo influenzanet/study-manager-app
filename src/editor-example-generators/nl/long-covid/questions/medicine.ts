@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -36,7 +36,7 @@ export class MedicineGroup extends GroupItemEditor {
         const condition_healthcare_provider = CommonExpressions.singleChoiceOptionsSelected(healthcare_provider.key, 'ja');
         const condition_use_medicine = CommonExpressions.singleChoiceOptionsSelected(use_medicine.key, 'ja');
         const condition_use_medicine_FU = CommonExpressions.singleChoiceOptionsSelected(use_medicine_FU.key, 'ja');
-        
+
         this.addItem(healthcare_provider)
         const Q2a = gen_Q2a(this.key, true, condition_healthcare_provider)
         this.addItem(Q2a);
@@ -46,8 +46,8 @@ export class MedicineGroup extends GroupItemEditor {
             true)
         );
         this.addPageBreak();
-        if (this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(use_medicine)}
-        if (!this.isPartOfSurvey(surveyKeys.T0)) {this.addItem(use_medicine_FU)}
+        if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(use_medicine) }
+        if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(use_medicine_FU) }
         this.addItem(Q4(this.key, true, condition_use_medicine))
         this.addItem(Q4_FU(this.key, true, condition_use_medicine_FU))
         this.addItem(Q16(this.key, true))

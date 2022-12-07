@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
@@ -26,7 +26,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
                     ["nl", "Op deze pagina staan 8 uitspraken waarmee je kunt aangeven hoe je jezelf de laatste twee weken hebt gevoeld."],
                 ]))
             },
-          
+
             {
                 role: 'text',
                 style: [{ key: 'variant', value: 'p' }],
@@ -96,7 +96,7 @@ export const Q_CIS = (parentKey: string, isRequired?: boolean, keyOverride?: str
             {
                 key: 'a', content: new Map([
                     ["nl", "Ik voel me moe"],
-                ]), 
+                ]),
             },
             {
                 key: 'b', content: new Map([

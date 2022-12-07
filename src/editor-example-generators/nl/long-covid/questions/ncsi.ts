@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";

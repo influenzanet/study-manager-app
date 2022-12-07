@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 
 export const Q_mMRC = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {

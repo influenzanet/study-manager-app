@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Box, Button } from '@material-ui/core';
-import { LocalizedString, LocalizedObject, Survey } from 'survey-engine/lib/data_types';
+import { LocalizedString, LocalizedObject, Survey, ExpressionArg } from 'survey-engine/data_types';
 
 import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
@@ -48,7 +47,7 @@ const TestViewer: React.FC = () => {
         if (!translations) { return; }
         const translation = (translations.find(cont => cont.code === code) as LocalizedString);
         if (!translation) { return }
-        return translation.parts.map(p => p.str).join('');
+        return translation.parts.map(p => (p as ExpressionArg).str).join('');
     }
 
     const survey = selectedSurvey;
@@ -152,15 +151,12 @@ const TestViewer: React.FC = () => {
                         <button className="btn btn-primary mt-2"
                             onClick={
                                 () => {
-                                    const exportData = {
-                                        studyKey: studyName,
-                                        survey: survey,
-                                    }
+                                    const exportData = survey;
                                     var a = document.createElement("a");
                                     var file = new Blob([JSON.stringify(exportData, undefined, 2)], { type: 'json' });
                                     a.href = URL.createObjectURL(file);
                                     const namePrefix = studyName.length > 0 ? `${studyName}_` : '';
-                                    a.download = `${namePrefix}${survey?.current.surveyDefinition.key}.json`;
+                                    a.download = `${namePrefix}${survey?.surveyDefinition.key}.json`;
                                     a.click();
                                 }
                             }

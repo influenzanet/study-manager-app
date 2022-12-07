@@ -1,4 +1,4 @@
-import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent, SurveySingleItem } from "survey-engine/lib/data_types";
+import { LocalizedString, ItemComponent, ExpressionName, Expression, ItemGroupComponent, SurveySingleItem } from "survey-engine/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 import { StyledTextComponentProp } from "./question-type-generator";
 import { generateRandomKey } from "./randomKeyGenerator";
@@ -100,7 +100,6 @@ export const generatePageBreak = (parentKey: string, key?: string): SurveySingle
 
     return {
         key: parentKey + '.' + (key ? key : "PB_" + generateRandomKey(4)),
-        version: 0,
         type: 'pageBreak'
     };
 }

@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";

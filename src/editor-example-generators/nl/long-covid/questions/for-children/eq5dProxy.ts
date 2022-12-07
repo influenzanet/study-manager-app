@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
 import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
@@ -567,7 +567,7 @@ Tik bij iedere groep op het ENE hokje dat het best weergeeft hoe **jij** de gezo
     }
 
     Q_healthstatus_def(itemKey: string, isRequired?: boolean, useCopyRight?: boolean) {
-        const simpleEditor = new SimpleQuestionEditor(this.key, itemKey, 1);
+        const simpleEditor = new SimpleQuestionEditor(this.key, itemKey);
 
         // role: 'eq5d-health-indicator'
         const rg_inner = initEQ5DHealthIndicatorQuestion({
@@ -1108,7 +1108,7 @@ Tik bij iedere groep op het ENE hokje dat het best past bij jouw gezondheid VAND
     }
 
     Q_healthstatus_def(itemKey: string, isRequired?: boolean, useCopyRight?: boolean) {
-        const simpleEditor = new SimpleQuestionEditor(this.key, itemKey, 1);
+        const simpleEditor = new SimpleQuestionEditor(this.key, itemKey);
 
         // role: 'eq5d-health-indicator'
         const rg_inner = initEQ5DHealthIndicatorQuestion({

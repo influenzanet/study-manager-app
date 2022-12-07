@@ -1,4 +1,4 @@
-import { Survey, LocalizedString, SurveyItem, isSurveyGroupItem, SurveyGroupItem, SurveyContextDef, Expression } from "survey-engine/lib/data_types";
+import { Survey, LocalizedString, SurveyItem, isSurveyGroupItem, SurveyGroupItem, SurveyContextDef, Expression } from "survey-engine/data_types";
 import { NewItemProps } from "./data-types";
 import { ItemEditor } from "./item-editor";
 
@@ -29,19 +29,17 @@ export class SurveyEditor implements SurveyEditorInt {
     constructor(survey?: Survey) {
         if (survey) {
             this.survey = { ...survey };
-            this.surveyKey = this.survey.current.surveyDefinition.key;
+            this.surveyKey = this.survey.surveyDefinition.key;
         } else {
             this.surveyKey = 'survey';
             this.survey = {
                 props: {},
-                current: {
-                    versionId: '',
-                    surveyDefinition: {
-                        key: this.surveyKey,
-                        version: 1,
-                        items: []
-                    }
+                versionId: '',
+                surveyDefinition: {
+                    key: this.surveyKey,
+                    items: []
                 }
+
             }
         }
     }
@@ -83,16 +81,16 @@ export class SurveyEditor implements SurveyEditorInt {
         if (!parentKey) {
             newItem.itemKey = this.surveyKey + '.' + newItem.itemKey;
 
-            if (this.survey.current.surveyDefinition.items.find(it => newItem.itemKey === it.key)) {
+            if (this.survey.surveyDefinition.items.find(it => newItem.itemKey === it.key)) {
                 console.warn('item already exists with key: ', newItem.itemKey);
                 return undefined;
             }
             const item = (new ItemEditor(undefined, newItem)).getItem();
 
             if (atPosition !== undefined) {
-                this.survey.current.surveyDefinition.items.splice(atPosition, 0, item);
+                this.survey.surveyDefinition.items.splice(atPosition, 0, item);
             } else {
-                this.survey.current.surveyDefinition.items.push(item);
+                this.survey.surveyDefinition.items.push(item);
             }
             return item;
         }
@@ -137,7 +135,7 @@ export class SurveyEditor implements SurveyEditorInt {
     changeItemKey(oldKey: string, newKey: string, ignoreReferences?: boolean) {
         if (oldKey === this.surveyKey) {
             this.surveyKey = newKey;
-            this.survey.current.surveyDefinition = this.changeItemKeyForSubtree(this.survey.current.surveyDefinition, newKey) as SurveyGroupItem;
+            this.survey.surveyDefinition = this.changeItemKeyForSubtree(this.survey.surveyDefinition, newKey) as SurveyGroupItem;
             return;
         }
 
@@ -157,8 +155,8 @@ export class SurveyEditor implements SurveyEditorInt {
 
     updateSurveyItem(item: SurveyItem) {
         if (item.key === this.surveyKey) {
-            this.survey.current.surveyDefinition = {
-                ...this.survey.current.surveyDefinition,
+            this.survey.surveyDefinition = {
+                ...this.survey.surveyDefinition,
                 ...item
             }
             return;
@@ -205,7 +203,7 @@ export class SurveyEditor implements SurveyEditorInt {
         let obj: SurveyItem | undefined = undefined;
         for (const currentKey of paths) {
             if (!obj) {
-                obj = this.survey.current.surveyDefinition;
+                obj = this.survey.surveyDefinition;
                 continue;
             }
             if (!isSurveyGroupItem(obj)) {

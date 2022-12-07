@@ -1,4 +1,4 @@
-import { Expression, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -249,7 +249,7 @@ const Q2 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         questionText: new Map([
             ["nl", "De vragen hieronder gaan over de 3 maanden voordat je de klachten kreeg die (mogelijk) door corona komen. Of als je geen klachten door corona hebt gehad, de 3 maanden voordat je startte met het onderzoek."],
         ]),
-    
+
         scaleOptions: [
             {
                 key: '0', content: new Map([

@@ -1,4 +1,4 @@
-import { Survey } from "survey-engine/lib/data_types";
+import { Survey } from "survey-engine/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { AgeCategoryFlagName, surveyKeys } from "../studyRules";

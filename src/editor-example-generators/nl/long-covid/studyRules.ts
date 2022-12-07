@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/data_types";
 import { StudyActions, StudyExpressions } from "../../../editor-engine/utils/studyServiceExpressions"
 import { datePickerKey, responseGroupKey } from "../../../editor-engine/utils/key-definitions";
 import { expWithArgs } from "../../../editor-engine/utils/simple-generators";

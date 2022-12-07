@@ -1,4 +1,4 @@
-import { Expression } from "survey-engine/lib/data_types";
+import { Expression } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { numericInputKey, responseGroupKey } from "../../../../../editor-engine/utils/key-definitions";
@@ -42,18 +42,19 @@ export class GeneralDataGroup extends GroupItemEditor {
             Q_langafwezig.key, 'ja'
         )
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-        this.addItem(this.groupIntro());
-        this.addItem(this.Q1('Q1', isRequired));
-        this.addItem(this.Q2('Q2', isRequired));
-        this.addItem(this.Q3('Q3', isRequired));
-        this.addItem(this.Q4('Q4', isRequired));
-        this.addItem(this.Q5('Q5', isRequired));
-        this.addItem(this.Q6('Q6', isRequired));
-        this.addItem(Q7);
-        this.addItem(this.Q8('Q8', Q7GreaterThanOne, isRequired));
-        this.addItem(this.Q9('Q9', isRequired));
-        this.addItem(this.Q10('Q10', false)); // not required
-        this.addPageBreak();}
+            this.addItem(this.groupIntro());
+            this.addItem(this.Q1('Q1', isRequired));
+            this.addItem(this.Q2('Q2', isRequired));
+            this.addItem(this.Q3('Q3', isRequired));
+            this.addItem(this.Q4('Q4', isRequired));
+            this.addItem(this.Q5('Q5', isRequired));
+            this.addItem(this.Q6('Q6', isRequired));
+            this.addItem(Q7);
+            this.addItem(this.Q8('Q8', Q7GreaterThanOne, isRequired));
+            this.addItem(this.Q9('Q9', isRequired));
+            this.addItem(this.Q10('Q10', false)); // not required
+            this.addPageBreak();
+        }
 
         this.addItem(this.Q_minderschoolpreText(conditions.q11Ja));
         this.addItem(this.InfoText2(conditions.q11Ja));
@@ -842,7 +843,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 ComponentGenerators.markdown({
                     content: new Map([
                         ['nl', `Je hebt aangegeven aanhoudende klachten te hebben. Als je denkt dat deze klachten mogelijk door het coronavirus komen, kun je contact opnemen met het PoCoCoChi (Post Corona Complaints in Children) team via pocos@amsterdamumc.nl. Als je je telefoonnummer in de mail vermeldt zullen zij telefonisch contact met je opnemen.`
-                    ]
+                        ]
                     ])
                 })]
         })

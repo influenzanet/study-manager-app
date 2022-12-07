@@ -1,5 +1,5 @@
 import React from 'react';
-import { Survey } from 'survey-engine/lib/data_types';
+import { Survey } from 'survey-engine/data_types';
 
 interface ItemOverviewProps {
     survey: Survey;

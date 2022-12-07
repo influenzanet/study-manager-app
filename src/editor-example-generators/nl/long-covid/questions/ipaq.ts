@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 
@@ -11,7 +11,7 @@ export const Q_IPAQ = (parentKey: string, isRequired?: boolean, keyOverride?: st
         questionText: new Map([
             ["nl", "Hoeveel tijd bracht je gewoonlijk zittend door gedurende een doordeweekse dag in de afgelopen 7 dagen?"],
         ]),
-    
+
         topDisplayCompoments: [
             {
                 role: 'text',

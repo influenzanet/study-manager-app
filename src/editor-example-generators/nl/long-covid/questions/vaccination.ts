@@ -1,4 +1,4 @@
-import { Expression, ExpressionArg, SurveyItem } from "survey-engine/lib/data_types";
+import { Expression, ExpressionArg, SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -191,7 +191,7 @@ const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Exp
                     ["nl", "3 vaccinaties"],
                 ])
             },
-                {
+            {
                 key: '4vacc', role: 'option',
                 content: new Map([
                     ["nl", "4 vaccinaties"],

@@ -1,4 +1,4 @@
-import { SurveyItem } from "survey-engine/lib/data_types";
+import { SurveyItem } from "survey-engine/data_types";
 import { ItemEditor } from "../../editor-engine/survey-editor/item-editor";
 import { initLikertScaleItem, initMatrixQuestion, initDropdownGroup, initMultipleChoiceGroup, initSingleChoiceGroup, ResponseRowCell } from "../../editor-engine/utils/question-type-generator";
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
@@ -15,7 +15,6 @@ const postal_code = (parentKey: string, isRequired?: boolean, keyOverride?: stri
     const defaultKey = 'Q3'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -1918,7 +1917,7 @@ const flu_vaccine_this_season = (parentKey: string, isRequired?: boolean, keyOve
     const defaultKey = 'Q10'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2245,7 +2244,7 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     const defaultKey = 'Q10d'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2540,7 +2539,7 @@ const regular_medication = (parentKey: string, isRequired?: boolean, keyOverride
     const defaultKey = 'Q11'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2731,7 +2730,7 @@ const smoking = (parentKey: string, isRequired?: boolean, keyOverride?: string):
     const defaultKey = 'Q13'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -2889,7 +2888,7 @@ const special_diet = (parentKey: string, isRequired?: boolean, keyOverride?: str
     const defaultKey = 'Q15'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -3051,7 +3050,7 @@ const find_infectieradar = (parentKey: string, isRequired?: boolean, keyOverride
     const defaultKey = 'Q_BE_17'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setVersion(1);
+
 
     // QUESTION TEXT
     editor.setTitleComponent(
@@ -4861,31 +4860,31 @@ const additional_covid19_questions_ongoing_symptoms = (parentKey: string, keypre
 }
 
 export const IntakeCustomQuestions = {
-  postalCode: postal_code,
-  main_activity,
-  postal_code_work,
-  work_type,
-  work_sector,
-  work_school,
-  work_medical,
-  highest_education,
-  people_met,
-  age_groups,
-  flu_vaccine_this_season,
-  flu_vaccine_this_season_reason_for,
-  flu_vaccine_this_season_reason_against,
-  regular_medication,
-  smoking,
-  special_diet,
-  find_infectieradar,
-  previous_covid19_episode,
-  previous_covid19_episode_symptoms,
-  additional_covid19_questions,
-  additional_covid19_questions_medical_aid,
-  additional_covid19_questions_hospital,
-  additional_covid19_questions_hospital_length,
-  additional_covid19_questions_ICU,
-  additional_covid19_questions_coma,
-  additional_covid19_questions_returned_health,
-  additional_covid19_questions_ongoing_symptoms,
+    postalCode: postal_code,
+    main_activity,
+    postal_code_work,
+    work_type,
+    work_sector,
+    work_school,
+    work_medical,
+    highest_education,
+    people_met,
+    age_groups,
+    flu_vaccine_this_season,
+    flu_vaccine_this_season_reason_for,
+    flu_vaccine_this_season_reason_against,
+    regular_medication,
+    smoking,
+    special_diet,
+    find_infectieradar,
+    previous_covid19_episode,
+    previous_covid19_episode_symptoms,
+    additional_covid19_questions,
+    additional_covid19_questions_medical_aid,
+    additional_covid19_questions_hospital,
+    additional_covid19_questions_hospital_length,
+    additional_covid19_questions_ICU,
+    additional_covid19_questions_coma,
+    additional_covid19_questions_returned_health,
+    additional_covid19_questions_ongoing_symptoms,
 }

@@ -1,4 +1,4 @@
-import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/lib/data_types";
+import { ItemGroupComponent, Expression, ComponentProperties, LocalizedObject, ItemComponent, SurveyItem, ExpressionArg, Validation } from "survey-engine/data_types";
 import { ComponentEditor } from "../survey-editor/component-editor";
 import { ItemEditor } from "../survey-editor/item-editor";
 import { CommonExpressions } from "./commonExpressions";
@@ -163,7 +163,7 @@ interface ResponsiveSingleChoiceArrayQuestionProps extends GenericQuestionProps,
 interface ResponsiveBipolarLikertArrayQuestionProps extends GenericQuestionProps, ResponsiveBipolarLikertArrayProps { }
 
 const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -231,7 +231,7 @@ const generateNumericInputQuestion = (props: NumericInputQuestionProps): SurveyI
 }
 
 const generateSingleChoiceQuestion = (props: OptionQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -277,7 +277,7 @@ const generateSingleChoiceQuestion = (props: OptionQuestionProps): SurveyItem =>
 }
 
 const generateDropDownQuestion = (props: OptionQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -320,7 +320,7 @@ const generateDropDownQuestion = (props: OptionQuestionProps): SurveyItem => {
 
 
 const generateMultipleChoiceQuestion = (props: OptionQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -366,7 +366,7 @@ const generateMultipleChoiceQuestion = (props: OptionQuestionProps): SurveyItem 
 }
 
 const generateSimpleLikertGroupQuestion = (props: LikertGroupQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -425,7 +425,7 @@ const generateSimpleLikertGroupQuestion = (props: LikertGroupQuestionProps): Sur
 }
 
 const generateResponsiveSingleChoiceArrayQuestion = (props: ResponsiveSingleChoiceArrayQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -484,7 +484,7 @@ const generateResponsiveSingleChoiceArrayQuestion = (props: ResponsiveSingleChoi
 }
 
 const generateResponsiveBipolarLikertArray = (props: ResponsiveBipolarLikertArrayQuestionProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -551,7 +551,7 @@ interface NumericSliderProps extends GenericQuestionProps {
 }
 
 const generateNumericSliderQuestion = (props: NumericSliderProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -619,7 +619,7 @@ interface MultiLineTextInput extends GenericQuestionProps {
 }
 
 const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -682,7 +682,7 @@ const generateDatePickerInput = (props: DatePickerInput): SurveyItem => {
 }
 
 const generateMultilineInput = (props: MultiLineTextInput): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, props.version ? props.version : 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey,);
 
     // QUESTION TEXT
     simpleEditor.setTitle(props.questionText, props.questionSubText, props.titleClassName);
@@ -732,7 +732,7 @@ interface DisplayProps {
 }
 
 const generateDisplay = (props: DisplayProps): SurveyItem => {
-    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey, 1);
+    const simpleEditor = new SimpleQuestionEditor(props.parentKey, props.itemKey);
     props.content.forEach(item => simpleEditor.addDisplayComponent(item))
     if (props.condition) {
         simpleEditor.setCondition(props.condition);

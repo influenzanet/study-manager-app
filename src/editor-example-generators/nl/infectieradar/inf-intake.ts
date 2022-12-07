@@ -1,7 +1,7 @@
 import { SurveyEditor } from "../../../editor-engine/survey-editor/survey-editor"
 import { generateLocStrings, generateTitleComponent, generateHelpGroupComponent, expWithArgs } from "../../../editor-engine/utils/simple-generators";
 import { ItemEditor } from "../../../editor-engine/survey-editor/item-editor";
-import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/lib/data_types";
+import { Survey, SurveyGroupItem, SurveyItem } from "survey-engine/data_types";
 import { initSingleChoiceGroup, initMultipleChoiceGroup, initSliderCategoricalGroup, initMatrixQuestion, ResponseRowCell } from "../../../editor-engine/utils/question-type-generator";
 import { IntakeQuestions as DefaultIntake } from "./questions/tempIntakePool";
 
@@ -60,12 +60,12 @@ export const generateNLIntake = (): Survey | undefined => {
     // postcode --------------------------------------
     const Q_postal = DefaultIntake.postalCode(rootKey, true);
     survey.addExistingSurveyItem(Q_postal, rootKey);
-    
+
     // length
     const q21NL = survey.addNewSurveyItem({ itemKey: 'Q21NL' }, rootKey);
     if (!q21NL) { return; }
     survey.updateSurveyItem(q21NL_def(q21NL, rootKey));
-    
+
     // weight
     const q22NL = survey.addNewSurveyItem({ itemKey: 'Q22NL' }, rootKey);
     if (!q22NL) { return; }
@@ -127,11 +127,11 @@ export const generateNLIntake = (): Survey | undefined => {
 
     //survey.addNewSurveyItem({ itemKey: 'pbOutside', type: 'pageBreak' }, rootKey);
 
- //   // means of transport  --------------------------------------
- //   const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
- //   if (!q7) { return; }
- //   survey.updateSurveyItem(q7_def(q7));
- //   // -----------------------------------------
+    //   // means of transport  --------------------------------------
+    //   const q7 = survey.addNewSurveyItem({ itemKey: 'Q7' }, rootKey);
+    //   if (!q7) { return; }
+    //   survey.updateSurveyItem(q7_def(q7));
+    //   // -----------------------------------------
 
     // public transport duration  --------------------------------------
     const q7b = survey.addNewSurveyItem({ itemKey: 'Q7b' }, rootKey);
@@ -325,7 +325,7 @@ const q21NL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 ["nl", "Dat wil ik liever niet aangeven/dat weet ik niet"],
             ])
         },
-    
+
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -386,7 +386,7 @@ const q22NL_def = (itemSkeleton: SurveyItem, q4Key: string): SurveyItem => {
                 ["nl", "Dat wil ik liever niet aangeven/dat weet ik niet"],
             ])
         },
-    
+
     ]);
 
     editor.addExistingResponseComponent(rg_inner, rg?.key);
@@ -1083,20 +1083,20 @@ const q6_def = (itemSkeleton: SurveyItem): SurveyItem => {
                 { ...ddg }
             ],
         },
-//       {
-//            key: '2', role: 'responseRow',
-//            cells: [
-//                {
-//                    key: 'l', role: 'label',
-//                    content: new Map([
-//                        ["en", "5 - 18 years"],
-//                        ["nl", "5 - 18 jaar"],
-//                        ["fr", "5 - 18 ans"],
-//                    ])
-//                },
-//                { ...ddg }
-//            ],
-//        },
+        //       {
+        //            key: '2', role: 'responseRow',
+        //            cells: [
+        //                {
+        //                    key: 'l', role: 'label',
+        //                    content: new Map([
+        //                        ["en", "5 - 18 years"],
+        //                        ["nl", "5 - 18 jaar"],
+        //                        ["fr", "5 - 18 ans"],
+        //                    ])
+        //                },
+        //                { ...ddg }
+        //            ],
+        //        },
         {
             key: '6', role: 'responseRow',
             cells: [
@@ -1755,7 +1755,7 @@ const q11_def = (itemSkeleton: SurveyItem): SurveyItem => {
     return editor.getItem();
 }
 
-// q12 pregnant 
+// q12 pregnant
 const q12_def = (itemSkeleton: SurveyItem, q1Key: string): SurveyItem => {
     const editor = new ItemEditor(itemSkeleton);
     editor.setTitleComponent(
