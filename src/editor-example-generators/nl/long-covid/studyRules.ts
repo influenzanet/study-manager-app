@@ -464,7 +464,7 @@ const handleT12Submission = (): Expression => {
         [
             StudyActions.removeAllSurveys(),
             StudyActions.if(
-                StudyExpressions.singleChoiceOptionsSelected('extend_FU', 'yes'),
+                StudyExpressions.singleChoiceOptionsSelected('T12.DEM.extend_FU', 'ja'),
                 // Then:
                 assignT15(),
                 // Else:
