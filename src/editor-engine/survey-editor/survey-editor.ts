@@ -77,6 +77,10 @@ export class SurveyEditor implements SurveyEditorInt {
         this.survey.prefillRules = [...rules];
     };
 
+    setRequireLoginBeforeSubmission(value: boolean) {
+        this.survey.requireLoginBeforeSubmission = value;
+    }
+
     addNewSurveyItem(newItem: NewItemProps, parentKey?: string, atPosition?: number): SurveyItem | undefined {
         if (!parentKey) {
             newItem.itemKey = this.surveyKey + '.' + newItem.itemKey;
