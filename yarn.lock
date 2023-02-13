@@ -1647,10 +1647,10 @@
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.16.0.tgz#7871bfc1d9bca9aa35ad444a239505589d0f22f6"
   integrity sha512-DYmSzkr+jToahwWrsiRA2/pzMEtz9Bq1euJwoOuYwuwIYXnZFtHajY2E6a1VNVDc9jP8YUXK1BvnZH9mmT19Zg==
 
-"@date-io/moment@2.16.0":
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.16.0.tgz#a6658c05e14e7fcc57adeda675462e0b6750542d"
-  integrity sha512-wvu/40k128kF6P0jPbiyZcPR14VjJAgYEs+mYtsXz/AyWpC2DEJKly7ub+dpevUywbTzzpZysyCxCdzLzxD/uw==
+"@date-io/moment@2.16.1":
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.16.1.tgz#ec6e0daa486871e0e6412036c6f806842a0eeed4"
+  integrity sha512-JkxldQxUqZBfZtsaCcCMkm/dmytdyq5pS1RxshCQ4fHhsvP5A7gSqPD22QbVXMcJydi3d3v1Y8BQdUKEuGACZQ==
   dependencies:
     "@date-io/core" "^2.16.0"
 
@@ -1675,10 +1675,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/open-sans@^4.5.13":
-  version "4.5.13"
-  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.13.tgz#2c99e4c055d129a75f14c11b77d040282e0388b8"
-  integrity sha512-/UzqP7ZFk145XAq8KG4pvFPP7UQhtreDGXgqXZjagCDreKxcrhwn/x7DYz9rPcycWkLUVApIybcoczGZiM0cRg==
+"@fontsource/open-sans@^4.5.14":
+  version "4.5.14"
+  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.14.tgz#b3e1665c0b3fdfc1f030ded2843749e3cf3a5900"
+  integrity sha512-mBXIIETBlW8q/ocuUN0hyGow2iuf75hQEHQt8R/RJ/HcphVbLg8KB7pHYGbFGDqs75W+SWvTC7JkVeAjT65BuQ==
 
 "@fortawesome/fontawesome-free@^5.15.4":
   version "5.15.4"
@@ -3847,10 +3847,10 @@ case-sensitive-paths-webpack-plugin@2.3.0:
   resolved "https://registry.npmjs.org/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz"
   integrity sha512-/4YgnZS8y1UXXmC02xD5rRrBEu6T5ub+mQHLNRj0fzTRbgdBYhsNo2V5EqwgqrExjxsjtF/OpAKAMkKsxbD5XQ==
 
-case-web-ui@^1.14.0:
-  version "1.14.1"
-  resolved "https://registry.yarnpkg.com/case-web-ui/-/case-web-ui-1.14.1.tgz#4752743e0f4f0c0eedc3fe98230cb492298bdd4c"
-  integrity sha512-IsUpjP5lygNfvWtjJ/V5HosDSKVNZoZp8mta3bHAFlO9K2AxYDP84qiVHKHe9Mqg3WPLHp1ReCYGRz1CaZipvw==
+case-web-ui@^1.14.2:
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/case-web-ui/-/case-web-ui-1.14.2.tgz#ff79a30a822f7ee8e4c555f9036a950a874b6b78"
+  integrity sha512-UEIJ5wnx7qOFHn1prKlxO5ujaOzcGTbYuU5QbcU7B6wLiAuhrDw2ud6T8cjdnl8OWGseEHTlITyvO6gpb8WSmA==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.15.4"
 
@@ -6545,10 +6545,10 @@ hyphenate-style-name@^1.0.3:
   resolved "https://registry.npmjs.org/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
-i18next@^22.0.2:
-  version "22.1.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.1.2.tgz#3327c6d8c1281011c280c58ad88dc74a329f6bf2"
-  integrity sha512-HqAjWygRuDvMPdAjMgyv3l07PiN7MtBTCh8aud1iwn1FPBNhF0mzFUYQt+aVKZ3OOl0A+KrlqbCjrR1TCGB4Jw==
+i18next@^22.4.9:
+  version "22.4.9"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.4.9.tgz#98c8384c6bd41ff937da98b1e809ba03d3b41053"
+  integrity sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw==
   dependencies:
     "@babel/runtime" "^7.20.6"
 
@@ -11699,10 +11699,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-survey-engine@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-1.2.0.tgz#01cc04929f4ccb139aa25614e61e042ae46009d2"
-  integrity sha512-vUgFRaWfr6FPOduMJN0AHICm6cPFuWcfN10TYakX+/A5dZ3SOPyRtPt2T9P/VDNR/bTbY74u+xlNjDnO4fpopQ==
+survey-engine@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/survey-engine/-/survey-engine-1.2.1.tgz#214099ca904782c454e14962b43624f3899b16f9"
+  integrity sha512-q+9m16D+Zfu5F7u0BMol5HcrfXwQaVbrfQgEyo7HMt5BLsSL6aOwvznvQaHT0wdfCruAY3Dc3LHr/ZQ6qjVdyQ==
   dependencies:
     date-fns "^2.29.3"
 
