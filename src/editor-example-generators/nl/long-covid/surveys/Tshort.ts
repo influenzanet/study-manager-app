@@ -22,6 +22,7 @@ export const generateShort = (): Survey | undefined => {
         ])
     })
 
+    surveyEditor.editor.setRequireLoginBeforeSubmission(true);
 
     // *******************************
     // Questions

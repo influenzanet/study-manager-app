@@ -25,6 +25,7 @@ export const generateT6c = (): Survey | undefined => {
         ])
     })
 
+    surveyEditor.editor.setRequireLoginBeforeSubmission(true);
 
     // *******************************
     // Questions

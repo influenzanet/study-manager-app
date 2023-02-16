@@ -46,6 +46,7 @@ export const generateT0 = (): Survey | undefined => {
         ])
     })
 
+    surveyEditor.editor.setRequireLoginBeforeSubmission(true);
 
     // *******************************
     // Questions

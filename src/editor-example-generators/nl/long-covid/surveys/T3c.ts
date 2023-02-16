@@ -25,6 +25,8 @@ export const generateT3c = (): Survey | undefined => {
         ])
     })
 
+    surveyEditor.editor.setRequireLoginBeforeSubmission(true);
+    
     // COVID test group for children
     const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(childrenCovidTestGroupEditor.getItem());
