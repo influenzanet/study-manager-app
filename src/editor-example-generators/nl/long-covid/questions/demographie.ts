@@ -161,7 +161,8 @@ export class DemographieGroup extends GroupItemEditor {
                 )
             )
         }
-
+        this.addItem(Q5(this.key, true));
+        this.addPageBreak();
         const Q_minderwerk = gen_Q_minderwerk(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_minderwerk);
         const Q_arbo = gen_Q_arbo(this.key, q11AndQ14aCondition, true);
@@ -216,10 +217,10 @@ export class DemographieGroup extends GroupItemEditor {
         }
         this.addItem(Q21(this.key, true))
 
-        this.addItem(Q_instructions_eind(this.key, testQ11jaCondition))
-        if (this.isPartOfSurvey(surveyKeys.T3)) {
-            this.addItem(Q_instr_reuksmaak(this.key, geenReukSmaak))
-        }
+        // this.addItem(Q_instructions_eind(this.key, testQ11jaCondition))
+        // if (this.isPartOfSurvey(surveyKeys.T3)) {
+        //     this.addItem(Q_instr_reuksmaak(this.key, geenReukSmaak))
+        // }
         if (this.isPartOfSurvey(surveyKeys.T12)) {
             this.addItem(extend_FU(this.key, true))
         }
@@ -2077,47 +2078,47 @@ const extend_FU = (parentKey: string, isRequired?: boolean, keyOverride?: string
 }
 
 
-const Q_instructions_eind = (parentKey: string, condition?: Expression): SurveyItem => {
-    const markdownContent = `
-### Advies en ondersteuning langdurige gezondheidsklachten
+// const Q_instructions_eind = (parentKey: string, condition?: Expression): SurveyItem => {
+//     const markdownContent = `
+// ### Advies en ondersteuning langdurige gezondheidsklachten
 
-Voor advies en ondersteuning rondom langdurige gezondheidsklachten door het coronavirus kun je terecht bij [c-support](https://www.c-support.nu/). Op [coronaplein.nu](https://coronaplein.nu/) vind je informatie en advies over herstel, ontmoet je lotgenoten en kun je jouw ervaringen delen. Ook kun je op dit patiëntenplatform via een chatfunctie vragen stellen aan zorgprofessionals.
-`
+// Voor advies en ondersteuning rondom langdurige gezondheidsklachten door het coronavirus kun je terecht bij [c-support](https://www.c-support.nu/). Op [coronaplein.nu](https://coronaplein.nu/) vind je informatie en advies over herstel, ontmoet je lotgenoten en kun je jouw ervaringen delen. Ook kun je op dit patiëntenplatform via een chatfunctie vragen stellen aan zorgprofessionals.
+// `
 
-    return SurveyItemGenerators.display({
-        parentKey: parentKey,
-        condition: condition,
-        itemKey: 'ondersteuning',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ["nl", markdownContent],
-                ]),
-                className: ''
-            })
-        ]
-    });
-}
+//     return SurveyItemGenerators.display({
+//         parentKey: parentKey,
+//         condition: condition,
+//         itemKey: 'ondersteuning',
+//         content: [
+//             ComponentGenerators.markdown({
+//                 content: new Map([
+//                     ["nl", markdownContent],
+//                 ]),
+//                 className: ''
+//             })
+//         ]
+//     });
+// }
 
-const Q_instr_reuksmaak = (parentKey: string, condition?: Expression): SurveyItem => {
-    const markdownContent = `
-### Onderzoek naar reuk- of smaakverlies
+// const Q_instr_reuksmaak = (parentKey: string, condition?: Expression): SurveyItem => {
+//     const markdownContent = `
+// ### Onderzoek naar reuk- of smaakverlies
 
-Heb je een maand of langer na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies en ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie-onderzoek-naar-reukverlies-na-Covid-19-infectie-deelnemers-18-60-jaar.htm), of stuur een mail naar COVORTS.studie@wur.nl.
+// Heb je een maand of langer na de besmetting met het coronavirus nog steeds last hebt van reuk- en/of smaakverlies en ben je geïnteresseerd in deelname aan aanvullend onderzoek naar veranderingen in reuk en smaak door corona? Kijk dan [hier](https://www.wur.nl/nl/Waardecreatie-Samenwerking/Voedingsonderzoek-WUR/Show-Voedingsonderzoek/COVORTS-studie-onderzoek-naar-reukverlies-na-Covid-19-infectie-deelnemers-18-60-jaar.htm), of stuur een mail naar COVORTS.studie@wur.nl.
 
-    `
+//     `
 
-    return SurveyItemGenerators.display({
-        parentKey: parentKey,
-        condition: condition,
-        itemKey: 'intro_reuksmaak',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ["nl", markdownContent],
-                ]),
-                className: ''
-            })
-        ]
-    });
-}
+//     return SurveyItemGenerators.display({
+//         parentKey: parentKey,
+//         condition: condition,
+//         itemKey: 'intro_reuksmaak',
+//         content: [
+//             ComponentGenerators.markdown({
+//                 content: new Map([
+//                     ["nl", markdownContent],
+//                 ]),
+//                 className: ''
+//             })
+//         ]
+//     });
+// }
