@@ -18,7 +18,7 @@ import { Q_mMRC } from "../questions/mMRC";
 import { NCSIGroup } from "../questions/ncsi";
 import { ParticipantCategoryGroup } from "../questions/participantCategory";
 import { PrehistoryGroup } from "../questions/prehistory";
-import { SaTGroup } from "../questions/sat";
+// import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
@@ -89,8 +89,8 @@ export const generateT0 = (): Survey | undefined => {
     const ncsiGroupEditor = new NCSIGroup(adultVersion.key, hasKortademigCondition);
     adultVersion.addItem(ncsiGroupEditor.getItem());
 
-    const satGroupEditor = new SaTGroup(adultVersion.key);
-    adultVersion.addItem(satGroupEditor.getItem());
+    // const satGroupEditor = new SaTGroup(adultVersion.key);
+    // adultVersion.addItem(satGroupEditor.getItem());
 
     const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, true);
     adultVersion.addItem(eq5dGroupEditor.getItem());

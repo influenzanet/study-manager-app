@@ -13,7 +13,7 @@ import { Q_IPAQ } from "../questions/ipaq";
 import { MedicineGroup } from "../questions/medicine";
 import { Q_mMRC } from "../questions/mMRC";
 import { NCSIGroup } from "../questions/ncsi";
-import { SaTGroup } from "../questions/sat";
+// import { SaTGroup } from "../questions/sat";
 import { SF36Group } from "../questions/sf-36";
 import { GeneralHealthGroup } from "../questions/ticp";
 import { VaccinationGroup } from "../questions/vaccination";
@@ -58,8 +58,8 @@ export const generateT24 = (): Survey | undefined => {
     const ncsiGroupEditor = new NCSIGroup(surveyKey, hasKortademigCondition);
     surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
 
-    const satGroupEditor = new SaTGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
+    // const satGroupEditor = new SaTGroup(surveyKey);
+    // surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
 
     const eq5dGroupEditor = new EQ5DGroup(surveyKey, true, true);
     surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());

@@ -7,7 +7,7 @@ import { VaccinationGroup } from "../questions/vaccination";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { Q_mMRC } from "../questions/mMRC";
 import { NCSIGroup } from "../questions/ncsi";
-import { SaTGroup } from "../questions/sat";
+// import { SaTGroup } from "../questions/sat";
 import { Q_CIS } from "../questions/cis";
 import { CFQGroup } from "../questions/cfq";
 import { SF36Group } from "../questions/sf-36";
@@ -51,8 +51,8 @@ export const generateT18 = (): Survey | undefined => {
     const ncsiGroupEditor = new NCSIGroup(surveyKey, hasKortademigCondition);
     surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
 
-    const satGroupEditor = new SaTGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
+    // const satGroupEditor = new SaTGroup(surveyKey);
+    // surveyEditor.addSurveyItemToRoot(satGroupEditor.getItem());
 
     surveyEditor.addSurveyItemToRoot(Q_CIS(surveyKey, true));
 
