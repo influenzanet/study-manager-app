@@ -1247,7 +1247,25 @@ const Q6 = (parentKey: string, keyQ4: string, isRequired?: boolean, keyOverride?
             {
                 key: '15', role: 'option',
                 content: new Map([
-                    ["nl", "> 14 dagen"],
+                    ["nl", "Tussen 2 en 3 weken"],
+                ])
+            },
+            {
+                key: '17', role: 'option',
+                content: new Map([
+                    ["nl", "Tussen 3 en 4 weken"],
+                ])
+            },
+            {
+                key: '18', role: 'option',
+                content: new Map([
+                    ["nl", "Tussen 1 en 6 maanden"],
+                ])
+            },
+            {
+                key: '19', role: 'option',
+                content: new Map([
+                    ["nl", "Na langer dan 6 maanden"],
                 ])
             },
             {
