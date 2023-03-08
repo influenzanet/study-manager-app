@@ -11,7 +11,7 @@ import { NCSIGroup } from "../questions/ncsi";
 // import { SaTGroup } from "../questions/sat";
 import { Q_CIS } from "../questions/cis";
 import { CFQGroup } from "../questions/cfq";
-import { HADSGroup } from "../questions/hads";
+// import { HADSGroup } from "../questions/hads";
 import { Q_IPAQ } from "../questions/ipaq";
 import { SF36Group } from "../questions/sf-36";
 import { MedicineGroup } from "../questions/medicine";
@@ -65,8 +65,8 @@ export const generateT6 = (): Survey | undefined => {
     const cfqGroup = new CFQGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(cfqGroup.getItem());
 
-    const hadsGroup = new HADSGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
+    // const hadsGroup = new HADSGroup(surveyKey);
+    // surveyEditor.addSurveyItemToRoot(hadsGroup.getItem());
 
     // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
