@@ -65,7 +65,7 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(testpos_FU);
         }
         this.addItem(q_test_date_def(this.key, true, condition_test_yes));
-        this.addItem(q_test_location_def(this.key, true, condition_test_yes));
+        // this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
         this.addItem(q_test_date_def_FU(this.key, true, condition_test_result_pos_FU));
         this.addItem(q_test_location_def_FU(this.key, true, condition_test_result_pos_FU));
@@ -351,69 +351,69 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
     });
 }
 
-const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q3';
+// const q_test_location_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        condition: condition,
-        questionText: new Map([
-            ["nl", "Waar heb je jezelf laten testen op corona?"],
-        ]),
-        responseOptions: [
-            {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl", "Ziekenhuis of huisarts"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["nl", "GGD Teststraat"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "GGD kwam naar mijn huis"],
-                ])
-            },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["nl", "Met een zelftest"],
-                ])
-            },
-            {
-                key: '4', role: 'option',
-                content: new Map([
-                    ["nl", "Bij een bedrijf (op eigen initiatief)"],
-                ])
-            },
-            {
-                key: '5', role: 'option',
-                content: new Map([
-                    ["nl", "Bij een bedrijf (via mijn werkgever)"],
-                ])
-            },
-            {
-                key: '6', role: 'option',
-                content: new Map([
-                    ["nl", "In het buitenland"],
-                ])
-            },
-            {
-                key: '7', role: 'option',
-                content: new Map([
-                    ["nl", "Dat weet ik niet (meer)"],
-                ])
-            },
-        ],
-        isRequired: isRequired,
-    });
-}
+//     return SurveyItemGenerators.singleChoice({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         condition: condition,
+//         questionText: new Map([
+//             ["nl", "Waar heb je jezelf laten testen op corona?"],
+//         ]),
+//         responseOptions: [
+//             {
+//                 key: '0', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Ziekenhuis of huisarts"],
+//                 ])
+//             },
+//             {
+//                 key: '1', role: 'option',
+//                 content: new Map([
+//                     ["nl", "GGD Teststraat"],
+//                 ])
+//             },
+//             {
+//                 key: '2', role: 'option',
+//                 content: new Map([
+//                     ["nl", "GGD kwam naar mijn huis"],
+//                 ])
+//             },
+//             {
+//                 key: '3', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Met een zelftest"],
+//                 ])
+//             },
+//             {
+//                 key: '4', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Bij een bedrijf (op eigen initiatief)"],
+//                 ])
+//             },
+//             {
+//                 key: '5', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Bij een bedrijf (via mijn werkgever)"],
+//                 ])
+//             },
+//             {
+//                 key: '6', role: 'option',
+//                 content: new Map([
+//                     ["nl", "In het buitenland"],
+//                 ])
+//             },
+//             {
+//                 key: '7', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Dat weet ik niet (meer)"],
+//                 ])
+//             },
+//         ],
+//         isRequired: isRequired,
+//     });
+// }
 
 const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4';
@@ -448,12 +448,12 @@ const q_test_reason_def = (parentKey: string, isRequired?: boolean, condition?: 
                     ["nl", "Ik ben benaderd door de GGD om mij te laten testen, omdat ik mogelijk in contact ben geweest met iemand die positief getest is op corona"],
                 ])
             },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["nl", "Ik heb een melding gekregen van de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
-                ])
-            },
+            // {
+            //     key: '3', role: 'option',
+            //     content: new Map([
+            //         ["nl", "Ik heb een melding gekregen van de Coronamelder app dat ik in de buurt ben geweest van iemand die corona had"],
+            //     ])
+            // },
             {
                 key: '4', role: 'option',
                 content: new Map([
@@ -1030,16 +1030,16 @@ const q13b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
 const q13c = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q13c';
 
-    return SurveyItemGenerators.multipleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
             ["nl", "Ben je volledig hersteld van de eerste keer dat je besmet raakte met het coronavirus?"],
         ]),
-        questionSubText: new Map([
-            ["nl", "Meerdere antwoorden mogelijk."],
-        ]),
+        // questionSubText: new Map([
+        //     ["nl", "Meerdere antwoorden mogelijk."],
+        // ]),
         responseOptions: [
             {
                 key: 'yes', role: 'option',
@@ -1138,16 +1138,16 @@ const q14b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
 const q14c = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q14c';
 
-    return SurveyItemGenerators.multipleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
             ["nl", "Ben je volledig hersteld van de tweede keer dat je besmet raakte met het coronavirus?"],
         ]),
-        questionSubText: new Map([
-            ["nl", "Meerdere antwoorden mogelijk."],
-        ]),
+        // questionSubText: new Map([
+        //     ["nl", "Meerdere antwoorden mogelijk."],
+        // ]),
         responseOptions: [
             {
                 key: 'yes', role: 'option',
@@ -1246,16 +1246,16 @@ const q15b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
 const q15c = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q15c';
 
-    return SurveyItemGenerators.multipleChoice({
+    return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
             ["nl", "Ben je volledig hersteld van de derde keer dat je besmet raakte met het coronavirus?"],
         ]),
-        questionSubText: new Map([
-            ["nl", "Meerdere antwoorden mogelijk."],
-        ]),
+        // questionSubText: new Map([
+        //     ["nl", "Meerdere antwoorden mogelijk."],
+        // ]),
         responseOptions: [
             {
                 key: 'yes', role: 'option',
