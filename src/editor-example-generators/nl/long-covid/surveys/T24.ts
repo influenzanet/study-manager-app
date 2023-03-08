@@ -9,7 +9,7 @@ import { CovidTestGroup } from "../questions/covidTest";
 import { DemographieGroup } from "../questions/demographie";
 import { EQ5DGroup } from "../questions/eq5d";
 // import { HADSGroup } from "../questions/hads";
-import { Q_IPAQ } from "../questions/ipaq";
+// import { Q_IPAQ } from "../questions/ipaq";
 import { MedicineGroup } from "../questions/medicine";
 import { Q_mMRC } from "../questions/mMRC";
 import { NCSIGroup } from "../questions/ncsi";
@@ -74,7 +74,7 @@ export const generateT24 = (): Survey | undefined => {
 
     // surveyEditor.addSurveyItemToRoot(Q_CBS(surveyKey, true));
 
-    surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
+    // surveyEditor.addSurveyItemToRoot(Q_IPAQ(surveyKey, true));
 
     const sf36Group = new SF36Group(surveyKey);
     surveyEditor.addSurveyItemToRoot(sf36Group.getItem());
