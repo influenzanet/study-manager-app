@@ -748,18 +748,19 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 })
             ],
             responseOptions: [
+                // {
+                //     key: '1', role: 'option',
+                //     content: new Map([
+                //         ["nl", "Uitnodiging via e-mail na deelname aan CONTEST onderzoek door ouders/verzorgers"],
+                //     ]),
+                // },
+                // {
+                //     key: '2', role: 'option',
+                //     content: new Map([
+                //         ["nl", "Uitnodiging via de e-mail na contact met de GGD voor bron en contactonderzoek"],
+                //     ]),
+                // }, 
                 {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Uitnodiging via e-mail na deelname aan CONTEST onderzoek door ouders/verzorgers"],
-                    ]),
-                },
-                {
-                    key: '2', role: 'option',
-                    content: new Map([
-                        ["nl", "Uitnodiging via de e-mail na contact met de GGD voor bron en contactonderzoek"],
-                    ]),
-                }, {
                     key: '3', role: 'input',
                     content: new Map([
                         ["nl", "Uitnodiging per brief, mijn onderzoekscode is:"],
@@ -779,12 +780,13 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     content: new Map([
                         ["nl", "Via google of een andere internet zoekmachine"],
                     ]),
-                }, {
-                    key: '7', role: 'option',
-                    content: new Map([
-                        ["nl", "Via PoCoCoChi"],
-                    ]),
-                },
+                }, 
+                // {
+                //     key: '7', role: 'option',
+                //     content: new Map([
+                //         ["nl", "Via PoCoCoChi"],
+                //     ]),
+                // },
                 {
                     key: '8', role: 'input',
                     content: new Map([

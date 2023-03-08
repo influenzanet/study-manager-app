@@ -21,17 +21,17 @@ export class VaccinationGroup extends GroupItemEditor {
 
         const Q2 = this.Q2('Q2', conditionQ1Ja, isRequired)
         const Q2_FU = this.Q2_FU('Q2_FU', conditionQ1_FU_Ja, isRequired)
-        const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1vacc');
-        const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2vacc');
-        const condition3Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '3vacc');
+        // const condition1Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '1vacc');
+        // const condition2Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '2vacc');
+        // const condition3Vac = CommonExpressions.singleChoiceOptionsSelected(Q2.key, '3vacc');
 
-        const condition1Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '1vacc');
-        const condition2Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '2vacc');
-        const condition3Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '3vacc');
+        // const condition1Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '1vacc');
+        // const condition2Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '2vacc');
+        // const condition3Vac_FU = CommonExpressions.singleChoiceOptionsSelected(Q2_FU.key, '3vacc');
 
-        const Q5 = this.Q5('Q5', condition2Vac, isRequired);
-        const Q9 = this.Q9('Q9', condition3Vac, isRequired);
-        const dateForFirstVac = CommonExpressions.getDatePickerResponseValue(Q5.key);
+        // const Q5 = this.Q5('Q5', condition2Vac, isRequired);
+        // const Q9 = this.Q9('Q9', condition3Vac, isRequired);
+        // const dateForFirstVac = CommonExpressions.getDatePickerResponseValue(Q5.key);
 
         this.addItem(this.groupIntro());
         if (this.isPartOfSurvey(surveyKeys.T0)) {
@@ -52,41 +52,46 @@ export class VaccinationGroup extends GroupItemEditor {
             this.addItem(this.Q3_FU('Q3_FU', conditionQ1_FU_Ja, isRequired))
         }
 
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(this.Q4('Q4', condition1Vac, isRequired))
-        } else {
-            this.addItem(this.Q4_FU('Q4_FU', condition1Vac_FU, isRequired))
-        }
+        // if (this.isPartOfSurvey(surveyKeys.T0)) {
+        //     this.addItem(this.Q4('Q4', condition1Vac, isRequired))
+        // } else {
+        //     this.addItem(this.Q4_FU('Q4_FU', condition1Vac_FU, isRequired))
+        // }
 
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(Q5)
-        } else {
-            this.addItem(this.Q5_FU('Q5_FU', condition2Vac_FU, isRequired))
-        }
+        // if (this.isPartOfSurvey(surveyKeys.T0)) {
+        //     this.addItem(Q5)
+        // } else {
+        //     this.addItem(this.Q5_FU('Q5_FU', condition2Vac_FU, isRequired))
+        // }
 
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(this.Q6('Q6', condition2Vac, dateForFirstVac, isRequired));
-        } else {
-            this.addItem(this.Q6_FU('Q6_FU', condition2Vac_FU, isRequired))
-        }
+        // if (this.isPartOfSurvey(surveyKeys.T0)) {
+        //     this.addItem(this.Q6('Q6', condition2Vac, dateForFirstVac, isRequired));
+        // } else {
+        //     this.addItem(this.Q6_FU('Q6_FU', condition2Vac_FU, isRequired))
+        // }
 
 
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(Q9)
-        } else {
-            this.addItem(this.Q9_FU('Q9_FU', condition3Vac_FU, isRequired))
-        }
+        // if (this.isPartOfSurvey(surveyKeys.T0)) {
+        //     this.addItem(Q9)
+        // } else {
+        //     this.addItem(this.Q9_FU('Q9_FU', condition3Vac_FU, isRequired))
+        // }
 
-        if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(this.Q10('Q10', condition3Vac, dateForFirstVac, isRequired));
-        } else {
-            this.addItem(this.Q10_FU('Q10_FU', condition3Vac_FU, isRequired))
-        }
+        // if (this.isPartOfSurvey(surveyKeys.T0)) {
+        //     this.addItem(this.Q10('Q10', condition3Vac, dateForFirstVac, isRequired));
+        // } else {
+        //     this.addItem(this.Q10_FU('Q10_FU', condition3Vac_FU, isRequired))
+        // }
 
+        // if (this.isPartOfSurvey(surveyKeys.T0)) {
+        //     this.addItem(this.Q11('Q11', condition3Vac, dateForFirstVac, isRequired));
+        // } else {
+        //     this.addItem(this.Q11_FU('Q11_FU', condition3Vac_FU, isRequired))
+        // }
         if (this.isPartOfSurvey(surveyKeys.T0)) {
-            this.addItem(this.Q11('Q11', condition3Vac, dateForFirstVac, isRequired));
+            this.addItem(this.Q12('Q12', conditionQ1Ja, isRequired))
         } else {
-            this.addItem(this.Q11_FU('Q11_FU', condition3Vac_FU, isRequired))
+            this.addItem(this.Q12_FU('Q12_FU', conditionQ1_FU_Ja, isRequired))
         }
 
 
@@ -179,7 +184,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     }
 
     Q2(key: string, condition: Expression, isRequired?: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.dropDown({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
@@ -205,18 +210,36 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "3 vaccinaties"],
                     ])
                 },
+                {
+                    key: '4vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "4 vaccinaties"],
+                    ])
+                },
+                {
+                    key: '5vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "5 vaccinaties"],
+                    ])
+                },
+                {
+                    key: '6vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "6 vaccinaties"],
+                    ])
+                },
             ],
             isRequired: isRequired,
         });
     }
 
     Q2_FU(key: string, condition?: Expression, isRequired?: boolean) {
-        return SurveyItemGenerators.singleChoice({
+        return SurveyItemGenerators.dropDown({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je gehad sinds de vorige vragenlijst?"],
+                ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je nu in totaal gehad? Als je het niet weet mag je ook een schatting maken."],
             ]),
             responseOptions: [
                 {
@@ -237,6 +260,24 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "3 vaccinaties"],
                     ])
                 },
+                {
+                    key: '4vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "4 vaccinaties"],
+                    ])
+                },
+                {
+                    key: '5vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "5 vaccinaties"],
+                    ])
+                },
+                {
+                    key: '6vacc', role: 'option',
+                    content: new Map([
+                        ["nl", "6 vaccinaties"],
+                    ])
+                },
             ],
             isRequired: isRequired,
         });
@@ -248,276 +289,453 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Welk vaccin tegen het coronavirus heb je ontvangen? "],
+                ["nl", "Welk vaccin tegen het coronavirus heb je voor het laatst ontvangen? "],
             ]),
-            questionSubText: new Map([
-                ["nl", "Meerdere antwoorden mogelijk."],
-            ]),
+            // questionSubText: new Map([
+            //     ["nl", "Meerdere antwoorden mogelijk."],
+            // ]),
             responseOptions: [
-                {
-                    key: '0', role: 'option',
-                    content: new Map([
-                        ["nl", "Onbekend"],
-                    ])
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Pfizer / BioNTech (Comirnaty)"],
-                    ])
-                },
-                {
-                    key: '2', role: 'option',
-                    content: new Map([
-                        ["nl", "Moderna"],
-                    ])
-                },
-                {
-                    key: '3', role: 'option',
-                    content: new Map([
-                        ["nl", "Universiteit van Oxford / AstraZeneca"],
-                    ])
-                },
-                {
-                    key: '4', role: 'option',
-                    content: new Map([
-                        ["nl", "CureVac"],
-                    ])
-                },
-                {
-                    key: '5', role: 'option',
-                    content: new Map([
-                        ["nl", "Janssen / Johnson&Johnson"],
-                    ])
-                },
-                {
-                    key: '6', role: 'option',
-                    content: new Map([
-                        ["nl", "GSK / Sanofi Pasteur"],
-                    ])
-                },
-                {
-                    key: '7', role: 'option',
-                    content: new Map([
-                        ["nl", "Weet ik niet"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        });
-    }
+                //    {
+                //        key: '0', role: 'option',
+                //        content: new Map([
+                //            ["nl", "Onbekend"],
+                //        ])
+                //    },
+                    {
+                        key: '1', role: 'option',
+                        content: new Map([
+                            ["nl", "Pfizer / BioNTech (Comirnaty)"],
+                        ])
+                    },
+                    {
+                        key: '2', role: 'option',
+                        content: new Map([
+                            ["nl", "Moderna"],
+                        ])
+                    },
+                    {
+                        key: '3', role: 'option',
+                        content: new Map([
+                            ["nl", "AstraZeneca"],
+                        ])
+                    },
+                //    {
+                  //      key: '4', role: 'option',
+                    //    content: new Map([
+                      //      ["nl", "CureVac"],
+                     //   ])
+                   // },
+                    {
+                        key: '5', role: 'option',
+                        content: new Map([
+                            ["nl", "Janssen"],
+                        ])
+                    },
+                 //   {
+                  //      key: '6', role: 'option',
+                   //     content: new Map([
+                   //         ["nl", "GSK / Sanofi Pasteur"],
+                  //      ])
+                //    },
+                //    {
+                //        key: '8', role: 'option',
+                 //       content: new Map([
+                //            ["nl", "Novavax"],
+                //        ])
+                //    },
+                    {
+                        key: '7', role: 'option',
+                        content: new Map([
+                            ["nl", "Weet ik niet"],
+                        ])
+                    },
+                    {
+                        key: '8', role: 'option',
+                        content: new Map([
+                            ["nl", "Anders"],
+                        ])
+                    },
+                ],
+                isRequired: isRequired,
+            });
+        }
 
     Q3_FU(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.multipleChoice({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Welk vaccin tegen het coronavirus heb je ontvangen sinds de vorige vragenlijst?"],
-            ]),
-            questionSubText: new Map([
-                ["nl", "Meerdere antwoorden mogelijk."],
-            ]),
-            responseOptions: [
-                {
-                    key: '0', role: 'option',
-                    content: new Map([
-                        ["nl", "Onbekend"],
-                    ])
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "BioNTech / Pfizer (Comirnaty)"],
-                    ])
-                },
-                {
-                    key: '2', role: 'option',
-                    content: new Map([
-                        ["nl", "Moderna"],
-                    ])
-                },
-                {
-                    key: '3', role: 'option',
-                    content: new Map([
-                        ["nl", "Universiteit van Oxford / AstraZeneca"],
-                    ])
-                },
-                {
-                    key: '4', role: 'option',
-                    content: new Map([
-                        ["nl", "CureVac"],
-                    ])
-                },
-                {
-                    key: '5', role: 'option',
-                    content: new Map([
-                        ["nl", "Janssen / Johnson&Johnson"],
-                    ])
-                },
-                {
-                    key: '6', role: 'option',
-                    content: new Map([
-                        ["nl", "GSK / Sanofi Pasteur"],
-                    ])
-                },
-                {
-                    key: '7', role: 'option',
-                    content: new Map([
-                        ["nl", "Weet ik niet"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        });
-    }
-
-
-    Q4(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.dateInput({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            dateInputMode: 'YMD',
-            placeholderText: new Map([
-                ["nl", "dd-mm-jjjj"],
-            ]),
-            //minRelativeDate: { delta: { days: -10 } },
-            maxRelativeDate: { delta: { seconds: 1 } },
-            isRequired: isRequired,
-        });
-    }
-
-    Q4_FU(key: string, condition?: Expression, isRequired?: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+                ["nl", "Welk vaccin tegen het coronavirus heb je voor het laatst ontvangen?"],
             ]),
+            // questionSubText: new Map([
+            //     ["nl", "Meerdere antwoorden mogelijk."],
+            // ]),
             responseOptions: [
-                {
-                    key: '0', role: 'dateInput',
-                    content: new Map([
-                        ["nl", "Op deze datum:"],
-                    ]),
-                    optionProps: {
-                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
-                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                //    {
+                //        key: '0', role: 'option',
+                //        content: new Map([
+                //            ["nl", "Onbekend"],
+                //        ])
+                //    },
+                    {
+                        key: '1', role: 'option',
+                        content: new Map([
+                            ["nl", "Pfizer / BioNTech (Comirnaty)"],
+                        ])
                     },
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        })
-    }
-
-    Q5(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.dateInput({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            dateInputMode: 'YMD',
-            placeholderText: new Map([
-                ["nl", "dd-mm-jjjj"],
-            ]),
-            //minRelativeDate: { delta: { days: -10 } },
-            maxRelativeDate: { delta: { seconds: 1 } },
-            isRequired: isRequired,
-        });
-    }
-
-    Q5_FU(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            responseOptions: [
-                {
-                    key: '0', role: 'dateInput',
-                    content: new Map([
-                        ["nl", "Op deze datum:"],
-                    ]),
-                    optionProps: {
-                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
-                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                    {
+                        key: '2', role: 'option',
+                        content: new Map([
+                            ["nl", "Moderna"],
+                        ])
                     },
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        })
-    }
-
-    Q9(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.dateInput({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            dateInputMode: 'YMD',
-            placeholderText: new Map([
-                ["nl", "dd-mm-jjjj"],
-            ]),
-            //minRelativeDate: { delta: { days: -10 } },
-            maxRelativeDate: { delta: { seconds: 1 } },
-            isRequired: isRequired,
-        });
-    }
-
-    Q9_FU(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            responseOptions: [
-                {
-                    key: '0', role: 'dateInput',
-                    content: new Map([
-                        ["nl", "Op deze datum:"],
-                    ]),
-                    optionProps: {
-                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
-                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+                    {
+                        key: '3', role: 'option',
+                        content: new Map([
+                            ["nl", "AstraZeneca"],
+                        ])
                     },
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        })
-    }
+                //    {
+                  //      key: '4', role: 'option',
+                    //    content: new Map([
+                      //      ["nl", "CureVac"],
+                     //   ])
+                   // },
+                    {
+                        key: '5', role: 'option',
+                        content: new Map([
+                            ["nl", "Janssen"],
+                        ])
+                    },
+                 //   {
+                  //      key: '6', role: 'option',
+                   //     content: new Map([
+                   //         ["nl", "GSK / Sanofi Pasteur"],
+                  //      ])
+                //    },
+                //    {
+                //        key: '8', role: 'option',
+                 //       content: new Map([
+                //            ["nl", "Novavax"],
+                //        ])
+                //    },
+                    {
+                        key: '7', role: 'option',
+                        content: new Map([
+                            ["nl", "Weet ik niet"],
+                        ])
+                    },
+                    {
+                        key: '8', role: 'option',
+                        content: new Map([
+                            ["nl", "Anders"],
+                        ])
+                    },
+                ],
+                isRequired: isRequired,
+            });
+        }
 
-    Q6(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
+
+    // Q4(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         //minRelativeDate: { delta: { days: -10 } },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q4_FU(key: string, condition?: Expression, isRequired?: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: '0', role: 'dateInput',
+    //                 content: new Map([
+    //                     ["nl", "Op deze datum:"],
+    //                 ]),
+    //                 optionProps: {
+    //                     min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+    //                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+    //                 },
+    //             },
+    //             {
+    //                 key: '1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     })
+    // }
+
+    // Q5(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         //minRelativeDate: { delta: { days: -10 } },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q5_FU(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: '0', role: 'dateInput',
+    //                 content: new Map([
+    //                     ["nl", "Op deze datum:"],
+    //                 ]),
+    //                 optionProps: {
+    //                     min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+    //                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+    //                 },
+    //             },
+    //             {
+    //                 key: '1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     })
+    // }
+
+    // Q9(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         //minRelativeDate: { delta: { days: -10 } },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q9_FU(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de eerste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: '0', role: 'dateInput',
+    //                 content: new Map([
+    //                     ["nl", "Op deze datum:"],
+    //                 ]),
+    //                 optionProps: {
+    //                     min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+    //                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+    //                 },
+    //             },
+    //             {
+    //                 key: '1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     })
+    // }
+
+    // Q6(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de laatste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         minRelativeDate: {
+    //             reference: dateForFirstVac,
+    //             delta: { days: 5 }
+    //         },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q6_FU(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: '0', role: 'dateInput',
+    //                 content: new Map([
+    //                     ["nl", "Op deze datum:"],
+    //                 ]),
+    //                 optionProps: {
+    //                     min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+    //                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+    //                 },
+    //             },
+    //             {
+    //                 key: '1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     })
+    // }
+
+    // Q10(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         minRelativeDate: {
+    //             reference: dateForFirstVac,
+    //             delta: { days: 5 }
+    //         },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q10_FU(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: '0', role: 'dateInput',
+    //                 content: new Map([
+    //                     ["nl", "Op deze datum:"],
+    //                 ]),
+    //                 optionProps: {
+    //                     min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+    //                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+    //                 },
+    //             },
+    //             {
+    //                 key: '1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     })
+    // }
+
+    // Q11(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.dateInput({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de derde vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
+    //         ]),
+    //         dateInputMode: 'YMD',
+    //         placeholderText: new Map([
+    //             ["nl", "dd-mm-jjjj"],
+    //         ]),
+    //         minRelativeDate: {
+    //             reference: dateForFirstVac,
+    //             delta: { days: 5 }
+    //         },
+    //         maxRelativeDate: { delta: { seconds: 1 } },
+    //         isRequired: isRequired,
+    //     });
+    // }
+
+    // Q11_FU(key: string, condition: Expression, isRequired: boolean) {
+    //     return SurveyItemGenerators.singleChoice({
+    //         parentKey: this.key,
+    //         itemKey: key,
+    //         condition: condition,
+    //         questionText: new Map([
+    //             ["nl", "Op welke datum heb je de derde vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: '0', role: 'dateInput',
+    //                 content: new Map([
+    //                     ["nl", "Op deze datum:"],
+    //                 ]),
+    //                 optionProps: {
+    //                     min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
+    //                     max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
+    //                 },
+    //             },
+    //             {
+    //                 key: '1', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     })
+    // }
+   
+  Q12(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.dateInput({
             parentKey: this.key,
             itemKey: key,
@@ -529,22 +747,22 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: {
-                reference: dateForFirstVac,
-                delta: { days: 5 }
-            },
+            // minRelativeDate: {
+            //     reference: dateForFirstVac,
+            //     delta: { days: 5 }
+            // },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });
     }
 
-    Q6_FU(key: string, condition: Expression, isRequired: boolean) {
+    Q12_FU(key: string, condition: Expression, isRequired: boolean) {
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
             condition: condition,
             questionText: new Map([
-                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
+                ["nl", "Op welke datum heb je de laatste vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
             ]),
             responseOptions: [
                 {
@@ -557,114 +775,12 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
                     },
                 },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        })
-    }
-
-    Q10(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.dateInput({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
-            ]),
-            dateInputMode: 'YMD',
-            placeholderText: new Map([
-                ["nl", "dd-mm-jjjj"],
-            ]),
-            minRelativeDate: {
-                reference: dateForFirstVac,
-                delta: { days: 5 }
-            },
-            maxRelativeDate: { delta: { seconds: 1 } },
-            isRequired: isRequired,
-        });
-    }
-
-    Q10_FU(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de tweede vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            responseOptions: [
-                {
-                    key: '0', role: 'dateInput',
-                    content: new Map([
-                        ["nl", "Op deze datum:"],
-                    ]),
-                    optionProps: {
-                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
-                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
-                    },
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        })
-    }
-
-    Q11(key: string, condition: Expression, dateForFirstVac: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.dateInput({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de derde vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)"],
-            ]),
-            dateInputMode: 'YMD',
-            placeholderText: new Map([
-                ["nl", "dd-mm-jjjj"],
-            ]),
-            minRelativeDate: {
-                reference: dateForFirstVac,
-                delta: { days: 5 }
-            },
-            maxRelativeDate: { delta: { seconds: 1 } },
-            isRequired: isRequired,
-        });
-    }
-
-    Q11_FU(key: string, condition: Expression, isRequired: boolean) {
-        return SurveyItemGenerators.singleChoice({
-            parentKey: this.key,
-            itemKey: key,
-            condition: condition,
-            questionText: new Map([
-                ["nl", "Op welke datum heb je de derde vaccinatie tegen het coronavirus gehad (je mag de datum ook schatten)?"],
-            ]),
-            responseOptions: [
-                {
-                    key: '0', role: 'dateInput',
-                    content: new Map([
-                        ["nl", "Op deze datum:"],
-                    ]),
-                    optionProps: {
-                        min: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }, 1609459200) },
-                        max: { dtype: 'exp', exp: CommonExpressions.timestampWithOffset({ seconds: 1 }) },
-                    },
-                },
-                {
-                    key: '1', role: 'option',
-                    content: new Map([
-                        ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
-                    ])
-                },
+                // {
+                //     key: '1', role: 'option',
+                //     content: new Map([
+                //         ["nl", "Dat heb ik in de vorige vragenlijst al aangegeven"],
+                //     ])
+                // },
             ],
             isRequired: isRequired,
         })

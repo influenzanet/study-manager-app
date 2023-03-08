@@ -104,7 +104,7 @@ export class HealthGroup extends GroupItemEditor {
 
         this.addPageBreak();
         this.addItem(this.Q7preText());
-        this.addItem(this.Q7('Q7', isRequired));
+        // this.addItem(this.Q7('Q7', isRequired));
         this.addPageBreak();
 
         // Functioneren ---------
@@ -136,25 +136,29 @@ export class HealthGroup extends GroupItemEditor {
         this.addPageBreak();
 
         // Sterke kanten en moeilijkheden ---------
-        this.addItem(new Q14Group(this.key, {
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c)) {
+            this.addItem(new Q14Group(this.key, {
             groupCondition: conditions.youngerThan11,
         }).getItem());
-
+        } 
+    if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c)) {    
         this.addItem(new Q15Group(this.key, {
             groupCondition: CommonExpressions.not(conditions.youngerThan11)
         }).getItem());
         this.addPageBreak();
-
+        } 
         // Eenzaamheid  ---------
-        this.addItem(new Q16Group(this.key, {
+        if (this.isPartOfSurvey(surveyKeys.T0)){
+            this.addItem(new Q16Group(this.key, {
             groupCondition: conditions.youngerThan8,
         }).getItem());
-
+        } 
+        if (this.isPartOfSurvey(surveyKeys.T0)){
         this.addItem(new Q17Group(this.key, {
             groupCondition: CommonExpressions.not(conditions.youngerThan8)
         }).getItem());
         this.addPageBreak();
-
+        }
         // Pijn en verzuim
         this.addItem(new Q18Group(this.key, {
             groupCondition: conditions.youngerThan8,
@@ -1487,57 +1491,57 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     /**
     *
     */
-    Q7(itemKey: string, isRequired: boolean) {
-        return SurveyItemGenerators.multipleChoice({
-            parentKey: this.key,
-            itemKey: itemKey,
-            questionText: new Map([
-                ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in je reuk- of smaakvermogen?"],
-            ]),
-            questionSubText: new Map([
-                ["nl", "Meerdere antwoorden mogelijk"]
-            ]),
-            responseOptions: [
-                {
-                    key: 'normaal', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik heb een normaal reuk/smaakvermogen"],
-                    ])
-                },
-                {
-                    key: 'niet', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik kan helemaal niet ruiken/proeven"],
-                    ])
-                },
-                {
-                    key: 'minder', role: 'option',
-                    content: new Map([
-                        ["nl", "Geuren en/of smaken zijn minder sterk dan voorheen "],
-                    ])
-                },
-                {
-                    key: 'anders', role: 'option',
-                    content: new Map([
-                        ["nl", "Geuren en/of smaken zijn anders dan voorheen (de kwaliteit van de geur en/of smaak is veranderd) "],
-                    ])
-                },
-                {
-                    key: 'afwezig', role: 'option',
-                    content: new Map([
-                        ["nl", "Ik kan dingen ruiken of proeven die er niet zijn (bijvoorbeeld ik ruik een brandlucht terwijl er niets in brand staat) "],
-                    ])
-                },
-                {
-                    key: 'varieert', role: 'option',
-                    content: new Map([
-                        ["nl", "Reuk- en/of smaakvermogen varieert (het komt en het gaat)"],
-                    ])
-                },
-            ],
-            isRequired: isRequired,
-        });
-    }
+    // Q7(itemKey: string, isRequired: boolean) {
+    //     return SurveyItemGenerators.multipleChoice({
+    //         parentKey: this.key,
+    //         itemKey: itemKey,
+    //         questionText: new Map([
+    //             ["nl", "Merk je OP DIT MOMENT een van de onderstaande veranderingen in je reuk- of smaakvermogen?"],
+    //         ]),
+    //         questionSubText: new Map([
+    //             ["nl", "Meerdere antwoorden mogelijk"]
+    //         ]),
+    //         responseOptions: [
+    //             {
+    //                 key: 'normaal', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Ik heb een normaal reuk/smaakvermogen"],
+    //                 ])
+    //             },
+    //             {
+    //                 key: 'niet', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Ik kan helemaal niet ruiken/proeven"],
+    //                 ])
+    //             },
+    //             {
+    //                 key: 'minder', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Geuren en/of smaken zijn minder sterk dan voorheen "],
+    //                 ])
+    //             },
+    //             {
+    //                 key: 'anders', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Geuren en/of smaken zijn anders dan voorheen (de kwaliteit van de geur en/of smaak is veranderd) "],
+    //                 ])
+    //             },
+    //             {
+    //                 key: 'afwezig', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Ik kan dingen ruiken of proeven die er niet zijn (bijvoorbeeld ik ruik een brandlucht terwijl er niets in brand staat) "],
+    //                 ])
+    //             },
+    //             {
+    //                 key: 'varieert', role: 'option',
+    //                 content: new Map([
+    //                     ["nl", "Reuk- en/of smaakvermogen varieert (het komt en het gaat)"],
+    //                 ])
+    //             },
+    //         ],
+    //         isRequired: isRequired,
+    //     });
+    // }
 
 
 }

@@ -76,12 +76,12 @@ export class SymptomsGroup extends GroupItemEditor {
         }
         this.addPageBreak();
 
-        if (!this.isPartOfSurvey(surveyKeys.shortC)) {
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c)|| this.isPartOfSurvey(surveyKeys.T6c)) {
             this.addItem(this.Q4ipqpreText('Q4ipqpreText', ipqCondtion));
             this.addItem(this.Q4('Q4', ipqCondtion, isRequired));
         }
         this.addPageBreak();
-        if (!this.isPartOfSurvey(surveyKeys.shortC)) {
+        if (this.isPartOfSurvey(surveyKeys.T0)|| this.isPartOfSurvey(surveyKeys.T3c)|| this.isPartOfSurvey(surveyKeys.T6c)) {
             this.addItem(this.Q5ipqpreText('Q5ipqpreText', hasReportedSymptomsQ1));
             this.addItem(this.Q5ipq('Q5ipq', hasReportedSymptomsQ1, isRequired));
         }
@@ -1379,7 +1379,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 {
                     key: '0', role: 'numberInput',
                     content: new Map([
-                        ["nl", "Typ hier een aantal dagen"],
+                        ["nl", "Typ hier een aantal dagen (je mag ook een schatting maken)"],
                     ]),
                     optionProps: inputProperties,
                     style: inputStyle,
@@ -1486,6 +1486,30 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: '15', role: 'option',
                     content: new Map([
                         ["nl", "> 14 dagen"],
+                    ])
+                },
+                {
+                    key: '15', role: 'option',
+                    content: new Map([
+                        ["nl", "Tussen 2 en 3 weken"],
+                    ])
+                },
+                {
+                    key: '17', role: 'option',
+                    content: new Map([
+                        ["nl", "Tussen 3 en 4 weken"],
+                    ])
+                },
+                {
+                    key: '18', role: 'option',
+                    content: new Map([
+                        ["nl", "Tussen 1 en 6 maanden"],
+                    ])
+                },
+                {
+                    key: '19', role: 'option',
+                    content: new Map([
+                        ["nl", "Na langer dan 6 maanden"],
                     ])
                 },
                 {

@@ -73,7 +73,7 @@ export class CovidTestGroup extends GroupItemEditor {
             // this.addItem(q15a(this.key, true, condition_infect_earlier3x));
             this.addItem(q15b(this.key, true, condition_infect_earlier3x));
             // this.addItem(q15c(this.key, true, condition_infect_earlier3x));
-            this.addItem(q16(this.key, true, condition_infect_earlier_vaker));
+            // this.addItem(q16(this.key, true, condition_infect_earlier_vaker));
         }
 
         if (!this.isPartOfSurvey(surveyKeys.shortC)) {
@@ -1239,18 +1239,18 @@ const q15b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
 // }
 
 
-const q16 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q16';
+// const q16 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q16';
 
-    return SurveyItemGenerators.multilineTextInput({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        condition: condition,
-        questionText: new Map([
-            ["nl", "Je geeft aan dat je vaker dan 3x keer eerder besmet bent geweest met het coronavirus. Kun je hieronder aangeven hoe vaak dat was, wanneer je besmet bent geraakt en of je volledig hersteld bent na deze besmettingen?"],
-        ]),
-        placeholderText: new Map([
-            ["nl", "Antwoord"]
-        ])
-    });
-}
+//     return SurveyItemGenerators.multilineTextInput({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         condition: condition,
+//         questionText: new Map([
+//             ["nl", "Je geeft aan dat je vaker dan 3x keer eerder besmet bent geweest met het coronavirus. Kun je hieronder aangeven hoe vaak dat was, wanneer je besmet bent geraakt en of je volledig hersteld bent na deze besmettingen?"],
+//         ]),
+//         placeholderText: new Map([
+//             ["nl", "Antwoord"]
+//         ])
+//     });
+// }
