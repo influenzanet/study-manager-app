@@ -73,7 +73,7 @@ export class GeneralDataGroup extends GroupItemEditor {
             this.addItem(this.Q12('Q12', isRequired));
         }
         this.addItem(this.Q13('Q13', false));
-        this.addItem(this.Text_pococochi(conditions.q11Ja))
+        // this.addItem(this.Text_pococochi(conditions.q11Ja))
         // TODO add this later
         // this.addItem(this.Q14('Q14', false));
         this.addPageBreak();
@@ -836,20 +836,20 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
         });
     }
 
-    Text_pococochi(condition?: Expression) {
-        return SurveyItemGenerators.display({
-            parentKey: this.key,
-            itemKey: 'info',
-            condition: condition,
-            content: [
-                ComponentGenerators.markdown({
-                    content: new Map([
-                        ['nl', `Je hebt aangegeven aanhoudende klachten te hebben. Als je denkt dat deze klachten mogelijk door het coronavirus komen, kun je contact opnemen met het PoCoCoChi (Post Corona Complaints in Children) team via pocos@amsterdamumc.nl. Als je je telefoonnummer in de mail vermeldt zullen zij telefonisch contact met je opnemen.`
-                        ]
-                    ])
-                })]
-        })
-    }
+    // Text_pococochi(condition?: Expression) {
+    //     return SurveyItemGenerators.display({
+    //         parentKey: this.key,
+    //         itemKey: 'info',
+    //         condition: condition,
+    //         content: [
+    //             ComponentGenerators.markdown({
+    //                 content: new Map([
+    //                     ['nl', `Je hebt aangegeven aanhoudende klachten te hebben. Als je denkt dat deze klachten mogelijk door het coronavirus komen, kun je contact opnemen met het PoCoCoChi (Post Corona Complaints in Children) team via pocos@amsterdamumc.nl. Als je je telefoonnummer in de mail vermeldt zullen zij telefonisch contact met je opnemen.`
+    //                     ]
+    //                 ])
+    //             })]
+    //     })
+    // }
 
     //TODO add this later
     // Q14(itemKey: string, isRequired: boolean) {

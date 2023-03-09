@@ -102,37 +102,49 @@ export class HealthGroup extends GroupItemEditor {
         ), isRequired));
 
 
-        this.addPageBreak();
-        this.addItem(this.Q7preText());
+        // this.addPageBreak();
+        // this.addItem(this.Q7preText());
         // this.addItem(this.Q7('Q7', isRequired));
         this.addPageBreak();
 
         // Functioneren ---------
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q8Group(this.key, {
             groupCondition: conditions.youngerThan8,
         }).getItem());
+        }
 
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q9Group(this.key, {
             groupCondition: conditions.between8And12,
         }).getItem());
+        }
 
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q10Group(this.key, {
             groupCondition: conditions.between13And18,
         }).getItem());
+        } 
         this.addPageBreak();
 
         // Vermoeidheid ---------
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q11Group(this.key, {
             groupCondition: conditions.youngerThan8,
         }).getItem());
+        }
 
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q12Group(this.key, {
             groupCondition: conditions.between8And12,
         }).getItem());
+        }
 
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q13Group(this.key, {
             groupCondition: conditions.between13And18,
         }).getItem());
+        }
         this.addPageBreak();
 
         // Sterke kanten en moeilijkheden ---------
@@ -1468,25 +1480,25 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind. 
         });
     }
 
-    Q7preText() {
-        return SurveyItemGenerators.display({
-            parentKey: this.key,
-            itemKey: generateRandomKey(6),
-            content: [
-                ComponentGenerators.markdown({
-                    content: new Map([
-                        ['nl', `
-## Reuk- en smaakvermogen
+//     Q7preText() {
+//         return SurveyItemGenerators.display({
+//             parentKey: this.key,
+//             itemKey: generateRandomKey(6),
+//             content: [
+//                 ComponentGenerators.markdown({
+//                     content: new Map([
+//                         ['nl', `
+// ## Reuk- en smaakvermogen
 
-**De vragen hieronder zijn gericht aan een minderjarige.**
+// **De vragen hieronder zijn gericht aan een minderjarige.**
 
-Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
-                        `]
-                    ])
-                }),
-            ]
-        })
-    }
+// Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
+//                         `]
+//                     ])
+//                 }),
+//             ]
+//         })
+//     }
 
     /**
     *
