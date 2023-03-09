@@ -55,7 +55,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_infect_earlier1x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker');
         const condition_infect_earlier2x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '2keer', '3keer', 'vaker');
         const condition_infect_earlier3x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '3keer', 'vaker');
-        const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
+        // const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
         const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker', 'unknown');
 
 
