@@ -93,7 +93,7 @@ export const generateT24 = (): Survey | undefined => {
     surveyEditor.addSurveyItemToRoot(demographieGroupEditor.getItem());
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dit was de laatste vragenlijst voor het LongCOVID-onderzoek. Hartelijk dank voor het invullen van deze en van de andere vragenlijsten van het onderzoek. Als je hebt aangegeven dat je dat wilt zullen we je benaderen om nog een jaar langer deel te nemen aan het onderzoek.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dit was de laatste vragenlijst voor het LongCOVID-onderzoek. Hartelijk dank voor het invullen van deze en van de andere vragenlijsten van het onderzoek.']
     ])));
 
     return surveyEditor.getSurvey();

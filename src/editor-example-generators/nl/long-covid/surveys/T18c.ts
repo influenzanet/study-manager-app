@@ -11,7 +11,7 @@ import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-c
 
 
 export const generateT18c = (): Survey | undefined => {
-    const surveyKey = surveyKeys.T9c;
+    const surveyKey = surveyKeys.T18c;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,

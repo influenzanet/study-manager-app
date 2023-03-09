@@ -16,9 +16,13 @@ export const surveyKeys = {
     T12: 'T12',
     T12c: 'T12c',
     T15: 'T15',
+    T15c: 'T15c',
     T18: 'T18',
+    T18c: 'T18c',
     T21: 'T21',
+    T21c: 'T21c',
     T24: 'T24',
+    T24c: 'T24c',
 }
 
 const timestampFromStudyStart = (daysDelta: number) => {

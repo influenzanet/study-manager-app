@@ -11,7 +11,7 @@ import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-c
 
 
 export const generateT24c = (): Survey | undefined => {
-    const surveyKey = surveyKeys.T9c;
+    const surveyKey = surveyKeys.T24c;
 
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
@@ -65,7 +65,7 @@ export const generateT24c = (): Survey | undefined => {
 
     // Survey End
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat.']
+        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Dit was de laatste vragenlijst voor het LongCOVID-onderzoek. Hartelijk dank voor het invullen van deze en van de andere vragenlijsten van het onderzoek.']
     ])));
 
     return surveyEditor.getSurvey();
