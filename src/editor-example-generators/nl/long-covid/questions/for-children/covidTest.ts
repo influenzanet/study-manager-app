@@ -39,6 +39,8 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_infect_earlier3x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '3keer', 'vaker');
         const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
         const condition_infect_earlier_ja = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker', 'unknown');
+        const condition_q11 = this.Q11("Q11", condition_infect_earlier_ja, isRequired) 
+        const condition_q11_ja = CommonExpressions.singleChoiceOptionsSelected(condition_q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
 
         this.addItem(this.groupIntro());
         if (this.isPartOfSurvey(surveyKeys.T0)) {
@@ -74,6 +76,7 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(q15b(this.key, true, condition_infect_earlier3x));
             // this.addItem(q15c(this.key, true, condition_infect_earlier3x));
             // this.addItem(q16(this.key, true, condition_infect_earlier_vaker));
+            
         }
 
         if (!this.isPartOfSurvey(surveyKeys.shortC)) {
@@ -84,6 +87,7 @@ export class CovidTestGroup extends GroupItemEditor {
             );
             this.q11JaSelectedExp = CommonExpressions.singleChoiceOptionsSelected(q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
             this.addItem(q11);
+            this.addItem(q_langdurige_klachten_date(this.key, true, condition_q11_ja))
         }
         this.addPageBreak();
     }
@@ -580,7 +584,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: '0', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
-                        ["nl", "Met een PCR of antigeen sneltest"],
+                        ["nl", "Met een PCR of antigeen sneltest die door een expert is afgenomen"],
                     ])
                 },
                 {
@@ -627,7 +631,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                     key: '0', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
-                        ["nl", "Met een PCR of antigeen sneltest"],
+                        ["nl", "Met een PCR of antigeen sneltest die door een expert is afgenomen"],
                     ])
                 },
                 {
@@ -804,6 +808,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
     // }
 
     Q11(key: string, condition?: Expression, isRequired?: boolean) {
+
         return SurveyItemGenerators.singleChoice({
             parentKey: this.key,
             itemKey: key,
@@ -855,6 +860,25 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
 
 }
 
+const q_langdurige_klachten_date = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q17';
+
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Kan je aangeven wanneer deze langdurige klachten ongeveer zijn begonnen? Als je het niet meer weet dan kan je de datum schatten."],
+        ]),
+        dateInputMode: 'YMD',
+        placeholderText: new Map([
+            ["nl", "dd-mm-jjjj"],
+        ]),
+        minRelativeDate: { delta: { days: -1500 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+        isRequired: isRequired,
+    });
+}
 
 
 const q12 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {

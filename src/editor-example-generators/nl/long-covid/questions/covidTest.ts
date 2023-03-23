@@ -49,6 +49,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_test_result_pos_FU = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos');
         // const infect_earlier = q_infect_earlier_def(this.key, true);
         const infect_earlier2 = q_infect_earlier_def2(this.key, true);
+        const langdurige_klachten = q_langdurige_klachten(this.key , true);
         // const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         // const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
         // const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
@@ -57,7 +58,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_infect_earlier3x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '3keer', 'vaker');
         // const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
         const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker', 'unknown');
-
+        const condition_for_langdurige_klachten_date = CommonExpressions.singleChoiceOptionsSelected(langdurige_klachten.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');    
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(test);
@@ -68,7 +69,7 @@ export class CovidTestGroup extends GroupItemEditor {
         // this.addItem(q_test_location_def(this.key, true, condition_test_yes));
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
         this.addItem(q_test_date_def_FU(this.key, true, condition_test_result_pos_FU));
-        this.addItem(q_test_location_def_FU(this.key, true, condition_test_result_pos_FU));
+        // this.addItem(q_test_location_def_FU(this.key, true, condition_test_result_pos_FU));
         this.addItem(q_test_reason_def_FU(this.key, true, condition_test_result_pos_FU));
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
@@ -91,15 +92,18 @@ export class CovidTestGroup extends GroupItemEditor {
             // this.addItem(q15c(this.key, true, condition_infect_earlier3x));
             // this.addItem(q16(this.key, true, condition_infect_earlier_vaker));
             this.addItem(Q11);
-            this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja');
+            this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
+            const Q17 = q_langdurige_klachten_date(this.key, true, condition_for_langdurige_klachten_date);
+            this.addItem(Q17)
         } else if (!this.isPartOfSurvey(surveyKeys.short)) {
             const Q11 = q_langdurige_klachten(this.key, true, undefined);
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
-        }
-
-        if (!this.isPartOfSurvey(surveyKeys.short)) {
-            this.addItem(Q_instructions2(this.key))
+            const Q17 = q_langdurige_klachten_date(this.key, true, condition_for_langdurige_klachten_date);
+            this.addItem(Q17)
+        // }
+        // if (!this.isPartOfSurvey(surveyKeys.short)) {
+        //     this.addItem(Q_instructions2(this.key))
         }
         this.addPageBreak();
     }
@@ -492,69 +496,69 @@ const q_test_date_def_FU = (parentKey: string, isRequired?: boolean, condition?:
     });
 }
 
-const q_test_location_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q3_FU';
+// const q_test_location_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q3_FU';
 
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        condition: condition,
-        questionText: new Map([
-            ["nl", "Waar heb je jezelf laten testen op corona?"],
-        ]),
-        responseOptions: [
-            {
-                key: '0', role: 'option',
-                content: new Map([
-                    ["nl", "Ziekenhuis of huisarts"],
-                ])
-            },
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["nl", "GGD Teststraat"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "GGD kwam naar mijn huis"],
-                ])
-            },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["nl", "Met een zelftest"],
-                ])
-            },
-            {
-                key: '4', role: 'option',
-                content: new Map([
-                    ["nl", "Bij een bedrijf (op eigen initiatief)"],
-                ])
-            },
-            {
-                key: '5', role: 'option',
-                content: new Map([
-                    ["nl", "Bij een bedrijf (via mijn werkgever)"],
-                ])
-            },
-            {
-                key: '6', role: 'option',
-                content: new Map([
-                    ["nl", "In het buitenland"],
-                ])
-            },
-            {
-                key: '7', role: 'option',
-                content: new Map([
-                    ["nl", "Dat weet ik niet (meer)"],
-                ])
-            },
-        ],
-        isRequired: isRequired,
-    });
-}
+//     return SurveyItemGenerators.singleChoice({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         condition: condition,
+//         questionText: new Map([
+//             ["nl", "Waar heb je jezelf laten testen op corona?"],
+//         ]),
+//         responseOptions: [
+//             {
+//                 key: '0', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Ziekenhuis of huisarts"],
+//                 ])
+//             },
+//             {
+//                 key: '1', role: 'option',
+//                 content: new Map([
+//                     ["nl", "GGD Teststraat"],
+//                 ])
+//             },
+//             {
+//                 key: '2', role: 'option',
+//                 content: new Map([
+//                     ["nl", "GGD kwam naar mijn huis"],
+//                 ])
+//             },
+//             {
+//                 key: '3', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Met een zelftest"],
+//                 ])
+//             },
+//             {
+//                 key: '4', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Bij een bedrijf (op eigen initiatief)"],
+//                 ])
+//             },
+//             {
+//                 key: '5', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Bij een bedrijf (via mijn werkgever)"],
+//                 ])
+//             },
+//             {
+//                 key: '6', role: 'option',
+//                 content: new Map([
+//                     ["nl", "In het buitenland"],
+//                 ])
+//             },
+//             {
+//                 key: '7', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Dat weet ik niet (meer)"],
+//                 ])
+//             },
+//         ],
+//         isRequired: isRequired,
+//     });
+// }
 
 const q_test_reason_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q4_FU';
@@ -663,7 +667,7 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Met een PCR of antigeen sneltest"],
+                    ["nl", "Met een PCR of antigeen sneltest die door een expert is afgenomen"],
                 ])
             },
             {
@@ -706,7 +710,7 @@ const q_test_type_def_FU = (parentKey: string, isRequired?: boolean, condition?:
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Met een PCR of antigeen sneltest"],
+                    ["nl", "Met een PCR of antigeen sneltest die door een expert is afgenomen"],
                 ])
             },
             {
@@ -917,6 +921,27 @@ const q_langdurige_klachten = (parentKey: string, isRequired?: boolean, conditio
 }
 
 
+const q_langdurige_klachten_date = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q17';
+
+    return SurveyItemGenerators.dateInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Kan je aangeven wanneer deze langdurige klachten ongeveer zijn begonnen? Als je het niet meer weet dan kan je de datum schatten."],
+        ]),
+        dateInputMode: 'YMD',
+        placeholderText: new Map([
+            ["nl", "dd-mm-jjjj"],
+        ]),
+        minRelativeDate: { delta: { days: -1500 } },
+        maxRelativeDate: { delta: { seconds: 1 } },
+        isRequired: isRequired,
+    });
+}
+
+
 const q_infect_earlier_def2 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q12';
 
@@ -972,7 +997,6 @@ const q_infect_earlier_def2 = (parentKey: string, isRequired?: boolean, conditio
         isRequired: isRequired,
     });
 }
-
 
 
 
@@ -1316,22 +1340,22 @@ const q15b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
 // }
 
 
-const Q_instructions2 = (parentKey: string): SurveyItem => {
-    const markdownContent = `
-###### _Dit is het einde van Onderdeel 1. Onderdeel 2 van deze vragenlijst gaat over vaccinaties._
+// const Q_instructions2 = (parentKey: string): SurveyItem => {
+//     const markdownContent = `
+// ###### _Dit is het einde van Onderdeel 1. Onderdeel 2 van deze vragenlijst gaat over vaccinaties._
 
-`
+// `
 
-    return SurveyItemGenerators.display({
-        parentKey: parentKey,
-        itemKey: 'intro3',
-        content: [
-            ComponentGenerators.markdown({
-                content: new Map([
-                    ["nl", markdownContent],
-                ]),
-                className: ''
-            })
-        ]
-    });
-}
+//     return SurveyItemGenerators.display({
+//         parentKey: parentKey,
+//         itemKey: 'intro3',
+//         content: [
+//             ComponentGenerators.markdown({
+//                 content: new Map([
+//                     ["nl", markdownContent],
+//                 ]),
+//                 className: ''
+//             })
+//         ]
+//     });
+// }
