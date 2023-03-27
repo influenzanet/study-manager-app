@@ -581,6 +581,13 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             ]),
             responseOptions: [
                 {
+                    key: '2', role: 'option',
+                    disabled: optionNoneSelected,
+                    content: new Map([
+                        ["nl", "Met een zelftest"],
+                    ])
+                },
+                {
                     key: '0', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
@@ -594,13 +601,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "Met een bloedtest (serologie) "],
                     ])
                 },
-                {
-                    key: '2', role: 'option',
-                    disabled: optionNoneSelected,
-                    content: new Map([
-                        ["nl", "Met een zelftest"],
-                    ])
-                },
+            
                 {
                     key: '3', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),
@@ -628,6 +629,13 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             ]),
             responseOptions: [
                 {
+                    key: '2', role: 'option',
+                    disabled: optionNoneSelected,
+                    content: new Map([
+                        ["nl", "Met een zelftest"],
+                    ])
+                },
+                {
                     key: '0', role: 'option',
                     disabled: optionNoneSelected,
                     content: new Map([
@@ -641,13 +649,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "Met een bloedtest (serologie) "],
                     ])
                 },
-                {
-                    key: '2', role: 'option',
-                    disabled: optionNoneSelected,
-                    content: new Map([
-                        ["nl", "Met een zelftest"],
-                    ])
-                },
+               
                 {
                     key: '3', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),

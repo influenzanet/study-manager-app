@@ -59,7 +59,7 @@ export class HealthGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q0('Q0', isRequired));
         }
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T12c)) {
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T12c) || this.isPartOfSurvey(surveyKeys.T24c)) {
             this.addItem(this.Q1TICppreText());
             this.addItem(this.Q1('Q1', isRequired));
         }
@@ -128,23 +128,18 @@ export class HealthGroup extends GroupItemEditor {
         this.addPageBreak();
 
         // Vermoeidheid ---------
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q11Group(this.key, {
             groupCondition: conditions.youngerThan8,
         }).getItem());
-        }
 
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q12Group(this.key, {
             groupCondition: conditions.between8And12,
         }).getItem());
-        }
 
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T3c) || this.isPartOfSurvey(surveyKeys.T6c) || this.isPartOfSurvey(surveyKeys.T9c) || this.isPartOfSurvey(surveyKeys.T12c)) {
         this.addItem(new Q13Group(this.key, {
             groupCondition: conditions.between13And18,
         }).getItem());
-        }
+        
         this.addPageBreak();
 
         // Sterke kanten en moeilijkheden ---------

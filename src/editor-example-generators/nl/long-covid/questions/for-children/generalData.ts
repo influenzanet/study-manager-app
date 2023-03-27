@@ -617,7 +617,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -10 } },
+            minRelativeDate: { delta: { days: -1000 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });

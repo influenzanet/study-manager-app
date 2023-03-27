@@ -665,6 +665,12 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         ]),
         responseOptions: [
             {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
                 key: '0', role: 'option',
                 content: new Map([
                     ["nl", "Met een PCR of antigeen sneltest die door een expert is afgenomen"],
@@ -676,12 +682,7 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
                     ["nl", "Met een bloedtest (serologie) "],
                 ])
             },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "Met een zelftest"],
-                ])
-            },
+            
             {
                 key: '3', role: 'option',
                 content: new Map([
@@ -708,6 +709,12 @@ const q_test_type_def_FU = (parentKey: string, isRequired?: boolean, condition?:
         ]),
         responseOptions: [
             {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Met een zelftest"],
+                ])
+            },
+            {
                 key: '0', role: 'option',
                 content: new Map([
                     ["nl", "Met een PCR of antigeen sneltest die door een expert is afgenomen"],
@@ -719,12 +726,7 @@ const q_test_type_def_FU = (parentKey: string, isRequired?: boolean, condition?:
                     ["nl", "Met een bloedtest (serologie) "],
                 ])
             },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "Met een zelftest"],
-                ])
-            },
+            
             {
                 key: '3', role: 'option',
                 content: new Map([

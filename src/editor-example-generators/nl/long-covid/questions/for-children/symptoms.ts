@@ -1482,32 +1482,32 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "14 dagen"],
                     ]),
                 },
+                // {
+                //     key: '15', role: 'option',
+                //     content: new Map([
+                //         ["nl", "> 14 dagen"],
+                //     ])
+                // },
                 {
-                    key: '15', role: 'option',
-                    content: new Map([
-                        ["nl", "> 14 dagen"],
-                    ])
-                },
-                {
-                    key: '15', role: 'option',
+                    key: '17', role: 'option',
                     content: new Map([
                         ["nl", "Tussen 2 en 3 weken"],
                     ])
                 },
                 {
-                    key: '17', role: 'option',
+                    key: '18', role: 'option',
                     content: new Map([
                         ["nl", "Tussen 3 en 4 weken"],
                     ])
                 },
                 {
-                    key: '18', role: 'option',
+                    key: '19', role: 'option',
                     content: new Map([
                         ["nl", "Tussen 1 en 6 maanden"],
                     ])
                 },
                 {
-                    key: '19', role: 'option',
+                    key: '20', role: 'option',
                     content: new Map([
                         ["nl", "Na langer dan 6 maanden"],
                     ])
