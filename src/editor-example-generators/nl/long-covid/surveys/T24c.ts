@@ -7,6 +7,7 @@ import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-c
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
+import { EQ5DProxyGroup } from "../questions/for-children/eq5dProxy";
 import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 
 
@@ -56,6 +57,12 @@ export const generateT24c = (): Survey | undefined => {
         between13And18: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
     });
     surveyEditor.addSurveyItemToRoot(childrenGeneralHealthGroupEditor.getItem());
+
+   // EQ5D group
+   const eq5dGroupEditor = new EQ5DProxyGroup(surveyKey, {
+    olderThan7: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'false')
+       });
+surveyEditor.addSurveyItemToRoot(eq5dGroupEditor.getItem());
 
     // General data group
     const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(surveyKey, {

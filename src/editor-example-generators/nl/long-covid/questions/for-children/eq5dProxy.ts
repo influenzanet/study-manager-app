@@ -6,6 +6,7 @@ import { ComponentGenerators } from "../../../../../editor-engine/utils/componen
 import { ItemEditor } from "../../../../../editor-engine/survey-editor/item-editor";
 import { generateLocStrings } from "../../../../../editor-engine/utils/simple-generators";
 import { SimpleQuestionEditor } from "../../../../../editor-engine/utils/simple-question-editor";
+import { surveyKeys } from "../../studyRules";
 
 
 export class EQ5DProxyGroup extends GroupItemEditor {
@@ -60,7 +61,7 @@ class EQ5DyProxy extends GroupItemEditor {
         this.groupEditor.setCondition(conditions.groupCondition);
 
         const isRequired = true;
-
+    if (this.isPartOfSurvey(surveyKeys.shortC)){
         this.addItem(this.groupIntro());
         this.addItem(this.Q1('Q1', undefined, isRequired));
         this.addPageBreak();
@@ -72,6 +73,7 @@ class EQ5DyProxy extends GroupItemEditor {
         this.addPageBreak();
         this.addItem(this.Q5('Q5', undefined, isRequired));
         this.addPageBreak();
+        }
         this.addItem(this.Q_healthstatus_instructions_def());
         this.addItem(this.Q_healthstatus_def('Q6', isRequired, true));
 
