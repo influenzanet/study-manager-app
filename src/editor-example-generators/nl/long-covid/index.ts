@@ -17,6 +17,7 @@ import { generateT24c } from './surveys/T24c';
 import { generateShort } from './surveys/Tshort';
 import { generateShortC } from './surveys/Tshortc';
 import { generateT0 } from './surveys/T0';
+import { generateTstopcontinue } from './surveys/Tstopcontinue';
 
 export const LongCovidSurveys = {
     T0: generateT0(),
@@ -38,4 +39,5 @@ export const LongCovidSurveys = {
     T18c: generateT18c(),
     T21c: generateT21c(),
     T24c: generateT24c(),
+    Tstopcontinue: generateTstopcontinue()
 }

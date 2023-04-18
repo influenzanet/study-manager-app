@@ -223,6 +223,25 @@ export class DemographieGroup extends GroupItemEditor {
         // }
         if (this.isPartOfSurvey(surveyKeys.T12)) {
             this.addItem(extend_FU(this.key, true))
+
+        const Q_extendFU = extend_FU(this.key, true, undefined);
+        const conditionnoFU = CommonExpressions.singleChoiceOptionsSelected(Q_extendFU.key, 'nee')
+        const Q_stopReason = S2(this.key, true, conditionnoFU);
+        this.addItem(Q_stopReason)
+        
+        const wantstoStop = new GroupItemEditor(this.key, 'SQ');
+        wantstoStop.groupEditor.setCondition(conditionnoFU);
+
+        const conditionStopWebsite = CommonExpressions.singleChoiceOptionsSelected(Q_stopReason.key, '4', '5');
+        const Q_stopwebsite = S2_website(wantstoStop.key, true, conditionStopWebsite);
+
+        wantstoStop.addItem(Q_stopwebsite)  
+
+        const conditionStopNamelijk = CommonExpressions.singleChoiceOptionsSelected(Q_stopReason.key, '9');
+        const Q_stopnamelijk = S2_namelijk(wantstoStop.key, true, conditionStopNamelijk);
+        
+        wantstoStop.addItem(Q_stopnamelijk)
+        
         }
     }
 
@@ -2077,7 +2096,118 @@ const extend_FU = (parentKey: string, isRequired?: boolean, keyOverride?: string
     });
 }
 
+const S2 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'S2';
 
+    return SurveyItemGenerators.multipleChoice({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Wat is de reden dat je wilt stoppen met het invullen van de vragenlijsten?"],
+        ]),
+
+        questionSubText: new Map([
+            ["nl", "Meerdere antwoorden mogelijk."],
+        ]),
+        responseOptions: [
+            {
+                key: '0', role: 'option',
+                content: new Map([
+                    ["nl", "Ik heb geen klachten of ik heb geen klachten meer"],
+                ])
+            },
+            {
+                key: '1', role: 'option',
+                content: new Map([
+                    ["nl", "Ik wil stoppen vanwege (Long Covid) klachten"],
+                ])
+            },
+            {
+                key: '2', role: 'option',
+                content: new Map([
+                    ["nl", "Ik denk dat mijn klachten niet door Long Covid komen"],
+                ])
+            },
+            {
+                key: '3', role: 'option',
+                content: new Map([
+                    ["nl", "Het invullen van de vragenlijsten kost me teveel tijd"],
+                ])
+            },
+            {
+                key: '4', role: 'option',
+                content: new Map([
+                    ["nl", "Het invullen van de vragenlijst is te lastig via een website"],
+                ])
+            },
+            {
+                key: '5', role: 'option',
+                content: new Map([
+                    ["nl", "De website werkt niet goed"],
+                ])
+            },
+            {
+                key: '6', role: 'option',
+                content: new Map([
+                    ["nl", "De vragen van het onderzoek zijn niet duidelijk"],
+                ])
+            },
+            {
+                key: '7', role: 'option',
+                content: new Map([
+                    ["nl", "Ik zie het nut van het onderzoek niet in"],
+                ])
+            },
+            {
+                key: '8', role: 'option',
+                content: new Map([
+                    ["nl", "Dat wil ik niet zeggen"],
+                ])
+            },
+            {
+                key: '9', role: 'option',
+                content: new Map([
+                    ["nl", "Een andere reden, namelijk..."],
+                ])
+            },
+        ],
+        isRequired: isRequired,
+    });
+}
+
+const S2_website = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'S2_website';
+
+    return SurveyItemGenerators.multilineTextInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["nl", "Je geeft aan dat de website niet goed werkt of niet duidelijk is."],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Kan je aangeven wat er niet goed werkt? "],
+        ]),
+        placeholderText: new Map([
+            ["nl", "Opmerkingen"]
+        ])
+    });
+}
+
+const S2_namelijk = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'S2_namelijk';
+
+    return SurveyItemGenerators.multilineTextInput({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        questionText: new Map([
+            ["nl", "Om welke andere reden stop je met het onderzoek?"],
+        ]),
+        placeholderText: new Map([
+            ["nl", "Opmerkingen"]
+        ])
+    });
+}
 // const Q_instructions_eind = (parentKey: string, condition?: Expression): SurveyItem => {
 //     const markdownContent = `
 // ### Advies en ondersteuning langdurige gezondheidsklachten
