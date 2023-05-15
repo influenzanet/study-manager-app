@@ -49,11 +49,11 @@ export class SCGroup extends GroupItemEditor {
             true)
         );
         
-      
+      //TODO: This question should only be asked on the condition of participants stopping (S2= no)
         this.addItem(q_healthstatus_instructions_def(this.key));
         this.addItem(q_healthstatus_def(wantstoStop.key,
             ));
-
+     // TODO: This question is only asked on the condition of continuing (S1 = yes)
         this.addItem(instructions_cont(this.key, participant_cont))
       }
     }
@@ -69,6 +69,7 @@ export class SCGroup extends GroupItemEditor {
         ]
     };
 
+    //TODO: Add a textbox that thanks stopping participants (S1=no) for their time.
     
 const S_instructions =  (parentKey: string): SurveyItem => {
     const markdownContent = `
