@@ -1,10 +1,10 @@
 import { Expression, SurveyItem } from "survey-engine/data_types";
-import { generateLocStrings, generateTitleComponent, expWithArgs} from "../../../../editor-engine/utils/simple-generators";
+import { generateLocStrings, generateTitleComponent, expWithArgs } from "../../../../editor-engine/utils/simple-generators";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
-import { ItemEditor} from "../../../../editor-engine/survey-editor/item-editor";
+import { ItemEditor } from "../../../../editor-engine/survey-editor/item-editor";
 import { SimpleQuestionEditor } from "../../../../editor-engine/utils/simple-question-editor";;
 
 const responseGroupKey = 'rg';
@@ -23,55 +23,58 @@ export class SCGroup extends GroupItemEditor {
 
     initQuestions() {
         this.addItem(S_instructions(this.key));
+
         const stopcontinue = S1(this.key);
         this.addItem(stopcontinue);
-        
-        const participant_stop = 
-          CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'no');
-        const participant_cont = 
-          CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'yes');
-      
-        const Q_stopReason = S2(this.key, true, participant_stop);
-        this.addItem(Q_stopReason)
-      
+
+        const participant_stop =
+            CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'no');
+        const participant_cont =
+            CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'yes');
+
+
+        //// GROUP: STOP
         const wantstoStop = new GroupItemEditor(this.key, 'STOP');
         wantstoStop.groupEditor.setCondition(participant_stop);
 
-        this.addItem(S2_website(
+        const Q_stopReason = S2(wantstoStop.key, true);
+        wantstoStop.addItem(Q_stopReason)
+
+        wantstoStop.addItem(S2_website(
             wantstoStop.key,
             CommonExpressions.multipleChoiceOptionsSelected(Q_stopReason.key, '4', '5'),
             true)
         );
 
-        this.addItem(S2_namelijk(
+        wantstoStop.addItem(S2_namelijk(
             wantstoStop.key,
             CommonExpressions.multipleChoiceOptionsSelected(Q_stopReason.key, '9'),
             true)
         );
-        
-      //TODO: This question should only be asked on the condition of participants stopping (S2= no)
-        this.addItem(q_healthstatus_instructions_def(this.key));
-        this.addItem(q_healthstatus_def(wantstoStop.key,
-            ));
-     // TODO: This question is only asked on the condition of continuing (S1 = yes)
-        this.addItem(instructions_cont(this.key, participant_cont))
-      }
-    }
-      
-    const copyRightText = new Map([
-        ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
-        ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation."],
-    ]);
-    
-    const eq5dCopyright = {
-        role: 'footnote', content: generateLocStrings(copyRightText), style: [
-            { key: 'className', value: 'fs-small fst-italic text-center' }
-        ]
-    };
 
-    //TODO: Add a textbox that thanks stopping participants (S1=no) for their time.
-    
-const S_instructions =  (parentKey: string): SurveyItem => {
+        wantstoStop.addItem(q_healthstatus_instructions_def(wantstoStop.key));
+        wantstoStop.addItem(q_healthstatus_def(wantstoStop.key, false));
+
+        this.addItem(wantstoStop.getItem());
+
+        /// GROUP: CONTINUE
+        this.addItem(instructions_cont(this.key, participant_cont))
+    }
+}
+
+const copyRightText = new Map([
+    ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
+    ["nl", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation."],
+]);
+
+const eq5dCopyright = {
+    role: 'footnote', content: generateLocStrings(copyRightText), style: [
+        { key: 'className', value: 'fs-small fst-italic text-center' }
+    ]
+};
+
+
+const S_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
 ## Deze vragenlijst is binnen enkele minuten in te vullen.
 
@@ -98,6 +101,7 @@ const S1 = (parentKey: string, keyOverride?: string): SurveyItem => {
     return SurveyItemGenerators.singleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
+        isRequired: true,
         questionText: new Map([
             ["nl", "Wil je nog een jaar elke 3 maanden vragenlijsten voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
         ]),
@@ -115,14 +119,14 @@ const S1 = (parentKey: string, keyOverride?: string): SurveyItem => {
                 ])
             },
         ]
-        });
-    }
+    });
+}
 
 
 const S2 = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'S2';
 
-     return SurveyItemGenerators.multipleChoice({
+    return SurveyItemGenerators.multipleChoice({
         parentKey: parentKey,
         itemKey: itemKey,
         condition: condition,
@@ -130,10 +134,10 @@ const S2 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
         questionText: new Map([
             ["nl", "Wat is de reden dat je wilt stoppen met het invullen van de vragenlijsten?"],
         ]),
-         questionSubText:    new Map([
-                ["nl", " Er zijn meerdere antwoorden mogelijk. Waarom vragen we dit? We willen kijken waarom deelnemers stoppen omdat dit onze bevindingen kan beïnvloeden. Hiermee kunnen we uitzoeken waarom sommige mensen wél klachten blijven houden en sommige mensen niet."],
-            ]),
-        
+        questionSubText: new Map([
+            ["nl", " Er zijn meerdere antwoorden mogelijk. Waarom vragen we dit? We willen kijken waarom deelnemers stoppen omdat dit onze bevindingen kan beïnvloeden. Hiermee kunnen we uitzoeken waarom sommige mensen wél klachten blijven houden en sommige mensen niet."],
+        ]),
+
         responseOptions: [
             {
                 key: '0', role: 'option',
@@ -194,12 +198,12 @@ const S2 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
                 content: new Map([
                     ["nl", "Een andere reden, namelijk..."],
                 ])
-                },
-            ],
-         });
-    }
+            },
+        ],
+    });
+}
 
-const S2_website = (parentKey: string,  condition?: Expression, isRequired?: boolean,  keyOverride?: string): SurveyItem => {
+const S2_website = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'S2_website';
 
     return SurveyItemGenerators.multilineTextInput({
@@ -219,7 +223,7 @@ const S2_website = (parentKey: string,  condition?: Expression, isRequired?: boo
     });
 }
 
-const S2_namelijk = (parentKey: string,  condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const S2_namelijk = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'S2_namelijk';
 
     return SurveyItemGenerators.multilineTextInput({
@@ -236,13 +240,10 @@ const S2_namelijk = (parentKey: string,  condition?: Expression, isRequired?: bo
     });
 }
 
-const q_healthstatus_instructions_def = (parentKey: string, condition?:Expression, keyOverride?: string): SurveyItem => {
+const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string): SurveyItem => {
     const defaultKey = 'HEALTH_INS'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
-    editor.setCondition(
-        expWithArgs('responseHasKeysAny', [keyOverride].join('.'), [responseGroupKey, singleChoiceKey].join('.'), 'no')
-    )
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Could you fill in one single last question?"],
@@ -321,10 +322,10 @@ const q_healthstatus_instructions_def = (parentKey: string, condition?:Expressio
     return editor.getItem();
 }
 
-const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?: Expression,useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'STOP';
+const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?: Expression, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'EQ5D';
     const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey);
-    
+
 
     // role: 'eq5d-health-indicator'
     const rg_inner = initEQ5DHealthIndicatorQuestion({
@@ -361,17 +362,17 @@ const instructions_cont = (parentKey: string, condition?: Expression): SurveyIte
     const markdownContent = `
 ## Bedankt dat je nog een jaar door wil gaan met het LongCOVID-onderzoek. Dit helpt enorm etc.
 `
-return SurveyItemGenerators.display({
-            parentKey: parentKey,
-            condition: condition,
-            itemKey: 'outro_Tstopcontinue',
-            content: [
-                ComponentGenerators.markdown({
-                    content: new Map([
-                        ["nl", markdownContent],
-                    ]),
-                    className: ''
-             })
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        condition: condition,
+        itemKey: 'outro_Tstopcontinue',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
         ]
     });
 }
