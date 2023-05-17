@@ -254,6 +254,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
         {
             role: 'bullets', items: [
                 {
+                    key: 'bullet1',
                     role: 'text', content: generateLocStrings(new Map([
                         ["en", "We would like to know how good or bad your health is TODAY."],
                         ["nl", "We willen weten hoe goed of slecht je gezondheid VANDAAG is."],
@@ -261,6 +262,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                     style: [{ key: 'variant', value: 'li' }]
                 },
                 {
+                    key: 'bullter2',
                     role: 'text', content: generateLocStrings(new Map([
                         ["en", "This scale is numbered from 0 to 100."],
                         ["nl", "Deze meetschaal loopt van 0 tot 100."],
@@ -268,16 +270,19 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                     style: [{ key: 'variant', value: 'li' }]
                 },
                 {
+                    key: 'bullet3',
                     role: 'text',
                     style: [{ key: 'variant', value: 'li' }],
                     items: [
                         {
+                            key: 'p1',
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "100 means the "],
                                 ["nl", "100 staat voor de "],
                             ]))
                         },
                         {
+                            key: 'p2',
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "best"],
                                 ["nl", "beste"],
@@ -285,6 +290,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                             style: [{ key: 'className', value: 'text-decoration-underline' }]
                         },
                         {
+                            key: 'p3',
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", " health you can imagine."],
                                 ["nl", " gezondheid die je je kunt voorstellen."],
@@ -293,15 +299,18 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                     ],
                 },
                 {
+                    key: 'bullet4',
                     role: 'text',
                     items: [
                         {
+                            key: 'p1',
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "0 means the "],
                                 ["nl", "0 staat voor de "],
                             ]))
                         },
                         {
+                            key: 'p2',
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", "worst"],
                                 ["nl", "slechtste"],
@@ -309,6 +318,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
                             style: [{ key: 'className', value: 'text-decoration-underline' }]
                         },
                         {
+                            key: 'p3',
                             role: 'part', content: generateLocStrings(new Map([
                                 ["en", " health you can imagine."],
                                 ["en", " gezondheid die je je kunt voorstellen."],
