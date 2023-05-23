@@ -369,17 +369,18 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?:
 }
 
 const instructions_cont = (parentKey: string, condition?: Expression): SurveyItem => {
-    const markdownContent = `
-## Bedankt dat je nog een jaar door wil gaan met het LongCOVID-onderzoek. Dit helpt enorm etc.
+    const textContent = `
+ Bedankt dat je nog een jaar door wil gaan met het LongCOVID-onderzoek. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over post-COVID. De nieuwe vragenlijsten zijn ook korter en kosten minder tijd om in te vullen.
 `
     return SurveyItemGenerators.display({
         parentKey: parentKey,
         condition: condition,
         itemKey: 'outro_Tstopcontinue',
         content: [
-            ComponentGenerators.markdown({
+            ComponentGenerators.text({
+                variant: 'h5',
                 content: new Map([
-                    ["nl", markdownContent],
+                    ["nl", textContent],
                 ]),
                 className: ''
             })
