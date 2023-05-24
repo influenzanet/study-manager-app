@@ -56,6 +56,7 @@ const surveys = [
             { name: "T21c", survey: LongCovidSurveys.T21c },
             { name: "T24c", survey: LongCovidSurveys.T24c },
             { name: "Tstopcontinue", survey: LongCovidSurveys.Tstopcontinue },
+            { name: "Tstopcontinuec", survey: LongCovidSurveys.Tstopcontinuec },
         ],
         languageCodes: [
             'nl',
