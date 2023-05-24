@@ -10,16 +10,25 @@ import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group
 
 export class SCGroup extends GroupItemEditor {
     useCopyRight: boolean;
-
-
-    constructor(parentKey: string, keyOverride?: string, hideCopyRight?: boolean) {
+    
+    constructor(parentKey: string, 
+        conditions: {  
+            groupCondition?: Expression,
+            olderThan7: Expression,},
+        keyOverride?: string, 
+        hideCopyRight?: boolean) 
+        
+        {
         const groupKey = keyOverride ? keyOverride : 'SC';
         super(parentKey, groupKey);
         this.useCopyRight = hideCopyRight !== true;
         this.initQuestions();
+
+        
     }
 
     initQuestions() {
+        
         this.addItem(S_instructions(this.key));
 
         const stopcontinue = S1(this.key);
@@ -49,9 +58,19 @@ export class SCGroup extends GroupItemEditor {
             CommonExpressions.multipleChoiceOptionsSelected(Q_stopReason.key, '9'),
             true)
         );
-
+        //TODO @Peter can you help make the proxy questions under the comments //younger than 7 only show up for the condition not older than 7?
+        //Set const for age specific questions
+        // const proxyCondition = CommonExpressions.not(
+        //     conditions.olderThan7
+        // )
+        //OLDER THAN 7
         wantstoStop.addItem(q_healthstatus_instructions_def(wantstoStop.key));
         wantstoStop.addItem(q_healthstatus_def(wantstoStop.key, false));
+
+        //YOUNGER THAN 7
+        // wantstoStop.addItem(q_healthstatus_instructions_def_proxy(wantstoStop.key, proxyCondition));
+        // wantstoStop.addItem(q_healthstatus_def_proxy(wantstoStop.key, proxyCondition));
+
 
         this.addItem(wantstoStop.getItem());
 
@@ -346,6 +365,134 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?:
         valueBoxText: new Map([
             ["en", "YOUR HEALTH TODAY ="],
             ["nl", "JE GEZONDHEID VANDAAG ="],
+        ]),
+        minHealthText: new Map([
+            ["en", "The worst health you can imagine"],
+            ["nl", "De slechtste gezondheid die je je kunt voorstellen"],
+        ]),
+        maxHealthText: new Map([
+            ["en", "The best health you can imagine"],
+            ["nl", "De beste gezondheid die je je kunt voorstellen"],
+        ]),
+    });
+    simpleEditor.setResponseGroupWithContent(rg_inner);
+
+    if (isRequired) {
+        simpleEditor.addHasResponseValidation();
+    }
+
+    if (useCopyRight) { simpleEditor.addDisplayComponent(eq5dCopyright); }
+    return simpleEditor.getItem();
+}
+
+const q_healthstatus_instructions_def_proxy = (parentKey: string, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'HEALTH_INS'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["en", "Could you fill in one single last question?"],
+            ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?"],
+        ]))
+    );
+    editor.addDisplayComponent(
+        {
+            role: 'bullets', items: [
+                {
+                    key: 'bullet1',
+                    role: 'text', content: generateLocStrings(new Map([
+                        ["en", "We would like to know how good or bad the health of your child is TODAY"],
+                        ["nl", "We willen weten hoe goed of slecht je denkt dat de gezondheid van het kind VANDAAG is."],
+                    ])),
+                    style: [{ key: 'variant', value: 'li' }]
+                },
+                {
+                    key: 'bullter2',
+                    role: 'text', content: generateLocStrings(new Map([
+                        ["en", "This scale is numbered from 0 to 100."],
+                        ["nl", "Deze meetschaal loopt van 0 tot 100."],
+                    ])),
+                    style: [{ key: 'variant', value: 'li' }]
+                },
+                {
+                    key: 'bullet3',
+                    role: 'text',
+                    style: [{ key: 'variant', value: 'li' }],
+                    items: [
+                        {
+                            key: 'p1',
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "100 means the "],
+                                ["nl", "100 staat voor de "],
+                            ]))
+                        },
+                        {
+                            key: 'p2',
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "best"],
+                                ["nl", "beste"],
+                            ])),
+                            style: [{ key: 'className', value: 'text-decoration-underline' }]
+                        },
+                        {
+                            key: 'p3',
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", " health you can imagine."],
+                                ["nl", " gezondheid die je je kunt voorstellen."],
+                            ]))
+                        },
+                    ],
+                },
+                {
+                    key: 'bullet4',
+                    role: 'text',
+                    items: [
+                        {
+                            key: 'p1',
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "0 means the "],
+                                ["nl", "0 staat voor de "],
+                            ]))
+                        },
+                        {
+                            key: 'p2',
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", "worst"],
+                                ["nl", "slechtste"],
+                            ])),
+                            style: [{ key: 'className', value: 'text-decoration-underline' }]
+                        },
+                        {
+                            key: 'p3',
+                            role: 'part', content: generateLocStrings(new Map([
+                                ["en", " health you can imagine."],
+                                ["en", " gezondheid die je je kunt voorstellen."],
+                            ]))
+                        },
+                    ],
+                },
+            ]
+        }
+    )
+    return editor.getItem();
+}
+
+const q_healthstatus_def_proxy = (parentKey: string, isRequired?: boolean, condition?: Expression, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'EQ5D';
+    const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey);
+
+
+    // role: 'eq5d-health-indicator'
+    const rg_inner = initEQ5DHealthIndicatorQuestion({
+        key: '0',
+        role: 'eq5d-health-indicator',
+        instructionText: new Map([
+            ["en", "Mark an X on the scale to indicate what the health of your child is TODAY"],
+            ["nl", "Tik op de genummerde lijn om aan te geven hoe goed of slecht jij denkt dat de gezondheid van het kind VANDAAG is."],
+        ]),
+        valueBoxText: new Map([
+            ["en", "THE HEALTH OF YOUR CHILD TODAY ="],
+            ["nl", "Hoe goed is de gezondheid van het kind VANDAAG?"],
         ]),
         minHealthText: new Map([
             ["en", "The worst health you can imagine"],

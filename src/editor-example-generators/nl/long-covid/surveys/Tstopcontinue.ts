@@ -11,13 +11,13 @@ export const generateTstopcontinue = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKeys.Tstopcontinue,
         name: new Map([
-            ["nl", "Wekelijkse update van klachten LongCOVID-onderzoek"],
+            ["nl", "Korte update LongCOVID-onderzoek"],
         ]),
         description: new Map([
-            ["nl", "In de vorige vragenlijst heb je aangegeven klachten te hebben. In deze update vragen we je of deze klachten nog steeds aanwezig zijn, en hoe je je voelt."],
+            ["nl", "Je kunt in deze vragenlijst aangeven of je mee blijft doen aan het LongCOVID onderzoek"],
         ]),
         durationText: new Map([
-            ["nl", "Invullen van deze vragenlijst kost ongeveer 5 minuten van je tijd."],
+            ["nl", "Invullen van deze vragenlijst kost enkele minuten van je tijd."],
         ])
     })
 
