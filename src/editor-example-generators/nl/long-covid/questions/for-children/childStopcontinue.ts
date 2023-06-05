@@ -1,34 +1,29 @@
 import { Expression, SurveyItem } from "survey-engine/data_types";
-import { generateLocStrings, generateTitleComponent} from "../../../../../editor-engine/utils/simple-generators";
+import { generateLocStrings, generateTitleComponent } from "../../../../../editor-engine/utils/simple-generators";
 import { CommonExpressions } from "../../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../../editor-engine/utils/componentGenerators";
 import { initEQ5DHealthIndicatorQuestion, SurveyItemGenerators } from "../../../../../editor-engine/utils/question-type-generator";
 import { ItemEditor } from "../../../../../editor-engine/survey-editor/item-editor";
-import { SimpleQuestionEditor } from "../../../../../editor-engine/utils/simple-question-editor";;
+import { SimpleQuestionEditor } from "../../../../../editor-engine/utils/simple-question-editor";
 import { GroupItemEditor } from "../../../../../editor-engine/utils/survey-group-editor-helper";
+import { AgeCategoryFlagName } from "../../studyRules";
+
 
 
 export class SCGroup extends GroupItemEditor {
     useCopyRight: boolean;
-    
-    constructor(parentKey: string, 
-        conditions: {  
-            groupCondition?: Expression,
-            olderThan7: Expression,},
-        keyOverride?: string, 
-        hideCopyRight?: boolean) 
-        
-        {
+
+    constructor(parentKey: string,
+        keyOverride?: string,
+        hideCopyRight?: boolean) {
         const groupKey = keyOverride ? keyOverride : 'SC';
         super(parentKey, groupKey);
         this.useCopyRight = hideCopyRight !== true;
         this.initQuestions();
-
-        
     }
 
     initQuestions() {
-        
+
         this.addItem(S_instructions(this.key));
 
         const stopcontinue = S1(this.key);
@@ -58,18 +53,17 @@ export class SCGroup extends GroupItemEditor {
             CommonExpressions.multipleChoiceOptionsSelected(Q_stopReason.key, '9'),
             true)
         );
-        //TODO @Peter can you help make the proxy questions under the comments //younger than 7 only show up for the condition not older than 7?
-        //Set const for age specific questions
-        // const proxyCondition = CommonExpressions.not(
-        //     conditions.olderThan7
-        // )
+
+        const isYoungerThan8 = CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'true')
+        const is8andOlder = CommonExpressions.not(isYoungerThan8)
+
         //OLDER THAN 7
-        wantstoStop.addItem(q_healthstatus_instructions_def(wantstoStop.key));
-        wantstoStop.addItem(q_healthstatus_def(wantstoStop.key, false));
+        wantstoStop.addItem(q_healthstatus_instructions_def(wantstoStop.key, is8andOlder));
+        wantstoStop.addItem(q_healthstatus_def(wantstoStop.key, false, is8andOlder));
 
         //YOUNGER THAN 7
-        // wantstoStop.addItem(q_healthstatus_instructions_def_proxy(wantstoStop.key, proxyCondition));
-        // wantstoStop.addItem(q_healthstatus_def_proxy(wantstoStop.key, proxyCondition));
+        wantstoStop.addItem(q_healthstatus_instructions_def_proxy(wantstoStop.key, isYoungerThan8));
+        wantstoStop.addItem(q_healthstatus_def_proxy(wantstoStop.key, false, isYoungerThan8));
 
 
         this.addItem(wantstoStop.getItem());
@@ -257,16 +251,17 @@ const S2_namelijk = (parentKey: string, condition?: Expression, isRequired?: boo
     });
 }
 
-const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string): SurveyItem => {
+const q_healthstatus_instructions_def = (parentKey: string, condition: Expression, keyOverride?: string): SurveyItem => {
     const defaultKey = 'HEALTH_INS'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Could you fill in one single last question?"],
-            ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?"],
+            ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?wefwerwer"],
         ]))
     );
+    editor.setCondition(condition);
     editor.addDisplayComponent(
         {
             role: 'bullets', items: [
@@ -352,6 +347,9 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
 const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?: Expression, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'EQ5D';
     const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey);
+    if (condition) {
+        simpleEditor.setCondition(condition);
+    }
 
 
     // role: 'eq5d-health-indicator'
@@ -385,9 +383,9 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?:
     return simpleEditor.getItem();
 }
 
-const q_healthstatus_instructions_def_proxy = (parentKey: string, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'HEALTH_INS'
-    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+const q_healthstatus_instructions_def_proxy = (parentKey: string, condition: Expression): SurveyItem => {
+    const defaultKey = 'HEALTH_INS_PROXY';
+    const itemKey = [parentKey, defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
     editor.setTitleComponent(
         generateTitleComponent(new Map([
@@ -395,6 +393,7 @@ const q_healthstatus_instructions_def_proxy = (parentKey: string, keyOverride?: 
             ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?"],
         ]))
     );
+    editor.setCondition(condition);
     editor.addDisplayComponent(
         {
             role: 'bullets', items: [
@@ -478,9 +477,11 @@ const q_healthstatus_instructions_def_proxy = (parentKey: string, keyOverride?: 
 }
 
 const q_healthstatus_def_proxy = (parentKey: string, isRequired?: boolean, condition?: Expression, useCopyRight?: boolean, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'EQ5D';
+    const itemKey = keyOverride ? keyOverride : 'EQ5D_PROXY';
     const simpleEditor = new SimpleQuestionEditor(parentKey, itemKey);
-
+    if (condition) {
+        simpleEditor.setCondition(condition);
+    }
 
     // role: 'eq5d-health-indicator'
     const rg_inner = initEQ5DHealthIndicatorQuestion({

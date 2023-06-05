@@ -24,6 +24,7 @@ export const surveyKeys = {
     T24: 'T24',
     T24c: 'T24c',
     Tstopcontinue: 'Tstopcontinue',
+    Tstopcontinuec: 'Tstopcontinuec',
 }
 
 const timestampFromStudyStart = (daysDelta: number) => {
