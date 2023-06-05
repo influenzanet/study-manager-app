@@ -258,7 +258,7 @@ const q_healthstatus_instructions_def = (parentKey: string, condition: Expressio
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Could you fill in one single last question?"],
-            ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?wefwerwer"],
+            ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?"],
         ]))
     );
     editor.setCondition(condition);
