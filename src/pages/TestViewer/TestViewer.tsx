@@ -7,6 +7,7 @@ import availableSurveys from '../../editor-example-generators/surveys';
 import { useHistory, useParams } from 'react-router-dom';
 import { Checkbox, SelectField, SurveyView, TextField } from 'case-web-ui';
 
+import StudyFileDownloads from "../StudyFileDownloads";
 
 const getSurveyURL = (instance: string, surveyKey?: string): string => {
     return `/preview/${instance}/${surveyKey}`;
@@ -118,8 +119,6 @@ const TestViewer: React.FC = () => {
 
     return (
         <div className="container-fluid">
-
-
             <div className="row mt-3">
                 <div className="col-12 col-lg-4">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
@@ -139,6 +138,7 @@ const TestViewer: React.FC = () => {
                             checked={showKeys}
                             label="Show Item Keys" onChange={(value) => setShowKeys(value)} />
                     </div>
+                    <StudyFileDownloads/>
                 </div>
                 <div className="col-12 col-lg-8">
                     <div className="border-bottom-2 border-top-2 border-primary py-1 mt-2 mb-2">
@@ -196,7 +196,7 @@ const TestViewer: React.FC = () => {
                                         survey: survey,
                                     }
                                     var a = document.createElement("a");
-                                    var file = new Blob([JSON.stringify(exportData)], { type: 'json' });
+                                    var file = new Blob([JSON.stringify(exportData, undefined, 2)], { type: 'json' });
                                     a.href = URL.createObjectURL(file);
                                     a.download = `${studyName}_${survey?.current.surveyDefinition.key}.json`;
                                     a.click();

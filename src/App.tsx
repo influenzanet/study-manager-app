@@ -15,10 +15,9 @@ const App: React.FC = () => {
         <div>
             <Router>
                 <Switch>
-                    <Route path="/test-editor" component={TestEditor} />
-                    <Route path="/test-study-download" component={StudyFileDownloads} />
+                    <Route path="/rules" component={StudyFileDownloads} />
                     <Route path="/preview/:instance/:surveyKey" component={TestViewer} />
-                    <Redirect to="/preview/nl/intake"></Redirect>
+                    <Redirect to="/preview/belgium/intake"></Redirect>
                 </Switch>
             </Router>
         </div>
