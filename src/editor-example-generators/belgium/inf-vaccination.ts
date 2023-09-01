@@ -5,8 +5,15 @@ import { initMatrixQuestion, initMultipleChoiceGroup, initSingleChoiceGroup, Res
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
 import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
-const vaccination = (): Survey | undefined => {
+export type VaccinationDef = {
+    (): Survey;
+    key: string;
+}
+
+const vaccination = <VaccinationDef>((): Survey | undefined => {
     const surveyKey = 'vaccination';
+
+    vaccination.key = surveyKey;
 
     const survey = new SurveyEditor();
     survey.changeItemKey('survey', surveyKey);
@@ -108,7 +115,7 @@ const vaccination = (): Survey | undefined => {
     survey.addExistingSurveyItem(Q_flu_vaccine_last_season, rootKey);
 
     return survey.getSurvey();
-}
+})
 
 export default vaccination;
 

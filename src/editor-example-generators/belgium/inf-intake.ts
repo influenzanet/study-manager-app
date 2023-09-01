@@ -8,8 +8,16 @@ import { matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from 
 import { initLikertScaleItem } from "../../editor-engine/utils/question-type-generator";
 import { likertScaleKey } from "../common_question_pool/key-definitions";
 
-const intake = (): Survey | undefined => {
+export type IntakeDef = {
+    (): Survey;
+    key: string;
+    Q_birthdate: SurveyItem;
+}
+
+const intake = <IntakeDef>((): Survey | undefined => {
     const surveyKey = 'intake';
+
+    intake.key = surveyKey;
 
     const survey = new SurveyEditor();
     survey.changeItemKey('survey', surveyKey);
@@ -62,6 +70,9 @@ const intake = (): Survey | undefined => {
 
     const Q_birthdate = DefaultIntake.dateOfBirth(rootKey, true);
     survey.addExistingSurveyItem(Q_birthdate, rootKey);
+
+    // NOTE: export to be used in rules
+    intake.Q_birthdate = Q_birthdate;
 
     const Q_postal = DefaultIntake.postalCode(rootKey, true);
     survey.addExistingSurveyItem(Q_postal, rootKey);
@@ -184,7 +195,7 @@ const intake = (): Survey | undefined => {
     survey.addExistingSurveyItem(surveyEndText, rootKey);
 
     return survey.getSurvey();
-}
+})
 
 export default intake;
 

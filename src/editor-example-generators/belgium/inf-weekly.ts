@@ -6,8 +6,16 @@ import { initLikertScaleItem, initMatrixQuestion, initDropdownGroup, initMultipl
 import { expWithArgs, generateHelpGroupComponent, generateLocStrings, generateTitleComponent } from "../../editor-engine/utils/simple-generators";
 import { likertScaleKey, matrixKey, multipleChoiceKey, responseGroupKey, singleChoiceKey } from "../common_question_pool/key-definitions";
 
-const weekly = (): Survey | undefined => {
+export type WeeklyDef = {
+    (): Survey;
+    key: string;
+    Q_symptomsEndKey: string;
+}
+
+const weekly = <WeeklyDef>((): Survey | undefined => {
     const surveyKey = 'weekly';
+
+    weekly.key = surveyKey
 
     const survey = new SurveyEditor();
     survey.changeItemKey('survey', surveyKey);
@@ -121,6 +129,9 @@ const weekly = (): Survey | undefined => {
     const Q_symptomsEnd = InfluenzanetWeekly.symptomsEnd(hasSymptomGroupKey, Q_symptomStart.key, true);
     survey.addExistingSurveyItem(Q_symptomsEnd, hasSymptomGroupKey);
 
+    // NOTE: export to be used in rules
+    weekly.Q_symptomsEndKey = Q_symptomsEnd.key;
+
     // // Q5 symptoms developed suddenly --------------------------------------
     const Q_symptomsSuddenlyDeveloped = InfluenzanetWeekly.symptomsSuddenlyDeveloped(hasSymptomGroupKey, true);
     survey.addExistingSurveyItem(Q_symptomsSuddenlyDeveloped, hasSymptomGroupKey);
@@ -197,7 +208,7 @@ const weekly = (): Survey | undefined => {
     survey.addExistingSurveyItem(surveyEndText, rootKey);
 
     return survey.getSurvey();
-}
+})
 
 export default weekly;
 
