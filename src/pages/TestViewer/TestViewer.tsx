@@ -13,7 +13,7 @@ const getSurveyURL = (instance: string, surveyKey?: string): string => {
 }
 
 const TestViewer: React.FC = () => {
-    const [studyName, setStudyName] = useState('covid-19');
+    const [studyName, setStudyName] = useState('infectieradar-be');
     let { instance, surveyKey } = useParams<{ instance: string; surveyKey: string; }>();
     const history = useHistory();
 
