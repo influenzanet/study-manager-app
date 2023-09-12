@@ -69,28 +69,20 @@ const weekly = <WeeklyDef>((): Survey | undefined => {
     survey.addExistingSurveyItem(Q_symptoms, rootKey);
 
     // Q_BE_1_3 COVID-19 test
-    const Q_covidTest = covidTest(rootKey, true, "Q_BE_1_3");
-    survey.addExistingSurveyItem(Q_covidTest, rootKey);
+    // const Q_covidTest = covidTest(rootKey, true, "Q_BE_1_3");
+    // survey.addExistingSurveyItem(Q_covidTest, rootKey);
 
     // Q_BE_1_4 reason test
-    const Q_reasonTest = reasonTest(rootKey, Q_covidTest.key, true, "Q_BE_1_4");
-    survey.addExistingSurveyItem(Q_reasonTest, rootKey);
+    // const Q_reasonTest = reasonTest(rootKey, Q_covidTest.key, true, "Q_BE_1_4");
+    // survey.addExistingSurveyItem(Q_reasonTest, rootKey);
 
     // Q_BE_1_5 date test
-    const Q_dateTest = dateTest(rootKey, Q_covidTest.key, true, "Q_BE_1_5");
-    survey.addExistingSurveyItem(Q_dateTest, rootKey);
-
-    //Q_BE_cov16e duration untill test
-    const Q_durationTest = durationTest(rootKey, Q_covidTest.key, Q_reasonTest.key, true, "Q_BE_cov16e")
-    survey.addExistingSurveyItem(Q_durationTest, rootKey);
-
-    //Qcov_BE_16b test result
-    const Q_resultTest = resultTest(rootKey, Q_covidTest.key, true, "Qcov_BE_16b")
-    survey.addExistingSurveyItem(Q_resultTest, rootKey);
+    // const Q_dateTest = dateTest(rootKey, Q_covidTest.key, true, "Q_BE_1_5");
+    // survey.addExistingSurveyItem(Q_dateTest, rootKey);
 
     //Q_BE_cov16z duration untill test result
-    const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
-    survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
+    // const Q_durationTestResult = durationTestResult(rootKey, Q_covidTest.key, Q_resultTest.key, true, "Qcov_BE_16z")
+    // survey.addExistingSurveyItem(Q_durationTestResult, rootKey);
 
     // Q1_2_def consent to further symptom questions
     const Q_consentSymptomQuestion = consentForSymptoms(rootKey, Q_symptoms.key, true, "Q_BE_1_2")
@@ -108,22 +100,6 @@ const weekly = <WeeklyDef>((): Survey | undefined => {
     // // Q3 when first symptoms --------------------------------------
     const Q_symptomStart = InfluenzanetWeekly.symptomsStart(hasSymptomGroupKey, Q_same_illnes.key, true);
     survey.addExistingSurveyItem(Q_symptomStart, hasSymptomGroupKey);
-
-    // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
-    const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, true, "Qcov_BE_3");
-    survey.addExistingSurveyItem(Q_covidPCRTestedContact, hasSymptomGroupKey);
-
-    // // Qcov_BE_3b household pcr contacts COVID-19--------------------------
-    const Q_pcrHouseholdContact = pcrHouseholdContact(hasSymptomGroupKey, Q_covidPCRTestedContact.key, true, "Qcov_BE_3b");
-    survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
-
-    // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
-    const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, true, "Qcov_BE_8");
-    survey.addExistingSurveyItem(Q_covidContact, hasSymptomGroupKey);
-
-    // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
-    const Q_covidHouseholdContact = covidHouseholdContact(hasSymptomGroupKey, Q_covidContact.key, true, "Qcov_BE_8b");
-    survey.addExistingSurveyItem(Q_covidHouseholdContact, hasSymptomGroupKey);
 
     // // Q4 when symptoms end --------------------------------------
     const Q_symptomsEnd = InfluenzanetWeekly.symptomsEnd(hasSymptomGroupKey, Q_symptomStart.key, true);
@@ -199,6 +175,30 @@ const weekly = <WeeklyDef>((): Survey | undefined => {
     // // Qcov_BE_16 test -----------------------------------------------------
     const Q_SymptomImpliedCovidTest = SymptomImpliedCovidTest(hasSymptomGroupKey, true, "Qcov_BE_16");
     survey.addExistingSurveyItem(Q_SymptomImpliedCovidTest, hasSymptomGroupKey);
+
+    // // Q_BE_cov16e duration untill test
+    const Q_durationTest = durationTest(rootKey, Q_SymptomImpliedCovidTest.key, true, "Q_BE_cov16e")
+    survey.addExistingSurveyItem(Q_durationTest, rootKey);  
+    
+    //Qcov_BE_16b test result
+    const Q_resultTest = resultTest(rootKey, Q_SymptomImpliedCovidTest.key, true, "Qcov_BE_16b")
+    survey.addExistingSurveyItem(Q_resultTest, rootKey);  
+    
+    // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
+    const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, true, "Qcov_BE_3");
+    survey.addExistingSurveyItem(Q_covidPCRTestedContact, hasSymptomGroupKey);
+
+    // // Qcov_BE_3b household pcr contacts COVID-19--------------------------
+    const Q_pcrHouseholdContact = pcrHouseholdContact(hasSymptomGroupKey, Q_covidPCRTestedContact.key, true, "Qcov_BE_3b");
+    survey.addExistingSurveyItem(Q_pcrHouseholdContact, hasSymptomGroupKey);
+
+    // // Qcov_BE_8 contact with people showing symptoms -------------------------------------
+    const Q_covidContact = covidSymptomsContact(hasSymptomGroupKey, true, "Qcov_BE_8");
+    survey.addExistingSurveyItem(Q_covidContact, hasSymptomGroupKey);
+
+    // // Qcov_BE_8b contact with people showing symtoms in your household ---------------------------
+    const Q_covidHouseholdContact = covidHouseholdContact(hasSymptomGroupKey, Q_covidContact.key, true, "Qcov_BE_8b");
+    survey.addExistingSurveyItem(Q_covidHouseholdContact, hasSymptomGroupKey);
 
     // // Qcov_BE_7 Covid 19 habits change question ------------------------------------------------------
     const Q_covidHabits = covidHabitsChange(hasSymptomGroupKey, false, "Qcov_BE_7");
@@ -1009,7 +1009,7 @@ const dateTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const durationTest = (parentKey: string, keySymptomImpliedCovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_16e'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1028,8 +1028,8 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
     // CONDITION
     editor.setCondition(
         expWithArgs('and',
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03'),
-            expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0')
+            expWithArgs('responseHasKeysAny', keySymptomImpliedCovidTest, [responseGroupKey, singleChoiceKey].join('.'), '1','2','5')
+            // expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0')
         )
     );
 
@@ -1194,7 +1194,7 @@ const durationTest = (parentKey: string, keycovidTest?: string, keyreasonTest?: 
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
-const resultTest = (parentKey: string, keycovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+const resultTest = (parentKey: string, keySymptomImpliedCovidTest?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const defaultKey = 'Qcov_BE_16b'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
@@ -1211,9 +1211,9 @@ const resultTest = (parentKey: string, keycovidTest?: string, isRequired?: boole
     );
 
     // CONDITION
-    if (keycovidTest) {
+    if (keySymptomImpliedCovidTest) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keycovidTest, [responseGroupKey, singleChoiceKey].join('.'), '01','02','03')
+            expWithArgs('responseHasKeysAny', keySymptomImpliedCovidTest, [responseGroupKey, singleChoiceKey].join('.'), '1','2','5')
         );
     }
 
@@ -4190,10 +4190,10 @@ const SymptomImpliedCovidTest = (parentKey: string, isRequired?: boolean, keyOve
             key: '5', role: 'option',
             disabled: expWithArgs('responseHasKeysAny', editor.getItem().key, responseGroupKey + '.' + multipleChoiceKey, '3', '4'),
             content: new Map([
-                ["nl-be", "Ja, een sneltest (antigeentest) (met een wattenstaafje in mijn neus of mond, en met een resultaat beschikbaar binnen het uur)"],
-                ["fr-be", "Oui, un test antigénique rapide (sur un écouvillon introduit dans le nez ou la bouche, permettant d'obtenir un résultat en moins d'une heure)"],
+                ["nl-be", "Ja, een sneltest of antigeentest (met een wattenstaafje in mijn neus of mond, en met een resultaat beschikbaar binnen het uur)"],
+                ["fr-be", "Oui, un test (antigénique) rapide (sur un écouvillon introduit dans le nez ou la bouche, permettant d'obtenir un résultat en moins d'une heure)"],
                 ["de-be", "Ja, ein Antigen-Schnelltest (mit einem Wattestäbchen in Nase oder Mund mit einem Ergebnis, das in unter einer Stunde verfügbar ist)"],
-                ["en", "Yes, a rapid antigen detection test (on a swab in nose or mouth, with a result available in less than an hour)"],
+                ["en", "Yes, a rapid (antigen) detection test (on a swab in nose or mouth, with a result available in less than an hour)"],
             ])
         },
         {

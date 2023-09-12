@@ -158,9 +158,6 @@ const intake = <IntakeDef>((): Survey | undefined => {
     const Q_pets = DefaultIntake.pets(rootKey, true);
     survey.addExistingSurveyItem(Q_pets, rootKey);
 
-    const Q_find_infectieradar = find_infectieradar(rootKey, true);
-    survey.addExistingSurveyItem(Q_find_infectieradar, rootKey);
-
     const Q_previous_covid19_episode = previous_covid19_episode(rootKey, true);
     survey.addExistingSurveyItem(Q_previous_covid19_episode, rootKey);
 
@@ -193,6 +190,9 @@ const intake = <IntakeDef>((): Survey | undefined => {
 
     const surveyEndText = DefaultIntake.surveyEnd(rootKey);
     survey.addExistingSurveyItem(surveyEndText, rootKey);
+
+    const Q_find_infectieradar = find_infectieradar(rootKey, true);
+    survey.addExistingSurveyItem(Q_find_infectieradar, rootKey);
 
     return survey.getSurvey();
 })
@@ -3307,10 +3307,10 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Denkt u dat u al besmet bent (geweest) met het coronavirus (COVID-19)?"],
+            ["nl-be", "Denkt u dat u besmet bent (geweest) met het coronavirus (COVID-19) in de afgelopen 6 maanden?"],
             ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus (COVID-19) ?"],
             ["de-be", "Denken Sie, dass Sie schon einmal mit dem Coronavirus (COVID-19) infiziert waren?"],
-            ["en", "Do you think you are or have been infected with the coronavirus? (COVID-19)?"],
+            ["en", "Do you think you are or have been infected with the coronavirus in the previous six months? (COVID-19)?"],
         ]))
     );
 
@@ -3362,10 +3362,10 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
         {
             key: '0', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik denk niet dat ik het coronavirus al heb gehad"],
+                ["nl-be", "Nee, ik denk niet dat ik het coronavirus heb gehad"],
                 ["fr-be", "Non, je ne pense pas avoir été déjà infecté(e) par le coronavirus"],
                 ["de-be", "Nein, ich denke nicht, dass ich das Coronavirus schon hatte"],
-                ["en", "No, I do not think I have already been infected with the coronavirus"],
+                ["en", "No, I do not think I have been infected with the coronavirus"],
             ])
         },
 
