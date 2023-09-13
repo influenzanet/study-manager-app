@@ -3308,8 +3308,8 @@ const previous_covid19_episode = (parentKey: string, isRequired?: boolean, keyOv
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["nl-be", "Denkt u dat u besmet bent (geweest) met het coronavirus (COVID-19) in de afgelopen 6 maanden?"],
-            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus (COVID-19) ?"],
-            ["de-be", "Denken Sie, dass Sie schon einmal mit dem Coronavirus (COVID-19) infiziert waren?"],
+            ["fr-be", "Pensez-vous être ou avoir été infecté(e) par le coronavirus au cours des 6 derniers mois ?"],
+            ["de-be", "Glauben Sie, dass Sie in den letzten sechs Monaten schon einmal mit dem Coroanvirus (COVID-19) infiziert (gewesen) waren?"],
             ["en", "Do you think you are or have been infected with the coronavirus in the previous six months? (COVID-19)?"],
         ]))
     );
