@@ -40,7 +40,15 @@ export const studyRules = ((
         // add weekly survey
         StudyEngine.participantActions.assignedSurveys.add(weekly.key, "prio"),
         // add optional intake
-        StudyEngine.participantActions.assignedSurveys.add(intake.key, "optional")
+        StudyEngine.participantActions.assignedSurveys.add(intake.key, "optional"),
+        // add priority intake again after 1 year
+        StudyEngine.participantActions.assignedSurveys.add(
+            intake.key,
+            "prio",
+            StudyEngine.timestampWithOffset({
+                years: 1,
+            })
+        ),
     );
 
     const handleWeekly = StudyEngine.ifThen(
