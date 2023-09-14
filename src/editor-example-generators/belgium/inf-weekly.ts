@@ -177,12 +177,12 @@ const weekly = <WeeklyDef>((): Survey | undefined => {
     survey.addExistingSurveyItem(Q_SymptomImpliedCovidTest, hasSymptomGroupKey);
 
     // // Q_BE_cov16e duration untill test
-    const Q_durationTest = durationTest(rootKey, Q_SymptomImpliedCovidTest.key, true, "Q_BE_cov16e")
-    survey.addExistingSurveyItem(Q_durationTest, rootKey);  
+    const Q_durationTest = durationTest(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true, "Q_BE_cov16e")
+    survey.addExistingSurveyItem(Q_durationTest, hasSymptomGroupKey);  
     
     //Qcov_BE_16b test result
-    const Q_resultTest = resultTest(rootKey, Q_SymptomImpliedCovidTest.key, true, "Qcov_BE_16b")
-    survey.addExistingSurveyItem(Q_resultTest, rootKey);  
+    const Q_resultTest = resultTest(hasSymptomGroupKey, Q_SymptomImpliedCovidTest.key, true, "Qcov_BE_16b")
+    survey.addExistingSurveyItem(Q_resultTest, hasSymptomGroupKey);  
     
     // // Qcov_BE_3 pcr tested contact COVID-19--------------------------------------
     const Q_covidPCRTestedContact = pcrTestedContact(hasSymptomGroupKey, true, "Qcov_BE_3");
@@ -1026,11 +1026,9 @@ const durationTest = (parentKey: string, keySymptomImpliedCovidTest?: string, is
     );
 
     // CONDITION
+    
     editor.setCondition(
-        expWithArgs('and',
-            expWithArgs('responseHasKeysAny', keySymptomImpliedCovidTest, [responseGroupKey, singleChoiceKey].join('.'), '1','2','5')
-            // expWithArgs('responseHasKeysAny', keyreasonTest, [responseGroupKey, multipleChoiceKey].join('.'), '0')
-        )
+        expWithArgs('responseHasKeysAny', keySymptomImpliedCovidTest, [responseGroupKey, multipleChoiceKey].join('.'), '1','2','5')
     );
 
     // INFO POPUP
@@ -1211,11 +1209,9 @@ const resultTest = (parentKey: string, keySymptomImpliedCovidTest?: string, isRe
     );
 
     // CONDITION
-    if (keySymptomImpliedCovidTest) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keySymptomImpliedCovidTest, [responseGroupKey, singleChoiceKey].join('.'), '1','2','5')
-        );
-    }
+    editor.setCondition(
+        expWithArgs('responseHasKeysAny', keySymptomImpliedCovidTest, [responseGroupKey, multipleChoiceKey].join('.'), '1','2','5')
+    );
 
     // INFO POPUP
     editor.setHelpGroupComponent(
