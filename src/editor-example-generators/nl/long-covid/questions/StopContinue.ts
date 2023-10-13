@@ -15,7 +15,7 @@ export class SCGroup extends GroupItemEditor {
     S1JaCondition?: Expression;
 
 
-    constructor(parentKey: string, keyOverride?: string ,hideCopyRight?: boolean) {
+    constructor(parentKey: string, keyOverride?: string, hideCopyRight?: boolean) {
         const groupKey = keyOverride ? keyOverride : 'SC';
         super(parentKey, groupKey);
         this.useCopyRight = hideCopyRight !== true;
@@ -32,7 +32,7 @@ export class SCGroup extends GroupItemEditor {
             CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'no');
         const participant_cont =
             CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'yes');
-       
+
 
 
         //// GROUP: STOP

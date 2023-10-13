@@ -1,4 +1,4 @@
-import { Survey } from "survey-engine/data_types";
+import { Expression, Survey } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
@@ -7,6 +7,8 @@ import { SCGroup } from "../questions/StopContinue";
 import { DemographieGroup } from "../questions/demographie";
 import { Q_mMRC } from "../questions/mMRC";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+import { CovidTestGroup } from "../questions/covidTest";
+import { VaccinationGroup } from "../questions/vaccination";
 
 
 export const generateTstopcontinue = (): Survey | undefined => {
@@ -38,15 +40,11 @@ export const generateTstopcontinue = (): Survey | undefined => {
     // We want to ask participants that want to continue the regular questions once and immediately
     //TODO; Can't get the group condition to work
 
-    const demographieGroupEditor = new DemographieGroup(
+    const continueGroupEditor = new ContinueGroup(
         surveyKey,
-        {
-            S1JaCondition: SCGroupEditor.S1JaCondition,
-
-        }
-    );   
-
-   
+        SCGroupEditor.S1JaCondition!
+    );
+    surveyEditor.addSurveyItemToRoot(continueGroupEditor.getItem());
 
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
@@ -54,4 +52,29 @@ export const generateTstopcontinue = (): Survey | undefined => {
     ])));
 
     return surveyEditor.getSurvey();
+}
+
+export class ContinueGroup extends GroupItemEditor {
+    constructor(
+        parentKey: string,
+        condition: Expression,
+    ) {
+        const groupKey = 'continue';
+        super(parentKey, groupKey);
+        this.groupEditor.setCondition(condition);
+        this.initQuestions();
+    }
+
+    initQuestions() {
+        const covidTestGroupEditor = new CovidTestGroup(this.key, false);
+        this.addItem(covidTestGroupEditor.getItem());
+
+        const vaccineGroupEditor = new VaccinationGroup(this.key, false);
+        this.addItem(vaccineGroupEditor.getItem());
+
+        const demographieGroupEditor = new DemographieGroup(this.key, {});
+        this.addItem(demographieGroupEditor.getItem());
+    }
+
+
 }
