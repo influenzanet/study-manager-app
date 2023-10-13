@@ -12,9 +12,10 @@ const singleChoiceKey = 'scg';
 
 export class SCGroup extends GroupItemEditor {
     useCopyRight: boolean;
+    S1JaCondition?: Expression;
 
 
-    constructor(parentKey: string, keyOverride?: string, hideCopyRight?: boolean) {
+    constructor(parentKey: string, keyOverride?: string ,hideCopyRight?: boolean) {
         const groupKey = keyOverride ? keyOverride : 'SC';
         super(parentKey, groupKey);
         this.useCopyRight = hideCopyRight !== true;
@@ -31,6 +32,7 @@ export class SCGroup extends GroupItemEditor {
             CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'no');
         const participant_cont =
             CommonExpressions.singleChoiceOptionsSelected(stopcontinue.key, 'yes');
+       
 
 
         //// GROUP: STOP
@@ -59,8 +61,14 @@ export class SCGroup extends GroupItemEditor {
 
         /// GROUP: CONTINUE
         this.addItem(instructions_cont(this.key, participant_cont))
+        this.S1JaCondition = participant_cont
     }
+    // getS1JaCondition(): string | undefined {
+    //     return this.S1JaCondition;
+    // }
 }
+
+
 
 const copyRightText = new Map([
     ["en", "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. NL (English) v2.1"],
