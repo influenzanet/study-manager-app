@@ -9,6 +9,12 @@ import { Q_mMRC } from "../questions/mMRC";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { CovidTestGroup } from "../questions/covidTest";
 import { VaccinationGroup } from "../questions/vaccination";
+import { AcuteHealthGroup } from "../questions/acuteHealth";
+import { GeneralHealthGroup } from "../questions/ticp";
+import { EQ5DGroup } from "../questions/eq5d";
+import { CFQGroup } from "../questions/cfq";
+import { SF36Group } from "../questions/sf-36";
+import { MedicineGroup } from "../questions/medicine";
 
 
 export const generateTstopcontinue = (): Survey | undefined => {
@@ -72,8 +78,59 @@ export class ContinueGroup extends GroupItemEditor {
         const vaccineGroupEditor = new VaccinationGroup(this.key, false);
         this.addItem(vaccineGroupEditor.getItem());
 
+        const AcuteHealthGroupEditor = new AcuteHealthGroup(this.key);
+        this.addItem(AcuteHealthGroupEditor.getItem());
+
+        const GeneralHealthGroup = new AcuteHealthGroup(this.key);
+        this.addItem(GeneralHealthGroup.getItem());
+
+    
+        // Difficult to add this one, I am not sure how to use the surveyEditor
+        //const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(acuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+        //surveyEditor.addSurveyItemToRoot(Q_mMRC(surveyKey, hasKortademigCondition, true));
+
+        //const ncsiGroupEditor = new NCSIGroup(surveyKey, hasKortademigCondition);
+        //surveyEditor.addSurveyItemToRoot(ncsiGroupEditor.getItem());
+
+        const EQ5DGroupEditor = new EQ5DGroup(this.key, true, true);
+        this.addItem(EQ5DGroupEditor.getItem());
+
+        //surveyEditor.addSurveyItemToRoot(Q_CIS(surveyKey, true));
+
+        const CFQGroupEditor = new CFQGroup(this.key);
+        this.addItem(CFQGroupEditor.getItem());
+
+        const SF36GroupEditor = new SF36Group(this.key);
+        this.addItem(SF36GroupEditor.getItem());
+
+        const MedicineGroupEditor = new MedicineGroup(this.key);
+        this.addItem(MedicineGroupEditor.getItem());
+
         const demographieGroupEditor = new DemographieGroup(this.key, {});
         this.addItem(demographieGroupEditor.getItem());
+
+        //const demographieGroupEditor = new DemographieGroup(
+            //surveyKey,
+            //{
+                //getAgeInYearsExpression: undefined, // not relevant here, since pregnancy question only in T0
+                //testQ11jaCondition: covidTestGroupEditor.getQ11JaCondition(),
+                //geenReukSmaak: acuteHealthGroupEditor.geenReukSmaak,
+            //}
+        //);
+        //surveyEditor.addSurveyItemToRoot(demographieGroupEditor.getItem());
+    
+        //surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
+           // ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Dit was de laatste vragenlijst voor het LongCOVID-onderzoek. Hartelijk dank voor het invullen van deze en van de andere vragenlijsten van het onderzoek.']
+        //])));
+    
+        //return surveyEditor.getSurvey();
+
+
+
+
+
+
+
     }
 
 
