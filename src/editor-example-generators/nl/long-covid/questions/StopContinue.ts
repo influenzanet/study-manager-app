@@ -58,6 +58,7 @@ export class SCGroup extends GroupItemEditor {
         wantstoStop.addItem(q_healthstatus_def(wantstoStop.key, false));
 
         this.addItem(wantstoStop.getItem());
+        //this.addItem(instructions_cont(this.key, participant_cont))
 
         /// GROUP: CONTINUE
         this.addItem(instructions_cont(this.key, participant_cont))
@@ -86,7 +87,7 @@ const S_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
 ## Deze vragenlijst is binnen enkele minuten in te vullen.
 
-Dankjewel dat je de vragenlijsten voor het LongCOVID-onderzoek invult. Voor het onderzoek is het heel nuttig als je nog een jaar lang elke drie maanden een vragenlijst invult. Het maakt niet uit of je wel of geen klachten hebt. Deze nieuwe vragenlijsten zijn veel korter dan de vragenlijsten die je in het afgelopen jaar hebt ingevuld.
+Dankjewel dat je nog een aantal vragen wil beantwoorden voor het LongCOVID-onderzoek. Voor het onderzoek is het heel nuttig als je nog een vragenlijst invult. Het maakt niet uit of je wel of geen klachten hebt. Deze nieuwe vragenlijsten zijn veel korter dan de vragenlijsten die je in het afgelopen jaar hebt ingevuld.
 `
 
     return SurveyItemGenerators.display({
@@ -111,7 +112,7 @@ const S1 = (parentKey: string, keyOverride?: string): SurveyItem => {
         itemKey: itemKey,
         isRequired: true,
         questionText: new Map([
-            ["nl", "Wil je nog een jaar elke 3 maanden vragenlijsten voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
+            ["nl", "Wil je nog een vragenlijst voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
         ]),
         responseOptions: [
             {
@@ -378,7 +379,7 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?:
 
 const instructions_cont = (parentKey: string, condition?: Expression): SurveyItem => {
     const textContent = `
- Bedankt dat je nog een jaar door wil gaan met het LongCOVID-onderzoek. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over post-COVID. De nieuwe vragenlijsten zijn ook korter en kosten minder tijd om in te vullen.
+    Dankjewel, dat je nog een vragenlijst wilt invullen. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over post-COVID. De nieuwe vragenlijsten zijn ook korter en kosten minder tijd om in te vullen.
 `
     return SurveyItemGenerators.display({
         parentKey: parentKey,
