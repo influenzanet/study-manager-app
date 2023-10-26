@@ -4,18 +4,18 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
 import { SCGroup } from "../questions/StopContinue";
-import { DemographieGroup } from "../questions/demographie";
+import { DemographieGroup } from "../questions/demographie_catch";
 import { Q_mMRC } from "../questions/mMRC";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
-import { CovidTestGroup } from "../questions/covidTest";
-import { VaccinationGroup } from "../questions/vaccination";
+import { CovidTestGroup } from "../questions/covidTest_catch";
+import { VaccinationGroup } from "../questions/vaccination_catch_up";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
-import { GeneralHealthGroup } from "../questions/ticp";
+import { GeneralHealthGroup} from "../questions/ticp";
 import { EQ5DGroup } from "../questions/eq5d";
 import { CFQGroup } from "../questions/cfq";
 import { SF36Group } from "../questions/sf-36";
-import { MedicineGroup } from "../questions/medicine";
-import { NCSIGroup } from "../questions/ncsi";
+import { MedicineGroup } from "../questions/medicine_catchup";
+import { NCSIGroup } from "../questions/ncsi_catch";
 import { Q_CIS } from "../questions/cis";
 
 
@@ -46,7 +46,7 @@ export const generateTstopcontinue = (): Survey | undefined => {
 
 
     // We want to ask participants that want to continue the regular questions once and immediately
-    //TODO; Can't get the group condition to work
+    //TODO; Can't get the group condition to work [done]
 
     const continueGroupEditor = new ContinueGroup(
         surveyKey,
@@ -83,13 +83,19 @@ export class ContinueGroup extends GroupItemEditor {
         const AcuteHealthGroupEditor = new AcuteHealthGroup(this.key);
         this.addItem(AcuteHealthGroupEditor.getItem());
 
-        const GeneralHealthGroup = new AcuteHealthGroup(this.key);
-        this.addItem(GeneralHealthGroup.getItem());
+        const GeneralHealthGroupEditor = new GeneralHealthGroup(this.key);
+        this.addItem(GeneralHealthGroupEditor.getItem());
 
-        const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
-        this.addItem(Q_mMRC(this.key, hasKortademigCondition, true));
+        //const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+        //this.addItem(Q_mMRC(this.key, hasKortademigCondition, true));
 
-        const ncsiGroupEditor = new NCSIGroup(this.key, hasKortademigCondition);
+        //const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+        this.addItem(Q_mMRC(this.key));
+
+        //const ncsiGroupEditor = new NCSIGroup(this.key, hasKortademigCondition);
+        //this.addItem(ncsiGroupEditor.getItem());
+
+        const ncsiGroupEditor = new NCSIGroup(this.key);
         this.addItem(ncsiGroupEditor.getItem());
 
         const EQ5DGroupEditor = new EQ5DGroup(this.key, true, true);
