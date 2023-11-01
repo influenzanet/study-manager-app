@@ -12,6 +12,7 @@ import { AgeCategoryFlagName } from "../../studyRules";
 
 export class SCGroup extends GroupItemEditor {
     useCopyRight: boolean;
+    S1JaCondition?: Expression;
 
     constructor(parentKey: string,
         keyOverride?: string,
@@ -70,6 +71,7 @@ export class SCGroup extends GroupItemEditor {
 
         /// GROUP: CONTINUE
         this.addItem(instructions_cont(this.key, participant_cont))
+        this.S1JaCondition = participant_cont
     }
 }
 
@@ -89,7 +91,7 @@ const S_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
 ## Deze vragenlijst is binnen enkele minuten in te vullen.
 
-Dankjewel dat je de vragenlijsten voor het LongCOVID-onderzoek invult. Voor het onderzoek is het heel nuttig als je nog een jaar lang elke drie maanden een vragenlijst invult. Het maakt niet uit of je wel of geen klachten hebt. Deze nieuwe vragenlijsten zijn veel korter dan de vragenlijsten die je in het afgelopen jaar hebt ingevuld.
+Dankjewel dat je de vragenlijsten voor het LongCOVID-onderzoek invult. Voor het onderzoek is het heel nuttig als een laaste vragenlijst invult. Het maakt niet uit of je wel of geen klachten hebt. Deze nieuwe vragenlijsten zijn veel korter dan de vragenlijsten die je in het afgelopen jaar hebt ingevuld.
 `
 
     return SurveyItemGenerators.display({
@@ -114,7 +116,7 @@ const S1 = (parentKey: string, keyOverride?: string): SurveyItem => {
         itemKey: itemKey,
         isRequired: true,
         questionText: new Map([
-            ["nl", "Wil je nog een jaar elke 3 maanden vragenlijsten voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
+            ["nl", "Wil je nog een laaste vragenlijst voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
         ]),
         responseOptions: [
             {
@@ -516,7 +518,7 @@ const q_healthstatus_def_proxy = (parentKey: string, isRequired?: boolean, condi
 
 const instructions_cont = (parentKey: string, condition?: Expression): SurveyItem => {
     const textContent = `
- Bedankt dat je nog een jaar door wil gaan met het LongCOVID-onderzoek. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over post-COVID. De nieuwe vragenlijsten zijn ook korter en kosten minder tijd om in te vullen.
+    Bedankt dat je nog een vragenlijst wil invullen voor het LongCOVID-onderzoek. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over post-COVID.
 `
     return SurveyItemGenerators.display({
         parentKey: parentKey,
