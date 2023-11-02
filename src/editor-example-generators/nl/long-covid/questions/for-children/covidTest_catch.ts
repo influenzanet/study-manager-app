@@ -26,7 +26,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const q5 = this.Q5('Q5', conditionQ1Ja, isRequired)
         const pos_FU = this.POS_FU('POS_FU', isRequired)
         const conditionQ5Positive = CommonExpressions.singleChoiceOptionsSelected(q5.key, 'pos');
-        const conditionQ5FUPositive = CommonExpressions.singleChoiceOptionsSelected(pos_FU.key, 'pos','yes_but');
+        const conditionQ5FUPositive = CommonExpressions.singleChoiceOptionsSelected(pos_FU.key, 'pos', 'yes_but');
         // const q7 = this.Q7('Q7', isRequired);
         // const conditionQ7Positive = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_test');
         // const conditionQ7Geen = CommonExpressions.singleChoiceOptionsSelected(q7.key, 'pos_earl_notest');
@@ -39,7 +39,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_infect_earlier3x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '3keer', 'vaker');
         const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
         const condition_infect_earlier_ja = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker', 'unknown');
-        const condition_q11 = this.Q11("Q11", condition_infect_earlier_ja, isRequired) 
+        const condition_q11 = this.Q11("Q11", condition_infect_earlier_ja, isRequired)
         const condition_q11_ja = CommonExpressions.singleChoiceOptionsSelected(condition_q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
 
         this.addItem(this.groupIntro());
@@ -76,7 +76,7 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(q15b(this.key, true, condition_infect_earlier3x));
             // this.addItem(q15c(this.key, true, condition_infect_earlier3x));
             // this.addItem(q16(this.key, true, condition_infect_earlier_vaker));
-            
+
         }
 
         if (!this.isPartOfSurvey(surveyKeys.shortC)) {
@@ -235,13 +235,13 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                 {
                     key: 'yes_but', role: 'option',
                     content: new Map([
-                        ["nl", "Ja, maar ik weet niet precies meer of dit voor de vorige vragenlijst was"],
+                        ["nl", "Ja, maar ik weet niet meer precies of dit voor of na de vorige vragenlijst was"],
                     ])
                 },
                 {
                     key: 'no_but', role: 'option',
                     content: new Map([
-                        ["nl", "Nee, echter heb ik mij niet getest wanneer ik klachten ervaarden"],
+                        ["nl", "Nee, maar ik heb ook geen test gedaan als ik klachten had"],
                     ])
                 },
             ],
@@ -613,7 +613,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "Met een bloedtest (serologie) "],
                     ])
                 },
-            
+
                 {
                     key: '3', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),
@@ -661,7 +661,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
                         ["nl", "Met een bloedtest (serologie) "],
                     ])
                 },
-               
+
                 {
                     key: '3', role: 'option',
                     disabled: CommonExpressions.multipleChoiceOnlyOtherKeysSelected([this.key, key].join('.'), '3'),

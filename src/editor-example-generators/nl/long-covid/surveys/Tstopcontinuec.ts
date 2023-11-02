@@ -1,4 +1,4 @@
-import { Expression,Survey } from "survey-engine/data_types";
+import { Expression, Survey } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
@@ -20,7 +20,7 @@ export const generateTstopcontinuec = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Wekelijkse update van klachten LongCOVID-onderzoek"],
+            ["nl", "Laatste vragenlijst over LongCOVID-onderzoek"],
         ]),
         description: new Map([
             ["nl", "In de vorige vragenlijst heb je aangegeven klachten te hebben. In deze update vragen we je of deze klachten nog steeds aanwezig zijn, en hoe je je voelt."],
@@ -39,7 +39,7 @@ export const generateTstopcontinuec = (): Survey | undefined => {
     const SCGroupEditor = new SCGroup(surveyKey);
     surveyEditor.addSurveyItemToRoot(SCGroupEditor.getItem());
 
-   
+
     // We want to ask participants that want to continue the regular questions once and immediately
     //TODO; Can't get the group condition to work [done]
 
@@ -48,10 +48,10 @@ export const generateTstopcontinuec = (): Survey | undefined => {
         SCGroupEditor.S1JaCondition!
     );
     surveyEditor.addSurveyItemToRoot(continueGroupEditor.getItem());
-   
+
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag, dank je wel!']
+        ['nl', 'Dit was de laatste vraag. Heel veel dank voor je medewerking aan het onderzoek. Als je hieronder op verzenden klikt krijg je geen vragenlijsten meer van ons.']
     ])));
 
     return surveyEditor.getSurvey();
@@ -73,45 +73,45 @@ export class ContinueGroup extends GroupItemEditor {
 
     initQuestions() { //adding Qeustion of T12c to the catch-up
 
-    // COVID test group for children
-    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(this.key);
-    this.addItem(childrenCovidTestGroupEditor.getItem());
+        // COVID test group for children
+        const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(this.key);
+        this.addItem(childrenCovidTestGroupEditor.getItem());
 
-    // COVID vaccination for children
-    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(this.key);
-    this.addItem(childrenVaccinationGroupEditor.getItem());
+        // COVID vaccination for children
+        const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(this.key);
+        this.addItem(childrenVaccinationGroupEditor.getItem());
 
-    // SymptomsGroup for children
-    const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(this.key, {
-        olderThan10: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'false'),
-        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
-    });
-    this.addItem(childrenSymptomsGroupEditor.getItem());
+        // SymptomsGroup for children
+        const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(this.key, {
+            olderThan10: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'false'),
+            q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+        });
+        this.addItem(childrenSymptomsGroupEditor.getItem());
 
-    // General Health for children
-    const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(this.key, {
-        hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
-        hasReportedSymptomsQ1: childrenSymptomsGroupEditor.hasAnyReportedSymptoms,
-        youngerThan8: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'true'),
-        youngerThan11: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'true'),
-        between8And12: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.between8and12, 'true'),
-        between13And18: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
-    });
-    this.addItem(childrenGeneralHealthGroupEditor.getItem());
+        // General Health for children
+        const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(this.key, {
+            hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
+            hasReportedSymptomsQ1: childrenSymptomsGroupEditor.hasAnyReportedSymptoms,
+            youngerThan8: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'true'),
+            youngerThan11: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger11, 'true'),
+            between8And12: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.between8and12, 'true'),
+            between13And18: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.older12, 'true'),
+        });
+        this.addItem(childrenGeneralHealthGroupEditor.getItem());
 
-    // EQ5D group
-   const eq5dGroupEditor = new EQ5DProxyGroup(this.key, {
-    olderThan7: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'false')
-       });
-this.addItem(eq5dGroupEditor.getItem());
+        // EQ5D group
+        const eq5dGroupEditor = new EQ5DProxyGroup(this.key, {
+            olderThan7: CommonExpressions.hasParticipantFlag(AgeCategoryFlagName.younger8, 'false')
+        });
+        this.addItem(eq5dGroupEditor.getItem());
 
-// General data group
-const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(this.key, {
-    q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
-});
-this.addItem(childrenGeneralDataGroupEditor.getItem());
+        // General data group
+        const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(this.key, {
+            q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
+        });
+        this.addItem(childrenGeneralDataGroupEditor.getItem());
 
 
-        
+
     }
 }

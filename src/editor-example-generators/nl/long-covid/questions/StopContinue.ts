@@ -85,9 +85,9 @@ const eq5dCopyright = {
 
 const S_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
-## Deze vragenlijst is binnen enkele minuten in te vullen.
+## Hieronder vragen we of je nog één keer een vragenlijst wilt invullen.
 
-Dankjewel dat je nog een aantal vragen wil beantwoorden voor het LongCOVID-onderzoek. Voor het onderzoek is het heel nuttig als je nog een vragenlijst invult. Het maakt niet uit of je wel of geen klachten hebt. Deze nieuwe vragenlijsten zijn veel korter dan de vragenlijsten die je in het afgelopen jaar hebt ingevuld.
+Voor het onderzoek is het heel nuttig als je deze laatste vragenlijst invult, ook als je geen klachten meer hebt. Invullen kost ongeveer 10 minuten. Als je hieronder aanvinkt dat je toch geen vragenlijst meer wilt, dan stellen we je alleen twee korte vragen. Deze korte vragen kun je in minder dan één minuut invullen.
 `
 
     return SurveyItemGenerators.display({
@@ -112,7 +112,7 @@ const S1 = (parentKey: string, keyOverride?: string): SurveyItem => {
         itemKey: itemKey,
         isRequired: true,
         questionText: new Map([
-            ["nl", "Wil je nog een vragenlijst voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
+            ["nl", "Wil je nog een laatste vragenlijst voor het LongCOVID-onderzoek invullen? Ook als je geen klachten meer hebt, help je daarmee het onderzoek naar Long Covid."],
         ]),
         responseOptions: [
             {
@@ -141,17 +141,17 @@ const S2 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Wat is de reden dat je wilt stoppen met het invullen van de vragenlijsten?"],
+            ["nl", "Wat is de reden dat je geen vragenlijst meer wilt invullen?"],
         ]),
         questionSubText: new Map([
-            ["nl", " Er zijn meerdere antwoorden mogelijk. Waarom vragen we dit? We willen kijken waarom deelnemers stoppen omdat dit onze bevindingen kan beïnvloeden. Hiermee kunnen we uitzoeken waarom sommige mensen wél klachten blijven houden en sommige mensen niet."],
+            ["nl", " Er zijn meerdere antwoorden mogelijk. Waarom vragen we dit? We willen kijken waarom deelnemers stoppen voordat de laatste vragenlijst is ingevuld, omdat dit onze bevindingen kan beïnvloeden. Hiermee kunnen we uitzoeken waarom sommige mensen wél klachten blijven houden en sommige mensen niet."],
         ]),
 
         responseOptions: [
             {
                 key: '0', role: 'option',
                 content: new Map([
-                    ["nl", "Ik heb geen klachten of ik heb geen klachten meer"],
+                    ["nl", "Ik heb geen klachten (of ik heb geen klachten meer)"],
                 ])
             },
             {
@@ -256,7 +256,7 @@ const q_healthstatus_instructions_def = (parentKey: string, keyOverride?: string
     editor.setTitleComponent(
         generateTitleComponent(new Map([
             ["en", "Could you fill in one single last question?"],
-            ["nl", "Zouden we je nog één korte laatste vraag mogen stellen?"],
+            ["nl", "Hieronder stellen we je nog één korte laatste vraag."],
         ]))
     );
     editor.addDisplayComponent(
@@ -379,7 +379,7 @@ const q_healthstatus_def = (parentKey: string, isRequired?: boolean, condition?:
 
 const instructions_cont = (parentKey: string, condition?: Expression): SurveyItem => {
     const textContent = `
-    Dankjewel, dat je nog een vragenlijst wilt invullen. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over post-COVID. De nieuwe vragenlijsten zijn ook korter en kosten minder tijd om in te vullen.
+    Dankjewel, dat je nog een vragenlijst wilt invullen. Dankzij jouw inzet krijgen we steeds beter zicht op langdurige klachten na corona. Hiermee kunnen we zorgverleners en beleidsmakers gerichter informeren over Long COVID.
 `
     return SurveyItemGenerators.display({
         parentKey: parentKey,

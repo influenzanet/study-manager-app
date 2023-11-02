@@ -44,14 +44,14 @@ export class CovidTestGroup extends GroupItemEditor {
             CommonExpressions.singleChoiceOptionsSelected(test.key, 'yes', 'yes>7', 'yes>14'),
             // CommonExpressions.singleChoiceOptionsSelected(test_FU.key, 'yes')
         )
-        
+
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
         const condition_test_result_pos = CommonExpressions.singleChoiceOptionsSelected(test_result.key, 'pos');
         const condition_test_result_pos_FU_2 = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos');
-        const condition_test_result_pos_FU = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos','yes_but');
+        const condition_test_result_pos_FU = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos', 'yes_but');
         // const infect_earlier = q_infect_earlier_def(this.key, true);
         const infect_earlier2 = q_infect_earlier_def2(this.key, true);
-        const langdurige_klachten = q_langdurige_klachten(this.key , true);
+        const langdurige_klachten = q_langdurige_klachten(this.key, true);
         // const condition_pos_earl_test = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test');
         // const condition_pos_earl_notest = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_notest');
         // const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier.key, 'pos_earl_test', 'pos_earl_notest', 'pos_earl_maybe_notest', 'unknown');
@@ -60,7 +60,7 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_infect_earlier3x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '3keer', 'vaker');
         // const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
         const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker', 'unknown');
-        const condition_for_langdurige_klachten_date = CommonExpressions.singleChoiceOptionsSelected(langdurige_klachten.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');    
+        const condition_for_langdurige_klachten_date = CommonExpressions.singleChoiceOptionsSelected(langdurige_klachten.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(test);
@@ -103,9 +103,9 @@ export class CovidTestGroup extends GroupItemEditor {
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
             const Q17 = q_langdurige_klachten_date(this.key, true, condition_for_langdurige_klachten_date);
             this.addItem(Q17)
-        // }
-        // if (!this.isPartOfSurvey(surveyKeys.short)) {
-        //     this.addItem(Q_instructions2(this.key))
+            // }
+            // if (!this.isPartOfSurvey(surveyKeys.short)) {
+            //     this.addItem(Q_instructions2(this.key))
         }
         this.addPageBreak();
     }
@@ -335,13 +335,13 @@ const POS_FU = (parentKey: string, isRequired?: boolean, condition?: Expression,
             {
                 key: 'yes_but', role: 'option',
                 content: new Map([
-                    ["nl", "Ja, maar ik weet niet precies meer of dit voor de vorige vragenlijst was"],
+                    ["nl", "Ja, maar ik weet niet meer precies of dit voor of na de vorige vragenlijst was"],
                 ])
             },
             {
                 key: 'no_but', role: 'option',
                 content: new Map([
-                    ["nl", "Nee, echter heb ik mij niet getest wanneer ik klachten ervaarden"],
+                    ["nl", "Nee, maar ik heb ook geen test gedaan als ik klachten had"],
                 ])
             },
         ],
@@ -696,7 +696,7 @@ const q_test_type_def = (parentKey: string, isRequired?: boolean, condition?: Ex
                     ["nl", "Met een bloedtest (serologie) "],
                 ])
             },
-            
+
             {
                 key: '3', role: 'option',
                 content: new Map([
@@ -740,7 +740,7 @@ const q_test_type_def_FU = (parentKey: string, isRequired?: boolean, condition?:
                     ["nl", "Met een bloedtest (serologie) "],
                 ])
             },
-            
+
             {
                 key: '3', role: 'option',
                 content: new Map([

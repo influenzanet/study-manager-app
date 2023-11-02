@@ -10,7 +10,7 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 import { CovidTestGroup } from "../questions/covidTest_catch";
 import { VaccinationGroup } from "../questions/vaccination_catch_up";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
-import { GeneralHealthGroup} from "../questions/ticp";
+import { GeneralHealthGroup } from "../questions/ticp";
 import { EQ5DGroup } from "../questions/eq5d";
 import { CFQGroup } from "../questions/cfq";
 import { SF36Group } from "../questions/sf-36";
@@ -25,7 +25,7 @@ export const generateTstopcontinue = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKeys.Tstopcontinue,
         name: new Map([
-            ["nl", "Korte update LongCOVID-onderzoek"],
+            ["nl", "Laatste vragenlijst over LongCOVID-onderzoek"],
         ]),
         description: new Map([
             ["nl", "Je kunt in deze vragenlijst aangeven of je mee blijft doen aan het LongCOVID onderzoek"],
@@ -56,7 +56,7 @@ export const generateTstopcontinue = (): Survey | undefined => {
 
 
     surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Als je hebt aangegeven dat je geen vragenlijsten meer wil ontvangen dan zul je deze in de toekomst niet meer krijgen. Als je hebt aangegeven nog een jaar door te willen gaan met het onderzoek dan kun je hieronder op submit klikken en dan staat een nieuwe vragenlijst voor je klaar op de startpagina.']
+        ['nl', 'Dit was de laatste vraag. Heel veel dank voor je medewerking aan het onderzoek. Als je hieronder op verzenden klikt krijg je geen vragenlijsten meer van ons.']
     ])));
 
     return surveyEditor.getSurvey();
