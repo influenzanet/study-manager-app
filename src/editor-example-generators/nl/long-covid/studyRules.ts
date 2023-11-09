@@ -592,6 +592,7 @@ const handleTstopcontinueSubmission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.Tstopcontinue),
         [
             StudyActions.removeAllSurveys(),
+            finishParticipation("finished"),
         ]
     )
 }
@@ -601,6 +602,7 @@ const handleTstopcontinuecSubmission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.Tstopcontinuec),
         [
             StudyActions.removeAllSurveys(),
+            finishParticipation("finished"),
         ]
     )
 }
