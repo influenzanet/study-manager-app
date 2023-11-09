@@ -117,6 +117,11 @@ const assignT6c = () => assignSurveyFromStudyStart(surveyKeys.T6c, "prio", 180, 
 const assignT9c = () => assignSurveyFromStudyStart(surveyKeys.T9c, "prio", 270, 42);
 const assignT12c = () => assignSurveyFromStudyStart(surveyKeys.T12c, "prio", 360, 42);
 
+//const assignT15c = () => assignSurveyFromStudyStart(surveyKeys.T15c, "prio", 450, 42);
+//const assignT18c = () => assignSurveyFromStudyStart(surveyKeys.T18c, "prio", 540, 42);
+//const assignT21c = () => assignSurveyFromStudyStart(surveyKeys.T21c, "prio", 630, 42);
+//const assignT24c = () => assignSurveyFromStudyStart(surveyKeys.T24c, "prio", 720, 42);
+
 export const AgeCategoryFlagName = {
     younger5: '<5',
     younger8: '<8',
@@ -480,15 +485,35 @@ const handleT12Submission = (): Expression => {
     )
 }
 
+//const handleT12cSubmission = (): Expression => {
+    //return StudyActions.ifThen(
+        //StudyExpressions.checkSurveyResponseKey(surveyKeys.T12c),
+        //[
+            //StudyActions.removeAllSurveys(),
+            //StudyActions.if(
+                //StudyExpressions.singleChoiceOptionsSelected('T12c.GEN.extend_FU', 'ja'),
+                // Then:
+                //assignT15c(),
+                // Else:
+                //finishParticipation("finished")
+            //)  
+        //]
+    //)
+//}
+
+//has to be checked in studyRules
 const handleT12cSubmission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T12c),
         [
             StudyActions.removeAllSurveys(),
             finishParticipation("finished")
+             
         ]
     )
 }
+
+
 
 const handleT15Submission = (): Expression => {
     return StudyActions.ifThen(
@@ -500,6 +525,16 @@ const handleT15Submission = (): Expression => {
     )
 }
 
+//const handleT15cSubmission = (): Expression => {
+    //return StudyActions.ifThen(
+        //StudyExpressions.checkSurveyResponseKey(surveyKeys.T15c),
+        //[
+           // StudyActions.removeAllSurveys(),
+           // assignT18c(),
+        //]
+    //)
+//}
+
 const handleT18Submission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T18),
@@ -509,6 +544,18 @@ const handleT18Submission = (): Expression => {
         ]
     )
 }
+
+//const handleT18cSubmission = (): Expression => {
+    //return StudyActions.ifThen(
+        //StudyExpressions.checkSurveyResponseKey(surveyKeys.T18c),
+        //[
+        //    StudyActions.removeAllSurveys(),
+        //    assignT21c(),
+        //]
+    //)
+//}
+
+
 const handleT21Submission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T21),
@@ -518,6 +565,19 @@ const handleT21Submission = (): Expression => {
         ]
     )
 }
+
+//const handleT21cSubmission = (): Expression => {
+    //return StudyActions.ifThen(
+    //    StudyExpressions.checkSurveyResponseKey(surveyKeys.T21c),
+    //    [
+    //        StudyActions.removeAllSurveys(),
+    //        assignT24c(),
+    //    ]
+    //)
+//}
+
+
+
 const handleT24Submission = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T24),
@@ -526,6 +586,38 @@ const handleT24Submission = (): Expression => {
         ]
     )
 }
+
+const handleTstopcontinueSubmission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.Tstopcontinue),
+        [
+            StudyActions.removeAllSurveys(),
+        ]
+    )
+}
+
+const handleTstopcontinuecSubmission = (): Expression => {
+    return StudyActions.ifThen(
+        StudyExpressions.checkSurveyResponseKey(surveyKeys.Tstopcontinuec),
+        [
+            StudyActions.removeAllSurveys(),
+        ]
+    )
+}
+
+
+
+
+//const handleT24cSubmission = (): Expression => {
+//    return StudyActions.ifThen(
+//        StudyExpressions.checkSurveyResponseKey(surveyKeys.T24c),
+//        [
+//            finishParticipation("finished"),
+//        ]
+//    )
+//}
+
+
 const handleStudyEntryEvent = (): Expression => {
     return StudyActions.ifThen(
         StudyExpressions.checkEventType('ENTER'),
@@ -549,9 +641,13 @@ const handleSubmissionEvent = () => StudyActions.ifThen(
         handleT12Submission(),
         handleT12cSubmission(),
         handleT15Submission(),
+        //handleT15cSubmission(),
         handleT18Submission(),
+        //handleT18cSubmission(),
         handleT21Submission(),
+        //handleT21cSubmission(),
         handleT24Submission(),
+        //handleT24cSubmission(),
     ]
 )
 
@@ -704,6 +800,46 @@ const handleTimerEvent = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T12c),
             [
+                StudyActions.removeAllSurveys(),
+               // assignT15c(),
+            ]
+        )
+    };
+
+    //const handleT15cExpired = (): Expression => {
+       // return StudyActions.ifThen(
+       //     isSurveyExpired(surveyKeys.T15c),
+       //     [
+       //         StudyActions.removeAllSurveys(),
+       //         assignT18c(),
+       //     ]
+       // )
+   // };
+
+   // const handleT18cExpired = (): Expression => {
+   //     return StudyActions.ifThen(
+   //         isSurveyExpired(surveyKeys.T18c),
+   //         [
+   //             StudyActions.removeAllSurveys(),
+   //             assignT21c(),
+   //         ]
+   //     )
+   // };
+
+    //const handleT21cExpired = (): Expression => {
+    //    return StudyActions.ifThen(
+    //        isSurveyExpired(surveyKeys.T21c),
+    //        [
+    //             StudyActions.removeAllSurveys(),
+    //            assignT24c(),
+    //        ]
+    //    )
+    // };
+
+    const handleT24cExpired = (): Expression => {
+        return StudyActions.ifThen(
+            isSurveyExpired(surveyKeys.T24c),
+            [
                 finishParticipation("expired")
             ]
         )
@@ -727,6 +863,10 @@ const handleTimerEvent = (): Expression => {
             handleT6cExpired(),
             handleT9cExpired(),
             handleT12cExpired(),
+            //handleT15cExpired(),
+            //handleT18cExpired(),
+            //handleT21cExpired(),
+            //handleT24cExpired(),
         ]
     )
 }
