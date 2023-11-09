@@ -650,6 +650,8 @@ const handleSubmissionEvent = () => StudyActions.ifThen(
         //handleT21cSubmission(),
         handleT24Submission(),
         //handleT24cSubmission(),
+        handleTstopcontinueSubmission(),
+        handleTstopcontinuecSubmission()
     ]
 )
 
