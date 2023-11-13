@@ -72,8 +72,8 @@ const vaccination = <VaccinationDef>((): Survey | undefined => {
     const Q_vac = vac(hasVaccineGroupKey, true);
     survey.addExistingSurveyItem(Q_vac, hasVaccineGroupKey);
 
-    const Q_vaccineBrandAll = vaccineBrandAll(hasVaccineGroupKey, Q_vac.key, true);
-    survey.addExistingSurveyItem(Q_vaccineBrandAll, hasVaccineGroupKey);
+    //const Q_vaccineBrandAll = vaccineBrandAll(hasVaccineGroupKey, Q_vac.key, true);
+    //survey.addExistingSurveyItem(Q_vaccineBrandAll, hasVaccineGroupKey);
 
     //const Q_vaccineBrand = vaccineBrand(hasVaccineGroupKey, Q_vac.key, true);
     //survey.addExistingSurveyItem(Q_vaccineBrand, hasVaccineGroupKey);
@@ -99,20 +99,23 @@ const vaccination = <VaccinationDef>((): Survey | undefined => {
     const Q_sideEffects = sideEffects(hasVaccineGroupKey, Q_vac.key, true);
     survey.addExistingSurveyItem(Q_sideEffects, hasVaccineGroupKey);
 
-    const Q_flu_vaccine_this_season = flu_vaccine_this_season(rootKey, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season, rootKey);
+    const Q_vacLastSeason = covid_vac_last_season(hasVaccineGroupKey, true);
+    survey.addExistingSurveyItem(Q_vacLastSeason, hasVaccineGroupKey);
 
-    const Q_flu_vaccine_this_season_when = flu_vaccine_this_season_when(rootKey, Q_flu_vaccine_this_season.key, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_when, rootKey);
+    const Q_flu_vaccine_this_season = flu_vaccine_this_season(hasVaccineGroupKey, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season, hasVaccineGroupKey);
 
-    const Q_flu_vaccine_this_season_reasons_for = flu_vaccine_this_season_reason_for(rootKey, Q_flu_vaccine_this_season.key, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_for, rootKey);
+    const Q_flu_vaccine_this_season_when = flu_vaccine_this_season_when(hasVaccineGroupKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_when, hasVaccineGroupKey);
 
-    const Q_flu_vaccine_this_season_reasons_against = flu_vaccine_this_season_reason_against(rootKey, Q_flu_vaccine_this_season.key, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, rootKey);
+    const Q_flu_vaccine_this_season_reasons_for = flu_vaccine_this_season_reason_for(hasVaccineGroupKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_for, hasVaccineGroupKey);
 
-    const Q_flu_vaccine_last_season = flu_vaccine_last_season(rootKey, true);
-    survey.addExistingSurveyItem(Q_flu_vaccine_last_season, rootKey);
+    const Q_flu_vaccine_this_season_reasons_against = flu_vaccine_this_season_reason_against(hasVaccineGroupKey, Q_flu_vaccine_this_season.key, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_this_season_reasons_against, hasVaccineGroupKey);
+
+    const Q_flu_vaccine_last_season = flu_vaccine_last_season(hasVaccineGroupKey, true);
+    survey.addExistingSurveyItem(Q_flu_vaccine_last_season, hasVaccineGroupKey);
 
     return survey.getSurvey();
 })
@@ -218,18 +221,155 @@ const hasVacGroup = (parentKey: string, keyVacStart: string, keyOverride?: strin
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
+// const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+//     const defaultKey = 'Q35'
+//     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+//     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+//     // QUESTION TEXT
+//     editor.setTitleComponent(
+//         generateTitleComponent(new Map([
+//             ["nl-be", "Bent u reeds gevaccineerd tegen COVID-19 (sinds december 2020)?"],
+//             ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus (depuis décembre 2020) ? "],
+//             ["de-be", "Sind Sie bereits gegen COVID-19 geimpft (seit Dezember 2020)? "],
+//             ["en", "Have you been vaccinated against COVID-19 (since December 2020)?"],
+//         ]))
+//     );
+
+//     // INFO POPUP
+//     editor.setHelpGroupComponent(
+//         generateHelpGroupComponent([
+//             {
+//                 content: new Map([
+//                     ["nl-be", "Waarom vragen we dit?"],
+//                     ["fr-be", "Pourquoi posons-nous cette question ?"],
+//                     ["de-be", "Warum fragen wir das?"],
+//                     ["en", "Why are we asking this?"],
+//                 ]),
+//                 style: [{ key: 'variant', value: 'h5' }],
+//             },
+//             {
+//                 content: new Map([
+//                     ["nl-be", "We willen onderzoeken hoeveel bescherming vaccinatie geeft."],
+//                     ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection offert par le vaccin."],
+//                     ["de-be", "Wir würden gerne untersuchen, wieviel Schutz der Impfstoff verleiht."],
+//                     ["en", "We would like to be able to work out how much protection the vaccine gives."],
+//                 ]),
+//                 style: [{ key: 'variant', value: 'p' }],
+//             },
+//             {
+//                 content: new Map([
+//                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+//                     ["fr-be", "Comment dois-je répondre à cette question ?"],
+//                     ["de-be", "Wie soll ich diese Frage beantworten?"],
+//                     ["en", "How should I answer this question?"],
+//                 ]),
+//                 style: [{ key: 'variant', value: 'h5' }],
+//             },
+//             {
+//                 content: new Map([
+//                     ["nl-be", "Antwoord ja indien u een COVID-19 vaccin heeft ontvangen (sinds december 2020). "],
+//                     ["fr-be", "Geben Sie 'Ja' an, wenn Sie eine Impfung mit COVID-19-Impfstoff erhielten (seit Dezember 2020)."],
+//                     ["de-be", "Répondez oui si vous avez reçu un vaccin contre le coronavirus (depuis décembre 2020)."],
+//                     ["en", "Report yes, if you received a COVID-19 vaccine (since December 2020)."],
+//                 ]),
+//                 // style: [{ key: 'variant', value: 'p' }],
+//             },
+//         ])
+//     );
+
+//     // RESPONSE PART
+//     const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+//     const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+//         {
+//             key: '1', role: 'option',
+//             content: new Map([
+//                 ["nl-be", "Ja, ik heb al minstens 1 dosis gekregen."],
+//                 ["fr-be", "Oui, j'ai reçu au moins un vaccin contre le coronavirus. "],
+//                 ["de-be", "Ja, ich erhielt mindestens einen COVID-19-Impfstoff"],
+//                 ["en", "Yes, I received at least one COVID-19 vaccine"],
+//             ])
+//         },
+//         {
+//             key: '01', role: 'option',
+//             content: new Map([
+//                 ["nl-be", "Nee, ik ben uitgenodigd en zal binnenkort een eerste dosis ontvangen."],
+//                 ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
+//                 ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten."],
+//                 ["en", "No, I was invited and will receive a vaccine soon."],
+//             ])
+//         },
+//         {
+//             key: '02', role: 'option',
+//             content: new Map([
+//                 ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd."],
+//                 ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
+//                 ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab."],
+//                 ["en", "No, I was invited but declined the vaccine."],
+//             ])
+//         },
+//         {
+//             key: '03', role: 'option',
+//             content: new Map([
+//                 ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen."],
+//                 ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
+//                 ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen."],
+//                 ["en", "When invited, I plan to receive a vaccine."],
+//             ])
+//         },
+//         {
+//             key: '04', role: 'option',
+//             content: new Map([
+//                 ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren."],
+//                 ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
+//                 ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen."],
+//                 ["en", "When invited, I will decline the vaccine."],
+//             ])
+//         },
+//         {
+//             key: '2', role: 'option',
+//             content: new Map([
+//                 ["nl-be", "Ik wens niet te antwoorden."],
+//                 ["fr-be", "Je ne sais pas/je ne me souviens pas."],
+//                 ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
+//                 ["en", "I don't know/can't remember."],
+//             ])
+//         },
+//     ]);
+//     editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+//     // VALIDATIONs
+//     if (isRequired) {
+//         editor.addValidation({
+//             key: 'r1',
+//             type: 'hard',
+//             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+//         });
+//     }
+
+//     return editor.getItem();
+// }
+
+
+/**
+ * VAC: single choice question about vaccination status for this season
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
 const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q35'
+    const defaultKey = 'Q35_new'
     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Bent u reeds gevaccineerd tegen COVID-19 (sinds december 2020)?"],
-            ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus (depuis décembre 2020) ? "],
-            ["de-be", "Sind Sie bereits gegen COVID-19 geimpft (seit Dezember 2020)? "],
-            ["en", "Have you been vaccinated against COVID-19 (since December 2020)?"],
+            ["nl-be", "Heeft u in het huidige winterseizoen (2023-2024) een COVID-19 vaccin laten toedienen?"],
+            ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus  lors de la saison correspondant à l’hiver 2023/2024?"],
+            ["de-be", "Haben Sie sich in der heutigen Wintersaison (2023/2024) eine COVID-19-Impfstoff verabreichen lassen?"],
+            ["en", "Did you receive a COVID-19 vaccine during this autumn/winter season (2023-2024)?"],
         ]))
     );
 
@@ -265,10 +405,10 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", "Antwoord ja indien u een COVID-19 vaccin heeft ontvangen (sinds december 2020). "],
-                    ["fr-be", "Geben Sie 'Ja' an, wenn Sie eine Impfung mit COVID-19-Impfstoff erhielten (seit Dezember 2020)."],
-                    ["de-be", "Répondez oui si vous avez reçu un vaccin contre le coronavirus (depuis décembre 2020)."],
-                    ["en", "Report yes, if you received a COVID-19 vaccine (since December 2020)."],
+                    ["nl-be", "Antwoord ja indien u dit seizoen (2023-2024) een COVID-19 vaccin heeft ontvangen."],
+                    ["fr-be", "Répondez oui si vous avez reçu un vaccin cette saison (2023-2024).."],
+                    ["de-be", "Melden Sie ja, wenn Sie in dieser Saison (2023-2024) einen COVID-19-Impfstoff erhalten haben."],
+                    ["en", "Report yes, if you received a COVID-19 vaccine this season (2023-2024)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -281,46 +421,28 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         {
             key: '1', role: 'option',
             content: new Map([
-                ["nl-be", "Ja, ik heb al minstens 1 dosis gekregen."],
-                ["fr-be", "Oui, j'ai reçu au moins un vaccin contre le coronavirus. "],
-                ["de-be", "Ja, ich erhielt mindestens einen COVID-19-Impfstoff"],
-                ["en", "Yes, I received at least one COVID-19 vaccine"],
+                ["nl-be", "Ja, ik heb een COVID-19 vaccin gekregen"],
+                ["fr-be", "Oui, j'ai reçu un vaccin contre le coronavirus. "],
+                ["de-be", "Ja, ich erhielt einen COVID-19-Impfstoff"],
+                ["en", "Yes, I received a COVID-19 vaccine"],
             ])
         },
         {
-            key: '01', role: 'option',
+            key: '05', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik ben uitgenodigd en zal binnenkort een eerste dosis ontvangen."],
-                ["fr-be", "Non, j'ai reçu une invitation, et je recevrai prochainement un vaccin."],
-                ["de-be", "Nein, ich habe einen Impftermin und werde bald einen Impfstoff erhalten."],
-                ["en", "No, I was invited and will receive a vaccine soon."],
+                ["nl-be", "Nee, maar zal binnenkort één ontvangen"],
+                ["fr-be", "Non, je recevrai prochainement un vaccin."],
+                ["de-be", "Nein, ich werde bald einen Impfstoff erhalten"],
+                ["en", "No, but I plan to receive a vaccine"],
             ])
         },
         {
-            key: '02', role: 'option',
+            key: '06', role: 'option',
             content: new Map([
-                ["nl-be", "Nee, ik ben uitgenodigd, maar heb de vaccinatie geweigerd."],
-                ["fr-be", "Non, j'ai reçu une invitation, mais j'ai refusé le vaccin."],
-                ["de-be", "Nein, ich wurde eingeladen, lehnte aber den Impfstoff ab."],
-                ["en", "No, I was invited but declined the vaccine."],
-            ])
-        },
-        {
-            key: '03', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin halen."],
-                ["fr-be", "Non, lorsque je serai invité(e), je prévois de me faire vacciner."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich mich impfen zu lassen."],
-                ["en", "When invited, I plan to receive a vaccine."],
-            ])
-        },
-        {
-            key: '04', role: 'option',
-            content: new Map([
-                ["nl-be", "Nee, wanneer ik een uitnodiging krijg, zal ik mijn vaccin weigeren."],
-                ["fr-be", "Non, lorsque je serai invité(e), je refuserai le vaccin."],
-                ["de-be", "Nein, wenn ich eingeladen werde, werde ich den Impfstoff und damit die Impfung ablehnen."],
-                ["en", "When invited, I will decline the vaccine."],
+                ["nl-be", "Nee, ik zal geen vaccin halen"],
+                ["fr-be", "Non, je prévois de ne me pas faire vacciner."],
+                ["de-be", "Nein, ich werde mich nicht impfen zu lassen"],
+                ["en", "No, I will not receive a vaccine"],
             ])
         },
         {
@@ -328,7 +450,7 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             content: new Map([
                 ["nl-be", "Ik wens niet te antwoorden."],
                 ["fr-be", "Je ne sais pas/je ne me souviens pas."],
-                ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern"],
                 ["en", "I don't know/can't remember."],
             ])
         },
@@ -346,7 +468,6 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
 
     return editor.getItem();
 }
-
 
 /**
  * VACCINE BRAND: Which vaccine was provided
@@ -475,272 +596,272 @@ const vaccineBrand = (parentKey: string, keyvac?: string, isRequired?: boolean, 
  * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
  * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
  */
- const vaccineBrandAll = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
-    const defaultKey = 'Q35bnew'
-    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
-    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+//  const vaccineBrandAll = (parentKey: string, keyvac?: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+//     const defaultKey = 'Q35bnew'
+//     const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+//     const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
 
-    // QUESTION TEXT
-    editor.setTitleComponent(
-        generateTitleComponent(new Map([
-            ["nl-be", "Hoeveel dosissen van deze COVID-19 vaccins heeft u reeds ontvangen?  "],
-            ["fr-be", "Combien de doses du vaccin (et quel) avez-vous reçu ?  "],
-            ["de-be", "Welchen (und wie viel Dosen) COVID-19-Impfstoff haben Sie erhalten? "],
-            ["en", "How many doses of these COVID-19 vaccines did you receive? "],
-        ]))
-    );
+//     // QUESTION TEXT
+//     editor.setTitleComponent(
+//         generateTitleComponent(new Map([
+//             ["nl-be", "Hoeveel dosissen van deze COVID-19 vaccins heeft u reeds ontvangen?  "],
+//             ["fr-be", "Combien de doses du vaccin (et quel) avez-vous reçu ?  "],
+//             ["de-be", "Welchen (und wie viel Dosen) COVID-19-Impfstoff haben Sie erhalten? "],
+//             ["en", "How many doses of these COVID-19 vaccines did you receive? "],
+//         ]))
+//     );
 
-    // CONDITION
-    if (keyvac) {
-        editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1')
-        );
-    }
+//     // CONDITION
+//     if (keyvac) {
+//         editor.setCondition(
+//             expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1')
+//         );
+//     }
 
-     // INFO POPUP
-     editor.setHelpGroupComponent(
-        generateHelpGroupComponent([
-            {
-                content: new Map([
-                    ["nl-be", "Waarom vragen we dit?"],
-                    ["fr-be", "Pourquoi posons-nous cette question ?"],
-                    ["de-be", "Warum fragen wir das?"],
-                    ["en", "Why are we asking this?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "We willen onderzoeken hoeveel bescherming een volledige vaccinatie geeft."],
-                    ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection qu'offre un programme de vaccination complet."],
-                    ["de-be", "Wir möchten gerne untersuchen, wieviel Infektionsschutz ein vollständigen Impfplan Ihnen gibt."],
-                    ["en", "We would like to be able to work out how much protection a complete vaccination scheme gives."],
-                ]),
-                style: [{ key: 'variant', value: 'p' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
-                    ["fr-be", "Comment dois-je répondre à cette question ?"],
-                    ["de-be", "Wie soll ich diese Frage beantworten?"],
-                    ["en", "How should I answer this question?"],
-                ]),
-                style: [{ key: 'variant', value: 'h5' }],
-            },
-            {
-                content: new Map([
-                    ["nl-be", "Rapporteer het aantal dosissen die u reeds ontvangen heeft (dit komt overeen met het aantal keer dat u werd gevaccineerd voor COVID-19). "],
-                    ["fr-be", "Indiquez le nombre de doses reçues (qui correspond au nombre de fois où vous avez été vacciné(e) contre le coronavirus). "],
-                    ["de-be", "Geben Sie die Anzahl der Dosen an, die Sie erhielten (die der Anzahl der Termine entspricht, an denen Sie gegen COVID-19 geimpft wurden)."],
-                    ["en", "Report the number of doses you received (which corresponds to the number of time you were vaccinated against COVID-19 )."],
-                ]),
-                // style: [{ key: 'variant', value: 'p' }],
-            },
-        ])
-    );
+//      // INFO POPUP
+//      editor.setHelpGroupComponent(
+//         generateHelpGroupComponent([
+//             {
+//                 content: new Map([
+//                     ["nl-be", "Waarom vragen we dit?"],
+//                     ["fr-be", "Pourquoi posons-nous cette question ?"],
+//                     ["de-be", "Warum fragen wir das?"],
+//                     ["en", "Why are we asking this?"],
+//                 ]),
+//                 style: [{ key: 'variant', value: 'h5' }],
+//             },
+//             {
+//                 content: new Map([
+//                     ["nl-be", "We willen onderzoeken hoeveel bescherming een volledige vaccinatie geeft."],
+//                     ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection qu'offre un programme de vaccination complet."],
+//                     ["de-be", "Wir möchten gerne untersuchen, wieviel Infektionsschutz ein vollständigen Impfplan Ihnen gibt."],
+//                     ["en", "We would like to be able to work out how much protection a complete vaccination scheme gives."],
+//                 ]),
+//                 style: [{ key: 'variant', value: 'p' }],
+//             },
+//             {
+//                 content: new Map([
+//                     ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+//                     ["fr-be", "Comment dois-je répondre à cette question ?"],
+//                     ["de-be", "Wie soll ich diese Frage beantworten?"],
+//                     ["en", "How should I answer this question?"],
+//                 ]),
+//                 style: [{ key: 'variant', value: 'h5' }],
+//             },
+//             {
+//                 content: new Map([
+//                     ["nl-be", "Rapporteer het aantal dosissen die u reeds ontvangen heeft (dit komt overeen met het aantal keer dat u werd gevaccineerd voor COVID-19). "],
+//                     ["fr-be", "Indiquez le nombre de doses reçues (qui correspond au nombre de fois où vous avez été vacciné(e) contre le coronavirus). "],
+//                     ["de-be", "Geben Sie die Anzahl der Dosen an, die Sie erhielten (die der Anzahl der Termine entspricht, an denen Sie gegen COVID-19 geimpft wurden)."],
+//                     ["en", "Report the number of doses you received (which corresponds to the number of time you were vaccinated against COVID-19 )."],
+//                 ]),
+//                 // style: [{ key: 'variant', value: 'p' }],
+//             },
+//         ])
+//     );
 
-// RESPONSE PART
-const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+// // RESPONSE PART
+// const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
  
-editor.addExistingResponseComponent({
-    role: 'text',
-    style: [{ key: 'className', value: 'mb-2' }],
-    content: generateLocStrings(
-        new Map([
-            ['nl-be', "Gelieve voor ieder vaccin aan te duiden hoeveel dosissen u reeds heeft ontvangen."],
-            ['fr-be', "Pour chaque vaccin, veuillez indiquer combien de doses vous avez reçues."],
-            ['de-be', "Bitte geben Sie für jede Impfstoff an, wie viele Dosen Sie bereits erhalten haben."],
-            ['en', "Please indicate for each vaccine how many doses you have received."],
-        ])),
-}, rg?.key);
+// editor.addExistingResponseComponent({
+//     role: 'text',
+//     style: [{ key: 'className', value: 'mb-2' }],
+//     content: generateLocStrings(
+//         new Map([
+//             ['nl-be', "Gelieve voor ieder vaccin aan te duiden hoeveel dosissen u reeds heeft ontvangen."],
+//             ['fr-be', "Pour chaque vaccin, veuillez indiquer combien de doses vous avez reçues."],
+//             ['de-be', "Bitte geben Sie für jede Impfstoff an, wie viele Dosen Sie bereits erhalten haben."],
+//             ['en', "Please indicate for each vaccine how many doses you have received."],
+//         ])),
+// }, rg?.key);
 
-const ddg: ResponseRowCell = {
-    key: 'col2', role: 'dropDownGroup',
-    items: [
-        {
-            key: '0', role: 'option', content: new Map([
-                ["nl-be", "0 dosissen"],
-                ["fr-be", "0 doses"],
-                ["de-be", "0 Dosen"],
-                ["en", "0 doses"],
-            ])
-        },
-        {
-            key: '1', role: 'option', content: new Map([
-                ["nl-be", "1 dosis"],
-                ["fr-be", "1 dose"],
-                ["de-be", "1 Dosis"],
-                ["en", "1 dose"],
-            ]),
-        }, {
-            key: '2', role: 'option', content: new Map([
-                ["nl-be", "2 dosissen"],
-                ["fr-be", "2 doses"],
-                ["de-be", "2 Dosen"],
-                ["en", "2 doses"],
-            ]),
-        }, {
-            key: '3', role: 'option', content: new Map([
-                ["nl-be", "3 dosissen"],
-                ["fr-be", "3 doses"],
-                ["de-be", "3 Dosen"],
-                ["en", "3 doses"],
-            ]),
-        }, {
-            key: '4', role: 'option', content: new Map([
-                ["nl-be", "4 dosissen"],
-                ["fr-be", "4 doses"],
-                ["de-be", "4 Dosen"],
-                ["en", "4 doses"],
-            ]),
-        }, {
-            key: '5', role: 'option', content: new Map([
-                ["nl-be", "5 dosissen of meer"],
-                ["fr-be", "5 doses ou plus"],
-                ["de-be", "5 Dosen oder mehr"],
-                ["en", "5 doses or more"],
-            ]),
-        }, {
-            key: '99', role: 'option', content: new Map([
-                ["nl-be", "Ik weet het gedeeltelijk niet meer."],
-                ["fr-be", "Je ne le sais plus très bien."],
-                ["de-be", "Ich weiß es teilweise nicht mehr ."],
-                ["en", "I have partly forgotten."],
-            ]),
-        }, {
-            key: '999', role: 'option', content: new Map([
-                ["nl-be", "Ik weet het helemaal niet meer."],
-                ["fr-be", "Je ne le sais plus du tout ."],
-                ["de-be", "Ich weiß es überhaupt nicht mehr."],
-                ["en", "I have completely forgotten."],
-            ]),
-        },
-    ]
-};
+// const ddg: ResponseRowCell = {
+//     key: 'col2', role: 'dropDownGroup',
+//     items: [
+//         {
+//             key: '0', role: 'option', content: new Map([
+//                 ["nl-be", "0 dosissen"],
+//                 ["fr-be", "0 doses"],
+//                 ["de-be", "0 Dosen"],
+//                 ["en", "0 doses"],
+//             ])
+//         },
+//         {
+//             key: '1', role: 'option', content: new Map([
+//                 ["nl-be", "1 dosis"],
+//                 ["fr-be", "1 dose"],
+//                 ["de-be", "1 Dosis"],
+//                 ["en", "1 dose"],
+//             ]),
+//         }, {
+//             key: '2', role: 'option', content: new Map([
+//                 ["nl-be", "2 dosissen"],
+//                 ["fr-be", "2 doses"],
+//                 ["de-be", "2 Dosen"],
+//                 ["en", "2 doses"],
+//             ]),
+//         }, {
+//             key: '3', role: 'option', content: new Map([
+//                 ["nl-be", "3 dosissen"],
+//                 ["fr-be", "3 doses"],
+//                 ["de-be", "3 Dosen"],
+//                 ["en", "3 doses"],
+//             ]),
+//         }, {
+//             key: '4', role: 'option', content: new Map([
+//                 ["nl-be", "4 dosissen"],
+//                 ["fr-be", "4 doses"],
+//                 ["de-be", "4 Dosen"],
+//                 ["en", "4 doses"],
+//             ]),
+//         }, {
+//             key: '5', role: 'option', content: new Map([
+//                 ["nl-be", "5 dosissen of meer"],
+//                 ["fr-be", "5 doses ou plus"],
+//                 ["de-be", "5 Dosen oder mehr"],
+//                 ["en", "5 doses or more"],
+//             ]),
+//         }, {
+//             key: '99', role: 'option', content: new Map([
+//                 ["nl-be", "Ik weet het gedeeltelijk niet meer."],
+//                 ["fr-be", "Je ne le sais plus très bien."],
+//                 ["de-be", "Ich weiß es teilweise nicht mehr ."],
+//                 ["en", "I have partly forgotten."],
+//             ]),
+//         }, {
+//             key: '999', role: 'option', content: new Map([
+//                 ["nl-be", "Ik weet het helemaal niet meer."],
+//                 ["fr-be", "Je ne le sais plus du tout ."],
+//                 ["de-be", "Ich weiß es überhaupt nicht mehr."],
+//                 ["en", "I have completely forgotten."],
+//             ]),
+//         },
+//     ]
+// };
 
-const rg_inner = initMatrixQuestion(matrixKey, [
-    {
-        key: '1', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "AstraZeneca"],
-                    ["fr-be", "AstraZeneca"],
-                    ["de-be", "AstraZeneca"],
-                    ["en", "AstraZeneca"],
-                ])
-            },
-            { ...ddg }
-        ],
-    },
-    {
-        key: '2', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "Pfizer/BioNTech"],
-                    ["fr-be", "Pfizer/BioNTech"],
-                    ["de-be", "Pfizer/BioNTech"],
-                    ["en", "Pfizer/BioNTech"],
-                ])
-            },
-            { ...ddg }
-        ],
-    },
-    {
-        key: '3', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "Moderna"],
-                    ["fr-be", "Moderna"],
-                    ["de-be", "Moderna"],
-                    ["en", "Moderna"],
-                ])
-            },
-            { ...ddg }
-        ],
-    },
-    {
-        key: '4', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
-                    ["fr-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
-                    ["de-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
-                    ["en", "Janssen Pharmaceutica (Johnson & Johnson)"],
-                ])
-            },
-            { ...ddg }
-        ],
-    },
-    {
-        key: '5', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "CureVac"],
-                    ["fr-be", "CureVac"],
-                    ["de-be", "CureVac"],
-                    ["en", "CureVac"],
-                ])
-            },
-            { ...ddg }
-        ],
-    },
-    {
-        key: '7', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "Novavax"],
-                    ["fr-be", "Novavax"],
-                    ["de-be", "Novavax"],
-                    ["en", "Novavax"],
-                ])
-            },
-            { ...ddg }
-        ]
-    },
-    {
-        key: '6', role: 'responseRow',
-        cells: [
-            {
-                key: 'l', role: 'label',
-                content: new Map([
-                    ["nl-be", "Andere"],
-                    ["fr-be", "Autre"],
-                    ["de-be", "Andere"],
-                    ["en", "Other"],
-                ])
-            },
-            { ...ddg }
-        ]
-    }
-]);
+// const rg_inner = initMatrixQuestion(matrixKey, [
+//     {
+//         key: '1', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "AstraZeneca"],
+//                     ["fr-be", "AstraZeneca"],
+//                     ["de-be", "AstraZeneca"],
+//                     ["en", "AstraZeneca"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ],
+//     },
+//     {
+//         key: '2', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "Pfizer/BioNTech"],
+//                     ["fr-be", "Pfizer/BioNTech"],
+//                     ["de-be", "Pfizer/BioNTech"],
+//                     ["en", "Pfizer/BioNTech"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ],
+//     },
+//     {
+//         key: '3', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "Moderna"],
+//                     ["fr-be", "Moderna"],
+//                     ["de-be", "Moderna"],
+//                     ["en", "Moderna"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ],
+//     },
+//     {
+//         key: '4', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
+//                     ["fr-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
+//                     ["de-be", "Janssen Pharmaceutica (Johnson & Johnson)"],
+//                     ["en", "Janssen Pharmaceutica (Johnson & Johnson)"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ],
+//     },
+//     {
+//         key: '5', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "CureVac"],
+//                     ["fr-be", "CureVac"],
+//                     ["de-be", "CureVac"],
+//                     ["en", "CureVac"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ],
+//     },
+//     {
+//         key: '7', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "Novavax"],
+//                     ["fr-be", "Novavax"],
+//                     ["de-be", "Novavax"],
+//                     ["en", "Novavax"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ]
+//     },
+//     {
+//         key: '6', role: 'responseRow',
+//         cells: [
+//             {
+//                 key: 'l', role: 'label',
+//                 content: new Map([
+//                     ["nl-be", "Andere"],
+//                     ["fr-be", "Autre"],
+//                     ["de-be", "Andere"],
+//                     ["en", "Other"],
+//                 ])
+//             },
+//             { ...ddg }
+//         ]
+//     }
+// ]);
 
-editor.addExistingResponseComponent(rg_inner, rg?.key);
+// editor.addExistingResponseComponent(rg_inner, rg?.key);
 
  
 
-    // VALIDATIONs
-    if (isRequired) {
-        editor.addValidation({
-            key: 'r1',
-            type: 'hard',
-            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
-        });
-    }
+//     // VALIDATIONs
+//     if (isRequired) {
+//         editor.addValidation({
+//             key: 'r1',
+//             type: 'hard',
+//             rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+//         });
+//     }
 
-    return editor.getItem();
-}
+//     return editor.getItem();
+// }
 
 /**
  * VACCINE SHOTS: How many times has the participant been vaccinated
@@ -1241,7 +1362,7 @@ const vaccinePro = (parentKey: string, keyvac?: string, isRequired?: boolean, ke
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1', '01', '03')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '1', '05')
         );
     }
 
@@ -1534,7 +1655,7 @@ const vaccineContra = (parentKey: string, keyvac?: string, isRequired?: boolean,
     // CONDITION
     if (keyvac) {
         editor.setCondition(
-            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '02', '04')
+            expWithArgs('responseHasKeysAny', keyvac, [responseGroupKey, singleChoiceKey].join('.'), '06')
         );
     }
 
@@ -2029,6 +2150,115 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
 }
 
 /**
+ * COVID VACCINE LAST SEASON: Question about last season's covid vaccination status
+ *
+ * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
+ * @param isRequired if true adds a default "hard" validation to the question to check if it has a response.
+ * @param keyOverride use this to override the default key for this item (only last part of the key, parent's key is not influenced).
+ */
+const covid_vac_last_season = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+    const defaultKey = 'Q35j'
+    const itemKey = [parentKey, keyOverride ? keyOverride : defaultKey].join('.');
+    const editor = new ItemEditor(undefined, { itemKey: itemKey, isGroup: false });
+
+    // QUESTION TEXT
+    editor.setTitleComponent(
+        generateTitleComponent(new Map([
+            ["nl-be", "Heeft u in het vorige winterseizoen (2022-2023) een COVID-19 vaccin laten toedienen?"],
+            ["fr-be", "Lors de la précédente saison de l’hiver (2022/2023), vous êtes-vous fait vacciner contre le corona ?"],
+            ["de-be", "Haben Sie sich in der vorigen Wintersaison (2022/2023) eine COVID-19-Impfung verabreichen lassen?"],
+            ["en", "Did you receive a COVID-19 vaccine during the previous fall/winter season (2022-2023)?"],
+        ]))
+    );
+
+    // INFO POPUP
+    editor.setHelpGroupComponent(
+        generateHelpGroupComponent([
+            {
+                content: new Map([
+                    ["nl-be", "Waarom vragen we dit?"],
+                    ["fr-be", "Pourquoi posons-nous cette question ?"],
+                    ["de-be", "Warum fragen wir das?"],
+                    ["en", "Why are we asking this?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "We willen onderzoeken hoeveel bescherming vaccinatie geeft."],
+                    ["fr-be", "Nous aimerions pouvoir déterminer le degré de protection offert par le vaccin."],
+                    ["de-be", "Wir würden gerne untersuchen, wieviel Schutz der Impfstoff verleiht."],
+                    ["en", "We would like to be able to work out how much protection the vaccine gives."],
+                ]),
+                style: [{ key: 'variant', value: 'p' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Hoe moet ik deze vraag beantwoorden?"],
+                    ["fr-be", "Comment dois-je répondre à cette question ?"],
+                    ["de-be", "Wie soll ich diese Frage beantworten?"],
+                    ["en", "How should I answer this question?"],
+                ]),
+                style: [{ key: 'variant', value: 'h5' }],
+            },
+            {
+                content: new Map([
+                    ["nl-be", "Antwoord ja indien u vorig seizoen (2022-2023) een COVID-19 vaccin heeft ontvangen."],
+                    ["fr-be", "Répondez oui si vous avez reçu un vaccin COVID-19 la saison dernière (2022-2023)."],
+                    ["de-be", "Melden Sie ja, wenn Sie in der letzten Saison (2022-2023) einen COVID-19-Impfstoff erhalten haben"],
+                    ["en", "Report yes, if you received a COVID-19 vaccine last season (2022-2023)."],
+                ]),
+                // style: [{ key: 'variant', value: 'p' }],
+            },
+        ])
+    );
+
+    // RESPONSE PART
+    const rg = editor.addNewResponseComponent({ role: 'responseGroup' });
+    const rg_inner = initSingleChoiceGroup(singleChoiceKey, [
+        {
+            key: '0', role: 'option',
+            content: new Map([
+                ["nl-be", "Ja"],
+                ["fr-be", "Oui"],
+                ["de-be", "Ja"],
+                ["en", "Yes"],
+            ])
+        },
+        {
+            key: '1', role: 'option',
+            content: new Map([
+                ["nl-be", "Nee"],
+                ["fr-be", "Non"],
+                ["de-be", "Nein"],
+                ["en", "No"],
+            ])
+        },
+        {
+            key: '2', role: 'option',
+            content: new Map([
+                ["nl-be", "Dat weet ik niet (meer)"],
+                ["fr-be", "Je ne sais pas/je ne me souviens pas."],
+                ["de-be", "Ich weiß nicht/kann mich nicht erinnern."],
+                ["en", "I don't know/can't remember."],
+            ])
+        },
+    ]);
+    editor.addExistingResponseComponent(rg_inner, rg?.key);
+
+    // VALIDATIONs
+    if (isRequired) {
+        editor.addValidation({
+            key: 'r1',
+            type: 'hard',
+            rule: expWithArgs('hasResponse', itemKey, responseGroupKey)
+        });
+    }
+
+    return editor.getItem();
+}
+
+/**
  * FLU VACCINE THIS SEASON: single choice about this season's vaccine
  *
  * @param parentKey full key path of the parent item, required to genrate this item's unique key (e.g. `<surveyKey>.<groupKey>`).
@@ -2044,10 +2274,10 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Heeft u in het huidige griepseizoen (2021/2022) een griepvaccin laten toedienen?"],
-            ["fr-be", "Lors de la saison de la grippe de l’hiver 2021/2022, vous êtes-vous fait vacciner contre la grippe ?"],
-            ["de-be", "Haben Sie in der (jetzigen) Grippesaison (2021/2022) einen Grippeimpfstoff bekommen?"],
-            ["en", "Did you receive a flu vaccine during this autumn/winter flu season (2021-2022)?"],
+            ["nl-be", "Heeft u in het huidige griepseizoen (2023/2024) een griepvaccin laten toedienen?"],
+            ["fr-be", "Lors de la saison de la grippe de l’hiver 2023/2024, vous êtes-vous fait vacciner contre la grippe ?"],
+            ["de-be", "Haben Sie in der (jetzigen) Grippesaison (2023/2024) einen Grippeimpfstoff bekommen?"],
+            ["en", "Did you receive a flu vaccine during this autumn/winter flu season (2023-2024)?"],
         ]))
     );
 
@@ -2155,10 +2385,10 @@ const sideEffects = (parentKey: string, keyvac?: string, isRequired?: boolean, k
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When were you vaccinated against flu this season (2021-2022)?"],
-            ["nl-be", "Wanneer bent u in het huidige griepseizoen (2021/2022) gevaccineerd tegen de griep?"],
-            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2021/2022 ?"],
-            ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2021/2022) gegen Grippe geimpft?"],
+            ["en", "When were you vaccinated against flu this season (2023-2024)?"],
+            ["nl-be", "Wanneer bent u in het huidige griepseizoen (2023/2024) gevaccineerd tegen de griep?"],
+            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2023/2024 ?"],
+            ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2023/2024) gegen Grippe geimpft?"],
         ]))
     );
 
@@ -2269,10 +2499,10 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2021/2022) een griepvaccin te halen?"],
-            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2021/2022) ?"],
-            ["de-be", "Was waren für Sie die wichtigsten Gründe, um in dieser Grippesaison 2021/2022) einen Grippeimpfstoff zu verwenden?"],
-            ["en", "What were your reasons for getting a seasonal influenza vaccination this year (2021/2022)?"],
+            ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2023/2024) een griepvaccin te halen?"],
+            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2023/2024) ?"],
+            ["de-be", "Was waren für Sie die wichtigsten Gründe, um in dieser Grippesaison 2023/2024) einen Grippeimpfstoff zu verwenden?"],
+            ["en", "What were your reasons for getting a seasonal influenza vaccination this year (2023/2024)?"],
         ]))
     );
 
@@ -2486,10 +2716,10 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2021/2022)?"],
-            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2021/2022) ?"],
-            ["de-be", "Was waren die Gründe dafür, dass Sie sich in dieser Grippesaison (2021/2022) nicht mehr impfen ließen?"],
-            ["en", "What were your reasons for not getting a seasonal influenza vaccination this year (2021/2022)?"],
+            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2023/2024)?"],
+            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2023/2024) ?"],
+            ["de-be", "Was waren die Gründe dafür, dass Sie sich in dieser Grippesaison (2023/2024) nicht mehr impfen ließen?"],
+            ["en", "What were your reasons for not getting a seasonal influenza vaccination this year (2023/2024)?"],
         ]))
     );
 
@@ -2781,11 +3011,11 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            /*["en", "Did you receive a flu vaccine during the last autumn/winter season? (2020-2021)"],*/
-            ["en", "Did you receive a flu vaccine during the previous flu season (2020-2021)?"],
-            ["nl-be", "Heeft u in het vorige griepseizoen (2020/2021) een griepvaccin laten toedienen?"],
-            ["fr-be", "Lors de la précédente saison de la grippe (hiver 2020/2021), vous êtes-vous fait vacciner contre la grippe ?"],
-            ["de-be", "Haben Sie sich in der letzten Grippesaison (2020/2021) eine Grippeimpfung bekommen?"],
+            /*["en", "Did you receive a flu vaccine during the last autumn/winter season? (2022-2023)"],*/
+            ["en", "Did you receive a flu vaccine during the previous flu season (2022-2023)?"],
+            ["nl-be", "Heeft u in het vorige griepseizoen (2022/2023) een griepvaccin laten toedienen?"],
+            ["fr-be", "Lors de la précédente saison de la grippe (hiver 2022/2023), vous êtes-vous fait vacciner contre la grippe ?"],
+            ["de-be", "Haben Sie sich in der letzten Grippesaison (2022/2023) eine Grippeimpfung bekommen?"],
         ]))
     );
 
@@ -2824,10 +3054,10 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             {
                 content: new Map([
                     /*["en", "Report yes, if you received the vaccine this season, usually in the autumn."],*/
-                    ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2020-2021."],
-                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2020-2021) heeft gekregen."],
-                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2020-2021)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2020-2021)"],
+                    ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2022-2023."],
+                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2022-2023) heeft gekregen."],
+                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2022-2023)."],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2022-2023)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
