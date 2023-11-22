@@ -123,4 +123,4 @@ export const studyRules = ((
      * STUDY RULES
      */
     return new StudyRules(entryRules, submitRules).get();
-})({ childAge: 6, vaccinationResubmitDays: 28, weeklyResubmitHours: 1 });
+})({ childAge: 18, vaccinationResubmitDays: 28, weeklyResubmitHours: 1 });
