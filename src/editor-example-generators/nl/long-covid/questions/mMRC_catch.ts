@@ -1,10 +1,9 @@
 import { Expression, SurveyItem } from "survey-engine/data_types";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 
-export const Q_mMRC = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
+export const Q_mMRC = (parentKey: string, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'mMRC';
     return SurveyItemGenerators.singleChoice({
-        condition: condition, 
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,

@@ -1066,7 +1066,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             parentKey: this.key,
             itemKey: itemKey,
             questionText: new Map([
-                ["nl", "Gebruik je medicatie op dit moment?"],
+                ["nl", "Gebruik je op dit moment medicijnen?"],
             ]),
             responseOptions: [
                 {
@@ -1179,7 +1179,7 @@ Ben je een ouder/verzorger dan kun je de antwoorden invullen voor/over je kind.
             itemKey: itemKey,
             condition: condition,
             questionText: new Map([
-                ["nl", "Welke medicatie gebruik je op dit moment?"],
+                ["nl", "Welke medicijnen zijn dit?"],
             ]),
             questionSubText: new Map([
                 ["nl", "Er zijn meerdere antwoorden mogelijk."],

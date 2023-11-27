@@ -85,9 +85,9 @@ const eq5dCopyright = {
 
 const S_instructions = (parentKey: string): SurveyItem => {
     const markdownContent = `
-## Hieronder vragen we of je nog één keer een vragenlijst wilt invullen.
+## Hieronder kun je nog één keer een vragenlijst invullen, of je vragenlijsten stopzetten.
 
-Voor het onderzoek is het heel nuttig als je deze laatste vragenlijst invult, ook als je geen klachten meer hebt. Invullen kost ongeveer 10 minuten. Als je hieronder aanvinkt dat je toch geen vragenlijst meer wilt, dan stellen we je alleen twee korte vragen. Deze korte vragen kun je in minder dan één minuut invullen.
+Voor het onderzoek is het heel nuttig als je deze laatste vragenlijst invult, ook als je geen klachten meer hebt. Invullen kost ongeveer 10 minuten. Als je hieronder aanvinkt dat je toch geen vragenlijst meer wilt, dan stellen we je alleen twee korte vragen. Deze korte vragen kun je in minder dan één minuut invullen, en daarna ontvang je geen vragenlijsten meer.
 `
 
     return SurveyItemGenerators.display({

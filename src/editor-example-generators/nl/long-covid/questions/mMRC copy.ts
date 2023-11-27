@@ -4,7 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 export const Q_mMRC = (parentKey: string, condition?: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'mMRC';
     return SurveyItemGenerators.singleChoice({
-        condition: condition, 
+        condition: condition,
         parentKey: parentKey,
         itemKey: itemKey,
         isRequired: isRequired,

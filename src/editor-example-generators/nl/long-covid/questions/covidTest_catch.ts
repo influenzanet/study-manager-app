@@ -47,7 +47,7 @@ export class CovidTestGroup extends GroupItemEditor {
 
         const test_result = q_test_result_def(this.key, true, condition_test_yes);
         const condition_test_result_pos = CommonExpressions.singleChoiceOptionsSelected(test_result.key, 'pos');
-        const condition_test_result_pos_FU_2 = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos');
+        const condition_test_result_pos_FU_2 = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos','yes_but');
         const condition_test_result_pos_FU = CommonExpressions.singleChoiceOptionsSelected(testpos_FU.key, 'pos', 'yes_but');
         // const infect_earlier = q_infect_earlier_def(this.key, true);
         const infect_earlier2 = q_infect_earlier_def2(this.key, true);
@@ -60,7 +60,9 @@ export class CovidTestGroup extends GroupItemEditor {
         const condition_infect_earlier3x = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '3keer', 'vaker');
         // const condition_infect_earlier_vaker = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, 'vaker');
         const condition_for_langdurige_klachten = CommonExpressions.singleChoiceOptionsSelected(infect_earlier2.key, '1keer', '2keer', '3keer', 'vaker', 'unknown');
-        const condition_for_langdurige_klachten_date = CommonExpressions.singleChoiceOptionsSelected(langdurige_klachten.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
+        const condition_for_langdurige_klachten_date = CommonExpressions.singleChoiceOptionsSelected(langdurige_klachten.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel'); 
+        const condition_for_recov_dur = CommonExpressions.singleChoiceOptionsSelected(langdurige_klachten.key, 'notanymore');
+
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(test);
@@ -72,10 +74,10 @@ export class CovidTestGroup extends GroupItemEditor {
         this.addItem(q_test_reason_def(this.key, true, condition_test_yes));
         this.addItem(q_test_date_def_FU(this.key, true, condition_test_result_pos_FU_2));
         // this.addItem(q_test_location_def_FU(this.key, true, condition_test_result_pos_FU));
-        this.addItem(q_test_reason_def_FU(this.key, true, condition_test_result_pos_FU));
+        //this.addItem(q_test_reason_def_FU(this.key, true, condition_test_result_pos_FU));
         this.addItem(test_result);
         this.addItem(q_test_type_def(this.key, true, condition_test_result_pos));
-        this.addItem(q_test_type_def_FU(this.key, true, condition_test_result_pos_FU));
+        //this.addItem(q_test_type_def_FU(this.key, true, condition_test_result_pos_FU));
         if (isT0) {
             // this.addItem(infect_earlier);
             // this.addItem(q_inf_earlier_type_def(this.key, true, condition_pos_earl_test));
@@ -102,7 +104,12 @@ export class CovidTestGroup extends GroupItemEditor {
             this.addItem(Q11);
             this.Q11JaCondition = CommonExpressions.singleChoiceOptionsSelected(Q11.key, 'ja_beetje', 'ja_veel', 'ja_zeerveel');
             const Q17 = q_langdurige_klachten_date(this.key, true, condition_for_langdurige_klachten_date);
-            this.addItem(Q17)
+            this.addItem(Q17);
+            const Q18 = q_how_long_recov(this.key,true,condition_for_recov_dur); 
+            this.addItem(Q18)
+
+
+
             // }
             // if (!this.isPartOfSurvey(surveyKeys.short)) {
             //     this.addItem(Q_instructions2(this.key))
@@ -327,15 +334,15 @@ const POS_FU = (parentKey: string, isRequired?: boolean, condition?: Expression,
                 ])
             },
             {
-                key: 'no', role: 'option',
-                content: new Map([
-                    ["nl", "Nee"],
-                ])
-            },
-            {
                 key: 'yes_but', role: 'option',
                 content: new Map([
                     ["nl", "Ja, maar ik weet niet meer precies of dit voor of na de vorige vragenlijst was"],
+                ])
+            },
+            {
+                key: 'no', role: 'option',
+                content: new Map([
+                    ["nl", "Nee"],
                 ])
             },
             {
@@ -358,6 +365,9 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         condition: condition,
         questionText: new Map([
             ["nl", "Wanneer is deze test afgenomen?"],
+        ]),
+        questionSubText: new Map([
+            ["nl", "Als je het niet meer weet dan mag je de datum ook schatten"],
         ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
@@ -500,6 +510,9 @@ const q_test_date_def_FU = (parentKey: string, isRequired?: boolean, condition?:
         questionText: new Map([
             ["nl", "Wanneer is deze test afgenomen?"],
         ]),
+        questionSubText: new Map([
+            ["nl", "Als je het niet meer weet dan mag je de datum ook schatten."],
+        ]),
         dateInputMode: 'YMD',
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
@@ -509,6 +522,129 @@ const q_test_date_def_FU = (parentKey: string, isRequired?: boolean, condition?:
         isRequired: isRequired,
     });
 }
+
+const q_how_long_recov = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+    const itemKey = keyOverride ? keyOverride : 'Q18';
+
+    return SurveyItemGenerators.dropDown({
+        parentKey: parentKey,
+        itemKey: itemKey,
+        condition: condition,
+        questionText: new Map([
+            ["nl", "Hoelang ben je al hersteld van je langdurige gezondheidsklachten door het coronavirus? "],
+        ]),
+        responseOptions: [
+            {
+                key: 'minder1mon', role: 'option',
+                content: new Map([
+                    ["nl", "Minder dan 1 maand geleden"],
+                ])
+            },
+            {
+                key: '1mon', role: 'option',
+                content: new Map([
+                    ["nl", "1 maand"],
+                ])
+            },
+            {
+                key: '2mon', role: 'option',
+                content: new Map([
+                    ["nl", "2 maanden"],
+                ])
+            },
+            {
+                key: '3mon', role: 'option',
+                content: new Map([
+                    ["nl", "3 maanden"],
+                ])
+            },
+            {
+                key: '4mon', role: 'option',
+                content: new Map([
+                    ["nl", "4 maanden"],
+                ])
+            },
+            {
+                key: '5mon', role: 'option',
+                content: new Map([
+                    ["nl", "5 maanden"],
+                ])
+            },
+            {
+                key: '6mon', role: 'option',
+                content: new Map([
+                    ["nl", "6 maanden"],
+                ])
+            },
+            {
+                key: '7mon', role: 'option',
+                content: new Map([
+                    ["nl", "7 maanden"],
+                ])
+            },
+            {
+                key: '8mon', role: 'option',
+                content: new Map([
+                    ["nl", "8 maanden"],
+                ])
+            },
+            {
+                key: '9mon', role: 'option',
+                content: new Map([
+                    ["nl", "9 maanden"],
+                ])
+            },
+            {
+                key: '10mon', role: 'option',
+                content: new Map([
+                    ["nl", "10 maanden"],
+                ])
+            },
+            {
+                key: '11mon', role: 'option',
+                content: new Map([
+                    ["nl", "11 maanden"],
+                ])
+            },
+            {
+                key: '12mon', role: 'option',
+                content: new Map([
+                    ["nl", "12 maanden"],
+                ])
+            },
+            {
+                key: '>12mon', role: 'option',
+                content: new Map([
+                    ["nl", "Langer dan 12 maanden geleden"],
+                ])
+            },
+            
+        ],
+        isRequired: isRequired,
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const q_test_location_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
 //     const itemKey = keyOverride ? keyOverride : 'Q3_FU';

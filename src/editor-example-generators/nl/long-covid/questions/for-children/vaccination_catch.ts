@@ -49,7 +49,7 @@ export class VaccinationGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q3('Q3', conditionQ1Ja, isRequired))
         } else {
-            this.addItem(this.Q3_FU('Q3_FU', conditionQ1_FU_Ja, isRequired))
+            //this.addItem(this.Q3_FU('Q3_FU', conditionQ1_FU_Ja, isRequired))
         }
 
         // if (this.isPartOfSurvey(surveyKeys.T0)) {

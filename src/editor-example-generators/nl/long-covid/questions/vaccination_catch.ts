@@ -23,7 +23,7 @@ export class VaccinationGroup extends GroupItemEditor {
         const condition_vacc_yes = CommonExpressions.singleChoiceOptionsSelected(vacc.key, 'yes');
         const condition_vacc_yes_FU = CommonExpressions.singleChoiceOptionsSelected(vacc_FU.key, 'yes');
         const vacc_num = q_vacc_num_def(this.key, true, condition_vacc_yes);
-        const vacc_num_FU = q_vacc_num_def_FU(this.key, true, condition_vacc_yes_FU);
+        const vacc_num_FU = q_vacc_num_def_FU(this.key, true);
         // const condition_1vacc = CommonExpressions.singleChoiceOptionsSelected(vacc_num.key, '1vacc');
         // const condition_1vacc_FU = CommonExpressions.singleChoiceOptionsSelected(vacc_num_FU.key, '1vacc');
         // const condition_2vacc = CommonExpressions.singleChoiceOptionsSelected(vacc_num.key, '2vacc');
@@ -48,9 +48,14 @@ export class VaccinationGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc); }
         if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc_FU); }
         this.addItem(vacc_num);
+
+        //change this back
         this.addItem(vacc_num_FU);
+
+        //change
+        //this.addItem(q_vacc_num_def_FU(this.key, true, condition_vacc_yes));
         this.addItem(q_vacc_type_latest_def(this.key, true, condition_vacc_yes));
-        //this.addItem(q_vacc_type_latest_def_FU(this.key, true, condition_vacc_yes_FU));
+        //this.addItem(q_vacc_type_latest_def_FU(this.key, true,condition_vacc_yes_FU));
         // this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
         // this.addItem(q_vacc1_date_def_FU(this.key, true, condition_1vacc_FU));
 
@@ -83,7 +88,7 @@ export class VaccinationGroup extends GroupItemEditor {
         // this.addItem(q_vacc5_date5_def(this.key, true, condition_5vacc, vacc2_date1.key));
         // this.addItem(q_vacc5_date5_def_FU(this.key, true, condition_5vacc_FU, vacc2_date1_FU.key));
         this.addItem(q_vacc_date_latest_def(this.key, true, condition_vacc_yes));
-        this.addItem(q_vacc_date_latest_FU(this.key, true, condition_vacc_yes_FU));
+        this.addItem(q_vacc_date_latest_FU(this.key, true));
 
 
         if (this.isPartOfSurvey(surveyKeys.T0)) {
@@ -156,7 +161,7 @@ const q_vacc_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expr
         itemKey: itemKey,
         condition: condition,
         questionText: new Map([
-            ["nl", "Heb je een vaccinatie tegen het coronavirus gehad"],
+            ["nl", "Ben je gevaccineerd tegen het coronavirus?"],
         ]),
         responseOptions: [
             {
@@ -171,16 +176,17 @@ const q_vacc_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expr
                     ["nl", "Nee"],
                 ])
             },
-            // {
-            //     key: 'unknown', role: 'option',
-            //     content: new Map([
-            //         ["nl", "Weet ik niet"],
-            //     ])
-            // },
+             {
+                 key: 'unknown', role: 'option',
+                 content: new Map([
+                     ["nl", "Weet ik niet"],
+                 ])
+             },
         ],
         isRequired: isRequired,
     });
 }
+
 const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2';
 
@@ -192,6 +198,7 @@ const q_vacc_num_def = (parentKey: string, isRequired?: boolean, condition?: Exp
             ["nl", "Hoeveel vaccinaties tegen het coronavirus heb je in totaal gehad? Als je het niet weet mag je ook een schatting maken."],
         ]),
         responseOptions: [
+            
             {
                 key: '1vacc', role: 'option',
                 content: new Map([

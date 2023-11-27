@@ -4,9 +4,11 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
 import { SCGroup } from "../questions/StopContinue";
+//Trouble
 import { DemographieGroup } from "../questions/demographie_catch";
-import { Q_mMRC } from "../questions/mMRC";
+import { Q_mMRC } from "../questions/mMRC_catch";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
+//Trouble
 import { CovidTestGroup } from "../questions/covidTest_catch";
 import { VaccinationGroup } from "../questions/vaccination_catch_up";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
@@ -25,13 +27,13 @@ export const generateTstopcontinue = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKeys.Tstopcontinue,
         name: new Map([
-            ["nl", "Laatste vragenlijst over LongCOVID-onderzoek"],
+            ["nl", "Laatste vragenlijst LongCOVID-onderzoek of vragenlijsten stopzetten."],
         ]),
         description: new Map([
-            ["nl", "Je kunt in deze vragenlijst aangeven of je mee blijft doen aan het LongCOVID onderzoek"],
+            ["nl", "Je kunt via deze knop de laatste vragenlijst invullen of je vragenlijsten stopzetten."],
         ]),
         durationText: new Map([
-            ["nl", "Invullen van deze vragenlijst kost enkele minuten van je tijd."],
+            ["nl", "Vragenlijsten stopzetten kan in minder dan 1 minuut."],
         ])
     })
 
@@ -50,7 +52,7 @@ export const generateTstopcontinue = (): Survey | undefined => {
 
     const continueGroupEditor = new ContinueGroup(
         surveyKey,
-        SCGroupEditor.S1JaCondition!
+        SCGroupEditor.S1JaCondition!,
     );
     surveyEditor.addSurveyItemToRoot(continueGroupEditor.getItem());
 
@@ -71,48 +73,55 @@ export class ContinueGroup extends GroupItemEditor {
         super(parentKey, groupKey);
         this.groupEditor.setCondition(condition);
         this.initQuestions();
+        
     }
 
     initQuestions() {
         const covidTestGroupEditor = new CovidTestGroup(this.key, false);
         this.addItem(covidTestGroupEditor.getItem());
 
-        const vaccineGroupEditor = new VaccinationGroup(this.key, false);
-        this.addItem(vaccineGroupEditor.getItem());
+         const vaccineGroupEditor = new VaccinationGroup(this.key, false);
+         this.addItem(vaccineGroupEditor.getItem());
 
-        const AcuteHealthGroupEditor = new AcuteHealthGroup(this.key);
-        this.addItem(AcuteHealthGroupEditor.getItem());
+         const AcuteHealthGroupEditor = new AcuteHealthGroup(this.key);
+         this.addItem(AcuteHealthGroupEditor.getItem());
 
-        const GeneralHealthGroupEditor = new GeneralHealthGroup(this.key);
-        this.addItem(GeneralHealthGroupEditor.getItem());
+         const GeneralHealthGroupEditor = new GeneralHealthGroup(this.key);
+         this.addItem(GeneralHealthGroupEditor.getItem());
 
-        //const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
-        //this.addItem(Q_mMRC(this.key, hasKortademigCondition, true));
+        // const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+        // this.addItem(Q_mMRC(this.key, hasKortademigCondition, true));
 
-        //const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
-        this.addItem(Q_mMRC(this.key));
+        // const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(AcuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
+         this.addItem(Q_mMRC(this.key,true));
 
-        //const ncsiGroupEditor = new NCSIGroup(this.key, hasKortademigCondition);
-        //this.addItem(ncsiGroupEditor.getItem());
+         //const ncsiGroupEditor = new NCSIGroup(this.key, hasKortademigCondition);
+         //this.addItem(ncsiGroupEditor.getItem());
 
-        const ncsiGroupEditor = new NCSIGroup(this.key);
-        this.addItem(ncsiGroupEditor.getItem());
+         const ncsiGroupEditor = new NCSIGroup(this.key);
+         this.addItem(ncsiGroupEditor.getItem());
 
-        const EQ5DGroupEditor = new EQ5DGroup(this.key, true, true);
-        this.addItem(EQ5DGroupEditor.getItem());
+         const EQ5DGroupEditor = new EQ5DGroup(this.key, true, true);
+         this.addItem(EQ5DGroupEditor.getItem());
 
-        this.addItem(Q_CIS(this.key, true));
+         this.addItem(Q_CIS(this.key, true));
 
-        const CFQGroupEditor = new CFQGroup(this.key);
-        this.addItem(CFQGroupEditor.getItem());
+         const CFQGroupEditor = new CFQGroup(this.key);
+         this.addItem(CFQGroupEditor.getItem());
 
-        const SF36GroupEditor = new SF36Group(this.key);
-        this.addItem(SF36GroupEditor.getItem());
+         const SF36GroupEditor = new SF36Group(this.key);
+         this.addItem(SF36GroupEditor.getItem());
 
-        const MedicineGroupEditor = new MedicineGroup(this.key);
-        this.addItem(MedicineGroupEditor.getItem());
+         const MedicineGroupEditor = new MedicineGroup(this.key);
+         this.addItem(MedicineGroupEditor.getItem());
 
-        const demographieGroupEditor = new DemographieGroup(this.key, {});
+        const demographieGroupEditor = new DemographieGroup(
+            this.key,
+            {
+                getAgeInYearsExpression: undefined, // not relevant here, since pregnancy question only in T0
+                testQ11jaCondition: covidTestGroupEditor.getQ11JaCondition(),
+            }
+        );
         this.addItem(demographieGroupEditor.getItem());
     }
 }

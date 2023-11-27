@@ -2,8 +2,12 @@ import { Expression, Survey } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
+
 //unkown change, but fixes error, should be checked!
 //import { surveyKeys } from "../studyRules";
+
+
+
 import { SCGroup } from "../questions/for-children/childStopcontinue";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-children/covidTest_catch";
@@ -20,13 +24,13 @@ export const generateTstopcontinuec = (): Survey | undefined => {
     const surveyEditor = new SimpleSurveyEditor({
         surveyKey: surveyKey,
         name: new Map([
-            ["nl", "Laatste vragenlijst over LongCOVID-onderzoek"],
+            ["nl", "Laatste vragenlijst LongCOVID-onderzoek of vragenlijsten stopzetten."],
         ]),
         description: new Map([
-            ["nl", "In de vorige vragenlijst heb je aangegeven klachten te hebben. In deze update vragen we je of deze klachten nog steeds aanwezig zijn, en hoe je je voelt."],
+            ["nl", "Je kunt via deze knop de laatste vragenlijst invullen of je vragenlijsten stopzetten."],
         ]),
         durationText: new Map([
-            ["nl", "Invullen van deze vragenlijst kost ongeveer 5 minuten van je tijd."],
+            ["nl", "Vragenlijsten stopzetten kan in minder dan 1 minuut."],
         ])
     })
 

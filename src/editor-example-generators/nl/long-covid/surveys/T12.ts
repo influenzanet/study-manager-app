@@ -4,7 +4,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { SimpleSurveyEditor } from "../../../../editor-engine/utils/simple-survey-editor";
 import { AcuteHealthGroup } from "../questions/acuteHealth";
 import { CFQGroup } from "../questions/cfq";
-import { Q_CIS } from "../questions/cis";
+import { Q_CIS } from "../questions/cis"; 
 import { CovidTestGroup } from "../questions/covidTest";
 import { DemographieGroup } from "../questions/demographie";
 import { EQ5DGroup } from "../questions/eq5d";
