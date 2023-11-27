@@ -840,14 +840,14 @@ const handleTimerEvent = (): Expression => {
     //    )
     // };
 
-    const handleT24cExpired = (): Expression => {
-        return StudyActions.ifThen(
-            isSurveyExpired(surveyKeys.T24c),
-            [
-                finishParticipation("expired")
-            ]
-        )
-    };
+    //const handleT24cExpired = (): Expression => {
+    //    return StudyActions.ifThen(
+    //        isSurveyExpired(surveyKeys.T24c),
+    //        [
+   //             finishParticipation("expired")
+   //         ]
+   //     )
+   // };
 
     return StudyActions.ifThen(
         StudyExpressions.checkEventType('TIMER'),
