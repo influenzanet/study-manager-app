@@ -59,7 +59,7 @@ export class HealthGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T0)) {
             this.addItem(this.Q0('Q0', isRequired));
         }
-        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T12c) || this.isPartOfSurvey(surveyKeys.T24c)) {
+        if (this.isPartOfSurvey(surveyKeys.T0) || this.isPartOfSurvey(surveyKeys.T12c)) {
             this.addItem(this.Q1TICppreText());
             this.addItem(this.Q1('Q1', isRequired));
         }
