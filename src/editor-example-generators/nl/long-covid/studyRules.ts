@@ -13,7 +13,7 @@ export const surveyKeys = {
     T6c: 'T6c',
     T9: 'T9',
     T9c: 'T9c',
-    T12: 'T12',
+    T12: 'T12', 
     T12c: 'T12c',
     T15: 'T15',
     T15c: 'T15c',
