@@ -10,7 +10,7 @@ const StudyFileDownloads: React.FC<StudyFileDownloadsProps> = (props) => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-2">
+                <div className="p-1">
                     <button
                         className="btn btn-primary"
                         onClick={() => {
@@ -25,7 +25,7 @@ const StudyFileDownloads: React.FC<StudyFileDownloadsProps> = (props) => {
                     </button>
                 </div>
                 {customRules.map(rule =>
-                    <div className="col-2">
+                    <div className="p-1">
                         <button
                             className="btn btn-primary"
                             onClick={() => {
