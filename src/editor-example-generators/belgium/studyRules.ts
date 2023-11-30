@@ -3,9 +3,9 @@ import { ParticipantFlags } from "./participantFlags";
 import { StudyEngine } from "case-editor-tools/expression-utils/studyEngineExpressions";
 import { StudyRules } from "case-editor-tools/types/studyRules";
 
-import intake from "../belgium/inf-intake"
-import weekly from "../belgium/inf-weekly"
-import vaccination from "../belgium/inf-vaccination"
+import intake from "./inf-intake"
+import weekly from "./inf-weekly"
+import vaccination from "./inf-vaccination"
 
 // NOTE: just to be sure these are called before generating rules, might not be
 // necessary, should have already been called
@@ -13,11 +13,13 @@ intake();
 weekly();
 vaccination();
 
-interface RulesOptions {
+export interface RulesOptions {
     childAge: number;
     weeklyResubmitHours: number;
     vaccinationResubmitDays: number;
 }
+
+export const rulesOptions = { childAge: 18, vaccinationResubmitDays: 28, weeklyResubmitHours: 1 };
 
 export const studyRules = ((
     Options: RulesOptions
@@ -91,6 +93,7 @@ export const studyRules = ((
             "all"
         ),
         // update vaccinationCompleted flag
+        // NOTE: this is useful if you want a question to depend on this flag
         StudyEngine.participantActions.updateFlag(
             ParticipantFlags.vaccinationCompleted.key,
             ParticipantFlags.vaccinationCompleted.values.yes
@@ -101,6 +104,62 @@ export const studyRules = ((
             StudyEngine.timestampWithOffset({
                 days: Options.vaccinationResubmitDays,
             })
+        )
+    );
+
+    const handleChild = StudyEngine.ifThen(
+        StudyEngine.checkSurveyResponseKey(intake.key),
+        StudyEngine.do(
+            // set child flag if younger than age
+            StudyEngine.if(
+                StudyEngine.lt(
+                    StudyEngine.getResponseValueAsNum("intake.Q2", "rg.1"),
+                    StudyEngine.timestampWithOffset({ years: -Options.childAge })
+                ),
+                StudyEngine.participantActions.updateFlag(
+                    ParticipantFlags.isChild.key,
+                    ParticipantFlags.isChild.values.no
+                ),
+                StudyEngine.participantActions.updateFlag(
+                    ParticipantFlags.isChild.key,
+                    ParticipantFlags.isChild.values.yes
+                )
+            ),
+            // if not child, add vaccination survey if not already there
+            StudyEngine.if(
+                StudyEngine.and(
+                    StudyEngine.participantState.hasParticipantFlagKeyAndValue(
+                        ParticipantFlags.isChild.key,
+                        ParticipantFlags.isChild.values.no
+                    ),
+                    StudyEngine.not(
+                        StudyEngine.participantState.hasSurveyKeyAssigned(vaccination.key)
+                    )
+                ),
+                StudyEngine.participantActions.assignedSurveys.add(
+                    vaccination.key,
+                    "prio"
+                )
+            ),
+            // if child, remove vaccination survey if present
+            StudyEngine.if(
+                StudyEngine.and(
+                    StudyEngine.participantState.hasParticipantFlagKeyAndValue(
+                        ParticipantFlags.isChild.key,
+                        ParticipantFlags.isChild.values.yes
+                    ),
+                    StudyEngine.participantState.hasSurveyKeyAssigned(vaccination.key)
+                ),
+                StudyEngine.do(
+                    StudyEngine.participantActions.assignedSurveys.remove(
+                        vaccination.key,
+                        "all"
+                    ),
+                    StudyEngine.participantActions.removeFlag(
+                        ParticipantFlags.vaccinationCompleted.key
+                    )
+                )
+            )
         )
     );
 
@@ -116,6 +175,7 @@ export const studyRules = ((
         handleIntake,
         handleWeekly,
         handleVaccination,
+        handleChild,
         handleTestingHabits
     ];
 
@@ -123,4 +183,4 @@ export const studyRules = ((
      * STUDY RULES
      */
     return new StudyRules(entryRules, submitRules).get();
-})({ childAge: 18, vaccinationResubmitDays: 28, weeklyResubmitHours: 1 });
+})(rulesOptions);
