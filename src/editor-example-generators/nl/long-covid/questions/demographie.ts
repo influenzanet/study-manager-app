@@ -377,7 +377,7 @@ export class DemographieGroup extends GroupItemEditor {
             placeholderText: new Map([
                 ["nl", "dd-mm-jjjj"],
             ]),
-            minRelativeDate: { delta: { days: -10 } },
+            minRelativeDate: { delta: { days: -1500 } },
             maxRelativeDate: { delta: { seconds: 1 } },
             isRequired: isRequired,
         });

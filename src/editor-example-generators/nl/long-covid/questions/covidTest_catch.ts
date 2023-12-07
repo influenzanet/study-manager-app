@@ -373,7 +373,7 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -125 } },
+        minRelativeDate: { delta: { days: -1250 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -517,7 +517,7 @@ const q_test_date_def_FU = (parentKey: string, isRequired?: boolean, condition?:
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -125 } },
+        minRelativeDate: { delta: { days: -1250 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
