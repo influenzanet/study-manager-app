@@ -962,13 +962,13 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                 type: 'hard',
                 rule: CommonExpressions.or(
                     // this option is not selected
-                    CommonExpressions.singleChoiceOnlyOtherKeysSelected(itemKey, 'ja'),
+                    CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, 'ja'),
                     // or if this is selected, the open field is answered with a number > 0
                     CommonExpressions.and(
-                        CommonExpressions.singleChoiceOptionsSelected(itemKey, 'ja'),
+                        CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, 'ja'),
                         CommonExpressions.gt(
                             CommonExpressions.getResponseValueAsNum(
-                                itemKey,
+                                parentKey + '.' + itemKey,
                                 [responseGroupKey, singleChoiceKey, 'ja'].join('.')
                             ),
                             0
