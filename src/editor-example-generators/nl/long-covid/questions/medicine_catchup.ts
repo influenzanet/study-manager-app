@@ -6,7 +6,7 @@ import { generateLocStrings } from "../../../../editor-engine/utils/simple-gener
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
 import { responseGroupKey } from "../../../../editor-engine/utils/key-definitions";
-import { multipleChoiceKey } from "../../../common_question_pool/key-definitions";
+import { multipleChoiceKey, singleChoiceKey } from "../../../common_question_pool/key-definitions";
 
 export class MedicineGroup extends GroupItemEditor {
 
@@ -141,7 +141,7 @@ const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition
             checkIfOpenFieldIsAnswered(
                 `${parentKey}.${itemKey}`,
                 //['0', '1', '2'] // list here all the options that have an open field
-                ['huisarts', '0', 'specialist','1','2','4','7','10','11','longarts','14','16','17','18','20','21','22','23','paraspecialist','3','5','6','15','12','overigespec','8','12','19','24']
+                ['huisarts', '0', 'specialist', '1', '2', '4', '7', '10', '11', 'longarts', '14', '16', '17', '18', '20', '21', '22', '23', 'paraspecialist', '3', '5', '6', '15', '12', 'overigespec', '8', '12', '19', '24']
             )
         ],
         responseOptions: [
@@ -432,7 +432,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
             checkIfOpenFieldIsAnswered(
                 `${parentKey}.${itemKey}`,
                 //['0', '1', '2'] // list here all the options that have an open field
-                ['huisarts', '0', 'specialist','1','2','4','7','10','11','longarts','14','16','17','18','20','21','22','23','paraspecialist','3','5','6','15','12','overigespec','8','12','19','24']
+                ['huisarts', '0', 'specialist', '1', '2', '4', '7', '10', '11', 'longarts', '14', '16', '17', '18', '20', '21', '22', '23', 'paraspecialist', '3', '5', '6', '15', '12', 'overigespec', '8', '12', '19', '24']
             )
         ],
         responseOptions: [
@@ -956,13 +956,27 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was (anders dan door het coronavirus)?"],
         ]),
-        //customValidations: [
-          //  checkIfOpenFieldIsAnswered(
-          //      `${parentKey}.${itemKey}`,
-           //     //['0', '1', '2'] // list here all the options that have an open field
-           //     ['ja']
-           // )
-       // ],
+        customValidations: [
+            {
+                key: 'checkIfOpenFieldIsAnswered',
+                type: 'hard',
+                rule: CommonExpressions.or(
+                    // this option is not selected
+                    CommonExpressions.singleChoiceOnlyOtherKeysSelected(itemKey, 'ja'),
+                    // or if this is selected, the open field is answered with a number > 0
+                    CommonExpressions.and(
+                        CommonExpressions.singleChoiceOptionsSelected(itemKey, 'ja'),
+                        CommonExpressions.gt(
+                            CommonExpressions.getResponseValueAsNum(
+                                itemKey,
+                                [responseGroupKey, singleChoiceKey, 'ja'].join('.')
+                            ),
+                            0
+                        )
+                    )
+                )
+            }
+        ],
         responseOptions: [
             {
                 key: 'nee', role: 'option',
