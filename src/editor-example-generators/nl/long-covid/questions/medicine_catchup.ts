@@ -428,6 +428,13 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
         questionText: new Map([
             ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus?"],
         ]),
+        customValidations: [
+            checkIfOpenFieldIsAnswered(
+                `${parentKey}.${itemKey}`,
+                //['0', '1', '2'] // list here all the options that have an open field
+                ['huisarts', '0', 'specialist','1','2','4','7','10','11','longarts','14','16','17','18','20','21','22','23','paraspecialist','3','5','6','15','12','overigespec','8','12','19','24']
+            )
+        ],
         responseOptions: [
             {
                 key: 'huisarts', role: 'text',
@@ -949,6 +956,13 @@ const Q16 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
         questionText: new Map([
             ["nl", "Ben je in de afgelopen 3 maanden afwezig geweest van je werk omdat je ziek was (anders dan door het coronavirus)?"],
         ]),
+        //customValidations: [
+          //  checkIfOpenFieldIsAnswered(
+          //      `${parentKey}.${itemKey}`,
+           //     //['0', '1', '2'] // list here all the options that have an open field
+           //     ['ja']
+           // )
+       // ],
         responseOptions: [
             {
                 key: 'nee', role: 'option',
