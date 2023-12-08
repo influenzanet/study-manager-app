@@ -99,7 +99,7 @@ const checkIfOpenFieldIsAnswered = (itemKey: string, forOptions: string[]): Vali
         key: 'checkIfOpenFieldIsAnswered',
         type: 'hard',
         rule: CommonExpressions.and(
-            forOptions.map(optionKey => {
+            ...forOptions.map(optionKey => {
                 return CommonExpressions.or(
                     // this option is not selected
                     CommonExpressions.multipleChoiceOnlyOtherKeysSelected(itemKey, optionKey),
