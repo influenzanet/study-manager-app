@@ -1,10 +1,12 @@
-import { Expression, SurveyItem } from "survey-engine/data_types";
+import { Expression, SurveyItem, Validation } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
+import { responseGroupKey } from "../../../../editor-engine/utils/key-definitions";
+import { multipleChoiceKey } from "../../../common_question_pool/key-definitions";
 
 export class MedicineGroup extends GroupItemEditor {
 
@@ -92,6 +94,32 @@ const gen_Q1_longsymptoms = (parentKey: string, isRequired?: boolean, condition?
     });
 }
 
+const checkIfOpenFieldIsAnswered = (itemKey: string, forOptions: string[]): Validation => {
+    return {
+        key: 'checkIfOpenFieldIsAnswered',
+        type: 'hard',
+        rule: CommonExpressions.and(
+            forOptions.map(optionKey => {
+                return CommonExpressions.or(
+                    // this option is not selected
+                    CommonExpressions.multipleChoiceOnlyOtherKeysSelected(itemKey, optionKey),
+                    // or if this is selected, the open field is answered with a number > 0
+                    CommonExpressions.and(
+                        CommonExpressions.multipleChoiceOptionsSelected(itemKey, optionKey),
+                        CommonExpressions.gt(
+                            CommonExpressions.getResponseValueAsNum(
+                                itemKey,
+                                [responseGroupKey, multipleChoiceKey, optionKey].join('.')
+                            ),
+                            0
+                        )
+                    )
+                )
+            })
+        )
+    }
+}
+
 const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a_longsymptoms';
 
@@ -109,6 +137,12 @@ const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition
         questionText: new Map([
             ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die WEL te maken hebben met het coronavirus, en hoe vaak? "],
         ]),
+        customValidations: [
+            checkIfOpenFieldIsAnswered(
+                `${parentKey}.${itemKey}`,
+                ['0', '1', '2'] // list here all the options that have an open field
+            )
+        ],
         responseOptions: [
             {
                 key: 'huisarts', role: 'text',
