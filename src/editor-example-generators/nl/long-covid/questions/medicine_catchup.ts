@@ -756,6 +756,27 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
+        //customValidations: [
+            //{
+               // key: 'checkIfOpenFieldIsAnswered',
+               // type: 'hard',
+               // rule: CommonExpressions.or(
+                    // this option is not selected
+                   // CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, '11'),
+                    // or if this is selected, the open field is answered with a number > 0
+                   // CommonExpressions.and(
+                      //  CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, '11'),
+                      //  CommonExpressions.gt(
+                      //      CommonExpressions.getResponseValueAsNum(
+                      //          parentKey + '.' + itemKey,
+                      //          [responseGroupKey, singleChoiceKey, '11'].join('.')
+                      //      ),
+                      //      0
+                      //  )
+                  //  )
+              //  )
+          //  }
+      //  ],
 
         responseOptions: [
             {
@@ -869,6 +890,27 @@ const Q4_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, 
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
+        //customValidations: [
+           // {
+               // key: 'checkIfOpenFieldIsAnswered',
+               // type: 'hard',
+               // rule: CommonExpressions.or(
+                    // this option is not selected
+                  //  CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, '11'),
+                    // or if this is selected, the open field is answered with a number > 0
+                   // CommonExpressions.and(
+                    //    CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, '11'),
+                       // CommonExpressions.gt(
+                         //   CommonExpressions.getResponseValueAsNum(
+                          //      parentKey + '.' + itemKey,
+                          //      [responseGroupKey, singleChoiceKey, '11'].join('.')
+                          //  ),
+                          //  0
+                      //  )
+                  //  )
+               // )
+          //  }
+       // ],
 
         responseOptions: [
             {
