@@ -14,7 +14,7 @@ import { CovidTestGroup as ChildrenCovidTestGroup } from "../questions/for-child
 import { VaccinationGroup as ChildrenVaccinationGroup } from "../questions/for-children/vaccination_catch";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health_Catch";
 import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-children/symptoms";
-import { EQ5DProxyGroup } from "../questions/for-children/eq5dProxy";
+import { EQ5DProxyGroup } from "../questions/for-children/eq5dProxy_catchup";
 import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
 import { AgeCategoryFlagName, surveyKeys } from "../studyRules";
 
