@@ -7,7 +7,7 @@ import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-ed
 import { surveyKeys } from "../studyRules";
 import { responseGroupKey } from "../../../../editor-engine/utils/key-definitions";
 import { singleChoiceKey } from "../../../common_question_pool/key-definitions";
-import { checkIfOpenNumberFieldIsAnsweredForMC, checkIfOpenTextFieldIsAnsweredForSingleChoice } from "./utils";
+import { checkIfOpenNumberFieldIsAnsweredForMC, checkIfOpenTextFieldIsAnsweredForMultipleChoice, checkIfOpenTextFieldIsAnsweredForSingleChoice } from "./utils";
 
 export class MedicineGroup extends GroupItemEditor {
 
@@ -867,7 +867,7 @@ const Q4_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, 
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         customValidations: [
-            checkIfOpenTextFieldIsAnsweredForSingleChoice(
+            checkIfOpenTextFieldIsAnsweredForMultipleChoice(
                 `${parentKey}.${itemKey}`,
                 ['11']
             )

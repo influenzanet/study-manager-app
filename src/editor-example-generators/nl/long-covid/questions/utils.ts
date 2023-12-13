@@ -30,6 +30,29 @@ export const checkIfOpenNumberFieldIsAnsweredForMC = (itemKey: string, forOption
     }
 }
 
+export const checkIfOpenTextFieldIsAnsweredForMultipleChoice = (itemKey: string, forOptions: string[]): Validation => {
+    return {
+        key: 'checkIfOpenFieldIsAnswered',
+        type: 'hard',
+        rule: CommonExpressions.and(
+            ...forOptions.map(optionKey => {
+                return CommonExpressions.or(
+                    // this option is not selected
+                    CommonExpressions.multipleChoiceOnlyOtherKeysSelected(itemKey, optionKey),
+                    // or if this is selected, the open field is answered with a non-empty string
+                    CommonExpressions.and(
+                        CommonExpressions.multipleChoiceOptionsSelected(itemKey, optionKey),
+                        expWithArgs('checkResponseValueWithRegex', itemKey,
+                            [responseGroupKey, multipleChoiceKey, optionKey].join('.'),
+                            '^.+$'
+                        ),
+                    )
+                )
+            })
+        )
+    }
+}
+
 export const checkIfOpenTextFieldIsAnsweredForSingleChoice = (itemKey: string, forOptions: string[]): Validation => {
     return {
         key: 'checkIfOpenFieldIsAnswered',
