@@ -1,4 +1,4 @@
-import { Expression, SurveyItem, Validation } from "survey-engine/data_types";
+import { Expression, SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
@@ -6,7 +6,8 @@ import { generateLocStrings } from "../../../../editor-engine/utils/simple-gener
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
 import { responseGroupKey } from "../../../../editor-engine/utils/key-definitions";
-import { multipleChoiceKey, singleChoiceKey } from "../../../common_question_pool/key-definitions";
+import { singleChoiceKey } from "../../../common_question_pool/key-definitions";
+import { checkIfOpenNumberFieldIsAnsweredForMC, checkIfOpenTextFieldIsAnsweredForSingleChoice } from "./utils";
 
 export class MedicineGroup extends GroupItemEditor {
 
@@ -94,31 +95,6 @@ const gen_Q1_longsymptoms = (parentKey: string, isRequired?: boolean, condition?
     });
 }
 
-const checkIfOpenFieldIsAnswered = (itemKey: string, forOptions: string[]): Validation => {
-    return {
-        key: 'checkIfOpenFieldIsAnswered',
-        type: 'hard',
-        rule: CommonExpressions.and(
-            ...forOptions.map(optionKey => {
-                return CommonExpressions.or(
-                    // this option is not selected
-                    CommonExpressions.multipleChoiceOnlyOtherKeysSelected(itemKey, optionKey),
-                    // or if this is selected, the open field is answered with a number > 0
-                    CommonExpressions.and(
-                        CommonExpressions.multipleChoiceOptionsSelected(itemKey, optionKey),
-                        CommonExpressions.gt(
-                            CommonExpressions.getResponseValueAsNum(
-                                itemKey,
-                                [responseGroupKey, multipleChoiceKey, optionKey].join('.')
-                            ),
-                            0
-                        )
-                    )
-                )
-            })
-        )
-    }
-}
 
 const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'Q2a_longsymptoms';
@@ -138,7 +114,7 @@ const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition
             ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die WEL te maken hebben met het coronavirus, en hoe vaak? "],
         ]),
         customValidations: [
-            checkIfOpenFieldIsAnswered(
+            checkIfOpenNumberFieldIsAnsweredForMC(
                 `${parentKey}.${itemKey}`,
                 //['0', '1', '2'] // list here all the options that have an open field
                 ['huisarts', '0', 'specialist', '1', '2', '4', '7', '10', '11', 'longarts', '14', '16', '17', '18', '20', '21', '22', '23', 'paraspecialist', '3', '5', '6', '15', '12', 'overigespec', '8', '13', '19', '24']
@@ -429,7 +405,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
             ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus?"],
         ]),
         customValidations: [
-            checkIfOpenFieldIsAnswered(
+            checkIfOpenNumberFieldIsAnsweredForMC(
                 `${parentKey}.${itemKey}`,
                 //['0', '1', '2'] // list here all the options that have an open field
                 ['huisarts', '0', 'specialist', '1', '2', '4', '7', '10', '11', 'longarts', '14', '16', '17', '18', '20', '21', '22', '23', 'paraspecialist', '3', '5', '6', '15', '12', 'overigespec', '8', '13', '19', '24']
@@ -757,26 +733,26 @@ const Q4 = (parentKey: string, isRequired?: boolean, condition?: Expression, key
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
         //customValidations: [
-            //{
-               // key: 'checkIfOpenFieldIsAnswered',
-               // type: 'hard',
-               // rule: CommonExpressions.or(
-                    // this option is not selected
-                   // CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, '11'),
-                    // or if this is selected, the open field is answered with a number > 0
-                   // CommonExpressions.and(
-                      //  CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, '11'),
-                      //  CommonExpressions.gt(
-                      //      CommonExpressions.getResponseValueAsNum(
-                      //          parentKey + '.' + itemKey,
-                      //          [responseGroupKey, singleChoiceKey, '11'].join('.')
-                      //      ),
-                      //      0
-                      //  )
-                  //  )
-              //  )
-          //  }
-      //  ],
+        //{
+        // key: 'checkIfOpenFieldIsAnswered',
+        // type: 'hard',
+        // rule: CommonExpressions.or(
+        // this option is not selected
+        // CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, '11'),
+        // or if this is selected, the open field is answered with a number > 0
+        // CommonExpressions.and(
+        //  CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, '11'),
+        //  CommonExpressions.gt(
+        //      CommonExpressions.getResponseValueAsNum(
+        //          parentKey + '.' + itemKey,
+        //          [responseGroupKey, singleChoiceKey, '11'].join('.')
+        //      ),
+        //      0
+        //  )
+        //  )
+        //  )
+        //  }
+        //  ],
 
         responseOptions: [
             {
@@ -890,27 +866,33 @@ const Q4_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, 
         questionSubText: new Map([
             ["nl", "Meerdere antwoorden mogelijk."],
         ]),
+        customValidations: [
+            checkIfOpenTextFieldIsAnsweredForSingleChoice(
+                `${parentKey}.${itemKey}`,
+                ['11']
+            )
+        ],
         //customValidations: [
-           // {
-               // key: 'checkIfOpenFieldIsAnswered',
-               // type: 'hard',
-               // rule: CommonExpressions.or(
-                    // this option is not selected
-                  //  CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, '11'),
-                    // or if this is selected, the open field is answered with a number > 0
-                   // CommonExpressions.and(
-                    //    CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, '11'),
-                       // CommonExpressions.gt(
-                         //   CommonExpressions.getResponseValueAsNum(
-                          //      parentKey + '.' + itemKey,
-                          //      [responseGroupKey, singleChoiceKey, '11'].join('.')
-                          //  ),
-                          //  0
-                      //  )
-                  //  )
-               // )
-          //  }
-       // ],
+        // {
+        // key: 'checkIfOpenFieldIsAnswered',
+        // type: 'hard',
+        // rule: CommonExpressions.or(
+        // this option is not selected
+        //  CommonExpressions.singleChoiceOnlyOtherKeysSelected(parentKey + '.' + itemKey, '11'),
+        // or if this is selected, the open field is answered with a number > 0
+        // CommonExpressions.and(
+        //    CommonExpressions.singleChoiceOptionsSelected(parentKey + '.' + itemKey, '11'),
+        // CommonExpressions.gt(
+        //   CommonExpressions.getResponseValueAsNum(
+        //      parentKey + '.' + itemKey,
+        //      [responseGroupKey, singleChoiceKey, '11'].join('.')
+        //  ),
+        //  0
+        //  )
+        //  )
+        // )
+        //  }
+        // ],
 
         responseOptions: [
             {

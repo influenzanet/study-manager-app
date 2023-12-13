@@ -6,6 +6,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
+import { checkIfOpenNumberFieldIsAnsweredForMC, checkIfOpenTextFieldIsAnsweredForSingleChoice } from "./utils";
 
 export class DemographieGroup extends GroupItemEditor {
 
@@ -82,7 +83,7 @@ export class DemographieGroup extends GroupItemEditor {
         let conditionWerkveranderdJa = undefined;
         if (!this.isPartOfSurvey(surveyKeys.T0)) {
             const qwv = Qwerkveranderd(this.key, true)
-            conditionWerkveranderdJa = CommonExpressions.singleChoiceOptionsSelected(qwv.key, 'ja','ja,maar');
+            conditionWerkveranderdJa = CommonExpressions.singleChoiceOptionsSelected(qwv.key, 'ja', 'ja,maar');
             this.addItem(qwv)
         }
         const q15 = Q15(this.key, conditionWerkveranderdJa, true)
@@ -224,24 +225,24 @@ export class DemographieGroup extends GroupItemEditor {
         if (this.isPartOfSurvey(surveyKeys.T12)) {
             this.addItem(extend_FU(this.key, true))
 
-        const Q_extendFU = extend_FU(this.key, true, undefined);
-        const conditionnoFU = CommonExpressions.singleChoiceOptionsSelected(Q_extendFU.key, 'nee')
-        const Q_stopReason = S2(this.key, true, conditionnoFU);
-        this.addItem(Q_stopReason)
-        
-        const wantstoStop = new GroupItemEditor(this.key, 'SQ');
-        wantstoStop.groupEditor.setCondition(conditionnoFU);
+            const Q_extendFU = extend_FU(this.key, true, undefined);
+            const conditionnoFU = CommonExpressions.singleChoiceOptionsSelected(Q_extendFU.key, 'nee')
+            const Q_stopReason = S2(this.key, true, conditionnoFU);
+            this.addItem(Q_stopReason)
 
-        const conditionStopWebsite = CommonExpressions.singleChoiceOptionsSelected(Q_stopReason.key, '4', '5');
-        const Q_stopwebsite = S2_website(wantstoStop.key, true, conditionStopWebsite);
+            const wantstoStop = new GroupItemEditor(this.key, 'SQ');
+            wantstoStop.groupEditor.setCondition(conditionnoFU);
 
-        wantstoStop.addItem(Q_stopwebsite)  
+            const conditionStopWebsite = CommonExpressions.singleChoiceOptionsSelected(Q_stopReason.key, '4', '5');
+            const Q_stopwebsite = S2_website(wantstoStop.key, true, conditionStopWebsite);
 
-        const conditionStopNamelijk = CommonExpressions.singleChoiceOptionsSelected(Q_stopReason.key, '9');
-        const Q_stopnamelijk = S2_namelijk(wantstoStop.key, true, conditionStopNamelijk);
-        
-        wantstoStop.addItem(Q_stopnamelijk)
-        
+            wantstoStop.addItem(Q_stopwebsite)
+
+            const conditionStopNamelijk = CommonExpressions.singleChoiceOptionsSelected(Q_stopReason.key, '9');
+            const Q_stopnamelijk = S2_namelijk(wantstoStop.key, true, conditionStopNamelijk);
+
+            wantstoStop.addItem(Q_stopnamelijk)
+
         }
     }
 
@@ -313,6 +314,12 @@ export class DemographieGroup extends GroupItemEditor {
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk"]
             ]),
+            customValidations: [
+                checkIfOpenNumberFieldIsAnsweredForMC(
+                    `${this.key}.${itemKey}`,
+                    ['geen', 'minder'],
+                )
+            ],
             responseOptions: [
                 {
                     key: 'geen', role: 'numberInput',
@@ -1394,6 +1401,12 @@ const Q17_FU = (parentKey: string, condition: Expression, isRequired?: boolean, 
                 ])
             },
         ],
+        customValidations: [
+            checkIfOpenTextFieldIsAnsweredForSingleChoice(
+                `${parentKey}.${itemKey}`,
+                ['8']
+            )
+        ],
         isRequired: isRequired,
     });
 }
@@ -1893,6 +1906,12 @@ const gen_Q_wekenhulp = (parentKey: string, condition?: Expression, isRequired?:
             ["nl", "Let op: een periode van 3 maanden telt 13 weken."],
         ]),
         isRequired: isRequired,
+        customValidations: [
+            checkIfOpenNumberFieldIsAnsweredForMC(
+                `${parentKey}.${itemKey}`,
+                ['1', '2', '3'],
+            )
+        ],
         responseOptions: [
             {
                 key: '1', role: 'numberInput',
@@ -1937,6 +1956,12 @@ const gen_Q_urenhulp = (parentKey: string, condition?: Expression, isRequired?: 
             ["nl", "Hoeveel uur hulp kreeg je in deze weken gemiddeld?"],
         ]),
         isRequired: isRequired,
+        customValidations: [
+            checkIfOpenNumberFieldIsAnsweredForMC(
+                `${parentKey}.${itemKey}`,
+                ['1', '2', '3'],
+            )
+        ],
         responseOptions: [
             {
                 key: '1', role: 'numberInput',

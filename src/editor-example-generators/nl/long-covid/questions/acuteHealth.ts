@@ -4,6 +4,7 @@ import { ComponentGenerators } from "../../../../editor-engine/utils/componentGe
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
+import { checkIfOpenTextFieldIsAnsweredForSingleChoice } from "./utils";
 
 export class AcuteHealthGroup extends GroupItemEditor {
     qAcuteSymptomsKey: string;
@@ -820,6 +821,11 @@ const Q1b = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
                     ["nl", "Weet ik niet"],
                 ])
             },
+        ],
+        customValidations: [
+            checkIfOpenTextFieldIsAnsweredForSingleChoice(
+                `${parentKey}.${itemKey}`, ['andere']
+            )
         ],
         isRequired: isRequired,
     })
