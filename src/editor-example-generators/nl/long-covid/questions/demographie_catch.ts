@@ -1565,6 +1565,12 @@ const gen_Q_verzuim = (parentKey: string, condition: Expression, isRequired?: bo
             ["nl", "Je mag het antwoord ook inschatten."],
         ]),
         isRequired: isRequired,
+        customValidations: [
+            checkIfOpenNumberFieldIsAnsweredForMC(
+                `${parentKey}.${itemKey}`,
+                ['1', '2'],
+            )
+        ],
         responseOptions: [
             {
                 key: '1', role: 'numberInput',
