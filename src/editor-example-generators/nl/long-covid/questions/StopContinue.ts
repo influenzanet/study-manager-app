@@ -12,13 +12,19 @@ const singleChoiceKey = 'scg';
 
 export class SCGroup extends GroupItemEditor {
     useCopyRight: boolean;
+    isRequired: boolean;
     S1JaCondition?: Expression;
 
 
-    constructor(parentKey: string, keyOverride?: string, hideCopyRight?: boolean) {
+    constructor(parentKey: string, isRequired?:boolean, keyOverride?: string, hideCopyRight?: boolean) {
         const groupKey = keyOverride ? keyOverride : 'SC';
+        
         super(parentKey, groupKey);
+        
         this.useCopyRight = hideCopyRight !== true;
+        this.isRequired = true;
+
+
         this.initQuestions();
     }
 
@@ -55,7 +61,7 @@ export class SCGroup extends GroupItemEditor {
         );
 
         wantstoStop.addItem(q_healthstatus_instructions_def(wantstoStop.key));
-        wantstoStop.addItem(q_healthstatus_def(wantstoStop.key, false));
+        wantstoStop.addItem(q_healthstatus_def(wantstoStop.key,this.isRequired));
 
         this.addItem(wantstoStop.getItem());
         //this.addItem(instructions_cont(this.key, participant_cont))
