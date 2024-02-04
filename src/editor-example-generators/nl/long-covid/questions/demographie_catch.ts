@@ -309,7 +309,7 @@ export class DemographieGroup extends GroupItemEditor {
             condition: condition,
             isRequired: isRequired,
             questionText: new Map([
-                ["nl", "Hoeveel dagen sinds de vorige vragenlijst heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
+                ["nl", "Hoeveel dagen in de afgelopen 4 weken heb je helemaal niet, of minder lessen kunnen volgen door langdurige gezondheidsklachten (tel het aantal lesdagen)? Je mag het antwoord ook inschatten."],
             ]),
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk"]
