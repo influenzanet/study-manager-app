@@ -156,8 +156,8 @@ export class DemographieGroup extends GroupItemEditor {
             q11AndQ14aCondition = CommonExpressions.and(
                 testQ11jaCondition,
                 CommonExpressions.or(
-                    CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
-                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"),
+                    //CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
+                    //CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"), //this is the error 
                     CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
                 )
             )
@@ -1550,7 +1550,7 @@ const gen_Q_arbo = (parentKey: string, condition: Expression, isRequired?: boole
 const gen_Q_verzuim = (parentKey: string, condition: Expression, isRequired?: boolean, keyOverride?: string): SurveyItem => {
     const itemKey = keyOverride ? keyOverride : 'verzuim';
     const inputProperties = {
-        min: 1,
+        min: 0, //change to null 
         max: 500
     };
     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
