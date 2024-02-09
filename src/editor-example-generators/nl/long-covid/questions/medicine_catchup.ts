@@ -409,6 +409,10 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
                 `${parentKey}.${itemKey}`,
                 //['0', '1', '2'] // list here all the options that have an open field
                 ['huisarts', '0', 'specialist', '1', '2', '4', '7', '10', '11', 'longarts', '14', '16', '17', '18', '20', '21', '22', '23', 'paraspecialist', '3', '5', '6', '15', '12', 'overigespec', '8', '13', '19']
+            //),
+            //checkIfOpenTextFieldIsAnsweredForMultipleChoice(
+            //    `${parentKey}.${itemKey}`,
+            //    ['24']
             )
         ],
         responseOptions: [
