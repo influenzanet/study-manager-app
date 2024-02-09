@@ -1545,6 +1545,12 @@ const gen_Q_arbo = (parentKey: string, condition: Expression, isRequired?: boole
                     ["nl", "Nee"],
                 ])
             },
+            {
+                key: 'Niet van toepassing, overig', role: 'option',
+                content: new Map([
+                    ["nl", "NVT"],
+                ])
+            },
         ],
     });
 }
