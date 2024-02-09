@@ -6,7 +6,7 @@ import { expWithArgs } from "../../../../editor-engine/utils/simple-generators"
 
 export const checkIfOpenNumberFieldIsAnsweredForMC = (itemKey: string, forOptions: string[]): Validation => {
     return {
-        key: 'checkIfOpenFieldIsAnswered',
+        key: 'checkIfOpenFieldIsAnsweredfornumber',
         type: 'hard',
         rule: CommonExpressions.and(
             ...forOptions.map(optionKey => {
@@ -32,7 +32,7 @@ export const checkIfOpenNumberFieldIsAnsweredForMC = (itemKey: string, forOption
 
 export const checkIfOpenTextFieldIsAnsweredForMultipleChoice = (itemKey: string, forOptions: string[]): Validation => {
     return {
-        key: 'checkIfOpenFieldIsAnswered',
+        key: 'checkIfOpenFieldIsAnsweredM',
         type: 'hard',
         rule: CommonExpressions.and(
             ...forOptions.map(optionKey => {
@@ -55,7 +55,7 @@ export const checkIfOpenTextFieldIsAnsweredForMultipleChoice = (itemKey: string,
 
 export const checkIfOpenTextFieldIsAnsweredForSingleChoice = (itemKey: string, forOptions: string[]): Validation => {
     return {
-        key: 'checkIfOpenFieldIsAnswered',
+        key: 'checkIfOpenFieldIsAnsweredS',
         type: 'hard',
         rule: CommonExpressions.and(
             ...forOptions.map(optionKey => {
