@@ -151,26 +151,28 @@ export class DemographieGroup extends GroupItemEditor {
                 CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
             )
         )
+
         // Overwrite for not T0 surveys:
         if (!this.isPartOfSurvey(surveyKeys.T0)) {
             q11AndQ14aCondition = CommonExpressions.and(
                 testQ11jaCondition,
                 CommonExpressions.or(
-                    //CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
-                    //CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"), //this is the error 
+                    CommonExpressions.hasParticipantFlag("paidJobAtInfection", "yes"),
+                    CommonExpressions.hasParticipantFlag("paidJobAtT0", "yes"), 
                     CommonExpressions.singleChoiceOptionsSelected(PaidJob.key, '1')
                 )
             )
         }
+
         this.addItem(Q5(this.key, true));
         this.addPageBreak();
-        const Q_minderwerk = gen_Q_minderwerk(this.key, q11AndQ14aCondition, true);
-        this.addItem(Q_minderwerk);
+        const Q_minderwerk = gen_Q_minderwerk(this.key, q11AndQ14aCondition, true); //can I remove this condition 
+        this.addItem(Q_minderwerk); //making this condition less 
         const Q_arbo = gen_Q_arbo(this.key, q11AndQ14aCondition, true);
         this.addItem(Q_arbo);
 
         const conditionOnMinderwerk = CommonExpressions.singleChoiceOnlyOtherKeysSelected(
-            Q_minderwerk.key, '1'
+            Q_minderwerk.key, '1','5','6'
         )
         const Q_verzuim = gen_Q_verzuim(this.key, conditionOnMinderwerk, true);
         this.addItem(Q_verzuim);
@@ -1507,7 +1509,7 @@ const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?:
             {
                 key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "Ik ben geen werk meer door de langdurige klachten"],
+                    ["nl", "Ik heb geen werk meer door de langdurige klachten"],
                 ])
             },
             {
