@@ -316,12 +316,12 @@ export class DemographieGroup extends GroupItemEditor {
             questionSubText: new Map([
                 ["nl", "Meerdere antwoorden mogelijk"]
             ]),
-            customValidations: [
-                checkIfOpenNumberFieldIsAnsweredForMC(
-                    `${this.key}.${itemKey}`,
-                    ['geen', 'minder'],
-                )
-            ],
+            //customValidations: [
+            //    checkIfOpenNumberFieldIsAnsweredForMC(
+            //        `${this.key}.${itemKey}`,
+            //        ['geen', 'minder'],
+            //    )
+            //],
             responseOptions: [
                 {
                     key: 'geen', role: 'numberInput',
