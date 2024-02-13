@@ -172,7 +172,7 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q_arbo);
 
         const conditionOnMinderwerk = CommonExpressions.singleChoiceOnlyOtherKeysSelected(
-            Q_minderwerk.key, '1','5','6'
+            Q_minderwerk.key, '1','6'
         )
         const Q_verzuim = gen_Q_verzuim(this.key, conditionOnMinderwerk, true);
         this.addItem(Q_verzuim);
@@ -1573,12 +1573,12 @@ const gen_Q_verzuim = (parentKey: string, condition: Expression, isRequired?: bo
             ["nl", "Je mag het antwoord ook inschatten."],
         ]),
         isRequired: isRequired,
-        customValidations: [
-            checkIfOpenNumberFieldIsAnsweredForMC(
-                `${parentKey}.${itemKey}`,
-                ['1', '2'],
-            )
-        ],
+        //customValidations: [
+        //    checkIfOpenNumberFieldIsAnsweredForMC(
+        //        `${parentKey}.${itemKey}`,
+        //        ['1', '2'],
+        //    )
+        //],
         responseOptions: [
             {
                 key: '1', role: 'numberInput',
