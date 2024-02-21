@@ -169,7 +169,7 @@ export class DemographieGroup extends GroupItemEditor {
         this.addItem(Q_arbo);
 
         const conditionOnMinderwerk = CommonExpressions.singleChoiceOnlyOtherKeysSelected(
-            Q_minderwerk.key, '1'
+            Q_minderwerk.key, '1','6'
         )
         const Q_verzuim = gen_Q_verzuim(this.key, conditionOnMinderwerk, true);
         this.addItem(Q_verzuim);
@@ -1488,7 +1488,7 @@ const gen_Q_minderwerk = (parentKey: string, condition: Expression, isRequired?:
             {
                 key: '5', role: 'option',
                 content: new Map([
-                    ["nl", "Ik ben geen werk meer door de langdurige klachten"],
+                    ["nl", "Ik heb geen werk meer door de langdurige klachten"],
                 ])
             },
             {
@@ -1522,6 +1522,12 @@ const gen_Q_arbo = (parentKey: string, condition: Expression, isRequired?: boole
                 key: 'nee', role: 'option',
                 content: new Map([
                     ["nl", "Nee"],
+                ])
+            },
+            {
+                key: 'nvt', role: 'option',
+                content: new Map([
+                    ["nl", "Niet van toepassing, overig"],
                 ])
             },
         ],
