@@ -101,8 +101,9 @@ const gen_Q2a_longsymptoms = (parentKey: string, isRequired?: boolean, condition
 
     const inputProperties = {
         min: 1,
-        max: 50
+        max: 9999
     };
+
     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
 
     return SurveyItemGenerators.multipleChoice({
@@ -392,7 +393,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
 
     const inputProperties = {
         min: 1,
-        max: 50
+        max: 9999
     };
     const inputStyle = [{ key: 'inputMaxWidth', value: '70px' }];
 
