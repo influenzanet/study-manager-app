@@ -49,8 +49,8 @@ export class VaccinationGroup extends GroupItemEditor {
         if (!this.isPartOfSurvey(surveyKeys.T0)) { this.addItem(vacc_FU); }
         this.addItem(vacc_num);
         this.addItem(vacc_num_FU);
-        this.addItem(q_vacc_type_latest_def(this.key, true, condition_vacc_yes));
-        this.addItem(q_vacc_type_latest_def_FU(this.key, true, condition_vacc_yes_FU));
+        // this.addItem(q_vacc_type_latest_def(this.key, true, condition_vacc_yes));
+        // this.addItem(q_vacc_type_latest_def_FU(this.key, true, condition_vacc_yes_FU));
         // this.addItem(q_vacc1_date_def(this.key, true, condition_1vacc));
         // this.addItem(q_vacc1_date_def_FU(this.key, true, condition_1vacc_FU));
 
@@ -309,163 +309,163 @@ const q_vacc_num_def_FU = (parentKey: string, isRequired?: boolean, condition?: 
     });
 }
 
-const q_vacc_type_latest_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q3';
+// const q_vacc_type_latest_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q3';
 
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        condition: condition,
-        questionText: new Map([
-            ["nl", "Welk vaccin tegen het coronavirus heb je voor het laatst ontvangen?"],
-        ]),
-        // questionSubText: new Map([
-        //     ["nl", "Meerdere antwoorden mogelijk."],
-        // ]),
-        responseOptions: [
-        //    {
-        //        key: '0', role: 'option',
-        //        content: new Map([
-        //            ["nl", "Onbekend"],
-        //        ])
-        //    },
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["nl", "Pfizer / BioNTech (Comirnaty)"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "Moderna"],
-                ])
-            },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["nl", "AstraZeneca"],
-                ])
-            },
-        //    {
-          //      key: '4', role: 'option',
-            //    content: new Map([
-              //      ["nl", "CureVac"],
-             //   ])
-           // },
-            {
-                key: '5', role: 'option',
-                content: new Map([
-                    ["nl", "Janssen"],
-                ])
-            },
-         //   {
-          //      key: '6', role: 'option',
-           //     content: new Map([
-           //         ["nl", "GSK / Sanofi Pasteur"],
-          //      ])
-        //    },
-        //    {
-        //        key: '8', role: 'option',
-         //       content: new Map([
-        //            ["nl", "Novavax"],
-        //        ])
-        //    },
-            {
-                key: '7', role: 'option',
-                content: new Map([
-                    ["nl", "Weet ik niet"],
-                ])
-            },
-            {
-                key: '8', role: 'option',
-                content: new Map([
-                    ["nl", "Anders"],
-                ])
-            },
-        ],
-        isRequired: isRequired,
-    });
-}
+//     return SurveyItemGenerators.singleChoice({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         condition: condition,
+//         questionText: new Map([
+//             ["nl", "Welk vaccin tegen het coronavirus heb je voor het laatst ontvangen?"],
+//         ]),
+//         // questionSubText: new Map([
+//         //     ["nl", "Meerdere antwoorden mogelijk."],
+//         // ]),
+//         responseOptions: [
+//         //    {
+//         //        key: '0', role: 'option',
+//         //        content: new Map([
+//         //            ["nl", "Onbekend"],
+//         //        ])
+//         //    },
+//             {
+//                 key: '1', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Pfizer / BioNTech (Comirnaty)"],
+//                 ])
+//             },
+//             {
+//                 key: '2', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Moderna"],
+//                 ])
+//             },
+//             {
+//                 key: '3', role: 'option',
+//                 content: new Map([
+//                     ["nl", "AstraZeneca"],
+//                 ])
+//             },
+//         //    {
+//           //      key: '4', role: 'option',
+//             //    content: new Map([
+//               //      ["nl", "CureVac"],
+//              //   ])
+//            // },
+//             {
+//                 key: '5', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Janssen"],
+//                 ])
+//             },
+//          //   {
+//           //      key: '6', role: 'option',
+//            //     content: new Map([
+//            //         ["nl", "GSK / Sanofi Pasteur"],
+//           //      ])
+//         //    },
+//         //    {
+//         //        key: '8', role: 'option',
+//          //       content: new Map([
+//         //            ["nl", "Novavax"],
+//         //        ])
+//         //    },
+//             {
+//                 key: '7', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Weet ik niet"],
+//                 ])
+//             },
+//             {
+//                 key: '8', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Anders"],
+//                 ])
+//             },
+//         ],
+//         isRequired: isRequired,
+//     });
+// }
 
-const q_vacc_type_latest_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
-    const itemKey = keyOverride ? keyOverride : 'Q3_FU';
+// const q_vacc_type_latest_def_FU = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
+//     const itemKey = keyOverride ? keyOverride : 'Q3_FU';
 
-    return SurveyItemGenerators.singleChoice({
-        parentKey: parentKey,
-        itemKey: itemKey,
-        condition: condition,
-        questionText: new Map([
-            ["nl", "Welk vaccin tegen het coronavirus heb je voor het laatst ontvangen?"],
-        ]),
-        // questionSubText: new Map([
-        //     ["nl", "Meerdere antwoorden mogelijk."],
-        // ]),
-        responseOptions: [
-        //    {
-        //        key: '0', role: 'option',
-        //        content: new Map([
-        //            ["nl", "Onbekend"],
-        //        ])
-        //    },
-            {
-                key: '1', role: 'option',
-                content: new Map([
-                    ["nl", "Pfizer / BioNTech (Comirnaty)"],
-                ])
-            },
-            {
-                key: '2', role: 'option',
-                content: new Map([
-                    ["nl", "Moderna"],
-                ])
-            },
-            {
-                key: '3', role: 'option',
-                content: new Map([
-                    ["nl", "AstraZeneca"],
-                ])
-            },
-        //    {
-          //      key: '4', role: 'option',
-            //    content: new Map([
-              //      ["nl", "CureVac"],
-             //   ])
-           // },
-            {
-                key: '5', role: 'option',
-                content: new Map([
-                    ["nl", "Janssen"],
-                ])
-            },
-         //   {
-          //      key: '6', role: 'option',
-           //     content: new Map([
-           //         ["nl", "GSK / Sanofi Pasteur"],
-          //      ])
-        //    },
-        //    {
-        //        key: '8', role: 'option',
-         //       content: new Map([
-        //            ["nl", "Novavax"],
-        //        ])
-        //    },
-            {
-                key: '7', role: 'option',
-                content: new Map([
-                    ["nl", "Weet ik niet"],
-                ])
-            },
-            {
-                key: '8', role: 'option',
-                content: new Map([
-                    ["nl", "Anders"],
-                ])
-            },
-        ],
-        isRequired: isRequired,
-    });
-}
+//     return SurveyItemGenerators.singleChoice({
+//         parentKey: parentKey,
+//         itemKey: itemKey,
+//         condition: condition,
+//         questionText: new Map([
+//             ["nl", "Welk vaccin tegen het coronavirus heb je voor het laatst ontvangen?"],
+//         ]),
+//         // questionSubText: new Map([
+//         //     ["nl", "Meerdere antwoorden mogelijk."],
+//         // ]),
+//         responseOptions: [
+//         //    {
+//         //        key: '0', role: 'option',
+//         //        content: new Map([
+//         //            ["nl", "Onbekend"],
+//         //        ])
+//         //    },
+//             {
+//                 key: '1', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Pfizer / BioNTech (Comirnaty)"],
+//                 ])
+//             },
+//             {
+//                 key: '2', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Moderna"],
+//                 ])
+//             },
+//             {
+//                 key: '3', role: 'option',
+//                 content: new Map([
+//                     ["nl", "AstraZeneca"],
+//                 ])
+//             },
+//         //    {
+//           //      key: '4', role: 'option',
+//             //    content: new Map([
+//               //      ["nl", "CureVac"],
+//              //   ])
+//            // },
+//             {
+//                 key: '5', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Janssen"],
+//                 ])
+//             },
+//          //   {
+//           //      key: '6', role: 'option',
+//            //     content: new Map([
+//            //         ["nl", "GSK / Sanofi Pasteur"],
+//           //      ])
+//         //    },
+//         //    {
+//         //        key: '8', role: 'option',
+//          //       content: new Map([
+//         //            ["nl", "Novavax"],
+//         //        ])
+//         //    },
+//             {
+//                 key: '7', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Weet ik niet"],
+//                 ])
+//             },
+//             {
+//                 key: '8', role: 'option',
+//                 content: new Map([
+//                     ["nl", "Anders"],
+//                 ])
+//             },
+//         ],
+//         isRequired: isRequired,
+//     });
+// }
 
 
 // const q_vacc1_date_def = (parentKey: string, isRequired?: boolean, condition?: Expression, keyOverride?: string): SurveyItem => {
