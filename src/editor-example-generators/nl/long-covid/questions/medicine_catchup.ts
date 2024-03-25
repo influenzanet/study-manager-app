@@ -403,7 +403,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus?"],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus,en hoe vaak? "],
         ]),
         customValidations: [
             checkIfOpenNumberFieldIsAnsweredForMC(
