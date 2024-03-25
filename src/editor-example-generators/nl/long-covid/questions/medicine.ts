@@ -358,7 +358,7 @@ const Q1 = (parentKey: string, isRequired?: boolean, keyOverride?: string): Surv
         itemKey: itemKey,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die NIET te maken hebben met het coronavirus?"],
+            ["nl", "Heb je in de afgelopen 3 maanden contact gehad met een zorgverlener voor klachten die NIET te maken hebben met het coronavirus"],
         ]),
         topDisplayCompoments: [{
             role: 'text',
@@ -399,7 +399,7 @@ const gen_Q2a = (parentKey: string, isRequired?: boolean, condition?: Expression
         condition: condition,
         isRequired: isRequired,
         questionText: new Map([
-            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus?"],
+            ["nl", "Met welke zorgverleners heb je contact gehad in de afgelopen 3 maanden voor klachten die NIET te maken hebben met het coronavirus, en hoe vaak?"],
         ]),
         customValidations: [
             checkIfOpenNumberFieldIsAnsweredForMC(
