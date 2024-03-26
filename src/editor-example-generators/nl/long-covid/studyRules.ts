@@ -804,7 +804,7 @@ const handleTimerEvent = (): Expression => {
         return StudyActions.ifThen(
             isSurveyExpired(surveyKeys.T12c),
             [
-                StudyActions.removeAllSurveys(),
+                //StudyActions.removeAllSurveys(),
                 finishParticipation("expired")
                // assignT15c(),
             ]
