@@ -6,6 +6,7 @@ import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-t
 import { expWithArgs, generateLocStrings } from "../../../../editor-engine/utils/simple-generators";
 import { GroupItemEditor } from "../../../../editor-engine/utils/survey-group-editor-helper";
 import { surveyKeys } from "../studyRules";
+import { checkIfOpenNumberFieldIsAnsweredForMC, checkIfOpenTextFieldIsAnsweredForSingleChoice } from "./utils";
 
 export class DemographieGroup extends GroupItemEditor {
 
@@ -1893,6 +1894,12 @@ const gen_Q_wekenhulp = (parentKey: string, condition?: Expression, isRequired?:
             ["nl", "Let op: een periode van 3 maanden telt 13 weken."],
         ]),
         isRequired: isRequired,
+        customValidations: [
+            checkIfOpenNumberFieldIsAnsweredForMC(
+                `${parentKey}.${itemKey}`,
+                ['1', '2', '3'],
+            )
+        ],
         responseOptions: [
             {
                 key: '1', role: 'numberInput',
@@ -1937,6 +1944,12 @@ const gen_Q_urenhulp = (parentKey: string, condition?: Expression, isRequired?: 
             ["nl", "Hoeveel uur hulp kreeg je in deze weken gemiddeld?"],
         ]),
         isRequired: isRequired,
+        customValidations: [
+            checkIfOpenNumberFieldIsAnsweredForMC(
+                `${parentKey}.${itemKey}`,
+                ['1', '2', '3'],
+            )
+        ],
         responseOptions: [
             {
                 key: '1', role: 'numberInput',
