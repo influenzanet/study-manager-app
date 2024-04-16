@@ -664,7 +664,7 @@ const Q2b = (parentKey: string, condition: Expression, isRequired?: boolean, key
         contentBehindInput: true,
         componentProperties: {
             min: 0,
-            max: 50
+            max: 9999
         }
     })
 }
@@ -686,7 +686,7 @@ const Q2b_longsymptoms = (parentKey: string, condition: Expression, isRequired?:
         contentBehindInput: true,
         componentProperties: {
             min: 0,
-            max: 50
+            max: 9999
         }
     })
 }
