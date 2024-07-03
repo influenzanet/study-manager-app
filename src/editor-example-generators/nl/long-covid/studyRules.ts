@@ -13,7 +13,7 @@ export const surveyKeys = {
     T6c: 'T6c',
     T9: 'T9',
     T9c: 'T9c',
-    T12: 'T12', 
+    T12: 'T12',
     T12c: 'T12c',
     T15: 'T15',
     //T15c: 'T15c',
@@ -243,7 +243,7 @@ const handleT0Submission = (): Expression => {
         StudyExpressions.checkSurveyResponseKey(surveyKeys.T0),
         [
             StudyActions.removeAllSurveys(),
-            StudyActions.if(
+            /*StudyActions.if(
                 isInterestedInAdditionalResearch(),
                 StudyActions.updateParticipantFlag("additionalStudies", "ja")
             ),
@@ -303,7 +303,7 @@ const handleT0Submission = (): Expression => {
                         [assignT3(),]
                     )
                 )
-            ),
+            ),*/
         ]
     )
 }
@@ -486,19 +486,19 @@ const handleT12Submission = (): Expression => {
 }
 
 //const handleT12cSubmission = (): Expression => {
-    //return StudyActions.ifThen(
-        //StudyExpressions.checkSurveyResponseKey(surveyKeys.T12c),
-        //[
-            //StudyActions.removeAllSurveys(),
-            //StudyActions.if(
-                //StudyExpressions.singleChoiceOptionsSelected('T12c.GEN.extend_FU', 'ja'),
-                // Then:
-                //assignT15c(),
-                // Else:
-                //finishParticipation("finished")
-            //)  
-        //]
-    //)
+//return StudyActions.ifThen(
+//StudyExpressions.checkSurveyResponseKey(surveyKeys.T12c),
+//[
+//StudyActions.removeAllSurveys(),
+//StudyActions.if(
+//StudyExpressions.singleChoiceOptionsSelected('T12c.GEN.extend_FU', 'ja'),
+// Then:
+//assignT15c(),
+// Else:
+//finishParticipation("finished")
+//)
+//]
+//)
 //}
 
 //has to be checked in studyRules
@@ -508,7 +508,7 @@ const handleT12cSubmission = (): Expression => {
         [
             StudyActions.removeAllSurveys(),
             finishParticipation("finished")
-             
+
         ]
     )
 }
@@ -526,13 +526,13 @@ const handleT15Submission = (): Expression => {
 }
 
 //const handleT15cSubmission = (): Expression => {
-    //return StudyActions.ifThen(
-        //StudyExpressions.checkSurveyResponseKey(surveyKeys.T15c),
-        //[
-           // StudyActions.removeAllSurveys(),
-           // assignT18c(),
-        //]
-    //)
+//return StudyActions.ifThen(
+//StudyExpressions.checkSurveyResponseKey(surveyKeys.T15c),
+//[
+// StudyActions.removeAllSurveys(),
+// assignT18c(),
+//]
+//)
 //}
 
 const handleT18Submission = (): Expression => {
@@ -546,13 +546,13 @@ const handleT18Submission = (): Expression => {
 }
 
 //const handleT18cSubmission = (): Expression => {
-    //return StudyActions.ifThen(
-        //StudyExpressions.checkSurveyResponseKey(surveyKeys.T18c),
-        //[
-        //    StudyActions.removeAllSurveys(),
-        //    assignT21c(),
-        //]
-    //)
+//return StudyActions.ifThen(
+//StudyExpressions.checkSurveyResponseKey(surveyKeys.T18c),
+//[
+//    StudyActions.removeAllSurveys(),
+//    assignT21c(),
+//]
+//)
 //}
 
 
@@ -567,13 +567,13 @@ const handleT21Submission = (): Expression => {
 }
 
 //const handleT21cSubmission = (): Expression => {
-    //return StudyActions.ifThen(
-    //    StudyExpressions.checkSurveyResponseKey(surveyKeys.T21c),
-    //    [
-    //        StudyActions.removeAllSurveys(),
-    //        assignT24c(),
-    //    ]
-    //)
+//return StudyActions.ifThen(
+//    StudyExpressions.checkSurveyResponseKey(surveyKeys.T21c),
+//    [
+//        StudyActions.removeAllSurveys(),
+//        assignT24c(),
+//    ]
+//)
 //}
 
 
@@ -806,30 +806,30 @@ const handleTimerEvent = (): Expression => {
             [
                 //StudyActions.removeAllSurveys(),
                 finishParticipation("expired")
-               // assignT15c(),
+                // assignT15c(),
             ]
         )
     };
 
     //const handleT15cExpired = (): Expression => {
-       // return StudyActions.ifThen(
-       //     isSurveyExpired(surveyKeys.T15c),
-       //     [
-       //         StudyActions.removeAllSurveys(),
-       //         assignT18c(),
-       //     ]
-       // )
-   // };
+    // return StudyActions.ifThen(
+    //     isSurveyExpired(surveyKeys.T15c),
+    //     [
+    //         StudyActions.removeAllSurveys(),
+    //         assignT18c(),
+    //     ]
+    // )
+    // };
 
-   // const handleT18cExpired = (): Expression => {
-   //     return StudyActions.ifThen(
-   //         isSurveyExpired(surveyKeys.T18c),
-   //         [
-   //             StudyActions.removeAllSurveys(),
-   //             assignT21c(),
-   //         ]
-   //     )
-   // };
+    // const handleT18cExpired = (): Expression => {
+    //     return StudyActions.ifThen(
+    //         isSurveyExpired(surveyKeys.T18c),
+    //         [
+    //             StudyActions.removeAllSurveys(),
+    //             assignT21c(),
+    //         ]
+    //     )
+    // };
 
     //const handleT21cExpired = (): Expression => {
     //    return StudyActions.ifThen(
@@ -845,10 +845,10 @@ const handleTimerEvent = (): Expression => {
     //    return StudyActions.ifThen(
     //        isSurveyExpired(surveyKeys.T24c),
     //        [
-   //             finishParticipation("expired")
-   //         ]
-   //     )
-   // };
+    //             finishParticipation("expired")
+    //         ]
+    //     )
+    // };
 
     return StudyActions.ifThen(
         StudyExpressions.checkEventType('TIMER'),
