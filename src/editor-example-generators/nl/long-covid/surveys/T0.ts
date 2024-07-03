@@ -1,4 +1,4 @@
-import { Survey } from "survey-engine/data_types";
+import { Survey, SurveyItem } from "survey-engine/data_types";
 import { CommonExpressions } from "../../../../editor-engine/utils/commonExpressions";
 import { SurveyItemGenerators } from "../../../../editor-engine/utils/question-type-generator";
 import { expWithArgs } from "../../../../editor-engine/utils/simple-generators";
@@ -28,6 +28,40 @@ import { SymptomsGroup as ChildrenSymptomsGroup } from "../questions/for-childre
 import { IntroGroup as ChildrenGroupIntro } from "../questions/for-children/childGroupIntro";
 import { HealthGroup as ChildrenGeneralHealthGroup } from "../questions/for-children/health";
 import { GeneralDataGroup as ChildrenGeneralDataGroup } from "../questions/for-children/generalData";
+import { ComponentGenerators } from "../../../../editor-engine/utils/componentGenerators";
+
+const PostCovidInfo = (parentKey: string): SurveyItem => {
+    const markdownContent = `
+<div style="text-align: center; width: 100%;">
+<a href="https://www.postcovidonderzoek.nl/">
+  <img src="https://www.postcovidonderzoek.nl/logo.png" alt="Postcovid" style="width: 100%; max-width: 250px; ">
+</a>
+</div>
+
+## Geen nieuwe deelnemers meer nodig voor onderzoek via longcovid.rivm.nl
+
+Het RIVM LongCOVID onderzoek levert belangrijke informatie op over LongCOVID (tegenwoordig vaker post-COVID genoemd) in Nederland. Toch blijft nog veel onbekend over de oorzaak en beste aanpak van post-COVID. Daarom is in Nederland in 2024 het Post-COVID Netwerk Nederland opgericht waarin vele onderzoeks- en patiëntorganisaties samenwerken voor nieuw en divers onderzoek naar post-COVID.
+
+Binnen het netwerk is gekozen om patiënten voor nieuw onderzoek centraal te werven via het nieuwe patiëntportaal [Postcovidonderzoek.nl](https://www.postcovidonderzoek.nl/). Om die reden stopt de inclusie via deze website. Wel willen we benadrukken dat als je nu nog meedoet aan het LongCOVID onderzoek dat je voortdurende betrokkenheid en het invullen van vragenlijsten bijdraagt aan het afronden van de studie.
+
+Als je zelf post-COVID klachten hebt, nodigen we uit om je aan te melden via het landelijke portaal, [Postcovidonderzoek.nl](https://www.postcovidonderzoek.nl/).
+
+
+`
+
+    return SurveyItemGenerators.display({
+        parentKey: parentKey,
+        itemKey: 'postCovidInfo',
+        content: [
+            ComponentGenerators.markdown({
+                content: new Map([
+                    ["nl", markdownContent],
+                ]),
+                className: ''
+            })
+        ]
+    });
+}
 
 
 export const generateT0 = (): Survey | undefined => {
@@ -48,146 +82,9 @@ export const generateT0 = (): Survey | undefined => {
 
     surveyEditor.editor.setRequireLoginBeforeSubmission(true);
 
-    // *******************************
-    // Questions
-    // *******************************
-    const participantInfos = new ParticipantCategoryGroup(surveyKey);
-    surveyEditor.addSurveyItemToRoot(participantInfos.getItem());
-
-    const isChildParticipant =
-        expWithArgs('or',
-            participantInfos.isYounger(18),
-            participantInfos.getIsForAKind()
-        );
-    const isNotChildParticipant = expWithArgs('not',
-        isChildParticipant
-    )
-
-    // ===========================
-    // ADULT QUESTIONS BRANCH
-    const adultVersion = new GroupItemEditor(surveyKey, 'A');
-    adultVersion.groupEditor.setCondition(isNotChildParticipant)
-
-    const covidTestGroupEditor = new CovidTestGroup(adultVersion.key, true);
-    adultVersion.addItem(covidTestGroupEditor.getItem());
-
-    const vaccineGroupEditor = new VaccinationGroup(adultVersion.key, true);
-    adultVersion.addItem(vaccineGroupEditor.getItem());
-
-    const acuteHealthGroupEditor = new AcuteHealthGroup(adultVersion.key, covidTestGroupEditor.getQ11JaCondition());
-    adultVersion.addItem(acuteHealthGroupEditor.getItem());
-
-    const prehistoryGroupEditor = new PrehistoryGroup(adultVersion.key);
-    adultVersion.addItem(prehistoryGroupEditor.getItem());
-
-    const generalHealthGroupEditor = new GeneralHealthGroup(adultVersion.key);
-    adultVersion.addItem(generalHealthGroupEditor.getItem());
-
-    const hasKortademigCondition = CommonExpressions.multipleChoiceOptionsSelected(acuteHealthGroupEditor.getQAcuteHealthKey(), 'kortademig')
-    adultVersion.addItem(Q_mMRC(adultVersion.key, hasKortademigCondition, true));
-
-    const ncsiGroupEditor = new NCSIGroup(adultVersion.key, hasKortademigCondition);
-    adultVersion.addItem(ncsiGroupEditor.getItem());
-
-    // const satGroupEditor = new SaTGroup(adultVersion.key);
-    // adultVersion.addItem(satGroupEditor.getItem());
-
-    const eq5dGroupEditor = new EQ5DGroup(adultVersion.key, true, true);
-    adultVersion.addItem(eq5dGroupEditor.getItem());
-
-    adultVersion.addItem(Q_CIS(adultVersion.key, true));
-
-    const cfqGroup = new CFQGroup(adultVersion.key);
-    adultVersion.addItem(cfqGroup.getItem());
-
-    const hadsGroup = new HADSGroup(adultVersion.key);
-    adultVersion.addItem(hadsGroup.getItem());
-
-    // adultVersion.addItem(Q_CBS(adultVersion.key, true));
-
-    adultVersion.addItem(Q_IPAQ(adultVersion.key, true));
-
-    const sf36Group = new SF36Group(adultVersion.key);
-    adultVersion.addItem(sf36Group.getItem());
-
-    const medicineGroupEditor = new MedicineGroup(adultVersion.key, covidTestGroupEditor.getQ11JaCondition());
-    adultVersion.addItem(medicineGroupEditor.getItem());
-
-    const demographieGroupEditor = new DemographieGroup(
-        adultVersion.key,
-        {
-            getAgeInYearsExpression: participantInfos.getAgeInYearsExpression(),
-            testQ11jaCondition: covidTestGroupEditor.getQ11JaCondition(),
-        }
-    );
-    adultVersion.addItem(demographieGroupEditor.getItem());
+    surveyEditor.addSurveyItemToRoot(PostCovidInfo(surveyKey));
 
 
-    // ===========================
-    // CHILD QUESTIONS BRANCH
-    // -------------------------->
-    const childVersion = new GroupItemEditor(surveyKey, 'C');
-    childVersion.groupEditor.setCondition(isChildParticipant);
-
-    const minAge = 4;
-
-    // For children under 5
-    const introGroup = new ChildrenGroupIntro(childVersion.key, {
-        belowMinAge: participantInfos.isYounger(minAge, true)
-    });
-    childVersion.addItem(introGroup.getItem());
-
-    // COVID test group for children
-    const childrenCovidTestGroupEditor = new ChildrenCovidTestGroup(childVersion.key);
-    childrenCovidTestGroupEditor.groupEditor.setCondition(participantInfos.isOlder(minAge));
-    childVersion.addItem(childrenCovidTestGroupEditor.getItem());
-
-    // COVID vaccination for children
-    const childrenVaccinationGroupEditor = new ChildrenVaccinationGroup(childVersion.key);
-    childrenVaccinationGroupEditor.groupEditor.setCondition(participantInfos.isOlder(minAge));
-    childVersion.addItem(childrenVaccinationGroupEditor.getItem());
-
-    // SymptomsGroup for children
-    const childrenSymptomsGroupEditor = new ChildrenSymptomsGroup(childVersion.key, {
-        groupCondition: participantInfos.isOlder(minAge),
-        olderThan10: participantInfos.isOlder(10),
-        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
-    });
-    childVersion.addItem(childrenSymptomsGroupEditor.getItem());
-
-    // General Health for children
-    const childrenGeneralHealthGroupEditor = new ChildrenGeneralHealthGroup(childVersion.key, {
-        groupCondition: participantInfos.isOlder(minAge),
-        testQ11ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
-        hasDifficultyWithBreathing: childrenSymptomsGroupEditor.hasDifficultyBreathingExp,
-        hasReportedSymptomsQ1: childrenSymptomsGroupEditor.hasAnyReportedSymptoms,
-        youngerThan8: participantInfos.isYounger(8),
-        youngerThan11: participantInfos.isYounger(11),
-        between8And12: participantInfos.isBetweenAges(8, 12, true),
-        between13And18: participantInfos.isBetweenAges(13, 18, true),
-    });
-    childVersion.addItem(childrenGeneralHealthGroupEditor.getItem());
-
-    // General Data for children
-    const childrenGeneralDataGroupEditor = new ChildrenGeneralDataGroup(childVersion.key, {
-        groupCondition: participantInfos.isOlder(minAge),
-        q11Ja: childrenCovidTestGroupEditor.q11JaSelectedExp,
-    });
-    childVersion.addItem(childrenGeneralDataGroupEditor.getItem());
-
-    // <--------------------------
-    // END OF CHILD QUESTIONS BRANCH
-    // ===========================
-
-
-    // Add adult and children groups to the survey:
-    surveyEditor.addSurveyItemToRoot(adultVersion.getItem());
-    surveyEditor.addSurveyItemToRoot(childVersion.getItem());
-
-    // Survey End
-    surveyEditor.addSurveyItemToRoot(SurveyItemGenerators.surveyEnd(surveyKey, new Map([
-        ['nl', 'Dit was de laatste vraag. Sla je antwoorden op door op verzenden te klikken. Hartelijk dank voor het invullen. Je krijgt via de mail een uitnodiging als er een nieuwe vragenlijst voor je klaar staat. Voor het onderzoek is het heel belangrijk dat je de vragenlijsten blijft invullen, ook als je geen klachten (meer) hebt door corona.']
-    ]), participantInfos.isOlder(minAge)));
 
     return surveyEditor.getSurvey();
 }
