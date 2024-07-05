@@ -349,7 +349,7 @@ const q_test_date_def = (parentKey: string, isRequired?: boolean, condition?: Ex
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -1250 } },
+        minRelativeDate: { delta: { days: -2500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -490,7 +490,7 @@ const q_test_date_def_FU = (parentKey: string, isRequired?: boolean, condition?:
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -1250 } },
+        minRelativeDate: { delta: { days: -2500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -937,7 +937,7 @@ const q_langdurige_klachten_date = (parentKey: string, isRequired?: boolean, con
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -1500 } },
+        minRelativeDate: { delta: { days: -2500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -1065,7 +1065,7 @@ const q13b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -1500 } },
+        minRelativeDate: { delta: { days: -2500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -1173,7 +1173,7 @@ const q14b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -1500 } },
+        minRelativeDate: { delta: { days: -2500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
@@ -1281,7 +1281,7 @@ const q15b = (parentKey: string, isRequired?: boolean, condition?: Expression, k
         placeholderText: new Map([
             ["nl", "dd-mm-jjjj"],
         ]),
-        minRelativeDate: { delta: { days: -1500 } },
+        minRelativeDate: { delta: { days: -2500 } },
         maxRelativeDate: { delta: { seconds: 1 } },
         isRequired: isRequired,
     });
