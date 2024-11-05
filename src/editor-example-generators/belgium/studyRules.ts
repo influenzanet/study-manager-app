@@ -24,12 +24,14 @@ export interface RulesOptions {
     childAge: number;
     weeklyResubmitHours: number;
     vaccinationResubmitDays: number;
+    vaccinationSurveyActive: number;
 }
 
 export const rulesOptions = {
     childAge: 18,
     vaccinationResubmitDays: 28,
     weeklyResubmitHours: 1,
+    vaccinationSurveyActive: 1, // 1 = active, 0 = inactive
 };
 
 /**
@@ -110,10 +112,7 @@ export const checkVaccinationSurveyEligibility = StudyEngine.and(
       ParticipantFlags.isChild.key,
       ParticipantFlags.isChild.values.no
     ),
-    StudyEngine.participantState.hasParticipantFlagKeyAndValue(
-      ParticipantFlags.vaccinationSurveyActive.key,
-      ParticipantFlags.vaccinationSurveyActive.values.yes
-    ),
+    StudyEngine.eq(rulesOptions.vaccinationSurveyActive, 1), // 1 = active, 0 = inactive
     StudyEngine.not(
       StudyEngine.participantState.hasSurveyKeyAssigned(vaccination.key)
     )
@@ -159,28 +158,12 @@ const setChildFlag = (isOfAge: Expression) =>
             ),
         ),
         // if not child, add vaccination survey if not already there
-        StudyEngine.if(
-            StudyEngine.and(
-                StudyEngine.participantState.hasParticipantFlagKeyAndValue(
-                    ParticipantFlags.isChild.key,
-                    ParticipantFlags.isChild.values.no,
-                ),
-                StudyEngine.not(
-                    StudyEngine.participantState.hasSurveyKeyAssigned(
-                        vaccination.key,
-                    ),
-                ),
+        StudyEngine.ifThen(
+            checkVaccinationSurveyEligibility,
+            StudyEngine.participantActions.assignedSurveys.add(
+                vaccination.key,
+                "prio",
             ),
-            StudyEngine.ifThen(
-                StudyEngine.participantState.hasParticipantFlagKeyAndValue(
-                    ParticipantFlags.vaccinationSurveyActive.key,
-                    ParticipantFlags.vaccinationSurveyActive.values.yes,
-                ),
-                StudyEngine.participantActions.assignedSurveys.add(
-                    vaccination.key,
-                    "prio",
-                ),
-            )
         ),
         // if child, remove vaccination survey if present
         StudyEngine.if(
