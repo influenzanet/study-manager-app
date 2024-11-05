@@ -113,9 +113,6 @@ export const checkVaccinationSurveyEligibility = StudyEngine.and(
       ParticipantFlags.isChild.values.no
     ),
     StudyEngine.eq(rulesOptions.vaccinationSurveyActive, 1), // 1 = active, 0 = inactive
-    StudyEngine.not(
-      StudyEngine.participantState.hasSurveyKeyAssigned(vaccination.key)
-    )
   )
 
 const handleVaccination = StudyEngine.ifThen(
@@ -155,14 +152,6 @@ const setChildFlag = (isOfAge: Expression) =>
             StudyEngine.participantActions.updateFlag(
                 ParticipantFlags.isChild.key,
                 ParticipantFlags.isChild.values.yes,
-            ),
-        ),
-        // if not child, add vaccination survey if not already there
-        StudyEngine.ifThen(
-            checkVaccinationSurveyEligibility,
-            StudyEngine.participantActions.assignedSurveys.add(
-                vaccination.key,
-                "prio",
             ),
         ),
         // if child, remove vaccination survey if present
@@ -234,6 +223,23 @@ export const updateChild = StudyEngine.ifThen(
     ),
 );
 
+export const updateVaccinationAssignment = StudyEngine.if(
+    checkVaccinationSurveyEligibility,
+    StudyEngine.ifThen(
+        StudyEngine.not(
+            StudyEngine.participantState.hasSurveyKeyAssigned(vaccination.key)
+        ),
+        StudyEngine.participantActions.assignedSurveys.add(
+            vaccination.key,
+            "prio",
+        ),
+    ),
+    StudyEngine.participantActions.assignedSurveys.remove(
+        vaccination.key,
+        "all",
+    )
+);
+
 const handleTestingHabits = StudyEngine.ifThen(
     StudyEngine.checkSurveyResponseKey("testing_habits"),
     // remove testing habits survey after first submit
@@ -257,6 +263,7 @@ const submitRules: Expression[] = [
 const timerRules: Expression[] = [
     updateChild,
     handleContactsQuestionnaireExpired(),
+    updateVaccinationAssignment,
 ];
 
 /**
