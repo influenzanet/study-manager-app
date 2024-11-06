@@ -6,16 +6,27 @@ import intake from "../inf-intake"
 import vaccination from "../inf-vaccination"
 import { ParticipantFlags } from "../participantFlags";
 
-// NOTE: the safest check is to flag as adult if every answer given to Q2 in the
-// past passes the test but you could opt for at least one passing the test
-// using 'any'. Those are the only two options unfortunately.
-const isAdult = StudyEngine.checkConditionForOldResponses(
-  StudyEngine.lt(
-    StudyEngine.getResponseValueAsNum("intake.Q2", "rg.1"),
-    StudyEngine.timestampWithOffset({ years: -rulesOptions.childAge })
+
+// NOTE: if no survey is found the default result of
+// checkConditionForOldResponses is false, if that's the case do not touch the
+// flag, otherwise we check if every answer given to Q2 in the past is greater
+// than the childAge, we have to take every since latest response is not an option
+const isAdult = StudyEngine.and(
+  StudyEngine.checkConditionForOldResponses(
+    StudyEngine.hasResponseKey("intake.Q2", "rg.1"),
+    "all",
+    intake.key
   ),
-  "all",
-  intake.key)
+  StudyEngine.checkConditionForOldResponses(
+    StudyEngine.lt(
+      StudyEngine.getResponseValueAsNum("intake.Q2", "rg.1"),
+      StudyEngine.timestampWithOffset({ years: -rulesOptions.childAge })
+    ),
+    "all",
+    intake.key
+  ),
+);
+
 
 // NOTE: add vaccination if not already there, we do not want to alter the
 // vaccination resubmission flow
@@ -30,12 +41,13 @@ export const resetVaccination: {
 } = {
   name: "resetVaccination",
   rules: [
-    StudyEngine.if(isAdult,
+    StudyEngine.do(
+      StudyEngine.participantActions.assignedSurveys.remove(vaccination.key, "all"),
+      StudyEngine.participantActions.updateFlag(ParticipantFlags.isChild.key, ParticipantFlags.isChild.values.yes)),
+    StudyEngine.ifThen(
+      isAdult,
       StudyEngine.do(
         addVaccination,
-        StudyEngine.participantActions.updateFlag(ParticipantFlags.isChild.key, ParticipantFlags.isChild.values.no)),
-      StudyEngine.do(
-        StudyEngine.participantActions.assignedSurveys.remove(vaccination.key, "all"),
-        StudyEngine.participantActions.updateFlag(ParticipantFlags.isChild.key, ParticipantFlags.isChild.values.yes))),
+        StudyEngine.participantActions.updateFlag(ParticipantFlags.isChild.key, ParticipantFlags.isChild.values.no))),
   ]
 }

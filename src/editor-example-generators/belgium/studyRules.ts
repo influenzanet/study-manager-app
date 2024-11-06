@@ -108,11 +108,11 @@ const handleWeekly = StudyEngine.ifThen(
 );
 
 export const checkVaccinationSurveyEligibility = StudyEngine.and(
+    StudyEngine.eq(rulesOptions.vaccinationSurveyActive, 1), // 1 = active, 0 = inactive
     StudyEngine.participantState.hasParticipantFlagKeyAndValue(
       ParticipantFlags.isChild.key,
       ParticipantFlags.isChild.values.no
     ),
-    StudyEngine.eq(rulesOptions.vaccinationSurveyActive, 1), // 1 = active, 0 = inactive
   )
 
 const handleVaccination = StudyEngine.ifThen(
