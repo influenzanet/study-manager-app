@@ -43,6 +43,7 @@ export const resetVaccination: {
   rules: [
     StudyEngine.do(
       StudyEngine.participantActions.assignedSurveys.remove(vaccination.key, "all"),
+      StudyEngine.participantActions.removeFlag(ParticipantFlags.vaccinationCompleted.key),
       StudyEngine.participantActions.updateFlag(ParticipantFlags.isChild.key, ParticipantFlags.isChild.values.yes)),
     StudyEngine.ifThen(
       isAdult,
