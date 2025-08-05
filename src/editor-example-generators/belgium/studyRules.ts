@@ -31,7 +31,7 @@ export const rulesOptions = {
     childAge: 18,
     vaccinationResubmitDays: 28,
     weeklyResubmitHours: 1,
-    vaccinationSurveyActive: 1, // 1 = active, 0 = inactive
+    vaccinationSurveyActive: 0, // 1 = active, 0 = inactive
 };
 
 /**
