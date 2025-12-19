@@ -366,10 +366,10 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Heeft u in het huidige winterseizoen (2024-2025) een COVID-19 vaccin laten toedienen?"],
-            ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus  lors de la saison correspondant à l’hiver 2024/2025?"],
-            ["de-be", "Haben Sie sich in der heutigen Wintersaison (2024/2025) eine COVID-19-Impfstoff verabreichen lassen?"],
-            ["en", "Did you receive a COVID-19 vaccine during this autumn/winter season (2024-2025)?"],
+            ["nl-be", "Heeft u in het huidige winterseizoen (2025-2026) een COVID-19 vaccin laten toedienen?"],
+            ["fr-be", "Avez-vous reçu un vaccin contre le coronavirus  lors de la saison correspondant à l’hiver 2025/2026?"],
+            ["de-be", "Haben Sie sich in der heutigen Wintersaison (2025/2026) eine COVID-19-Impfstoff verabreichen lassen?"],
+            ["en", "Did you receive a COVID-19 vaccine during this autumn/winter season (2025-2026)?"],
         ]))
     );
 
@@ -405,10 +405,10 @@ const vac = (parentKey: string, isRequired?: boolean, keyOverride?: string): Sur
             },
             {
                 content: new Map([
-                    ["nl-be", "Antwoord ja indien u dit seizoen (2024-2025) een COVID-19 vaccin heeft ontvangen."],
-                    ["fr-be", "Répondez oui si vous avez reçu un vaccin cette saison (2024-2025)."],
-                    ["de-be", "Melden Sie ja, wenn Sie in dieser Saison (2024-2025) einen COVID-19-Impfstoff erhalten haben."],
-                    ["en", "Report yes, if you received a COVID-19 vaccine this season (2024-2025)."],
+                    ["nl-be", "Antwoord ja indien u dit seizoen (2025-2026) een COVID-19 vaccin heeft ontvangen."],
+                    ["fr-be", "Répondez oui si vous avez reçu un vaccin cette saison (2025-2026)."],
+                    ["de-be", "Melden Sie ja, wenn Sie in dieser Saison (2025-2026) einen COVID-19-Impfstoff erhalten haben."],
+                    ["en", "Report yes, if you received a COVID-19 vaccine this season (2025-2026)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2164,10 +2164,10 @@ const covid_vac_last_season = (parentKey: string, isRequired?: boolean, keyOverr
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Heeft u in het vorige winterseizoen (2023-2024) een COVID-19 vaccin laten toedienen?"],
-            ["fr-be", "Lors de la précédente saison de l’hiver (2023/2024), vous êtes-vous fait vacciner contre le corona ?"],
-            ["de-be", "Haben Sie sich in der vorigen Wintersaison (2023/2024) eine COVID-19-Impfung verabreichen lassen?"],
-            ["en", "Did you receive a COVID-19 vaccine during the previous fall/winter season (2023-2024)?"],
+            ["nl-be", "Heeft u in het vorige winterseizoen (2024-2025) een COVID-19 vaccin laten toedienen?"],
+            ["fr-be", "Lors de la précédente saison de l’hiver (2024/2025), vous êtes-vous fait vacciner contre le corona ?"],
+            ["de-be", "Haben Sie sich in der vorigen Wintersaison (2024/2025) eine COVID-19-Impfung verabreichen lassen?"],
+            ["en", "Did you receive a COVID-19 vaccine during the previous fall/winter season (2024-2025)?"],
         ]))
     );
 
@@ -2203,10 +2203,10 @@ const covid_vac_last_season = (parentKey: string, isRequired?: boolean, keyOverr
             },
             {
                 content: new Map([
-                    ["nl-be", "Antwoord ja indien u vorig seizoen (2023-2024) een COVID-19 vaccin heeft ontvangen."],
-                    ["fr-be", "Répondez oui si vous avez reçu un vaccin COVID-19 la saison dernière (2023-2024)."],
-                    ["de-be", "Melden Sie ja, wenn Sie in der letzten Saison (2023-2024) einen COVID-19-Impfstoff erhalten haben"],
-                    ["en", "Report yes, if you received a COVID-19 vaccine last season (2023-2024)."],
+                    ["nl-be", "Antwoord ja indien u vorig seizoen (2024-2025) een COVID-19 vaccin heeft ontvangen."],
+                    ["fr-be", "Répondez oui si vous avez reçu un vaccin COVID-19 la saison dernière (2024-2025)."],
+                    ["de-be", "Melden Sie ja, wenn Sie in der letzten Saison (2024-2025) einen COVID-19-Impfstoff erhalten haben"],
+                    ["en", "Report yes, if you received a COVID-19 vaccine last season (2024-2025)."],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
@@ -2273,10 +2273,10 @@ const covid_vac_last_season = (parentKey: string, isRequired?: boolean, keyOverr
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Heeft u in het huidige griepseizoen (2024/2025) een griepvaccin laten toedienen?"],
-            ["fr-be", "Lors de la saison de la grippe de l’hiver 2024/2025, vous êtes-vous fait vacciner contre la grippe ?"],
-            ["de-be", "Haben Sie in der (jetzigen) Grippesaison (2024/2025) einen Grippeimpfstoff bekommen?"],
-            ["en", "Did you receive a flu vaccine during this autumn/winter flu season (2024-2025)?"],
+            ["nl-be", "Heeft u in het huidige griepseizoen (2025/2026) een griepvaccin laten toedienen?"],
+            ["fr-be", "Lors de la saison de la grippe de l’hiver 2025/2026, vous êtes-vous fait vacciner contre la grippe ?"],
+            ["de-be", "Haben Sie in der (jetzigen) Grippesaison (2025/2026) einen Grippeimpfstoff bekommen?"],
+            ["en", "Did you receive a flu vaccine during this autumn/winter flu season (2025-2026)?"],
         ]))
     );
 
@@ -2383,10 +2383,10 @@ const covid_vac_last_season = (parentKey: string, isRequired?: boolean, keyOverr
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "When were you vaccinated against flu this season (2024-2025)?"],
-            ["nl-be", "Wanneer bent u in het huidige griepseizoen (2024/2025) gevaccineerd tegen de griep?"],
-            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2024/2025 ?"],
-            ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2024/2025) gegen Grippe geimpft?"],
+            ["en", "When were you vaccinated against flu this season (2025-2026)?"],
+            ["nl-be", "Wanneer bent u in het huidige griepseizoen (2025/2026) gevaccineerd tegen de griep?"],
+            ["fr-be", "Quand vous êtes-vous fait vacciner contre la grippe lors de la saison de la grippe correspondant à l’hiver 2025/2026 ?"],
+            ["de-be", "Wann wurden Sie in der (jetzigen) Grippesaison (2025/2026) gegen Grippe geimpft?"],
         ]))
     );
 
@@ -2497,10 +2497,10 @@ const flu_vaccine_this_season_reason_for = (parentKey: string, keyFluVaccineThis
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2024/2025) een griepvaccin te halen?"],
-            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2024/2025) ?"],
-            ["de-be", "Was waren für Sie die wichtigsten Gründe, um in dieser Grippesaison 2024/2025) einen Grippeimpfstoff zu verwenden?"],
-            ["en", "What were your reasons for getting a seasonal influenza vaccination this year (2024/2025)?"],
+            ["nl-be", "Wat waren voor u de belangrijkste redenen om dit griepseizoen (2025/2026) een griepvaccin te halen?"],
+            ["fr-be", "Quelles étaient les principales raisons qui vous ont poussé à vous faire vacciner contre la grippe au cours de cette saison (hiver 2025/2026) ?"],
+            ["de-be", "Was waren für Sie die wichtigsten Gründe, um in dieser Grippesaison 2025/2026) einen Grippeimpfstoff zu verwenden?"],
+            ["en", "What were your reasons for getting a seasonal influenza vaccination this year (2025/2026)?"],
         ]))
     );
 
@@ -2713,10 +2713,10 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen(2024/2025)?"],
-            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2024/2025) ?"],
-            ["de-be", "Was waren die Gründe dafür, dass Sie sich in dieser Grippesaison (2024/2025) nicht mehr impfen ließen?"],
-            ["en", "What were your reasons for not getting a seasonal influenza vaccination this year (2024/2025)?"],
+            ["nl-be", "Wat waren de redenen waarom u zich niet liet vaccineren dit griepseizoen (2025/2026)?"],
+            ["fr-be", "Pour quelle(s) raison(s) ne vous êtes-vous pas fait vacciner au cours de cette saison (hiver 2025/2026) ?"],
+            ["de-be", "Was waren die Gründe dafür, dass Sie sich in dieser Grippesaison (2025/2026) nicht mehr impfen ließen?"],
+            ["en", "What were your reasons for not getting a seasonal influenza vaccination this year (2025/2026)?"],
         ]))
     );
 
@@ -3007,10 +3007,10 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
     // QUESTION TEXT
     editor.setTitleComponent(
         generateTitleComponent(new Map([
-            ["en", "Did you receive a flu vaccine during the previous flu season (2023-2024)?"],
-            ["nl-be", "Heeft u in het vorige griepseizoen (2023/2024) een griepvaccin laten toedienen?"],
-            ["fr-be", "Lors de la précédente saison de la grippe (hiver 2023/2024), vous êtes-vous fait vacciner contre la grippe ?"],
-            ["de-be", "Haben Sie sich in der letzten Grippesaison (2023/2024) eine Grippeimpfung bekommen?"],
+            ["en", "Did you receive a flu vaccine during the previous flu season (2024-2025)?"],
+            ["nl-be", "Heeft u in het vorige griepseizoen (2024/2025) een griepvaccin laten toedienen?"],
+            ["fr-be", "Lors de la précédente saison de la grippe (hiver 2024/2025), vous êtes-vous fait vacciner contre la grippe ?"],
+            ["de-be", "Haben Sie sich in der letzten Grippesaison (2024/2025) eine Grippeimpfung bekommen?"],
         ]))
     );
 
@@ -3048,10 +3048,10 @@ const flu_vaccine_this_season_reason_against = (parentKey: string, keyFluVaccine
             },
             {
                 content: new Map([
-                    ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2023-2024."],
-                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2023-2024) heeft gekregen."],
-                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2023-2024)."],
-                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2023-2024)"],
+                    ["en", "Answer 'yes' if you were vaccinated in autumn/winter 2024-2025."],
+                    ["nl-be", "Antwoord 'ja' als u het vaccin vorig jaar (herfst / winter van 2024-2025) heeft gekregen."],
+                    ["fr-be", "Veuillez répondre « oui » si vous avez reçu le vaccin au cours de l'année dernière (durant l'automne/hiver 2024-2025)."],
+                    ["de-be", "Antworten Sie bitte mit 'ja', wenn Sie den Impfstoff im letzten Jahre erhalten haben (im Herbst/Winter von 2024-2025)"],
                 ]),
                 // style: [{ key: 'variant', value: 'p' }],
             },
