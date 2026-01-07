@@ -31,7 +31,7 @@ export const rulesOptions = {
     childAge: 18,
     vaccinationResubmitDays: 28,
     weeklyResubmitHours: 1,
-    vaccinationSurveyActive: 0, // 1 = active, 0 = inactive
+    vaccinationSurveyActive: 1, // 1 = active, 0 = inactive
 };
 
 /**
@@ -229,9 +229,15 @@ export const updateVaccinationAssignment = StudyEngine.if(
         StudyEngine.not(
             StudyEngine.participantState.hasSurveyKeyAssigned(vaccination.key)
         ),
-        StudyEngine.participantActions.assignedSurveys.add(
-            vaccination.key,
-            "prio",
+        StudyEngine.do(
+            StudyEngine.participantActions.updateFlag( 
+                ParticipantFlags.vaccinationCompleted.key,
+                ParticipantFlags.vaccinationCompleted.values.no,
+            ),
+            StudyEngine.participantActions.assignedSurveys.add(
+                vaccination.key,
+                "prio",
+            ),
         ),
     ),
     StudyEngine.participantActions.assignedSurveys.remove(
