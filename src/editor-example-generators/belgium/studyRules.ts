@@ -9,6 +9,10 @@ import {
   handleContactsQuestionnaireSubmission,
 } from "../external/contacts-survey/src/influenzanet-verdi-contact-extension/studyRules";
 
+import { HeatwaveStudyRulesBuilder } from "../external/common-study-definition/build/studies/heatwave/rules";
+import { HeatwaveConsentSurvey } from "../external/common-study-definition/build/studies/heatwave/surveys";
+import { HeatwaveKeys } from "../external/common-study-definition/build/studies/heatwave/surveys/keys";
+
 import intake from "./inf-intake";
 import weekly from "./inf-weekly";
 import vaccination from "./inf-vaccination";
@@ -31,7 +35,7 @@ export const rulesOptions = {
     childAge: 18,
     vaccinationResubmitDays: 28,
     weeklyResubmitHours: 1,
-    vaccinationSurveyActive: 1, // 1 = active, 0 = inactive
+    vaccinationSurveyActive: 0, // 1 = active, 0 = inactive
 };
 
 /**
@@ -273,7 +277,27 @@ const timerRules: Expression[] = [
 ];
 
 /**
+ * HEATWAVE WORKFLOW
+ *
+ * Assign the consent survey on entry, and handle consent/background/symptoms
+ * submissions. 
+ */
+const heatConsentSurvey = new HeatwaveConsentSurvey(new Map<string, string>());
+const heatwave = new HeatwaveStudyRulesBuilder({
+    consent: heatConsentSurvey.key,
+    consentItemKey: heatConsentSurvey.consent.key,
+    consentYesCode: heatConsentSurvey.consent.coding.yes,
+    background: HeatwaveKeys.BackgroundSurvey,
+    symptoms: HeatwaveKeys.SymptomSurvey,
+});
+heatwave.build();
+
+/**
  * STUDY RULES
  */
 // FIXME: why was this a function?
-export const studyRules = new StudyRules(entryRules, submitRules, timerRules).get();
+export const studyRules = new StudyRules(
+    [...entryRules, ...heatwave.rules.entry],
+    [...submitRules, ...heatwave.rules.submit],
+    timerRules,
+).get();

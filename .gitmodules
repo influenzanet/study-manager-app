@@ -1,3 +1,6 @@
 [submodule "src/editor-example-generators/external/contacts-survey"]
 	path = src/editor-example-generators/external/contacts-survey
 	url = git@github.com:influenzanet/contacts-survey.git
+[submodule "src/editor-example-generators/external/common-study-definition"]
+	path = src/editor-example-generators/external/common-study-definition
+	url = git@github.com:influenzanet/common-study-definition.git
