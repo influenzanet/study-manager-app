@@ -56,9 +56,14 @@ const entryRules: Expression[] = [
 const handleIntake = StudyEngine.ifThen(
     StudyEngine.checkSurveyResponseKey(intake.key),
     // remove assigned intake
-    StudyEngine.participantActions.assignedSurveys.removeAll(),
-    // add weekly survey
-    StudyEngine.participantActions.assignedSurveys.add(weekly.key, "prio"),
+    StudyEngine.participantActions.assignedSurveys.remove(intake.key, "all"),
+    // add weekly survey if not already there
+    StudyEngine.ifThen(
+        StudyEngine.not(
+            StudyEngine.participantState.hasSurveyKeyAssigned(weekly.key),
+        ),
+        StudyEngine.participantActions.assignedSurveys.add(weekly.key, "prio"),
+    ),
     // add optional intake
     StudyEngine.participantActions.assignedSurveys.add(
         intake.key,
